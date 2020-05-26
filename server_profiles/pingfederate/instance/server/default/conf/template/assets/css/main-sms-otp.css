@@ -1,0 +1,272 @@
+/* EMBEDDED FONT PATH ------------------------------------------------------------------------------------------------*/
+@import url("https://use.typekit.net/nxh5mrb.css");
+/* CLEARFIX CSS ----------------------------------------------------------------------------------------------------*/
+.clearfix { *zoom: 1; }
+
+.clearfix:before, .clearfix:after { content: " "; /* 1 */ display: table; /* 2 */ }
+
+.clearfix:after { clear: both; }
+
+/* BASIC HTML ELEMENTS CSS -------------------------------------------------------------------------------------------*/
+body { background: #f7f7f7; font-size: 16px; line-height: 1.2em; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 300; font-style: normal; }
+
+a { cursor: pointer; text-decoration: none; }
+
+a:hover { text-decoration: underline; }
+
+p { margin: 0 0 10px 0; line-height: 1.2; }
+
+strong { font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 700; font-style: normal; }
+
+input[type=button], input[type=submit], .button { padding: 9px 10px; font-size: 15px; line-height: 16px; cursor: pointer; display: inline-block; vertical-align: bottom; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 300; font-style: normal; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; border-radius: 2px; appearance: none; -moz-appearance: none; -webkit-appearance: none; -o-appearance: none; }
+
+input[type=button][disabled], input[type=submit][disabled], .button[disabled] { cursor: default; filter: alpha(opacity=40); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; opacity: 0.4; }
+
+input[type=button]:hover, input[type=submit]:hover, .button:hover { text-decoration: none; }
+
+textarea, input { outline: none; }
+
+/* MODAL CSS ---------------------------------------------------------------------------------------------------------*/
+.modal { top: 10%; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 400; font-style: normal; }
+
+.modal:before { content: ""; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: gray; z-index: 0; background: #8b8f96; background: -moz-radial-gradient(center, ellipse cover, #8b8f96 0%, #595c62 100%); background: -webkit-radial-gradient(center, ellipse cover, #8b8f96 0%, #595c62 100%); background: -webkit-radial-gradient(center, ellipse, #8b8f96 0%, #595c62 100%); background: -o-radial-gradient(center, ellipse, #8b8f96 0%, #595c62 100%); background: radial-gradient(ellipse at center, #8b8f96 0%, #595c62 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-inner', endColorstr='$gradient-outer',GradientType=1 ); }
+
+.modal .modal-content { position: absolute; top: 10%; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); background: #ffffff; padding: 50px; border-radius: 5px; margin-bottom: 150px; }
+
+.modal .modal-logo { display: block; margin: 0 0 50px 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); }
+
+.modal .ping-logo { height: 90px; width: 90px; }
+
+@font-face { font-family: 'iconfont'; src: url("/pingid-sdk-web/fonts/iconfont/iconfont.woff2?k8p9wx") format("woff2"); }
+
+.window--dark, .dialog > .window.qr-code { background-color: #999999; color: #ffffff; }
+
+.text--default { margin: 25px 0 20px 0; font-size: 18px; }
+
+.text--bold { font-weight: 700; line-height: 1.5; }
+
+/* CONTENT CSS -------------------------------------------------------------------------------------------------------*/
+.dialog input[type=button], .dialog input[type=submit], .dialog .button { background-color: transparent; border: 1px solid #ffffff; color: #ffffff; }
+
+.dialog input[type=button].primary, .dialog input[type=submit].primary, .dialog .button.primary { border: 1px solid #ffffff; color: #999999; background-color: #ffffff; }
+
+.dialog > .window { position: relative; width: 350px; min-height: 350px; margin: 0 auto 0 auto; text-align: center; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; border-radius: 3px; }
+
+.dialog > .window .title { text-align: center; font-size: 18px; color: #ffffff; height: 54px; line-height: 54px; }
+
+.dialog > .window .buttons { margin: 30px 0 0 0; display: -ms-flexbox; display: -webkit-flex; display: -webkit-box; display: flex; -ms-flex-wrap: wrap-reverse; flex-wrap: wrap-reverse; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
+
+.dialog > .window .buttons input, .dialog > .window .buttons .button { text-align: center; -webkit-box-sizing: border-box; box-sizing: border-box; white-space: normal; margin: 0 5px 5px 0 !important; min-width: calc(50% - 5px); max-width: 100%; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; -ms-flex-negative: 1; flex-shrink: 1; -ms-flex-preferred-size: auto; flex-basis: auto; }
+
+.dialog > .window .buttons input:only-child, .dialog > .window .buttons .button:only-child { -webkit-box-flex: 0; -ms-flex-positive: 0; flex-grow: 0; }
+
+.dialog > .window .buttons__offset { margin-left: 5px; }
+
+.dialog > .window .content { display: table-cell; vertical-align: middle; height: 297px; width: 350px; padding: 28px 0 25px 0; }
+
+.dialog > .window .content .text { font-size: 24px; }
+
+.dialog > .window.settings { text-align: left; background-color: #999999; min-height: 0; }
+
+.dialog > .window.settings .content { height: auto; padding: 50px 20px 20px 20px; }
+
+.dialog > .window.settings h1 { font-size: 20px; font-weight: 500; color: #ffffff; margin: 0 0 15px 0; }
+
+.dialog > .window.settings p { font-size: 13px; color: #ffffff; }
+
+.dialog > .window.settings a { font-size: 14px; color: #ffffff; }
+
+.dialog > .window.settings input[type=text] { display: block; height: 48px; padding: 0 10px; font-weight: 300; color: #ffffff; text-align: center; border: 1px solid gray; background-color: #8a8a8a; font-size: 21px; text-align: left; }
+
+.dialog > .window.settings input[type=text].passcode-input { width: 150px; margin: 42px auto 19px auto; font-size: 30px; text-align: center; }
+
+.dialog > .window.settings input[type=text].email-input { width: 290px; margin: 25px 0 45px -1px; }
+
+.dialog > .window.settings .yubikey-pairing .images img { float: left; height: 89px; }
+
+.dialog > .window.settings .yubikey-pairing .images img:first-child { margin-right: 10px; }
+
+.dialog > .window.settings .yubikey-pairing input[type=text] { margin: 25px 0 45px 0; width: 287px; }
+
+.dialog > .window.settings .call-again-link { margin: 0 0 50px 0; text-align: center; }
+
+.dialog > .window.canceled, .dialog > .window.blocked, .dialog > .window.error { background-color: #d24747; }
+
+.dialog > .window.canceled .button.primary, .dialog > .window.blocked .button.primary, .dialog > .window.error .button.primary { color: #d24747; }
+
+.dialog > .window.canceled .content, .dialog > .window.blocked .content, .dialog > .window.error .content { color: #ffffff; }
+
+.dialog > .window.canceled .content .text, .dialog > .window.blocked .content .text, .dialog > .window.error .content .text { margin: 35px 0 33px 0; }
+
+.dialog > .window.canceled .content .title-text, .dialog > .window.blocked .content .title-text, .dialog > .window.error .content .title-text { margin: 35px 15px 0 15px; font-size: 24px; text-align: center; }
+
+.dialog > .window.canceled .content .error-text, .dialog > .window.blocked .content .error-text, .dialog > .window.error .content .error-text { margin: 15px 15px 0 15px; line-height: 1.4em; text-align: center; }
+
+.dialog > .window.canceled .content .error-text .text, .dialog > .window.blocked .content .error-text .text, .dialog > .window.error .content .error-text .text { font-size: 12px; line-height: 1.2em; display: inline-block; text-align: left; margin-top: 0px; }
+
+.dialog > .window.canceled .status:after, .dialog > .window.blocked .status:after, .dialog > .window.error .status:after { height: 40px; width: 40px; background-size: 40px 40px; top: 57px; left: 23px; }
+
+.dialog > .window.canceled .status:after, .dialog > .window.blocked .status:after { background-image: url(icon-canceled.png); }
+
+.dialog > .window.error .status:after { background-image: url(icon-error.png); }
+
+.dialog > .window.authenticated { background-color: #30c437; }
+
+.dialog > .window.authenticated .button.primary { color: #30c437; }
+
+.dialog > .window.authenticated .content .text { margin: 50px 0 0 0; }
+
+.dialog > .window.authenticated .status:after { height: 45px; width: 54px; background-image: url(icon-check.png); background-size: 54px 45px; top: 55px; left: 16px; }
+
+.dialog > .window.authenticating { background-color: #999999; }
+
+.dialog > .window.authenticating .content .text { margin: 25px 0 21px 0; }
+
+.dialog > .window.authenticating .spinner { width: 60px; margin: 0; position: absolute; top: 45px; left: 13px; }
+
+.dialog > .window.disabled { background-color: #d24747; }
+
+.dialog > .window.disabled .button.primary { color: #d24747; }
+
+.dialog > .window.disabled .content .text { margin: 35px 0 33px 0; }
+
+.dialog > .window.disabled .status:after { height: 55px; width: 55px; background-image: url(icon-disabled.png); background-size: 55px 55px; top: 52px; left: 15px; }
+
+.dialog > .window.timedout { background-color: #ffc000; }
+
+.dialog > .window.timedout .button.primary { color: #ffc000; }
+
+.dialog > .window.timedout .content .text { margin: 35px 0 33px 0; }
+
+.dialog > .window.timedout .status:after { height: 55px; width: 55px; background-image: url(icon-timedout.png); background-size: 55px 55px; top: 52px; left: 15px; }
+
+.dialog > .window.speedbump { background-color: #ffc000; }
+
+.dialog > .window.speedbump .button.primary { color: #ffc000; }
+
+.dialog > .window.speedbump .content { color: #ffffff; }
+
+.dialog > .window.speedbump .content .title-text { margin: 35px 15px 0 15px; font-size: 24px; text-align: center; }
+
+.dialog > .window.speedbump .content .error-text { margin: 0 15px 0 15px; line-height: 1.4em; text-align: center; }
+
+.dialog > .window.speedbump .content .error-text .text { font-size: 12px; line-height: 1.2em; display: inline-block; text-align: left; }
+
+.dialog > .window.speedbump .content .text { margin: 15px 0 0 0; padding-left: 40px; padding-right: 35px; }
+
+.dialog > .window.speedbump .content .discription .text { font-size: 12px; line-height: 1.2em; display: inline-block; text-align: left; }
+
+.dialog > .window.speedbump .status:after { height: 55px; width: 55px; background-size: 55px 55px; top: 52px; left: 15px; }
+
+.dialog > .window.fraud { background-color: #ffc000; }
+
+.dialog > .window.fraud .content { color: #ffffff; }
+
+.dialog > .window.fraud .content .text { margin: 35px 0 33px 0; }
+
+.dialog > .window.fraud .status:after { height: 55px; width: 55px; background-image: url(icon-error.png); background-size: 55px 55px; top: 52px; left: 15px; }
+
+.dialog > .window.expired { background-color: #d24747; }
+
+.dialog > .window.expired .content { color: #ffffff; }
+
+.dialog > .window.expired .content .text { margin: 35px 0 33px 0; }
+
+.dialog > .window.expired .content .discription { margin: 15px 0 0 0; padding-left: 40px; padding-right: 35px; }
+
+.dialog > .window.expired .status:after { height: 55px; width: 55px; background-image: url(icon-error.png); background-size: 55px 55px; top: 52px; left: 15px; }
+
+.dialog > .window.qr-code .qrcode-image { width: 168px; height: auto; }
+
+.dialog > .window.change-device, .dialog > .window.choose-user { width: 350px; padding-bottom: 35px; background-color: #999999; }
+
+.dialog > .window.change-device .content, .dialog > .window.choose-user .content { padding: 0; vertical-align: top; width: 400px; }
+
+.dialog > .window.change-device .device-list, .dialog > .window.change-device .user-list, .dialog > .window.choose-user .device-list, .dialog > .window.choose-user .user-list { margin: 0 0 30px 0; padding: 0; text-align: left; list-style: none; color: #ffffff; font-size: 18px; line-height: 1em; }
+
+.dialog > .window.change-device .device-list a, .dialog > .window.change-device .user-list a, .dialog > .window.choose-user .device-list a, .dialog > .window.choose-user .user-list a { padding: 10px 0 10px 75px; display: block; }
+
+.dialog > .window.change-device .device-list a:hover, .dialog > .window.change-device .user-list a:hover, .dialog > .window.choose-user .device-list a:hover, .dialog > .window.choose-user .user-list a:hover { text-decoration: none; }
+
+.dialog > .window.change-device .device-list li, .dialog > .window.change-device .user-list li, .dialog > .window.choose-user .device-list li, .dialog > .window.choose-user .user-list li { position: relative; background-color: #aaaaaa; border-bottom: 1px solid #b8b8b8; }
+
+.dialog > .window.change-device .device-list .device-name, .dialog > .window.change-device .device-list .user-name, .dialog > .window.change-device .user-list .device-name, .dialog > .window.change-device .user-list .user-name, .dialog > .window.choose-user .device-list .device-name, .dialog > .window.choose-user .device-list .user-name, .dialog > .window.choose-user .user-list .device-name, .dialog > .window.choose-user .user-list .user-name { display: block; font-size: 12px; line-height: 1em; margin: 3px 15px 0 0; max-width: 305px; overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; }
+
+.dialog > .window.change-device .device-list:last-child, .dialog > .window.change-device .user-list:last-child, .dialog > .window.choose-user .device-list:last-child, .dialog > .window.choose-user .user-list:last-child { border-bottom: none; }
+
+.dialog > .window.change-device .device-list .device:before, .dialog > .window.change-device .device-list .user:before, .dialog > .window.change-device .user-list .device:before, .dialog > .window.change-device .user-list .user:before, .dialog > .window.choose-user .device-list .device:before, .dialog > .window.choose-user .device-list .user:before, .dialog > .window.choose-user .user-list .device:before, .dialog > .window.choose-user .user-list .user:before { content: ''; position: absolute; background-position: center; }
+
+.dialog > .window.change-device .device-list .device a, .dialog > .window.change-device .device-list .user a, .dialog > .window.change-device .user-list .device a, .dialog > .window.change-device .user-list .user a, .dialog > .window.choose-user .device-list .device a, .dialog > .window.choose-user .device-list .user a, .dialog > .window.choose-user .user-list .device a, .dialog > .window.choose-user .user-list .user a { border-style: solid; border-width: 0 0 0 5px; border-color: transparent; white-space: nowrap; overflow: hidden; -o-text-overflow: ellipsis; text-overflow: ellipsis; min-height: 33px; max-width: 320px; }
+
+.dialog > .window.change-device .device-list .device.selected, .dialog > .window.change-device .device-list .user.selected, .dialog > .window.change-device .user-list .device.selected, .dialog > .window.change-device .user-list .user.selected, .dialog > .window.choose-user .device-list .device.selected, .dialog > .window.choose-user .device-list .user.selected, .dialog > .window.choose-user .user-list .device.selected, .dialog > .window.choose-user .user-list .user.selected { background-color: #8a8a8a; }
+
+.dialog > .window.change-device .device-list .device.selected a, .dialog > .window.change-device .device-list .user.selected a, .dialog > .window.change-device .user-list .device.selected a, .dialog > .window.change-device .user-list .user.selected a, .dialog > .window.choose-user .device-list .device.selected a, .dialog > .window.choose-user .device-list .user.selected a, .dialog > .window.choose-user .user-list .device.selected a, .dialog > .window.choose-user .user-list .user.selected a { border-color: #7bdf80; }
+
+.dialog > .window.change-device .device-list .mobile-phone:before, .dialog > .window.change-device .user-list .mobile-phone:before, .dialog > .window.choose-user .device-list .mobile-phone:before, .dialog > .window.choose-user .user-list .mobile-phone:before { background-image: url(icon-device-mobilephone.png); background-size: 16px 32px; height: 32px; width: 16px; top: 8px; left: 25px; }
+
+.dialog > .window.change-device .device-list .desk-phone:before, .dialog > .window.change-device .user-list .desk-phone:before, .dialog > .window.choose-user .device-list .desk-phone:before, .dialog > .window.choose-user .user-list .desk-phone:before { background-image: url(icon-device-deskphone.png); background-size: 24px 24px; height: 24px; width: 24px; top: 13px; left: 20px; }
+
+.dialog > .window.change-device .device-list .sms:before, .dialog > .window.change-device .user-list .sms:before, .dialog > .window.choose-user .device-list .sms:before, .dialog > .window.choose-user .user-list .sms:before { background-image: url(icon-device-sms.png); background-size: 24px 22px; height: 22px; width: 24px; top: 13px; left: 21px; }
+
+.dialog > .window.change-device .device-list .yubikey, .dialog > .window.change-device .user-list .yubikey, .dialog > .window.choose-user .device-list .yubikey, .dialog > .window.choose-user .user-list .yubikey { line-height: 33px; }
+
+.dialog > .window.change-device .device-list .yubikey:before, .dialog > .window.change-device .user-list .yubikey:before, .dialog > .window.choose-user .device-list .yubikey:before, .dialog > .window.choose-user .user-list .yubikey:before { content: ''; background-image: url(icon-device-yubikey.png); background-size: 34px 13px; height: 13px; width: 34px; top: 20px; left: 18px; }
+
+.dialog > .window.change-device .device-list .email:before, .dialog > .window.change-device .user-list .email:before, .dialog > .window.choose-user .device-list .email:before, .dialog > .window.choose-user .user-list .email:before { background-image: url(icon-device-email.png); background-size: 23px 15px; height: 15px; width: 23px; top: 18px; left: 22px; }
+
+.dialog > .window.change-device .device-list .pcclient, .dialog > .window.change-device .user-list .pcclient, .dialog > .window.choose-user .device-list .pcclient, .dialog > .window.choose-user .user-list .pcclient { line-height: 33px; }
+
+.dialog > .window.change-device .device-list .pcclient:before, .dialog > .window.change-device .user-list .pcclient:before, .dialog > .window.choose-user .device-list .pcclient:before, .dialog > .window.choose-user .user-list .pcclient:before { background-image: url(icon-device-pctoken.png); background-size: 33px 24px; height: 24px; width: 33px; top: 14px; left: 18px; }
+
+.dialog > .window.change-device .device-list .qr-code, .dialog > .window.change-device .user-list .qr-code, .dialog > .window.choose-user .device-list .qr-code, .dialog > .window.choose-user .user-list .qr-code { line-height: 33px; }
+
+.dialog > .window.change-device .device-list .qr-code:before, .dialog > .window.change-device .user-list .qr-code:before, .dialog > .window.choose-user .device-list .qr-code:before, .dialog > .window.choose-user .user-list .qr-code:before { content: ''; background-image: url(icon-qr.png); background-size: 23px 23px; height: 23px; width: 23px; top: 15px; left: 22px; }
+
+.dialog > .window.change-device .device-list .user-select, .dialog > .window.change-device .user-list .user-select, .dialog > .window.choose-user .device-list .user-select, .dialog > .window.choose-user .user-list .user-select { line-height: 33px; }
+
+.dialog > .window.change-device .device-list .user-select:before, .dialog > .window.change-device .user-list .user-select:before, .dialog > .window.choose-user .device-list .user-select:before, .dialog > .window.choose-user .user-list .user-select:before { font-family: 'iconfont'; content: 'a'; background-image: none; font-size: 27px; left: 28px; top: 10px; }
+
+.dialog > .window .error-message { position: absolute; top: -100%; left: 0; right: 0; padding: 10px; text-align: center; font-size: 14px; line-height: 1em; font-weight: 100; background: #bd0f06; color: #ffffff; -webkit-border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; -ms-border-radius: 5px 5px 0 0; border-radius: 5px 5px 0 0; }
+
+.dialog > .window .error-message.show { top: 0; }
+
+.dialog > .window .success-message { font-size: 13px; line-height: 1em; color: #ffffff; margin-bottom: 5px; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 600; font-style: normal; }
+
+.dialog > .window .content { font-size: 14px; }
+
+.dialog > .window .content .status { position: relative; background-image: url(icon-iphone6.png); background-size: 85px 167px; background-position: center; height: 167px; width: 85px; margin: 0 auto; }
+
+.dialog > .window .content .status:after { position: absolute; content: ''; display: block; background-repeat: no-repeat; }
+
+.dialog > .window .content .text { font-weight: 200; color: #ffffff; }
+
+.dialog > .window .content .text.device, .dialog > .window .content .text.user { font-size: 18px; }
+
+.dialog > .window .content .text .device-name, .dialog > .window .content .text .user-name { font-weight: 700; margin: 2px 0 0 0; }
+
+.dialog > .window .message { margin: 30px 0 0 0; }
+
+.dialog > .window .message.error { color: #d24747; margin-bottom: -15px; }
+
+.dialog .admin-message { font-size: 12px; margin: 50px auto 0 auto; text-align: center; }
+
+.hide { display: none !important; }
+
+.link--primary { display: inline-block; margin-top: 10px; font-size: 14px; color: #ffffff; text-decoration: underline; }
+
+.loading-page { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #ffffff; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; font-size: 20px; color: #999999; text-align: center; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 400; font-style: normal; }
+
+.loading-page__spinner { width: 28px; height: auto; margin-bottom: 15px; }
+
+.loading-page__cancel { border: 1px solid #999999; color: #999999; margin-top: 30px; min-width: 100px; -webkit-transform: scale(0.8); -ms-transform: scale(0.8); transform: scale(0.8); }
+
+footer { position: absolute; top: 100%; left: 0; padding: 20px 0; width: 100%; color: #999999; font-size: 12px; text-align: center; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.powered-by-pingidentity { content: url(powered-by-ping-identity.svg); width: 150px; margin: 0px auto 10px; }
+
+/* RESPONSIVE CSS ----------------------------------------------------------------------------------------------------*/
+@media (max-width: 500px) { .modal { background: #ffffff; }
+  .modal:before { background: #ffffff; }
+  .modal .modal-content { top: 0; border-radius: 0; left: 0; right: 0; -webkit-transform: none; -ms-transform: none; transform: none; padding: 10px; }
+  .dialog > .window, .dialog > .window > .content { display: block; width: auto; height: auto; min-height: auto; }
+  .dialog > .window.change-device, .dialog > .window.change-device .content, .dialog > .window.choose-user, .dialog > .window.choose-user .content { width: auto; } }

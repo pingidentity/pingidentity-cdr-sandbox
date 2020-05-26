@@ -1,0 +1,32 @@
+<ng-container *ngIf="control.controls;">
+    <form [formGroup]="control" class="ui-fluid">
+        <cdr-form-control
+            *ngFor="let _control of control.controls | keyvalue: originalOrder"
+            [className]="_control.key"
+            [control]="_control.value"
+            [showErrors]="showErrors"
+            [showLabel]="showLabel"
+        ></cdr-form-control>
+    </form>
+</ng-container>
+
+<fieldset
+    *ngIf="!control.controls && control.isVisible;"
+    [class.--hasError]="showErrors && control.errors"
+>
+    <p-checkbox *ngIf="control.type === 'checkbox'" [inputId]="idForLabel" binary="true" [formControl]="control"></p-checkbox>
+
+    <label *ngIf="showLabel" [for]="idForLabel">
+        {{ control.label }} {{ hasRequiredValidator(control) ? '*' : '' }}
+    </label>
+    <p class="error">{{ getFirstError(control) }}</p>
+
+    <ng-container [ngSwitch]="control.type">
+        <input *ngSwitchCase="'input'"                  [id]="idForLabel" [formControl]="control" pInputText [type]="control.subType || 'text'" />
+        <textarea *ngSwitchCase="'textarea'"            [id]="idForLabel" [formControl]="control" pInputTextarea rows="5"></textarea>
+        <p-dropdown *ngSwitchCase="'select'"            [inputId]="idForLabel" [formControl]="control" [options]="control.options" [autoWidth]="false" [style]="{'width':'100%'}"></p-dropdown>
+        <p-calendar *ngSwitchCase="'date'"              [inputId]="idForLabel" [formControl]="control" appendTo="body" showButtonBar="true"></p-calendar>
+        <app-duration-picker *ngSwitchCase="'duration'" [inputId]="idForLabel" [formControl]="control"></app-duration-picker>
+    </ng-container>
+
+</fieldset>

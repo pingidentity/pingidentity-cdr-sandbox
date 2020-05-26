@@ -1,0 +1,180 @@
+/* You can add global styles to this file, and also import other style files */
+
+.loading-indicator {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* Transparent Overlay */
+.loading-indicator:before {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.53);
+}
+
+.layout-container {
+    min-height: calc(100vh - 95px - 3em);
+}
+
+@media (max-width: 575px) {
+    .hidden-xs {
+        display: none !important;
+    }
+}
+
+body {
+    background: #051228;
+}
+
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #26C6DA;
+    }
+}
+
+body .ui-dropdown-panel .ui-dropdown-item.ui-state-highlight {
+    background: #26C6DA;
+}
+
+body .ui-tabview .ui-tabview-nav > li.ui-state-active {
+    border-color: #051228;
+}
+
+// TODO
+.LeftSidebar {
+
+    &-container {
+
+        &--withCatalogue {
+            overflow-y: scroll;
+            height: calc(100vh - 94px);
+        }
+
+    }
+}
+
+body .ui-button,
+body .ui-datepicker-buttonpane > button {
+    background: #051228;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+body .ui-button:enabled:not(:focus):hover,
+body .ui-datepicker-buttonpane > button:enabled:not(:focus):hover {
+    background: #26C6DA;
+}
+
+body .ui-table .ui-table-thead > tr > th {
+    background: #051228;
+    color: white;
+    font-weight: bold;
+}
+
+body .ui-tabview .ui-tabview-panel {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+body .ui-dataview .ui-dataview-header {
+    background: white;
+    border-color: white;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+}
+
+body .ui-paginator {
+    background: white;
+    border-color: white;
+}
+
+body .ui-paginator .ui-paginator-pages a {
+    color: #051228;
+}
+
+body .ui-paginator .ui-paginator-pages a.ui-state-active {
+    background: #26C6DA;
+    color: white;
+}
+
+.Chart {
+    padding: 20px;
+
+    &-title {
+        color: #051228;
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+}
+
+body .ui-table .ui-table-scrollable-wrapper thead tr th {
+    color: white;
+}
+
+.ui-confirmdialog.ui-dialog .ui-dialog-content {
+    padding: 1em 0;
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+    padding: 1em 0;
+}
+
+body .ui-dialog .ui-dialog-content {
+    padding: 1em 0;
+}
+
+.ui-confirmdialog .ui-dialog-content .ui-confirmdialog-icon {
+    display: none;
+}
+
+body .ui-accordion .ui-accordion-header.ui-state-active {
+    background: #051228;
+}
+
+body .ui-accordion .ui-accordion-header {
+    outline: none !important;
+
+    > a {
+        outline: none !important;
+    }
+}
+
+body .ui-accordion .ui-accordion-header.ui-state-active > a {
+    .Feature-buttons > a {
+        color: white;
+    }
+}
+
+body .ui-datepicker .ui-datepicker-header {
+    background: #051228;
+    border-color: #051228;
+}
+
+body .ui-datepicker thead tr {
+    background: #051228;
+}
+
+body .ui-datepicker tbody td.ui-datepicker-today a {
+    border-color: #051228;
+}
+
+body .ui-widget-header {
+    background-color: #051228;
+    border-color: #051228;
+}

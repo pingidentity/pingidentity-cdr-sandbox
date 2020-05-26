@@ -1,0 +1,28 @@
+.layout-topbar-sandiego {
+    $topbarBgImage:'sandiego-topbar.jpg';
+    $topbarSearchInputColor:#C5CDDF;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#03111C;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#03111C;
+    $menuButtonActiveBgColor:rgba(74,73,78,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#C5CDDF;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

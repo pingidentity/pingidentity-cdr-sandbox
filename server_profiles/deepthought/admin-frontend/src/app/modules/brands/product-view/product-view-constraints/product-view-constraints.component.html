@@ -1,0 +1,63 @@
+<section>
+    <h2 class="Section-title">
+        Eligibility
+        <p-button label="Create eligibility" (click)="createEligibility()"></p-button>
+    </h2>
+    <div *ngIf="eligibilities.length; else emptyEligibility">
+        <div class="Eligibility" *ngFor="let eligibility of eligibilities;">
+
+            <h4 class="Eligibility-label">{{ getEligibilityDetail(eligibility, 'LABEL') }}</h4>
+            <p class="Eligibility-value">{{ getEligibilityDetail(eligibility, 'VALUE') }}</p>
+            <div class="Eligibility-actions">
+                <p-button (click)="editEligibility(eligibility)" label="Edit"></p-button>
+                <p-button (click)="removeEligibility(eligibility)" label="Remove"></p-button>
+            </div>
+
+            <p class="Eligibility-additionalInfo" *ngIf="eligibility.cdrBanking.additionalInfo">
+                {{ eligibility.cdrBanking.additionalInfo }}
+            </p>
+
+            <p class="Eligibility-additionalInfoUri" *ngIf="eligibility.cdrBanking.additionalInfoUri">
+                <a
+                    [href]="eligibility.cdrBanking.additionalInfoUri"
+                    class="Eligibility-additionalInfoUri"
+                    target="_blank"
+                >Link to Additional Information</a>
+            </p>
+        </div>
+    </div>
+    <ng-template #emptyEligibility>
+        <p>No Eligibility criteria present.</p>
+    </ng-template>
+</section>
+
+<section>
+    <h2 class="Section-title">
+        Constraints
+        <p-button label="Create constraint" (click)="createConstraint()"></p-button>
+    </h2>
+    <div *ngIf="constraints.length; else emptyConstraints">
+        <div class="Constraint" *ngFor="let constraint of constraints;">
+            <h4 class="Constraint-label">{{ getConstraintDetail(constraint, 'LABEL') }}</h4>
+            <p class="Constraint-value">{{ getConstraintDetail(constraint, 'VALUE') }}</p>
+            <div class="Constraint-actions">
+                <p-button (click)="editConstraint(constraint)" label="Edit"></p-button>
+                <p-button (click)="removeConstraint(constraint)" label="Remove"></p-button>
+            </div>
+
+            <p class="Constraint-additionalInfo">
+                {{ constraint.cdrBanking.additionalInfo }}
+            </p>
+            <p class="Constraint-additionalInfoUri" *ngIf="constraint.cdrBanking.additionalInfoUri">
+                <a
+                    [href]="constraint.cdrBanking.additionalInfoUri"
+                    class="Constraint-additionalInfoUri"
+                    target="_blank"
+                >Link to Additional Information</a>
+            </p>
+        </div>
+    </div>
+    <ng-template #emptyConstraints>
+        <p>No Constraint criteria present.</p>
+    </ng-template>
+</section>

@@ -1,0 +1,304 @@
+
+<html>
+
+	<head>
+		<base href="https://tomcat-anz.pingapac.com/"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js">
+                </script>
+		<link rel="stylesheet" type="text/css" href="/css/main.css">
+                <link rel="stylesheet" href="/menu/styles.css">
+                <script src="/js/application.js"></script>
+    		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="/menu/script.js"></script>
+		<script src="https://css-tricks.com/examples/PopFromTopMessage/js/modernizr.custom.80028.js"></script>
+		<title>My Bank</title>
+
+		<meta http-equiv="cache-control" content="max-age=0" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="-1" />
+		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+		<meta http-equiv="pragma" content="no-cache" />
+
+		<script type="text/javascript">
+var apiBaseUrl = "https://bankapi-anz.pingapac.com";
+var access_token = "";
+
+var idx = 0;
+
+function updateStatement()
+{
+        var apiUrl = apiBaseUrl + "/bank/getStatement.json?index=" + idx;
+
+	callAjax(apiUrl, "GET", null, updateStatementResponse);
+}
+
+function updateStatementResponse(data)
+{
+                        jQuery.each(data, function(i, item)
+                        {
+                                idx ++;
+                                $("#statementHeader:first-child").after("<tr><td>" + item.type + "</td><td>" + item.desc + "</td><td>$" + item.amount + "</td></tr>");
+                        });
+}
+
+function updateBalance()
+{
+	var apiUrl = apiBaseUrl + "/bank/me.json";
+
+	callAjax(apiUrl, "GET", null, updateBalanceResponse);
+}
+
+function updateBalanceResponse(data)
+{
+	$("#balance").html("$" + data.balance);
+        updateStatement();
+}
+
+function deposit()
+{
+	var amount = $("#amount").val();
+
+	var apiUrl = apiBaseUrl + "/bank/deposit.json?amount=" + amount;
+
+	callAjax(apiUrl, "GET", null, depositResponse, depositErrorResponse);
+}
+
+function depositResponse(data)
+{
+			displaySuccess("Successfully deposited $" + $("#amount").val() + " to account " + $("#accountName").html());
+                        updateBalance();
+                        $("#amount").val("");
+}
+
+function depositErrorResponse()
+{
+        displayError("You do not have permission to deposit money.");
+}
+
+function transfer()
+{
+	var to = $("#to").val();
+	var amount = $("#transferAmount").val();
+
+	var apiUrl = apiBaseUrl + "/bank/transfer.json?amount=" + amount + "&toUser=" + to;
+       	callAjax(apiUrl, "GET", null, transferResponse, transferErrorResponse);
+}
+
+function transferErrorResponse()
+{
+	displayError("You do not have permission to transfer money.");
+}
+function transferResponse(data)
+{
+		updateBalance();
+		displaySuccess("Successfully transfered $" + $("#transferAmount").val() + " to " + $("#to").val());
+		$("#to").val("");
+		$("#transferAmount").val("");
+}
+
+function displaySuccess(message)
+{
+                window.scrollTo(0,0);
+                $('#note').css("background","#fde073");
+                $('#note').css("color","black");
+                $('#note').html(message);
+		$('#note').slideDown(1000, function(){
+                                     setTimeout(function(){$('#note').slideUp();}, 5000);
+		});
+}
+
+function displayError(message)
+{
+                window.scrollTo(0,0);
+                $('#note').css("background-color","red");
+                $('#note').css("color","white");
+                $('#note').html(message);
+                $('#note').slideDown(1000, function(){
+                setTimeout(function(){$('#note').slideUp();}, 10000);
+ 	         });
+}
+
+function callAjax(url, method, inData, successFunction, errorFunction)
+{
+        var content = inData;
+
+        if(inData != null && inData != "")
+                content = JSON.stringify(inData);
+	$.ajax({
+  		url : url,
+    		dataType : "json",
+		data: content,    	
+    		headers: {
+        		'Authorization':'Bearer ' + access_token,
+        		'Content-Type':'application/json'
+    		},
+    		type : method,
+    		contentType: "application/json",
+		statusCode: {
+   			403: function()
+				{
+					errorFunction();
+				},
+   			200: successFunction
+		}
+	});
+}
+
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec("?" + window.location.hash.substring(1));
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function b64DecodeUnicode(str) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(atob(str).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+}
+
+		</script>
+		<style>
+
+    #note {
+        position: absolute;
+        z-index: 6001;
+        top: 0;
+        left: 0;
+        display: none;
+        right: 0;
+        background: #fde073;
+        text-align: center;
+        line-height: 2.5;
+        overflow: hidden;
+        -webkit-box-shadow: 0 0 5px black;
+        -moz-box-shadow:    0 0 5px black;
+        box-shadow:         0 0 5px black;
+    }
+	.wordwrap { 
+   		white-space: pre-wrap;      /* CSS3 */   
+   		white-space: -moz-pre-wrap; /* Firefox */    
+   		white-space: -pre-wrap;     /* Opera <7 */   
+   		white-space: -o-pre-wrap;   /* Opera 7 */    
+   		word-wrap: break-word;      /* IE */
+	}
+#divAdditionalConsent
+{
+	max-width:500px;
+	margin: 0 auto;
+}
+
+#divAdditionalConsent ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+#divAdditionalConsent li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+#divAdditionalConsent li:last-child {
+  border: none;
+}
+ 
+#divAdditionalConsent li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 200px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+#divAdditionalConsent li a:hover {
+  font-size: 30px;
+  background: #f6f6f6;
+}
+		</style>
+	</head>
+
+	<body>
+		<div id="note">
+		</div>
+		<script type="text/javascript">
+			access_token = getParameterByName("access_token");
+			var id_token = getParameterByName("id_token");
+
+                        var providerInfo = OIDC.discover('https://idp-anz.pingapac.com');
+                        OIDC.setProviderInfo( providerInfo );
+                        OIDC.storeInfo(providerInfo);
+
+                        var userInfoClaims = JSON.parse(OIDC.getUserInfo(access_token));
+                        var userInfoClaimsHTMLString = JSONObjToHTMLTable(userInfoClaims);
+
+                        var sub = userInfoClaims.given_name;
+
+		</script>
+		<div class="row header">
+			<div class="col-12">
+				<div class="logo">&nbsp;</div>
+			</div>
+		</div>
+		<div class="row content">
+				<div class="row row1">
+					<div class="col-12 centerText">
+						<h1>Bank App</h1>
+						<a href="https://idp-anz.pingapac.com/idp/startSLO.ping">Logout</a>
+					</div>
+					<div class="col-12 centerText">
+						Hello <span id="sub"></span>,
+                                        </div>
+					<div class="col-12 centerText">
+						<p>Your balance is: <span id="balance"></span></p>
+					</div>
+				</div>
+                                <div class="row row1">
+                                        <div class="col-12 centerText">
+                                                <h2>Account Owner Information</h2>
+                                                <div style="width:500px" class="col-12 centerText" id="retrievedInfo">
+                                                </div>
+                                        </div>
+                                </div>
+                		<div class="row row2">
+                        		<div class="col-12 centerText">
+						<h2>Deposit money</h2>
+						<div class="col-12"><input type="text" name="amount" id="amount" placeholder="Amount..."/></div>
+						<div class="col-12"><input type="button" name="Deposit" value="Deposit" onclick="deposit()"/></div>
+					</div>
+				</div>
+				<div class="row row3">
+					<div class="col-12 centerText">
+						<h2>Transfer money</h2>
+						<div class="col-12"><input type="text" name="to" id="to" placeholder="Send money to..."/></div>
+						<div class="col-12"><input type="text" name="transferAmount" id="transferAmount" placeholder="Amount"/></div>
+						<div class="col-12"><input type="button" name="Transfer" value="Transfer" onclick="transfer()"/></div>
+					</div>
+				</div>
+                		<div class="row row4">
+                        		<div class="col-12 innerContent">
+						<h2>Transaction history</h2>
+						<table id="statement">
+							<tr id="statementHeader"><th align="left" width="200">Type</th><th align="left" width="400">Description</th><th align="left" width="200">Amount</th></tr>
+						</table>
+					</div>
+				</div>
+                        <script type="text/javascript">
+                                document.getElementById("sub").textContent=sub;
+				updateBalance();
+			</script>
+		</div>
+	</body>
+
+
+</html>
+
+

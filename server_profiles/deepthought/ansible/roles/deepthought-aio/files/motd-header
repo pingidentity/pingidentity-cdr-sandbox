@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+#    199-deepthought - Deep Thought Information MOTD
+echo ""
+echo ""
+echo "██████╗ ███████╗███████╗██████╗     ████████╗██╗  ██╗ ██████╗ ██╗   ██╗ ██████╗ ██╗  ██╗████████╗"
+echo "██╔══██╗██╔════╝██╔════╝██╔══██╗    ╚══██╔══╝██║  ██║██╔═══██╗██║   ██║██╔════╝ ██║  ██║╚══██╔══╝"
+echo "██║  ██║█████╗  █████╗  ██████╔╝       ██║   ███████║██║   ██║██║   ██║██║  ███╗███████║   ██║"
+echo "██║  ██║██╔══╝  ██╔══╝  ██╔═══╝        ██║   ██╔══██║██║   ██║██║   ██║██║   ██║██╔══██║   ██║"
+echo "██████╔╝███████╗███████╗██║            ██║   ██║  ██║╚██████╔╝╚██████╔╝╚██████╔╝██║  ██║   ██║"
+echo "╚═════╝ ╚══════╝╚══════╝╚═╝            ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝   ╚═╝"
+echo ""
+echo ""
+echo "This All In One Image is running a number of services with endpoints:"
+echo "Deep Thought Administration GUI     :  https://localhost"
+echo "Deep Thought Administration API     :  https://localhost/dio-au/swagger-ui/index.html?configUrl=/dio-au/v3/api-docs/swagger-config"
+echo "Deep Thought Keycloak Administration:  https://localhost/auth"
+echo "CDR Compatible Product Data API     :  https://localhost/cds-au/v1"
+echo ""

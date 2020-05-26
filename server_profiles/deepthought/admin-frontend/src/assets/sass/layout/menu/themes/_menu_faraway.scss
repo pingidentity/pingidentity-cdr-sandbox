@@ -1,0 +1,17 @@
+.layout-menu-faraway {
+    $menuTopBgColor:#D0664E;
+    $menuBottomBgColor:#612338;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#6E2A1C;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#00BCD4;
+    $menuitemActiveIconColor:#00BCD4;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#612338;   
+    $verticalActiveRootMenuitemIconColor:#612338;
+    $verticalSubmenuBgColor:#993F2C;
+
+    @import '../_menu_theme';
+}

@@ -1,0 +1,17 @@
+.layout-menu-disco {
+    $menuTopBgColor:#556270;
+    $menuBottomBgColor:#2C8F88;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#3D4650;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#556270;   
+    $verticalActiveRootMenuitemIconColor:#556270;
+    $verticalSubmenuBgColor:#899DAA;
+
+    @import '../_menu_theme';
+}

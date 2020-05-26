@@ -1,0 +1,28 @@
+.layout-topbar-crystal {
+    $topbarBgImage:'crystal-topbar.jpg';
+    $topbarSearchInputColor:#CFD6DE;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#001A28;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#001A28;
+    $menuButtonActiveBgColor:rgba(0,0,0,.4);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#CFD6DE;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

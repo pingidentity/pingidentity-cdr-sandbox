@@ -1,0 +1,151 @@
+.layout-menu-container {
+    @if variable-exists(menuBgImage) {
+        background-image: url("../../layout/images/special/#{$menuBgImage}");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    @else {
+        @include background-gradient-top2bottom($menuTopBgColor, $menuBottomBgColor);
+    }
+}
+
+.layout-menu {
+    a {
+        .menuitem-text {
+            color: $menuitemTextColor;
+        }
+
+        i {
+            color: $menuitemIconColor;
+        }
+
+        &:hover {
+            background-color: $menuitemHoverBgColor;
+            
+            .menuitem-text {
+                color: $menuitemHoverTextColor;
+            }
+    
+            i {
+                color: $menuitemHoverIconColor;
+            }
+        }
+    }
+
+    > li {
+        > .layout-submenu-container {
+            background-color: $verticalSubmenuBgColor;
+        }
+    }
+
+    li.active-menuitem {
+        > a {
+            .menuitem-text {
+                color: $menuitemActiveTextColor;
+            }
+    
+            i {
+                color: $menuitemActiveIconColor;
+            }
+        }
+    }
+
+    > li.active-menuitem {
+        > a {
+            background-color: $verticalActiveRootMenuitemBgColor;
+            
+            .menuitem-text {
+                color: $verticalActiveRootMenuitemTextColor;
+            }
+    
+            i {
+                color: $verticalActiveRootMenuitemIconColor;
+            }
+        }
+    }
+
+    .layout-megamenu-submenu-text {
+        color: $menuitemTextColor;
+    }
+}
+
+@media screen and (min-width: $mobileBreakpoint + 1) {
+    &.layout-menu-horizontal {
+        .layout-menu-container {
+            background-image: none;
+            background-color: transparent;
+        }
+
+        .layout-menu {
+            .layout-megamenu-submenu-text {
+                color: $menuitemTextColor;
+            }
+
+            > li {
+                > .layout-submenu-container {
+                    @if variable-exists(menuBgImage) {
+                        background-image: url("../../layout/images/special/#{$menuBgImage}");
+                        background-position: 0 0;
+                        background-size: 100% auto;
+                    }
+                    @else {
+                        @include background-gradient-top2bottom($menuTopBgColor, $menuBottomBgColor);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-profile-menu { 
+    @if variable-exists(menuBgImage) {
+        background-image: url("../../layout/images/special/#{$menuBgImage}");
+        background-position: 0 0;
+        background-size: 100% auto;
+    }
+    @else {
+        @include background-gradient-top2bottom($menuTopBgColor, $menuBottomBgColor);
+    }
+
+    a {
+        span {
+            color: $menuitemTextColor;
+        }
+
+        i {
+            color: $menuitemIconColor;
+        }
+
+        &:hover {
+            background-color: $menuitemHoverBgColor;
+            
+            .menuitem-text {
+                color: $menuitemHoverTextColor;
+            }
+    
+            i {
+                color: $menuitemHoverIconColor;
+            }
+        }
+    }
+
+    .layout-profile-menu-search {
+        .ui-inputtext {
+            color: $menuitemTextColor;
+            background-image: linear-gradient(to bottom, $menuitemTextColor, $menuitemTextColor), linear-gradient(to bottom, $menuitemTextColor, $menuitemTextColor);
+            
+            &:focus ~ label,
+            &:focus ~ i {
+                color: $menuitemTextColor;
+            }
+        }
+
+        i {
+            color: $menuitemIconColor;
+        }
+
+        label {
+            color: $menuitemTextColor;
+        }
+    }
+}

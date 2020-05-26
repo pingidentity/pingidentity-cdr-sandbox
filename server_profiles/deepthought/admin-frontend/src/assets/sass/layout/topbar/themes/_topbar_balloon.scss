@@ -1,0 +1,28 @@
+.layout-topbar-balloon {
+    $topbarBgImage:'balloon-topbar.jpg';
+    $topbarSearchInputColor:#D4D0AC;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#A19000;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#A19000;
+    $menuButtonActiveBgColor:rgba(162,153,86,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#D4D0AC;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#00BCD4;
+
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,7 @@
+html, body {
+  background-color: #FFF !important;
+}
+
+label.no-bottom-margin {
+  margin-bottom: 0;
+}

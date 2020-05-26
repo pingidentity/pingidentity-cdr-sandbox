@@ -1,0 +1,10 @@
+---
+keycloak_server_version: 8.0.1
+keycloak_server_distribution: "https://downloads.jboss.org/keycloak/{{ keycloak_server_version }}/keycloak-{{ keycloak_server_version }}.zip"
+mariadb_connector_version: 2.5.2
+mariadb_connector_distribution: "https://downloads.mariadb.com/Connectors/java/connector-java-{{ mariadb_connector_version }}/mariadb-java-client-{{ mariadb_connector_version }}.jar"
+mariadb_checksum: "sha256:e8d2c776003c6b9d28a7b5ee205811081048468113b8b36ffc9b27a818843bfd"
+consul_template_version: 0.23.0
+consul_template_distribution: "https://releases.hashicorp.com/consul-template/{{ consul_template_version }}/consul-template_{{ consul_template_version }}_linux_amd64.zip"
+
+

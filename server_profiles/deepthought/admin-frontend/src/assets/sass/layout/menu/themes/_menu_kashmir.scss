@@ -1,0 +1,17 @@
+.layout-menu-kashmir {
+    $menuTopBgColor:#614385;
+    $menuBottomBgColor:#516395;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#412B5C;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#614385;   
+    $verticalActiveRootMenuitemIconColor:#614385;
+    $verticalSubmenuBgColor:#8A6DAD;
+
+    @import '../_menu_theme';
+}

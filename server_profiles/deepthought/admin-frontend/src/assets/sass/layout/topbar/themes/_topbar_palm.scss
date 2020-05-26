@@ -1,0 +1,28 @@
+.layout-topbar-palm {
+    $topbarBgImage:'palm-topbar.jpg';
+    $topbarSearchInputColor:#B3BAC3;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#28445A;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#28445A;
+    $menuButtonActiveBgColor:rgba(31,51,69,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B3BAC3;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

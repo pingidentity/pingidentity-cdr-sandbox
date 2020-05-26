@@ -1,0 +1,17 @@
+.layout-menu-sky {
+    $menuTopBgColor:#026E9D;
+    $menuBottomBgColor:#1BA6DD;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#065476;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#FFB300;
+    $menuitemActiveIconColor:#FFB300;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#065476;   
+    $verticalActiveRootMenuitemIconColor:#065476;
+    $verticalSubmenuBgColor:#4BA1C5;
+
+    @import '../_menu_theme';
+}

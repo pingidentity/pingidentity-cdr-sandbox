@@ -1,0 +1,28 @@
+.layout-topbar-fluid {
+    $topbarBgImage:'fluid-topbar.jpg';
+    $topbarSearchInputColor:#DFC7DD;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#02102F;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#02102F;
+    $menuButtonActiveBgColor:rgba(106,109,130,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#DFC7DD;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#00BCD4;
+
+    @import '../_topbar_theme';
+}

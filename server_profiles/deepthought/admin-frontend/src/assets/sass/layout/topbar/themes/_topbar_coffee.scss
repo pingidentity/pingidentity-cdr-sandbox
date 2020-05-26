@@ -1,0 +1,28 @@
+.layout-topbar-coffee {
+    $topbarBgImage:'coffee-topbar.jpg';
+    $topbarSearchInputColor:#ADACAC;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#180E07;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#180E07;
+    $menuButtonActiveBgColor:rgba(143,141,140,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#ADACAC;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#009688;
+
+    @import '../_topbar_theme';
+}

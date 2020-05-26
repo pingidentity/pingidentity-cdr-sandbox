@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:list name="domain-names">
+        <con:ListItem>sso-admin.${BASE_HOSTNAME}</con:ListItem>
+        <con:ListItem>sso.${BASE_HOSTNAME}</con:ListItem>
+        <con:ListItem>pingfederate</con:ListItem>
+	<con:ListItem>host.docker.internal</con:ListItem>
+    </con:list>
+</con:config>
+
+
+

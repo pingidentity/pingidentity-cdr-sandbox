@@ -1,0 +1,1 @@
+```java -jar ../../swagger-codegen3/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar generate -i http://localhost:8080/dio-au/v3/api-docs -l typescript-angular -o . --additional-properties npmName=@bizaoss/deepthought-admin-angular-client,snapshot=true,ngVersion=8.2.10,gitRepository=https://github.com/bizaio/deepthought,npmAuthor=Biza.io,npmLicense=GPL3.0```

@@ -1,0 +1,28 @@
+.layout-topbar-highline {
+    $topbarBgImage:'highline-topbar.jpg';
+    $topbarSearchInputColor:#ADABAA;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#0F191B;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#0F191B;
+    $menuButtonActiveBgColor:rgba(147,147,147,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#ADABAA;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

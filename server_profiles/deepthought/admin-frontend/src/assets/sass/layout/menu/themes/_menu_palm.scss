@@ -1,0 +1,16 @@
+.layout-menu-palm {
+    $menuBgImage:'palm-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#FFC107;
+    $menuitemActiveIconColor:#FFC107;
+    $verticalActiveRootMenuitemBgColor:#FF9800; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(255,255,255,0.20);
+
+    @import '../_menu_theme';
+}

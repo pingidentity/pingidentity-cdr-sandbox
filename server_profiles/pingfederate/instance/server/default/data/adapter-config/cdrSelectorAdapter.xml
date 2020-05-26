@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:AdapterConfiguration authnCtxClassRef="" isInheritAttributeSettings="false" isInheritAttributeMapping="false" maskOgnlValues="false" isInheritExtendedContractAttributes="false" name="CDR - Initiate Request" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="CA Value">urn:cds.au:cdr:2</urn:Field>
+        <urn:Field name="SCA Value">urn:cds.au:cdr:3</urn:Field>
+        <urn:Field name="LOA2 Scopes"/>
+    </urn:Fields>
+    <urn:AdvancedFields>
+        <urn:Field name="LOA2 Scopes"/>
+    </urn:AdvancedFields>
+    <urn:Tables/>
+    <urn:ExtendedContractAttributes/>
+    <urn:UniqueKeyField>caValue</urn:UniqueKeyField>
+    <urn:AttributeMapping>
+        <urn1:AttributeMap Name="claims_idtoken" Type="Adapter" Value="claims_idtoken" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="claims_userinfo" Type="Adapter" Value="claims_userinfo" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="caValue" Type="Adapter" Value="caValue" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+    </urn:AttributeMapping>
+</urn:AdapterConfiguration>

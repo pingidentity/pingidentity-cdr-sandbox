@@ -1,0 +1,283 @@
+.layout-top {
+    padding-top: 15px;
+    padding-left: $bodySidePadding;
+    padding-right: $bodySidePadding;
+}
+
+.layout-topbar {
+    @include clearfix();
+
+    .p-grid {
+        margin: 0;
+        min-height: 4em;
+
+        .p-col {
+            padding: 0;
+        }
+    }
+
+    .layout-topbar-grid {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        min-height: 4em;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+
+        .layout-topbar-grid-column {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -ms-flex-preferred-size: 0;
+            flex-basis: 0;
+        }
+
+        .layout-topbar-grid-column-fixed {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+        }
+
+    }
+
+    .layout-menubutton {
+        position: absolute;
+        height: 48px;
+        width: 48px;
+        line-height: 48px;
+        left: 29px;
+        top: 19px;
+        text-align: center;
+        -webkit-transition-duration: 0.66s;
+        transition-duration: 0.66s;
+        -webkit-transition-timing-function: swing;
+        transition-timing-function: swing;
+        @include transition(background-color $transitionDuration);
+        @include border-radius(50%);
+        @include multi-shadow(0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 4px 5px 0 rgba(0, 0, 0, 0.14));
+
+        .layout-menubutton-icon {
+            width: 28px;
+            height: 4px;
+            position: absolute;
+            top: 22px;
+            left: 10px;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+            transition-timing-function: swing;
+
+            &:before, &:after {
+                width: 28px;
+                height: 4px;
+
+                content: "";
+                position: absolute;
+                left: 0;
+                -webkit-transition-duration: 0.5s;
+                transition-duration: 0.5s;
+                transition-timing-function: swing;
+            }
+
+            &:before {
+                top: -9px;
+            }
+
+            &:after {
+                top: 9px;
+            }
+        }
+    }
+
+    .layout-logo {
+        img {
+            height: 20px;
+        }
+    }
+
+    .layout-topbar-search {
+        .ui-inputtext {
+            width: 150px;
+            padding: 6px 24px 6px 6px;
+            @include transition(all $transitionDuration);
+        }
+
+        i {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 28px;
+            @include transition(color $transitionDuration);
+        }
+
+        label {
+            margin-top: 6px;
+        }
+    }
+
+    .profile-menu-button {
+        height: 40px;
+        margin-left: 2em;
+        display: inline-block;
+        border: 2px solid transparent;
+        @include border-radius(50%);
+        @include transition(border-color $transitionDuration);
+
+        img {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    .layout-profile-menu {
+        display: none;
+        list-style-type: none;
+        position: absolute;
+        min-width: 250px;
+        z-index: 999;
+        padding: .75em;
+        overflow: auto;
+        right: $bodySidePadding;
+        margin: 0;
+        -webkit-animation-duration: .2s;
+        -moz-animation-duration: .2s;
+        animation-duration: .2s;
+        @include shadow($horizontalOverlaySubmenuShadow);
+
+        &.layout-profile-menu-active {
+            display: block;
+        }
+
+        a {
+            display: block;
+            position: relative;
+            padding: .75em;
+            @include border-radius($menuitemBorderRadius);
+
+            span {
+                vertical-align: middle;
+            }
+
+            i {
+                vertical-align: middle;
+                font-size: 20px;
+                margin-right: 7px;
+            }
+        }
+
+        .layout-profile-menu-search {
+            display: none;
+            padding: 1em;
+
+            .ui-inputtext {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.layout-topbar-separator {
+    height: 1px;
+    margin-top: -3px;
+}
+
+.layout-container {
+    &.layout-top-small {
+        .layout-top {
+            padding-bottom: 15px;
+            @include double-shadow(0 2px 10px 0 rgba(0, 0, 0, 0.03), 0 2px 5px 0 rgba(0, 0, 0, 0.05));
+        }
+
+        .layout-breadcrumb,
+        .layout-topbar-separator {
+            display: none;
+        }
+
+        .layout-content {
+            margin-top: 15px;
+        }
+
+        .layout-menu-container,
+        .layout-mask {
+            top: 86px;
+        }
+    }
+
+    &.layout-top-medium {
+        .layout-top {
+            padding-bottom: 15px;
+            @include double-shadow(0 2px 10px 0 rgba(0, 0, 0, 0.03), 0 2px 5px 0 rgba(0, 0, 0, 0.05));
+        }
+
+        .layout-breadcrumb {
+            @include shadow(none);
+        }
+
+        .layout-content {
+            margin-top: 15px;
+        }
+    }
+
+    &.layout-top-large {
+        .layout-top {
+            padding-bottom: 150px;
+        }
+
+        .layout-content {
+            margin-top: -120px;
+        }
+    }
+}
+
+@media screen and (max-width: $mobileBreakpoint) {
+    .layout-top {
+        padding: 0 0 150px 0;
+    }
+
+    .layout-topbar {
+        padding: .5em 1em;
+
+        .layout-menubutton {
+            top: .5em;
+            left: 1em;
+        }
+
+        .layout-logo {
+            margin-left: 5em;
+        }
+
+        .layout-profile-menu {
+            right: 1em;
+        }
+
+        .layout-topbar-search {
+            display: none;
+        }
+
+        .layout-profile-menu {
+            .layout-profile-menu-search {
+                display: block;
+            }
+        }
+    }
+
+    .layout-container {
+        &.layout-top-small {
+            .layout-top {
+                padding-bottom: 0;
+            }
+
+            .layout-menubutton {
+                top: 0.786em;
+            }
+
+            .layout-menu-container,
+            .layout-mask {
+                top: 70px;
+            }
+        }
+    }
+
+}

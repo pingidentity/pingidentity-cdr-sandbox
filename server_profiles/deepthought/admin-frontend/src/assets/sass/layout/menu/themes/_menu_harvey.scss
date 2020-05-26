@@ -1,0 +1,17 @@
+.layout-menu-harvey {
+    $menuTopBgColor:#1F4037;
+    $menuBottomBgColor:#509D7C;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#17342C;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#17342C;   
+    $verticalActiveRootMenuitemIconColor:#17342C;
+    $verticalSubmenuBgColor:#538C76;
+
+    @import '../_menu_theme';
+}

@@ -1,0 +1,16 @@
+.layout-menu-beyoglu {
+    $menuBgImage:'beyoglu-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(0,0,0,0.5);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#F4511E; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(0,0,0,0.32);
+
+    @import '../_menu_theme';
+}

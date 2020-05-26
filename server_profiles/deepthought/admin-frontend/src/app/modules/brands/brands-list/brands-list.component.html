@@ -1,0 +1,34 @@
+<div style="text-align: right; margin-bottom: 10px;">
+    <p-button
+        label="Create brand"
+        (click)="createBrand()"
+    ></p-button>
+</div>
+
+<p-table [value]="brands$ | async" [scrollable]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Display name</th>
+            <th></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-dataRow>
+        <tr>
+            <td>{{ dataRow.id }}</td>
+            <td>{{ dataRow.name }}</td>
+            <td>{{ dataRow.displayName }}</td>
+            <td>
+                <p-button [routerLink]="['/brands', dataRow.id]" label="View"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td [colSpan]="4" style="text-align: center;">Nothing to show</td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,0 +1,17 @@
+.layout-menu-dock {
+    $menuTopBgColor:#422072;
+    $menuBottomBgColor:#F29C7B;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#1C0A31;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#FFB300;
+    $menuitemActiveIconColor:#FFB300;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#422072;   
+    $verticalActiveRootMenuitemIconColor:#422072;
+    $verticalSubmenuBgColor:#2F1251;
+
+    @import '../_menu_theme';
+}

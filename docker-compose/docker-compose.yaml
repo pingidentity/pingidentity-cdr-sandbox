@@ -1,0 +1,165 @@
+version: "3.1"
+
+services:
+  pingaccess:
+    image: pingidentity/pingaccess:2001-alpine-6.0.0
+    command: entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingaccess
+      - LICENSE_VERSION=6.0
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    # Example: Examples below for mounting local directories for inbound server profile and persisting
+    #          server build.  The local /opt/out directory must be empty when building new server
+    #             /opt/out - Resulting server build
+    #             /opt/in  - Inbound server-profile detail in liue of SERVER_PROFILE_URL (must be commented out)
+    #volumes:
+    #   - ${HOME}/projects/devops/volumes/full-stack.pingaccess:/opt/out
+    #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
+    ports:
+      - 443:3000
+      - 9000:9000
+      - 9001:9001
+    networks:
+      - pingnet-dmz
+
+  pingfederate:
+    image: pingidentity/pingfederate:2003-alpine-10.0.1
+    command: entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingfederate
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 9031:9031
+      - 9999:9999
+    networks:
+      - pingnet-dmz
+      - pingnet-internal
+
+  pingdirectory:
+    image: pingidentity/pingdirectory:2003-8.0.0.1
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingdirectory
+      #- SERVER_PROFILE_BRANCH=2001
+      - MAKELDIF_USERS=10
+      #- VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 1636:636
+      - 1443:443
+    networks:
+      - pingnet-internal
+  
+  cdr-dr-client:
+    image: tamatping/cdr-dr-client:0.93
+    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config-local/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8080:7878
+    networks: 
+      - pingnet-internal
+      - pingnet-dmz
+
+  cdrregister:
+    image: tamatping/mock-cdrregister:0.93
+    #command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8084:8084
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+  deepthought-product-api:
+    image: pdangping/deepthought-product-api-service:0.9
+    #image: pdangping/deepthought-product-api-service:latest
+    environment:
+  #    - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8089:8081
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+ 
+  deepthought-bank-api:
+    image: pdangping/deepthought-bank-api-service:0.9
+    environment:
+  #    - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8090:8081
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+ 
+  deepthought-admin-service:
+    image: pdangping/deepthought-admin-service:0.9
+    environment:
+  #    - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8088:8080
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+ 
+#  deepthought-admin-frontend:
+#    image: bitnami/apache:latest
+#    environment:
+#      - VERBOSE=true
+#      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+#    env_file:
+#      - ~/.pingidentity/devops
+#      - cdr.env
+#    ports:
+#      - 4200:8080
+#    volumes:
+#      - Work/pingidentity-cdr-reference/server_profiles/deepthought/admin-frontend/dist/out:/app
+#    networks:
+#      - pingnet-internal
+#      - pingnet-dmz
+ 
+  deepthought-h2-database:
+    #image: oscarfonts/h2:latest
+    image: pdangping/deepthought-h2-database:0.9
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 1521:1521
+      - 81:81
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+networks:
+    pingnet-internal:
+    pingnet-dmz:

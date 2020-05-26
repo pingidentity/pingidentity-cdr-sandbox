@@ -1,0 +1,17 @@
+.layout-menu-grape {
+    $menuTopBgColor:#5854F7;
+    $menuBottomBgColor:#7A91D8;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#262389;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#F06292;
+    $menuitemActiveIconColor:#F06292;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#5854F7;   
+    $verticalActiveRootMenuitemIconColor:#5854F7;
+    $verticalSubmenuBgColor:#3C39B5;
+
+    @import '../_menu_theme';
+}

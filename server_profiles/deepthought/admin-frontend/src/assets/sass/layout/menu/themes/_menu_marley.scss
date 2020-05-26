@@ -1,0 +1,17 @@
+.layout-menu-marley {
+    $menuTopBgColor:#00838F;
+    $menuBottomBgColor:#0E7CAC;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#07575E;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#0E7CAC;   
+    $verticalActiveRootMenuitemIconColor:#0E7CAC;
+    $verticalSubmenuBgColor:#47A0C7;
+
+    @import '../_menu_theme';
+}

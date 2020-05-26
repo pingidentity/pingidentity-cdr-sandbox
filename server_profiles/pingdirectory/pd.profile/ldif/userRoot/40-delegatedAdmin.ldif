@@ -1,0 +1,46 @@
+dn: ou=Administrators,${USER_BASE_DN}
+objectClass: organizationalUnit
+objectClass: top
+ou: Administrators
+
+dn: uid=superadmin,ou=Administrators,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Super
+cn: Super Administrator
+uid: superadmin
+userPassword: 2FederateM0re
+pf-connected-identity: auth-source=pf-local-identity:user-id=superadmin
+
+dn: uid=useradmin,ou=Administrators,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: User
+cn: User Administrator
+uid: useradmin
+userPassword: 2FederateM0re
+pf-connected-identity: auth-source=pf-local-identity:user-id=useradmin
+
+dn: uid=groupadmin,ou=Administrators,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Group
+cn: Group Administrator
+uid: groupadmin
+userPassword: 2FederateM0re
+pf-connected-identity: auth-source=pf-local-identity:user-id=groupadmin
+
+dn: cn=deladmins,ou=Administrators,${USER_BASE_DN}
+objectClass: groupOfNames
+objectClass: top
+cn: deladmins
+member: uid=groupadmin,ou=Administrators,${USER_BASE_DN}

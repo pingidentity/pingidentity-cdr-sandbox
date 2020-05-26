@@ -1,0 +1,37 @@
+<!--
+    Copyright (C) 2020 Biza Pty Ltd
+   
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+   
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+ -->
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+    version="2.1">
+    <persistence-unit name="persistence">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="packagesToScan" value="io.biza.deepthought.shared.persistence.model,io.biza.deepthought.shared.persistence.converter" />
+            <property name="hibernate.dialect"
+                value="org.hibernate.dialect.HSQLDialect" />
+            <property name="hibernate.hbm2ddl.auto"
+                value="create" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="false" />
+            <property
+                name="javax.persistence.schema-generation.database.action"
+                value="drop-and-create" />
+            <property name="javax.persistence.schema-generation.create-database-schemas" value="true"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

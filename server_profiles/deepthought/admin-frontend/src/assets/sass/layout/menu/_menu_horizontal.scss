@@ -1,0 +1,169 @@
+@media screen and (min-width: $mobileBreakpoint + 1) {
+    .layout-menu-horizontal {
+        .layout-menubutton {
+            display: none;
+        }
+    
+        .layout-logo {
+            margin-right: 2em;
+        }
+        
+        .layout-menu-container {
+            position: static;
+            display: block;
+            z-index: auto;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            @include transition(none);
+            @include shadow(none);
+        }
+    
+        .layout-menu {
+            padding: 0;
+            
+            > li {
+                display: inline-block;
+                position: relative;
+    
+                > a {
+                    display: block;
+                    padding: 1em;
+                    font-weight: 500;
+                    position: relative;
+                    border-top: 4px solid transparent;
+                    border-bottom: 4px solid transparent;
+                    @include border-radius(0);
+                    @include transition(border-bottom-color $transitionDuration);
+                    
+                    .menuitem-text {
+                        margin: 0 .5em;
+                    }
+    
+                    i {
+                        font-size: 16px;
+
+                        &.layout-submenu-toggler {
+                            position: static;
+                        }
+
+                        &:first-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+    
+                > .layout-submenu-container {
+                    position: absolute;
+                    min-width: 250px;
+                    z-index: 999;
+                    padding: .75em;
+                    max-height: 500px;
+                    overflow: auto;
+                    @include shadow($horizontalOverlaySubmenuShadow);
+
+                    > .layout-megamenu {
+                        max-height: none;
+                        width: auto;
+                        display: flex;
+                        display: -webkit-box;
+                        display: -ms-flexbox;
+
+                        > li {
+                            flex-grow: 1;
+
+                            > .layout-submenu-container {
+                                min-width: 200px;
+
+                                a {
+                                    padding-left: .75em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            li {
+                .layout-submenu-toggler {
+                    @include transition(transform $transitionDuration);
+                }
+    
+                &.active-menuitem {
+                    > a {
+                        .layout-submenu-toggler {
+                            @include rotate(-180deg);
+                        }
+                    }
+                }
+            }
+    
+            .layout-submenu { 
+                li {
+                    a {
+                        display: block;
+                        position: relative;
+                        padding: .75em;
+                        @include border-radius($menuitemBorderRadius);
+            
+                        .menuitem-text {
+                            vertical-align: middle;
+                        }
+                
+                        i {
+                            vertical-align: middle;
+                            font-size: 20px;
+            
+                            &.layout-submenu-toggler {
+                                position: absolute;
+                                right: .75em;
+                            }
+            
+                            &:first-child {
+                                margin-right: 7px;
+                            }
+                        }
+                    }
+    
+                    li {
+                        a {
+                            padding-left: 1.75em;
+                        }
+    
+                        li {
+                            a {
+                                padding-left: 2.75em;
+                            }
+    
+                            li {
+                                a {
+                                    padding-left: 3.75em;
+                                }
+    
+                                li {
+                                    a {
+                                        padding-left: 4.75em;
+                                    }
+    
+                                    li {
+                                        a {
+                                            padding-left: 5.75em;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .layout-mask,
+        &.layout-top-small .layout-mask {
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+

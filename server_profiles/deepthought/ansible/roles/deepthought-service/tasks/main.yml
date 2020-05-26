@@ -1,0 +1,72 @@
+---
+# tasks/main.yml
+# This is the tasks related to running deepthought services
+- name: Create Deep Thought group
+  group:
+    name: deepthought
+    state: present
+
+- name: Add deepthought user with matching group
+  user:
+    name: deepthought
+    comment: Deep Thought Service User
+    group: deepthought
+    home: /opt/deepthought
+    create_home: yes
+    shell: /bin/false
+
+- name: deploy java
+  apt:
+    name: openjdk-11-jre-headless
+    state: present
+
+- name: Copy the service jar in place
+  copy:
+    src: "{{ deepthought_service_jar }}"
+    dest: "/opt/deepthought/{{ deepthought_service_id }}.jar"
+    owner: deepthought
+    group: deepthought
+    mode: '0644'
+
+- name: Template out the systemd service
+  template:
+    src: templates/systemd.service
+    dest: "/etc/systemd/system/{{ deepthought_service_id }}.service"
+    mode: 0644
+    owner: root
+    group: root
+  register: systemd_changed
+
+- name: reload systemd and enable the deepthought service
+  systemd:
+    name: "{{ deepthought_service_id }}"
+    daemon_reload: yes
+    enabled: yes
+
+- name: Template out the deepthought spring configuration
+  template:
+    src: templates/spring-config.yml
+    dest: "/etc/{{ deepthought_service_id }}.yml"
+    mode: 0755
+    owner: root
+    group: root
+
+- name: template out rsyslog config
+  template:
+    src: templates/rsyslog.conf
+    dest: "/etc/rsyslog.d/{{ deepthought_service_id }}.conf"
+    mode: 0644
+  notify:
+    - restart rsyslog
+
+- name: copy logrotate config
+  template:
+    src: templates/logrotate.conf
+    dest: "/etc/logrotate.d/{{ deepthought_service_id }}"
+
+- name: template out nginx configuration
+  template:
+    src: templates/nginx.conf
+    dest: /etc/nginx/deepthought.d/{{ deepthought_service_id }}.conf
+  notify:
+    - restart nginx

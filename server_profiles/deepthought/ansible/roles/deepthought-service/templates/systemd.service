@@ -1,0 +1,22 @@
+[Unit]
+Description=Deep Thought Service: {{ deepthought_service_id }}
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=deepthought
+Group=deepthought
+ExecStart=/usr/bin/java -jar /opt/deepthought/{{ deepthought_service_id }}.jar --spring.config.location=classpath:/application.yml,/etc/{{ deepthought_service_id }}.yml
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ deepthought_service_id }}
+KillMode=process
+Restart=on-failure
+TimeoutSec=300s
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+
+

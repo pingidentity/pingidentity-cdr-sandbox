@@ -1,0 +1,28 @@
+.layout-topbar-louisville {
+    $topbarBgImage:'louisville-topbar.jpg';
+    $topbarSearchInputColor:#AEC3C4;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#11444D;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#11444D;
+    $menuButtonActiveBgColor:rgba(255,255,255,0.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#AEC3C4;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

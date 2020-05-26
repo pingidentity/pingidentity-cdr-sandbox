@@ -1,0 +1,73 @@
+<div class="BundleContainer">
+    <div class="BundleContainer-sidebar">
+
+        <div class="Bundle">
+            <h2 class="Bundle-name">{{ bundle?.name }}</h2>
+        </div>
+
+        <ul class="SidebarMenu">
+            <li class="SidebarMenu-item"><a void (click)="editBundle()">Edit bundle</a></li>
+            <li class="SidebarMenu-item SidebarMenu-item--removeLink"><a void (click)="removeBundle()">Remove bundle</a></li>
+        </ul>
+    </div>
+    <div class="BundleContainer-content">
+        <section>
+            <h2>Summary</h2>
+            <div class="Detail">
+                <div class="Detail-label">Name</div>
+                <div class="Detail-value">{{ bundle?.name || '-' }}</div>
+            </div>
+            <div class="Detail">
+                <div class="Detail-label">Description</div>
+                <div class="Detail-value">{{ bundle?.description || '-' }}</div>
+            </div>
+            <div class="Detail">
+                <div class="Detail-label">Additional info</div>
+                <div class="Detail-value">
+                    {{ bundle?.description || '-' }}
+                    <a *ngIf="bundle?.additionalInfo && bundle?.additionalInfoUri"
+                       [href]="bundle?.additionalInfoUri"
+                       target="_blank"
+                    >See more...</a>
+                </div>
+            </div>
+        </section>
+
+        <h2>
+            Products
+            <p-button label="Add product" (click)="addProductToBundle()"></p-button>
+        </h2>
+        <p-table [value]="products" [scrollable]="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="BundleProducts-name">Name</th>
+                    <th class="BundleProducts-description">Description</th>
+                    <th class="BundleProducts-actions"></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td class="BundleProducts-name">{{ rowData.name }}</td>
+                    <td class="BundleProducts-description">{{ rowData.description }}</td>
+                    <td class="BundleProducts-actions">
+                        <p-button
+                            label="View"
+                            [routerLink]="['/brands', this.brandId, 'products', rowData.id]"
+                        ></p-button>
+                        <p-button
+                            label="Remove"
+                            (click)="removeProductFromBundle(rowData)"
+                        ></p-button>`
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td [colSpan]="3" style="text-align: center;">Nothing to show</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

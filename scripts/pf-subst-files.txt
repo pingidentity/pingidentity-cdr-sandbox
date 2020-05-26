@@ -1,0 +1,14 @@
+server_profiles/pingfederate/instance/server/default/data/oauth-authz-server-settings.xml
+server_profiles/pingfederate/instance/server/default/data/password-credential-validators/pingdirectoryPCV.xml
+server_profiles/pingfederate/instance/server/default/data/password-credential-validators/adminPCV.xml
+server_profiles/pingfederate/instance/server/default/data/dynamic-client-registration/cdrAURegister.xml
+server_profiles/pingfederate/instance/server/default/data/adapter-config/consentAdapter.xml
+server_profiles/pingfederate/instance/server/default/data/adapter-config/identityFirstAdapter.xml
+server_profiles/pingfederate/instance/server/default/data/adapter-config/brand1IDFirstAdapter.xml
+server_profiles/pingfederate/instance/server/default/data/adapter-config/htmlFormAdapter.xml
+server_profiles/pingfederate/instance/server/default/data/sourceid-saml2-local-metadata.xml
+server_profiles/pingfederate/instance/server/default/data/config-store/org.sourceid.oauth20.token.AccessGrantManagerLDAPPingDirectoryImpl.xml
+server_profiles/pingfederate/instance/server/default/data/config-store/virtual-host-names.xml
+server_profiles/pingfederate/instance/server/default/data/config-store/org.sourceid.oauth20.domain.ClientManagerLdapImpl.xml
+server_profiles/pingfederate/instance/server/default/data/config-store/org.sourceid.saml20.service.session.data.impl.SessionStorageManagerLdapImpl.xml
+server_profiles/pingfederate/instance/server/default/data/pingfederate-authn-selection-config.xml

@@ -1,0 +1,28 @@
+.layout-topbar-materialone {
+    $topbarBgImage:'materialone-topbar.jpg';
+    $topbarSearchInputColor:#D2D3DB;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#1E1E31;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#2C2E44;
+    $menuButtonActiveBgColor:rgba(63,65,89,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#D2D3DB;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

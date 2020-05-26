@@ -1,0 +1,28 @@
+.layout-topbar-flight {
+    $topbarBgImage:'flight-topbar.jpg';
+    $topbarSearchInputColor:#ADADAC;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#1C2225;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#1C2225;
+    $menuButtonActiveBgColor:rgba(255,255,255,.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#ADADAC;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#03A9F4;
+
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,28 @@
+.layout-topbar-reflection {
+    $topbarBgImage:'reflection-topbar.jpg';
+    $topbarSearchInputColor:#BFDEE2;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#1C1F20;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#1C1F20;
+    $menuButtonActiveBgColor:rgba(0,172,193,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#BFDEE2;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#4DD0E1;
+
+    @import '../_topbar_theme';
+}

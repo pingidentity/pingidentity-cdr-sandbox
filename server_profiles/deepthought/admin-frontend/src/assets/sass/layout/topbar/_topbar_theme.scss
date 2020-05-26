@@ -1,0 +1,135 @@
+.layout-top {
+    @if variable-exists(topbarBgImage) {
+        background-image: url("../../layout/images/special/#{$topbarBgImage}");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    @else {
+        @include background-gradient-left2right($topbarLeftBgColor, $topbarRightBgColor);
+    }
+}
+
+.layout-topbar {
+    .layout-topbar-search {
+        .ui-inputtext {
+            color: $topbarSearchFocusedInputColor;
+            background-image: linear-gradient(to bottom, $topbarSearchFocusedInputColor, $topbarSearchFocusedInputColor), linear-gradient(to bottom, $topbarSearchInputColor, $topbarSearchInputColor);
+            
+            &:focus ~ label,
+            &:focus ~ i {
+                color: $topbarSearchFocusedInputColor;
+            }
+        }
+
+        i {
+            color: $topbarSearchInputColor;
+        }
+
+        label {
+            color: $topbarSearchInputColor;
+        }
+    }
+
+    .profile-menu-button {
+        &:hover {
+            border-color: $topbarUserIconHoverBorderColor;
+        }
+    }
+}
+
+.layout-menubutton {
+    background-color: $menuButtonBgColor;
+
+    .layout-menubutton-icon {
+        background-color: $menuButtonIconColor;
+
+        &:before, &:after {
+            background-color: $menuButtonIconColor;
+        }
+    }
+
+    &:hover {
+        background-color: $menuButtonHoverBgColor;
+
+        .layout-menubutton-icon {
+            background-color: $menuButtonHoverIconColor;
+
+            &:before, &:after {
+                background-color: $menuButtonHoverIconColor;
+            }
+        }
+    }
+
+    &.layout-menubutton-active {
+        background-color: $menuButtonActiveBgColor;
+
+        .layout-menubutton-icon {
+            background-color: $menuButtonActiveIconColor;
+
+            &:before, &:after {
+                background-color: $menuButtonActiveIconColor;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $mobileBreakpoint + 1) {
+    &.layout-menu-horizontal {
+        .layout-menu {
+            > li {
+                &:hover {
+                    > a {
+                        background-color: transparent;
+                    }
+                }
+                
+                > a {
+                    .menuitem-text {
+                        color: $horizontalMenuitemTextColor;
+                    }
+    
+                    i {
+                        color: $horizontalMenuitemIconColor;
+                    }
+    
+                    &:hover {
+                        border-bottom-color: $horizontalMenuitemHoverBorderColor;
+                    }
+                }
+    
+                &.active-menuitem {
+                    > a {
+                        background-color: transparent;
+                        border-bottom-color: $horizontalMenuitemActiveBorderColor;
+
+                        .menuitem-text {
+                            color: $horizontalMenuitemTextColor;
+                        }
+        
+                        i {
+                            color: $horizontalMenuitemIconColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-topbar-separator {
+    background-color: $topbarSeparatorColor; 
+}
+
+.layout-breadcrumb {
+    li {
+        color: $breadcrumbTextColor;
+        
+        i {
+            color: $breadcrumbIconColor;
+        }
+
+        a {
+            color: $breadcrumbLinkColor;
+        }
+    }
+}

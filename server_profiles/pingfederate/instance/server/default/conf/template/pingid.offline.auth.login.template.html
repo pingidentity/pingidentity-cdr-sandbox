@@ -1,0 +1,249 @@
+#*
+The server renders this HTML page in an end-user's browser
+for offline authentication.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- 
+template name: pingid.offline.auth.login.template.html 
+version: 2.0
+-->
+
+#set($otpError = false)
+#set($resetError = false)
+#if($errorCode && $errorCode.length() > 0)
+	#if($errorCode == "INVALID_OTP")
+		#set($otpError = true)
+	#elseif($errorCode == "RESET")
+		#set($resetError = true)
+	#end
+#end
+
+<!DOCTYPE html>
+<html lang="$locale.getLanguage()" dir="ltr">
+	<head>
+		<title>$messages.getMessage("pingid.oa.title")</title>
+		#if($PingFedCurrentBaseURL)
+		<base href="$PingFedCurrentBaseURL"/>
+		#else
+		<base href="$PingFedBaseURL"/>
+		#end
+		<meta name="robots" content="noindex, nofollow" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="/pingid-web/css/styles.css?v=2.0.0"/>
+		<script type="text/javascript" src="/pingid-web/js/functions.js?v=2.0.0"></script>	
+	</head>
+	<body onLoad="setOtpFocus()">
+	<form id="auth-form" action="$resumePath" method="post">
+		<div class="modal">
+			<div class="modal--boundry">
+				<div class="modal--content">
+
+#*
+Variable to keep track of selected device, for setting QR code on a page refresh
+*#
+#set($qrCode = $devices.get(0).qrCode)
+#set($encryptedOtp = $devices.get(0).encryptedOtp)
+
+#*
+Only display the Device selection/info UI if there *is not* an OTP error
+*#
+					
+#set($displayError = "none")
+#if($resetError)
+	#set($displayError = "block")
+#end
+					<div id="modal-messages" class="modal--messages" style="display:$displayError">
+						<div class="modal--message--error">
+							$messages.getMessage("pingid.oa.error.too.many.attempts")
+						</div>
+					</div>
+
+					<!-- modal title markup -->
+					<div class="modal--title">
+						$messages.getMessage("pingid.oa.heading")
+					</div>
+					
+
+#set($displayDevice = "block")
+#if($otpError || $resetError)
+	#set($displayDevice = "none")
+#end
+
+#if($deviceCount > 1 && !$sameDevice)
+					<!-- multiple devices selection page content -->
+					<div id="device" style="display:$displayDevice">
+						<div class="modal--text-block">
+							$messages.getMessage("pingid.oa.device.intro")
+						</div>
+						<div class="modal--auth-device-selection">
+						<label class="detached">$messages.getMessage("pingid.oa.device.heading")</label>
+		#* list out devices. Note: Using a custom $index as $foreach.count and related helpers aren't working *#
+		#set($index = 0)
+		#foreach($device in $devices)
+			#set($checked = "")
+			#if($selectedDevice == $device.displayName)
+				#set($checked = "checked")
+				#set($qrCode = $device.qrCode)
+			#elseif(!$selectedDevice && $index == 0)
+				#set($checked = "checked")
+			#end
+			#set($index = ($index + 1))
+						<label class="input-radio group stacked modal--auth-device-input"><span class="label-text">$device.displayName</span>
+							<input type="radio" name="selectedDevice" data-qrcode="$device.qrCode" data-code="$device.encryptedOtp" value="$device.displayName" id="device-$velocityCount" onClick="selectDevice(this);" $checked>
+							<div class="circle"></div>
+						</label>
+		#end
+
+						</div>
+						<div class="modal--button-group">
+							#if($isMobileDevice)
+								<button type="button" class="modal--button--primary primary" onClick="toggle_visibility_without_focus('device', 'qrcode'); return false;">$messages.getMessage("pingid.oa.button.next")</button>
+							#else
+							<button type="button" class="modal--button--primary primary" onClick="toggle_visibility('device', 'qrcode'); return false;">$messages.getMessage("pingid.oa.button.next")</button>
+							#end
+							<a class="modal--button--cancel" href="$resumePath?cancel_offline_auth=1">$messages.getMessage("pingid.oa.button.cancel")</a>
+						</div>
+					</div>
+#elseif($deviceCount == 1 && !$sameDevice)
+					<!-- single device selection page content -->
+					<div id="device" style="display:$displayDevice">
+						<div class="modal--text-block">
+							$messages.getMessage("pingid.oa.device.intro")
+						</div>
+						<div class="modal--auth-device-message">
+							$messages.getMessage("pingid.oa.device.heading")
+							<div class="modal--auth-device-selected">
+								$devices.get(0).displayName
+							</div>
+						</div>
+						<div class="modal--button-group">
+							#if($isMobileDevice)
+								<button type="button" class="modal--button--primary primary" onClick="toggle_visibility_without_focus('device', 'qrcode'); return false;">$messages.getMessage("pingid.oa.button.next")</button>
+							#else
+							<button type="button" class="modal--button--primary primary" onClick="toggle_visibility('device', 'qrcode'); return false;">$messages.getMessage("pingid.oa.button.next")</button>
+							#end
+							<a class="modal--button--cancel" href="$resumePath?cancel_offline_auth=1">$messages.getMessage("pingid.oa.button.cancel")</a>
+						</div>
+					</div>
+#elseif($sameDevice)
+#* NOT CURRENTLY SUPPORTED *#				
+					<!-- auth content page from mocks -->
+					<div class="modal--text-block">
+						$messages.getMessage("pingid.oa.device.same.intro")
+					</div>
+					<div class="modal--button-auth">
+						<button class="modal--button--primary primary">$messages.getMessage("pingid.oa.button.authenticate")</button>
+					</div>
+					<div class="modal--auth-code">
+						<label id="otp-label" data-id="form-text-field" class="input-width-medium input-text modal--auth-code-input #if($otpError)form-error#end"">
+							<span class="label-text" data-id="label">$messages.getMessage("pingid.oa.device.otp.label")</span>
+							<span class="input-container">
+								<input type="text" data-id="form-text-field-input" id="OTP" name="OTP" value="" autocomplete="off" maxlength="6" onInput="validateOtp(this.value)">
+
+	#set($displayError = "none")
+	#if($otpError)
+		#set($displayError = "block")
+	#end
+								<div id="form-errors" style="display:$displayError">
+									<div class="form-error-icon"></div>
+									<div class="form-error-message"></div>
+								</div>
+							</span>
+						</label>
+					</div>
+					<div class="modal--button-group">
+						<button id="sso" class="modal--button--primary primary" disabled>$messages.getMessage("pingid.oa.button.sso")</button>
+						<a class="modal--button--cancel" href="#" onClick="toggle_visibility('qrcode', 'device'); return false;">$messages.getMessage("pingid.oa.button.back")</a>
+					</div>
+#else
+					<!-- NO DEVICES -->
+					<div id="device" style="display:$displayDevice">
+						<div class="modal--text-block">
+							$messages.getMessage("pingid.oa.error.nodevice")
+						</div>
+					</div>
+#* close for device display *#
+#end
+
+#* mobile situation *#
+#if($isMobileDevice)  
+<!-- QR page content -->
+		<div id="qrcode" style="#if(!$otpError && !$resetError)display:none#end">
+						<div id="activationDiv" class="modal--text-block">
+							$messages.getMessage("pingid.oa.mobile.qr.info")
+						</div>
+						<div id="qrDiv" class="modal--text-block" style="display:none">
+							$messages.getMessage("pingid.oa.qr.intro")
+						</div>
+	<!-- Deep link page content -->	
+						<div id="deeplink-mode" class="modal--button-group-mobile">
+							<div>
+								<a id="deeplink-btn" class="link--button--primary primary" href="pingid://offlineauth?code=$encryptedOtp" >$messages.getMessage("pingid.oa.mobile.application.authenticate")</a>
+							</div>
+							<div>
+								<a class="modal--button--cancel-mobile" href="#" onClick="toggle_visibility('deeplink-mode', 'qrcode-mode'); toggle_visibility('activationDiv', 'qrDiv'); return false;" >$messages.getMessage("pingid.oa.mobile.use.qr")</a>
+							</div>
+						</div>
+						<div id="qrcode-mode" class="modal--auth-qr-code-mobile" style="display:none">
+							<img id="qrcode-img" src="$qrCode" alt="qr-code" />
+							<a class="modal--button--cancel-mobile" href="#" onClick="toggle_visibility('qrcode-mode', 'deeplink-mode'); toggle_visibility('qrDiv', 'activationDiv'); return false;" >$messages.getMessage("pingid.oa.mobile.use.application")</a>
+						</div>
+#else
+<!-- QR page content -->
+		<div id="qrcode" style="#if(!$otpError && !$resetError)display:none#end">
+			
+						<div class="modal--text-block">
+							$messages.getMessage("pingid.oa.qr.intro")
+						</div>
+						<div class="modal--auth-qr-code">
+							<img id="qrcode-img" src="$qrCode" alt="qr-code" />
+						</div>
+#end
+						<div class="modal--auth-code">
+							<label id="otp-label" data-id="form-text-field" class="input-width-medium input-text modal--auth-code-input #if($otpError)form-error#end">
+								<span class="label-text" data-id="label">$messages.getMessage("pingid.oa.device.otp.label")</span>
+								<span class="input-container">
+									<input type="text" data-id="form-text-field-input" id="OTP" name="OTP" value="" autocomplete="off" maxlength="6" onInput="validateOtp(this.value)">
+
+	#set($displayError = "none")
+	#if($otpError)
+		#set($displayError = "block")
+	#end
+									<div id="form-errors" style="display:$displayError">
+										<div class="form-error-icon"></div>
+										<div class="form-error-message">$messages.getMessage("pingid.oa.error.bad.code")</div>
+									</div>
+								</span>
+							</label>
+						</div>
+						<div class="modal--button-group">
+							<button id="sso" class="modal--button--primary primary" disabled>$messages.getMessage("pingid.oa.button.sso")</button>
+							<a class="modal--button--cancel" href="#" onClick="toggle_visibility('qrcode', 'device'); return false;">$messages.getMessage("pingid.oa.button.back")</a>
+						</div>
+					</div>
+
+#if($adminMessage && $adminMessage.length() > 0)
+					<!-- admin message markup -->
+					<div class="modal--admin-message">
+						$adminMessage
+					</div>
+#end					
+				</div>
+				<div class="page--footer">
+					<div class="page--footer-poweredby"></div>
+					<div class="page--footer-copyright">
+						Copyright Ⓒ 2003-<script>document.write(new Date().getFullYear())</script>. Ping Identity Corporation. All rights reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	</body>
+</html>

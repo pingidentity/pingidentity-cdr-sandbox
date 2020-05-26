@@ -1,0 +1,28 @@
+<div *ngIf="!!brand" class="ProductContainer">
+    <div class="ProductContainer-sidebar">
+
+        <h2 class="Product-name">{{ brand.displayName }}</h2>
+        <!--<img class="Product-image" [src]="brand.imageUrl" />-->
+
+        <ul class="SidebarMenu">
+            <li *ngFor="let item of sidebarMenu; let i = index; trackBy i;"
+                class="SidebarMenu-item"
+                routerLinkActive="SidebarMenu-item--active"
+                [routerLinkActiveOptions]="{exact: true}"
+                [class.SidebarMenu-item--removeLink]="item.routerLink === 'removeBrand'"
+                [ngSwitch]="item.routerLink"
+            >
+                <hr *ngSwitchCase="'hr'">
+                <a *ngSwitchCase="'editBrand'" href="javascript: void(0);" (click)="editBrand()">{{ item.label }}</a>
+                <a *ngSwitchCase="'removeBrand'" href="javascript: void(0);" (click)="removeBrand()">{{ item.label }}</a>
+
+                <a *ngSwitchDefault
+                   [routerLink]="['/brands', brand.id, item.routerLink].slice(0, item.routerLink === '' ? 2 : 3)"
+                >{{ item.label }}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="ProductContainer-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

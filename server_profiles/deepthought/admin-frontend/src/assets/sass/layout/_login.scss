@@ -1,0 +1,84 @@
+.login-body {
+	background-image: url("../../layout/images/login/bg-login.jpg");
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	.login-panel {
+		width: 565px;
+		height: 410px;
+		background-color: #fafafa;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -282px;
+		margin-top: -232px;
+		padding: 0;
+		@include border-radius(3px);
+		@include multi-shadow(0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 12px 17px 2px rgba(0, 0, 0, 0.14));
+
+		.login-panel-header {
+			text-align: center;
+			vertical-align: middle;
+			width: 108px;
+			height: 108px;
+			position: relative;
+			top: -54px;
+			left: 50%;
+			margin-left: -54px;
+			background: #fafafa;
+			border: 10px solid #fafafa;
+			border-radius: 50%;
+
+			img {
+				width: 88px;
+				height: 88px;
+			}
+		}
+
+		.login-panel-content {
+			padding: 12px 98px;
+			position: relative;
+			top: -54px;
+
+			h1 {
+				font-size: 18px;
+				font-weight: 500;
+				letter-spacing: 1.3px;
+				color: #616161;
+				margin-top: 0;
+				margin-bottom: 6px;
+				text-align: center;
+			}
+
+			h2 {
+				font-size: 16px;
+				font-weight: normal;
+				letter-spacing: 0.5px;
+				color: #212121;
+				margin-top: 0;
+				margin-bottom: 1em;
+				text-align: center;
+			}
+
+			.ui-g-12, .ui-g-6 {
+				padding: 1em;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobileBreakpoint) {
+	.login-body {
+		.login-panel {
+			left: 0;
+			margin-left: 0;
+			width: 100%;
+
+			.login-panel-content {
+				padding: 12px 38px;
+			}
+		}
+	}
+}

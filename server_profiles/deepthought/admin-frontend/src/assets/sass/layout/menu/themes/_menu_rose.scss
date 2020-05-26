@@ -1,0 +1,17 @@
+.layout-menu-rose {
+    $menuTopBgColor:#833859;
+    $menuBottomBgColor:#833859;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#A06780;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#66BB6A;
+    $menuitemActiveIconColor:#66BB6A;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#522036;   
+    $verticalActiveRootMenuitemIconColor:#522036;
+    $verticalSubmenuBgColor:#522036;
+
+    @import '../_menu_theme';
+}

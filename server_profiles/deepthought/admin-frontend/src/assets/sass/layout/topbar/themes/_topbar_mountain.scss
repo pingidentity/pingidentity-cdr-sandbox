@@ -1,0 +1,28 @@
+.layout-topbar-mountain {
+    $topbarBgImage:'mountain-topbar.jpg';
+    $topbarSearchInputColor:#A1A5A6;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#1C2225;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#1C2225;
+    $menuButtonActiveBgColor:rgba(124,125,131,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#A1A5A6;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

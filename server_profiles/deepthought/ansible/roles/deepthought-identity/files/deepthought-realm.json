@@ -1,0 +1,96 @@
+{
+  "id": "DeepThought",
+  "realm": "deepthought",
+  "displayName": "Deep Thought Administration",
+  "displayNameHtml": "<div class=\"kc-logo-text\"><span>Deep Thought Administration</span></div>",
+  "enabled": true,
+  "sslRequired": "external",
+  "roles": {
+    "realm": [
+      {
+        "id": "5db15b56-3d03-4aee-b490-aa7b6c738811",
+        "name": "deepthought_user",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "DeepThought",
+        "attributes": {}
+      }
+    ],
+    "client": {
+      "deepthought-service": []
+    }
+  },
+  "groups": [
+    {
+      "id": "6a5e49ad-dd1c-44dd-8cd4-8d888c15cf12",
+      "name": "Deep Thought Users",
+      "path": "/Deep Thought Users",
+      "attributes": {},
+      "realmRoles": [
+        "deepthought_user"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    }
+  ],
+  "defaultRoles": [
+    "deepthought_user"
+  ],
+  "clients": [
+    {
+      "id": "d42a8ffb-e930-4f63-87c5-a78e359fabc0",
+      "clientId": "deepthought-service",
+      "name": "Deep Thought Admin Service",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "*"
+      ],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "login_theme": "deepthought"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
+        "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE"
+      ]
+    }
+  ],
+  "clientScopes": [
+    {
+      "id": "797fc9df-34ca-4a4b-85e8-198ddbbbd8b2",
+      "name": "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
+      "description": "Deep Thought Administration Product Read",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    },
+    {
+      "id": "02601a38-950f-4d92-a41b-da4ab32c8e76",
+      "name": "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
+      "description": "Deep Thought Administration Product Write",
+      "protocol": "openid-connect",
+      "attributes": {
+        "include.in.token.scope": "true",
+        "display.on.consent.screen": "false"
+      }
+    }
+  ]
+}

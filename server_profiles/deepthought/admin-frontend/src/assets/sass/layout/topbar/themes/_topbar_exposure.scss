@@ -1,0 +1,28 @@
+.layout-topbar-exposure {
+    $topbarBgImage:'exposure-topbar.jpg';
+    $topbarSearchInputColor:#AAAAAA;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#181215;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#181215;
+    $menuButtonActiveBgColor:rgba(255,255,255,.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#AAAAAA;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#42A5F5;
+
+    @import '../_topbar_theme';
+}

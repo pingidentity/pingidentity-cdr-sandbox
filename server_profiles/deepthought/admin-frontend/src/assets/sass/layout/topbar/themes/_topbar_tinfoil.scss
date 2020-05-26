@@ -1,0 +1,28 @@
+.layout-topbar-tinfoil {
+    $topbarBgImage:'tinfoil-topbar.jpg';
+    $topbarSearchInputColor:#A5B2C0;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#020E18;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#020E18;
+    $menuButtonActiveBgColor:rgba(255,255,255,0.4);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#A5B2C0;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

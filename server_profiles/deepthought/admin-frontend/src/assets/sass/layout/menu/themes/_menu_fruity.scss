@@ -1,0 +1,16 @@
+.layout-menu-fruity {
+    $menuBgImage:'fruity-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(0,0,0,0.5);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#E65100;
+    $menuitemActiveIconColor:#E65100;
+    $verticalActiveRootMenuitemBgColor:#E65100; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(0,0,0,0.3);
+
+    @import '../_menu_theme';
+}

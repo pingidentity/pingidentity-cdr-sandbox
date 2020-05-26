@@ -1,0 +1,28 @@
+.layout-topbar-city {
+    $topbarBgImage:'city-topbar.jpg';
+    $topbarSearchInputColor:#A3B0BD;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#01122E;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#01122E;
+    $menuButtonActiveBgColor:rgba(255,255,255,.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#A3B0BD;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,28 @@
+.layout-topbar-snow {
+    $topbarBgImage:'snow-topbar.jpg';
+    $topbarSearchInputColor:#B1C2C5;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#040605;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#040605;
+    $menuButtonActiveBgColor:rgba(36,99,110,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B1C2C5;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,15 @@
+
+.discountForm {
+    ::ng-deep {
+        .balanceRate,
+        .transactionRate,
+        .accruedRate,
+        .feeRate {
+            width: 50% !important;
+        }
+    }
+}
+
+.Actions {
+    text-align: right;
+}

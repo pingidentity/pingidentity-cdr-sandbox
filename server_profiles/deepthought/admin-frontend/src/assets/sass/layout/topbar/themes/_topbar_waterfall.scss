@@ -1,0 +1,28 @@
+.layout-topbar-waterfall {
+    $topbarBgImage:'waterfall-topbar.jpg';
+    $topbarSearchInputColor:#ABACAA;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#242927;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#242927;
+    $menuButtonActiveBgColor:rgba(105,111,109,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#ABACAA;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

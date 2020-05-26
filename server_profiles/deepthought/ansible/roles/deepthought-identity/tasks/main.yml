@@ -1,0 +1,158 @@
+---
+- name: deploy java
+  apt:
+    name: openjdk-11-jre-headless
+    state: present
+
+- name: rsync
+  apt:
+    name: rsync
+    state: present
+
+- name: deploy unzip
+  apt:
+    name: unzip
+    state: present
+
+- name: create keycloak group
+  group:
+    name: keycloak
+    state: present
+
+- name: obtain keycloak binary
+  unarchive:
+    src: "{{ keycloak_server_distribution }}"
+    dest: /opt
+    remote_src: yes
+    creates: "/opt/keycloak-{{ keycloak_server_version }}/bin/standalone.sh"
+
+- name: create keycloak user
+  user:
+    name: keycloak
+    group: keycloak
+    system: yes
+    home: "/opt/keycloak-{{ keycloak_server_version }}"
+
+- name: extract custom theme into keycloak directory
+  synchronize:
+    src: "{{ deepthought_keycloak_theme }}/"
+    dest: "/opt/keycloak-{{ keycloak_server_version }}/themes/deepthought/"
+
+- name: create directory for mariadb connector
+  file:
+    state: directory
+    mode: 0755
+    path: "/opt/keycloak-{{ keycloak_server_version }}/modules/system/layers/keycloak/org/mariadb/main"
+
+- name: deploy mariadb connector
+  get_url:
+    url: "{{ mariadb_connector_distribution }}"
+    dest: "/opt/keycloak-{{ keycloak_server_version }}/modules/system/layers/keycloak/org/mariadb/main/mariadb-java-client-{{ mariadb_connector_version }}.jar"
+    checksum: "{{ mariadb_checksum }}"
+
+- name: template out database module.xml
+  template:
+    src: "mariadb-module.xml"
+    dest: "/opt/keycloak-{{ keycloak_server_version }}/modules/system/layers/keycloak/org/mariadb/main/module.xml"
+    owner: keycloak
+    group: keycloak
+    mode: 0644
+
+- name: template out standalone-ha.xml
+  template:
+    src: "standalone-ha.xml"
+    dest: "/opt/keycloak-{{ keycloak_server_version }}/standalone/configuration/standalone-ha.xml"
+    owner: keycloak
+    group: keycloak
+    mode: 0644
+
+- name: change ownership for keycloak user
+  file:
+    path: "/opt/keycloak-{{ keycloak_server_version }}"
+    owner: keycloak
+    group: keycloak
+    state: directory
+    recurse: yes
+
+- name: create runtime directory
+  file:
+    path: "/var/run/keycloak"
+    state: directory
+    owner: keycloak
+    group: keycloak
+    mode: 0755
+
+- name: Template out the systemd service
+  template:
+    src: templates/keycloak.systemd
+    dest: "/etc/systemd/system/keycloak.service"
+    mode: 0644
+    owner: root
+    group: root
+  register: systemd_changed
+
+- name: reload systemd and enable the keycloak service
+  systemd:
+    name: "keycloak"
+    daemon_reload: yes
+    enabled: yes
+    state: started
+  when: systemd_changed.changed
+
+- name: copy rsyslog config
+  copy:
+    src: files/rsyslog.conf
+    dest: /etc/rsyslog.d/61-keycloak.conf
+    mode: 0644
+  notify:
+    - restart rsyslog
+
+- name: copy logrotate config
+  copy:
+    src: files/logrotate.conf
+    dest: /etc/logrotate.d/keycloak
+
+- name: write nginx configuration
+  copy:
+    src: files/nginx.conf
+    dest: /etc/nginx/deepthought.d/keycloak.conf
+  notify:
+    - restart nginx
+
+- name: create keycloak admin user
+  shell:
+    cmd: "/opt/keycloak-{{ keycloak_server_version }}/bin/add-user-keycloak.sh --roles admin -u admin -p {{ mysql_root_password }} && touch /opt/keycloak-{{ keycloak_server_version }}/.deepthought-admin-user"
+    creates: "/opt/keycloak-{{ keycloak_server_version }}/.deepthought-admin-user"
+  register: keycloak_add_user
+
+- name: restart keycloak service for new user
+  systemd:
+    name: "keycloak"
+    daemon_reload: yes
+    state: restarted
+  when: keycloak_add_user.changed
+
+- name: waiting 180 seconds for keycloak to start and load user
+  pause:
+    seconds: 180
+  when: keycloak_add_user.changed
+
+- name: copy realm configuration
+  copy:
+    src: files/deepthought-realm.json
+    dest: "/opt/keycloak-{{ keycloak_server_version }}/deepthought-realm.json"
+
+- name: import realm configuration once and only once
+  shell:
+    cmd: "/opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin --password {{ mysql_root_password }} && /opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh create realms -f /opt/keycloak-{{ keycloak_server_version }}/deepthought-realm.json  && touch /opt/keycloak-{{ keycloak_server_version }}/.deepthought-realm"
+    creates: "/opt/keycloak-{{ keycloak_server_version }}/.deepthought-realm"
+
+- name: create deepthought user on deepthought realm
+  shell:
+    cmd: "/opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin --password {{ mysql_root_password }} && /opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh create users -r deepthought -s username=deepthought -s enabled=true && touch /opt/keycloak-{{ keycloak_server_version }}/.deepthought-user"
+    creates: "/opt/keycloak-{{ keycloak_server_version }}/.deepthought-user"
+
+- name: reset passwords
+  shell:
+    cmd: "/opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin --password {{ mysql_root_password }} && /opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh set-password -r deepthought --username deepthought --new-password {{ mysql_root_password }} --temporary && /opt/keycloak-{{ keycloak_server_version }}/bin/kcadm.sh set-password -r master --username admin --new-password {{ mysql_root_password }} --temporary && touch /opt/keycloak-{{ keycloak_server_version }}/.deepthought-passwords"
+    creates: "/opt/keycloak-{{ keycloak_server_version }}/.deepthought-passwords"

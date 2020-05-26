@@ -1,0 +1,111 @@
+dn: uid=CRN0,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Brooke
+cn: Raeann Brooke
+givenName: Raeann
+uid: CRN0
+userPassword: password
+pf-connected-identity: auth-source=pf-local-identity:user-id=CRN0
+entryuuid: 4b4a457a-1a7e-380a-a2fc-1412ae425ba9
+
+dn: uid=CRN1,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Seawell
+cn: Esko Seawell
+givenName: Esko
+uid: CRN1
+userPassword: password
+pf-connected-identity: auth-source=pf-local-identity:user-id=CRN1
+entryuuid: fe09e290-635d-310c-a94c-f13231592bca
+
+dn: uid=CRN2,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Tancordo
+cn: Sidonia Tancordo
+givenName: Sidonia
+uid: CRN2
+userPassword: password
+pf-connected-identity: auth-source=pf-local-identity:user-id=CRN2
+entryuuid: b9e9967b-8f79-36d9-ac58-a68e7f0a9e70
+
+dn: uid=CRN3,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Knio
+cn: Pierre-Marc Knio
+givenName: Pierre-Marc
+uid: CRN3
+userPassword: password
+pf-connected-identity: auth-source=pf-local-ideontity:user-id=CRN3
+entryuuid: fbca9ee0-5132-3e3b-933c-990ff04faf59
+
+dn: uid=CRN4,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Psutka
+cn: Terza Psutka
+givenName: Terza
+uid: CRN4
+userPassword: password
+pf-connected-identity: auth-source=pf-local-identity:user-id=CRN4
+entryuuid: 593bc98c-75b9-3b19-8db9-9302c5aa435c
+
+dn: uid=administrator,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: PingFederate
+cn: Administrator
+givenName: PingFederate
+uid: administrator
+userPassword: 2FederateM0re
+pf-connected-identity: auth-source=pf-local-identity:user-id=administrator
+
+dn: uid=access2federate,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: PingAccess
+cn: pingFederateAdministrator
+givenName: PingAccess
+uid: access2federate
+userPassword: 2FederateM0re
+pf-connected-identity: auth-source=pf-local-identity:user-id=access2federate
+
+
+dn: uid=auditor,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: PingFederate
+cn: Auditor
+givenName: PingFederate
+uid: auditor
+userPassword: 2FederateM0re
+pf-connected-identity: auth-source=pf-local-identity:user-id=auditor
+
+

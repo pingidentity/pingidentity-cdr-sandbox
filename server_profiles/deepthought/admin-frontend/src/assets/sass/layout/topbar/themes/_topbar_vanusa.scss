@@ -1,0 +1,29 @@
+.layout-topbar-vanusa {
+    $topbarLeftBgColor:#89216B;
+    $topbarRightBgColor:#9E2A64;
+    $topbarSearchInputColor:#D7B0C8;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#B4345F;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#B4345F;
+    $menuButtonActiveBgColor:rgba(243,117,159,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#D7B0C8;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+    
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,11 @@
+sudo: false
+language: java
+jdk:
+  - openjdk11
+script: mvn test -B -Dskip.npm=false 
+cache:
+  directories:
+    - $HOME/.m2
+    - admin-frontend/node_modules
+    - admin-frontend/node
+

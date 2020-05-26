@@ -1,0 +1,175 @@
+.layout-container {
+    .layout-menubutton {
+        display: block;
+    }
+
+    .layout-logo {
+        margin-right: 0;
+    }
+
+    .layout-menu-container {
+        position: fixed;
+        overflow: auto;
+        width: 240px;
+        height: 100%;
+        top: 68px;
+        left: -250px;
+        z-index: 999;
+        @include transition(left $transitionDuration);
+        @include double-shadow(0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2));
+    }
+
+    .layout-menu {
+        list-style-type: none;
+        margin: 0;
+        padding: .75em .75em 120px;
+
+        li {
+            .layout-submenu-toggler {
+                @include transition(transform $transitionDuration);
+            }
+    
+            &.active-menuitem {
+                > a {
+                    .layout-submenu-toggler {
+                        @include rotate(-180deg);
+                    }
+                }
+            }
+        }
+
+        > li {
+            &.active-menuitem {
+                > a {
+                    @include border-radius-bottom(0);
+                }
+            }
+
+            > .layout-submenu-container {
+                > .layout-megamenu {
+                    > li {
+                        .layout-megamenu-submenu-text {
+                            display: block;
+                            padding: .75em;
+                            font-weight: 500;
+                        }
+
+                        > .layout-submenu-container {
+                            display: block;
+
+                            a {
+                                padding-left: .75em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        a {
+            display: block;
+            position: relative;
+            padding: .75em;
+            @include border-radius($menuitemBorderRadius);
+
+            .menuitem-text {
+                vertical-align: middle;
+            }
+    
+            i {
+                vertical-align: middle;
+                font-size: 20px;
+
+                &.layout-submenu-toggler {
+                    position: absolute;
+                    right: .75em;
+                }
+
+                &:first-child {
+                    margin-right: 7px;
+                }
+            }
+        }
+
+        .layout-submenu-container {
+            overflow: hidden;
+
+            .layout-submenu {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+
+                &.layout-megamenu {
+                    > li {
+                        > a:first-child {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            a {
+                @include border-radius(0);
+            }
+
+            li {
+                a {
+                    padding-left: 1.75em;
+                }
+
+                li {
+                    a {
+                        padding-left: 2.75em;
+                    }
+
+                    li {
+                        a {
+                            padding-left: 3.75em;
+                        }
+
+                        li {
+                            a {
+                                padding-left: 4.75em;
+                            }
+
+                            li {
+                                a {
+                                    padding-left: 5.75em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.layout-menu-active {
+        .layout-menu-container {
+            left: 0;
+        }
+
+        .layout-menubutton {
+            @include double-shadow(inset 0 1px 10px 0 rgba(0, 0, 0, 0.12), inset 0 4px 5px 0 rgba(0, 0, 0, 0.14));
+
+            .layout-menubutton-icon {
+                width: 0;
+
+                &:before {
+                    -webkit-transform: translateY(9px) rotate(45deg);
+                    -ms-transform: translateY(9px) rotate(45deg);
+                    transform: translateY(9px) rotate(45deg);
+                }
+
+                &:after {
+                    -webkit-transform: translateY(-9px) rotate(-45deg);
+                    -ms-transform: translateY(-9px) rotate(-45deg);
+                    transform: translateY(-9px) rotate(-45deg);
+                }
+                
+            }
+        }
+    }
+}
+

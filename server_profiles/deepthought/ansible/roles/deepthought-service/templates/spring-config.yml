@@ -1,0 +1,19 @@
+server:
+  port: {{ deepthought_service_port }}
+  use-forward-headers: true
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/auth/realms/deepthought/protocol/openid-connect/certs
+  datasource:
+    url: "jdbc:mysql://{{ mysql_hostname }}:3306/{{ mysql_databases[1].name }}"
+    username: "{{ mysql_users[1].name }}"
+    password: "{{ mysql_users[1].password }}"
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update

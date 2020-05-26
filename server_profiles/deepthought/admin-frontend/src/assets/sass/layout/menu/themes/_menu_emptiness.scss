@@ -1,0 +1,16 @@
+.layout-menu-emptiness {
+    $menuBgImage:'emptiness-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#5E35B1; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(255,255,255,0.2);
+
+    @import '../_menu_theme';
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+<script type="text/javascript">
+
+function recoverSessionOnload()
+{
+        var pathName = location.pathname;
+        let preservedRedirect = sessionStorage.getItem(pathName);
+        let preservedMethod = sessionStorage.getItem(pathName + "-method");
+
+        if(preservedRedirect && preservedMethod && preservedMethod.toLowerCase() == "post")
+        {
+                let preservedPostParameters = sessionStorage.getItem(pathName + "-postparams");
+                var postParamObject = JSON.parse(preservedPostParameters);
+                if(postParamObject)
+                        autoPost(preservedRedirect, postParamObject);
+        }
+        else if(preservedRedirect)
+        {
+                window.location = preservedRedirect;
+        }
+}
+
+function autoPost(actionUrl, postParameters) {
+    var form = document.createElement("form");
+
+    form.method = "POST";
+    form.action = actionUrl;
+
+    Object.keys(postParameters).forEach(function(nameStr,index) {
+        var currentParameters = postParameters[nameStr];
+        currentParameters.forEach(function(key1,index1) {
+                var valueStr = currentParameters[index1];
+
+                addInputValue(form, nameStr, valueStr);
+        });
+    });
+
+    document.body.appendChild(form);
+
+    form.submit();
+}
+
+function addInputValue(form, nameStr, valueStr)
+{
+
+    var element1 = document.createElement("input");
+
+    element1.value=valueStr;
+    element1.name=nameStr;
+    element1.type="hidden";
+
+    form.appendChild(element1);
+
+}
+
+</script>
+</head>
+
+<body onload="recoverSessionOnload()">
+
+</body>
+</html>

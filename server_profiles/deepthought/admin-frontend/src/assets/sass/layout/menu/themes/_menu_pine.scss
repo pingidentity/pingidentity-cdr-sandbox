@@ -1,0 +1,16 @@
+.layout-menu-pine {
+    $menuBgImage:'pine-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#EC407A;
+    $menuitemActiveIconColor:#EC407A;
+    $verticalActiveRootMenuitemBgColor:#00897B; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(255,255,255,0.2);
+
+    @import '../_menu_theme';
+}

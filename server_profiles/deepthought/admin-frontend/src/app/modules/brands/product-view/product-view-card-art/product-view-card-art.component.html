@@ -1,0 +1,38 @@
+<section>
+    <h2 class="title">
+        Card arts
+        <p-button label="Create card art" (click)="createCardArt()"></p-button>
+    </h2>
+
+
+    <p-table [value]="cardArts" [scrollable]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Title</th>
+                <th width="513px">Image</th>
+                <th></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-cardArt>
+            <tr>
+                <td>
+                    <strong>{{ cardArt.cdrBanking.title }}</strong>
+                </td>
+                <td width="513px">
+                    <img src="{{ cardArt.cdrBanking.imageUri }}" style="width: 512px; height: 315.3px;" />
+                </td>
+                <td class="actions">
+                    <p-button label="Edit" (click)="editCardArt(cardArt)"></p-button>
+                    <p-button label="Remove" (click)="removeCardArt(cardArt)"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [colSpan]="3" style="text-align: center;">Nothing to show</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>

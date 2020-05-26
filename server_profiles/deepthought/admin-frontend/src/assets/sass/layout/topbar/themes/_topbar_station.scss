@@ -1,0 +1,28 @@
+.layout-topbar-station {
+    $topbarBgImage:'station-topbar.jpg';
+    $topbarSearchInputColor:#A3A3A3;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#0C0407;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#0C0407;
+    $menuButtonActiveBgColor:rgba(255,255,255,.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#A3A3A3;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

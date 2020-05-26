@@ -1,0 +1,22 @@
+.layout-footer {
+    background-color: $footerBgColor;
+    color: $footerTextColor;
+    padding: 0 $bodySidePadding;
+    margin-top: 3em;
+
+    .layout-footer-appname {
+        margin-top: .5em;
+    }
+
+    .p-col {
+        padding: 2em .5em;
+    }
+
+    .p-col:last-child {
+        text-align: right;
+
+        span {
+            vertical-align: middle;
+        }
+    }
+}

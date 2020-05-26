@@ -1,0 +1,15 @@
+[Unit]
+Description=The Keycloak Server
+After=syslog.target network.target
+Before=httpd.service
+[Service]
+User=keycloak
+Group=keycloak
+LimitNOFILE=102642
+PIDFile=/var/run/keycloak/keycloak.pid
+ExecStart=/opt/keycloak-{{ keycloak_server_version }}/bin/standalone.sh --server-config=standalone-ha.xml
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=keycloak
+[Install]
+WantedBy=multi-user.target

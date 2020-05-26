@@ -1,0 +1,23 @@
+deepthought:
+  version: 1.0.0
+server:
+  servlet:
+    context-path: /dio-au
+spring:
+   security:
+      oauth2:
+         resourceserver:
+            jwt:
+               jwk-set-uri: https://brand1.pingid.data-holder.int/ext/oauth/standardATM/jwks
+   datasource:
+     url: jdbc:h2:file:../localdb/deepthought;AUTO_SERVER=true
+     driverClassName: org.h2.Driver
+   jpa:
+     database: H2
+     database-platform: org.hibernate.dialect.H2Dialect
+     hibernate:
+       ddl-auto: update
+   jackson:
+     default-property-inclusion: non_empty
+
+   

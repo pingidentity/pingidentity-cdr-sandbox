@@ -1,0 +1,28 @@
+.layout-topbar-beach {
+    $topbarBgImage:'beach-topbar.jpg';
+    $topbarSearchInputColor:#B7B4C1;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#060013;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#060013;
+    $menuButtonActiveBgColor:rgba(255,255,255,.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B7B4C1;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

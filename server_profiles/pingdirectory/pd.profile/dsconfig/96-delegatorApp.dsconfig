@@ -1,0 +1,16 @@
+#
+# A CORS policy is not needed when the app is running in the Ping Directory Server or Ping Proxy Server.
+# To prevent a potential security vulnerability in the CORS policy, cors-allowed-origins should instead be set to the
+# public name of the host, proxy, or load balancer that is going to be presenting the delegated admin web application.
+#
+# dsconfig create-http-servlet-cross-origin-policy --policy-name "Delegated Admin Cross-Origin Policy" --set "cors-allowed-methods: GET" --set "cors-allowed-methods: OPTIONS" --set "cors-allowed-methods: POST" --set "cors-allowed-methods: DELETE" --set "cors-allowed-methods: PATCH" --set "cors-allowed-origins: *"
+# dsconfig set-http-servlet-extension-prop --extension-name "Delegated Admin" --set "cross-origin-policy:Delegated Admin Cross-Origin Policy"
+
+#
+# Configure the delegator web app.
+#
+dsconfig create-web-application-extension --extension-name Delegator --set base-context-path:/delegator --set document-root-directory:webapps/delegator/app
+dsconfig set-connection-handler-prop --handler-name "HTTPS Connection Handler" --add web-application-extension:Delegator
+dsconfig set-connection-handler-prop --handler-name "HTTPS Connection Handler" --add "http-servlet-extension:Delegated Admin"
+dsconfig set-connection-handler-prop --handler-name "HTTPS Connection Handler" --set enabled:false
+dsconfig set-connection-handler-prop --handler-name "HTTPS Connection Handler" --set enabled:true

@@ -1,0 +1,17 @@
+.layout-menu-light {
+    $menuTopBgColor:#ffffff;
+    $menuBottomBgColor:#ffffff;
+    $menuitemTextColor:#616161;
+    $menuitemIconColor:#616161;
+    $menuitemHoverBgColor:#e0e0e0;
+    $menuitemHoverTextColor:#212121;
+    $menuitemHoverIconColor:#212121;
+    $menuitemActiveTextColor:$primaryColor;
+    $menuitemActiveIconColor:$primaryColor;
+    $verticalActiveRootMenuitemBgColor:$primaryColor; 
+    $verticalActiveRootMenuitemTextColor:$primaryTextColor;   
+    $verticalActiveRootMenuitemIconColor:$primaryTextColor;
+    $verticalSubmenuBgColor:#eeeeee;
+
+    @import '../_menu_theme';
+}

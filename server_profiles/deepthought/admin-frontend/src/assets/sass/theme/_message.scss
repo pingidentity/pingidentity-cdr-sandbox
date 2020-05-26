@@ -1,0 +1,327 @@
+body {
+    /* Messages */
+    .ui-messages {
+        padding: 1em;
+
+        ul {
+            display: inline-block;
+            margin-left: 0;
+        }
+
+        &.ui-messages-info {
+            background-color: #2196F3;
+            border-color: #2196F3;
+            color: #ffffff;
+
+            .ui-messages-close:hover {
+                background-color: lighten(#2196F3,15%);
+            }
+        }
+
+        &.ui-messages-warn {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212121;
+
+            .ui-messages-close{
+                color: #212121;
+
+                &:hover {
+                    background-color: lighten(#ffc107,15%);
+                }
+            }
+        }
+
+        &.ui-messages-error {
+            background-color: #e62a10;
+            border-color: #e62a10;
+            color: #ffffff;
+
+            .ui-messages-close:hover {
+                background-color: lighten(#e62a10,15%);
+            }
+        }
+
+        &.ui-messages-fatal {
+            background-color: #212121;
+            border-color: #212121;
+            color: #ffffff;
+
+            .ui-messages-close:hover {
+                background-color: lighten(#212121,15%);
+            }
+        }
+
+        &.ui-messages-success {
+            background-color: #8BC34A;
+            border-color: #8BC34A;
+            color: #ffffff;
+
+            .ui-messages-close:hover {
+                background-color: lighten(#8BC34A,15%);
+            }
+        }
+
+        .ui-messages-close {
+            text-decoration: none;
+            color: #fff;
+            right: .25em;
+        }
+    }
+
+    .ui-messages .ui-messages-icon {
+        background: none;
+        color: #fff;
+
+        &.pi-info-circle {
+            @include material-icon("info");
+            font-size: 1.75em;
+        }
+
+        &.pi-exclamation-triangle {
+            @include material-icon("warning");
+            font-size: 1.75em;
+            color: #212121;
+        }
+
+        &.pi-times {
+            @include material-icon("error_outline");
+            font-size: 1.75em;
+        }
+
+        &.pi-check {
+            @include material-icon("check_circle");
+            font-size: 1.75em;
+        }
+    }
+
+    .ui-message {
+
+        .ui-message-text {
+            margin-left: 5px;
+        }
+
+        &.ui-message-info {
+            background-color: #2196F3;
+            border-color: #2196F3;
+            color: #ffffff;
+        }
+
+        &.ui-message-warn {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #212121;
+        }
+
+        &.ui-message-error {
+            background-color: #e62a10;
+            border-color: #e62a10;
+            color: #ffffff;
+        }
+
+        &.ui-message-fatal {
+            background-color: #212121;
+            border-color: #212121;
+            color: #ffffff;
+        }
+
+        &.ui-message-success {
+            background-color: #8BC34A;
+            border-color: #8BC34A;
+            color: #ffffff;
+        }
+
+        .ui-message-close {
+            text-decoration: none;
+            color: #fff;
+            right: .25em;
+        }
+    }
+
+    .ui-message .ui-message-icon {
+        background: none;
+        color: #fff;
+        margin-top: -2px;
+
+        &.pi-info-circle {
+            @include material-icon("info");
+            font-size: 1.286em;
+        }
+
+        &.pi-exclamation-triangle {
+            @include material-icon("warning");
+            font-size: 1.286em;
+            color: #212121;
+        }
+
+        &.pi-times {
+            @include material-icon("error_outline");
+            font-size: 1.286em;
+        }
+
+        &.pi-check {
+            @include material-icon("check_circle");
+            font-size: 1.286em;
+        }
+    }
+
+    .ui-growl {
+        top: 90px;
+
+        > .ui-growl-item-container {
+            opacity: 1;
+
+            &.ui-growl-message-info {
+                background-color: #2196F3;
+            }
+
+            &.ui-growl-message-warn {
+                background-color: #ffc107;
+            }
+
+            &.ui-growl-message-error {
+                background-color: #e62a10;
+            }
+
+            &.ui-growl-message-fatal {
+                background-color: #212121;
+            }
+
+            &.ui-growl-message-success {
+                background-color: #8BC34A;
+            }
+
+            &.ui-shadow {
+                @include overlay-content-shadow();
+            }
+        }
+
+        .ui-growl-item {
+            .ui-growl-image {
+                background: none;
+                color: #ffffff;
+                font-size: 36px;
+
+                &.pi-info-circle {
+                    @include material-icon("info");
+                    font-size: 1.75em;
+                }
+
+                &.pi-exclamation-triangle {
+                    @include material-icon("warning");
+                    font-size: 1.75em;
+                    color: #212121;
+                }
+
+                &.pi-times {
+                    @include material-icon("error_outline");
+                    font-size: 1.75em;
+                }
+
+                &.pi-check {
+                    @include material-icon("check_circle");
+                    font-size: 1.75em;
+                }
+            }
+
+            .ui-growl-message {
+                color: #ffffff;
+            }
+
+            .ui-growl-icon-close {
+                @include material-icon("close");
+                font-size: 24px;
+                color: #ffffff;
+            }
+        }
+    }
+
+    .ui-toast {
+        .ui-toast-message {
+            @include overlay-content-shadow();
+
+            &.ui-toast-message-info {
+                background-color: #2196F3;
+                border: 0 none;
+                color: #ffffff;
+
+                .ui-toast-message-content {
+                    .ui-toast-close-icon {
+                        color: #ffffff;
+                        &:hover {
+                            background-color: lighten(#2196F3,15%);
+                        }
+                    }
+                }
+            }
+
+            &.ui-toast-message-success {
+                background-color: #8BC34A;
+                border: 0 none;
+                color: #ffffff;
+
+                .ui-toast-message-content {
+                    .ui-toast-close-icon {
+                        color: #ffffff;
+                        &:hover {
+                            background-color: lighten(#8BC34A,15%);
+                        }
+                    }
+                }
+            }
+
+            &.ui-toast-message-warn {
+                background-color: #ffc107;
+                border: 0 none;
+                color: #212121;
+
+                .ui-toast-message-content {
+                    .ui-toast-close-icon {
+                        color: #212121;
+                        &:hover {
+                            background-color: lighten(#ffc107,15%);
+                        }
+                    }
+                }
+            }
+
+            &.ui-toast-message-error {
+                background-color: #e62a10;
+                border: 0 none;
+                color: #ffffff;
+
+                .ui-toast-message-content {
+                    .ui-toast-close-icon {
+                        color: #ffffff;
+                        &:hover {
+                            background-color: lighten(#e62a10,15%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .ui-toast .ui-toast-icon {
+        &.pi-info-circle {
+            @include material-icon("info");
+            font-size: 1.75em;
+        }
+
+        &.pi-exclamation-triangle {
+            @include material-icon("warning");
+            font-size: 1.75em;
+            color: #212121;
+        }
+
+        &.pi-times {
+            @include material-icon("error_outline");
+            font-size: 1.75em;
+        }
+
+        &.pi-check {
+            @include material-icon("check_circle");
+            font-size: 1.75em;
+        }
+    }
+}

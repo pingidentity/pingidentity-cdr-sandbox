@@ -1,0 +1,29 @@
+.layout-topbar-skyline {
+    $topbarLeftBgColor:#2764B6;
+    $topbarRightBgColor:#303BB5;
+    $topbarSearchInputColor:#B3BAE3;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#2764B6;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#2764B6;
+    $menuButtonActiveBgColor:rgba(108,165,233,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B3BAE3;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+    
+    @import '../_topbar_theme';
+}

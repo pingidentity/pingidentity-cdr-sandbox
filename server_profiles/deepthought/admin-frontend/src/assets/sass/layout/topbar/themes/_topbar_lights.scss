@@ -1,0 +1,28 @@
+.layout-topbar-lights {
+    $topbarBgImage:'lights-topbar.jpg';
+    $topbarSearchInputColor:#A6B3BC;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#020201;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#020201;
+    $menuButtonActiveBgColor:rgba(255,255,255,.25);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#A6B3BC;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

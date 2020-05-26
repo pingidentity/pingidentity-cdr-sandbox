@@ -1,0 +1,28 @@
+.layout-topbar-classic {
+    $topbarBgImage:'classic-topbar.jpg';
+    $topbarSearchInputColor:#C8C5C4;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#422114;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#422114;
+    $menuButtonActiveBgColor:rgba(255,255,255,.25);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#C8C5C4;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#FFA726;
+
+    @import '../_topbar_theme';
+}

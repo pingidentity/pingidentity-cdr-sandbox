@@ -1,0 +1,28 @@
+.layout-topbar-urban {
+    $topbarBgImage:'urban-topbar.jpg';
+    $topbarSearchInputColor:#B1B9BA;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#25353B;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#25353B;
+    $menuButtonActiveBgColor:rgba(255,255,255,0.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B1B9BA;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,17 @@
+.layout-menu-vanusa {
+    $menuTopBgColor:#89216B;
+    $menuBottomBgColor:#9E2A64;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#66154F;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#89216B;   
+    $verticalActiveRootMenuitemIconColor:#89216B;
+    $verticalSubmenuBgColor:#AE3F86;
+
+    @import '../_menu_theme';
+}

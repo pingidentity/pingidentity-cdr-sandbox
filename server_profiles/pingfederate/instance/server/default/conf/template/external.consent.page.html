@@ -1,0 +1,161 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data request</title>
+    <script type="text/javascript">
+            function postResponse(approvalState)
+            {
+                document.forms[0]['approved'].value=approvalState;
+                document.forms[0].submit();
+            }
+        </script>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet">
+  
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/consent/foundation.css">
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>AnyBank - Payment confirmation</title>
+  </head>
+  <body class="consent">
+  <div class="container-fluid mt-3">
+    <div class="col-md-8 m-auto card p-5">
+        <form method="post" action="$action">
+			<input type="hidden" name="cSRFToken" value="$cSRFToken"/>
+			<input type="hidden" name="approved" value=""/>
+            <div class="row">
+                <div class="col text-center">
+                    <img src="assets/media/images/anybank-logo2.png">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <h1>Data request</h1>
+            </div>
+            <div class="row">
+                We need to collect and use the below information for 12 months. We will only use it to help you manage your budget for the financial year.
+            </div>
+			<div class="grid-x grid-padding-x">
+				<div class="large-6 medium-6 cell">
+					<div class="callout">
+						<img src="./assets/consent/tick.png" width="20">&nbsp;<small>Accredited CDR Recipient</small>
+					</div>
+				</div>
+				<div class="large-6 medium-6 cell">
+					<div class="callout">
+						<small>$adr</small>
+					</div>
+				</div>
+			</div>
+           
+	      
+  <div class="grid-x grid-padding-x">
+    <div class="large-6 medium-6 cell">
+                <h4>Select Accounts</h4>
+           
+#foreach($account in $accountList)      
+<div class="callout alert-secondary">                                                                                                                  
+                        <div class="row opt-select ">
+	                        <div class="ml-5">    
+		                        
+		                            <span class="name">                                                                             
+                                                                $account.displayName                                                            
+                                                </span><br>                                                                                     
+                                        <span class="capital">                                                                                  
+                                                        Account Number: $account.accountNumber                                                  
+                                                </span>               
+	                        </div>
+	                        <div class="switch-toggle-wrapper ml-auto mr-5" >
+		                        <div class="switch small">
+		                                                                                                                        
+                                <input class="switch-input" id="chk_accounts_$account.id" type="checkbox" name="accounts" value="$account.id" checked>
+                                
+                                <label class="switch-paddle" for="chk_accounts_$account.id">	
+                                <span class="show-for-sr">$templateMessages.getMessage($messageKeyPrefix, "title")</span>
+                                <span class="switch-active" aria-hidden="true">Yes</span>
+								<span class="switch-inactive" aria-hidden="true">No</span>
+								</label>
+	                       
+                                
+                                 </div>
+	                        </div>                                                                                                      
+                        </div>   
+</div>                                                                                                               
+#end
+  </div>
+  <div class="large-6 medium-6 cell">
+	                <h4>Data Requested</h4>
+            <div class="row">
+        #set($requestedScopesArr = $requestedScopes.split(" "))
+        #foreach($scope in $requestedScopesArr)
+          #if( $scope == "openid" || $scope == "profile")
+
+          #else    
+	        		#set( $scopeMod = $scope.replace(":","."))
+                    #set( $messageKeyPrefix = "cdr.scope.${scopeMod}." )	
+        			<div style="padding:0; margin:0; width:100%">
+					<div class="callout alert-secondary">
+						<div class="row opt-select"> 
+						
+						<div class="ml-5"><span class="name">    $templateMessages.getMessage($messageKeyPrefix, "title")</span></div>
+						<div class="switch-toggle-wrapper ml-auto mr-5 hide">
+							<div class="switch small radius">
+								<input class="switch-input" id="chk_transactionDetails" type="checkbox" name="scopes" value="$scope" checked>
+								<label class="switch-paddle" for="chk_transactionDetails">
+									<span class="show-for-sr">$templateMessages.getMessage($messageKeyPrefix, "title")</span>
+								</label>
+							</div>
+						</div>
+						</div>
+						<hr/>
+						<div class="row">
+							<div class="ml-5">
+							<ul>
+								$templateMessages.getMessage($messageKeyPrefix, "longReason")
+							</ul>
+						
+							</div>
+					</div>
+					</div>
+					</div>
+				#end
+			#end    
+          	</div>
+  </div>
+  </div>
+            <div class="row font-weight-bold mt-3">
+                Key dates
+            </div>
+			<div class="row">
+				
+				<p>Sharing period: $startdate - $enddate</p>
+			</div>
+            <div class="row font-weight-bold mt-3">
+                How often we'll access your data
+            </div>
+            <div class="row">
+				<p>We will do this every time you log into BudgetGuide’s Budget Tracker. This will be on-going for the next 12 months.</p>
+			</div>
+            <div class="row font-weight-bold mt-3">
+                Do you consent to share this data with us?
+            </div>
+            <div class="row">
+				<p>Selecting &quot;I consent&quot; won't give us access to your data just yet. We will need to connect you with your bank to confirm the decision.</p>
+			</div>
+            <div class="row mt-5">
+                <button type="button" class="btn btn-dark p-3" onclick="postResponse('deny');">Deny</button>
+                <button type="button" class="btn btn-dark p-3 ml-auto main" onclick="postResponse('allow');">Confirm</button>
+            </div>
+		</form>
+    </div>
+</div>
+	<script src="assets/consent/card-user-profile.js"></script>
+	
+	</form>
+  </body>
+</html>

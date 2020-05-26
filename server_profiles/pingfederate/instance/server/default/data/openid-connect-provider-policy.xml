@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:OpenIdConnectProviderPolicy enabled="true" defaultPolicyGroupId="obOIDCPolicy" trackUserSessionsForLogout="false" xmlns:urn="urn:pingidentity.com:pf:openid:connect:idp:policy">
+    <urn:ProviderPolicyGroup policyId="obOIDCPolicy" idTokenLife="5" includeSriInIdToken="false" includeUserInfoInIdToken="false" includeSHashInIdToken="true" returnIdTokenOnRefreshGrant="false" policyName="obOIDCPolicy" accessTokenManagerId="obATM">
+        <urn:UserInfoMapping>
+            <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:UserInfoMapping>
+        <urn:scopeAttributesMap/>
+        <urn:attributeContractInclusionMap/>
+    </urn:ProviderPolicyGroup>
+    <urn:ProviderPolicyGroup policyId="adminOIDCPolicy" idTokenLife="5" includeSriInIdToken="true" includeUserInfoInIdToken="false" includeSHashInIdToken="false" returnIdTokenOnRefreshGrant="false" policyName="adminOIDCPolicy" accessTokenManagerId="adminATM">
+        <urn:UserInfoMapping>
+            <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:UserInfoMapping>
+        <urn:scopeAttributesMap/>
+        <urn:attributeContractInclusionMap/>
+    </urn:ProviderPolicyGroup>
+    <urn:ProviderPolicyGroup policyId="standardOIDCPolicy" idTokenLife="5" includeSriInIdToken="true" includeUserInfoInIdToken="true" includeSHashInIdToken="true" returnIdTokenOnRefreshGrant="true" policyName="standardOIDCPolicy" accessTokenManagerId="standardATM">
+        <urn:UserInfoMapping>
+            <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:UserInfoMapping>
+        <urn:scopeAttributesMap/>
+        <urn:attributeContractInclusionMap/>
+    </urn:ProviderPolicyGroup>
+</urn:OpenIdConnectProviderPolicy>

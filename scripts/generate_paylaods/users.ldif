@@ -1,0 +1,25 @@
+dn: uid=user.0,ou=people,dc=data-holder,dc=com
+sn: Brooke
+givenName: Raeann
+entryuuid: 4b4a457a-1a7e-380a-a2fc-1412ae425ba9
+
+dn: uid=user.1,ou=people,dc=data-holder,dc=com
+sn: Seawell
+givenName: Esko
+entryuuid: fe09e290-635d-310c-a94c-f13231592bca
+
+dn: uid=user.2,ou=people,dc=data-holder,dc=com
+sn: Tancordo
+givenName: Sidonia
+entryuuid: b9e9967b-8f79-36d9-ac58-a68e7f0a9e70
+
+dn: uid=user.3,ou=people,dc=data-holder,dc=com
+sn: Knio
+givenName: Pierre-Marc
+entryuuid: fbca9ee0-5132-3e3b-933c-990ff04faf59
+
+dn: uid=user.4,ou=people,dc=data-holder,dc=com
+sn: Psutka
+givenName: Terza
+entryuuid: 593bc98c-75b9-3b19-8db9-9302c5aa435c
+

@@ -1,0 +1,28 @@
+.layout-topbar-lille {
+    $topbarBgImage:'lille-topbar.jpg';
+    $topbarSearchInputColor:#BEBFC2;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#0D1317;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#0D1317;
+    $menuButtonActiveBgColor:rgba(124,125,131,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#BEBFC2;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

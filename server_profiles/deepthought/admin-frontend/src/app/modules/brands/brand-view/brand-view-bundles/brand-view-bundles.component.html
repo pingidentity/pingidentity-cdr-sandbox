@@ -1,0 +1,39 @@
+<h2>
+    Bundles
+    <p-button
+        label="Create bundle"
+        (click)="createBundle()"
+        style="float: right;"
+    ></p-button>
+</h2>
+
+<p-table [value]="bundles" [scrollable]="true">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-dataRow>
+        <tr>
+            <td><strong>{{ dataRow.name }}</strong></td>
+            <td>{{ dataRow.description }}</td>
+            <td style="text-align: right; white-space: nowrap;">
+                <a [routerLink]="['/brands', brandId, 'bundles', dataRow.id]"
+                   pButton
+                   label="View"
+                   style="margin-right: 5px;"
+                ></a>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td [colSpan]="4" style="text-align: center;">Nothing to show</td>
+        </tr>
+    </ng-template>
+
+</p-table>

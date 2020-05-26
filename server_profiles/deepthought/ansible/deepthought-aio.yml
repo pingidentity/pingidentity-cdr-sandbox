@@ -1,0 +1,67 @@
+---
+# file: deepthought-aio.yml
+# This is a runbook to configure a self contained deployment of all deepthought components
+- hosts: deepthought_aio
+  become: true
+  gather_facts: false
+  vars_files:
+    - vars/databases.yml
+    - vars/deepthought.yml
+  pre_tasks:
+    - name: Install python for Ansible
+      become: true
+      raw: test -e /usr/bin/python3 || (apt-get -y update && apt-get install -y python3-minimal)
+      changed_when: false
+    - setup: # aka gather_facts
+  tasks:
+    - name: check admin-service jar
+      include_role:
+        name: deepthought-service
+        tasks_from: precheck.yml
+      vars:
+        deepthought_service_jar: "{{ deepthought_admin_jar }}"
+    - name: Refresh apt cache
+      apt:
+        update_cache: yes
+
+    - name: common configuration
+      include_role:
+        name: common
+
+    - name: deploy and configure mysql
+      include_role:
+        name: geerlingguy.mysql
+
+    - name: deploy and configure nginx
+      include_role:
+        name: deepthought-nginx
+
+    - name: identity configuration
+      include_role:
+        name: deepthought-identity
+
+    - name: deploy deepthought-admin-service
+      include_role:
+        name: deepthought-service
+      vars:
+        deepthought_service_id: deepthought-admin-service
+        deepthought_service_jar: "{{ deepthought_admin_jar }}"
+        deepthought_service_port: 8081
+        deepthought_service_base_path: "/dio-au"
+
+    - name: deploy deepthought-product-api-service
+      include_role:
+        name: deepthought-service
+      vars:
+        deepthought_service_id: deepthought-product-api
+        deepthought_service_jar: "{{ deepthought_product_api_jar }}"
+        deepthought_service_port: 8082
+        deepthought_service_base_path: "/cds-au"
+
+    - name: deploy deepthought-frontend
+      include_role:
+        name: deepthought-frontend
+
+    - name: deploy deepthought-aio
+      include_role:
+        name: deepthought-aio

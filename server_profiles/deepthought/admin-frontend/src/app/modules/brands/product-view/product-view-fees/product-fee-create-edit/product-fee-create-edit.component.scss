@@ -1,0 +1,65 @@
+:host {
+    font-size: 16px;
+}
+
+.Form {
+    display: flex;
+
+    &-fee,
+    &-discounts {
+        width: 50%;
+    }
+
+    &-fee {
+        ::ng-deep {
+            .balanceRate,
+            .transactionRate,
+            .accruedRate,
+            .accrualFrequency {
+                width: 50% !important;
+            }
+        }
+    }
+
+    &-discounts {
+        p-button {
+            margin-left: 5px;
+        }
+    }
+}
+
+.Discount {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    &-content {
+        display: flex;
+        flex-wrap: wrap;
+        line-height: 22px;
+        width: calc(100% - 150px);
+    }
+
+    &-detailName {
+        font-weight: bold;
+        width: 40%;
+    }
+
+    &-detailValue {
+        width: 60%;
+    }
+
+    &-actions {
+        width: 150px;
+    }
+}
+
+
+.Actions {
+    text-align: right;
+
+    p-button {
+        margin-left: 5px;
+    }
+}

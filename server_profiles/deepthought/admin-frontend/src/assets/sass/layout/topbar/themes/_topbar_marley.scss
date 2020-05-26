@@ -1,0 +1,29 @@
+.layout-topbar-marley {
+    $topbarLeftBgColor:#00838F;
+    $topbarRightBgColor:#0E7CAC;
+    $topbarSearchInputColor:#BFD7DA;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#00838F;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#0E7CAC;
+    $menuButtonActiveBgColor:rgba(14,124,172,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#BFD7DA;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+    
+    @import '../_topbar_theme';
+}

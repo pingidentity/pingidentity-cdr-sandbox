@@ -1,0 +1,13 @@
+---
+# tasks/precheck.yml
+# Pre Checks
+- name: Check supplied deepthought service jar exists
+  become: false
+  local_action: "stat path={{ deepthought_service_jar }}"
+  register: service_jar
+
+- name: Check service jar exists
+  fail:
+    msg: "Unable to find {{ deepthought_service_jar }}"
+  when: service_jar.stat.exists == false
+

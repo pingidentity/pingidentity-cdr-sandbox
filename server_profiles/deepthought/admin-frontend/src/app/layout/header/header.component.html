@@ -1,0 +1,19 @@
+<div class="Header">
+    <ul class="Breadcrumb Header-breadcrumb">
+        <ng-template ngFor let-item let-last="last" [ngForOf]="breadcrumbItems">
+            <li class="Breadcrumb-item">
+                <a [routerLink]="item.routerLink" *ngIf="item.routerLink">{{ item.label }}</a>
+                <ng-container *ngIf="!item.routerLink">{{ item.label }}</ng-container>
+            </li>
+            <li *ngIf="!last">/</li>
+        </ng-template>
+    </ul>
+
+    <div class="Header-burger" (click)="toggleBurger()">
+        <i class="material-icons">dehaze</i>
+    </div>
+
+    <div class="Header-rightSide">
+        <a void class="Logout" (click)="logout()">Logout</a>
+    </div>
+</div>

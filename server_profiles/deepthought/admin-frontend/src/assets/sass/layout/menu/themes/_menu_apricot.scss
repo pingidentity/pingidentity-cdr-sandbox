@@ -1,0 +1,17 @@
+.layout-menu-apricot {
+    $menuTopBgColor:#F1719A;
+    $menuBottomBgColor:#FE9473;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#A93559;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#80CBC4;
+    $menuitemActiveIconColor:#80CBC4;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#A93559;   
+    $verticalActiveRootMenuitemIconColor:#A93559;
+    $verticalSubmenuBgColor:#5A1329;
+
+    @import '../_menu_theme';
+}

@@ -1,0 +1,31 @@
+<div class="loading-indicator" *ngIf="showPageLoader">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+
+<div class="Layout" [class.Layout--open]="isBurgerOpen">
+    <div class="Sidebar Layout-sidebar">
+        <div class="Logo Sidebar-logo">
+            <img src="/assets/images/logo.png" alt="">
+            <p>DataRight Lab</p>
+        </div>
+        <ul class="SidebarMenu Sidebar-menu">
+            <li *ngFor="let item of menu;" routerLinkActive="active">
+                <a [routerLink]="item.routerLink">
+                    <i class="material-icons">{{ item.icon }}</i><br/>
+                    {{ item.label }}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="Layout-content">
+        <div class="Layout-rightSide">
+            <app-header></app-header>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>
+
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -1,0 +1,28 @@
+.layout-topbar-mural {
+    $topbarBgImage:'mural-topbar.jpg';
+    $topbarSearchInputColor:#C1C2C6;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#020205;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#020205;
+    $menuButtonActiveBgColor:rgba(199,199,211,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#C1C2C6;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

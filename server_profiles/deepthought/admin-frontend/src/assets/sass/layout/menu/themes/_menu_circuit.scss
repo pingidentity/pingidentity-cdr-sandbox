@@ -1,0 +1,16 @@
+.layout-menu-circuit {
+    $menuBgImage:'circuit-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#FF9800;
+    $menuitemActiveIconColor:#FF9800;
+    $verticalActiveRootMenuitemBgColor:#EF6C00; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(255,255,255,0.2);
+
+    @import '../_menu_theme';
+}

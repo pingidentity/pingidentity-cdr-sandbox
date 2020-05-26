@@ -1,0 +1,17 @@
+.layout-menu-forest {
+    $menuTopBgColor:#224C3D;
+    $menuBottomBgColor:#95A850;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#16372B;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#CDDC39;
+    $menuitemActiveIconColor:#CDDC39;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#224C3D;   
+    $verticalActiveRootMenuitemIconColor:#224C3D;
+    $verticalSubmenuBgColor:#466E60;
+
+    @import '../_menu_theme';
+}

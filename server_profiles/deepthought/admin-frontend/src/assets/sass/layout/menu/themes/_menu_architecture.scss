@@ -1,0 +1,16 @@
+.layout-menu-architecture {
+    $menuBgImage:'architecture-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#B39DDB;
+    $menuitemActiveIconColor:#B39DDB;
+    $verticalActiveRootMenuitemBgColor:#673AB7; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(0,0,0,0.2);
+
+    @import '../_menu_theme';
+}

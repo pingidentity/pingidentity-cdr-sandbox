@@ -1,0 +1,29 @@
+.layout-topbar-apricot {
+    $topbarLeftBgColor:#F1719A;
+    $topbarRightBgColor:#FE9473;
+    $topbarSearchInputColor:#FDD5CF;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#F1719A;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#F1719A;
+    $menuButtonActiveBgColor:rgba(169,53,89,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#FDD5CF;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#80CBC4;
+    
+    @import '../_topbar_theme';
+}

@@ -1,0 +1,16 @@
+.layout-menu-sandiego {
+    $menuBgImage:'sandiego-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#e1ab41;
+    $menuitemActiveIconColor:#e1ab41;
+    $verticalActiveRootMenuitemBgColor:#FFD54F; 
+    $verticalActiveRootMenuitemTextColor:#212121;   
+    $verticalActiveRootMenuitemIconColor:#212121;
+    $verticalSubmenuBgColor:rgba(0,0,0,0.2);
+
+    @import '../_menu_theme';
+}

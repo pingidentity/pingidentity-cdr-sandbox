@@ -1,0 +1,6 @@
+{
+    "API_BASE_PATH": "http://localhost:8081/dio-au",
+    "OAUTH2_ISSUER": "http://localhost:8080/auth/realms/deepthought",
+    "OAUTH2_CLIENT_ID": "deepthought-service",
+    "OAUTH2_SCOPE": "DEEPTHOUGHT:ADMIN:PRODUCT:READ DEEPTHOUGHT:ADMIN:PRODUCT:WRITE"
+}

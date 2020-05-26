@@ -1,0 +1,28 @@
+- name: copy over deepthought ssl initialiser
+  template:
+    src: setup-deepthought-ssl.sh
+    owner: root
+    mode: 0755
+    dest: /root/setup-deepthought-ssl.sh
+
+- name: write cloud-init initialiser
+  copy:
+    src: files/100_deepthoughtssl.cfg
+    dest: /etc/cloud/cloud.cfg.d/100_deepthoughtssl.cfg
+    owner: root
+    group: root
+
+- name: write motd
+  copy:
+    src: files/motd-header
+    dest: /etc/update-motd.d/999-deepthought
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Setup swap
+  include_role:
+    name: Oefenweb.swapfile
+  vars:
+    swapfile_size: 1GB
+    swapfile_swappiness: 10

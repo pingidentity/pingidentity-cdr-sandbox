@@ -1,0 +1,566 @@
+.dashboard {
+
+    > div {
+        padding: 1em;
+    }
+
+    .dashboard-grid {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .card {
+        height: 100%;
+        margin-bottom: 0;
+    }
+
+    .dot {
+        height: .5em;
+        width: .5em;
+        @include border-radius(50%);
+        display: inline-block;
+
+        &.dot-green {
+            background-color: #4caf50;
+        }
+
+        &.dot-red {
+            background-color: #e91e63;
+        }
+
+        &.dot-orange {
+            background-color: #ff9800;
+        }
+    }
+
+    .icon-container {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        background-color: #eeeeee;
+        @include border-radius(50%);
+
+        i {
+            color: #9e9e9e;
+            font-size: 24px;
+            line-height: inherit;
+        }
+    }
+
+    .overview-box {
+        .overview-numbers {
+            font-size: 16px;
+            color: #4c87c9;
+            font-weight: 700;
+            margin: .5em 0 1em 0;
+        }
+
+        &.monthly-sales {
+            img {
+                width: 100%;
+                margin-top: 1em;
+            }
+        }
+
+        &.total-views {
+            img {
+                width: 100%;
+                margin-top: 4em;
+            }
+        }
+
+        &.connections {
+            .legend-arrow  {
+                vertical-align: top;
+                color: #4caf50;
+                position: relative;
+                top: -4px;
+            }
+
+            .dot {
+                margin-right: .5em;
+                vertical-align: middle;
+            }
+
+            .connection-chart {
+                text-align: center;
+                padding-top: 2em;
+            }
+
+            .connection-chart-legend {
+                padding-left: 4%;
+                padding-top: 1.5em;
+                color: $textSecondaryColor;
+            }
+        }
+    }
+
+    .summary-box {
+        position: relative;
+
+        .card {
+            min-height: 100px;
+        }
+
+        .summary-box-title {
+            font-size: 16px;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        p {
+            margin: .25em 0;
+            color: #ffffff;
+        }
+
+        .summary-box-icon {
+            position: absolute;
+            right: 24px;
+            top: 32px;
+        }
+
+        .summary-box-graph {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        &.summary-box-holders {
+            .card {
+                border-top: 4px solid #0097a7;
+                background-color: #00bcd4;
+            }
+        }
+
+        &.summary-box-recipients {
+            .card {
+                border-top: 4px solid #ad1457;
+                background-color: #e91e63;
+            }
+
+        }
+
+        &.summary-box-brands {
+            .card {
+                border-top: 4px solid #f47b08;
+                background-color: #ffb300;
+            }
+
+        }
+
+        &.summary-box-products {
+            .card {
+                border-top: 4px solid #455a64;
+                background-color: #607d8b;
+            }
+        }
+    }
+
+    .tasks {
+        padding: 0;
+
+        .tasks-progress {
+            height: 7px;
+            background-color: #00bcd4;
+
+            .tasks-progress-value {
+                height: 7px;
+                width: 50%;
+                background-color: #0097a7;
+            }
+        }
+
+        .tasks-header {
+            padding: 16px;
+            background-color: #eeeeee;
+
+            .task-number {
+                font-weight: 700;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin: .25em 0 0 0;
+            padding: .25em 1em 0 1em;
+
+            li {
+                border-bottom: 1px solid #e4e4e4;
+
+                &:last-child {
+                    border-bottom: 0 none;
+                }
+            }
+        }
+
+        .tasks-detail {
+            margin-top: .5em;
+            color: $textSecondaryColor;
+        }
+
+        .task-content {
+            position: relative;
+            padding: 1em 0;
+        }
+
+        i {
+            font-size: 24px;
+            color: $textSecondaryColor;
+        }
+
+        .p-col-fixed {
+            width: 75px;
+            text-align: center;
+        }
+    }
+
+    .team {
+        ul {
+            list-style-type: none;
+            margin: .25em 0 0 0;
+            padding: 0;
+
+            li {
+                border-bottom: 1px solid #e4e4e4;
+
+                &:last-child {
+                    border-bottom: 0 none;
+                }
+            }
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .member-content {
+            padding: 1em;
+        }
+
+        .member-name {
+            margin-bottom: .5em;
+        }
+
+        button:last-child {
+            margin-left: .5em;
+        }
+
+        .member-status {
+            color: $textSecondaryColor;
+
+            span {
+                vertical-align: middle;
+            }
+        }
+
+        .dot {
+            margin-right: .3em;
+            vertical-align: middle;
+        }
+    }
+
+    .userprofile {
+        padding: 0;
+
+        .userprofile-bg {
+            width: 100%;
+        }
+
+        .userprofile-avatar {
+            border: 4px solid #ffffff;
+            @include border-radius(50%);
+            margin: 0 auto;
+            width: 96px;
+            height: 96px;
+            display: block;
+            margin-top: -48px;
+        }
+
+        .userprofile-name {
+            text-align: center;
+            margin: .5em 0;
+        }
+
+        .userprofile-role {
+            color: $textSecondaryColor;
+            text-align: center;
+            margin-bottom: 2em;
+            font-size: 12px;
+            letter-spacing: 0.4px;
+        }
+
+        .userprofile-circle {
+            width: 16px;
+            height: 16px;
+            background-color: #ffffff;
+            border-width: 4px;
+            border-style: solid;
+            margin: 0 auto;
+            @include border-radius(50%);
+            margin-bottom: .5em;
+        }
+
+        .userprofile-status {
+            color: $textSecondaryColor;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        .userprofile-value {
+            margin-top: .5em;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        .userprofile-legend {
+            text-align: center;
+        }
+
+        .user-bucket-live {
+            .userprofile-circle {
+                border-color: #00d425;
+            }
+        }
+
+        .user-bucket-created {
+            .userprofile-circle {
+                border-color: #ffc107;
+            }
+        }
+
+        .user-bucket-remaining {
+            .userprofile-circle {
+                border-color: #00bcd4;
+            }
+        }
+    }
+
+    .quarterreport {
+        h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .dashboard-chart-container {
+            position:relative;
+        }
+    }
+
+    .switchpanel {
+        border-left: 6px solid #00bcd4;
+
+        .switch-name {
+            color: $textSecondaryColor;
+            margin-bottom: .25em;
+        }
+
+        .switch-status {
+            color: #0097a7;
+            letter-spacing: 0.4px;
+            font-size: 12px;
+            display: block;
+            margin-bottom: .5em;
+        }
+
+        &.switchpanel-off {
+            border-left: 6px solid #e91e63;
+
+            .switch-status {
+                color: #e91e63;
+            }
+        }
+
+        .ui-inputswitch-checked {
+            .ui-inputswitch-slider {
+                background-color: #00bcd4;
+
+                &:before {
+                    background-color: #0097a7;
+                }
+            }
+
+            &:not(.ui-state-disabled):hover {
+                .ui-inputswitch-slider {
+                    background-color: #00bcd4;
+                }
+            }
+
+            &.ui-inputswitch-focus {
+                .ui-inputswitch-slider {
+                    background: #00bcd4;
+                }
+            }
+        }
+    }
+
+    .timeline {
+        h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            padding: 1em 0;
+            border-bottom: 1px solid #e4e4e4;
+
+            &:last-child {
+                border-bottom: 0 none;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .p-col-fixed {
+            padding: 0 1em .5em 0;
+        }
+
+        .event-owner {
+            color: $textSecondaryColor;
+            margin-bottom: .5em;
+        }
+
+        .event-detail {
+            margin-bottom: .5em;
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        .timeline-clock {
+            display: inline-block;
+            margin-top: .5em;
+            background-color: #eeeeee;
+            color: $textSecondaryColor;
+            padding: .5em;
+            font-size: 13px;
+            @include border-radius($borderRadius);
+
+            .material-icons {
+                font-size: 13px;
+                vertical-align: middle;
+            }
+
+            span {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .location {
+        padding: 0;
+        margin-top: 1em;
+
+        .location-content {
+            padding: 1em;
+        }
+
+        .location-name {
+            margin-bottom: .5em;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        p {
+            margin: .75em 0;
+            color: $textSecondaryColor;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        a {
+            color: #00bcd4;
+
+            &:hover {
+                color: #0097a7;
+            }
+        }
+    }
+
+    .weather {
+        padding: 0;
+
+        .weather-image {
+            background-image: url("../images/dashboard/primecity.jpg");
+            background-size: cover;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.87);
+            min-height: 250px;
+            padding: 1em;
+
+            .city-name {
+                font-size: 24px;
+                margin-bottom: 40px;
+            }
+
+            .weather-today {
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+
+            .weather-degree {
+                font-size: 40px;
+            }
+        }
+
+        .weekdays {
+            margin: 1em;
+
+            > div {
+                padding: .857em;
+            }
+        }
+
+        .weather-degree-col {
+            text-align: right;
+
+            img {
+                vertical-align: middle;
+                margin-left: .5em;
+            }
+        }
+    }
+
+    .inventory {
+        padding: 0;
+
+        .card-title {
+            padding: 0.714em 0.857em;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 16px;
+            padding: 1em;
+        }
+
+        .ui-datatable-reflow .ui-reflow-label,
+        .ui-datatable-reflow .ui-reflow-dropdown {
+            margin: 1em;
+        }
+    }
+}
+
+@media screen and (max-width: $mobileBreakpoint) {
+    .dashboard {
+        .quarterreport {
+            .dashboard-chart-container {
+                height: 250px;
+            }
+        }
+    }
+}

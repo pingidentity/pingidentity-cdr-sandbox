@@ -1,0 +1,17 @@
+.layout-menu-orange {
+    $menuTopBgColor:#DD7919;
+    $menuBottomBgColor:#E47307;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#AD6119;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#D4E157;
+    $menuitemActiveIconColor:#D4E157;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#DD7919;   
+    $verticalActiveRootMenuitemIconColor:#DD7919;
+    $verticalSubmenuBgColor:#E69E5A;
+
+    @import '../_menu_theme';
+}

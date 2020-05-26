@@ -1,0 +1,29 @@
+.layout-topbar-kashmir {
+    $topbarLeftBgColor:#614385;
+    $topbarRightBgColor:#516395;
+    $topbarSearchInputColor:#DCCFEC;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#614385;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#516395;
+    $menuButtonActiveBgColor:rgba(81,99,149,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#DCCFEC;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+    
+    @import '../_topbar_theme';
+}

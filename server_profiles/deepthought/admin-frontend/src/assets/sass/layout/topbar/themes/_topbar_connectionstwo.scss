@@ -1,0 +1,28 @@
+.layout-topbar-connectionstwo {
+    $topbarBgImage:'connectionstwo-topbar.jpg';
+    $topbarSearchInputColor:#D6E7EB;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#058CA9;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#058CA9;
+    $menuButtonActiveBgColor:rgba(5,140,169,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#D6E7EB;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

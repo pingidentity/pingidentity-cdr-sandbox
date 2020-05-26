@@ -1,0 +1,109 @@
+.exception-body {
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	&.error {
+		background-image: url("../../layout/images/exception/bg-error.jpg");
+
+		.exception-panel {
+			.exception-image {
+				width: 102px;
+				margin-left: -51px;
+				img {
+					width: 58px;
+					height: 64px;
+				}
+			}
+		}
+	}
+
+	&.notfound {
+		background-image: url("../../layout/images/exception/bg-404.jpg");
+
+		.exception-panel {
+			.exception-image {
+				width: 108px;
+				margin-left: -54px;
+				img {
+					width: 64px;
+					height: 64px;
+				}
+			}
+		}
+	}
+
+	&.accessdenied {
+		background-image: url("../../layout/images/exception/bg-access.jpg");
+
+		.exception-panel {
+			.exception-image {
+				width: 108px;
+				margin-left: -54px;
+				img {
+					width: 50px;
+					height: 64px;
+				}
+			}
+		}
+	}
+
+	.exception-panel {
+		width: 565px;
+		height: 247px;
+		background-color: #fafafa;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -282px;
+		margin-top: -123px;
+		padding: 0;
+		text-align: center;
+		@include border-radius(3px);
+		@include multi-shadow(0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 12px 17px 2px rgba(0, 0, 0, 0.14));
+
+		.exception-image {
+			vertical-align: middle;
+			height: 108px;
+			position: relative;
+			top: -54px;
+			left: 50%;
+			background: #fafafa;
+			border: 22px solid #fafafa;
+			border-radius: 50%;
+		}
+
+		.exception-detail {
+			position: relative;
+			padding: 10px 0 42px 0;
+			top: -54px;
+
+			h1 {
+				font-size: 24px;
+				font-weight: 500;
+				letter-spacing: 1.7px;
+				color: #616161;
+				margin: 0px 0 16px 0;
+			}
+
+			p {
+				font-size: 16px;
+				font-weight: normal;
+				letter-spacing: 0.5px;
+				color: #212121;
+				margin: 0 0 42px 0;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: $mobileBreakpoint) {
+	.exception-body {
+		.exception-panel {
+			left: 0;
+			margin-left: 0;
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,141 @@
+<!-- This is an example file for a basic input element -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <link rel="stylesheet" href="../assets/css/ui-library--v1.css">
+    <link rel="stylesheet" href="../assets/iframe--v1.css">
+    <script src="../assets/iframe--v1.min.js"></script>
+  </head>
+  <body>
+    <div class="TextField">
+      <label id="example-label" class="input-width-medium no-bottom-margin input-text">
+        <span class="label-text">
+          Full Name
+        </span>
+        <span class="input-container">
+          <input id="example" type="text" />
+          <div id="example-error" class="input-message" hidden>
+            <div class="input-message__icon"></div>
+            <div class="input-message__text">
+              Text must be "test"
+            </div>
+          </div>
+        </span>
+      </label>
+    </div>
+
+    <script type="text/javascript">
+      var hasError = false;
+      var originalHeight = document.body.scrollHeight;
+
+      // This function gets called when the attribute is initialized
+      CustomAttribute.onInitialize(function (data) {
+        // Set the input's value to the existing data, if there is any
+        if (data && data.value) document.getElementById('example').value = data.value;
+
+        // Set the label to the displayName if provided
+        if (data && data.metaData && data.metaData.displayName) {
+          document.getElementsByClassName('label-text')[0].textContent = data.metaData.displayName;
+        }
+
+        // Set the field to be required if the server says it is
+        if (data && data.metaData && data.metaData.required) {
+          document.getElementById('example-label').classList.add('required');
+
+          // If initial value exists, don't show required bar
+          if (data && data.value) {
+            document.getElementById('example-label').classList.remove('required');
+          }
+        }
+      });
+
+      // This functions gets called when the form sends update information about itself
+      CustomAttribute.onUpdate(function (data) {
+        // Compare the values and respect what the form has for the attribute if it is different
+        // e.g. Reset the input's value when the form changes are discarded
+        var example = document.getElementById('example');
+        var thisValue = example.value;
+        var newValue = data && data.form && data.form.attributes && data.form.attributes[CustomAttribute.attribute] && data.form.attributes[CustomAttribute.attribute][0];
+        var error = data && data.form && data.form.errors && data.form.errors[CustomAttribute.attribute];
+
+        if (error) {
+          var errorMessage = error && error.message;
+          showErrorState(errorMessage);
+        }
+
+        if (thisValue && typeof newValue === 'undefined') {
+          example.value = '';
+          hideErrorState();
+          if (CustomAttribute.metaData.required) {
+            document.getElementById('example-label').classList.add('required');
+          }
+        } else if (typeof newValue !== 'undefined' && thisValue !== newValue) {
+          example.value = newValue;
+        }
+      });
+
+      function hideErrorState() {
+        if (!hasError) return;
+        document.getElementById('example-error').hidden = true;
+        document.getElementById('example-label').classList.remove('input-message');
+        CustomAttribute.resize(originalHeight);
+        hasError = false;
+      }
+
+      function showErrorState(errorMessage) {
+        if (hasError) return;
+        document.getElementById('example-error').hidden = false;
+        document.getElementById('example-label').classList.add('input-message');
+
+        // Add the message from the server to the error message box
+        if (errorMessage) document.getElementsByClassName('input-message__text')[0].textContent = errorMessage;
+
+        // If input is already focused, we can simply resize, otherwise we'll need to specify the
+        // height since the element is hidden
+        if (document.querySelector('input:hover')) {
+          CustomAttribute.resize();
+        } else {
+          // 42px is roughly the height of the message box we'll need to account for if hidden
+          CustomAttribute.resize(originalHeight + 42);
+        }
+        hasError = true;
+      }
+
+      // This function is triggered by the event listener added below
+      function handleChange(event) {
+        var input = event.target.value;
+
+        // Tell the input when to show the required bar
+        if (input) {
+          document.getElementById('example-label').classList.remove('required');
+        } else if (CustomAttribute.metaData.required) {
+          document.getElementById('example-label').classList.add('required');
+        }
+
+        // Send custom attribute's new value on each change to the form
+        CustomAttribute.sendAttributeValue(input);
+
+        // Tell the form when the field should be valid
+        if (input === "test" || input === "") {
+          if (input === "test") {
+            CustomAttribute.sendAttributeValidation(true);
+          } else {
+            CustomAttribute.sendAttributeValidation(false);
+          }
+          
+          hideErrorState();
+        } else {
+          CustomAttribute.sendAttributeValidation(false);
+          showErrorState();
+        }
+      }
+
+      // When the iframe is loaded, add the following event listener
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('example').addEventListener('input', handleChange);
+      });
+    </script>
+  </body>
+</html>

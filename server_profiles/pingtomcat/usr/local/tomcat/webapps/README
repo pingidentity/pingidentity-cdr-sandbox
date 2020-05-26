@@ -1,0 +1,104 @@
+PingData Administrative Console
+-------------------------------
+
+The Console is a web application for managing PingData servers. It can be
+deployed in any servlet container that supports the Java Servlet 3.0 standard.
+
+Installation
+------------
+
+Install the Console according to the instructions of your servlet container.
+For most containers, this is done by copying the console.war file to a specific
+directory.
+
+Accessing the Console
+---------------------
+
+Access the console from your browser using a URL according to your servlet
+container's configuration. It is common for the URL's context path to match
+the name of the WAR file, for example
+https://example.com:8443/admin-console.
+
+Logging into the Console requires the host name and LDAP port of the server you
+want to manage. For non-SSL connections, specify a full LDAP URL such as
+ldap://example.com:389. For SSL connections, specify a host and port such as
+example.com:636. Also, specify a privileged account user name and password. For
+root level users, specify the common name, for example 'directory manager.' For
+non-root users, specify the full DN of the account, for example
+uid=admin,dc=example,dc=com. See the PingData product-specific Administration
+Guide for more information about configuring administrative users.
+
+Configuration
+-------------
+
+The Console is a Spring Boot application and can be configured by modifying the
+WEB-INF/classes/application.yml file. All configuration should apply to the
+default profile, which means all modification to this file should precede these
+lines:
+
+  ---  # development profile-specific settings
+  spring:
+    profiles: development
+
+since content below these lines is for development only. One way of modifying
+the application.yml file is to directly edit the console.war file using the
+VI editor. After modifying the file, restart your container. The following are
+a few commonly configured elements:
+
+Logging:  You can manage log levels and enable logging to a file by adding the
+appropriate settings to the default profile. Log configuration follows typical
+log4j conventions. For example, to have the Console log debug-level output, add
+the following to the default profile:
+
+  logging.console: true
+  log.file: /tmp/console.log
+  logging:
+    level:
+      root: DEBUG
+      com.unboundid: DEBUG
+
+Default managed server:  You can specify a default server that will
+pre-configure the Console's login page upon startup by adding the following
+to the default profile:
+
+  ldap:
+    server: example.com:636
+
+You can also hide the server text field on the login page altogether by adding
+the following to the default profile. This is useful when you want to always
+have the Console log into a specific server. The following will hide the server
+text field if you've specified a default server:
+
+  login.hide-server: true
+
+Trust store:  You can specify a trust store that the Console will use for
+establishing trust with managed servers when communicating with them over LDAPS.
+The trust store file should contain either a root CA certificate, or public
+certificates of any servers you want to manage:
+
+  ldap:
+    trust-store-file: /tmp/truststore
+
+Server-Switching
+----------------
+
+When another server is registered with the managed server, the name of the
+server will appear in the Servers dropdown in the Console's banner. This may
+happen automatically, for example when replication is established between two
+servers.
+
+Selecting a server allows switching to the selected server without requiring you
+to log out of the current session and log back in, specifying a new value for
+the Server field in the login page.  In order for server-switching to work, all
+known servers must allow the current user name and password, and be trusted by
+the Console.  See instructions elsewhere in this file for configuring server
+trust.
+
+Known Issues
+------------
+
+See the release notes packaged with the PingData server products for any known
+issues with the Console.
+
+
+

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="97" height="97" viewBox="0 0 97 97">
+    <defs>
+        <circle id="a" cx="62.5" cy="62.5" r="48.5"/>
+        <mask id="d" width="97" height="97" x="0" y="0" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <circle id="b" cx="62.5" cy="62.5" r="48.5"/>
+        <mask id="e" width="97" height="97" x="0" y="0" fill="#fff">
+            <use xlink:href="#b"/>
+        </mask>
+        <circle id="c" cx="62.5" cy="62.5" r="48.5"/>
+        <mask id="f" width="97" height="97" x="0" y="0" fill="#fff">
+            <use xlink:href="#c"/>
+        </mask>
+    </defs>
+    <g fill="none" fill-rule="nonzero" stroke-width="30" transform="translate(-14 -14)">
+        <use stroke="#E91E63" stroke-dasharray="161,900" mask="url(#d)" xlink:href="#a"/>
+        <use stroke="#FF9800" stroke-dasharray="161,900" mask="url(#e)" transform="rotate(110 62.5 62.5)" xlink:href="#b"/>
+        <use stroke="#4CAF50" stroke-dasharray="111,900" mask="url(#f)" transform="rotate(180 62.5 62.5)" xlink:href="#c"/>
+    </g>
+</svg>

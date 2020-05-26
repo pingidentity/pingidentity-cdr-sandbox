@@ -1,0 +1,17 @@
+.layout-menu-skyline {
+    $menuTopBgColor:#2764B6;
+    $menuBottomBgColor:#303BB5;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#174280;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#303BB5;   
+    $verticalActiveRootMenuitemIconColor:#303BB5;
+    $verticalSubmenuBgColor:#4F74C0;
+
+    @import '../_menu_theme';
+}

@@ -1,0 +1,28 @@
+.layout-topbar-symmetry {
+    $topbarBgImage:'symmetry-topbar.jpg';
+    $topbarSearchInputColor:#CECDCD;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#654630;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#654630;
+    $menuButtonActiveBgColor:rgba(255,255,255,0.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#CECDCD;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#00BCD4;
+
+    @import '../_topbar_theme';
+}

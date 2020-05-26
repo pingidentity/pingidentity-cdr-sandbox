@@ -1,0 +1,33 @@
+
+<section>
+    <cdr-form-control
+        [className]="'discountForm'"
+        [control]="discountForm"
+        [showErrors]="discountForm.submitted"
+    ></cdr-form-control>
+</section>
+
+<section>
+    <h2>Eligibilitys</h2>
+
+    <div *ngFor="let eligibilityForm of eligibilitysForm.controls; let i = index;"
+         style="margin-bottom: 10px;"
+    >
+        <cdr-form-control
+            [className]="'eligibilityForm'"
+            [control]="eligibilityForm"
+            [showErrors]="discountForm.submitted"
+        ></cdr-form-control>
+
+        <div style="text-align: right;">
+            <button pButton type="button" label="Remove eligibility" (click)="removeEligibility(i)"></button>
+        </div>
+    </div>
+
+    <button pButton type="button" label="Add eligibility" (click)="addEligibility()"></button>
+</section>
+
+<div class="Actions">
+    <button pButton type="button" label="Save" (click)="onSave()"></button>&nbsp;
+    <button pButton type="button" label="Cancel" (click)="onCancel()"></button>
+</div>

@@ -1,0 +1,28 @@
+.layout-topbar-canvas {
+    $topbarBgImage:'canvas-topbar.jpg';
+    $topbarSearchInputColor:#DABAA5;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#640000;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#640000;
+    $menuButtonActiveBgColor:rgba(0,0,0,0.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#DABAA5;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

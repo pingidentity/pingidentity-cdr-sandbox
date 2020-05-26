@@ -1,0 +1,17 @@
+.layout-menu-midnight {
+    $menuTopBgColor:#232526;
+    $menuBottomBgColor:#414345;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#0F1010;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#4FC3F7;
+    $menuitemActiveIconColor:#4FC3F7;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#232526;   
+    $verticalActiveRootMenuitemIconColor:#232526;
+    $verticalSubmenuBgColor:#575B5E;
+
+    @import '../_menu_theme';
+}

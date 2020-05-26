@@ -1,0 +1,14 @@
+<p-overlayPanel #popover appendTo="body">
+    <ngx-duration-picker
+        [(value)]="value"
+        (valueChange)="onChange()"
+        [options]="{ showPreview: false, showWeeks: false, showHours: false, showMinutes: false, showSeconds: false }"
+    ></ngx-duration-picker>
+</p-overlayPanel>
+
+<input [id]="inputId"
+       pInputText
+       [(ngModel)]="value"
+       (ngModelChange)="onChange()"
+       (click)="popover.toggle($event)"
+/>

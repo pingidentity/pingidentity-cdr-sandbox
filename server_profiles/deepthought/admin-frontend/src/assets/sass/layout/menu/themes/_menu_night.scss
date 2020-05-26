@@ -1,0 +1,17 @@
+.layout-menu-night {
+    $menuTopBgColor:#363C7E;
+    $menuBottomBgColor:#0D68AF;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#20255A;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#FFCA28;
+    $menuitemActiveIconColor:#FFCA28;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#363C7E;   
+    $verticalActiveRootMenuitemIconColor:#363C7E;
+    $verticalSubmenuBgColor:#0D1030;
+
+    @import '../_menu_theme';
+}

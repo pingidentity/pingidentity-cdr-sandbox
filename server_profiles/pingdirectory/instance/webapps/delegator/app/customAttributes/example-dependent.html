@@ -1,0 +1,52 @@
+<!-- This is an example file for a checkbox input element which depends on another -->
+<!-- WARNING: Be careful with bi-directional dependence, infinite loops are possible! -->
+<!-- Always have a conditional to prevent updating when not necessary -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <link rel="stylesheet" href="../assets/css/ui-library--v1.css">
+    <link rel="stylesheet" href="../assets/iframe--v1.css">
+    <script src="../assets/iframe--v1.min.js"></script>
+  </head>
+  <body>
+    <div class="Checkbox">
+      <label class="input-checkbox inline disabled">
+        <span class="label-text">
+          Dependent Example
+        </span>
+        <input id="example" type="checkbox" disabled />
+        <div class="icon"></div>
+      </label>
+    </div>
+
+    <script type="text/javascript">
+      // This function gets called when the attribute is initialized
+      CustomAttribute.onInitialize(function (data) {
+        // Set the input's value to the existing data, if there is any
+        document.getElementById('example').checked = data.value;
+
+        // Set the label to the displayName if provided and then resize the iframe to pick up the
+        // added text's height
+        if (data && data.metaData && data.metaData.displayName) {
+          document.getElementsByClassName('label-text')[0].textContent = data.metaData.displayName;
+        }
+      });
+
+      // This functions gets called when the form sends update information about itself
+      CustomAttribute.onUpdate(function (data) {
+        var thisValue = document.getElementById('example').checked;
+        // NOTE: "checkA" will need to be changed to whatever attribute is being depended upon
+        var dependentValue = data && data.form && data.form.attributes && data.form.attributes.checkA && data.form.attributes.checkA[0];
+
+        // Compare this checkbox to the value of "checkA" and make this one match the other's value
+        // Force this checkbox to be the same value as the other checkbox
+        if (typeof dependentValue === 'boolean' && thisValue !== dependentValue) {
+          document.getElementById('example').checked = dependentValue;
+          CustomAttribute.sendAttributeValue(dependentValue);
+        }
+      });
+    </script>
+  </body>
+</html>

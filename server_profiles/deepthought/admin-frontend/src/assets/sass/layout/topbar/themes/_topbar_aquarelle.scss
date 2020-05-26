@@ -1,0 +1,28 @@
+.layout-topbar-aquarelle {
+    $topbarBgImage:'aquarelle-topbar.jpg';
+    $topbarSearchInputColor:#D2CAD5;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#2B1239;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#2B1239;
+    $menuButtonActiveBgColor:rgba(0,0,0,.2);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#D2CAD5;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#FDD835;
+
+    @import '../_topbar_theme';
+}

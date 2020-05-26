@@ -1,0 +1,13 @@
+.menuitem-badge {
+    background-color: $accentColor;
+    color: $accentTextColor;
+    @include border-radius(50%);
+    text-align: center;
+    font-size: 12px;
+    min-width: 16px;
+    min-height: 16px;
+    line-height: 16px;
+    display: inline-block;
+    margin-left: .5em;
+    vertical-align: middle;
+}

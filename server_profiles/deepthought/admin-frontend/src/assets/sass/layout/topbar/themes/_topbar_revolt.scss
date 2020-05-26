@@ -1,0 +1,29 @@
+.layout-topbar-revolt {
+    $topbarLeftBgColor:#474982;
+    $topbarRightBgColor:#6D97A2;
+    $topbarSearchInputColor:#C8D5DC;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#474982;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#474982;
+    $menuButtonActiveBgColor:rgba(45,46,91,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#C8D5DC;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#FF9800;
+    
+    @import '../_topbar_theme';
+}

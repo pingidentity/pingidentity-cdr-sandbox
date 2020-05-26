@@ -1,0 +1,17 @@
+.layout-menu-revolt {
+    $menuTopBgColor:#474982;
+    $menuBottomBgColor:#6D97A2;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#787AA3;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#FFC107;
+    $menuitemActiveIconColor:#FFC107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#474982;   
+    $verticalActiveRootMenuitemIconColor:#474982;
+    $verticalSubmenuBgColor:#2D2E5B;
+
+    @import '../_menu_theme';
+}

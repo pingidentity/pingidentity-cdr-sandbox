@@ -1,0 +1,10 @@
+<cdr-form-control
+    [className]="'brandForm'"
+    [control]="brandForm"
+    [showErrors]="brandForm.submitted"
+></cdr-form-control>
+
+<div style="text-align: right;">
+    <button pButton type="button" label="Save" (click)="onSave()"></button>&nbsp;
+    <button pButton type="button" label="Cancel" (click)="onCancel()"></button>
+</div>

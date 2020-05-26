@@ -1,0 +1,6 @@
+{
+    "themes": [{
+        "name" : "deepthought",
+        "types": [ "login" ]
+    }]
+}

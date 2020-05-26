@@ -1,0 +1,74 @@
+---
+# tasks/main.yml
+# Deploy and configure an nginx install with a certificate
+- name: deploy nginx package
+  package:
+    name: nginx
+
+- name: deploy certbot ppa
+  apt_repository:
+    repo: ppa:certbot/certbot
+
+- name: install crypto for python so we can self-sign cert
+  package:
+    name: python3-cryptography
+
+- name: deploy certbot for nginx
+  apt:
+    name: python-certbot-nginx
+    update_cache: yes
+
+- name: copy deepthought configuration to default virtual host location
+  copy:
+    src: files/nginx.conf
+    dest: /etc/nginx/sites-available/default
+  notify:
+    - reload nginx
+
+- name: don't replace letsencrypt files
+  stat:
+    path: /etc/letsencrypt/options-ssl-nginx.conf
+  register: letsencryptfiles
+
+- name: copy nginx ssl options
+  copy:
+    src: files/options-ssl-nginx.conf
+    dest: /etc/letsencrypt/options-ssl-nginx.conf
+  when: letsencryptfiles.stat.exists == false
+  notify:
+    - reload nginx
+
+- name: make deepthought nginx include directory available
+  file:
+    path: /etc/nginx/deepthought.d
+    state: directory
+
+- name: don't replace certs check
+  stat:
+    path: /etc/letsencrypt/fullchain.pem
+  register: certsexist
+
+- name: Generate an OpenSSL private key with the default values (4096 bits, RSA)
+  openssl_privatekey:
+    path: /etc/letsencrypt/privkey.pem
+  when: certsexist.stat.exists == false
+
+- name: Generate an OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: /etc/letsencrypt/local.csr
+    privatekey_path: /etc/letsencrypt/privkey.pem
+    common_name: localhost
+  when: certsexist.stat.exists == false
+
+- name: Generate a Self Signed OpenSSL certificate (will be replaced on boot.. hopefully)
+  openssl_certificate:
+    path: /etc/letsencrypt/fullchain.pem
+    privatekey_path: /etc/letsencrypt/privkey.pem
+    csr_path: /etc/letsencrypt/local.csr
+    provider: selfsigned
+  when: certsexist.stat.exists == false
+
+- name: Generate Diffie-Hellman parameters with the default size (4096 bits)
+  shell:
+    cmd: openssl dhparam -dsaparam -out /etc/letsencrypt/ssl-dhparams.pem 4096
+    creates: /etc/letsencrypt/ssl-dhparams.pem

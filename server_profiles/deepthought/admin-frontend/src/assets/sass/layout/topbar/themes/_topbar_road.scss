@@ -1,0 +1,28 @@
+.layout-topbar-road {
+    $topbarBgImage:'road-topbar.jpg';
+    $topbarSearchInputColor:#D3D8E1;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#000A19;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#000A19;
+    $menuButtonActiveBgColor:rgba(255,179,0,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#D3D8E1;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

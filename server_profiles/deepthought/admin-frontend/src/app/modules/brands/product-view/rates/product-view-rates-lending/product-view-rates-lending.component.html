@@ -1,0 +1,101 @@
+<h2>
+    Lending Rates
+    <p-button
+        label="Create rate"
+        (click)="createRate()"
+    ></p-button>
+</h2>
+
+<div *ngIf="rateData">
+    <div class="rateList" *ngFor="let rateDataItem of rateData | keyvalue">
+        <ng-template [ngIf]="rateDataItem.value.length > 0">
+            <h3>{{ getRateType(rateDataItem.key) }}</h3>
+            <div *ngFor="let rate of rateDataItem.value">
+                <div>&nbsp;</div>
+                <p-table [value]="[1]">
+                    <ng-template pTemplate="body">
+                        <tr>
+                            <td style="font-weight: bold;">Interest Rate</td>
+                            <td colspan="2">{{ rate.cdrBanking.rate | percent: '1.2-4' }} {{ getRateDescription(rate) }}</td>
+                            <td style="font-weight: bold;">Comparison Rate</td>
+                            <td colspan="1">
+                                <div
+                                    *ngIf="rate.cdrBanking.comparisonRate">{{ rate.cdrBanking.comparisonRate | percent: '1.2-4' }}</div>
+                                <div *ngIf="!rate.cdrBanking.comparisonRate">N/A</div>
+                            </td>
+                            <td colspan="1" [width]="170">
+                                <div style="float: right;">
+                                    <p-button (click)="editRate(rate)" label="Edit"
+                                              style="margin-right: 5px;"></p-button>
+                                    <p-button (click)="removeRate(rate)" label="Remove"></p-button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">Calculation frequency</td>
+                            <td colspan="2">{{ getFrequency(rate.cdrBanking.calculationFrequency) }}</td>
+                            <td style="font-weight: bold;">Application frequency</td>
+                            <td colspan="2">{{ getFrequency(rate.cdrBanking.applicationFrequency) }}</td>
+                        </tr>
+                        <tr *ngIf="rate.cdrBanking.interestPaymentDue">
+                            <td style="font-weight: bold;">Interest Payment Due</td>
+                            <td colspan="5">{{ getInterestPaymentDue(rate.cdrBanking.interestPaymentDue) }}</td>
+                        </tr>
+                        <tr *ngIf=hasAdditionalValue(rate)>
+                            <td style="font-weight: bold;">Rate Information</td>
+                            <td colspan="5">
+                                {{ rate.cdrBanking.additionalValue }}
+                            </td>
+                        </tr>
+                        <tr *ngIf="rate.cdrBanking.additionalInfo || rate.cdrBanking.additionalInfoUri">
+                            <td style="font-weight: bold;">Additional Information</td>
+                            <td colspan="5">
+                                <p *ngIf="rate.cdrBanking.additionalInfo">{{ rate.cdrBanking.additionalInfo }}</p>
+                                <p *ngIf="rate.cdrBanking.additionalInfoUri"><a *ngIf="rate.cdrBanking.additionalInfoUri as href"
+                                   [href]="href"
+                                   target="_blank"
+                                   style="display: inline-block;"
+                                >Link to Additional Information</a></p>
+                            </td>
+                        </tr>
+                        <tr *ngIf="rate?.cdrBanking?.tiers">
+                            <td colspan="6">
+                                <p-table [value]="[1]">
+                                    <ng-template pTemplate="body">
+                                        <tr>
+                                            <td style="font-weight: bold; background: rgba(0, 0, 0, 0.1);"
+                                                [rowSpan]="rate.cdrBanking.tiers.length + 1">Tier
+                                                data
+                                            </td>
+                                            <td style="font-weight: bold; background: rgba(0, 0, 0, 0.1);">Tier name</td>
+                                            <td style="font-weight: bold; background: rgba(0, 0, 0, 0.1);">Unit</td>
+                                            <td style="font-weight: bold; background: rgba(0, 0, 0, 0.1);">Minimum</td>
+                                            <td style="font-weight: bold; background: rgba(0, 0, 0, 0.1);">Maximum</td>
+                                            <td style="font-weight: bold; background: rgba(0, 0, 0, 0.1);">Additional info</td>
+                                        </tr>
+                                        <tr *ngFor="let tier of rate?.cdrBanking?.tiers; let i = index;">
+                                            <td>{{ tier.name }}</td>
+                                            <td>{{ getTierUnit(tier.unitOfMeasure) }}</td>
+                                            <td>{{ tier.minimumValue }}</td>
+                                            <td>{{ tier.maximumValue }}</td>
+                                            <td>
+                                                {{ tier.applicabilityConditions?.additionalInfo }}
+                                                <a *ngIf="tier.applicabilityConditions?.additionalInfoUri as href"
+                                                   [href]="href"
+                                                   target="_blank"
+                                                   style="display: inline-block;"
+                                                >Link to Additional Information</a>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </ng-template>
+    </div>
+</div>
+
+<p *ngIf="ratesEmpty()">No Lending Rates Information Available</p>

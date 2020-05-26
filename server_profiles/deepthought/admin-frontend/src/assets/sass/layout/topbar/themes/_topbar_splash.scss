@@ -1,0 +1,28 @@
+.layout-topbar-splash {
+    $topbarBgImage:'splash-topbar.jpg';
+    $topbarSearchInputColor:#A5A5A5;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#060606;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#060606;
+    $menuButtonActiveBgColor:rgba(0,0,0,0.32);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#A5A5A5;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

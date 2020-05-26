@@ -1,0 +1,28 @@
+.layout-topbar-seagull {
+    $topbarBgImage:'seagull-topbar.jpg';
+    $topbarSearchInputColor:#B3BEBF;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#193C42;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#193C42;
+    $menuButtonActiveBgColor:rgba(255,255,255,0.3);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B3BEBF;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#FFA726;
+
+    @import '../_topbar_theme';
+}

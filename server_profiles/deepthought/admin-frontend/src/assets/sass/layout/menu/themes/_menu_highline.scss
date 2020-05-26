@@ -1,0 +1,16 @@
+.layout-menu-highline {
+    $menuBgImage:'highline-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#E91E63;
+    $menuitemActiveIconColor:#E91E63;
+    $verticalActiveRootMenuitemBgColor:#E91E63; 
+    $verticalActiveRootMenuitemTextColor:#ffffff;   
+    $verticalActiveRootMenuitemIconColor:#ffffff;
+    $verticalSubmenuBgColor:rgba(0,0,0,0.2);
+
+    @import '../_menu_theme';
+}

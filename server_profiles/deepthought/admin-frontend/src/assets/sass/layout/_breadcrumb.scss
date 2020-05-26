@@ -1,0 +1,27 @@
+.layout-breadcrumb {
+    @include double-shadow(0 2px 10px 0 rgba(0, 0, 0, 0.03), 0 2px 5px 0 rgba(0, 0, 0, 0.05));
+
+    ul {
+        list-style-type: none;
+        padding: .75em;
+        margin: 0;
+    }
+
+    li {
+        display: inline-block;
+        vertical-align: middle;
+        
+        i {
+            font-size: 20px;
+            vertical-align: middle;
+        }
+    }
+}
+
+@media screen and (max-width: $mobileBreakpoint) {
+    .layout-breadcrumb {
+        ul {
+            padding-left: 1em;
+        }
+    }
+}

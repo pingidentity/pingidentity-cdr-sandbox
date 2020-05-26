@@ -1,0 +1,17 @@
+.layout-menu-sunset {
+    $menuTopBgColor:#C94B4B;
+    $menuBottomBgColor:#DE6868;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#8D3232;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#C94B4B;   
+    $verticalActiveRootMenuitemIconColor:#C94B4B;
+    $verticalSubmenuBgColor:#DF7575;
+
+    @import '../_menu_theme';
+}

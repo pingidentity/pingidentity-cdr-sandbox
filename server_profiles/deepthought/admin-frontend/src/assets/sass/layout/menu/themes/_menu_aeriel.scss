@@ -1,0 +1,16 @@
+.layout-menu-aeriel {
+    $menuBgImage:'aeriel-menu.jpg';
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:rgba(255,255,255,0.32);
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#D4E157;
+    $menuitemActiveIconColor:#D4E157;
+    $verticalActiveRootMenuitemBgColor:#CDDC39; 
+    $verticalActiveRootMenuitemTextColor:#212121;   
+    $verticalActiveRootMenuitemIconColor:#212121;
+    $verticalSubmenuBgColor:rgba(0,0,0,0.2);
+
+    @import '../_menu_theme';
+}

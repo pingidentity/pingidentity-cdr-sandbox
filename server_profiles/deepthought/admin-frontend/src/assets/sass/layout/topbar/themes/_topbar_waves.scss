@@ -1,0 +1,28 @@
+.layout-topbar-waves {
+    $topbarBgImage:'waves-topbar.jpg';
+    $topbarSearchInputColor:#B3D9E1;
+    $topbarSearchFocusedInputColor:#ffffff;
+    $topbarUserIconHoverBorderColor:#ffffff;
+    $topbarSeparatorColor:#ffffff;
+
+    //vertical menubutton
+    $menuButtonBgColor:#fafafa;
+    $menuButtonIconColor:#000A19;
+    $menuButtonHoverBgColor:#e0e0e0;
+    $menuButtonHoverIconColor:#000A19;
+    $menuButtonActiveBgColor:rgba(35,137,161,.6);
+    $menuButtonActiveIconColor:#ffffff;
+
+    //horizontal menu
+    $horizontalMenuitemTextColor:#ffffff;
+    $horizontalMenuitemIconColor:#ffffff;
+    $horizontalMenuitemActiveBorderColor:#ffffff;
+    $horizontalMenuitemHoverBorderColor:#B3D9E1;
+
+    //breadcrumb
+    $breadcrumbIconColor:#ffffff;
+    $breadcrumbTextColor:#ffffff;
+    $breadcrumbLinkColor:#ffc107;
+
+    @import '../_topbar_theme';
+}

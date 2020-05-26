@@ -1,0 +1,17 @@
+.layout-menu-royal {
+    $menuTopBgColor:#141E30;
+    $menuBottomBgColor:#243B55;
+    $menuitemTextColor:#ffffff;
+    $menuitemIconColor:#ffffff;
+    $menuitemHoverBgColor:#738CB8;
+    $menuitemHoverTextColor:#ffffff;
+    $menuitemHoverIconColor:#ffffff;
+    $menuitemActiveTextColor:#ffc107;
+    $menuitemActiveIconColor:#ffc107;
+    $verticalActiveRootMenuitemBgColor:#ffffff; 
+    $verticalActiveRootMenuitemTextColor:#141E30;   
+    $verticalActiveRootMenuitemIconColor:#141E30;
+    $verticalSubmenuBgColor:#566B91;
+
+    @import '../_menu_theme';
+}
