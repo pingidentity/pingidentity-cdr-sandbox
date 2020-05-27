@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urn:AdapterConfiguration authnCtxClassRef="" isInheritAttributeSettings="false" isInheritAttributeMapping="false" maskOgnlValues="false" isInheritExtendedContractAttributes="false" name="consentAdapter" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
     <urn:Fields>
-        <urn:Field name="Authentication Endpoint">https://sso.${BASE_HOSTNAME}/ob/consent.jsp</urn:Field>
+        <urn:Field name="Authentication Endpoint">https://${PF_BASE_HOST}/ob/consent.jsp</urn:Field>
         <urn:Field name="User Name">consentUsername</urn:Field>
         <urn:Field name="Pass Phrase">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTGtQNmNTZHdvQiIsInZlcnNpb24iOiIxMC4wLjAuOSJ9..OK0mkcQdL4OAptkcVZo2CQ.9mnnUQRovKHPezsrjFA3aA.jtOA2HgD1bRWQZkgxikjNA</urn:Field>
         <urn:Field name="Allowed Subject DN"/>
@@ -43,6 +43,7 @@
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:AttributeMapping>
 </urn:AdapterConfiguration>
+
 
 
 

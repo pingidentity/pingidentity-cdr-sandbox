@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<c:config xmlns:c="http://www.sourceid.org/2004/05/config">
+<c:config xmlns:c="http://www.sourceid.org/${PA_POST_CONFIGURATION_DELAY}04/05/config">
     <c:item name="authnSessionGroupId">pf-authn-session-group-id</c:item>
     <c:item name="authnSessionGroupHashedSessionId">pf-authn-session-group-hashed-session-id</c:item>
     <c:item name="authnSessionGroupExpiryTime">pf-authn-session-group-expiry-time</c:item>
@@ -17,6 +17,7 @@
     <c:item name="SearchBase">ou=sessions,${USER_BASE_DN}</c:item>
 
 </c:config>
+
 
 
 

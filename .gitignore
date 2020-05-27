@@ -4,3 +4,4 @@ docker-compose/local-dr.env
 *.subst_*
 *.bak
 *backup*
+server_profiles/pingaccess/instance/data/data.json
