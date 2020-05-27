@@ -56,7 +56,7 @@ services:
       - pingnet-internal
   
   cdr-dr-client:
-    image: gcr.io/ping-identity/cdr-au-dr-client/cdr-au-dr-client:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/sample-dr-client:cdr-1.2-core-001
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -71,7 +71,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-mock-register/cdr-mock-register:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/mock-register:cdr-1.2-core-001
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
