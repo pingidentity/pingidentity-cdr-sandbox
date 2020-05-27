@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: pingidentity/pingaccess:2001-alpine-6.0.0
+    image: gcr.io/ping-identity/cdr-au/pingaccess:cdr-1.2-core-001
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -25,7 +25,7 @@ services:
       - pingnet-dmz
 
   pingfederate:
-    image: pingidentity/pingfederate:2003-alpine-10.0.1
+    image: gcr.io/ping-identity/cdr-au/pingfederate:cdr-1.2-core-001
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -40,7 +40,7 @@ services:
       - pingnet-internal
 
   pingdirectory:
-    image: pingidentity/pingdirectory:2003-8.0.0.1
+    image: gcr.io/ping-identity/cdr-au/pingdirectory:cdr-1.2-core-001
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
@@ -86,8 +86,7 @@ services:
       - pingnet-dmz
 
   deepthought-product-api:
-    image: pdangping/deepthought-product-api-service:0.9
-    #image: pdangping/deepthought-product-api-service:latest
+    image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-001
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -101,7 +100,7 @@ services:
       - pingnet-dmz
  
   deepthought-bank-api:
-    image: pdangping/deepthought-bank-api-service:0.9
+    image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-001
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -115,7 +114,7 @@ services:
       - pingnet-dmz
  
   deepthought-admin-service:
-    image: pdangping/deepthought-admin-service:0.9
+    image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-001
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -128,25 +127,8 @@ services:
       - pingnet-internal
       - pingnet-dmz
  
-#  deepthought-admin-frontend:
-#    image: bitnami/apache:latest
-#    environment:
-#      - VERBOSE=true
-#      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
-#    env_file:
-#      - ~/.pingidentity/devops
-#      - cdr.env
-#    ports:
-#      - 4200:8080
-#    volumes:
-#      - Work/pingidentity-cdr-reference/server_profiles/deepthought/admin-frontend/dist/out:/app
-#    networks:
-#      - pingnet-internal
-#      - pingnet-dmz
- 
   deepthought-h2-database:
-    #image: oscarfonts/h2:latest
-    image: pdangping/deepthought-h2-database:0.9
+    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
