@@ -25,7 +25,8 @@ https://pingidentity-devops.gitbook.io/devops/getstarted
 ```sh
 git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git ~/projects/cdr
 ```
-![Projects Folder Info](images/project_folder.png)
+>Using ~/projects/cdr will make it easier to follow this guide. It will also make it easier for us to help you if you encounter issues.
+
 ## 2. Configure and Start the Stack
 
 1.  Copy the cdr.env.template file to cdr.env
@@ -97,7 +98,7 @@ And verify that the value of STATUS is “healthy”
 
 1.  Open your web browser and goto:<br>
 [http://dr.data-recipient.local:8080/](http://dr.data-recipient.local:8080/)
-![Self Signed Cert Info](images/self_signed_cert.png)
+> The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the DR Client. 
 
 2.  At the ALink Data Recipient login page provide the following:<br>
     * Username: astone
@@ -118,10 +119,10 @@ And verify that the value of STATUS is “healthy”
 8.  At the SMS OTP field provide the value:
 
 -   SMS OTP: 123456
-![Mock SMS Info](images/mock_sms.png)
+> The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
 
 9. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.
-![Dynamic Authorisation](images/dynamic_authorisation.png)
+> The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
 
 10.  Select the 1st the Transaction Account to share transaction data with ALink
 
