@@ -103,11 +103,11 @@ And verify that the value of STATUS is “healthy”
     * Customer ID: crn1
     
 8.  At the SMS OTP field provide the value:
-    * SMS OTP: 123456
+    * SMS OTP: 123456<br>
     
-    > The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
+     > The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
 
-9. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.
+9. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.<br>
 
     > The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
 
