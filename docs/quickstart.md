@@ -9,3 +9,9 @@ The CDR Sandbox is an all-encompassing “black-box” environment created using
   * Docker
   * At least 8GB of RAM available to docker
 
+```sh
+127.0.0.1 sso-admin.data-holder.local
+127.0.0.1 sso.data-holder.local
+127.0.0.1 api.data-holder.local
+127.0.0.1 dr.data-recipient.local
+```
