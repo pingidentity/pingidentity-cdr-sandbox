@@ -30,28 +30,28 @@ git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git ~/project
 ## 2. Configure and Start the Stack
 
 1.  Copy the cdr.env.template file to cdr.env  
-```sh
-cp ~/projects/cdr/docker-compose/cdr.env.template ~/projects/cdr/docker-compose/cdr.env
-```
+    ```sh
+    cp ~/projects/cdr/docker-compose/cdr.env.template ~/projects/cdr/docker-compose/cdr.env
+    ```
 2.  Add the following entries to the /etc/hosts file
-```sh
-127.0.0.1 sso-admin.data-holder.local
-127.0.0.1 sso.data-holder.local
-127.0.0.1 api.data-holder.local
-127.0.0.1 dr.data-recipient.local
-```
+    ```sh
+    127.0.0.1 sso-admin.data-holder.local
+    127.0.0.1 sso.data-holder.local
+    127.0.0.1 api.data-holder.local
+    127.0.0.1 dr.data-recipient.local
+    ```
 3.  Use docker-compose to bring the CDR Sandbox stack up:    
-```sh
-docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml up -d
-```
+    ```sh
+    docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml up -d
+    ```
 4.  To display the server logs as the stack starts up, run the following command (ctrl-c to exit): 
-```sh
-docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml logs -f
-```
+    ```sh
+    docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml logs -f
+    ```
 5.  To display the status of each container, run one of the following commands:
-```sh
-docker ps
-```
+    ```sh
+    docker ps
+    ```
 
 ## 3. Run the Data Recipient Demonstration Application
 
@@ -83,9 +83,9 @@ And verify that the value of STATUS is “healthy”
 ### Running the DR Client
 
 1.  Open your web browser and goto:<br>
-[http://dr.data-recipient.local:8080/](http://dr.data-recipient.local:8080/)
+    [http://dr.data-recipient.local:8080/](http://dr.data-recipient.local:8080/)
 
- > The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the DR Client. 
+    > The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the DR Client. 
 
 2.  At the ALink Data Recipient login page provide the following:<br>
     * Username: astone
@@ -105,11 +105,11 @@ And verify that the value of STATUS is “healthy”
 8.  At the SMS OTP field provide the value:
     * SMS OTP: 123456
     
- > The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
+    > The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
 
 9. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.
 
- > The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
+    > The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
 
 10.  Select the 1st the Transaction Account to share transaction data with ALink
 
@@ -136,25 +136,25 @@ The DR Client uses the following DR users and DH Customer Numbers. Any combinati
 When you no longer want to run the CDR Reference Sandbox, you can either stop the running stack, or bring the stack down.  
   
 
--   To stop the running stack without removing any of the containers or associated Docker networks:
-    
-```sh
-docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml stop
-```
+* To stop the running stack without removing any of the containers or associated Docker networks:
 
--   To remove all of the containers and associated Docker networks:
-  
-```sh
-docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml down
-```
+    ```sh
+    docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml stop
+    ```
 
--   To completely remove the CDR Reference images and configuration:
+* To remove all of the containers and associated Docker networks:
 
-```sh
-docker system prune --force  
-docker image prune --all --force  
-rm -rf ~/projects/cdr
-```
+    ```sh
+    docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml down
+    ```
+
+* To completely remove the CDR Reference images and configuration:
+
+    ```sh
+    docker system prune --force  
+    docker image prune --all --force  
+    rm -rf ~/projects/cdr
+    ```
   
 ## 5. Other Considerations
 
