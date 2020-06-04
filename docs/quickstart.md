@@ -178,7 +178,7 @@ rm -rf ~/projects/cdr
 ```
   
 
-# 5. Other Considerations
+## 5. Other Considerations
 
 ## Environment Configuration (cdr.env)
 
