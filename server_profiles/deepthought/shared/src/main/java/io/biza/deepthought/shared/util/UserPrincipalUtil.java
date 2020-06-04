@@ -24,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class UserPrincipalUtil {
+		private static final String CLAIMNAME_GRANTID = "consent_id";
+		
         public static Jwt getJwtToken() throws NotLoggedInException {
           Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
           if (authentication instanceof AnonymousAuthenticationToken) {
@@ -46,6 +48,16 @@ public class UserPrincipalUtil {
           } catch (NotLoggedInException e) {
             return null;
           }
+        }
+
+        public static String getConsentId() {
+          try {
+            Map<String, Object> jwtClaims = getJwtToken().getClaims();
+            if(jwtClaims.containsKey(CLAIMNAME_GRANTID))
+            	return (jwtClaims.get(CLAIMNAME_GRANTID) == null)?null:jwtClaims.get(CLAIMNAME_GRANTID).toString();
+          } catch (NotLoggedInException e) {
+          }
+          return null;
         }
 
         public static Map<String, Object> getClaimDetails() throws NotLoggedInException {

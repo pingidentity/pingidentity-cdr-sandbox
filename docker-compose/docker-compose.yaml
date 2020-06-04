@@ -86,7 +86,7 @@ services:
       - pingnet-dmz
 
   deepthought-product-api:
-    image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-002
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -100,7 +100,7 @@ services:
       - pingnet-dmz
  
   deepthought-bank-api:
-    image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -114,7 +114,7 @@ services:
       - pingnet-dmz
  
   deepthought-admin-service:
-    image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config

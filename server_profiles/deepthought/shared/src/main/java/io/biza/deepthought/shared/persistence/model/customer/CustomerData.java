@@ -62,7 +62,7 @@ import lombok.ToString;
 public class CustomerData {
 
   @Id
-  @Column(name = "ID", insertable = true, updatable = true)
+  @Column(name = "ID", insertable = false, updatable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Type(type = "uuid-char")
   UUID id;

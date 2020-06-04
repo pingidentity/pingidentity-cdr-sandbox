@@ -88,23 +88,23 @@ public class Constants {
   /**
    * Tag definitions
    */
-  public final static String TAG_COMMON_NAME = "common";
+  public final static String TAG_COMMON_NAME = "Common";
   public final static String TAG_COMMON_DESCRIPTION = "Common Data API";
-  public final static String TAG_DISCOVERY_NAME = "discovery";
+  public final static String TAG_DISCOVERY_NAME = "Discovery";
   public final static String TAG_DISCOVERY_DESCRIPTION = "Discovery Data API";
-  public final static String TAG_CUSTOMER_NAME = "customer";
+  public final static String TAG_CUSTOMER_NAME = "Customer";
   public final static String TAG_CUSTOMER_DESCRIPTION = "Customer Data API";
-  public final static String TAG_ACCOUNTS_NAME = "accounts";
+  public final static String TAG_ACCOUNTS_NAME = "Accounts";
   public final static String TAG_ACCOUNTS_DESCRIPTION = "Account Data API";
-  public final static String TAG_PAYEES_NAME = "payees";
+  public final static String TAG_PAYEES_NAME = "Payees";
   public final static String TAG_PAYEES_DESCRIPTION = "Payees Data API";  
   public final static String TAG_DIRECT_DEBITS_NAME = "Direct Debits";
   public final static String TAG_DIRECT_DEBITS_DESCRIPTION = "Direct Debits Data API";
   public final static String TAG_SCHEDULED_PAYMENTS_NAME = "Scheduled Payments";
   public final static String TAG_SCHEDULED_PAYMENTS_DESCRIPTION = "Scheduled Payments Data API";  
-  public final static String TAG_BANKING_NAME = "banking";
+  public final static String TAG_BANKING_NAME = "Banking";
   public final static String TAG_BANKING_DESCRIPTION = "Banking Data API";  
-  public final static String TAG_PRODUCT_NAME = "products";
+  public final static String TAG_PRODUCT_NAME = "Products";
   public final static String TAG_PRODUCT_DESCRIPTION = "The Product Data API";
 
 }

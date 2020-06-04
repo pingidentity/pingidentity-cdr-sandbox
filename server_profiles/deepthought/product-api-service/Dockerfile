@@ -1,4 +1,6 @@
-FROM openjdk:11-jre-slim
+#FROM openjdk:11-jre-slim
+FROM adoptopenjdk/openjdk11:jdk-11.0.2.9-alpine-slim
+RUN apk upgrade musl
 VOLUME /tmp
 #VOLUME /opt/deepthought/localdb
 EXPOSE 8081

@@ -27,8 +27,7 @@ public class CustomerDataMapper implements OrikaFactoryConfigurerInterface {
 
   @Override
   public void configure(MapperFactory orikaMapperFactory) {
-    //orikaMapperFactory.classMap(CustomerData.class, DioCustomer.class).fieldAToB("id", "id")
-    orikaMapperFactory.classMap(CustomerData.class, DioCustomer.class)
+    orikaMapperFactory.classMap(CustomerData.class, DioCustomer.class).fieldAToB("id", "id")
         .fieldAToB("creationTime", "creationTime").fieldAToB("lastUpdated", "lastUpdated")
         .customize(new CustomMapper<CustomerData, DioCustomer>() {
           @Override
