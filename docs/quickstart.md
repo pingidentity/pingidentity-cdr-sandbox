@@ -146,7 +146,7 @@ The DR Client uses the following DR users and DH Customer Numbers. Any combinati
 
 ![Accounts Table](images/account_table.png)
 
-## Shut Down the Stack
+## 4. Shut Down the Stack
 
 When you no longer want to run the CDR Reference Sandbox, you can either stop the running stack, or bring the stack down.  
   
