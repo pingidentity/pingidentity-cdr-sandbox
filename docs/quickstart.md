@@ -113,13 +113,11 @@ And verify that the value of STATUS is “healthy”
 6.  Validate the Consent request and click Start. You will now be redirected to AnyBank to Authenticate and Authorise the consent.
     
 7.  At the AnyBank Customer ID prompt enter in Alice’s bank identifier:
-
--   Customer ID: crn1
+    * Customer ID: crn1
     
 8.  At the SMS OTP field provide the value:
-
--   SMS OTP: 123456
-
+    * SMS OTP: 123456
+    
  > The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
 
 9. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.
@@ -136,7 +134,7 @@ And verify that the value of STATUS is “healthy”
  
 14.  Repeat steps 5 to 13 specifying additional transaction accounts in step 10 to update the consent
     
-15..  Note the extra Transaction Accounts and associated balances.
+15.  Note the extra Transaction Accounts and associated balances.
 
 16.  Select the My Banks button and click the Revoke Consent button. You will receive an alert stating that the Consent has been revoked.
   
