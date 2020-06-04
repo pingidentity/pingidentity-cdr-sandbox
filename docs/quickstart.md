@@ -19,13 +19,12 @@ https://pingidentity-devops.gitbook.io/devops/getstarted
 # Step by Step Guide
 
 ## 1. Clone the CDR Repository
-
-1.  While installing Ping Identity devops, you should have created a project folder in your home directory. We’re going to host the CDR sandbox here too:
-    
+While installing Ping Identity devops, you should have created a project folder in your home directory. We’re going to host the CDR sandbox here too:<br>
 ```sh
 git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git ~/projects/cdr
 ```
->Using ~/projects/cdr will make it easier to follow this guide. It will also make it easier for us to help you if you encounter issues.
+
+ > Using ~/projects/cdr will make it easier to follow this guide. It will also make it easier for us to help you if you encounter issues.
 
 ## 2. Configure and Start the Stack
 
@@ -98,7 +97,8 @@ And verify that the value of STATUS is “healthy”
 
 1.  Open your web browser and goto:<br>
 [http://dr.data-recipient.local:8080/](http://dr.data-recipient.local:8080/)
-> The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the DR Client. 
+
+ > The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the DR Client. 
 
 2.  At the ALink Data Recipient login page provide the following:<br>
     * Username: astone
@@ -119,10 +119,12 @@ And verify that the value of STATUS is “healthy”
 8.  At the SMS OTP field provide the value:
 
 -   SMS OTP: 123456
-> The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
+
+ > The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
 
 9. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.
-> The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
+
+ > The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
 
 10.  Select the 1st the Transaction Account to share transaction data with ALink
 
@@ -186,7 +188,7 @@ The CDR Sandbox....<TODO>
 
 SERVER_PROFILE_URL
 
-Default Value: [https://github.com/pingidentity/pingidentity-cdr-sandbox.git](https://github.com/pingidentity/pingidentity-cdr-sandbox.git)
+Default Value: https://github.com/pingidentity/pingidentity-cdr-sandbox.git
 
   
 
