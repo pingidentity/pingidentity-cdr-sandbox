@@ -29,37 +29,26 @@ git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git ~/project
 
 ## 2. Configure and Start the Stack
 
-1.  Copy the cdr.env.template file to cdr.env
-    
+1.  Copy the cdr.env.template file to cdr.env  
 ```sh
 cp ~/projects/cdr/docker-compose/cdr.env.template ~/projects/cdr/docker-compose/cdr.env
 ```
-
 2.  Add the following entries to the /etc/hosts file
-
 ```sh
 127.0.0.1 sso-admin.data-holder.local
 127.0.0.1 sso.data-holder.local
 127.0.0.1 api.data-holder.local
 127.0.0.1 dr.data-recipient.local
 ```
-
-3.  Use docker-compose to bring the CDR Sandbox stack up:
-    
+3.  Use docker-compose to bring the CDR Sandbox stack up:    
 ```sh
 docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml up -d
 ```
-
-4.  To display the server logs as the stack starts up, run the following command:
- 
+4.  To display the server logs as the stack starts up, run the following command (ctrl-c to exit): 
 ```sh
 docker-compose -f ~/projects/cdr/docker-compose/docker-compose.yaml logs -f
 ```
-
-(ctrl-c to exit)
-
 5.  To display the status of each container, run one of the following commands:
-
 ```sh
 docker ps
 ```
@@ -86,11 +75,9 @@ The following steps will demonstrate how:
 Throughout the content lifecycle Alice will be able to verify the consent is being enforced by refreshing the Alink application and confirming whether the balances for each shared transaction account are visible or not.
 
 The DR Client is already running as a service if you followed the steps detailed above. To confirm that the service is running enter:
-  
 ```sh
 docker ps -f "name=pingdirectory"
 ```
-
 And verify that the value of STATUS is “healthy”
 
 ### Running the DR Client
