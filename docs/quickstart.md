@@ -168,36 +168,36 @@ The CDR Sandbox configuration is driven by the parameters defined within the **c
 * SERVER_PROFILE_BRANCH
 
     Default Value: [version of the CDR Sandbox to run. e.g. cdr-1.2-core-001]<br>
-    The SERVER_PROFILE_BRANCH value represents the version of the CDR Sandbox to download and execute. 
+    The SERVER_PROFILE_BRANCH value represents the version of the CDR Sandbox to download and execute. <br>
 
   
 
 * BASE_HOSTNAME
 
     Default Value: data-holder.local<br>
-    The BASE_HOSTNAME value represents the base DNS name used to access the Data Holder's web services and applications. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you chnage this value.
+    The BASE_HOSTNAME value represents the base DNS name used to access the Data Holder's web services and applications. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you chnage this value.<br>
 
 
 * BRAND1_BGCOLOR
 
-    Default Value: rgb(50, 115, 220)
+    Default Value: rgb(50, 115, 220)<br>
 
 
 * BRAND2_BGCOLOR
 
-    Default Value: #373C41
+    Default Value: #373C41<br>
 
 
 * PF_BASE_PORT
 
     Default Value: 443<br>
-    The PF_BASE_PORT value defines the listening port of PingFederate.
+    The PF_BASE_PORT value defines the listening port of PingFederate.<BR>
 
 
 * BASE_URL
 
     Default Value: http://dr.data-recipient.local:8080<br>
-    The BASE_URL value is the URL used to access the sample Data Recipient application. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.
+    The BASE_URL value is the URL used to access the sample Data Recipient application. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.<br>
     
 
 * DR_CLIENT-authorization_endpoint
@@ -205,7 +205,7 @@ The CDR Sandbox configuration is driven by the parameters defined within the **c
     Default Value: https://sso.data-holder.local/as/authorization.oauth2<br>
     The DR_CLIENT-authorization_endpoint value represents the OAUTH2 compliant end point that is required by the CDR Security profile to obtain a valid datat sharing token. The end point is hosted by PingAccess to enforce MTLS as well as provide for the ability to capture the value of the minted refresh token. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.<br>
     
-    You will need to update this value if you update BASE_HOSTNAME.
+    You will need to update this value if you update BASE_HOSTNAME.<br>
 
   
 * DR_CLIENT-ss_redirect_uri
