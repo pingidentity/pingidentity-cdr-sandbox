@@ -160,145 +160,62 @@ When you no longer want to run the CDR Reference Sandbox, you can either stop th
 
 ## Environment Configuration (cdr.env)
 
-The CDR Sandbox....<TODO>
+The CDR Sandbox configuration is driven by the parameters defined within the **cdr.env** file that is located in the ~/projects/cdr/docker-compose directory. Some of these parameters can be adjusted to support your environment.
+
+> You will need to restart the sandbox for these changes to apply.
+  
+
+* SERVER_PROFILE_BRANCH
+
+    Default Value: [version of the CDR Sandbox to run. e.g. cdr-1.2-core-001]<br>
+    The SERVER_PROFILE_BRANCH value represents the version of the CDR Sandbox to download and execute. 
 
   
 
-SERVER_PROFILE_URL
+* BASE_HOSTNAME
 
-Default Value: https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+    Default Value: data-holder.local<br>
+    The BASE_HOSTNAME value represents the base DNS name used to access the Data Holder's web services and applications. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you chnage this value.
 
-  
 
-SERVER_PROFILE_BRANCH=cdr-1.2-core-001
+* BRAND1_BGCOLOR
 
-Default Value: cdr-1.2-core-001
+    Default Value: rgb(50, 115, 220)
 
-  
 
-BASE_HOSTNAME=
+* BRAND2_BGCOLOR
 
-Default Value: data-holder.local
+    Default Value: #373C41
 
-  
 
-OPERATIONAL_MODE=
+* PF_BASE_PORT
 
-Default Value: STANDALONE
+    Default Value: 443<br>
+    The PF_BASE_PORT value defines the listening port of PingFederate.
 
-  
 
-USER_BASE_DN=
+* BASE_URL
 
-Default Value :dc=data-holder,dc=com
+    Default Value: http://dr.data-recipient.local:8080<br>
+    The BASE_URL value is the URL used to access the sample Data Recipient application. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.
+    
 
-  
+* DR_CLIENT-authorization_endpoint
 
-BRAND1_BGCOLOR=
-
-Default Value: rgb(50, 115, 220)
-
-  
-
-BRAND2_BGCOLOR=#373C41
-
-Default Value:
+    Default Value: https://sso.data-holder.local/as/authorization.oauth2<br>
+    The DR_CLIENT-authorization_endpoint value represents the OAUTH2 compliant end point that is required by the CDR Security profile to obtain a valid datat sharing token. The end point is hosted by PingAccess to enforce MTLS as well as provide for the ability to capture the value of the minted refresh token. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.<br>
+    
+    You will need to update this value if you update BASE_HOSTNAME.
 
   
+* DR_CLIENT-ss_redirect_uri
 
-DOLLAR=$
+    Default Value: http://dr.data-recipient.local:8080/*<br>
+    The DR_CLIENT-ss_redirect_uri value is the authorised value that the sample Data Recipient sets up during its Dynamic Client Registration process. This value is stored against the OAUTH Client within PingFederate. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.<br>
+    
+    You will need to update this value if you update BASE_URL.
+    
 
-Default Value:
-
-  
-
-PF_AUD=[https://data-holder](https://data-holder)
-
-Default Value:
-
-  
-
-PF_ISS=cdr-register
-
-Default Value:
-
-  
-
-CDR_REGISTER-pki-base-url=[http://host.docker.internal:8084](http://host.docker.internal:8084)
-
-Default Value:
-
-  
-
-CDR_REGISTER-ca-keystore-commonname=cdr-register.local
-
-Default Value:
-
-  
-
-SOFTWARE_STATEMENT_ACCC_JWKS_ENDPOINT=[http://host.docker.internal:8084/registration/JWKS](http://host.docker.internal:8084/registration/JWKS)
-
-Default Value:
-
-  
-
-SOFTWARE_STATEMENT_ACCC_ISSUER=cdr-register
-
-Default Value:
-
-  
-
-SOFTWARE_STATEMENT_BANK_AUDIENCE=[https://data-holder](https://data-holder)
-
-Default Value:
-
-PF_BASE_HOST=sso.data-holder.local
-
-Default Value:
-
-  
-
-PF_BASE_PORT=443
-
-Default Value:
-
-  
-
-DA_CLIENTID=admin_delegator
-
-Default Value:
-
-  
-
-BASE_URL=[http://dr.data-recipient.local:8080](http://dr.data-recipient.local:8080)
-
-Default Value:
-
-  
-
-CDR_REGISTER_BASE_URL=[http://host.docker.internal:8084](http://host.docker.internal:8084)
-
-Default Value:
-
-  
-
-PA_POST_CONFIGURATION_DELAY=20
-
-Default Value:
-
-  
-
-DR_CLIENT-authorization_endpoint=[https://sso.data-holder.local/as/authorization.oauth2](https://sso.data-holder.local/as/authorization.oauth2)
-
-Default Value:
-
-  
-
-DR_CLIENT-ss_redirect_uri=[http://dr.data-recipient.local:8080/*](http://dr.data-recipient.local:8080/*)
-
-Default Value:
-
-  
 
 ## Saving Server Configurations
 
