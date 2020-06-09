@@ -10,7 +10,7 @@ Once you see that the containers are healthy in `docker ps`
 
 * Go to [https://localhost:9000](https://localhost:9000)
 * Log in with 'Administrator / 2FederateM0re'
-* Note: You will be asked to accept license agreement and change password
+* Note: You may be asked to accept license agreement and change password
 
 ## PingDirectory management console
 
