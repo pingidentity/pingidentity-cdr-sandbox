@@ -1,7 +1,7 @@
-dn: pf-oauth-client-id=deepthought-admin-service2,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=deepthought-admin-service,ou=oauthClients,${USER_BASE_DN}
 objectClass: pf-oauth-client
 objectClass: top
-pf-oauth-client-name: deepthought-admin-service2
+pf-oauth-client-name: deepthought-admin-service
 pf-oauth-client-last-modified: 1586349581497
 pf-oauth-client-restrict-scopes: FALSE
 pf-oauth-client-require-signed-requests: FALSE
