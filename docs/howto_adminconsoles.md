@@ -20,6 +20,6 @@ Once you see that the containers are healthy in `docker ps`
  user: Administrator
  password: 2FederateM0re
 
-### PingDirectory exposes LDAP traffic via an LDAPS port 1636.
+    ### PingDirectory exposes LDAP traffic via an LDAPS port 1636.
 
-* Navigate to [https://localhost:1636/dc=example,dc=com](https://localhost:1636/dc=example,dc=com)
+    * Navigate to [https://localhost:1636/dc=example,dc=com](https://localhost:1636/dc=example,dc=com)
