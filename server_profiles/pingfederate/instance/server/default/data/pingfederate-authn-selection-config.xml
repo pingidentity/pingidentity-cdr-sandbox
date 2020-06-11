@@ -67,14 +67,14 @@
                             <urn:AstChild context="Success">
                                 <urn:AstAction apcId="iQwSYDdExcmJaYk6" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                     <urn:AttributeMapping>
-                                        <urn1:AttributeMap Name="result" Type="Text" Value="approve" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:AttributeMap Name="acr" Type="Text" Value="urn:cds.au:cdr:2" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                        <urn1:AttributeMap Name="result" Type="Text" Value="approve" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>  
+                                        <urn1:AttributeMap Name="acr" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="requested_acr" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="cdr_consent_id" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="consent_id" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="entryUUID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="urn:cds.au:cdr:2" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:AttributeMap Name="accounts" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:AttributeMap Name="scopes" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="scopes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                        <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="entryUUID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>     
+                                        <urn1:AttributeMap Name="SAML_AUTHN_CTX" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="requested_acr" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                        <urn1:AttributeMap Name="accounts" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>            
+                                        <urn1:AttributeMap Name="scopes" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="scopes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>                
+                                        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/> 
                                     </urn:AttributeMapping>
                                 </urn:AstAction>
                             </urn:AstChild>
