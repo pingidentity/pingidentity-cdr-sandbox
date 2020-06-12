@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8706fe4a-fe06-4573-af44-4154e3f3d6f2",
+		"_postman_id": "2157a9fc-a267-4c2a-b285-a14cc9e5d7bb",
 		"name": "DCR Demo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -36,7 +36,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "a3f767c0-932c-427f-8ba0-bbdb8840ff7e"
+										"id": "37fcaed1-64c8-4866-bbc0-2b63e3790bda"
 									}
 								}
 							],
@@ -147,7 +147,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "9871382d-3448-4d5b-8e29-0f4a8671d570"
+										"id": "a7fd09e2-812b-4344-baba-6d15d5979faa"
 									}
 								}
 							],
@@ -190,7 +190,7 @@
 											"});",
 											""
 										],
-										"id": "e5916c6a-c515-4402-b1e4-be639645c671"
+										"id": "5a4a83ec-0895-4932-b52a-676c47d093fa"
 									}
 								}
 							],
@@ -310,7 +310,7 @@
 											"});",
 											""
 										],
-										"id": "ef144c69-c162-494d-b70b-54fbd3cdb81a"
+										"id": "73545073-fa36-4f4b-89d5-4d10f262e63d"
 									}
 								}
 							],
@@ -343,7 +343,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "60b0e38f-2c1d-4aa4-8079-ecf81e86e3d9",
+								"id": "13c11e2d-23b8-40dc-850f-bca99c0058f9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -353,7 +353,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d81c50b7-2b73-465b-8492-767abf0f286a",
+								"id": "2c9ac3ff-8811-4a1c-bb4f-42807684763a",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -391,7 +391,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "49626248-91e7-4ea4-a0ff-3a3a680cfcdf"
+										"id": "3444dfbd-f3d6-4bab-bb8f-58dbac78826c"
 									}
 								}
 							],
@@ -433,7 +433,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "a46f3c71-1f61-4b8d-875f-f7bdf6c89f57"
+										"id": "6abccdbf-9a6e-40cc-bcb5-ea90223ab327"
 									}
 								}
 							],
@@ -493,7 +493,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "82cc3acd-3211-4834-8979-4246b99071b2",
+										"id": "d3c5d445-f93b-49be-933d-5eda6d23db5e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -588,7 +588,7 @@
 											"",
 											""
 										],
-										"id": "b09e9821-0a48-4838-9705-2103f4f7574b"
+										"id": "8c1b4386-cafb-4c9e-8d1c-14aa0c21f322"
 									}
 								}
 							],
@@ -654,7 +654,7 @@
 											"",
 											""
 										],
-										"id": "8a4391c0-8491-4d16-b561-20f73d0df15c"
+										"id": "d154a881-a3e3-4d8c-a8fe-4534bec16c51"
 									}
 								}
 							],
@@ -724,7 +724,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "9d66d199-56b7-4d34-98b8-079dbd555078"
+										"id": "5fdc55f7-8633-4bc7-bdc7-2db6b326dcc4"
 									}
 								}
 							],
@@ -766,7 +766,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "034758da-c479-414d-a2b2-5275d4583b06"
+										"id": "d8e14ece-800d-4d86-9f1a-52e9cb5138db"
 									}
 								}
 							],
@@ -845,7 +845,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "54594c8f-8478-4de9-8267-a2f31fc96708"
+										"id": "67958f27-428d-4ca4-9967-90e8b787f932"
 									}
 								}
 							],
@@ -952,7 +952,7 @@
 											"    pm.environment.set(\"request-jwt-updateclient\", response[\"request-jwt\"]);",
 											"});"
 										],
-										"id": "e574a5e8-1d22-4dc6-b985-2317014bdf7c"
+										"id": "07082494-5f42-4858-ac7c-a179444cd9a1"
 									}
 								}
 							],
@@ -1047,7 +1047,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a39b28bf-4e40-4074-a527-8fefec52c550",
+										"id": "0ab450d5-ece9-4947-aebd-d7d53ea5f41d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1148,7 +1148,7 @@
 											"});",
 											""
 										],
-										"id": "6323e97d-81db-4426-a602-9389e0dfd956"
+										"id": "5d823d28-dd24-464f-916b-1d8add1f11cf"
 									}
 								}
 							],
@@ -1229,7 +1229,7 @@
 											"",
 											""
 										],
-										"id": "117dbff6-b5d5-4de6-963d-1816f2c91171"
+										"id": "a116d614-2b91-4b74-b6a2-27ec8558c936"
 									}
 								}
 							],
@@ -1273,7 +1273,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "08116fe5-4689-430d-beff-7e910a6856fa",
+								"id": "f41dd69c-6597-4447-ae32-9d8090a7282e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1283,7 +1283,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "20e3f683-e6fd-428f-a06d-7fb1df8e48e4",
+								"id": "657cefe7-e756-46c6-81db-459575f8b41d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1299,7 +1299,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1f62cbb3-d7f6-4505-bb91-94006ee4cd0a",
+						"id": "99e685a0-108c-447f-87ca-088a2ebbe012",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1309,7 +1309,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0a047ff6-2d7e-4df0-a130-5643cfe35098",
+						"id": "84380d07-1a8d-456a-bad9-ab19fbfe3208",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1342,7 +1342,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "d4cd7dd6-af47-4a95-8d65-e05499245b4c"
+										"id": "028f3361-67be-48d9-856d-9fc4a1564376"
 									}
 								}
 							],
@@ -1445,7 +1445,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "15ee40b5-1993-4182-8931-7445592df996"
+										"id": "1595043f-c7ee-474d-b348-7344b0b0fb14"
 									}
 								}
 							],
@@ -1484,7 +1484,7 @@
 											"});",
 											""
 										],
-										"id": "3ab150d9-bc93-40f0-aa6e-507b2740523a"
+										"id": "f6a6688c-ca43-4cbf-b430-1134902e91df"
 									}
 								}
 							],
@@ -1585,7 +1585,7 @@
 											"});",
 											""
 										],
-										"id": "c62b3339-5c99-4f1b-aa18-0d180b1b73ac"
+										"id": "44102012-da89-4bab-ad60-97375b3a474b"
 									}
 								}
 							],
@@ -1618,7 +1618,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e9cf9829-e54f-42b7-9281-dbad925571dc",
+								"id": "a14dc52e-6098-4f7d-bccf-66988924d1b6",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1628,7 +1628,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "133bd042-3688-47c9-9c4b-26f35107b2f0",
+								"id": "f91fdf04-5097-4680-b872-1dd995a695fc",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1658,7 +1658,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "1acc8299-2ac9-4517-a472-6063d05a5556"
+										"id": "6a9d0bfd-3f57-4835-ac1b-50d6e30bcf44"
 									}
 								}
 							],
@@ -1697,7 +1697,7 @@
 											"});",
 											""
 										],
-										"id": "2609ad44-a012-41db-a861-d6d3b1c035ee"
+										"id": "a7f95cb4-f24b-4c1f-9472-fa44c2a2fae5"
 									}
 								}
 							],
@@ -1787,21 +1787,21 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "0b7bd80b-5ab2-46db-a4d0-5b213fc86998",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
 											"});",
-											"pm.test(\"Validate error=invalid_software_statement\", function () {",
+											"pm.test(\"Validate error=invalid_client_metadata\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response.error).to.equal('invalid_software_statement');",
+											"    pm.expect(response.error).to.equal('invalid_client_metadata');",
 											"});",
 											"pm.test(\"Validate error_description is correct\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response.error_description).to.equal('Duplicate registrations for a given software_id are not valid');",
 											"});"
 										],
-										"id": "a54ea457-db6c-40f3-9615-94036067be78"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1834,7 +1834,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "777a82ef-3972-45e3-8ed5-42eb60591854",
+								"id": "b6b51c96-84cd-4b3c-ad95-0902ce5ebad5",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1844,7 +1844,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "13530c5d-18e2-46ab-87a1-5283f8967215",
+								"id": "9e22fd6d-88c6-488a-819b-5126651eb315",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1881,7 +1881,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "0ac847ba-6bed-4b3e-8397-e2bc33a2b607"
+										"id": "f2e4b083-9a6b-488c-92f3-ca901f0b8715"
 									}
 								}
 							],
@@ -1984,7 +1984,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "666a695b-3bf9-441c-be38-3edf5bc544ec"
+										"id": "125a4888-1693-4b2f-a4e6-cdc5cc5497e0"
 									}
 								}
 							],
@@ -2023,7 +2023,7 @@
 											"});",
 											""
 										],
-										"id": "4a8ab965-59d1-4217-8564-294a9336e528"
+										"id": "ff5d1734-45f7-4c7c-a10a-a7a39edff407"
 									}
 								}
 							],
@@ -2113,7 +2113,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "51bbb664-748d-4af8-9c9c-ca22caa2f9ca",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2128,9 +2128,9 @@
 											"    pm.expect(response).to.have.property('error');",
 											"    pm.expect(response).to.have.property('error_description');",
 											"});",
-											"pm.test(\"Validate error=invalid_payload\", function () {",
+											"pm.test(\"Validate error=invalid_client_metadata\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response.error).to.equal('invalid_payload');",
+											"    pm.expect(response.error).to.equal('invalid_client_metadata');",
 											"});",
 											"pm.test(\"Validate error_description value\", function () {",
 											"    var response = pm.response.json();",
@@ -2138,7 +2138,7 @@
 											"});",
 											""
 										],
-										"id": "27012800-2d19-417b-a3ce-6104e1730aef"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2171,7 +2171,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "39d556f6-bc88-45d9-8a12-a2349178f3a6",
+								"id": "bedd37d0-82c6-450c-8c85-fb0fa3edd335",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2181,7 +2181,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c3a552c5-b516-42bd-9de3-1ba1cc9616b1",
+								"id": "4da3cb10-8f89-409f-9992-e640ef08ea24",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2212,7 +2212,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "0cbd292e-28b6-41f8-a47a-732b2086ff8e"
+										"id": "1b967536-8782-4fc8-8b54-b5a11be83fe3"
 									}
 								}
 							],
@@ -2315,7 +2315,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "09a2b7d7-6b56-4cde-ae21-90d4b1eda204"
+										"id": "ee452bbb-9648-4e18-bc57-624f75e0c2b3"
 									}
 								}
 							],
@@ -2354,7 +2354,7 @@
 											"});",
 											""
 										],
-										"id": "5031cf57-5e37-4c09-8302-277b2c1bc1c9"
+										"id": "d33b641c-2a75-4808-92c9-53953cc7b498"
 									}
 								}
 							],
@@ -2455,7 +2455,7 @@
 											"});",
 											""
 										],
-										"id": "991e3814-5f6b-41f2-bd8b-e3ccd1771db0"
+										"id": "3a8922b2-95a6-4c9b-94c3-4350b233b093"
 									}
 								}
 							],
@@ -2503,7 +2503,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "9ab2cccd-3326-419e-84c7-061e044b38ef"
+										"id": "815471b3-0573-49f5-b1aa-b6aa3085c62b"
 									}
 								}
 							],
@@ -2563,7 +2563,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c4122049-6f4f-4688-b1e6-77d40ed5d7e8",
+										"id": "95dfb6b3-0870-4d16-a7e5-cca56818526c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2651,7 +2651,7 @@
 											"    pm.environment.set(\"request-jwt-updateclient\", response[\"request-jwt\"]);",
 											"});"
 										],
-										"id": "80aad6b0-757d-45ce-b286-a467aa97d8d4"
+										"id": "290892bb-d03b-4fee-bb09-5b304fe490c6"
 									}
 								}
 							],
@@ -2746,7 +2746,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "bb19991f-86f7-4b4f-b537-a210d5400d3c",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2761,9 +2761,9 @@
 											"    pm.expect(response).to.have.property('error');",
 											"    pm.expect(response).to.have.property('error_description');",
 											"});",
-											"pm.test(\"Validate error=invalid_payload\", function () {",
+											"pm.test(\"Validate error=invalid_client_metadata\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response.error).to.equal('invalid_payload');",
+											"    pm.expect(response.error).to.equal('invalid_client_metadata');",
 											"});",
 											"pm.test(\"Validate error_description value\", function () {",
 											"    var response = pm.response.json();",
@@ -2771,7 +2771,7 @@
 											"});",
 											""
 										],
-										"id": "593cbba5-3e5c-4217-96a7-afe382885bff"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2822,7 +2822,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "90337770-b81e-4763-95b2-08c331d9119e",
+								"id": "42677c1d-7d8f-405b-9ed2-c0bfd507681f",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2832,7 +2832,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "255117ea-58de-4cce-a380-e6556c8bd2d4",
+								"id": "18e53306-8b3e-4b7c-a1df-688ffe9801f5",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2848,7 +2848,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "55f05c42-691e-447e-8071-beeda0c83aa9",
+						"id": "fdf3731d-b11a-4c2b-80f9-8539ec826338",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2858,7 +2858,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2e88fd33-a186-48f5-bf3b-dab55d97534a",
+						"id": "d7f4c631-8fab-4ecd-90ab-72ee0e1f7849",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2891,7 +2891,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "08de2f5b-9658-429c-9bdc-8068993e9382"
+										"id": "89cfcccb-f734-4c8c-aa98-208d850bc927"
 									}
 								}
 							],
@@ -2994,7 +2994,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "e357aa53-ea94-4689-a0c4-41765841d89f"
+										"id": "05b1b5cc-5d8d-4372-b5e6-236d0ae26e47"
 									}
 								}
 							],
@@ -3033,7 +3033,7 @@
 											"});",
 											""
 										],
-										"id": "555744e6-fd60-40d6-93ec-d2ded9c7659c"
+										"id": "db70c1cb-19e5-4081-9d3c-a5a9d89b9555"
 									}
 								}
 							],
@@ -3123,7 +3123,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f9f02c9a-4031-44d8-8c08-1e6dd23b0661",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3138,9 +3138,9 @@
 											"    pm.expect(response).to.have.property('error');",
 											"    pm.expect(response).to.have.property('error_description');",
 											"});",
-											"pm.test(\"Validate error=invalid_payload\", function () {",
+											"pm.test(\"Validate error=invalid_client_metadata\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response.error).to.equal('invalid_payload');",
+											"    pm.expect(response.error).to.equal('invalid_client_metadata');",
 											"});",
 											"pm.test(\"Validate error_description value\", function () {",
 											"    var response = pm.response.json();",
@@ -3148,7 +3148,7 @@
 											"});",
 											""
 										],
-										"id": "52924c77-983d-44fb-bd51-86a99c23d80e"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -3181,7 +3181,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "92920c69-6262-46e8-bfa8-07fe9799b8cd",
+								"id": "3b5b77e7-9a12-4377-802c-29a60fae7266",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3191,7 +3191,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6c14c062-c25a-40d5-a0fc-edaae1e10451",
+								"id": "b0f8a317-30b9-4b4a-8e35-7dd7edd2bba8",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3222,7 +3222,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "1b9627b0-8b76-4528-9cbf-0e9f97afeff2"
+										"id": "24737a46-6d5a-4f3d-8599-525048675f0c"
 									}
 								}
 							],
@@ -3325,7 +3325,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "c25e71c2-7848-4cd1-827b-0aef64912209"
+										"id": "72cacb71-c353-4fa5-88c0-f3a135995270"
 									}
 								}
 							],
@@ -3364,7 +3364,7 @@
 											"});",
 											""
 										],
-										"id": "3e00968c-ad6c-4ab2-b748-bd7dd5768e47"
+										"id": "21aadd9d-35bc-43f9-90e4-f17fd4a042af"
 									}
 								}
 							],
@@ -3465,7 +3465,7 @@
 											"});",
 											""
 										],
-										"id": "468a022f-a71d-49c7-b9a8-6bbced1cf146"
+										"id": "4d6bd82e-5039-4d87-9b63-7c10252f3cd1"
 									}
 								}
 							],
@@ -3513,7 +3513,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "63588d99-5012-4e18-8829-e9aca2c64908"
+										"id": "3dc50022-6c4e-407e-abd5-c55fab4cfb83"
 									}
 								}
 							],
@@ -3573,7 +3573,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b8e505aa-9d33-4f6d-81de-7bd038ca5229",
+										"id": "0dbd47d4-496d-4e38-8cf4-b84a75df4234",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3661,7 +3661,7 @@
 											"    pm.environment.set(\"request-jwt-updateclient\", response[\"request-jwt\"]);",
 											"});"
 										],
-										"id": "f3f74d1d-11d4-4e62-b7f4-b85a6fc19660"
+										"id": "28c28c7a-5128-4345-b928-d68170523f09"
 									}
 								}
 							],
@@ -3756,7 +3756,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "99eccaa1-d98e-4df3-8136-a1bdd543dcc2",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3771,9 +3771,9 @@
 											"    pm.expect(response).to.have.property('error');",
 											"    pm.expect(response).to.have.property('error_description');",
 											"});",
-											"pm.test(\"Validate error=invalid_payload\", function () {",
+											"pm.test(\"Validate error=invalid_client_metadata\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response.error).to.equal('invalid_payload');",
+											"    pm.expect(response.error).to.equal('invalid_client_metadata');",
 											"});",
 											"pm.test(\"Validate error_description value\", function () {",
 											"    var response = pm.response.json();",
@@ -3781,7 +3781,7 @@
 											"});",
 											""
 										],
-										"id": "1b2ab766-06a5-49cc-bc9a-feff13cb6204"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -3832,7 +3832,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "6f118f7f-d09e-43ce-a24c-906df26b6c45",
+								"id": "8fe64707-a28b-4451-97e5-c4ca123e3231",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3842,7 +3842,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d6673968-41b7-4c89-beb6-0c43c27d931f",
+								"id": "8781021c-fb9b-429b-a4e6-71525bb92a7a",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3858,7 +3858,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "c642361a-a298-49c7-8636-aff86c678cc4",
+						"id": "e2dd60f2-9d57-438a-ae4e-e5e718c925fa",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3868,7 +3868,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fe674baf-324f-448f-b1f1-702b7b152403",
+						"id": "2d4c503f-3ab0-4025-a286-c9ca2c2005dd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3901,7 +3901,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "76175d94-3681-426d-9d18-5129a0c796d6"
+										"id": "0a742525-da78-4db8-8c75-87e3411f15e6"
 									}
 								}
 							],
@@ -4004,7 +4004,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "c1ac6489-8612-4635-81e0-082d3ab21f9c"
+										"id": "90ef5d38-cd69-4d5f-9336-35cb739706ed"
 									}
 								}
 							],
@@ -4043,7 +4043,7 @@
 											"});",
 											""
 										],
-										"id": "89f095cb-ffdb-4970-9e86-e4b758fe7742"
+										"id": "7c4600ec-95bf-4860-b0a7-cc271ea88b46"
 									}
 								}
 							],
@@ -4156,7 +4156,7 @@
 											"",
 											""
 										],
-										"id": "65ccc7a1-613f-41a1-bac1-c8ad8aa4ae7d"
+										"id": "7eb4523f-5837-4f2c-befc-b52e9733879e"
 									}
 								}
 							],
@@ -4189,7 +4189,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d464d132-7fbf-4f15-b761-941424872b6f",
+								"id": "033746df-552d-4a9e-8aa1-5113f6592624",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4199,7 +4199,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e149072b-42ba-4d32-b526-2b55b003b699",
+								"id": "41fac1dc-4157-4cb4-b1d4-9460d48b99e9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4230,7 +4230,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "5f336763-4ad5-44c9-8cb2-323d2bd6241a"
+										"id": "3012a58d-88df-44cb-9c04-cf9675e5cfeb"
 									}
 								}
 							],
@@ -4333,7 +4333,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "71cdafcd-9929-4c6b-a312-e1cd8b9a37bd"
+										"id": "f8e86a10-e5a1-47ae-9a1d-c9168ee199c7"
 									}
 								}
 							],
@@ -4372,7 +4372,7 @@
 											"});",
 											""
 										],
-										"id": "b7fc9b15-41ec-4dc0-9401-9ccb2fc4c05e"
+										"id": "1ab22bfc-f5a8-4428-ade8-6e89e6d9bc7b"
 									}
 								}
 							],
@@ -4485,7 +4485,7 @@
 											"",
 											""
 										],
-										"id": "905b8f53-64fc-48b7-884c-367cb8cff6cb"
+										"id": "0016328d-e127-4b86-9a0c-dc7c6c16957a"
 									}
 								}
 							],
@@ -4518,7 +4518,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f0d10d7c-7976-4b2b-a9e6-8c228f486a5a",
+								"id": "5dad37ce-4445-4f7c-9f2b-25604a665350",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4528,7 +4528,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "906b7234-19d0-405c-a851-9f961992c8e6",
+								"id": "0dbdc57e-0c50-4023-9ff1-a2ebdac0fc4e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4540,7 +4540,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "S005.T002 Request JWT contains bad Redirect URI",
+					"name": "S005.T003 Request JWT contains bad Redirect URI",
 					"item": [
 						{
 							"name": "S005.T002.001 - DH downloads Software Statement from CDR Register",
@@ -4559,7 +4559,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "096958af-7f9a-4145-a4e9-64b5f3294658"
+										"id": "89589356-20fe-4216-9c6f-07d6850e6ff0"
 									}
 								}
 							],
@@ -4662,7 +4662,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "e0981da6-9e43-4161-8628-80bb86104d76"
+										"id": "0f632b41-3187-4de2-8e0a-940759d57e12"
 									}
 								}
 							],
@@ -4701,7 +4701,7 @@
 											"});",
 											""
 										],
-										"id": "5286d767-d52f-468c-b309-d871b3474091"
+										"id": "b1dca08f-b256-41c1-b87e-e51480a79c9a"
 									}
 								}
 							],
@@ -4796,14 +4796,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "879c4ec1-f2b5-4600-9bf7-83675293b697",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
 											"});",
-											"pm.test(\"Validate error=invalid_payload\", function () {",
+											"pm.test(\"Validate error=invalid_redirect_uri\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response.error).to.equal('invalid_payload');",
+											"    pm.expect(response.error).to.equal('invalid_redirect_uri');",
 											"});",
 											"pm.test(\"Validate error_description is correct\", function () {",
 											"    var response = pm.response.json();",
@@ -4811,7 +4811,7 @@
 											"});",
 											""
 										],
-										"id": "40389df9-4094-4d9f-a1ef-83980596cb30"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -4844,7 +4844,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "69e33340-c2ba-4fca-bb6d-98af4eb26e96",
+								"id": "2bae1c88-5fd8-4798-b6de-95c701abae7f",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4854,7 +4854,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "097945e9-789c-40dc-aa30-88f3eb28e142",
+								"id": "24733f64-2493-4405-a03a-446459e68833",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4870,7 +4870,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "c72bf731-21ac-46d8-a0cd-31a999d86b91",
+						"id": "1ea5840c-9720-4726-8f7f-a0504e04ed39",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4880,7 +4880,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ad4ba987-9914-4d7c-8173-6f9c5aea3ea5",
+						"id": "8ac5c5f6-2ebd-4606-aeee-ef7cea35d309",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4895,7 +4895,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "7b43db22-7d84-4eb8-9499-2cb7bbd8419f",
+				"id": "9b5a6fc8-4d7d-456d-894b-1dbae28938a1",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -4905,7 +4905,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0f0c1538-07de-4d6e-817f-9b8b7fbd19c1",
+				"id": "753c6d1f-895c-4b9c-9888-5cf78f71ef09",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -4915,37 +4915,37 @@
 	],
 	"variable": [
 		{
-			"id": "a9f44d1d-a583-48c5-9ee0-a050f6244637",
+			"id": "476e0ab2-f4f3-46cc-a811-cca3e34d2685",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084",
 			"type": "string"
 		},
 		{
-			"id": "2f7da0ae-3384-4ab0-a910-a0e30a826bc5",
+			"id": "4f9df760-2347-45d8-ad93-b5cb08427294",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local",
 			"type": "string"
 		},
 		{
-			"id": "25dc154c-0e93-4ad5-9a97-c85bd0b7c9fa",
+			"id": "e7f9cacc-f942-4a50-a605-203bfa708396",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/register",
 			"type": "string"
 		},
 		{
-			"id": "3af81f40-01fb-47b2-ba0a-aaf051ed458f",
+			"id": "bf9f4d4c-1116-4e59-98c1-f445097d2f9f",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "a8d49c54-b6a7-4f47-ba59-c9ce529c24cb",
+			"id": "de2ebee9-b25b-4d15-b3a4-a614a75ed4bc",
 			"key": "dh-audience",
 			"value": "https://data-holder",
 			"type": "string"
 		},
 		{
-			"id": "20c55b12-c382-42e9-869b-a423e68a7d3f",
+			"id": "4704897c-e3ce-4e11-a33d-3af60b6f04af",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
 			"type": "string"
