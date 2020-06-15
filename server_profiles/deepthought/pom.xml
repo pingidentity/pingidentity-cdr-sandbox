@@ -122,7 +122,6 @@
         <module>keycloak-theme</module>
         <module>shared</module>
         <module>admin-service</module>
-        <module>admin-frontend</module>
 	<module>product-api-service</module>
 	<module>common-api-service</module>
 	<module>discovery-api-service</module>
