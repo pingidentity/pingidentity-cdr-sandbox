@@ -35,3 +35,7 @@ localdb/
 
 # maven versons backup
 *.versionsBackup
+
+# Not required 
+admin-angular-client/
+admin-frontend/

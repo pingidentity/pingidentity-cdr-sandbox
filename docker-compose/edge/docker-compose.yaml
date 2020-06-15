@@ -1,0 +1,147 @@
+version: "3.1"
+
+services:
+  pingaccess:
+    image: gcr.io/ping-identity/cdr-au/pingaccess:cdr-1.2-core-001
+    command: entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingaccess
+      - LICENSE_VERSION=6.0
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    # Example: Examples below for mounting local directories for inbound server profile and persisting
+    #          server build.  The local /opt/out directory must be empty when building new server
+    #             /opt/out - Resulting server build
+    #             /opt/in  - Inbound server-profile detail in liue of SERVER_PROFILE_URL (must be commented out)
+    #volumes:
+    #   - ${HOME}/projects/devops/volumes/full-stack.pingaccess:/opt/out
+    #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
+    ports:
+      - 443:3000
+      - 9000:9000
+      - 9001:9001
+    networks:
+      - pingnet-dmz
+
+  pingfederate:
+    image: gcr.io/ping-identity/cdr-au/pingfederate:cdr-1.2-core-001
+    command: entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingfederate
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 9031:9031
+      - 9999:9999
+    networks:
+      - pingnet-dmz
+      - pingnet-internal
+
+  pingdirectory:
+    image: gcr.io/ping-identity/cdr-au/pingdirectory:cdr-1.2-core-001
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingdirectory
+      #- SERVER_PROFILE_BRANCH=2001
+      - MAKELDIF_USERS=10
+      #- VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 1636:636
+      - 1443:443
+    networks:
+      - pingnet-internal
+  
+  cdr-dr-client:
+    image: gcr.io/ping-identity/cdr-au/sample-dr-client:cdr-1.2-core-001
+    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8080:7878
+    networks: 
+      - pingnet-internal
+      - pingnet-dmz
+
+  cdrregister:
+    image: gcr.io/ping-identity/cdr-au/mock-register:cdr-1.2-core-001
+    #command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8084:8084
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+  deepthought-product-api:
+    image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-002
+    environment:
+  #    - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8089:8081
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+ 
+  deepthought-bank-api:
+    image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
+    environment:
+  #    - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8090:8081
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+ 
+  deepthought-admin-service:
+    image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
+    environment:
+  #    - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8088:8080
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+ 
+  deepthought-h2-database:
+    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 1521:1521
+      - 81:81
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+networks:
+    pingnet-internal:
+    pingnet-dmz:
