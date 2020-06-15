@@ -1,6 +1,0 @@
-{
-    "API_BASE_PATH": "https://brand1.pingid.data-holder.int/dio-au",
-    "OAUTH2_ISSUER": "https://brand1.pingid.data-holder.int",
-    "OAUTH2_CLIENT_ID": "deepthought-admin-service",
-    "OAUTH2_SCOPE": "DEEPTHOUGHT:ADMIN:PRODUCT:READ DEEPTHOUGHT:ADMIN:PRODUCT:WRITE"
-}

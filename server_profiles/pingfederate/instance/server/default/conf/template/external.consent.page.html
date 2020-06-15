@@ -21,7 +21,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <title>AnyBank - Payment confirmation</title>
+    <title>AnyBank - Authorisation Confirmation</title>
   </head>
   <body class="consent">
   <div class="container-fluid mt-3">
@@ -35,10 +35,10 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <h1>Data request</h1>
+                <h1>Select Accounts to Share</h1>
             </div>
             <div class="row">
-                We need to collect and use the below information for 12 months. We will only use it to help you manage your budget for the financial year.
+                $adr is requesting data from your accounts.
             </div>
 			<div class="grid-x grid-padding-x">
 				<div class="large-6 medium-6 cell">
@@ -136,19 +136,17 @@
 				<p>Sharing period: $startdate - $enddate</p>
 			</div>
             <div class="row font-weight-bold mt-3">
-                How often we'll access your data
+                How often your data will be shared
             </div>
             <div class="row">
-				<p>We will do this every time you log into BudgetGuide’s Budget Tracker. This will be on-going for the next 12 months.</p>
+				<p>Your data will be shared on an on-going basis for the next 12 months
+</p>
 			</div>
             <div class="row font-weight-bold mt-3">
-                Do you consent to share this data with us?
+               Do you confirm that we can share your data with $adr?
             </div>
-            <div class="row">
-				<p>Selecting &quot;I consent&quot; won't give us access to your data just yet. We will need to connect you with your bank to confirm the decision.</p>
-			</div>
             <div class="row mt-5">
-                <button type="button" class="btn btn-dark p-3" onclick="postResponse('deny');">Deny</button>
+                <button type="button" class="btn btn-dark p-3" onclick="postResponse('deny');">Cancel</button>
                 <button type="button" class="btn btn-dark p-3 ml-auto main" onclick="postResponse('allow');">Confirm</button>
             </div>
 		</form>

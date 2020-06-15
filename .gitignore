@@ -4,4 +4,6 @@ docker-compose/local-dr.env
 *.subst_*
 *.bak
 *backup*
+scripts/postman/cert
+scripts/postman/cert/*
 server_profiles/pingaccess/instance/data/data.json

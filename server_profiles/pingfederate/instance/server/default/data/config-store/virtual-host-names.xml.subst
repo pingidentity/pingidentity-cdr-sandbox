@@ -2,8 +2,6 @@
 <con:config xmlns:con="http://www.sourceid.org/${PA_POST_CONFIGURATION_DELAY}04/05/config">
     <con:list name="domain-names">
         <con:ListItem>sso-admin.${BASE_HOSTNAME}</con:ListItem>
-        <con:ListItem>brand1.${BASE_HOSTNAME}</con:ListItem>
-        <con:ListItem>brand2.${BASE_HOSTNAME}</con:ListItem>
         <con:ListItem>${PF_BASE_HOST}</con:ListItem>
         <con:ListItem>pingfederate</con:ListItem>
     </con:list>
