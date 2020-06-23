@@ -116,6 +116,9 @@ $HttpServletResponse.setHeader("X-Frame-Options", "DENY")
                                                                                 <dt>$templateMessages.getMessage($messageKeyPrefix, "issued"):</dt>
                                                                                 <dd>$dateformat.format($grant.issued)</dd> </br>
 
+                                                                                <dt>Expires:</dt>
+                                                                                <dd>$dateformat.format($grant.expires)</dd> </br>
+                                                                                
                                                                                 <dt>$templateMessages.getMessage($messageKeyPrefix, "updated"):</dt>
                                                                                 <dd>$dateformat.format($grant.updated)</dd> </br>
                                                                         </dl>

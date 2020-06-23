@@ -48,3 +48,4 @@
     <urn:persistentGrantAttributes AttributeName="SHARING_DURATION_EXPIRES_AT"/>
     <urn:allowedOrigins>https://test.${BASE_HOSTNAME}</urn:allowedOrigins>
 </urn:OAuthConfig>
+
