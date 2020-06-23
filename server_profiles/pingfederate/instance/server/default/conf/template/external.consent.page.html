@@ -14,7 +14,7 @@
             }
         </script>
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet">
-  
+
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="assets/consent/foundation.css">
       <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -52,40 +52,40 @@
 					</div>
 				</div>
 			</div>
-           
-	      
+
+
   <div class="grid-x grid-padding-x">
     <div class="large-6 medium-6 cell">
                 <h4>Select Accounts</h4>
-           
-#foreach($account in $accountList)      
-<div class="callout alert-secondary">                                                                                                                  
+
+#foreach($account in $accountList)
+<div class="callout alert-secondary">
                         <div class="row opt-select ">
-	                        <div class="ml-5">    
-		                        
-		                            <span class="name">                                                                             
-                                                                $account.displayName                                                            
-                                                </span><br>                                                                                     
-                                        <span class="capital">                                                                                  
-                                                        Account Number: $account.accountNumber                                                  
-                                                </span>               
+	                        <div class="ml-5">
+
+		                            <span class="name">
+                                                                $account.displayName
+                                                </span><br>
+                                        <span class="capital">
+                                                        Account Number: $account.accountNumber
+                                                </span>
 	                        </div>
 	                        <div class="switch-toggle-wrapper ml-auto mr-5" >
 		                        <div class="switch small">
-		                                                                                                                        
+
                                 <input class="switch-input" id="chk_accounts_$account.id" type="checkbox" name="accounts" value="$account.id" checked>
-                                
-                                <label class="switch-paddle" for="chk_accounts_$account.id">	
+
+                                <label class="switch-paddle" for="chk_accounts_$account.id">
                                 <span class="show-for-sr">$templateMessages.getMessage($messageKeyPrefix, "title")</span>
                                 <span class="switch-active" aria-hidden="true">Yes</span>
 								<span class="switch-inactive" aria-hidden="true">No</span>
 								</label>
-	                       
-                                
+
+
                                  </div>
-	                        </div>                                                                                                      
-                        </div>   
-</div>                                                                                                               
+	                        </div>
+                        </div>
+</div>
 #end
   </div>
   <div class="large-6 medium-6 cell">
@@ -95,13 +95,13 @@
         #foreach($scope in $requestedScopesArr)
           #if( $scope == "openid" || $scope == "profile")
 
-          #else    
+          #else
 	        		#set( $scopeMod = $scope.replace(":","."))
-                    #set( $messageKeyPrefix = "cdr.scope.${scopeMod}." )	
+                    #set( $messageKeyPrefix = "cdr.scope.${scopeMod}." )
         			<div style="padding:0; margin:0; width:100%">
 					<div class="callout alert-secondary">
-						<div class="row opt-select"> 
-						
+						<div class="row opt-select">
+
 						<div class="ml-5"><span class="name">    $templateMessages.getMessage($messageKeyPrefix, "title")</span></div>
 						<div class="switch-toggle-wrapper ml-auto mr-5 hide">
 							<div class="switch small radius">
@@ -118,13 +118,13 @@
 							<ul>
 								$templateMessages.getMessage($messageKeyPrefix, "longReason")
 							</ul>
-						
+
 							</div>
 					</div>
 					</div>
 					</div>
 				#end
-			#end    
+			#end
           	</div>
   </div>
   </div>
@@ -132,14 +132,14 @@
                 Key dates
             </div>
 			<div class="row">
-				
+
 				<p>Sharing period: $startdate - $enddate</p>
 			</div>
             <div class="row font-weight-bold mt-3">
                 How often your data will be shared
             </div>
             <div class="row">
-				<p>Your data will be shared on an on-going basis for the next 12 months
+				<p>Your data will be shared on an on-going basis until $enddate
 </p>
 			</div>
             <div class="row font-weight-bold mt-3">
@@ -153,7 +153,7 @@
     </div>
 </div>
 	<script src="assets/consent/card-user-profile.js"></script>
-	
+
 	</form>
   </body>
 </html>
