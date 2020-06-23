@@ -2,7 +2,7 @@
 <urn:AdapterConfiguration authnCtxClassRef="" isInheritAttributeSettings="false" isInheritAttributeMapping="false" maskOgnlValues="false" isInheritExtendedContractAttributes="false" name="General - SMS Verification" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
     <urn:Fields>
         <urn:Field name="Allowed Attempts">3</urn:Field>
-        <urn:Field name="API KEY">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTGtQNmNTZHdvQiIsInZlcnNpb24iOiIxMC4wLjEuNSJ9..ee17M_9ggGx1toyGGL5LNA.ofw2jrv4k_dUO-Ws24lIXg.zzv8-jVHMA7MvZUm01fwag</urn:Field>
+        <urn:Field name="API KEY">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTGtQNmNTZHdvQiIsInZlcnNpb24iOiIxMC4wLjEuNSJ9..JmK8ASFa_AydDqGBAIibJA.72XiUB8_TbYryH_8hr4qIA.26M999y9NLnOEwwxbMRWSg</urn:Field>
         <urn:Field name="Allow dummy code">true</urn:Field>
     </urn:Fields>
     <urn:AdvancedFields>

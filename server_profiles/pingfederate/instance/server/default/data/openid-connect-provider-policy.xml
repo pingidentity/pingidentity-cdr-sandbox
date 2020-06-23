@@ -3,20 +3,28 @@
     <urn:ProviderPolicyGroup policyId="obOIDCPolicy" idTokenLife="5" includeSriInIdToken="false" includeUserInfoInIdToken="false" includeSHashInIdToken="true" returnIdTokenOnRefreshGrant="false" policyName="obOIDCPolicy" accessTokenManagerId="obATM">
         <urn:UserInfoMapping>
             <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:AttributeMap Name="refresh_token_expires_at" Type="Persistent Grant" Value="persistentgrant.REFRESH_TOKEN_EXPIRES_AT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:AttributeMap Name="sharing_expires_at" Type="Persistent Grant" Value="persistentgrant.SHARING_DURATION_EXPIRES_AT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         </urn:UserInfoMapping>
-        <urn:scopeAttributesMap/>
-        <urn:attributeContractInclusionMap/>
+        <urn:scopeAttributesMap>
+            <urn:item>
+                <urn:key>openid</urn:key>
+                <urn:value>refresh_token_expires_at sharing_expires_at</urn:value>
+            </urn:item>
+        </urn:scopeAttributesMap>
+        <urn:attributeContractInclusionMap>
+            <urn:item>
+                <urn:key>refresh_token_expires_at</urn:key>
+                <urn:value includeInIdToken="true" includeInUserInfo="false"/>
+            </urn:item>
+            <urn:item>
+                <urn:key>sharing_expires_at</urn:key>
+                <urn:value includeInIdToken="true" includeInUserInfo="false"/>
+            </urn:item>
+        </urn:attributeContractInclusionMap>
     </urn:ProviderPolicyGroup>
     <urn:ProviderPolicyGroup policyId="adminOIDCPolicy" idTokenLife="5" includeSriInIdToken="true" includeUserInfoInIdToken="false" includeSHashInIdToken="false" returnIdTokenOnRefreshGrant="false" policyName="adminOIDCPolicy" accessTokenManagerId="adminATM">
-        <urn:UserInfoMapping>
-            <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        </urn:UserInfoMapping>
-        <urn:scopeAttributesMap/>
-        <urn:attributeContractInclusionMap/>
-    </urn:ProviderPolicyGroup>
-    <urn:ProviderPolicyGroup policyId="standardOIDCPolicy" idTokenLife="5" includeSriInIdToken="true" includeUserInfoInIdToken="true" includeSHashInIdToken="true" returnIdTokenOnRefreshGrant="true" policyName="standardOIDCPolicy" accessTokenManagerId="standardATM">
         <urn:UserInfoMapping>
             <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
