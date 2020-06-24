@@ -1073,11 +1073,6 @@
 													"key": "client_assertion",
 													"value": "{{consent-client-assertion}}",
 													"type": "text"
-												},
-												{
-													"key": "token_type_hint",
-													"value": "refresh_token",
-													"type": "text"
 												}
 											],
 											"options": {
@@ -1182,8 +1177,12 @@
 											"script": {
 												"id": "37a25a97-ff96-498e-afb4-e7c2dc6c605a",
 												"exec": [
-													"pm.test(\"Validate response status=403\", function () {",
-													"    pm.response.to.have.status(403);",
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate response active=false\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response.active).to.equal(false);",
 													"});"
 												],
 												"type": "text/javascript"
@@ -1218,9 +1217,8 @@
 												},
 												{
 													"key": "token_type_hint",
-													"value": "access_token",
-													"type": "text",
-													"disabled": true
+													"value": "refresh_token",
+													"type": "text"
 												}
 											],
 											"options": {
@@ -1438,6 +1436,16 @@
 											"",
 											"    pm.environment.set(\"consent-request-account-id\", accountId);",
 											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6aefdd43-fdfa-4527-8769-c0afc1e64134",
+										"exec": [
 											""
 										],
 										"type": "text/javascript"
@@ -1953,79 +1961,79 @@
 	],
 	"variable": [
 		{
-			"id": "39ba0c49-ea8c-40ac-9d41-ecd5f3f69f0b",
+			"id": "76881724-12a9-42a6-8fec-35ebbc81e2a5",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084",
 			"type": "string"
 		},
 		{
-			"id": "2671291a-d9ac-4bbc-a1d7-c29b679f7b06",
+			"id": "44effd59-1705-4ab1-88ba-77c8c893f6a3",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local",
 			"type": "string"
 		},
 		{
-			"id": "64c5d52f-6da4-4035-9d68-d9fe92782131",
+			"id": "ea75f831-cda2-4afb-a8e4-320c05274e7e",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/register",
 			"type": "string"
 		},
 		{
-			"id": "6ea10fa1-ccbe-477f-bb61-c906a26cb778",
+			"id": "a354cc32-907d-4b34-b6d7-f4e32529e7b9",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "4f8b5e6f-b39d-4ff8-91e4-b5181a0b5375",
+			"id": "3fb912c2-7ade-4dc7-9b0c-a2bd8f0fca56",
 			"key": "dh-audience",
 			"value": "https://data-holder",
 			"type": "string"
 		},
 		{
-			"id": "a935b060-87a9-40ba-bf4f-3aefe5be973f",
+			"id": "6b6dbdfc-ad1d-4c95-abc4-29dff649157f",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
 			"type": "string"
 		},
 		{
-			"id": "94d85f71-bca2-4e73-a04e-fd6b7d989027",
+			"id": "28cb1171-c10c-4ac5-b215-dbef386454b2",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec",
 			"type": "string"
 		},
 		{
-			"id": "35226229-33a3-4ab8-84f2-d09faa8a5e66",
+			"id": "351609a4-b37e-4c96-8fd6-f642403e3dfe",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469",
 			"type": "string"
 		},
 		{
-			"id": "69d948d0-6560-4fdf-b24a-44de6ef29b67",
+			"id": "851dcdfd-711f-4495-bb19-d9619d10bd2f",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "d0463cc6-8e75-4364-bb0d-35f3aa3f2ff3",
+			"id": "7a953970-253c-4834-8225-7c494beeab75",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get",
 			"type": "string"
 		},
 		{
-			"id": "f9d60c88-ff44-4e59-90bf-7402b45411b3",
+			"id": "388f70a0-ead7-4068-a685-7e395fd9b727",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "7bb85e2c-81e0-4611-87bf-c197a41c2e1f",
+			"id": "794adec5-aea0-46d2-9afd-3c68fd9e00dc",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au",
 			"type": "string"
 		},
 		{
-			"id": "05465ccd-5805-4341-9902-4a51677ccad9",
+			"id": "f24fbabd-d4e9-41e6-a99b-3efb240a60bb",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2",
 			"type": "string"
