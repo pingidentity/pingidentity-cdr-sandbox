@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: gcr.io/ping-identity/cdr-au/pingaccess:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200625
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -25,7 +25,7 @@ services:
       - pingnet-dmz
 
   pingfederate:
-    image: gcr.io/ping-identity/cdr-au/pingfederate:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200625
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -71,7 +71,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-au/mock-register:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/mock-register:2020062401
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
