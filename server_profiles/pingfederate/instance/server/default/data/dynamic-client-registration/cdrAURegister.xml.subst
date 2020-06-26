@@ -3,7 +3,7 @@
     <urn:Fields>
         <urn:Field name="PingFederate Base URL">https://localhost:9031</urn:Field>
         <urn:Field name="Org ID Claim Name">org_id</urn:Field>
-        <urn:Field name="Issuer">${PF_ISS}</urn:Field>
+        <urn:Field name="Issuer">${SOFTWARE_STATEMENT_ACCC_ISSUER}</urn:Field>
         <urn:Field name="JWKS URL">${SOFTWARE_STATEMENT_ACCC_JWKS_ENDPOINT}</urn:Field>
         <urn:Field name="Common Scopes">openid,profile</urn:Field>
         <urn:Field name="Audience">${SOFTWARE_STATEMENT_BANK_AUDIENCE}</urn:Field>
@@ -17,6 +17,7 @@
     </urn:AdvancedFields>
     <urn:Tables/>
 </urn:PluginConfiguration>
+
 
 
 

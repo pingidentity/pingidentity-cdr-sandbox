@@ -5,6 +5,7 @@
             <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="refresh_token_expires_at" Type="Persistent Grant" Value="persistentgrant.REFRESH_TOKEN_EXPIRES_AT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="updated_at" Type="Expression" Value="(#this.get(&quot;ds.ldap.modifyTimestamp&quot;) != null)?#this.get(&quot;ds.ldap.modifyTimestamp&quot;):#this.get(&quot;ds.ldap.createTimestamp&quot;)" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:AttributeMap Name="auth_time" Type="Expression" Value="(@java.time.Instant@now()).getEpochSecond()" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="name" Type="LDAP" AttributeSourceId="ldap" Value="cn" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="given_name" Type="LDAP" AttributeSourceId="ldap" Value="givenName" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="family_name" Type="LDAP" AttributeSourceId="ldap" Value="sn" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -20,7 +21,7 @@
         <urn:scopeAttributesMap>
             <urn:item>
                 <urn:key>openid</urn:key>
-                <urn:value>refresh_token_expires_at sharing_expires_at</urn:value>
+                <urn:value>auth_time refresh_token_expires_at sharing_expires_at</urn:value>
             </urn:item>
             <urn:item>
                 <urn:key>profile</urn:key>
@@ -35,6 +36,10 @@
             <urn:item>
                 <urn:key>updated_at</urn:key>
                 <urn:value includeInIdToken="true" includeInUserInfo="true"/>
+            </urn:item>
+            <urn:item>
+                <urn:key>auth_time</urn:key>
+                <urn:value includeInIdToken="true" includeInUserInfo="false"/>
             </urn:item>
             <urn:item>
                 <urn:key>name</urn:key>
