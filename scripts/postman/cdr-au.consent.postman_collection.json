@@ -521,6 +521,11 @@
 										"key": "x-redirecturi",
 										"value": "{{default-redirecturi}}",
 										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "86400",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1961,79 +1966,79 @@
 	],
 	"variable": [
 		{
-			"id": "76881724-12a9-42a6-8fec-35ebbc81e2a5",
+			"id": "4b8013ff-9657-45f5-a28b-b9a0d9415301",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084",
 			"type": "string"
 		},
 		{
-			"id": "44effd59-1705-4ab1-88ba-77c8c893f6a3",
+			"id": "fb12debf-f630-438d-901a-d06ca1f9ce7f",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local",
 			"type": "string"
 		},
 		{
-			"id": "ea75f831-cda2-4afb-a8e4-320c05274e7e",
+			"id": "ba4902d8-e8f7-496d-be2c-f2c4fe192c64",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/register",
 			"type": "string"
 		},
 		{
-			"id": "a354cc32-907d-4b34-b6d7-f4e32529e7b9",
+			"id": "e4397eb1-d2db-4c6c-8c01-0e975403ef0f",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "3fb912c2-7ade-4dc7-9b0c-a2bd8f0fca56",
+			"id": "6b4ba38b-8818-47af-b1dd-0e8239250617",
 			"key": "dh-audience",
 			"value": "https://data-holder",
 			"type": "string"
 		},
 		{
-			"id": "6b6dbdfc-ad1d-4c95-abc4-29dff649157f",
+			"id": "857379e3-724a-4185-ab1f-589ef4e3c98b",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
 			"type": "string"
 		},
 		{
-			"id": "28cb1171-c10c-4ac5-b215-dbef386454b2",
+			"id": "7936b7e1-2e51-45da-92ba-a2875ec4f9fb",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec",
 			"type": "string"
 		},
 		{
-			"id": "351609a4-b37e-4c96-8fd6-f642403e3dfe",
+			"id": "078b7ba4-8bd1-41b3-98f2-42fdc770087f",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469",
 			"type": "string"
 		},
 		{
-			"id": "851dcdfd-711f-4495-bb19-d9619d10bd2f",
+			"id": "2021de6a-276d-4ef5-ba69-eab31f2c139e",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "7a953970-253c-4834-8225-7c494beeab75",
+			"id": "d767fd05-3710-4116-b8d4-93f01da05545",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get",
 			"type": "string"
 		},
 		{
-			"id": "388f70a0-ead7-4068-a685-7e395fd9b727",
+			"id": "6031d4f9-bb6e-4431-bbaa-5fa44380196c",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "794adec5-aea0-46d2-9afd-3c68fd9e00dc",
+			"id": "107de736-5daf-4d4d-93eb-77d1ae85c998",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au",
 			"type": "string"
 		},
 		{
-			"id": "f24fbabd-d4e9-41e6-a99b-3efb240a60bb",
+			"id": "eaf310d6-f34a-4df4-b8cd-5efa4afae4a7",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2",
 			"type": "string"
