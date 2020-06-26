@@ -4,12 +4,13 @@
         <urn:UserInfoMapping>
             <urn1:AttributeMap Name="sub" Type="Token" Value="sub" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="refresh_token_expires_at" Type="Persistent Grant" Value="persistentgrant.REFRESH_TOKEN_EXPIRES_AT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:AttributeMap Name="updated_at" Type="Expression" Value="(#this.get(&quot;ds.ldap.modifyTimestamp&quot;) != null)?#this.get(&quot;ds.ldap.modifyTimestamp&quot;):#this.get(&quot;ds.ldap.createTimestamp&quot;)" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="name" Type="LDAP" AttributeSourceId="ldap" Value="cn" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="given_name" Type="LDAP" AttributeSourceId="ldap" Value="givenName" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="family_name" Type="LDAP" AttributeSourceId="ldap" Value="sn" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeMap Name="sharing_expires_at" Type="Persistent Grant" Value="persistentgrant.SHARING_DURATION_EXPIRES_AT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn1:AttributeSource Id="ldap" Description="ldap" Type="LDAP" DataSourceId="LDAP-C29DCC21274C10A483A76237675C3A22715D638C" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2">
-                <urn1:Parameter Name="filter" Value="uid=${sub}"/>
+                <urn1:Parameter Name="filter" Value="entryUUID=${sub}"/>
                 <urn1:Parameter Name="search_base" Value="ou=people,dc=data-holder,dc=com"/>
                 <urn1:Parameter Name="search_scope" Value="SUBTREE_SCOPE"/>
                 <urn1:Parameter Name="memberof_nested_group" Value="false"/>
@@ -21,11 +22,19 @@
                 <urn:key>openid</urn:key>
                 <urn:value>refresh_token_expires_at sharing_expires_at</urn:value>
             </urn:item>
+            <urn:item>
+                <urn:key>profile</urn:key>
+                <urn:value>family_name given_name name updated_at</urn:value>
+            </urn:item>
         </urn:scopeAttributesMap>
         <urn:attributeContractInclusionMap>
             <urn:item>
                 <urn:key>refresh_token_expires_at</urn:key>
                 <urn:value includeInIdToken="true" includeInUserInfo="false"/>
+            </urn:item>
+            <urn:item>
+                <urn:key>updated_at</urn:key>
+                <urn:value includeInIdToken="true" includeInUserInfo="true"/>
             </urn:item>
             <urn:item>
                 <urn:key>name</urn:key>

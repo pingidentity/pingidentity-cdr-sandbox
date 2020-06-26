@@ -6,6 +6,6 @@
         <policy authnContextSensitive="false" authnSourceId="cdrSelectorAdapter" authnSourceType="ADAPTER" enableSessions="false" id="DHPY4AdjRKP8m1uU8jEvNd0h7" persistent="false" timeoutDisplayUnit="MINUTES"/>
         <policy authnContextSensitive="false" authnSourceId="clickatellAdapter" authnSourceType="ADAPTER" enableSessions="false" id="b5SNfINVCnFS2MPYXA1rWpoth" persistent="false" timeoutDisplayUnit="MINUTES"/>
         <policy authnContextSensitive="false" authnSourceId="cdrConsentAdapter" authnSourceType="ADAPTER" enableSessions="false" id="25O2mobMxNK92IFFMqG6CdeJp" persistent="false" timeoutDisplayUnit="MINUTES"/>
-        <policy authnContextSensitive="false" authnSourceId="identityFirstAdapter" authnSourceType="ADAPTER" enableSessions="false" id="EScBDCH3FaSv12NTG58jdTKaE" persistent="false" timeoutDisplayUnit="MINUTES"/>
+        <policy authnContextSensitive="false" authnSourceId="identityFirstAdapter" authnSourceType="ADAPTER" enableSessions="true" id="EScBDCH3FaSv12NTG58jdTKaE" idleTimeoutMins="2" maxTimeoutMins="5" persistent="false" timeoutDisplayUnit="MINUTES"/>
     </sourcePolicies>
 </authnSessionPolicies>

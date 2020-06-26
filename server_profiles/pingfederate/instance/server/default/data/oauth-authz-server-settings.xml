@@ -47,3 +47,4 @@
     <urn:persistentGrantAttributes AttributeName="SHARING_DURATION_EXPIRES_AT"/>
     <urn:allowedOrigins>https://test.data-holder.local</urn:allowedOrigins>
 </urn:OAuthConfig>
+
