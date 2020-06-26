@@ -524,13 +524,13 @@
 									},
 									{
 										"key": "x-maxage",
-										"value": "86400",
+										"value": "-1",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid profile bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"max_age\": 86400\n}",
+									"raw": "{\n  \"scope\": \"openid profile bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -1966,79 +1966,79 @@
 	],
 	"variable": [
 		{
-			"id": "7e877db8-2c4e-4d83-b1e6-0f1c7f4b8e13",
+			"id": "afa20d43-a426-4821-9a16-e4b385786824",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084",
 			"type": "string"
 		},
 		{
-			"id": "e919be87-f5af-45f9-afe1-789769699c97",
+			"id": "6da01a7a-62df-4299-bd26-4335da405646",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local",
 			"type": "string"
 		},
 		{
-			"id": "32be8fd2-6c9a-47a5-8615-2fef3266d7ed",
+			"id": "9019879a-83a3-4d4c-b842-b3608a750294",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/register",
 			"type": "string"
 		},
 		{
-			"id": "37989a55-3148-493a-bf19-c251dc7d4c72",
+			"id": "8c9e3aa3-22ac-4334-b0b5-77eb53d6dbfc",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "231b9715-bfa8-4940-9c59-08cfdec4ca3b",
+			"id": "a46df959-6c61-4237-9b52-4aba0aa891e4",
 			"key": "dh-audience",
 			"value": "https://data-holder",
 			"type": "string"
 		},
 		{
-			"id": "05b1d6f3-9e08-463e-92cd-12ce11393cc7",
+			"id": "e962c77c-5841-4ce0-a380-519847b76efb",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
 			"type": "string"
 		},
 		{
-			"id": "479455d7-3c57-47a9-8f30-afd5161e2713",
+			"id": "ddfdef5e-85ed-4eb5-b986-c3d7b0231b0c",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec",
 			"type": "string"
 		},
 		{
-			"id": "39284f4f-d7c7-4113-8523-ddcc6ebe0c23",
+			"id": "d3560721-e39e-4fc0-bc5e-9755226edfef",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469",
 			"type": "string"
 		},
 		{
-			"id": "d7c42bdf-a8db-4d3d-a77d-ce4aa70e6141",
+			"id": "f2431b5e-ec42-40d8-aa1e-fa92ae445bd3",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "6243de4e-5d46-4b94-b345-1b7e2b885499",
+			"id": "6b480bf0-5f80-48d6-b99b-d5f5c91aea82",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get",
 			"type": "string"
 		},
 		{
-			"id": "4b6daf9b-a2ef-4bac-9dc2-519fbc605670",
+			"id": "cc8b285d-79c1-4463-8e80-4d9742fe6f5a",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "2f5d340c-2962-4e82-a05f-a2d3361914b3",
+			"id": "e8f21215-40e1-4b7f-8a4a-bc964153bd52",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au",
 			"type": "string"
 		},
 		{
-			"id": "f1d71ecc-5ef0-4e22-8ace-d360a568e5ac",
+			"id": "f3a7b626-9a4b-4941-9d80-cfe84b9b6de3",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2",
 			"type": "string"
