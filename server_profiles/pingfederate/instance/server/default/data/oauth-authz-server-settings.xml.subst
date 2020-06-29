@@ -44,8 +44,6 @@
         <urn1:AttributeMap Name="consent_id" Type="Expression" Value="null" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:ClientCredentialsToAccessTokenMapping>
-    <urn:ReuseExistingPersistentGrantForGrant>implicit</urn:ReuseExistingPersistentGrantForGrant>
-    <urn:ReuseExistingPersistentGrantForGrant>authorization_code</urn:ReuseExistingPersistentGrantForGrant>
     <urn:persistentGrantAttributes AttributeName="SELECTED_ACCOUNTS"/>
     <urn:persistentGrantAttributes AttributeName="CONSENT_ID"/>
     <urn:persistentGrantAttributes AttributeName="PERSISTENT_GRANT_LIFETIME"/>

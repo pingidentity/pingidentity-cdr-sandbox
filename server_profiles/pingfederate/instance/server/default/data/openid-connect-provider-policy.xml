@@ -22,7 +22,7 @@
         <urn:scopeAttributesMap>
             <urn:item>
                 <urn:key>openid</urn:key>
-                <urn:value>auth_time family_name given_name name refresh_token_expires_at sharing_expires_at updated_at acr</urn:value>
+                <urn:value>acr auth_time family_name given_name name refresh_token_expires_at sharing_expires_at updated_at</urn:value>
             </urn:item>
         </urn:scopeAttributesMap>
         <urn:attributeContractInclusionMap>
