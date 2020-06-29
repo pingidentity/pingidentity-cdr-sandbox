@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:AuthnSelectionConfig lastModifiedMillis="1592925588923" enableAuthnSelection="true" enableSpAuthnSelection="false" failIfNoSelection="false" xmlns:urn="urn:pingidentity.com:pf:authn-selection">
+<urn:AuthnSelectionConfig lastModifiedMillis="1593403798553" enableAuthnSelection="true" enableSpAuthnSelection="false" failIfNoSelection="false" xmlns:urn="urn:pingidentity.com:pf:authn-selection">
     <urn:AuthnSelectionTrees>
         <urn:AuthnSelectionTree treeName="Administrative Functions" disabled="false" authnApiApp="">
             <urn:AstRoot context="">
@@ -76,7 +76,9 @@
                                         <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="entryUUID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="SAML_AUTHN_CTX" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_requestedACR" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="accounts" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                        <urn1:AttributeMap Name="idtokenClaims" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_idtoken" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="scopes" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="scopes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                        <urn1:AttributeMap Name="userinfoClaims" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_userinfo" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                     </urn:AttributeMapping>
                                 </urn:AstAction>
@@ -104,7 +106,9 @@
                                 <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="entryUUID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                 <urn1:AttributeMap Name="SAML_AUTHN_CTX" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                 <urn1:AttributeMap Name="accounts" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:AttributeMap Name="idtokenClaims" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                 <urn1:AttributeMap Name="scopes" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:AttributeMap Name="userinfoClaims" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                 <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                             </urn:AttributeMapping>
                         </urn:AstAction>
@@ -115,7 +119,3 @@
     </urn:AuthnSelectionTrees>
     <urn:DefaultAuthnSources/>
 </urn:AuthnSelectionConfig>
-
-
-
-
