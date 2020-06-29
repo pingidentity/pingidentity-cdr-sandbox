@@ -530,7 +530,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid profile bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -1576,13 +1576,88 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "S002.T005 Revoke Tokens",
+					"name": "S002.T005 Userinfo",
 					"item": [
 						{
-							"name": "S002.T005.001 Revocation",
+							"name": "S002.T005.001.002 - Call userinfo",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4dd5b32e-fe4d-47ba-ad8e-2fcfc8de69bd",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{consent-request-access-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "72a07a67-8cc3-49d4-b6f3-77d24c9d2141",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3d3c954-e615-4ff9-ac87-09a689583964",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S002.T006 Revoke Tokens",
+					"item": [
+						{
+							"name": "S002.T006.001 Revocation",
 							"item": [
 								{
-									"name": "S002.T005.001.001 - Creates JWT-Bearer Client Assertion",
+									"name": "S002.T006.001.001 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -1656,7 +1731,7 @@
 									"response": []
 								},
 								{
-									"name": "S002.T005.001.002 - Perform refresh token",
+									"name": "S002.T006.001.002 - Perform refresh token",
 									"event": [
 										{
 											"listen": "test",
@@ -1722,10 +1797,10 @@
 							"_postman_isSubFolder": true
 						},
 						{
-							"name": "S002.T005.002 Refresh Tokens - should fail",
+							"name": "S002.T006.002 Refresh Tokens - should fail",
 							"item": [
 								{
-									"name": "S002.T003.001 - Creates JWT-Bearer Client Assertion",
+									"name": "S002.T006.001 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -1799,7 +1874,7 @@
 									"response": []
 								},
 								{
-									"name": "S002.T003.002 - Perform refresh token",
+									"name": "S002.T006.002 - Perform refresh token",
 									"event": [
 										{
 											"listen": "test",
@@ -1966,81 +2041,87 @@
 	],
 	"variable": [
 		{
-			"id": "afa20d43-a426-4821-9a16-e4b385786824",
+			"id": "df3ff2e8-5c9d-451d-be42-ef14c08168a9",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084",
 			"type": "string"
 		},
 		{
-			"id": "6da01a7a-62df-4299-bd26-4335da405646",
+			"id": "7bd7930d-30ad-4e2a-bd96-b3bbe0e3c9e6",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local",
 			"type": "string"
 		},
 		{
-			"id": "9019879a-83a3-4d4c-b842-b3608a750294",
+			"id": "f2fcb149-3c34-473b-a63e-37bece80dafe",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/register",
 			"type": "string"
 		},
 		{
-			"id": "8c9e3aa3-22ac-4334-b0b5-77eb53d6dbfc",
+			"id": "407bcfe3-cb72-4f5b-b41e-ad7957030398",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "a46df959-6c61-4237-9b52-4aba0aa891e4",
+			"id": "5c142181-7d58-4d51-8eb8-048ab2ea8808",
 			"key": "dh-audience",
 			"value": "https://data-holder",
 			"type": "string"
 		},
 		{
-			"id": "e962c77c-5841-4ce0-a380-519847b76efb",
+			"id": "29bd31d4-903e-4fee-a240-702b64765049",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
 			"type": "string"
 		},
 		{
-			"id": "ddfdef5e-85ed-4eb5-b986-c3d7b0231b0c",
+			"id": "2afd1df0-f11e-4e26-8345-5612b60fa398",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec",
 			"type": "string"
 		},
 		{
-			"id": "d3560721-e39e-4fc0-bc5e-9755226edfef",
+			"id": "afb80f7b-8efb-4415-8609-28949353ffbb",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469",
 			"type": "string"
 		},
 		{
-			"id": "f2431b5e-ec42-40d8-aa1e-fa92ae445bd3",
+			"id": "ed77039b-2e1a-45d9-91b8-6eb741041e9c",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "6b480bf0-5f80-48d6-b99b-d5f5c91aea82",
+			"id": "ef914e31-7801-44ec-af32-2985d84303bf",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get",
 			"type": "string"
 		},
 		{
-			"id": "cc8b285d-79c1-4463-8e80-4d9742fe6f5a",
+			"id": "14a756dd-0b35-425a-a6f8-96b45b510ac1",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "e8f21215-40e1-4b7f-8a4a-bc964153bd52",
+			"id": "dfd75922-558c-4d6b-a8c1-ac0d337c878e",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au",
 			"type": "string"
 		},
 		{
-			"id": "f3a7b626-9a4b-4941-9d80-cfe84b9b6de3",
+			"id": "d507dd4c-a276-4449-9e69-c6efedd18bc6",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2",
+			"type": "string"
+		},
+		{
+			"id": "a408fe86-db25-4fb3-916f-670077feeefc",
+			"key": "dh-idp-userinfo-endpoint",
+			"value": "/idp/userinfo.openid",
 			"type": "string"
 		}
 	],
