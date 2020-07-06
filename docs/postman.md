@@ -39,11 +39,14 @@ https://github.com/pingidentity/pingidentity-cdr-sandbox/blob/docs/howto_generat
 4. Verify all tests passed
 
 ## Manually Execute Consent Requests
-> For individual requests to execute you must specify a Postman "Environment". In none exist please create an empty one and ensure its selected.
+
+> Note: To execute individual requests you must specify a Postman "Environment". If none exists please create an empty Environment and ensure its selected.
+
 1. Expand the Consent Flow collection in the left pane
 2. Expand S001 Create Client | S001.T001 Create Client
 3. Select each request and click "Send" in order
 4. Expand S002 Consent Flow - Happy Scenario
 5. Expand each section and select each request and click "Send" in order
-> Verify each request result returns an expected result
+   > Verify each request result returns an expected result
+
 6. Check the respoce from request "S002.T004.001 - Get account list" and ensure representative satat is returned.
