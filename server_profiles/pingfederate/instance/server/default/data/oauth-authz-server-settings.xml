@@ -55,3 +55,4 @@
     <urn:persistentGrantAttributes AttributeName="ACR_VALUES"/>
     <urn:allowedOrigins>https://test.data-holder.local</urn:allowedOrigins>
 </urn:OAuthConfig>
+
