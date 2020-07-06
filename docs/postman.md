@@ -3,9 +3,11 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
 
 ## Prerequisites
 
-* Postman 7 or above <br>
+* Postman 7 or above
+
 https://www.postman.com/downloads/
-* MTLS Authentication keys <br>
+* MTLS Authentication keys
+
 https://github.com/pingidentity/pingidentity-cdr-sandbox/blob/docs/howto_generatecerts.md
 
 > Using ~/projects/cdr will make it easier to follow this guide. It will also make it easier for us to help you if you encounter issues.
@@ -28,7 +30,8 @@ https://github.com/pingidentity/pingidentity-cdr-sandbox/blob/docs/howto_generat
 1. Click on the "Import" button
 2. Click "Upload Files"
 3. Click on the Import button
-4. Select the Consent Flow Postman Collection<br>
+4. Select the Consent Flow Postman Collection
+
    ~/projects/cdr/scripts/postman/cdr-au.consent.postman_collection.json
 5. Click the "Import" Button
    
