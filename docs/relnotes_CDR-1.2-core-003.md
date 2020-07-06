@@ -18,17 +18,16 @@
 - (CDR-61) 11.2.010 Consent: Claims: refresh_token_expires_at
 - (CDR-60) 11.2 Consent: Claims (revisit)
 - (CDR-130) PingAccess to block introspect for access tokens
+- (CDR-136) changes to auth_time
 
 ### Security
 N/A
 
 ### Documentation
-- (CDR-127) Document Postman Usage	CDR-127
-- (CDR-128) Update Cert creation steps	CDR-128
+- (CDR-127) Document Postman Usage
+- (CDR-128) Update Cert creation steps
 
 ### Resolved defects
-
-
 - (CDR-141) 403 Error when accessing https://mockregister.data-holder.com.au/csrFlow
 - (CDR-138) showcase settings have data-holder.come.au
 - (CDR-137) Persistent grant not extending on subsequent consent requests
