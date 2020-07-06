@@ -5,10 +5,10 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
 
 * Postman 7 or above
 
-https://www.postman.com/downloads/
+   https://www.postman.com/downloads/
 * MTLS Authentication keys
 
-https://github.com/pingidentity/pingidentity-cdr-sandbox/blob/docs/howto_generatecerts.md
+   https://github.com/pingidentity/pingidentity-cdr-sandbox/blob/docs/howto_generatecerts.md
 
 > Using ~/projects/cdr will make it easier to follow this guide. It will also make it easier for us to help you if you encounter issues.
 
