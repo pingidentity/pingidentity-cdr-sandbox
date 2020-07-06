@@ -1,3 +1,6 @@
+
+
+The Consumer Data Rights requires that selected communicates between the 3 parties, Data Holder, Data Recipient and Data Registry, be authenticated using a private/public key pair signed by the ACCC Registry. To facilitate  
 Follow the instructions here to generate a network.p12 file
 
 **Commandline
