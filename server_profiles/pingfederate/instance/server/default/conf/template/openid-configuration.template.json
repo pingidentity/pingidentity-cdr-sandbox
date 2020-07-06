@@ -27,6 +27,7 @@ $info - the map containing all the data.  Usage:
   #set($res=$scopes.add('customscope'))
   "scopes_supported": $utils.toJsonArray($scopes)
 
+
 $utils - utility method to display JSON String arrays. Usage:
 
   $utils.toJsonArray($info.get('response_types_supported'))
@@ -93,25 +94,30 @@ Keys available for use with the $info variable:
   "ping_end_session_endpoint": "$info.get('ping_end_session_endpoint')",
   "device_authorization_endpoint": "$info.get('device_authorization_endpoint')",
   "scopes_supported": ["openid", "profile", "offline_access", "bank:accounts.basic:read", "bank:accounts.detail:read", "bank:transactions:read", "bank:payees:read", "bank:regular_payments:read", "common:customer.basic:read", "common:customer.detail:read", "cdr:registration" ],
-#if($info.get('claims_supported'))
-  "claims_supported": $utils.toJsonArray($info.get('claims_supported')),
-#end
-  "response_types_supported": $utils.toJsonArray($info.get('response_types_supported')),
-  "response_modes_supported": $utils.toJsonArray($info.get('response_modes_supported')),
-  "grant_types_supported": $utils.toJsonArray($info.get('grant_types_supported')),
-  "subject_types_supported": $utils.toJsonArray($info.get('subject_types_supported')),
-  "id_token_signing_alg_values_supported": $utils.toJsonArray($info.get('id_token_signing_alg_values_supported')),
-  "token_endpoint_auth_methods_supported": $utils.toJsonArray($info.get('token_endpoint_auth_methods_supported')),
+  #if($info.get('claims_supported'))
+    #set($claimsSupported=$info.get('claims_supported'))
+    #set($res=$claimsSupported.add("auth_time"))
+    #set($res=$claimsSupported.add("acr"))
+    "claims_supported": $utils.toJsonArray($claimsSupported),
+  #end  
+  "response_types_supported": ["code id_token"],
+  "response_modes_supported": ["fragment"],
+  "grant_types_supported": ["authorization_code", "client_credentials"],
+  "acr_values_supported": ["urn:cds.au:cdr:2","urn:cds.au:cdr:3"],
+  "subject_types_supported": ["pairwise"],
+  "id_token_signing_alg_values_supported": ["ES256", "PS256"],
+  "token_endpoint_auth_methods_supported": ["client_secret_basic", "client_secret_post", "private_key_jwt"],
   "token_endpoint_auth_signing_alg_values_supported":  $utils.toJsonArray($info.get('token_endpoint_auth_signing_alg_values_supported')),
   "claim_types_supported": $utils.toJsonArray($info.get('claim_types_supported')),
-  "claims_parameter_supported": $info.get('claims_parameter_supported'),
+  "claims_parameter_supported": true,
   "request_parameter_supported": $info.get('request_parameter_supported'),
   "request_uri_parameter_supported": $info.get('request_uri_parameter_supported'),
-  "request_object_signing_alg_values_supported": $utils.toJsonArray($info.get('request_object_signing_alg_values_supported')),
+  "request_object_signing_alg_values_supported": ["ES256", "PS256"],
   "id_token_encryption_alg_values_supported": $utils.toJsonArray($info.get('id_token_encryption_alg_values_supported')),
   "id_token_encryption_enc_values_supported": $utils.toJsonArray($info.get('id_token_encryption_enc_values_supported')),
   "backchannel_authentication_endpoint": "$info.get('backchannel_authentication_endpoint')",
   "backchannel_token_delivery_modes_supported": $utils.toJsonArray($info.get('backchannel_token_delivery_modes_supported')),
   "backchannel_authentication_request_signing_alg_values_supported": $utils.toJsonArray($info.get('backchannel_authentication_request_signing_alg_values_supported')),
-  "backchannel_user_code_parameter_supported": $info.get('backchannel_user_code_parameter_supported')
+  "backchannel_user_code_parameter_supported": $info.get('backchannel_user_code_parameter_supported'),
+  "tls_client_certificate_bound_access_tokens": true
 }

@@ -11,6 +11,7 @@ uid: CRN0
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN0
 entryuuid: 4b4a457a-1a7e-380a-a2fc-1412ae425ba9
+modifyTimestamp: 20200626044309.209Z
 
 dn: uid=CRN1,ou=People,${USER_BASE_DN}
 objectClass: top
@@ -25,6 +26,7 @@ uid: CRN1
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN1
 entryuuid: fe09e290-635d-310c-a94c-f13231592bca
+modifyTimestamp: 20200626044309.209Z
 
 dn: uid=CRN2,ou=People,${USER_BASE_DN}
 objectClass: top
@@ -39,6 +41,7 @@ uid: CRN2
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN2
 entryuuid: b9e9967b-8f79-36d9-ac58-a68e7f0a9e70
+modifyTimestamp: 20200626044309.209Z
 
 dn: uid=CRN3,ou=People,${USER_BASE_DN}
 objectClass: top
@@ -53,6 +56,7 @@ uid: CRN3
 userPassword: password
 pf-connected-identity: auth-source=pf-local-ideontity:user-id=CRN3
 entryuuid: fbca9ee0-5132-3e3b-933c-990ff04faf59
+modifyTimestamp: 20200626044309.209Z
 
 dn: uid=CRN4,ou=People,${USER_BASE_DN}
 objectClass: top
@@ -67,6 +71,7 @@ uid: CRN4
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN4
 entryuuid: 593bc98c-75b9-3b19-8db9-9302c5aa435c
+modifyTimestamp: 20200626044309.209Z
 
 dn: uid=administrator,ou=People,${USER_BASE_DN}
 objectClass: top
@@ -107,5 +112,3 @@ givenName: PingFederate
 uid: auditor
 userPassword: 2FederateM0re
 pf-connected-identity: auth-source=pf-local-identity:user-id=auditor
-
-

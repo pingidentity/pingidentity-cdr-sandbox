@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:AccessTokenManagerConfiguration inheritAccessControlSettings="false" inheritSelectionSettings="false" inheritSessionValidationSettings="false" restrictClients="false" checkSessionRevocationStatus="false" checkValidAuthnSession="false" updateAuthnSessionActivity="false" defaultSubjectAttribute="" isInheritExtendedContractAttributes="false" name="obATM" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+<urn:AccessTokenManagerConfiguration inheritAccessControlSettings="false" inheritSelectionSettings="false" inheritSessionValidationSettings="false" restrictClients="false" includeSessionIdentifier="false" checkSessionRevocationStatus="false" checkValidAuthnSession="false" updateAuthnSessionActivity="false" defaultSubjectAttribute="exp" isInheritExtendedContractAttributes="false" name="obATM" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
     <urn:Fields>
         <urn:Field name="Token Lifetime">8</urn:Field>
+        <urn:Field name="Use Centralized Signing Key">true</urn:Field>
         <urn:Field name="JWS Algorithm">PS256</urn:Field>
         <urn:Field name="Active Symmetric Key ID"/>
-        <urn:Field name="Active Signing Certificate Key ID">oauth_signing</urn:Field>
+        <urn:Field name="Active Signing Certificate Key ID"/>
         <urn:Field name="JWE Algorithm"/>
         <urn:Field name="JWE Content Encryption Algorithm"/>
         <urn:Field name="Active Symmetric Encryption Key ID"/>
@@ -27,6 +28,7 @@
         <urn:Field name="Publish Key ID X.509 URL">false</urn:Field>
         <urn:Field name="Publish Thumbprint X.509 URL">false</urn:Field>
         <urn:Field name="Expand Scope Groups">false</urn:Field>
+        <urn:Field name="Type Header Value"/>
     </urn:Fields>
     <urn:AdvancedFields>
         <urn:Field name="Include Key ID Header Parameter">true</urn:Field>
@@ -46,19 +48,14 @@
         <urn:Field name="Publish Key ID X.509 URL">false</urn:Field>
         <urn:Field name="Publish Thumbprint X.509 URL">false</urn:Field>
         <urn:Field name="Expand Scope Groups">false</urn:Field>
+        <urn:Field name="Type Header Value"/>
     </urn:AdvancedFields>
     <urn:Tables>
         <urn:Table name="Symmetric Keys"/>
-        <urn:Table name="Certificates">
-            <urn:Row defaultRow="false">
-                <urn:Field name="Key ID">oauth_signing</urn:Field>
-                <urn:Field name="Certificate">kx2oyou5shpok058oasgs8172</urn:Field>
-            </urn:Row>
-        </urn:Table>
+        <urn:Table name="Certificates"/>
     </urn:Tables>
     <urn:ExtendedContractAttributes>
         <urn:AttributeName>sub</urn:AttributeName>
-        <urn:AttributeName>scope</urn:AttributeName>
         <urn:AttributeName>cnf</urn:AttributeName>
         <urn:AttributeName>consent_id</urn:AttributeName>
     </urn:ExtendedContractAttributes>

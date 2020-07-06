@@ -130,7 +130,7 @@ engine.httptransport.ioThreads=0
 engine.websocket.maxConnections=-1
 
 # Including TLS 1.0 for end-user browser compatibility with IE 9 and IE 10
-engine.ssl.protocols=TLSv1, TLSv1.1, TLSv1.2
+engine.ssl.protocols=TLSv1.2
 engine.ssl.ciphers=${tls.default.cipherSuites}
 
 # Client connections
@@ -200,9 +200,9 @@ pa.interceptors.relativepath.decode.regex=[\\p{Po}\\p{N}\\p{Z}\\p{L}\\p{M}\\p{Zs
 # TLS/SSL
 #-------------------------------------------------------------------------------
 
-tls.default.protocols = TLSv1.1, TLSv1.2
+tls.default.protocols = TLSv1.2
 
-tls.default.cipherSuites = TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+tls.default.cipherSuites = TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 
 clusterconfig.ssl.protocols=${tls.default.protocols}
 clusterconfig.ssl.ciphers=${tls.default.cipherSuites}

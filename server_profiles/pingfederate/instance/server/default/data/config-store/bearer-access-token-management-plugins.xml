@@ -3,12 +3,10 @@
     <con:map name="bearer-access-token-management-plugin-sequence">
         <con:item name="obATM">241147</con:item>
         <con:item name="adminATM">263140</con:item>
-        <con:item name="standardATM">160993</con:item>
     </con:map>
     <con:map name="bearer-access-token-management-plugins">
         <con:item name="obATM">com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin</con:item>
         <con:item name="adminATM">com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin</con:item>
-        <con:item name="standardATM">com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin</con:item>
     </con:map>
     <con:map name="bearer-access-token-management-plugins-parents"/>
     <con:item name="bearer-access-token-management-plugins-default">obATM</con:item>
