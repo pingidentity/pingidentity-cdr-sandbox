@@ -89,7 +89,7 @@ Keys available for use with the $info variable:
   "userinfo_endpoint": "$info.get('userinfo_endpoint')",
   "introspection_endpoint": "$info.get('introspection_endpoint')",
   "jwks_uri": "$info.get('jwks_uri')",
-  "registration_endpoint": "$info.get('issuer')/as/register",
+  "registration_endpoint": "$info.get('registration_endpoint')",
   "ping_revoked_sris_endpoint": "$info.get('ping_revoked_sris_endpoint')",
   "ping_end_session_endpoint": "$info.get('ping_end_session_endpoint')",
   "device_authorization_endpoint": "$info.get('device_authorization_endpoint')",
