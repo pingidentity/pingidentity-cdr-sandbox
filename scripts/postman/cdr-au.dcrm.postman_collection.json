@@ -1227,6 +1227,474 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S001.T004 Delete Client",
+					"item": [
+						{
+							"name": "S001.T004.001 - DR downloads Private Key from CDR Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate kty is RSA\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.kty).to.equal('RSA');",
+											"});",
+											"pm.test(\"Validate algorithm is PS256\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.alg).to.equal('PS256');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = btoa(pm.response.text());",
+											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+											"});"
+										],
+										"id": "09a6a0d0-1c5e-49ad-a62f-343fc363d6f1"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"softwarestatement",
+										"JWKS",
+										"{{softwareId}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T004.002 - DR creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"id": "9c565676-3c6d-4de0-944a-920b86f10658"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T004.003 - DR requests Access Token from DH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b48e53b6-e1cf-460f-8314-08e04130cce6",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate access_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"ccAccessToken\", response.access_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{dcr-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "cdr:registration",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T004.004 - DR run DCR DELETE request to retrieve the client details from DH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1e1d3926-e809-4c4d-b3c9-0dcb5bfc8b5c",
+										"exec": [
+											"pm.test(\"Validate response status=204\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ccAccessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-CorrelationId",
+										"value": "asdgds",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}/{{dcrClientId}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
+									],
+									"path": [
+										"{{dcrClientId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T002.002 - DR creates JWT-Bearer Client Assertion Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"id": "43008233-a15a-47fd-8222-51a77d615a93"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T002.003 - DR requests Access Token from DH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2c0af3a8-9d40-4191-a127-41f9bb1b941f",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{dcr-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "cdr:registration",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T002.004 - DR run DCR GET request to retrieve the client details from DH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "32080a94-942c-41c6-b459-199c3af03d4c",
+										"exec": [
+											"pm.test(\"Validate response status=400\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{ccAccessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-CorrelationId",
+										"value": "asdgds",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}/{{dcrClientId}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
+									],
+									"path": [
+										"{{dcrClientId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "76e4fb1b-a63c-4b49-ab92-452132600089",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "070f7ab1-9664-4f83-a51d-63cabb5104db",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"event": [
@@ -5511,37 +5979,37 @@
 	],
 	"variable": [
 		{
-			"id": "ba8f6097-d0c6-48f8-94e2-c6f6fbad8ebd",
+			"id": "0a78381e-d71a-48c8-b9ae-4ced5ab83f5a",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084",
 			"type": "string"
 		},
 		{
-			"id": "71febed8-5edc-4e85-9302-cbe31f7926e8",
+			"id": "5f690b67-272a-4d36-898f-c16a40898799",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local",
 			"type": "string"
 		},
 		{
-			"id": "c8d1c027-b6de-4504-b262-5819da58a5cf",
+			"id": "5149f633-7eca-4f21-ab38-f27a54534476",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "b7c70eb8-2f38-4618-9dc3-3fa401b273c8",
+			"id": "9dd742c1-e7bf-4e4c-b48f-137004661a5c",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2",
 			"type": "string"
 		},
 		{
-			"id": "92ccfd0d-6fd1-4d3d-b0a4-ca1c36f3c772",
+			"id": "f686db8e-6d15-4bc4-8d0a-4ea60b659eae",
 			"key": "dh-audience",
 			"value": "https://data-holder",
 			"type": "string"
 		},
 		{
-			"id": "06a8148e-419c-4935-8f3d-5db333eba5c2",
+			"id": "8ac9e8f8-ffc6-43c7-a530-faabbb88a3c0",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
 			"type": "string"
