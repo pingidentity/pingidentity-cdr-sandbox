@@ -40,7 +40,7 @@ services:
       - pingnet-internal
 
   pingdirectory:
-    image: gcr.io/ping-identity/cdr-au/pingdirectory:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/pingdirectory:20200716
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
