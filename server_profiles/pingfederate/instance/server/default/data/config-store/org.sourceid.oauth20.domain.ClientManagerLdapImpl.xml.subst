@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<c:config xmlns:c="http://www.sourceid.org/${PA_POST_CONFIGURATION_DELAY}04/05/config">
+<c:config xmlns:c="http://www.sourceid.org/2004/05/config">
     <!-- Data store id -->
     <c:item name="PingFederateDSJNDIName">LDAP-C29DCC21274C10A483A76237675C3A22715D638C</c:item>
 
@@ -37,6 +37,7 @@
     <c:item name="lastModified">pf-oauth-client-last-modified</c:item>
     <c:item name="supplementalInfo">pf-oauth-client-supplemental-info</c:item>
 </c:config>
+
 
 
 

@@ -3,17 +3,17 @@
     <urn:AuthnSelectionTrees>
         <urn:AuthnSelectionTree treeName="Administrative Functions" disabled="false" authnApiApp="">
             <urn:AstRoot context="">
-                <urn:AstAction authnSelectorId="adminSelector" xsi:type="urn:AuthnSelectorActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                <urn:AstAction authnSelectorId="adminSelector" xsi:type="urn:AuthnSelectorActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                 <urn:AstChild context="true">
-                    <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                    <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                         <urn:AuthnSourceKey type="ADAPTER">htmlFormAdapterAdministrators</urn:AuthnSourceKey>
                         <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
                     </urn:AstAction>
                     <urn:AstChild context="Fail">
-                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                     </urn:AstChild>
                     <urn:AstChild context="Success">
-                        <urn:AstAction apcId="TkNJ3HMIIvIeeZEM" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                        <urn:AstAction apcId="TkNJ3HMIIvIeeZEM" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                             <urn:AttributeMapping>
                                 <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="htmlFormAdapterAdministrators" Value="entryUUID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                 <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -25,7 +25,7 @@
         </urn:AuthnSelectionTree>
         <urn:AuthnSelectionTree treeName="CDR Policy v1.1" disabled="false" authnApiApp="">
             <urn:AstRoot context="">
-                <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                     <urn:AuthnSourceKey type="ADAPTER">cdrSelectorAdapter</urn:AuthnSourceKey>
                     <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
                     <urn:attributeRule>
@@ -36,36 +36,36 @@
                     </urn:attributeRule>
                 </urn:AstAction>
                 <urn:AstChild context="Fail">
-                    <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                    <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                 </urn:AstChild>
                 <urn:AstChild context="LOA2">
-                    <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                    <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                         <urn:AuthnSourceKey type="ADAPTER">identityFirstAdapter</urn:AuthnSourceKey>
                         <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
                     </urn:AstAction>
                     <urn:AstChild context="Fail">
-                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                     </urn:AstChild>
                     <urn:AstChild context="Success">
-                        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                             <urn:AuthnSourceKey type="ADAPTER">clickatellAdapter</urn:AuthnSourceKey>
                             <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
                             <urn:InputIdMapping Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="mobile"/>
                         </urn:AstAction>
                         <urn:AstChild context="Fail">
-                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                         </urn:AstChild>
                         <urn:AstChild context="Success">
-                            <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                            <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                 <urn:AuthnSourceKey type="ADAPTER">cdrConsentAdapter</urn:AuthnSourceKey>
                                 <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
                                 <urn:InputIdMapping Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="entryUUID"/>
                             </urn:AstAction>
                             <urn:AstChild context="Fail">
-                                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                             </urn:AstChild>
                             <urn:AstChild context="Success">
-                                <urn:AstAction apcId="iQwSYDdExcmJaYk6" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                                <urn:AstAction apcId="iQwSYDdExcmJaYk6" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                                     <urn:AttributeMapping>
                                         <urn1:AttributeMap Name="result" Type="Text" Value="approve" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="acr" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_requestedACR" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -87,15 +87,15 @@
                     </urn:AstChild>
                 </urn:AstChild>
                 <urn:AstChild context="Success">
-                    <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                    <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                         <urn:AuthnSourceKey type="ADAPTER">identityFirstAdapter</urn:AuthnSourceKey>
                         <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
                     </urn:AstAction>
                     <urn:AstChild context="Fail">
-                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance"/>
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                     </urn:AstChild>
                     <urn:AstChild context="Success">
-                        <urn:AstAction apcId="iQwSYDdExcmJaYk6" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/${PA_POST_CONFIGURATION_DELAY}01/XMLSchema-instance">
+                        <urn:AstAction apcId="iQwSYDdExcmJaYk6" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                             <urn:AttributeMapping>
                                 <urn1:AttributeMap Name="result" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                 <urn1:AttributeMap Name="acr" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -119,6 +119,7 @@
     </urn:AuthnSelectionTrees>
     <urn:DefaultAuthnSources/>
 </urn:AuthnSelectionConfig>
+
 
 
 

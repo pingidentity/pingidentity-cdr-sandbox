@@ -7,6 +7,7 @@ services:
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - LICENSE_VERSION=6.0
+      - PA_POST_CONFIGURATION_DELAY=20
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
