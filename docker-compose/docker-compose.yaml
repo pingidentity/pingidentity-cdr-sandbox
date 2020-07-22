@@ -47,6 +47,7 @@ services:
       #- SERVER_PROFILE_BRANCH=2001
       - MAKELDIF_USERS=10
       #- VERBOSE=true
+      - MAX_HEAP_SIZE=768m
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
