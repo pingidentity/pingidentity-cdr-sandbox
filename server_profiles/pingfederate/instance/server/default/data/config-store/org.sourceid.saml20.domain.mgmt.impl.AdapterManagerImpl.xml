@@ -8,4 +8,8 @@
         <con:item name="cdrConsentAdapter">com.pingidentity.adapter.idp.ExternalConsentPageAdapter</con:item>
     </con:map>
     <con:map name="IdpAdapterInstanceParents"/>
+    <con:map name="SpAuthnAdapterInstances">
+        <con:item name="paragentless">com.pingidentity.pf.adapters.referenceid.SpBackchannelReferenceAuthnAdapter</con:item>
+    </con:map>
+    <con:map name="SpAdapterInstanceParents"/>
 </con:config>

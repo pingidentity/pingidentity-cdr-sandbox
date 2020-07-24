@@ -119,5 +119,6 @@ Keys available for use with the $info variable:
   "backchannel_token_delivery_modes_supported": $utils.toJsonArray($info.get('backchannel_token_delivery_modes_supported')),
   "backchannel_authentication_request_signing_alg_values_supported": $utils.toJsonArray($info.get('backchannel_authentication_request_signing_alg_values_supported')),
   "backchannel_user_code_parameter_supported": $info.get('backchannel_user_code_parameter_supported'),
-  "tls_client_certificate_bound_access_tokens": true
+  "tls_client_certificate_bound_access_tokens": true,
+  "pushed_authorization_request_endpoint": "$info.get('issuer')/as/par.oauth2"
 }
