@@ -64,28 +64,6 @@
    <listener-class>org.eclipse.jetty.servlet.listener.IntrospectorCleaner</listener-class>
   </listener>
 
-  <servlet>
-    <servlet-name>PARRequest</servlet-name>
-    <servlet-class>com.pingidentity.cdr.par.PARRequestServlet</servlet-class>
-    <init-param>
-      <param-name>PFAgentlessUsername</param-name>
-      <param-value>paragentless</param-value>
-    </init-param>
-    <init-param>
-      <param-name>PFAgentlessPassword</param-name>
-      <param-value>2FederateM0re</param-value>
-    </init-param>
-    <init-param>
-      <param-name>PFAgentlessAdapterId</param-name>
-      <param-value>paragentless</param-value>
-    </init-param>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>PARRequest</servlet-name>
-    <url-pattern>/as/par</url-pattern>
-  </servlet-mapping>
-
 
   <!-- ==================================================================== -->
   <!-- Context params to control Session Cookies                            -->
@@ -345,6 +323,30 @@
     <url-pattern>*.XSP</url-pattern>
   </servlet-mapping>
 
+
+
+
+  <servlet>
+    <servlet-name>PARRequest</servlet-name>
+    <servlet-class>com.pingidentity.cdr.par.PARRequestServlet</servlet-class>
+    <init-param>
+      <param-name>PFAgentlessUsername</param-name>
+      <param-value>paragentless</param-value>
+    </init-param>
+    <init-param>
+      <param-name>PFAgentlessPassword</param-name>
+      <param-value>2FederateM0re</param-value>
+    </init-param>
+    <init-param>
+      <param-name>PFAgentlessAdapterId</param-name>
+      <param-value>paragentless</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>PARRequest</servlet-name>
+    <url-pattern>/as/par.oauth2</url-pattern>
+  </servlet-mapping>
   <!-- ==================================================================== -->
   <!-- Dynamic Servlet Invoker.                                             -->
   <!-- This servlet invokes anonymous servlets that have not been defined   -->
