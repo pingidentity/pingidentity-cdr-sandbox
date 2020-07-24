@@ -83,7 +83,7 @@
 
   <servlet-mapping>
     <servlet-name>PARRequest</servlet-name>
-    <url-pattern>/as/par.oauth2</url-pattern>
+    <url-pattern>/as/par</url-pattern>
   </servlet-mapping>
 
 
