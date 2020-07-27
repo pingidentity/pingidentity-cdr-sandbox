@@ -5,7 +5,7 @@
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:UserKeyToAccessTokenMapping>
     <urn:UserKeyToAccessTokenMapping contextId="authz_req|apc.iQwSYDdExcmJaYk6" tokenManagerId="obATM">
-        <urn1:AttributeMap Name="sub" Type="Persistent Grant" Value="USER_KEY" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="sub" Type="Persistent Grant" Value="SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="cnf" Type="Expression" Value="#THUMBPRINT_HEADER=&quot;X-CertificateThumbprint&quot;, #objReq = #this.get(&quot;context.HttpRequest&quot;).getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(&quot;x5t#S256&quot;, #headerValue):null, #mapValue" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="consent_id" Type="Persistent Grant" Value="CONSENT_ID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -18,6 +18,7 @@
         <urn1:AttributeMap Name="CONSENT_ID" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="SELECTED_ACCOUNTS" Type="Expression" Value="null" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CLAIMS_IDTOKEN" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="SUBJECT" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="AUTH_TIME" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="USER_NAME" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="USER_KEY" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -32,10 +33,11 @@
         <urn1:AttributeMap Name="CONSENT_ID" Type="Authentication Policy Contract" Value="cdr_consent_id" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="SELECTED_ACCOUNTS" Type="Authentication Policy Contract" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CLAIMS_IDTOKEN" Type="Authentication Policy Contract" Value="idtokenClaims" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="SUBJECT" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="AUTH_TIME" Type="Expression" Value="(@java.time.Instant@now()).getEpochSecond()" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="USER_NAME" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CLAIMS_USERINFO" Type="Authentication Policy Contract" Value="userinfoClaims" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="USER_KEY" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="USER_KEY" Type="Authentication Policy Contract" Value="cdr_consent_id" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:ApcToUserKeyMapping>
     <urn:ClientCredentialsToAccessTokenMapping contextId="client_credentials" tokenManagerId="obATM">
@@ -53,11 +55,6 @@
     <urn:persistentGrantAttributes AttributeName="CLAIMS_IDTOKEN"/>
     <urn:persistentGrantAttributes AttributeName="AUTH_TIME"/>
     <urn:persistentGrantAttributes AttributeName="ACR_VALUES"/>
+    <urn:persistentGrantAttributes AttributeName="SUBJECT"/>
     <urn:allowedOrigins>https://test.${BASE_HOSTNAME}</urn:allowedOrigins>
 </urn:OAuthConfig>
-
-
-
-
-
-
