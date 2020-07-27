@@ -347,6 +347,19 @@
     <servlet-name>PARRequest</servlet-name>
     <url-pattern>/as/par.oauth2</url-pattern>
   </servlet-mapping>
+
+
+
+
+  <servlet>
+    <servlet-name>CDRArrangementEndpoint</servlet-name>
+    <servlet-class>com.pingidentity.cdr.sharing_arrangement_id.PARRequestServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CDRArrangementEndpoint</servlet-name>
+    <url-pattern>/arrangements/*</url-pattern>
+  </servlet-mapping>
   <!-- ==================================================================== -->
   <!-- Dynamic Servlet Invoker.                                             -->
   <!-- This servlet invokes anonymous servlets that have not been defined   -->

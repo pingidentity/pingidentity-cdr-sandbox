@@ -99,7 +99,7 @@ Keys available for use with the $info variable:
     #set($res=$claimsSupported.add("auth_time"))
     #set($res=$claimsSupported.add("acr"))
     "claims_supported": $utils.toJsonArray($claimsSupported),
-  #end  
+  #end
   "response_types_supported": ["code id_token"],
   "response_modes_supported": ["fragment"],
   "grant_types_supported": ["authorization_code", "client_credentials"],
@@ -120,5 +120,6 @@ Keys available for use with the $info variable:
   "backchannel_authentication_request_signing_alg_values_supported": $utils.toJsonArray($info.get('backchannel_authentication_request_signing_alg_values_supported')),
   "backchannel_user_code_parameter_supported": $info.get('backchannel_user_code_parameter_supported'),
   "tls_client_certificate_bound_access_tokens": true,
-  "pushed_authorization_request_endpoint": "$info.get('issuer')/as/par.oauth2"
+  "pushed_authorization_request_endpoint": "$info.get('issuer')/as/par.oauth2",
+  "cdr_arrangement_endpoint": "$info.get('issuer')/arrangements"
 }
