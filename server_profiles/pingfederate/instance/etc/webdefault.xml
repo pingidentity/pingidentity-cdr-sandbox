@@ -353,7 +353,7 @@
 
   <servlet>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
-    <servlet-class>com.pingidentity.cdr.sharing_arrangement_id.PARRequestServlet</servlet-class>
+    <servlet-class>com.pingidentity.cdr.sharing_arrangement_id.CDRArrangementServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
