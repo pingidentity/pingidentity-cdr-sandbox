@@ -58,7 +58,7 @@ services:
       - pingnet-internal
   
   cdr-dr-client:
-    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200624
+    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200728
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -140,6 +140,14 @@ services:
     ports:
       - 1521:1521
       - 81:81
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+  pingdataconsole:
+    image: pingidentity/pingdataconsole:8.1.0.0-alpine-edge
+    ports:
+      - "8443:8443"
     networks:
       - pingnet-internal
       - pingnet-dmz
