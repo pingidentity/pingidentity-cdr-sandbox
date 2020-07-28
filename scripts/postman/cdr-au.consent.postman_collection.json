@@ -4348,7 +4348,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"cdr_arrangement_id\":\"{{consent-cdr-arrangement-id}}\",\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"{{consent-cdr-arrangement-id}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -6136,6 +6136,475 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S004.T009 cdr_arrangement_id validation",
+					"item": [
+						{
+							"name": "S004.T009.001 Validate standard authz request",
+							"item": [
+								{
+									"name": "S004.T001.001 - Download Private Key",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "67aaf477-bdc3-428f-8792-96e8ff39c324",
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate kty is RSA\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response.kty).to.equal('RSA');",
+													"});",
+													"pm.test(\"Validate algorithm is PS256\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response.alg).to.equal('PS256');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var responseBlob = btoa(pm.response.text());",
+													"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"softwarestatement",
+												"JWKS",
+												"{{softwareId}}",
+												"private"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S004.T001.002 - Generate Request JWT",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "fa030fd0-a975-47d1-9f97-59fed052c0a7",
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate request-jwt property exists\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('request-jwt');",
+													"});",
+													"pm.test(\"Validate request-url property exists\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('request-url');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-private-jwk",
+												"type": "text",
+												"value": "{{software-jwks-private}}"
+											},
+											{
+												"key": "x-nonce",
+												"value": "{{default-nonce}}",
+												"type": "text"
+											},
+											{
+												"key": "x-state",
+												"value": "{{default-state}}",
+												"type": "text"
+											},
+											{
+												"key": "x-issuer",
+												"value": "{{dcrClientId}}",
+												"type": "text"
+											},
+											{
+												"key": "x-duration-seconds",
+												"value": "60",
+												"type": "text"
+											},
+											{
+												"key": "x-dataholder-authorization-endpoint",
+												"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+												"type": "text"
+											},
+											{
+												"key": "x-response-type",
+												"value": "code id_token",
+												"type": "text"
+											},
+											{
+												"key": "x-scope",
+												"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+												"type": "text"
+											},
+											{
+												"key": "x-redirecturi",
+												"value": "{{default-redirecturi}}",
+												"type": "text"
+											},
+											{
+												"key": "x-maxage",
+												"value": "-1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\": \"xxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"options": {
+												"raw": {}
+											}
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"tpp",
+												"requestGenericJWT"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S004.T001.003 - Initiate Consent Request",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c3f0bdd1-fe4b-4eea-bbfc-957e12c4566b",
+												"exec": [
+													"pm.test(\"Validate response status=302\", function () {",
+													"    pm.response.to.have.status(302);",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var locationHeader = pm.response.headers.get(\"Location\");",
+													"    if(!locationHeader)",
+													"        locationHeader = pm.response.headers.get(\"Referer\");",
+													"",
+													"    var locationParams = locationHeader.split(\"#\")[1];",
+													"    const eachParamArray = locationParams.split('&');",
+													"    let params = {};",
+													"    eachParamArray.forEach((param) => {",
+													"        const key = param.split('=')[0];",
+													"        const value = param.split('=')[1];",
+													"        Object.assign(params, {[key]: value});",
+													"    });",
+													"",
+													"    pm.expect(params[\"error\"]).to.equal(\"server_error\");",
+													"    pm.environment.set(\"consent-request-authcode-callback-error\", params[\"error\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{consent-request-url}}",
+											"host": [
+												"{{consent-request-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "f21d3260-47aa-4522-b9c9-c59d0111987d",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "11ffabb6-14ba-4582-97de-a042471a80df",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "S004.T009.002 Validate PAR",
+							"item": [
+								{
+									"name": "S004.T005.001 - Download Private Key",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "5420a3bb-ea4b-4788-9ac2-3936a8b2140a",
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate kty is RSA\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response.kty).to.equal('RSA');",
+													"});",
+													"pm.test(\"Validate algorithm is PS256\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response.alg).to.equal('PS256');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var responseBlob = btoa(pm.response.text());",
+													"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"softwarestatement",
+												"JWKS",
+												"{{softwareId}}",
+												"private"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S004.T005.002 - Generate Request JWT",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d5147772-70d5-40f7-a2b0-66465ec20ddf",
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate request-jwt property exists\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('request-jwt');",
+													"});",
+													"pm.test(\"Validate request-url property exists\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('request-url');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-request-jwt\", response[\"request-jwt\"]);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-private-jwk",
+												"type": "text",
+												"value": "{{software-jwks-private}}"
+											},
+											{
+												"key": "x-nonce",
+												"value": "{{default-nonce}}",
+												"type": "text"
+											},
+											{
+												"key": "x-state",
+												"value": "{{default-state}}",
+												"type": "text"
+											},
+											{
+												"key": "x-issuer",
+												"value": "{{dcrClientId}}",
+												"type": "text"
+											},
+											{
+												"key": "x-duration-seconds",
+												"value": "60",
+												"type": "text"
+											},
+											{
+												"key": "x-dataholder-authorization-endpoint",
+												"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+												"type": "text"
+											},
+											{
+												"key": "x-response-type",
+												"value": "code id_token",
+												"type": "text"
+											},
+											{
+												"key": "x-scope",
+												"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+												"type": "text"
+											},
+											{
+												"key": "x-redirecturi",
+												"value": "{{default-redirecturi}}",
+												"type": "text"
+											},
+											{
+												"key": "x-maxage",
+												"value": "-1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"xxxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"options": {
+												"raw": {}
+											}
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"tpp",
+												"requestGenericJWT"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S003.T005.003 - Initiate PAR",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "0217c3af-e286-4fe3-bd78-435d455018ef",
+												"exec": [
+													"pm.test(\"Validate response status=400\", function () {",
+													"    pm.response.to.have.status(400);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "request",
+													"value": "{{consent-request-jwt}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "https://sso.data-holder.local/as/par.oauth2",
+											"protocol": "https",
+											"host": [
+												"sso",
+												"data-holder",
+												"local"
+											],
+											"path": [
+												"as",
+												"par.oauth2"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6c943e16-97f6-4fdf-979e-c8cfbe0efa7d",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "7d83a188-1a9b-4062-a998-c3530de97aa1",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"event": [
@@ -6187,77 +6656,77 @@
 	],
 	"variable": [
 		{
-			"id": "a6945b04-16b5-477b-ad05-8168b639c11e",
+			"id": "c73223fc-9df7-430e-9962-fbfe3ec034fc",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084"
 		},
 		{
-			"id": "deacf473-df6d-4e3b-9e4c-83067e36eda4",
+			"id": "5b6c1a55-f420-43e2-8452-dd1b6205913d",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "07dc7e4b-80c6-407c-a06a-98c1c73d994e",
+			"id": "bbd9315d-15c9-4d95-9ae2-59dd0e6b3e0e",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "0c495dee-0102-4311-a419-465509c4e484",
+			"id": "646d7825-a0cc-48c8-a6e8-d7f1383e66b0",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "bbc4706c-f540-4731-92b9-deb72d8a84a9",
+			"id": "b12d4572-d46d-4500-9e60-6a3559dcbcfc",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "2c4b74e3-a92c-461c-a656-c2ac88ff8742",
+			"id": "563fe1d2-7841-437d-9ec3-b7cd5598d0dc",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "98940453-86a9-482c-b543-6fd31dbb96a2",
+			"id": "621bff11-2304-4429-8af7-3f77fd286c97",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "47052dbe-8512-4d33-b36e-a9ac73ddad4e",
+			"id": "1365af7e-adef-4de9-b4e2-bd18ff701793",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "e9d5ea80-283e-4830-b141-941b7348bc47",
+			"id": "bfc1a3f1-7759-44fd-94fd-606e80ecb197",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "a1b29410-1651-4266-969b-408d91019606",
+			"id": "22932dcf-a523-4594-bf44-ec3efe2e472c",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "b8c64fba-7463-408c-a00a-db36265b8a6e",
+			"id": "41b6d277-9e39-4d0b-8903-225a6a74a843",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "5f7a1b2d-3997-40bc-99ad-efd8ae9b04b1",
+			"id": "e54d8ab8-4a4e-407d-98df-883c89e65077",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "422317ac-3c7c-4eb0-a781-228c0cd49826",
+			"id": "5c6340b2-a6c5-4fba-b3ad-27bff5942acd",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "b3d39b8e-269d-4565-9824-aa87cfa263ab",
+			"id": "b0e3a76d-1472-45c6-aa18-250d529e0005",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "fd570c30-9af5-4ea5-9e2f-25edf5c11cc0",
+			"id": "10b8725f-385d-4d6c-8229-89acede7d96a",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		}
