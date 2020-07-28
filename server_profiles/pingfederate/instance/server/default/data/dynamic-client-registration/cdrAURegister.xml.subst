@@ -7,7 +7,7 @@
         <urn:Field name="JWKS URL">${SOFTWARE_STATEMENT_ACCC_JWKS_ENDPOINT}</urn:Field>
         <urn:Field name="CDR Access Token Manager">obATM</urn:Field>
         <urn:Field name="Common Scopes">openid,profile</urn:Field>
-        <urn:Field name="Audience">${PF_AUD}</urn:Field>
+        <urn:Field name="Audience">${SOFTWARE_STATEMENT_BANK_AUDIENCE}</urn:Field>
         <urn:Field name="ECDSA">true</urn:Field>
         <urn:Field name="RSA-PSS">true</urn:Field>
         <urn:Field name="RSA">false</urn:Field>
