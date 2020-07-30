@@ -2178,7 +2178,81 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.003 - Initiate PAR",
+					"name": "S003.T001.003 - Creates JWT-Bearer Client Assertion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a72b954-33f2-43d4-8cce-494df4dfb189",
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validate client assertion is available\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response).to.have.property('client-assertion');",
+									"});",
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "private-jwk",
+									"value": "{{software-jwks-private}}",
+									"type": "text"
+								},
+								{
+									"key": "client-id",
+									"value": "{{dcrClientId}}",
+									"type": "text"
+								},
+								{
+									"key": "token-endpoint",
+									"value": "{{dh-idp-host}}",
+									"type": "text"
+								},
+								{
+									"key": "kid",
+									"value": "{{softwareId}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+							"host": [
+								"{{cdr-register-testharness-host}}"
+							],
+							"path": [
+								"testtool",
+								"tpp",
+								"createClientAssertion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S003.T001.004 - Initiate PAR",
 					"event": [
 						{
 							"listen": "test",
@@ -2217,6 +2291,16 @@
 									"key": "request",
 									"value": "{{consent-request-jwt}}",
 									"type": "text"
+								},
+								{
+									"key": "client_assertion",
+									"value": "{{consent-client-assertion}}",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion_type",
+									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+									"type": "text"
 								}
 							]
 						},
@@ -2237,7 +2321,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.003 - Initiate Consent Request",
+					"name": "S003.T001.005 - Initiate Consent Request",
 					"event": [
 						{
 							"listen": "test",
@@ -2274,7 +2358,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.004 - Provider username",
+					"name": "S003.T001.006 - Provider username",
 					"event": [
 						{
 							"listen": "test",
@@ -2321,7 +2405,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.005 - Verify OTP",
+					"name": "S003.T001.007 - Verify OTP",
 					"event": [
 						{
 							"listen": "test",
@@ -2384,7 +2468,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.006 - Perform consent",
+					"name": "S003.T001.008 - Perform consent",
 					"event": [
 						{
 							"listen": "test",
@@ -2459,7 +2543,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.007 - Creates JWT-Bearer Client Assertion",
+					"name": "S003.T001.009 - Creates JWT-Bearer Client Assertion",
 					"event": [
 						{
 							"listen": "test",
@@ -2533,7 +2617,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.008 - Perform code exchange",
+					"name": "S003.T001.010 - Perform code exchange",
 					"event": [
 						{
 							"listen": "test",
@@ -4368,7 +4452,81 @@
 							"response": []
 						},
 						{
-							"name": "S003.T005.003 - Initiate PAR",
+							"name": "S004.T005.003 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aeb33b71-c36f-454c-a92a-b0bc2a90c6ec",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S004.T005.004 - Initiate PAR",
 							"event": [
 								{
 									"listen": "test",
@@ -4407,6 +4565,16 @@
 											"key": "request",
 											"value": "{{consent-request-jwt}}",
 											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
 										}
 									]
 								},
@@ -4427,7 +4595,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.003 - Initiate Consent Request",
+							"name": "S004.T005.005 - Initiate Consent Request",
 							"event": [
 								{
 									"listen": "test",
@@ -4464,7 +4632,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.004 - Provider username",
+							"name": "S004.T005.006 - Provider username",
 							"event": [
 								{
 									"listen": "test",
@@ -4511,7 +4679,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.005 - Verify OTP",
+							"name": "S004.T005.007 - Verify OTP",
 							"event": [
 								{
 									"listen": "test",
@@ -4574,7 +4742,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.006 - Perform consent",
+							"name": "S004.T005.008 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
@@ -4649,7 +4817,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.007 - Creates JWT-Bearer Client Assertion",
+							"name": "S004.T005.009 - Creates JWT-Bearer Client Assertion",
 							"event": [
 								{
 									"listen": "test",
@@ -4723,7 +4891,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.008 - Perform code exchange",
+							"name": "S004.T005.010 - Perform code exchange",
 							"event": [
 								{
 									"listen": "test",
@@ -5635,29 +5803,38 @@
 										}
 									],
 									"request": {
-										"method": "DELETE",
+										"method": "POST",
 										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												}
+											],
+											"options": {
+												"urlencoded": {}
+											}
+										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id}}?client_id={{dcrClientId}}&client_assertion={{consent-client-assertion}}&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id}}",
 											"host": [
 												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"{{consent-cdr-arrangement-id}}"
-											],
-											"query": [
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-												}
 											]
 										}
 									},
@@ -5750,7 +5927,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "9abb3fe1-c58c-4716-9ec7-882beaefc8da",
+												"id": "0ca6dd60-26de-4d41-bc3b-a7504447b384",
 												"exec": [
 													"pm.test(\"Validate response status=404\", function () {",
 													"    pm.response.to.have.status(404);",
@@ -5761,29 +5938,38 @@
 										}
 									],
 									"request": {
-										"method": "DELETE",
+										"method": "POST",
 										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												}
+											],
+											"options": {
+												"urlencoded": {}
+											}
+										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id}}?client_id={{dcrClientId}}&client_assertion={{consent-client-assertion}}&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id}}",
 											"host": [
 												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"{{consent-cdr-arrangement-id}}"
-											],
-											"query": [
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-												}
 											]
 										}
 									},
@@ -5898,7 +6084,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "28ff2b57-e18a-462f-8555-52c6586576ad",
+												"id": "5a7bafa6-3897-4b4c-bd53-6d086dcb5a79",
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
@@ -5910,29 +6096,38 @@
 										}
 									],
 									"request": {
-										"method": "DELETE",
+										"method": "POST",
 										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												}
+											],
+											"options": {
+												"urlencoded": {}
+											}
+										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id-concurrent}}?client_id={{dcrClientId}}&client_assertion={{consent-client-assertion}}&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id-concurrent}}",
 											"host": [
 												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"{{consent-cdr-arrangement-id-concurrent}}"
-											],
-											"query": [
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-												}
 											]
 										}
 									},
@@ -5946,7 +6141,7 @@
 							"name": "S004.T008.004 - Refresh arrangment 2 token - should fail",
 							"item": [
 								{
-									"name": "S004.T007.001.001 - Creates JWT-Bearer Client Assertion",
+									"name": "S004.T008.001.001 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -6020,7 +6215,7 @@
 									"response": []
 								},
 								{
-									"name": "S004.T007.001.002 - Perform refresh token",
+									"name": "S004.T008.001.002 - Perform refresh token",
 									"event": [
 										{
 											"listen": "test",
@@ -6526,7 +6721,81 @@
 									"response": []
 								},
 								{
-									"name": "S003.T005.003 - Initiate PAR",
+									"name": "S004.T005.003 - Creates JWT-Bearer Client Assertion",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "8d7a245e-26db-41b9-a714-feb67cedb2df",
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate client assertion is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('client-assertion');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "private-jwk",
+													"value": "{{software-jwks-private}}",
+													"type": "text"
+												},
+												{
+													"key": "client-id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "token-endpoint",
+													"value": "{{dh-idp-host}}",
+													"type": "text"
+												},
+												{
+													"key": "kid",
+													"value": "{{softwareId}}",
+													"type": "text"
+												}
+											],
+											"options": {
+												"urlencoded": {}
+											}
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"tpp",
+												"createClientAssertion"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S004.T005.004 - Initiate PAR",
 									"event": [
 										{
 											"listen": "test",
@@ -6556,6 +6825,16 @@
 												{
 													"key": "request",
 													"value": "{{consent-request-jwt}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 													"type": "text"
 												}
 											]
@@ -6656,77 +6935,77 @@
 	],
 	"variable": [
 		{
-			"id": "c73223fc-9df7-430e-9962-fbfe3ec034fc",
+			"id": "fcfc64b8-5af3-44a7-908c-39992a6349bc",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084"
 		},
 		{
-			"id": "5b6c1a55-f420-43e2-8452-dd1b6205913d",
+			"id": "b55bd2e1-8842-4052-b27a-03f3c5e289c4",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "bbd9315d-15c9-4d95-9ae2-59dd0e6b3e0e",
+			"id": "84dccb80-fb79-4ac4-ae76-3516fb44abbc",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "646d7825-a0cc-48c8-a6e8-d7f1383e66b0",
+			"id": "06caa11a-ef90-4e96-8916-eceb196aa55b",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "b12d4572-d46d-4500-9e60-6a3559dcbcfc",
+			"id": "8997d297-3a0b-4dfe-a682-c207c7092907",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "563fe1d2-7841-437d-9ec3-b7cd5598d0dc",
+			"id": "14e4c4f3-514c-474b-86cc-f1e9407a5e52",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "621bff11-2304-4429-8af7-3f77fd286c97",
+			"id": "7169c1ba-7d81-4bd5-ba5a-d964fb976c9b",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "1365af7e-adef-4de9-b4e2-bd18ff701793",
+			"id": "9655de32-b947-4e78-bf38-c62be4d8ed91",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "bfc1a3f1-7759-44fd-94fd-606e80ecb197",
+			"id": "bda35b05-4861-4d5b-8919-5e955f3797ec",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "22932dcf-a523-4594-bf44-ec3efe2e472c",
+			"id": "67f73725-95b6-4495-9a7d-0137768ab78c",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "41b6d277-9e39-4d0b-8903-225a6a74a843",
+			"id": "4f0d843d-e48a-4445-890d-e36973db7c1f",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "e54d8ab8-4a4e-407d-98df-883c89e65077",
+			"id": "701efe79-677b-44db-8af3-26f5fc62408e",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "5c6340b2-a6c5-4fba-b3ad-27bff5942acd",
+			"id": "57238db8-817b-4db7-8afe-5eeee0514a9d",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "b0e3a76d-1472-45c6-aa18-250d529e0005",
+			"id": "123e4557-2605-484d-a81c-89e5bb36a745",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "10b8725f-385d-4d6c-8229-89acede7d96a",
+			"id": "04c066f5-0d40-47a8-a0b7-db50d9864f02",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		}
