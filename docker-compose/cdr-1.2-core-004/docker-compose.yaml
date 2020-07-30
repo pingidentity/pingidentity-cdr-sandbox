@@ -58,7 +58,7 @@ services:
       - pingnet-internal
   
   cdr-dr-client:
-    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200729
+    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200730
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
