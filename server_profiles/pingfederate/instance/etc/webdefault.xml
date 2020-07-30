@@ -358,7 +358,7 @@
 
   <servlet-mapping>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
-    <url-pattern>/arrangements/*</url-pattern>
+    <url-pattern>/arrangements/revoke</url-pattern>
   </servlet-mapping>
   <!-- ==================================================================== -->
   <!-- Dynamic Servlet Invoker.                                             -->
