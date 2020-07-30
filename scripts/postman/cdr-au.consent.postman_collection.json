@@ -5822,6 +5822,11 @@
 													"key": "client_assertion_type",
 													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 													"type": "text"
+												},
+												{
+													"key": "cdr_arrangement_id",
+													"value": "{{consent-cdr-arrangement-id}}",
+													"type": "text"
 												}
 											],
 											"options": {
@@ -5829,12 +5834,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id}}",
+											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
 												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
-												"{{consent-cdr-arrangement-id}}"
+												"revoke"
 											]
 										}
 									},
@@ -5929,8 +5934,8 @@
 											"script": {
 												"id": "0ca6dd60-26de-4d41-bc3b-a7504447b384",
 												"exec": [
-													"pm.test(\"Validate response status=404\", function () {",
-													"    pm.response.to.have.status(404);",
+													"pm.test(\"Validate response status=422\", function () {",
+													"    pm.response.to.have.status(422);",
 													"});"
 												],
 												"type": "text/javascript"
@@ -5957,6 +5962,11 @@
 													"key": "client_assertion_type",
 													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 													"type": "text"
+												},
+												{
+													"key": "cdr_arrangement_id",
+													"value": "{{consent-cdr-arrangement-id}}",
+													"type": "text"
 												}
 											],
 											"options": {
@@ -5964,12 +5974,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id}}",
+											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
 												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
-												"{{consent-cdr-arrangement-id}}"
+												"revoke"
 											]
 										}
 									},
@@ -6115,6 +6125,11 @@
 													"key": "client_assertion_type",
 													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 													"type": "text"
+												},
+												{
+													"key": "cdr_arrangement_id",
+													"value": "{{consent-cdr-arrangement-id-concurrent}}",
+													"type": "text"
 												}
 											],
 											"options": {
@@ -6122,12 +6137,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/{{consent-cdr-arrangement-id-concurrent}}",
+											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
 												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
-												"{{consent-cdr-arrangement-id-concurrent}}"
+												"revoke"
 											]
 										}
 									},
@@ -6935,77 +6950,77 @@
 	],
 	"variable": [
 		{
-			"id": "fcfc64b8-5af3-44a7-908c-39992a6349bc",
+			"id": "d08f617d-bce3-4e62-9b4a-b92b536aef7f",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084"
 		},
 		{
-			"id": "b55bd2e1-8842-4052-b27a-03f3c5e289c4",
+			"id": "54d1c3c6-4d85-436e-95ab-e5d200a45fff",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "84dccb80-fb79-4ac4-ae76-3516fb44abbc",
+			"id": "168536db-f0f0-4ab5-931b-f719d29bd526",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "06caa11a-ef90-4e96-8916-eceb196aa55b",
+			"id": "f9f02699-0de7-4be5-9d27-afd136c18138",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "8997d297-3a0b-4dfe-a682-c207c7092907",
+			"id": "84f9e035-b954-432a-8204-2b901023b7e5",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "14e4c4f3-514c-474b-86cc-f1e9407a5e52",
+			"id": "3cf46bab-ebc0-4572-8282-58f90b7922e4",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "7169c1ba-7d81-4bd5-ba5a-d964fb976c9b",
+			"id": "2e9e81ad-6ace-4b8e-a778-8c83388c0326",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "9655de32-b947-4e78-bf38-c62be4d8ed91",
+			"id": "4f73a016-1dbb-4c3e-8eb8-7e23304b0145",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "bda35b05-4861-4d5b-8919-5e955f3797ec",
+			"id": "e6e70de4-f5fb-4b6f-9d71-d55a8b895ebf",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "67f73725-95b6-4495-9a7d-0137768ab78c",
+			"id": "1e763eb2-5a51-4dc4-a337-f3c01b232399",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "4f0d843d-e48a-4445-890d-e36973db7c1f",
+			"id": "24c2272d-51db-4f02-b243-a274963362f6",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "701efe79-677b-44db-8af3-26f5fc62408e",
+			"id": "720ca0fc-2687-43f2-a179-65bb0003116f",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "57238db8-817b-4db7-8afe-5eeee0514a9d",
+			"id": "0e16692a-da9f-4dc0-8f16-db35de046e21",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "123e4557-2605-484d-a81c-89e5bb36a745",
+			"id": "09c113bf-4ec3-4a72-a880-c8c4b66c724d",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "04c066f5-0d40-47a8-a0b7-db50d9864f02",
+			"id": "160829b6-4de6-4b39-bde4-8ed6331f5e45",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		}
