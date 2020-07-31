@@ -44,8 +44,7 @@ then
 else
   echo "Keypair imported - ID: $keypairId"
 
-  httpsEngineId=$(curl --silent --basic -u Administrator:${PA_ADMIN_PASSWORD} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' https://localhost:9000/pa-admin-api/v3/httpsListeners --insecure | jq '.items[] | select(.name=="ENGINE") | .id')
-  adminHttpsEngineId=$(curl --silent --basic -u Administrator:${PA_ADMIN_PASSWORD} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' https://localhost:9000/pa-admin-api/v3/httpsListeners --insecure | jq '.items[] | select(.name=="ADMIN") | .id')
+  httpsEngineId=$(curl --silent --basic -u Administrator:${PA_ADMIN_PASSWORD} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' https://localhost:9000/pa-admin-api/v3/httpsListeners --insecure | jq '.items[] | select(.name=="CONFIG QUERY") | .id')
 
   engineName="CONFIG QUERY"
   echo $("generate_httpslistener_data") > configure-https.txt
