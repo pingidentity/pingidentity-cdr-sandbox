@@ -1,0 +1,25 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+# comment out what you don't want.
+resources:
+- pingdirectory
+
+# The only difference in standalone deployments vs "fullstack" (integrated) is the product configurations.
+# here we replace standalone server-profiles ("getting-started") with "baseline" for each product
+
+
+configMapGenerator:
+- name: pingdirectory-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.pingdirectory
+
+patches:
+- target:
+    kind: StatefulSet
+    name: ^pingdirectory$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/image
+      value: gcr.io/ping-identity/cdr-au/pingdirectory:20200716

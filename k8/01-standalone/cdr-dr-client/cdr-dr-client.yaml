@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: cdr-dr-client
+  name: cdr-dr-client
+spec:
+  ports:
+  - name: cdr-dr-client
+    port: 8080
+    targetPort: 7878
+  selector:
+    role: cdr-dr-client
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: cdr-dr-client
+  name: cdr-dr-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: cdr-dr-client
+  template:
+    metadata:
+      labels:
+        role: cdr-dr-client
+      name: cdr-dr-client
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: cdr-dr-client-environment-variables
+        image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200730-02
+        name: cdr-dr-client
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1.5Gi
+

@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: deepthought-bank-api
+  name: deepthought-bank-api
+spec:
+  ports:
+  - name: deepthought-bank-api
+    port: 8081
+    targetPort: 8081
+  selector:
+    role: deepthought-bank-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: deepthought-bank-api
+  name: deepthought-bank-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: deepthought-bank-api
+  template:
+    metadata:
+      labels:
+        role: deepthought-bank-api
+      name: deepthought-bank-api
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: deepthought-bank-api-environment-variables
+        image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
+        name: deepthought-bank-api
+        ports:
+        - containerPort: 8081
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1.5Gi
+
