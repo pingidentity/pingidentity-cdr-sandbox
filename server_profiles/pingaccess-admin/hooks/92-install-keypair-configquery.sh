@@ -3,7 +3,7 @@ generate_post_data()
 {
   cat <<EOF
 {
-  "alias": "ca-keypair-$RANDOM",
+  "alias": "${PA_CONSOLE_HOST}",
   "fileData": "$(cat network.p12 | base64)",
   "password": "P@ssword1"
 }
