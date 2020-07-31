@@ -8,6 +8,8 @@ services:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - LICENSE_VERSION=6.0
       - PA_POST_CONFIGURATION_DELAY=0
+      - OPERATIONAL_MODE=STANDALONE
+      - PA_ADMIN_PORT=9000
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
@@ -56,7 +58,7 @@ services:
       - 1443:443
     networks:
       - pingnet-internal
-  
+
   cdr-dr-client:
     image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200730-02
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
@@ -68,7 +70,7 @@ services:
       - cdr.env
     ports:
       - 8080:7878
-    networks: 
+    networks:
       - pingnet-internal
       - pingnet-dmz
 
@@ -100,7 +102,7 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
- 
+
   deepthought-bank-api:
     image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
     environment:
@@ -114,7 +116,7 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
- 
+
   deepthought-admin-service:
     image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
     environment:
@@ -128,7 +130,7 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
- 
+
   deepthought-h2-database:
     image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
     environment:
