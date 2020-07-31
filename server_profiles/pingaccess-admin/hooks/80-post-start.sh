@@ -17,6 +17,7 @@ then
 
     ${HOOKS_DIR}/90-install-ca.sh
     ${HOOKS_DIR}/91-install-keypair.sh
+    ${HOOKS_DIR}/92-install-keypair-configquery.sh
 fi
 
 if test "${OPERATIONAL_MODE}" = "CLUSTERED_CONSOLE"
