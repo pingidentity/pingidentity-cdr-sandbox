@@ -18,6 +18,7 @@ Build environment:
 kustomize build 02-fullstack/cdrregister | kubectl apply  -f -
 kustomize build 02-fullstack/pingdirectory | kubectl apply  -f -
 kustomize build 02-fullstack/pingfederate | kubectl apply  -f -
+kustomize build 02-fullstack/pingaccess-admin | kubectl apply  -f -
 kustomize build 02-fullstack/pingaccess | kubectl apply  -f -
 kustomize build 02-fullstack/deepthought-h2-database | kubectl apply  -f -
 kustomize build 02-fullstack/deepthought-admin-service | kubectl apply  -f -

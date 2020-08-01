@@ -2,51 +2,50 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    role: pingaccess
-  name: pingaccess
+    role: pingaccess-admin
+  name: pingaccess-admin
 spec:
   ports:
-  - name: pa-app
-    port: 443
-    targetPort: 3000
-  - name: pa-internal
-    port: 3000
+  - name: pa-admin
+    port: 9000
+  - name: pa-cluster
+    port: 9090
   selector:
-    role: pingaccess
+    role: pingaccess-admin
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    role: pingaccess
-  name: pingaccess
+    role: pingaccess-admin
+  name: pingaccess-admin
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      role: pingaccess
+      role: pingaccess-admin
   template:
     metadata:
       labels:
-        role: pingaccess
-      name: pingaccess
+        role: pingaccess-admin
+      name: pingaccess-admin
     spec:
       initContainers:
       - name: init
         image: curlimages/curl:latest
-        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingaccess-admin:9090 ; do echo waiting for admin ; sleep 3 ; done']
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingfederate:9031 ; do echo waiting for admin ; sleep 3 ; done']
       containers:
       - envFrom:
         - configMapRef:
-            name: pingaccess-environment-variables
+            name: pingaccess-admin-environment-variables
         - secretRef:
             name: devops-secret
             optional: true
         image: pingidentity/pingaccess:6.0.0-alpine-edge
-        name: pingaccess
+        name: pingaccess-admin
         ports:
-        - containerPort: 443
-        - containerPort: 3000
+        - containerPort: 9000
+        - containerPort: 9090
         resources:
           limits:
             cpu: "1"
