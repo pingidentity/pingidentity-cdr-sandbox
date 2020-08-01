@@ -16,6 +16,7 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
 1. Open the Postman Settings page
 2. On the General tab
    * Disable "Automatically follow redirects"
+   * Disable "SSL Certificate Verification"
 3. On the Certificates tab
    * Add a Certificate with the following details
       * Host: sso.data-holder.local
