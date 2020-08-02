@@ -1,13 +1,15 @@
-SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
-SERVER_PROFILE_PATH=server_profiles/pingdirectory
-SERVER_PROFILE_BRANCH=edge
+#SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+#SERVER_PROFILE_PATH=server_profiles/pingdirectory
+#SERVER_PROFILE_BRANCH=edge
+SERVER_PROFILE_URL=https://www.github.com/pingidentity/pingidentity-server-profiles.git
+SERVER_PROFILE_PATH=baseline/pingdirectory
 PING_IDENTITY_ACCEPT_EULA=YES
 MAX_HEAP_SIZE=768m
 
 ORCHESTRATION_TYPE=KUBERNETES
 K8S_STATEFUL_SET_NAME=pingdirectory
 K8S_STATEFUL_SET_SERVICE_NAME=pingdirectory
-MAKELDIF_USERS=1000
+TAIL_LOG_FILES=""
 
 BASE_HOSTNAME=data-holder.local
 OPERATIONAL_MODE=STANDALONE
@@ -34,4 +36,3 @@ CDR_REGISTER_BASE_URL=http://cdrregister:8084
 
 DR_CLIENT-authorization_endpoint=https://sso.data-holder.local/as/authorization.oauth2
 DR_CLIENT-ss_redirect_uri=http://dr.data-recipient.local:8080/*
-

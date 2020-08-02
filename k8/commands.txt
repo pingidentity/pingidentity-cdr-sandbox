@@ -15,8 +15,8 @@ kubectl delete -R -f 01-standalone
 
 
 Build environment:
-kustomize build 02-fullstack/cdrregister | kubectl apply  -f -
 kustomize build 02-fullstack/pingdirectory | kubectl apply  -f -
+kustomize build 02-fullstack/cdrregister | kubectl apply  -f -
 kustomize build 01-standalone/pingfederate-cluster | envsubst '${PING_IDENTITY_K8S_NAMESPACE}' | kubectl apply  -f -
 kustomize build 02-fullstack/pingaccess-admin | kubectl apply  -f -
 kustomize build 02-fullstack/pingaccess | kubectl apply  -f -

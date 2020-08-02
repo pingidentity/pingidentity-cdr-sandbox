@@ -23,4 +23,6 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingdirectory:20200716
+      value: gcr.io/ping-identity/cdr-au/pingdirectory:20200802
+
+
