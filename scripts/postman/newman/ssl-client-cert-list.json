@@ -1,0 +1,9 @@
+[
+    {
+        "name": "https://sso.data-holder.local",
+        "matches": ["https://sso.data-holder.local/*", "https://api.data-holder.local/*"],
+        "key": {"src": "../cert/client.key"},
+        "cert": {"src": "../cert/csrresponse.pem"},
+        "passphrase": "P@ssword1"
+    }
+]
