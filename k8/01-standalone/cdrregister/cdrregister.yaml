@@ -33,6 +33,7 @@ spec:
         - configMapRef:
             name: cdrregister-environment-variables
         image: gcr.io/ping-identity/cdr-au/mock-register:20200803
+        imagePullPolicy: Always
         name: cdrregister
         ports:
         - containerPort: 8084

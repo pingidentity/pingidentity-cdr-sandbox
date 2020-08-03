@@ -38,6 +38,7 @@ spec:
         - configMapRef:
             name: cdr-dr-client-environment-variables
         image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200803
+        imagePullPolicy: Always
         name: cdr-dr-client
         ports:
         - containerPort: 8080

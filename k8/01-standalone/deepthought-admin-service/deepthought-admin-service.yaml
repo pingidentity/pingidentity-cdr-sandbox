@@ -34,6 +34,7 @@ spec:
         - configMapRef:
             name: deepthought-admin-service-environment-variables
         image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
+        imagePullPolicy: Always
         name: deepthought-admin-service
         ports:
         - containerPort: 8080

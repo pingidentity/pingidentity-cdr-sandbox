@@ -35,6 +35,7 @@ spec:
         - configMapRef:
             name: deepthought-h2-database-environment-variables
         image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
+        imagePullPolicy: Always
         name: deepthought-h2-database
         ports:
         - containerPort: 1521

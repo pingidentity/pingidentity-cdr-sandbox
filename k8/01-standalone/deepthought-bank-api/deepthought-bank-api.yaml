@@ -34,6 +34,7 @@ spec:
         - configMapRef:
             name: deepthought-bank-api-environment-variables
         image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
+        imagePullPolicy: Always
         name: deepthought-bank-api
         ports:
         - containerPort: 8081
