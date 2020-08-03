@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "05911f38-c768-47f8-9fac-ea86a21057e5",
+		"_postman_id": "e7e377e0-0607-47b1-a7b5-d9a30d81e410",
 		"name": "DCR Demo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -36,7 +36,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "a3e3e280-32df-41fd-a0f9-037e02984d4a"
+										"id": "83cfc2db-1473-4d2c-b5fb-3606d4ba5c30"
 									}
 								}
 							],
@@ -147,7 +147,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "39bb194e-7a61-4ff1-80f3-cb6cedd13d2d"
+										"id": "53ae963e-2c02-4338-a618-bbb704d8c0cd"
 									}
 								}
 							],
@@ -175,7 +175,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "c7e9524c-00c6-4e6e-ab40-0bd518e8f20f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -190,7 +190,7 @@
 											"});",
 											""
 										],
-										"id": "bcc1d1d8-217a-404b-890d-60946bcb139e"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -199,82 +199,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "redirect-uris",
-											"value": "https://myapp.com/cb",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -310,7 +259,7 @@
 											"});",
 											""
 										],
-										"id": "24979709-c173-407d-8b1c-05b58770fcba"
+										"id": "f158a3e0-118f-453f-81e0-06dbe668a8d9"
 									}
 								}
 							],
@@ -343,7 +292,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "19d7898c-5230-4e2a-8393-9776623a1dea",
+								"id": "76de9fe8-c579-4a47-871e-9cadd9df6062",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -353,7 +302,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7de1549f-6478-48a7-a3f3-054865ed450e",
+								"id": "b9682c3b-8038-43e5-8c2f-649e7fec9219",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -391,7 +340,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "00ef0f22-074e-4af2-812a-3b97b5bec600"
+										"id": "074ef199-308b-4fb9-8843-7f39779a300d"
 									}
 								}
 							],
@@ -433,7 +382,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "3fae7d2b-c126-47c7-bb9d-2c0beb806f54"
+										"id": "7b1535ca-dbd2-4a92-b1d6-2d155e7bf560"
 									}
 								}
 							],
@@ -493,7 +442,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2d4380f9-b096-4f4d-a3c5-3fd180400d9a",
+										"id": "7a9a67fc-9a5f-494f-b525-91c7bc14697a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -588,7 +537,7 @@
 											"",
 											""
 										],
-										"id": "9a2ee169-5dbd-4f2f-b4ba-4b0ba3f817c2"
+										"id": "21a098b7-9cf9-4219-93dc-dccf4e66d036"
 									}
 								}
 							],
@@ -658,7 +607,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "4a8d3065-14c7-4925-8619-7775eebc3d12"
+										"id": "fa8c656c-2917-4d59-97d0-972028c6fc79"
 									}
 								}
 							],
@@ -700,7 +649,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "ea8c7f96-92f5-42d6-86af-53a6b3445ac0"
+										"id": "a0cce279-0216-442a-861e-b5971677256a"
 									}
 								}
 							],
@@ -779,7 +728,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "034a6870-7466-47cc-9867-6bd1b65e7250"
+										"id": "e7bc3d16-d804-490a-88d4-ea607e8eac1f"
 									}
 								}
 							],
@@ -872,7 +821,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f01cc258-b825-476a-b96f-2d1e481f5b8e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -886,7 +835,7 @@
 											"    pm.environment.set(\"request-jwt-updateclient\", response[\"request-jwt\"]);",
 											"});"
 										],
-										"id": "99d3c732-08a3-48ba-97f1-1c4f31c438e6"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -895,81 +844,36 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatementUpdate}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials,refresh_token",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "client-id",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatementUpdate}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"http://localhost:8088/*\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestUpdate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestUpdate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -981,7 +885,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "64679ac5-1914-47a5-ab59-414e91cbc304",
+										"id": "0e1ad51e-3aec-49b9-b1d5-fe2f33aa6552",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1082,7 +986,7 @@
 											"});",
 											""
 										],
-										"id": "a8ae070a-e57b-4154-bc4b-8bb6c809d5c4"
+										"id": "1e8ca2bf-f17d-40af-abd0-3057a4097b05"
 									}
 								}
 							],
@@ -1163,7 +1067,7 @@
 											"",
 											""
 										],
-										"id": "9ac21375-3cf0-4546-a1ba-69ca52a99052"
+										"id": "528abdef-a383-4704-9a80-dd9841716403"
 									}
 								}
 							],
@@ -1207,7 +1111,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b1af89b3-244e-4237-8a1e-2c18750460f5",
+								"id": "14b8b211-6e81-4ff3-8822-085e3478eba9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1217,7 +1121,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "01b58ba8-caf4-45d4-89a5-78a0f088253b",
+								"id": "eb743338-9438-42b3-9884-f6cd7811a0c0",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1255,7 +1159,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "09a6a0d0-1c5e-49ad-a62f-343fc363d6f1"
+										"id": "c1e25342-d764-4fb5-81a2-4684d079a971"
 									}
 								}
 							],
@@ -1297,7 +1201,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "9c565676-3c6d-4de0-944a-920b86f10658"
+										"id": "dab47fb6-ed2e-4ef9-baab-94841a616a6e"
 									}
 								}
 							],
@@ -1357,7 +1261,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b48e53b6-e1cf-460f-8314-08e04130cce6",
+										"id": "b2ca1577-bde8-46f2-8225-412c1aded2e4",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1431,7 +1335,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1e1d3926-e809-4c4d-b3c9-0dcb5bfc8b5c",
+										"id": "baf4b884-593c-40fd-aafb-3d97252e8521",
 										"exec": [
 											"pm.test(\"Validate response status=204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -1498,7 +1402,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "43008233-a15a-47fd-8222-51a77d615a93"
+										"id": "850b4ac7-b133-4a37-814f-f6374684f2c0"
 									}
 								}
 							],
@@ -1558,7 +1462,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2c0af3a8-9d40-4191-a127-41f9bb1b941f",
+										"id": "8765c8ac-6fb5-42fd-8348-3a7f21c0c14f",
 										"exec": [
 											""
 										],
@@ -1622,7 +1526,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "32080a94-942c-41c6-b459-199c3af03d4c",
+										"id": "cd77b271-030e-4f85-9326-9d31ea207238",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(401);",
@@ -1675,7 +1579,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "76e4fb1b-a63c-4b49-ab92-452132600089",
+								"id": "1a999e21-11e8-4fc1-96cf-04852c5456f9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1685,7 +1589,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "070f7ab1-9664-4f83-a51d-63cabb5104db",
+								"id": "bd1f7eab-af90-467b-bc43-bfea8f5892ab",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1701,7 +1605,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d4c7375d-8879-4f96-8982-0012febf1fe0",
+						"id": "8422e817-c2ec-478f-9e5f-d19e27cf3e79",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1711,7 +1615,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ae588f45-9681-4631-94e5-8e45f843a5f4",
+						"id": "c781ce51-829c-488f-8779-d0b65fe32b9e",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1744,7 +1648,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "5e995d97-e897-444b-9eb2-863ab4abb4a6"
+										"id": "acc5da9b-6765-47ee-993f-fb07a2abfc60"
 									}
 								}
 							],
@@ -1847,7 +1751,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "e07c5d90-2677-43ed-802e-9701b74a4216"
+										"id": "304594fb-6188-4051-9953-ccb7b56254cf"
 									}
 								}
 							],
@@ -1875,7 +1779,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "7f258e9e-ea38-4732-a127-977cfda73f85",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1886,7 +1790,7 @@
 											"});",
 											""
 										],
-										"id": "a784ce0e-e469-44cd-b82f-f1397d77a412"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1895,76 +1799,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -1987,7 +1846,7 @@
 											"});",
 											""
 										],
-										"id": "8b203106-cf61-4098-86d9-063b2eeda53e"
+										"id": "4d3d41f4-8127-46b7-a43b-30762f1a101f"
 									}
 								}
 							],
@@ -2020,7 +1879,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "67431475-d21b-4e6f-bda3-3d1ec099d762",
+								"id": "a3bcd295-3367-4467-9abb-15c692adeb36",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2030,7 +1889,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a3c3b8d4-1ed2-4fe4-a737-ffbac561d0a4",
+								"id": "569a15b9-a2e9-42a7-abd9-52a2b3ff26dd",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2060,7 +1919,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "51072163-2a7b-4c02-bf93-9c055738c745"
+										"id": "94c82ae2-7409-4243-b0e0-d718775d0227"
 									}
 								}
 							],
@@ -2088,7 +1947,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "83210c89-579f-4e08-9d8b-30c2383a1529",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2099,7 +1958,7 @@
 											"});",
 											""
 										],
-										"id": "d6e64389-0036-446b-817c-a1ba4dd3cb1a"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2108,76 +1967,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -2189,7 +2003,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "25fedd10-bf64-48ce-aee4-54e14ecc4a06",
+										"id": "fac51b2c-2542-4d65-b153-56d3e41f54e6",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2236,7 +2050,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "943cc148-b2e7-4905-9a9d-f43e23440787",
+								"id": "09b9324a-ac5f-4aa6-ba4a-8c85ffdeb1f4",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2246,7 +2060,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "beb722bc-59e7-4003-95c6-c6d5aafd65f3",
+								"id": "09245ebe-97fb-4e98-885f-ae71efc86152",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2283,7 +2097,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "b409481b-e1e3-4f4d-b92e-d01cf459234a"
+										"id": "4ef6ab40-e127-46a0-b795-486ca0ba6950"
 									}
 								}
 							],
@@ -2386,7 +2200,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "e1d09984-dc88-42cd-aff8-890fcc4ae7d8"
+										"id": "55e63bd6-4f6b-4b87-81c0-90e042c19d68"
 									}
 								}
 							],
@@ -2414,7 +2228,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "3904304a-1141-4729-b42f-1e7af5eabed4",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2425,7 +2239,7 @@
 											"});",
 											""
 										],
-										"id": "8e06c56a-5ac2-4dab-acfa-03612097ae77"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2434,76 +2248,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -2515,7 +2284,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4b741ede-876f-4fd2-bc85-4daef3544e95",
+										"id": "87c7b6ed-5545-43e4-b565-7a9b858f50fc",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2573,7 +2342,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2b4f8a2e-2b35-499a-a9b4-9c61a91d511e",
+								"id": "2aeb288c-b21f-48f4-9470-0bd078260208",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2583,7 +2352,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ac6046bd-793d-498d-95a5-cff006a2aa51",
+								"id": "589bc1a0-4ef0-4a5b-baa7-f4553df174d8",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2614,7 +2383,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "8c558a3c-e7c6-47e6-a518-a9c52c9a5b0d"
+										"id": "0c1caf86-c37c-4c1d-bece-fcd603dbdeb9"
 									}
 								}
 							],
@@ -2717,7 +2486,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "6654c76f-990a-4335-9ce7-173dcab124e0"
+										"id": "616c4473-3ee4-4b23-909d-3c1fadd94331"
 									}
 								}
 							],
@@ -2745,7 +2514,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "6c918c37-7b0a-4a5b-9f03-c6d5b3f3b411",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2756,7 +2525,7 @@
 											"});",
 											""
 										],
-										"id": "2ba4bb4b-69f9-424b-9fec-ed48e785d2b4"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2765,76 +2534,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -2857,7 +2581,7 @@
 											"});",
 											""
 										],
-										"id": "2074bf7f-3475-4ad2-a750-e7efa7d0fa9d"
+										"id": "27df63f4-0514-43aa-9b11-81f13f2eb1b6"
 									}
 								}
 							],
@@ -2905,7 +2629,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "240b0b8b-928e-47f9-ba35-c8afd191228d"
+										"id": "6d043a6d-c46a-403c-9b99-b09e0a8d8440"
 									}
 								}
 							],
@@ -2965,7 +2689,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d96520dc-58cb-4d46-84ce-2eb1892cf98f",
+										"id": "76b2bd23-12ec-431a-bb2a-8dc8165d8e87",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3039,7 +2763,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "29f9eb04-1ea2-4ad3-9894-a0e88e8ccb7f",
+										"id": "29a50ef8-2287-4d71-9f06-98f15dfaf27a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3062,81 +2786,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "client-id",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestUpdate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestUpdate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -3148,7 +2822,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "03441ac8-b71c-4ae7-8128-dbf70661bee6",
+										"id": "be977673-7120-470f-869a-6d4f721b3549",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3224,7 +2898,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f1131f6a-c25e-45a5-8709-7d8f8070cb4e",
+								"id": "5e325751-caf6-4c5f-b3eb-26e23684db0d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3234,7 +2908,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3f585099-c51c-4b72-9542-fe58de686b90",
+								"id": "d48b3438-7266-4218-ba08-46cd19a8dd8d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3250,7 +2924,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "3e0da93a-1cad-4dd2-92f9-2057627a0af7",
+						"id": "6ed175ee-2136-4546-820e-2cb97d362e7f",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3260,7 +2934,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bec2ad92-b3d3-4a87-98e4-993168e54101",
+						"id": "9053cab5-ffb0-4475-a554-2ba33badaa99",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3293,7 +2967,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "e08908c1-0683-4518-b653-a4d2966d6b2a"
+										"id": "28c1b766-bf8c-4317-9910-32fa6fdfbd56"
 									}
 								}
 							],
@@ -3396,7 +3070,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "7ab5abca-fe8b-4587-9b5c-45f66ac31597"
+										"id": "aac89742-d526-4cfb-937e-427bf038a3b2"
 									}
 								}
 							],
@@ -3424,7 +3098,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "c401c713-18cb-4722-b9aa-9f51bacdf45f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3435,7 +3109,7 @@
 											"});",
 											""
 										],
-										"id": "8d77a013-7655-4a8d-b5e7-777a4085e5ae"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -3444,76 +3118,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "RS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"RS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}\n",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -3525,7 +3154,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "01f2fcfb-92a6-4207-8a93-f3cc990102c7",
+										"id": "eecf2318-2a3d-4c99-90c6-e9175c000b3e",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3583,7 +3212,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "03b3eb43-0d57-43a2-8846-d3372c16a8b7",
+								"id": "52ec4a50-3fe7-4b07-983d-66e8ce4abb39",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3593,7 +3222,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "99f69214-d1b8-46a0-ae89-2cd07bd2809e",
+								"id": "91f55f28-7ccd-4edc-ae49-14eccb7b184c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3605,7 +3234,7 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "S003.T002 Create Client then Update with bad Response Type",
+					"name": "S003.T002 Create Client then Update with bad Token Algorithm",
 					"item": [
 						{
 							"name": "S004.T002.001 - DH downloads Software Statement from CDR Register",
@@ -3624,7 +3253,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "59919410-5875-4308-90ed-3d6cea717663"
+										"id": "fc723220-4b8a-4aee-a7b0-1c155ddfb980"
 									}
 								}
 							],
@@ -3727,7 +3356,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "b20c3a3f-521a-4405-9dd0-e2475fdea4a7"
+										"id": "d4da17e6-fd41-440a-98a8-92111fffe369"
 									}
 								}
 							],
@@ -3755,7 +3384,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "4fb90ad4-1a44-487b-a963-f56dfaa4ba20",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3766,7 +3395,7 @@
 											"});",
 											""
 										],
-										"id": "9d1e6864-8cb4-4238-95c9-abe5780169b6"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -3775,76 +3404,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -3867,7 +3451,7 @@
 											"});",
 											""
 										],
-										"id": "10b68400-ebd5-4e03-b8c3-32a050cc80f5"
+										"id": "98f62473-b622-4f71-a9f6-857c888e0026"
 									}
 								}
 							],
@@ -3915,7 +3499,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "9b4d4733-7606-406a-90df-43eb378b18ff"
+										"id": "45b14bd6-fa3c-48f8-9986-f22788abf18b"
 									}
 								}
 							],
@@ -3975,7 +3559,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f2e8a6ec-cceb-47cb-b32e-9ce40bbb03fe",
+										"id": "a38da2aa-3e5f-4c02-a98d-72617a31db3c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4049,7 +3633,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "1c2f9dcd-59ec-41cd-91c6-b79e0b138ae1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4063,7 +3647,7 @@
 											"    pm.environment.set(\"request-jwt-updateclient\", response[\"request-jwt\"]);",
 											"});"
 										],
-										"id": "7ff710a8-e8fb-4ef6-bdc1-a33d35d64d6a"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -4072,81 +3656,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "client-id",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "RS256",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"RS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestUpdate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestUpdate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -4158,7 +3692,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1fd37e1c-a388-42cf-8ca2-df5ccdde5bd8",
+										"id": "c0d21a27-2f74-4e1a-9436-a9903ce4f342",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -4234,7 +3768,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "caf671ec-14ac-43ed-9b27-e4d954f653bd",
+								"id": "e6836333-1f06-4cf1-ace3-34604b98eeff",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4244,7 +3778,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "958aaa2d-57f2-4164-a19c-a14f664eb6da",
+								"id": "da77cd90-4c7b-41ef-8056-b645ad79a1b6",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4260,7 +3794,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "c044228c-52d1-44a7-ba72-0f3fa4645475",
+						"id": "fba6459d-6983-40b8-b55b-29628e912298",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4270,7 +3804,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "ecfedf74-b4d4-4603-8e4e-16a3c616772f",
+						"id": "ae8c1976-26f1-4f1e-8f61-c98d6a8597fd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4292,7 +3826,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "b320aa02-676b-4f6d-aecb-3cba4ea1e4ce",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4303,7 +3837,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "69774acc-2b62-4629-8b43-335161b6eaca"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -4350,7 +3884,7 @@
 										},
 										{
 											"key": "redirect_uri",
-											"value": "https://myapp.com/cb,https://myapp1.com/cb",
+											"value": "https://myapp.com/cb,https://myapp.com/cbabc",
 											"type": "text"
 										},
 										{
@@ -4406,7 +3940,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "6dc97b39-6e6c-4275-80ce-310907558bbb"
+										"id": "8b3a49b6-7487-4015-8dd3-fd409c2cea72"
 									}
 								}
 							],
@@ -4434,7 +3968,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "0dc25e3d-cfd4-4f19-b84b-c3a050d1e63c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4445,7 +3979,7 @@
 											"});",
 											""
 										],
-										"id": "888241ef-7d7d-41fd-a2db-7efea3c5814f"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -4454,81 +3988,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "redirect-uris",
-											"value": "https://myapp1.com/cb",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -4540,7 +4024,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f04ad1b9-8d71-42de-b0f6-3983ad78c53d",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4551,14 +4035,14 @@
 											"});",
 											"pm.test(\"Validate redirect_uris contains 'https://myapp.com/cb' and 'https://myapp1.com/cb'\", function () {",
 											"    var response = pm.response.json();",
-											"    //pm.expect(response.redirect_uris).to.include('https://myapp.com/cb');",
-											"    pm.expect(response.redirect_uris).to.include('https://myapp1.com/cb');",
+											"    pm.expect(response.redirect_uris).to.include('https://myapp.com/cb');",
+											"    pm.expect(response.redirect_uris).to.include('https://myapp.com/cbabc');",
 											"    ",
 											"});",
 											"",
 											""
 										],
-										"id": "c24b30a3-84fb-4bd3-a83c-055102888f18"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -4591,7 +4075,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "53bb0c1d-8aa8-44c2-b536-8343e36c8501",
+								"id": "5488191e-242f-4ffb-8933-4ad15ad72c27",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4601,7 +4085,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e15e54b4-e6fc-4543-992d-35002f723a55",
+								"id": "60d56018-0648-48c6-b46e-8750fe901102",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4632,7 +4116,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "93c13183-e22c-4248-bb80-f54e9712d31c"
+										"id": "025dbdcb-7036-4148-8cc9-9a868d64812f"
 									}
 								}
 							],
@@ -4735,7 +4219,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "a4447ee5-f6e7-47c0-a3b0-95af2ca8fc46"
+										"id": "15648189-1a0b-4d8f-ad6c-06ca08397101"
 									}
 								}
 							],
@@ -4763,7 +4247,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "e1442db5-2355-4e15-9a5e-3d6c6ff9cc4c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4774,7 +4258,7 @@
 											"});",
 											""
 										],
-										"id": "ae8bc92b-980f-4ae7-8b2d-6efaf813136d"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -4783,81 +4267,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "redirect-uris",
-											"value": "https://myapp1.com/cb",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp1.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -4887,7 +4321,7 @@
 											"",
 											""
 										],
-										"id": "3af3f2c7-7ada-477d-80d6-ecf0aff00e78"
+										"id": "85f21591-826e-4394-a57c-80a5f2c34618"
 									}
 								}
 							],
@@ -4920,7 +4354,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "6d3285e8-3ecb-44bf-8c8f-8a27167d6871",
+								"id": "8da994ea-3ba1-4e00-b57f-cbdfa2ebc612",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4930,7 +4364,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3ac6ea35-3138-44e4-adc1-d4306b9c2587",
+								"id": "6f991f5d-e3e5-4c97-8080-4b423e78592c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4961,7 +4395,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "f70b5d8b-170a-4d45-82e5-0b643bb7ad51"
+										"id": "191ffd8b-8b82-453b-b2be-b4ecf8861496"
 									}
 								}
 							],
@@ -5064,7 +4498,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "e65a10b6-6c49-4994-b9e1-0650e690f99d"
+										"id": "15860ea9-065c-4193-83c3-e4147367b8e8"
 									}
 								}
 							],
@@ -5092,7 +4526,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "4da4e05e-ba7c-43a2-9d0d-e69a2ed77a73",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5103,7 +4537,7 @@
 											"});",
 											""
 										],
-										"id": "10f89ae4-3827-4143-8730-6e0bef862230"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -5112,81 +4546,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text"
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "redirect-uris",
-											"value": "https://baduri.com",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://baduri.com\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -5198,7 +4582,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b4cc9fa9-552a-43aa-a2d4-f6a796fbb617",
+										"id": "58623d22-ee05-40ac-a2c6-cce28f45583c",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -5246,7 +4630,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "59588f84-731f-48b9-a91c-e92e86273045",
+								"id": "85eb367b-897c-4008-99c5-c50e3a1b6bd2",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5256,7 +4640,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "131859ba-83e7-4938-a0e2-cec8dd08356f",
+								"id": "a5d83210-1e53-4469-8301-77078e94981c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5272,7 +4656,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "9b02de2a-e666-47b5-ac76-f97ad6f0a5cc",
+						"id": "4751d2a2-55de-423c-acc3-ee782865cbca",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5282,7 +4666,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c98f5299-9dd6-4bd8-9dbc-c8e33770a42e",
+						"id": "9c21f9be-9f37-46b4-8892-2e735c489433",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5323,7 +4707,7 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "62ff66e5-3827-477e-8dae-0e24776e1c5a"
+										"id": "3739466c-46e9-4c57-b3b3-8207f561c81a"
 									}
 								}
 							],
@@ -5434,7 +4818,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "13807e9a-f393-4767-9e3b-3b0823502dc0"
+										"id": "095da3b3-38ac-4341-bed7-9bb89b948cd1"
 									}
 								}
 							],
@@ -5462,7 +4846,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "fad2ab57-76cc-415c-a6f6-c70f64a67f65",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5477,7 +4861,7 @@
 											"});",
 											""
 										],
-										"id": "55561209-31a4-44b1-8068-a3afe34ccfd5"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -5486,82 +4870,31 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "softwareStatement",
-											"value": "{{softwareStatement}}",
-											"type": "text"
-										},
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "audience",
-											"value": "{{dh-audience}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-method",
-											"value": "private_key_jwt",
-											"type": "text"
-										},
-										{
-											"key": "grant-types",
-											"value": "authorization_code,client_credentials",
-											"type": "text"
-										},
-										{
-											"key": "response-types",
-											"value": "code id_token",
-											"type": "text"
-										},
-										{
-											"key": "application-type",
-											"value": "web",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "id-token-signed-response-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "request_object_signing_alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint-auth-signing-alg",
-											"value": "PS256",
-											"type": "text"
-										},
-										{
-											"key": "redirect-uris",
-											"value": "https://myapp.com/cb",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"requestCreate"
+										"dcr",
+										"requestCreateJwt"
 									]
 								}
 							},
@@ -5597,7 +4930,7 @@
 											"});",
 											""
 										],
-										"id": "9b15b118-ce5b-49e9-8ecd-7ffcf06f9d22"
+										"id": "a8ea29d4-ce54-4ed4-910d-4f7acb62fb58"
 									}
 								}
 							],
@@ -5630,7 +4963,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "7cea8c10-8c46-4e13-8101-8942ab317914",
+								"id": "06ca3d5c-c1c6-4b69-9224-50d93170e75c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5640,7 +4973,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c91af875-c306-418f-b0ff-c43c01a00715",
+								"id": "da0a7504-a0cd-44b9-8546-7aa03dbce01e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5678,7 +5011,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "46ead6d1-e843-4f08-85ed-111937acecf4"
+										"id": "db08ccfc-139f-463c-8d9b-84e10bc4f1b8"
 									}
 								}
 							],
@@ -5720,7 +5053,7 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "707e35ce-6719-4293-ba03-c7b7e5135c51"
+										"id": "dc0ff259-57a6-47fd-ad19-fdaedaf7992f"
 									}
 								}
 							],
@@ -5780,7 +5113,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a1f4478b-b2a4-4c1e-bdf1-991e41e7e545",
+										"id": "fcbf7803-9507-4d79-9ac3-7515a404fe58",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5849,7 +5182,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "103e4e1a-c44c-49f2-928a-f736f8e326b7",
+										"id": "a25f0c78-2541-4e96-8b20-54206c17afbc",
 										"exec": [
 											"pm.test(\"Validate response status=401\", function () {",
 											"    pm.response.to.have.status(401);",
@@ -5908,7 +5241,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "9691fad9-c166-4eda-8580-74ca1c62e8cc",
+								"id": "b3c92b1c-d461-4d54-919a-6d1ba5bbd8c2",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5918,7 +5251,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "24c2dca4-0696-4deb-ae6b-1459fa1cf170",
+								"id": "7924fab0-c047-4afc-ba07-ddfcf566e1d4",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5934,7 +5267,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a58fcf3c-41fd-450f-b997-162f0dce64c8",
+						"id": "49d425ba-01b0-468c-b113-66f9610f1b65",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5944,7 +5277,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4e6d4844-377a-485c-a46d-5cd23f7173b8",
+						"id": "2264b580-7f5d-406a-9447-4b22bcc0fc43",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5959,7 +5292,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "51613a54-ea7b-44ea-93a1-5badc4ea3957",
+				"id": "197b6365-b74c-464b-9e5c-da364a267fc4",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -5969,7 +5302,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "98793da7-3a39-49be-b020-42e0e06eef5b",
+				"id": "621141de-9c33-4b65-bcc7-fc58b311a61d",
 				"type": "text/javascript",
 				"exec": [
 					""
