@@ -2,12 +2,12 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200625
+    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - LICENSE_VERSION=6.0
-      - PA_POST_CONFIGURATION_DELAY=20
+      - PA_POST_CONFIGURATION_DELAY=0
       - OPERATIONAL_MODE=STANDALONE
       - PA_ADMIN_PORT=9000
     env_file:
@@ -28,7 +28,7 @@ services:
       - pingnet-dmz
 
   pingfederate:
-    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200625
+    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -43,7 +43,7 @@ services:
       - pingnet-internal
 
   pingdirectory:
-    image: gcr.io/ping-identity/cdr-au/pingdirectory:20200716
+    image: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200803
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
@@ -58,9 +58,9 @@ services:
       - 1443:443
     networks:
       - pingnet-internal
-  
+
   cdr-dr-client:
-    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200730-02
+    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200803
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -70,12 +70,12 @@ services:
       - cdr.env
     ports:
       - 8080:7878
-    networks: 
+    networks:
       - pingnet-internal
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-au/mock-register:20200714
+    image: gcr.io/ping-identity/cdr-au/mock-register:20200803
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -102,7 +102,7 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
- 
+
   deepthought-bank-api:
     image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
     environment:
@@ -116,7 +116,7 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
- 
+
   deepthought-admin-service:
     image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
     environment:
@@ -130,7 +130,7 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
- 
+
   deepthought-h2-database:
     image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
     environment:
@@ -142,6 +142,14 @@ services:
     ports:
       - 1521:1521
       - 81:81
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+  pingdataconsole:
+    image: pingidentity/pingdataconsole:8.1.0.0-alpine-edge
+    ports:
+      - "8443:8443"
     networks:
       - pingnet-internal
       - pingnet-dmz
