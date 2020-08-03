@@ -1,0 +1,4 @@
+. "${HOOKS_DIR}/pingcommon.lib.sh"
+
+./84-install-ca.sh
+./85-install-keypair.sh
