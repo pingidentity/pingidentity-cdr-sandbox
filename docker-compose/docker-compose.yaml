@@ -75,7 +75,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-au/mock-register:20200714
+    image: gcr.io/ping-identity/cdr-au/mock-register:20200803
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
