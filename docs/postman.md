@@ -38,7 +38,7 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
    
 ## Execute a Consent Flow Runner Test
 1. Click the "Runner" button
-2. Select "Consent Flow" in the All Colelctions window
+2. Select "Consent Flow" in the All Collections window
 3. Click  the "Run Consent Flow" button
 4. Verify all tests passed
 
