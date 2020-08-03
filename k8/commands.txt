@@ -15,6 +15,36 @@ kubectl delete -R -f 01-standalone
 
 
 Build environment:
+export SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+export SERVER_PROFILE_PATH=server_profiles/pingaccess
+export SERVER_PROFILE_BRANCH=edge
+export PING_IDENTITY_ACCEPT_EULA=YES
+
+export BASE_HOSTNAME=data-holder.local
+export USER_BASE_DN=dc=data-holder,dc=com
+export BRAND1_BGCOLOR=rgb(50, 115, 220)
+export BRAND2_BGCOLOR=#373C41
+export DOLLAR=$
+export PF_AUD=https://data-holder
+export PF_ISS=cdr-register
+
+export CDR_REGISTER_pki_base_url=http://cdrregister:8084
+export CDR_REGISTER_ca_keystore_commonname=cdr-register.local
+export CDR_REGISTER_server_allowed_origins=https://mockregister.data-holder.local
+
+export SOFTWARE_STATEMENT_ACCC_JWKS_ENDPOINT=http://cdrregister:8084/registration/JWKS
+export SOFTWARE_STATEMENT_ACCC_ISSUER=cdr-register
+export SOFTWARE_STATEMENT_BANK_AUDIENCE=https://data-holder
+export PF_BASE_HOST=sso.data-holder.local
+export PF_BASE_PORT=443
+export DA_CLIENTID=admin_delegator
+export BASE_URL=http://dr.data-recipient.local:8080
+
+export CDR_REGISTER_BASE_URL=http://cdrregister:8084
+
+export DR_CLIENT_authorization_endpoint=https://sso.data-holder.local/as/authorization.oauth2
+export DR_CLIENT_ss_redirect_uri=http://dr.data-recipient.local:8080/*
+
 kustomize build 02-fullstack/pingdirectory | kubectl apply  -f -
 kustomize build 02-fullstack/cdrregister | kubectl apply  -f -
 kustomize build 01-standalone/pingfederate-cluster | envsubst '${PING_IDENTITY_K8S_NAMESPACE}' | kubectl apply  -f -

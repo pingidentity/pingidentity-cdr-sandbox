@@ -37,7 +37,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: cdr-dr-client-environment-variables
-        image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200730-02
+        image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200803
         name: cdr-dr-client
         ports:
         - containerPort: 8080

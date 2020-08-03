@@ -5,14 +5,5 @@ resources:
 - pingfederate-admin.yaml
 - pingfederate-engine.yaml
 - cluster-service.yaml
-
-generatorOptions:
-  disableNameSuffixHash: true
-
-configMapGenerator:
-- name: pingfederate-engine-environment-variables
-  envs:
-    - env_vars.pingfederate-engine
-- name: pingfederate-admin-environment-variables
-  envs:
-    - env_vars.pingfederate-admin
+- configmap-admin.yaml
+- configmap-engine.yaml

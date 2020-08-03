@@ -1,0 +1,5 @@
+SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+SERVER_PROFILE_BRANCH=edge
+SERVER_PROFILE_PATH=server_profiles/pingdirectory
+MAX_HEAP_SIZE=768m
+

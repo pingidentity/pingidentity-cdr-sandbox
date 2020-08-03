@@ -32,7 +32,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: cdrregister-environment-variables
-        image: gcr.io/ping-identity/cdr-au/mock-register:20200714
+        image: gcr.io/ping-identity/cdr-au/mock-register:20200803
         name: cdrregister
         ports:
         - containerPort: 8084
