@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:AccessTokenManagerConfiguration inheritAccessControlSettings="false" inheritSelectionSettings="false" inheritSessionValidationSettings="false" restrictClients="false" includeSessionIdentifier="false" checkSessionRevocationStatus="false" checkValidAuthnSession="false" updateAuthnSessionActivity="false" defaultSubjectAttribute="exp" isInheritExtendedContractAttributes="false" name="obATM" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+<urn:AccessTokenManagerConfiguration inheritAccessControlSettings="false" inheritSelectionSettings="false" inheritSessionValidationSettings="false" restrictClients="false" includeSessionIdentifier="false" checkSessionRevocationStatus="false" checkValidAuthnSession="false" updateAuthnSessionActivity="false" defaultSubjectAttribute="" isInheritExtendedContractAttributes="false" name="obATM" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
     <urn:Fields>
         <urn:Field name="Token Lifetime">8</urn:Field>
         <urn:Field name="Use Centralized Signing Key">true</urn:Field>
@@ -56,6 +56,7 @@
     </urn:Tables>
     <urn:ExtendedContractAttributes>
         <urn:AttributeName>sub</urn:AttributeName>
+        <urn:AttributeName>cdr_arrangement_id</urn:AttributeName>
         <urn:AttributeName>cnf</urn:AttributeName>
         <urn:AttributeName>consent_id</urn:AttributeName>
     </urn:ExtendedContractAttributes>

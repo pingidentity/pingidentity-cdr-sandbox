@@ -5,6 +5,7 @@
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:UserKeyToAccessTokenMapping>
     <urn:UserKeyToAccessTokenMapping contextId="authz_req|apc.iQwSYDdExcmJaYk6" tokenManagerId="obATM">
+        <urn1:AttributeMap Name="cdr_arrangement_id" Type="Authentication Policy Contract" Value="apc.cdrArrangementId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="sub" Type="Persistent Grant" Value="SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="cnf" Type="Expression" Value="#THUMBPRINT_HEADER=&quot;X-CertificateThumbprint&quot;, #objReq = #this.get(&quot;context.HttpRequest&quot;).getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(&quot;x5t#S256&quot;, #headerValue):null, #mapValue" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="consent_id" Type="Persistent Grant" Value="CONSENT_ID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -41,6 +42,7 @@
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:ApcToUserKeyMapping>
     <urn:ClientCredentialsToAccessTokenMapping contextId="client_credentials" tokenManagerId="obATM">
+        <urn1:AttributeMap Name="cdr_arrangement_id" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="sub" Type="Context" Value="context.ClientId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="cnf" Type="Expression" Value="#THUMBPRINT_HEADER=&quot;X-CertificateThumbprint&quot;, #objReq = #this.get(&quot;context.HttpRequest&quot;).getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(&quot;x5t#S256&quot;, #headerValue):null, #mapValue" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="consent_id" Type="Expression" Value="null" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>

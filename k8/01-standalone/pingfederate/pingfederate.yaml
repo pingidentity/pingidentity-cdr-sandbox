@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: pingfederate
-        image: pingidentity/pingfederate:edge
+        image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
