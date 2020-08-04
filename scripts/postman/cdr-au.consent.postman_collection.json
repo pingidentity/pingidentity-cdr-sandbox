@@ -663,6 +663,7 @@
 											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
 											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
 											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -715,7 +716,133 @@
 							"response": []
 						},
 						{
-							"name": "S002.T001.007 - Creates JWT-Bearer Client Assertion",
+							"name": "S002.T001.007 - Download Enc Private Key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e0e1713d-559c-4ca4-a6b8-85ea415127de",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = btoa(pm.response.text());",
+											"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"softwarestatement",
+										"JWKS",
+										"{{softwareId}}",
+										"private",
+										"alg"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.008 - Test ID Token from Authz Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3cd2077d-8b10-4967-8d5f-cba8c22eb701",
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iss');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('exp');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iat');",
+											"});",
+											"",
+											"//CDR ID Token FAPI-RW Requirements",
+											"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('nonce');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('s_hash');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('c_hash');",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private-encryption}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-authcode-callback-id_token}}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"reflectIDToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.009 - Creates JWT-Bearer Client Assertion",
 							"event": [
 								{
 									"listen": "test",
@@ -789,7 +916,7 @@
 							"response": []
 						},
 						{
-							"name": "S002.T001.008 - Perform code exchange",
+							"name": "S002.T001.010 - Perform code exchange",
 							"event": [
 								{
 									"listen": "test",
@@ -867,6 +994,93 @@
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
 									"host": [
 										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.011 - Test ID Token from Token Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8b14866f-cb24-481b-ac5e-e10321a47204",
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iss');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('exp');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iat');",
+											"});",
+											"",
+											"//CDR ID Token FAPI-RW Requirements",
+											"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('nonce');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('s_hash');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('c_hash');",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private-encryption}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-id-token}}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"reflectIDToken"
 									]
 								}
 							},
@@ -7263,7 +7477,133 @@
 									"response": []
 								},
 								{
-									"name": "S005.T001.007 - Creates JWT-Bearer Client Assertion",
+									"name": "S005.T001.007 - Download Enc Private Key",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "cc42dc0d-0979-4adc-bdad-47d60a132d55",
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var responseBlob = btoa(pm.response.text());",
+													"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"softwarestatement",
+												"JWKS",
+												"{{softwareId}}",
+												"private",
+												"alg"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S005.T001.008 - Test ID Token from Authz Endpoint",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "63b6d129-3c68-434c-8ae2-663c78eb6b97",
+												"exec": [
+													"",
+													"//CDR ID Token OIDC Requirements",
+													"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iss');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('sub');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('exp');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iat');",
+													"});",
+													"",
+													"//CDR ID Token FAPI-RW Requirements",
+													"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('nonce');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('s_hash');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('c_hash');",
+													"});",
+													"",
+													"",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-private-jwk",
+												"value": "{{software-jwks-private-encryption}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{{consent-request-authcode-callback-id_token}}",
+											"options": {
+												"raw": {}
+											}
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"tpp",
+												"reflectIDToken"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S005.T001.009 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -7337,7 +7677,7 @@
 									"response": []
 								},
 								{
-									"name": "S005.T001.008 - Perform code exchange",
+									"name": "S005.T001.010 - Perform code exchange",
 									"event": [
 										{
 											"listen": "test",
@@ -7421,46 +7761,7 @@
 									"response": []
 								},
 								{
-									"name": "S005.T001.009 - Download Enc Private Key",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "196f2a41-b0ef-4746-be50-8525893d2e34",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var responseBlob = btoa(pm.response.text());",
-													"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"softwarestatement",
-												"JWKS",
-												"{{softwareId}}",
-												"private",
-												"alg"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "S005.T001.010 - Test ID Token",
+									"name": "S005.T001.011 - Test ID Token from Token Endpoint",
 									"event": [
 										{
 											"listen": "test",
