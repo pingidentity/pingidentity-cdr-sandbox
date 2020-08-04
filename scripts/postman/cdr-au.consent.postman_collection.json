@@ -211,7 +211,7 @@
 									"mode": "raw",
 									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -2251,7 +2251,10 @@
 									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "https://sso.data-holder.local/as/par.oauth2",
@@ -4525,7 +4528,10 @@
 											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 											"type": "text"
 										}
-									]
+									],
+									"options": {
+										"urlencoded": {}
+									}
 								},
 								"url": {
 									"raw": "https://sso.data-holder.local/as/par.oauth2",
@@ -6801,7 +6807,10 @@
 													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 													"type": "text"
 												}
-											]
+											],
+											"options": {
+												"urlencoded": {}
+											}
 										},
 										"url": {
 											"raw": "https://sso.data-holder.local/as/par.oauth2",
@@ -7520,7 +7529,7 @@
 											"mode": "raw",
 											"raw": "{{consent-request-id-token}}",
 											"options": {
-												"urlencoded": {}
+												"raw": {}
 											}
 										},
 										"url": {
@@ -7822,7 +7831,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-id-token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -8809,7 +8818,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-id-token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
