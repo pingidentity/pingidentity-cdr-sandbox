@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "37ffb212-b3cd-4d48-8ea2-49efa6b2e708",
+		"_postman_id": "0cf84fb3-fc4a-4b42-a2ad-6a0b7b25c80a",
 		"name": "Consent Flow",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "07ab5223-df7c-4e1a-aa50-0256476868ae",
+										"id": "99c72f14-7e90-462d-b7de-514807ac9a35",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -147,7 +147,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "33a62e69-e989-41cd-8bcf-4895d6ba7ddf"
+										"id": "0f0f5522-71db-4bf8-96b3-a96cb005e71e"
 									}
 								}
 							],
@@ -175,7 +175,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "142a938d-91df-414d-93eb-5d2afcf1ba4b",
+										"id": "3d3ce60e-e2fb-4716-9cda-119669d9ba6f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -199,31 +199,82 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "x-private-jwk",
-										"value": "{{software-jwks-private}}",
-										"type": "text"
+										"value": "application/x-www-form-urlencoded"
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "softwareStatement",
+											"value": "{{softwareStatement}}",
+											"type": "text"
+										},
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "audience",
+											"value": "{{dh-audience}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint-auth-method",
+											"value": "private_key_jwt",
+											"type": "text"
+										},
+										{
+											"key": "grant-types",
+											"value": "authorization_code,client_credentials,refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "response-types",
+											"value": "code id_token",
+											"type": "text"
+										},
+										{
+											"key": "application-type",
+											"value": "web",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id-token-signed-response-alg",
+											"value": "PS256",
+											"type": "text"
+										},
+										{
+											"key": "request_object_signing_alg",
+											"value": "PS256",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint-auth-signing-alg",
+											"value": "PS256",
+											"type": "text"
+										},
+										{
+											"key": "redirect-uris",
+											"value": "{{default-redirecturi}}",
+											"type": "text"
+										}
+									],
 									"options": {
 										"urlencoded": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestCreate",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"dcr",
-										"requestCreateJwt"
+										"requestCreate"
 									]
 								}
 							},
@@ -235,7 +286,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1f48d46b-f490-4c48-82e1-4d19fa0c1c74",
+										"id": "9fb1bf2f-b15d-4e9d-af75-0fa7c49a928d",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -292,7 +343,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "affde61e-0823-4103-9949-f90828e81af1",
+								"id": "9a30cd50-b8e7-4db0-b63a-5df9175cde9a",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -302,7 +353,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c27f407b-d1a7-4650-8224-f0abac849403",
+								"id": "9a87f945-0c13-495b-a2c3-bf9121c3d742",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -318,7 +369,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "e9c4625b-828b-4e00-9b51-f9e46e8166ad",
+						"id": "ddee88b1-01a5-4f4e-b91a-d289fa41016d",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -328,7 +379,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "404b0772-3d27-42bb-a393-febe3add2714",
+						"id": "fbcaeb1b-96d3-4b23-9328-ca693f82d6ec",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -350,7 +401,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3f8f04a3-1b8e-4397-afa8-add46c756629",
+										"id": "34d354d5-e544-422f-9a9e-ea5a125ded12",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -396,7 +447,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5ddafcaf-5618-4ca4-9966-605ad90f7281",
+										"id": "e55423a9-6c8e-4289-9785-7693554dfb56",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -504,7 +555,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "aaa89a52-918e-49e9-bb23-fa90bcb863e8",
+										"id": "121d484b-1739-44f2-a0aa-0046b177c6f0",
 										"exec": [
 											"",
 											"",
@@ -535,7 +586,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "86a4252e-7e46-4546-a292-a4399404e30b",
+										"id": "2ce55f2c-aa08-4bfe-865d-0b1eb23bfcf0",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -582,7 +633,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6580544c-9517-4b08-ac33-cc1917039272",
+										"id": "853b347f-5ea3-4de2-8755-1f7c3b780f09",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -645,7 +696,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fd2edd10-df0f-4ed2-a37d-749c24f40048",
+										"id": "937b09b8-e7bb-40c1-9fc9-e79abffa3fec",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -720,7 +771,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6e9fc23e-9cb6-4370-be84-f18d2eb79d51",
+										"id": "ac3dc302-cc86-4068-90be-89378c3d7cbc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -794,7 +845,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5a8ab6c9-f8d6-494b-80a6-08bf68e36fdf",
+										"id": "a63d0b00-536e-45c1-81d5-df50c848b532",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -877,7 +928,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ea8ac171-c246-4199-a426-f9c4b796a22b",
+								"id": "8c257f13-32ef-469e-b1fc-bc533454c76c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -887,7 +938,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "078d6e0c-571e-4f7c-9b8d-4cc027860f8e",
+								"id": "ab4f3562-dacd-4403-8b73-d100bdc2470e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -910,7 +961,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "2362d137-945c-4922-ab2f-e2603e7ec2d0",
+												"id": "8005bd2b-a577-43bd-8a52-cf12d655906a",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -984,7 +1035,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "134d41d3-13e4-4dce-b8bd-f35d3e28ba36",
+												"id": "ccbda14c-7983-4792-81d5-944b0b994fa4",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1063,7 +1114,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "10c2e897-2a92-47dc-8d14-76282d2b9d83",
+												"id": "d6a8abc5-2da5-4a2a-9082-3041cce78994",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1137,7 +1188,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c786544f-76f8-47d3-9e66-c08426d1e9a8",
+												"id": "bf29b980-1728-4597-8571-ffd75e11e937",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1213,7 +1264,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "24cd3e25-9b9d-49cc-9da9-ea3acf09ae2a",
+										"id": "ce3559a2-4a0a-43fa-a0fa-3778fbc84bee",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1287,7 +1338,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6a343b47-4f3c-44fb-802f-0bac718a2d59",
+										"id": "aa1cb2d1-e5f3-49a6-aaed-60782ee51a27",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1360,7 +1411,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "540b9769-a356-451f-a3e7-4ea8337cd170",
+								"id": "6f125454-394d-44f3-ac1a-26c7599fde06",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1370,7 +1421,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1e94d021-399a-4651-943b-01e0956213ab",
+								"id": "b91aac78-2c36-416b-ba74-c5016d83e398",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1390,7 +1441,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "62b7e3e0-7366-4949-9f02-f8852788c070",
+										"id": "a632debe-f5f2-4faa-b641-fc4fbf7fd99f",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
@@ -1406,7 +1457,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "d0220dac-3e1b-4cc9-aba9-8c92ebbf1d5a",
+										"id": "5bc55b66-b8a7-419b-ae59-1baf1ea9da9d",
 										"exec": [
 											""
 										],
@@ -1458,7 +1509,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "73c1d52f-4b8d-4049-ab63-cae7bcb2b0fd",
+										"id": "a4402576-b1a3-4e8e-9c34-51321d5d4bc1",
 										"exec": [
 											""
 										],
@@ -1511,7 +1562,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0ffcd243-9eab-48d9-bf1e-bc114adf490d",
+								"id": "06763e28-5c6c-4538-96a1-b83b607cf49d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1521,7 +1572,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "019c5517-8f3f-448a-ac38-ea4a7fba2ad1",
+								"id": "a9a8457d-5252-4fa0-9e6f-83091f14d76d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1541,7 +1592,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "02c00024-f41b-4f20-bada-afe67faa963e",
+										"id": "c32aa2f1-c1b1-4749-a045-5a39e64f0c19",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1586,7 +1637,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "5f70d39a-44e8-45fd-8a74-61d0d1bf5e49",
+								"id": "149beedd-1da4-4016-94f1-9eed697ababa",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1596,7 +1647,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a4c3f402-03b0-4aa3-8fcf-5818b540cdff",
+								"id": "ad1db8df-d0c8-4801-b2ee-40f01337c0e0",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1619,7 +1670,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "1ce7fe51-09f9-4e07-a6dd-4e9d2d547d9b",
+												"id": "a1741a9b-b9a5-4a4d-9be9-99519d1b80ef",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1693,7 +1744,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "76af8578-5b36-40bf-bf2e-3933aa52b8c4",
+												"id": "bc008f43-427b-4f61-adac-3125d6e623f9",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1762,7 +1813,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "bff90585-aa1a-40f2-9f0a-48ddf54029a0",
+												"id": "c197caa4-1c24-4b21-93cc-69037c5fc3b5",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1836,7 +1887,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "fd522eb7-8609-467c-a3e2-bcc8968db736",
+												"id": "d41223f7-4220-40d1-b6c9-2efde7ab0f9e",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -1901,7 +1952,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "0125bf78-0d60-4dad-a51c-e85040c2ea19",
+										"id": "0ad6fe48-415c-4939-9a3d-8d4b21f64cca",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -1911,7 +1962,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6fb498e7-091f-46eb-895c-8787f3db95f5",
+										"id": "6f239544-75eb-4289-a278-3fd995608f2a",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -1927,7 +1978,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "13acc2e4-6d2f-43a3-899a-d0fe19ffc394",
+								"id": "c9432dc0-42a8-47bb-af66-678a59b1876b",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1937,7 +1988,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "030875bf-5b94-495d-8068-333d632e3e6f",
+								"id": "0756d20c-d27b-4f64-8b1e-b937dc124dee",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1953,7 +2004,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "f9f85440-5f7f-43c3-ab25-70330e97ce46",
+						"id": "16e2da4d-31c5-40d6-9db2-e8e2982bb422",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1963,7 +2014,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "6d1a13a7-bc4f-434b-9b6f-6a07438579bd",
+						"id": "e714df6c-11e0-455e-9323-da5f77044b79",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1982,7 +2033,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e9ab556e-cf5f-46d2-a6c4-f12076723d9f",
+								"id": "751286be-04c0-4387-a2e7-7f4b64da56f4",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2028,7 +2079,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "28670e40-a25e-488a-9919-afd82004e099",
+								"id": "89ef585c-f9f5-4155-82b7-0406faa4b3c7",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2132,7 +2183,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "236dd1fe-d122-4c87-a856-4ade431666b5",
+								"id": "ff452ff6-8632-4b61-a3cb-5e5e775541a1",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2206,7 +2257,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "fb4bae60-9282-430f-b8ce-8d323c6ed66e",
+								"id": "e99262d8-b0ae-47cf-b87a-0f0fcd205b3b",
 								"exec": [
 									"pm.test(\"Validate response status=201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -2275,7 +2326,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4ac5473f-bef6-4116-9bc5-4284e5db8fd5",
+								"id": "086284b5-bb1c-4da8-9caf-9a6661cb416c",
 								"exec": [
 									"",
 									"",
@@ -2312,7 +2363,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "37afe669-7a5e-498c-ac15-151eea2ed0e3",
+								"id": "6b797e41-a968-4081-8725-bd0c3c4667df",
 								"exec": [
 									"pm.test(\"Set environment variables for next test\", function () {",
 									"    const $ = cheerio.load(responseBody);",
@@ -2359,7 +2410,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f2295c89-54a4-4a3d-8c42-51085a1b5f8b",
+								"id": "1ebbd6e2-4d2d-4ef2-9618-3c737d0ac9cf",
 								"exec": [
 									"pm.test(\"Set environment variables for next test\", function () {",
 									"    const $ = cheerio.load(responseBody);",
@@ -2422,7 +2473,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "70ac810d-d050-4dc0-b56d-716c0f0e99a1",
+								"id": "4bbc9c83-e8b3-44e9-86d5-3cddc0dc9ba1",
 								"exec": [
 									"pm.test(\"Set environment variables for next test\", function () {",
 									"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -2497,7 +2548,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c2e90d39-fcaa-4e2a-b587-f26f79341993",
+								"id": "9d919cc7-d21e-4824-8023-823d4e1ad5a7",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2571,7 +2622,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7c7ae7d8-acc4-4e34-9990-c633fadc98a1",
+								"id": "2f3d7d43-da8d-400b-a4b9-850dd0003a19",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -2654,7 +2705,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a8957bdb-4c1b-414e-8a1e-54d734370cb7",
+						"id": "31c899d1-5fc3-4a37-a6b0-6a9a366d9bd2",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2664,7 +2715,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "05aa6ac3-f157-4f2e-aa0b-46af332c4cd6",
+						"id": "665a6cc5-bb8e-437d-9de5-7d38d5090684",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2686,7 +2737,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b8462cd5-9ef5-4413-abb5-08d2549bd1c0",
+										"id": "5cad03f7-0a8b-4730-b141-2cb7a0c79a30",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2732,7 +2783,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e7017ac4-5e1b-48bf-b711-1ecc7d85dae4",
+										"id": "7c5d4e3e-9758-41c7-a12d-d8a8f24ee887",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2840,7 +2891,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "cee7a6d8-49e9-4ed8-9387-555b79bb8511",
+										"id": "6e846cc8-1aa7-410b-8ddb-d3084c7b2938",
 										"exec": [
 											"",
 											"",
@@ -2871,7 +2922,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f8548030-a1ac-497a-9d38-25f27852d07c",
+										"id": "18ceebf0-1c13-4fbf-9bd0-eddf8faaba6b",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -2918,7 +2969,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "76a403cd-6f3e-4e93-8dda-eda5322ca3bf",
+										"id": "d7dbf763-5375-44c4-948e-beca610a7923",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -2981,7 +3032,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "77978ed0-99ef-400b-8965-46497bd74c29",
+										"id": "b7515f65-2f4a-4c8c-9526-63021ac978cb",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -3056,7 +3107,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "50d8c0b7-8484-4efa-8d86-18d513b60e8a",
+										"id": "9d4b9680-0691-4126-96c8-478969bc0348",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3130,7 +3181,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7b0cfa45-ac4a-4f0a-8bf8-a9efa6cdac35",
+										"id": "894cf7d0-24a0-431e-92ee-9daec11feff1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3213,7 +3264,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e22e6349-bd74-4ba1-9aaa-aebaa6d67beb",
+								"id": "8662670c-31f3-4b62-b5c3-c4b555b02de2",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3223,7 +3274,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e4cec4e5-9ea6-483e-952a-acb5bf315733",
+								"id": "ef82d037-4979-4706-878f-f2415eac8089",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3243,7 +3294,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "31b24227-06a1-4bb1-aa0c-c252415d98ed",
+										"id": "1903b7ae-b4ca-4047-ae76-f348ea6c9f65",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3317,7 +3368,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "304b0992-f45c-4b46-b47c-4ef6d0dc7e99",
+										"id": "d6015551-518c-42f9-8b43-0c65f8cc56d3",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3396,7 +3447,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a78f2d52-63b9-4539-a6d4-1d00c651ba74",
+										"id": "d76e4cdc-b8cd-4ce3-a4c3-d8e5e1ffdb2c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3442,7 +3493,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "10f47c46-3e95-4088-aae7-585c63b5aa70",
+										"id": "f6d7f807-b22c-4e92-89b8-e33a269018cc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3550,7 +3601,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5487efc1-f0b3-438b-9dc7-f033e1dfb661",
+										"id": "4a9f2d88-5ca2-4801-9a4a-939f8fc59724",
 										"exec": [
 											"",
 											"",
@@ -3581,7 +3632,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "48252669-982f-4af7-80cb-6a422154a0ce",
+										"id": "1a68b999-1da0-449a-9b78-af8247b1dd47",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -3628,7 +3679,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "284cfc93-93d5-4acc-8e80-ef1888c63c69",
+										"id": "33e5feb6-57e3-4d24-b3e6-1b4af91d8a35",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -3691,7 +3742,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "96db59ac-8631-4e9a-a641-d4e7c20e5cf7",
+										"id": "127943df-9d0c-4345-812e-ee7cd8f178aa",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -3766,7 +3817,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bc16f553-7e86-4c54-91d9-1aa11cf3c1d7",
+										"id": "8de7b5bb-5d14-4eee-af8e-85841adb8767",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3840,7 +3891,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "94918bad-e13b-48e2-b46a-fcb012598320",
+										"id": "5c3d6a25-8ca0-4620-bd91-f7188300bdd4",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3923,7 +3974,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "664e4214-109a-4fd5-8aa3-397e43b6b3b4",
+								"id": "3777935c-306d-49bd-8af8-19d67aadf434",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3933,7 +3984,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f3c5a82c-da1b-4b82-a7d3-6a8c696f2748",
+								"id": "0a07875a-9780-4112-844e-e77d34adb5ba",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3953,7 +4004,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bb1764cc-701d-49dd-bcc5-b1038bc19990",
+										"id": "036c566f-c74c-4fa5-b10c-6ea6b97e3539",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4027,7 +4078,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5f496ddc-3b13-41f4-9983-c67e006872a4",
+										"id": "31f7a57f-093c-471f-9fec-d84e6190a793",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4099,7 +4150,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0222471e-5f1d-48c0-850d-a7e0f29355a0",
+										"id": "638fc1d2-52ab-4962-b18f-8af3ed08884e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4173,7 +4224,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e8cb84c4-c69e-4337-8f03-becda32417ca",
+										"id": "bfed558c-ebe3-4833-9dd3-cc1119b6b6c7",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4252,7 +4303,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5b0aaeac-e227-43ff-a0ed-53ef763685da",
+										"id": "d6529470-5ce7-4127-b61d-8040a2b12da5",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4298,7 +4349,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "cd654897-cb87-4663-b2ac-b2af791902f2",
+										"id": "9e7a59c2-c19b-4c30-8609-80c002c4b708",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4406,7 +4457,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f448611b-cbe6-46b4-83e6-ed227e555f0d",
+										"id": "b4944f79-f0c2-4d92-870d-91e527d757c2",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4480,7 +4531,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0d684906-89cc-43c7-8c7f-fd86bb2f813d",
+										"id": "76b5d3c0-875c-440b-a1c4-cc3c6c547e48",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4549,7 +4600,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6379fbf5-44e3-4ac1-b67e-97c593e83519",
+										"id": "44e9a40a-e8f7-4e99-879a-6fa867e65c53",
 										"exec": [
 											"",
 											"",
@@ -4586,7 +4637,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "736d2298-caa0-45de-9e03-019599b6a5fd",
+										"id": "83073b78-93f0-4ff2-ae4e-85a618da7cbd",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -4633,7 +4684,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c4d77229-af41-4b18-a029-d2c636ad0a36",
+										"id": "7b9d605a-f724-4248-95a6-1977a0361e48",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -4696,7 +4747,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "26e1f779-405e-4520-91b4-74e027b99efc",
+										"id": "3e9e2481-4907-42c7-a1f3-5c23be649108",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -4771,7 +4822,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8716abce-e86f-4d86-bbe0-368a788e1ba7",
+										"id": "1c62a94c-c9b1-4dd4-b268-4adae7671e9d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4845,7 +4896,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7da99b11-1c77-4221-bdd2-17849d139603",
+										"id": "88a17e3c-0462-4e42-a77a-a777ed314025",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4928,7 +4979,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "711a7cf4-6d93-4b6a-bc12-8be062e71c9d",
+								"id": "ec88ad3d-05cc-4604-8ea2-e13b53b6290c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4938,7 +4989,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1d020b1e-d410-4a1e-9828-4ae3449d8028",
+								"id": "855a0fce-4b3e-4155-935b-e940b833e5cc",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4958,7 +5009,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6d2ec2ac-9b28-48be-a849-4278f61729f8",
+										"id": "7bf07a75-7439-4b77-90f6-21f484a7d8db",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5032,7 +5083,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bc321606-2985-4a06-8bba-2abffcd2afdc",
+										"id": "1bf62d46-2afe-4ae8-9c21-c41de71d9513",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5114,7 +5165,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "166b3d67-a76e-41bc-9c60-8b499b5b35b1",
+												"id": "f5703098-7ba6-4f19-8159-cf9445c59186",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5188,7 +5239,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "ec36e4e9-ac28-4091-a777-35e96bb4f9ac",
+												"id": "49337ee5-45df-4065-8fb9-ec43fe9bc533",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -5253,7 +5304,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "fdf3ad65-b688-4543-873b-045ee38e6aed",
+										"id": "2bd0d760-220d-4e24-8a90-b94ad9fe1d82",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5263,7 +5314,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9b5798c9-1683-41f6-ae90-73f0a700e903",
+										"id": "5a82cb1b-e7b7-423e-87b7-88481c03d3fb",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5283,7 +5334,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "9bc91876-2cb5-4af1-a2f9-6601d94fc65f",
+												"id": "5971945a-8f34-427f-9c46-1f284dbd8897",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5357,7 +5408,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "8718cb87-3b6f-467b-87a2-831449201602",
+												"id": "bdc26c98-cdd5-4e22-821b-3cfb2264c4bd",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5430,7 +5481,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "4bd23061-e26d-4e4e-bb6f-3bfb14a50089",
+										"id": "19e81b54-99c5-4c0e-9dcc-70b9e7384487",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5440,7 +5491,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "37629093-f22d-4711-999e-4d57c50f04aa",
+										"id": "d7bcbc7c-d482-40b5-bc6c-3110f4a6cc20",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5460,7 +5511,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "e85d7375-1313-4917-9064-45cb30f11b4c",
+												"id": "7db7abc8-baa6-46d6-baec-bb81d281c2a9",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5534,7 +5585,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "f018313e-e55b-4567-b6c4-c8e10f1ab406",
+												"id": "f7dfb630-f225-4a5d-947c-c54eae380ab3",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5607,7 +5658,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "e54efcf1-4c23-4d6f-be1c-c0ee77cfe1ef",
+										"id": "45769e83-c0b5-4eec-b94a-336cb369778a",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5617,7 +5668,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8e9258f0-ffa7-42b2-8f53-b1f37bc68fc6",
+										"id": "8da0186b-570b-4874-8c7c-a9c78a02ce4c",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5633,7 +5684,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b5588568-6d0f-4cf3-9097-adf16083984f",
+								"id": "209cfa9c-0b58-4961-a7c2-17dcb3463e51",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5643,7 +5694,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "983551ab-88e7-4e11-b23b-a2e771cab322",
+								"id": "f4b48389-cfc4-41c9-b48d-bf9240e740a0",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5666,7 +5717,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "138fb4c8-8242-44be-b1ca-67949800247b",
+												"id": "00974a76-09ec-4840-984b-276c1ad7c9ba",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5740,7 +5791,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "e18ac21d-8117-4680-a600-cad69d788b42",
+												"id": "709d7713-55ab-417a-9c28-246ea8662e45",
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
@@ -5807,7 +5858,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "4e2ac298-49e0-4b38-8684-34bc4024265c",
+												"id": "1ef35673-4e63-4f73-b5da-5beb1743513f",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -5881,7 +5932,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "570e71fb-6e71-40b4-bf1d-e1e720a2cb79",
+												"id": "cfd6ac1d-1f63-4909-b54b-86cf943a77d1",
 												"exec": [
 													"pm.test(\"Validate response status=422\", function () {",
 													"    pm.response.to.have.status(422);",
@@ -5939,7 +5990,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "5b310626-01c8-4b0c-9893-db66652b4e23",
+										"id": "edcfb65b-0afd-4346-96fc-4943b96dc0d5",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5949,7 +6000,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c263a1e8-3ad0-43e3-927a-309ac04a102d",
+										"id": "b1a73a89-0671-459a-b734-dfa8eac9fe75",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -5969,7 +6020,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c1be0abc-9273-45fb-ad3a-cdda708741b2",
+												"id": "b14cc5cb-b4ce-4c8c-a9ed-baf683ada0a4",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6043,7 +6094,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "08f05b90-dfec-4737-a437-b0af52244893",
+												"id": "8e4a5bd2-cac5-479c-b083-9bbabd7f03f5",
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
@@ -6110,7 +6161,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "fea40354-d0b7-4588-84ce-a8d5aefbb35e",
+												"id": "bb62e9c7-9f33-4e3b-b920-f9337cf8224e",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6184,7 +6235,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "e1e0b2a4-8417-4135-912a-fa25f4b14353",
+												"id": "ff3a3d8a-0d4d-476a-aa04-8819b052f856",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -6249,7 +6300,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "9fcd4e69-4a72-4490-9bbd-5a0ea199a290",
+										"id": "23dbf557-3b23-4cbd-b3e7-5a42d7249690",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6259,7 +6310,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f82ed6b6-0228-4ce7-80f3-a62c673fdf1b",
+										"id": "ba448715-1539-46bf-986f-fffbaadeb1c5",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6275,7 +6326,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d9000251-06b1-4743-97b6-c1cb248ab64e",
+								"id": "bd8b5269-7990-49ce-8a85-37c7d9da10f5",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6285,7 +6336,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "84c8a383-ddd2-4357-8add-43e894cbca99",
+								"id": "447e7b6e-e5f2-4302-8288-9788f09d90f8",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6308,7 +6359,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "6170e874-961c-4620-a001-41c938ec9702",
+												"id": "c5381c8d-1dd9-4a78-a202-574c5a99568e",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6354,7 +6405,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "33bc9404-3d36-472b-98c5-2d19633ae740",
+												"id": "13e189e6-702b-4053-a7c4-c0f6e383c2be",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6462,7 +6513,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "058c316e-7fac-4a10-8735-f1a079a55b25",
+												"id": "73613adc-9c42-42d5-b41e-8023bcad6d71",
 												"exec": [
 													"pm.test(\"Validate response status=302\", function () {",
 													"    pm.response.to.have.status(302);",
@@ -6506,7 +6557,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "2bc4704c-0cb4-4f75-b26a-b991506fb025",
+										"id": "1191f013-7eb3-4fb9-af52-322bb0f04bbd",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6516,7 +6567,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1773b2ad-58e4-492f-bc03-87ab309ecf2a",
+										"id": "4d8a4ba6-0ed9-4644-a284-568b65917551",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6536,7 +6587,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "2e4023d3-8f3c-481d-96b7-c51bc1952030",
+												"id": "4b6814f8-b5d4-4492-bc69-3ca1f31cac4b",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6582,7 +6633,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "030da474-57a9-457b-a278-fff5f1ed0b0c",
+												"id": "45ed8eda-1efb-43d2-b4d8-399d62dfb15e",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6690,7 +6741,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "19f0eccc-c08c-40d8-ba69-4f2b7324d66c",
+												"id": "31e29e4d-2e55-4f66-85ba-1760dc7c684a",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6764,7 +6815,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "93116730-3821-448b-a569-649a5908b44a",
+												"id": "079d99cf-da24-44b4-ab03-167688379d45",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -6824,7 +6875,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "1b7cbe7f-0ce1-4425-9795-5c8f9400e0f2",
+										"id": "86880871-22e2-4aeb-9378-b1be173a3ec8",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6834,7 +6885,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6f0aa9c5-760c-4a94-9ce7-0c184b6bab42",
+										"id": "0093de98-c062-4193-9ef9-a5be0621e500",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6854,7 +6905,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "106eec90-b3e9-43ee-96f0-aa9f9b057460",
+						"id": "ed23896c-b7a1-4eba-839a-a1cc1d166536",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -6864,7 +6915,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "06f44887-be23-4f3b-8b3c-b096444e3df5",
+						"id": "f02c698a-ed66-46e9-b232-f368223e1109",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -6889,7 +6940,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "34dc1e07-1e1d-4445-82c7-7692cbc66018",
+												"id": "70c87c45-9a30-4f66-867d-232190e152fd",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6935,7 +6986,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "1f215997-c441-4d55-aef5-6dcb3af57e7a",
+												"id": "4c22e3c6-fb59-4d57-87d9-286c64c883bc",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7043,7 +7094,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c894d7b7-9a0d-45e3-9857-563523395a58",
+												"id": "81df6096-a6ef-4c1e-98ea-fe067d8240bb",
 												"exec": [
 													"",
 													"",
@@ -7074,7 +7125,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "812bf626-045e-4a6c-b1da-54c26d9a67a0",
+												"id": "551052bc-7e44-4daf-a8df-609ddf207132",
 												"exec": [
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    const $ = cheerio.load(responseBody);",
@@ -7121,7 +7172,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "299387ea-d5f5-482f-bc84-5ec7c9c96ef7",
+												"id": "0b937c8a-2a77-4cd0-b681-a618f9b45d8c",
 												"exec": [
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    const $ = cheerio.load(responseBody);",
@@ -7184,7 +7235,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "48486f06-0821-470f-ad5c-7cc5473797ff",
+												"id": "aa01cfe8-7988-40ec-a808-0ffa43ebf39a",
 												"exec": [
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -7259,7 +7310,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "f2da7ded-7689-4631-952c-1b9d28222258",
+												"id": "53d95083-692e-450e-89f6-f33be737b4d9",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7333,7 +7384,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "9c6723aa-581b-4e9c-8879-72fdf26f8995",
+												"id": "5aa4ea56-0d60-4392-9c2c-b88952b66fb5",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7350,12 +7401,98 @@
 													"    var response = pm.response.json();",
 													"    pm.expect(response).to.have.property('refresh_token');",
 													"});",
+													"",
+													"//CDR ID Token OIDC Requirements",
+													"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('iss');",
+													"//.to.not.have.property -- Test for encrypted",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('sub');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('exp');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('iat');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token is Signed - Assuming Alg existance - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    var header = jwt_decode_header(response.id_token);",
+													"    pm.expect(header).to.have.property('alg');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token is Signed - Assuming HWT has 3 parts - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    var parts = jwt_parts(response.id_token);",
+													"    pm.expect(parts) == 3;",
+													"});",
+													"",
+													"//CDR ID Token FAPI-RW Requirements",
+													"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('nonce');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('s_hash');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    var payload = jwt_decode_payload(response.id_token);",
+													"    pm.expect(payload).to.have.property('c_hash');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token uses only PS256 or ES256 - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    var header = jwt_decode_header(response.id_token);",
+													"    pm.expect(header.alg).to.be.oneOf([\"ES256\", \"PS256\"]);",
+													"});",
+													"",
+													"",
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    var response = pm.response.json();",
 													"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
 													"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
 													"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
-													"});"
+													"});",
+													"",
+													"",
+													"",
+													"function jwt_decode_payload(jwt) {",
+													"    var parts = jwt.split('.'); // header, payload, signature",
+													"    return JSON.parse(atob(parts[1]));",
+													"}",
+													"",
+													"function jwt_decode_header(jwt) {",
+													"    var parts = jwt.split('.'); // header, payload, signature",
+													"    return JSON.parse(atob(parts[0]));",
+													"}",
+													"function jwt_parts(jwt) {",
+													"    var parts = jwt.split('.'); // header, payload, signature",
+													"    return parts.length;",
+													"}",
+													"",
+													"",
+													""
 												],
 												"type": "text/javascript"
 											}
@@ -7410,132 +7547,6 @@
 										}
 									},
 									"response": []
-								},
-								{
-									"name": "S005.T001.009 - Download Enc Private Key",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "83006d54-4311-4634-95c0-3b9d1cb7870c",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var responseBlob = btoa(pm.response.text());",
-													"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"softwarestatement",
-												"JWKS",
-												"{{softwareId}}",
-												"private",
-												"alg"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "S005.T001.010 - Test ID Token",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "8257c37f-c1b8-4612-9510-fc8c7f088160",
-												"exec": [
-													"",
-													"//CDR ID Token OIDC Requirements",
-													"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('iss');",
-													"",
-													"});",
-													"",
-													"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('sub');",
-													"",
-													"});",
-													"",
-													"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('exp');",
-													"",
-													"});",
-													"",
-													"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('iat');",
-													"});",
-													"",
-													"//CDR ID Token FAPI-RW Requirements",
-													"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('nonce');",
-													"});",
-													"",
-													"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('s_hash');",
-													"});",
-													"",
-													"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('c_hash');",
-													"});",
-													"",
-													"",
-													"",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "x-private-jwk",
-												"value": "{{software-jwks-private-encryption}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{{consent-request-id-token}}",
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"testtool",
-												"tpp",
-												"reflectIDToken"
-											]
-										}
-									},
-									"response": []
 								}
 							],
 							"protocolProfileBehavior": {},
@@ -7552,7 +7563,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "8238bfa9-89d8-4c2f-8846-3d4f3bc06aeb",
+								"id": "550d2004-f047-446e-bcaa-47127af89aa8",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -7562,7 +7573,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "565ef882-26cc-42f2-983c-9738875e0c8b",
+								"id": "2961e72f-7b6d-4c8d-a081-28d914373f0e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -7577,780 +7588,12 @@
 					"name": "S005.002 - Refresh Token Tests",
 					"item": [
 						{
-							"name": "S006 Identifiers and Subject Types",
-							"item": [
-								{
-									"name": "Sub Claim",
-									"item": [
-										{
-											"name": "S006.T001.001 - Download Private Key",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "192347c7-d454-4463-9516-ed3eb4718500",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"pm.test(\"Validate kty is RSA\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response.kty).to.equal('RSA');",
-															"});",
-															"pm.test(\"Validate algorithm is PS256\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response.alg).to.equal('PS256');",
-															"});",
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    var responseBlob = btoa(pm.response.text());",
-															"    pm.environment.set(\"software-jwks-private\", responseBlob);",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
-													"host": [
-														"{{cdr-register-testharness-host}}"
-													],
-													"path": [
-														"softwarestatement",
-														"JWKS",
-														"{{softwareId}}",
-														"private"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.002 - Generate Request JWT",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "8e2711f5-0fa8-4fa8-8865-2b5333a431b6",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"pm.test(\"Validate request-jwt property exists\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('request-jwt');",
-															"});",
-															"pm.test(\"Validate request-url property exists\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('request-url');",
-															"});",
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
-															"});",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [
-													{
-														"key": "Content-Type",
-														"value": "application/json"
-													},
-													{
-														"key": "x-private-jwk",
-														"type": "text",
-														"value": "{{software-jwks-private}}"
-													},
-													{
-														"key": "x-nonce",
-														"value": "{{default-nonce}}",
-														"type": "text"
-													},
-													{
-														"key": "x-state",
-														"value": "{{default-state}}",
-														"type": "text"
-													},
-													{
-														"key": "x-issuer",
-														"value": "{{dcrClientId}}",
-														"type": "text"
-													},
-													{
-														"key": "x-duration-seconds",
-														"value": "60",
-														"type": "text"
-													},
-													{
-														"key": "x-dataholder-authorization-endpoint",
-														"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
-														"type": "text"
-													},
-													{
-														"key": "x-response-type",
-														"value": "code id_token",
-														"type": "text"
-													},
-													{
-														"key": "x-scope",
-														"value": "openid profile bank:accounts.basic:read bank:transactions:read",
-														"type": "text"
-													},
-													{
-														"key": "x-redirecturi",
-														"value": "{{default-redirecturi}}",
-														"type": "text"
-													},
-													{
-														"key": "x-maxage",
-														"value": "-1",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "raw",
-													"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
-													"options": {
-														"raw": {}
-													}
-												},
-												"url": {
-													"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
-													"host": [
-														"{{cdr-register-testharness-host}}"
-													],
-													"path": [
-														"testtool",
-														"tpp",
-														"requestGenericJWT"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.003 - Initiate Consent Request",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "a355c39b-e811-40aa-b88d-136089a5abbe",
-														"exec": [
-															"",
-															"",
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    const $ = cheerio.load(responseBody);",
-															"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{consent-request-url}}",
-													"host": [
-														"{{consent-request-url}}"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.004 - Provider username",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "71cfcd55-42c9-4112-a9eb-65b18dd27b84",
-														"exec": [
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    const $ = cheerio.load(responseBody);",
-															"    pm.environment.set(\"consent-request-otp-csrf\", $( \"input[name='CSRF_TOKEN']\" ).val());",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "$ok",
-															"value": "clicked",
-															"type": "text"
-														},
-														{
-															"key": "subject",
-															"value": "crn0",
-															"type": "text"
-														}
-													],
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
-													"host": [
-														"{{dh-idp-host}}{{consent-request-nonceurl}}"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.005 - Verify OTP",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "126b1acc-3efd-471a-a7dc-a467d49a7785",
-														"exec": [
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    const $ = cheerio.load(responseBody);",
-															"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-															"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "$ok",
-															"value": "clicked",
-															"type": "text"
-														},
-														{
-															"key": "CODE_VERIFICATION_VALUE",
-															"value": "123456",
-															"type": "text"
-														},
-														{
-															"key": "CODE_VERIFICATION_STATE",
-															"value": "true",
-															"type": "text"
-														},
-														{
-															"key": "CSRF_TOKEN",
-															"value": "{{consent-request-otp-csrf}}",
-															"type": "text"
-														},
-														{
-															"key": "submitform",
-															"value": "true",
-															"type": "text"
-														}
-													],
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
-													"host": [
-														"{{dh-idp-host}}{{consent-request-nonceurl}}"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.006 - Perform consent",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "7e45b1d9-e71a-42d1-8ef0-4a5f99d8d0c0",
-														"exec": [
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    var locationHeader = pm.response.headers.get(\"Location\");",
-															"    if(!locationHeader)",
-															"        locationHeader = pm.response.headers.get(\"Referer\");",
-															"",
-															"    var locationParams = locationHeader.split(\"#\")[1];",
-															"    const eachParamArray = locationParams.split('&');",
-															"    let params = {};",
-															"    eachParamArray.forEach((param) => {",
-															"        const key = param.split('=')[0];",
-															"        const value = param.split('=')[1];",
-															"        Object.assign(params, {[key]: value});",
-															"    });",
-															"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-															"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-															"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "accounts",
-															"value": "{{consent-request-consent-account}}",
-															"type": "text"
-														},
-														{
-															"key": "cSRFToken",
-															"value": "{{consent-request-consent-csrf}}",
-															"type": "text"
-														},
-														{
-															"key": "approved",
-															"value": "allow",
-															"type": "text"
-														},
-														{
-															"key": "scopes",
-															"value": "bank:accounts.basic:read",
-															"type": "text"
-														},
-														{
-															"key": "scopes",
-															"value": "bank:transactions:read",
-															"type": "text"
-														}
-													],
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
-													"host": [
-														"{{dh-idp-host}}{{consent-request-nonceurl}}"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.007 - Creates JWT-Bearer Client Assertion",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "25603e6d-b80f-4753-90f3-f7adc66072eb",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"pm.test(\"Validate client assertion is available\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('client-assertion');",
-															"});",
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [
-													{
-														"key": "Content-Type",
-														"value": "application/x-www-form-urlencoded"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "private-jwk",
-															"value": "{{software-jwks-private}}",
-															"type": "text"
-														},
-														{
-															"key": "client-id",
-															"value": "{{dcrClientId}}",
-															"type": "text"
-														},
-														{
-															"key": "token-endpoint",
-															"value": "{{dh-idp-host}}/as/token.oauth2",
-															"type": "text"
-														},
-														{
-															"key": "kid",
-															"value": "{{softwareId}}",
-															"type": "text"
-														}
-													],
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
-													"host": [
-														"{{cdr-register-testharness-host}}"
-													],
-													"path": [
-														"testtool",
-														"tpp",
-														"createClientAssertion"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.008 - Perform code exchange",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "0b398d9f-5225-4615-ae0a-e885ec64be2f",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"",
-															"pm.test(\"Validate id_token is available\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('id_token');",
-															"});",
-															"",
-															"",
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
-															"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
-															"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
-															"});",
-															"",
-															"",
-															"",
-															"function jwt_decode_payload(jwt) {",
-															"    var parts = jwt.split('.'); // header, payload, signature",
-															"    return JSON.parse(atob(parts[1]));",
-															"}",
-															"",
-															"function jwt_decode_header(jwt) {",
-															"    var parts = jwt.split('.'); // header, payload, signature",
-															"    return JSON.parse(atob(parts[0]));",
-															"}",
-															"function jwt_parts(jwt) {",
-															"    var parts = jwt.split('.'); // header, payload, signature",
-															"    return parts.length;",
-															"}",
-															"",
-															"",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "code",
-															"value": "{{consent-request-authcode-callback-code}}",
-															"type": "text"
-														},
-														{
-															"key": "client_id",
-															"value": "{{dcrClientId}}",
-															"type": "text"
-														},
-														{
-															"key": "grant_type",
-															"value": "authorization_code",
-															"type": "text"
-														},
-														{
-															"key": "redirect_uri",
-															"value": "{{default-redirecturi}}",
-															"type": "text"
-														},
-														{
-															"key": "client_assertion_type",
-															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-															"type": "text"
-														},
-														{
-															"key": "client_assertion",
-															"value": "{{consent-client-assertion}}",
-															"type": "text"
-														}
-													],
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
-													"host": [
-														"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.009 - Download Enc Private Key",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "90e60af4-c749-405d-8a14-2f7a895f675a",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"pm.test(\"Set environment variables for next test\", function () {",
-															"    var responseBlob = btoa(pm.response.text());",
-															"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
-													"host": [
-														"{{cdr-register-testharness-host}}"
-													],
-													"path": [
-														"softwarestatement",
-														"JWKS",
-														"{{softwareId}}",
-														"private",
-														"alg"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.010 - Test ID Token",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "941de390-88f1-47cd-89f3-1b6bf418e9c6",
-														"exec": [
-															"",
-															"//CDR ID Token OIDC Requirements",
-															"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('iss');",
-															"",
-															"});",
-															"",
-															"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('sub');",
-															"",
-															"});",
-															"",
-															"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('exp');",
-															"",
-															"});",
-															"",
-															"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('iat');",
-															"});",
-															"",
-															"//CDR ID Token FAPI-RW Requirements",
-															"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('nonce');",
-															"});",
-															"",
-															"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('s_hash');",
-															"});",
-															"",
-															"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
-															"    var response = pm.response.json();",
-															"    pm.expect(response).to.have.property('c_hash');",
-															"});",
-															"",
-															"",
-															"",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "POST",
-												"header": [
-													{
-														"key": "x-private-jwk",
-														"value": "{{software-jwks-private-encryption}}",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "raw",
-													"raw": "{{consent-request-id-token}}",
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
-													"host": [
-														"{{cdr-register-testharness-host}}"
-													],
-													"path": [
-														"testtool",
-														"tpp",
-														"reflectIDToken"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.011 - Call userinfo",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "1180557e-f00f-4227-9e55-9519bf5f56fd",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"//CDR ID Token OIDC Requirements",
-															"",
-															"pm.test(\"Validate UserInfo Response has sub - REQUIRED for OIDC\", function () {",
-															"    var response = pm.response.json();",
-															"",
-															"    pm.expect(response).to.have.property('sub');",
-															"});",
-															""
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "{{consent-request-access-token}}",
-															"type": "string"
-														}
-													]
-												},
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [],
-													"options": {
-														"urlencoded": {}
-													}
-												},
-												"url": {
-													"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
-													"host": [
-														"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "S006.T001.012 - Get openid-configuration",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"id": "225eb70f-ae21-4edc-b9bb-38f7053bb4eb",
-														"exec": [
-															"pm.test(\"Validate response status=200\", function () {",
-															"    pm.response.to.have.status(200);",
-															"});",
-															"pm.test(\"Validate Pairwise Pseudonymous Identifier (PPID) is configured\", function () {",
-															"    var response = pm.response.json();",
-															"    console.log(response.subject_types_supported);",
-															"    pm.expect(response.subject_types_supported[0]).to.equal('pairwise');",
-															"});"
-														],
-														"type": "text/javascript"
-													}
-												}
-											],
-											"request": {
-												"method": "GET",
-												"header": [],
-												"url": {
-													"raw": "{{dh-idp-host}}{{openid-configuration}}",
-													"host": [
-														"{{dh-idp-host}}{{openid-configuration}}"
-													]
-												}
-											},
-											"response": []
-										}
-									],
-									"protocolProfileBehavior": {},
-									"_postman_isSubFolder": true
-								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
-						},
-						{
 							"name": "S005.T002.001 - Creates JWT-Bearer Client Assertion",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "e42ebd3b-b12b-4b0a-af5a-bbc87b87b8f3",
+										"id": "b803a16d-2965-45fd-ba3c-97ec2d0eb2fc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -8424,7 +7667,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c8c1c965-fe8f-45e3-92e6-eef7ca116b13",
+										"id": "b3cc05ee-bb9d-4bca-9ce1-801a847dc2a1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -8435,12 +7678,45 @@
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('access_token');",
 											"});",
+											"//CDR Refresh Token Validation as per https://consumerdatastandardsaustralia.github.io/standards/#tokens",
+											"pm.test(\"Validate initial id_token ISS is same as retruned with Refresh Token - OIDC Requirement\", function () {",
+											"var response = pm.response.json();",
+											"var original_id_token = jwt_decode_payload(pm.environment.get(\"consent-request-id-token\"));",
+											"var refresh_id_token = jwt_decode_payload(response.id_token);",
+											"pm.expect(refresh_id_token.iss).to.equal(original_id_token.iss)",
+											"});",
+											"",
+											"pm.test(\"Validate initial id_token SUB is same as retruned with Refresh Token - OIDC Requirement\", function () {",
+											"var response = pm.response.json();",
+											"var original_id_token = jwt_decode_payload(pm.environment.get(\"consent-request-id-token\"));",
+											"var refresh_id_token = jwt_decode_payload(response.id_token);",
+											"pm.expect(refresh_id_token.sub).to.equal(original_id_token.sub)",
+											"});",
+											"",
+											"pm.test(\"Validate initial id_token AUD is same as retruned with Refresh Token - OIDC Requirement\", function () {",
+											"var response = pm.response.json();",
+											"var original_id_token = jwt_decode_payload(pm.environment.get(\"consent-request-id-token\"));",
+											"var refresh_id_token = jwt_decode_payload(response.id_token);",
+											"pm.expect(refresh_id_token.aud).to.equal(original_id_token.aud)",
+											"});",
+											"",
+											"pm.test(\"Validate initial id_token AUTH_TIME is same as retruned with Refresh Token - OIDC Requirement\", function () {",
+											"var response = pm.response.json();",
+											"var original_id_token = jwt_decode_payload(pm.environment.get(\"consent-request-id-token\"));",
+											"var refresh_id_token = jwt_decode_payload(response.id_token);",
+											"pm.expect(refresh_id_token.auth_time).to.equal(original_id_token.auth_time)",
+											"",
+											"});",
 											"",
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
-											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
-											"});"
+											"});",
+											"",
+											"function jwt_decode_payload(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[1]));",
+											"}"
 										],
 										"type": "text/javascript"
 									}
@@ -8497,123 +7773,12 @@
 							"response": []
 						},
 						{
-							"name": "S005.T002.003 - Download Enc Private Key",
+							"name": "S005.T002.003 - Creates JWT-Bearer Client Assertion",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "f18b660b-073d-4347-bb3c-7f062e6d593e",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var responseBlob = btoa(pm.response.text());",
-											"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"softwarestatement",
-										"JWKS",
-										"{{softwareId}}",
-										"private",
-										"alg"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S005.T002.004 - Test ID Token Copy 2",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "687e28ec-7c44-4c64-83ca-9d0622125c72",
-										"exec": [
-											"",
-											"//CDR ID Token OIDC Requirements",
-											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('iss');",
-											"",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('sub');",
-											"",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('exp');",
-											"",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('iat');",
-											"});",
-											"",
-											"",
-											"",
-											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "x-private-jwk",
-										"value": "{{software-jwks-private-encryption}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{{consent-request-id-token}}",
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"testtool",
-										"tpp",
-										"reflectIDToken"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S005.T002.005 - Creates JWT-Bearer Client Assertion",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "0fa99fb4-4595-444d-99f3-78b2ddad7967",
+										"id": "37b76ce4-d6bf-4593-8940-69ad1a7bf84c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -8682,12 +7847,12 @@
 							"response": []
 						},
 						{
-							"name": "S005.T002.006 - Perform refresh token - Invalid",
+							"name": "S005.T002.004 - Perform refresh token - Invalid",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "2305a75e-e2b0-4472-a5ae-c7211c1bdcbf",
+										"id": "fffd99a3-eb4c-4a89-9eaa-342bddc669b9",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -8749,12 +7914,12 @@
 							"response": []
 						},
 						{
-							"name": "S007.T002.007 - Creates JWT-Bearer Client Assertion",
+							"name": "S007.T002.005 - Creates JWT-Bearer Client Assertion",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "f95d2054-9db7-4b61-9c3c-d717edc0e3f2",
+										"id": "ef803ca9-fa94-402a-a58c-08f5636aee7a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -8823,12 +7988,12 @@
 							"response": []
 						},
 						{
-							"name": "S007.T002.008 - Refresh Error Response - UnAuthorized",
+							"name": "S007.T002.006 - Refresh Error Response - UnAuthorized",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "6624cd45-4f76-4db3-b9b3-838cfc169eb9",
+										"id": "aa3336c0-6e07-4be9-87ec-2e6f29a96084",
 										"exec": [
 											"pm.test(\"Validate response status=401\", function () {",
 											"    pm.response.to.have.status(401);",
@@ -8896,7 +8061,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "79e1ab78-f375-4213-8081-01b02fe1c59b",
+								"id": "f1577012-06b7-4e91-82f1-d7db9f012664",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -8906,12 +8071,662 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2a915f1a-7dcf-4d79-ac9d-4be05ed77879",
+								"id": "3da3d79f-876b-49e3-bffb-3898e90dff54",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "S006 Identifiers and Subject Types",
+			"item": [
+				{
+					"name": "Sub Claim",
+					"item": [
+						{
+							"name": "S006.T001.001 - Download Private Key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "edd61372-4cf8-4829-b941-8aeeaf5bb570",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate kty is RSA\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.kty).to.equal('RSA');",
+											"});",
+											"pm.test(\"Validate algorithm is PS256\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.alg).to.equal('PS256');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = btoa(pm.response.text());",
+											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"softwarestatement",
+										"JWKS",
+										"{{softwareId}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.002 - Generate Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6f01c72f-dae4-4c81-9396-7084b6912bde",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"requestGenericJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.003 - Initiate Consent Request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f8e7120f-e75e-4591-afef-5543f2fe8b83",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.004 - Provider username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5a1b8b9c-8c00-41c5-a0f4-47714aadfa47",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-otp-csrf\", $( \"input[name='CSRF_TOKEN']\" ).val());",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "$ok",
+											"value": "clicked",
+											"type": "text"
+										},
+										{
+											"key": "subject",
+											"value": "crn0",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.005 - Verify OTP",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "13dacd1e-8009-4a99-95dc-6e905f266a01",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "$ok",
+											"value": "clicked",
+											"type": "text"
+										},
+										{
+											"key": "CODE_VERIFICATION_VALUE",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "CODE_VERIFICATION_STATE",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "CSRF_TOKEN",
+											"value": "{{consent-request-otp-csrf}}",
+											"type": "text"
+										},
+										{
+											"key": "submitform",
+											"value": "true",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.006 - Perform consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "81569b67-2ec0-4ef3-b7ff-9f68d1db523d",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account}}",
+											"type": "text"
+										},
+										{
+											"key": "cSRFToken",
+											"value": "{{consent-request-consent-csrf}}",
+											"type": "text"
+										},
+										{
+											"key": "approved",
+											"value": "allow",
+											"type": "text"
+										},
+										{
+											"key": "scopes",
+											"value": "bank:accounts.basic:read",
+											"type": "text"
+										},
+										{
+											"key": "scopes",
+											"value": "bank:transactions:read",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.007 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ed516b8a-9ce6-477f-a732-0547fbd60223",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.008 - Perform code exchange",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "de932f47-9b50-4d17-af50-4387babf4212",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Validate id_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('id_token');",
+											"});",
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    var payload = jwt_decode_payload(response.id_token);",
+											"    pm.expect(payload).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
+											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"});",
+											"",
+											"",
+											"",
+											"function jwt_decode_payload(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[1]));",
+											"}",
+											"",
+											"function jwt_decode_header(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[0]));",
+											"}",
+											"function jwt_parts(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return parts.length;",
+											"}",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "{{consent-request-authcode-callback-code}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{default-redirecturi}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.009 - Call userinfo",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17ab60fd-fe87-464c-8a54-ff964c686276",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"//CDR ID Token OIDC Requirements",
+											"",
+											"pm.test(\"Validate UserInfo Response has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"",
+											"    pm.expect(response).to.have.property('sub');",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{consent-request-access-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.010 - Get openid-configuration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "61064c27-03aa-4315-afb6-5ee089f74e60",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate Pairwise Pseudonymous Identifier (PPID) is configured\", function () {",
+											"    var response = pm.response.json();",
+											"    console.log(response.subject_types_supported);",
+											"    pm.expect(response.subject_types_supported[0]).to.equal('pairwise');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{dh-idp-host}}{{openid-configuration}}",
+									"host": [
+										"{{dh-idp-host}}{{openid-configuration}}"
+									]
+								}
+							},
+							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -8925,7 +8740,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "281febc9-6e5b-4f26-adcc-2d606e3ac2ae",
+				"id": "68cfa968-b656-4d69-a7cf-aa02fea0a72c",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -8935,7 +8750,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "3f28778c-2e77-49cb-9087-d7acff8e441c",
+				"id": "56c2cb29-931c-4df8-bf47-877938657821",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -8945,82 +8760,82 @@
 	],
 	"variable": [
 		{
-			"id": "938b3386-71a6-402a-98c7-b01f0c4fdc0e",
+			"id": "ec48f19c-e8bd-478e-a25e-2a513266bdb3",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084"
 		},
 		{
-			"id": "4413f47e-8dfd-453a-ba12-3d3efe179711",
+			"id": "cea39e41-fd78-4ef6-8c47-59e70e4803d0",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "753fd902-91de-4b8e-902a-d6eda93c8ec6",
+			"id": "d54256af-4032-4a31-8c23-e5613cead191",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "ca9bea17-88b9-4d36-9d6a-b7f5122494c4",
+			"id": "547e7fb8-0b84-472b-ba0a-e7ab9c709dd5",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "c76b2a61-7427-4cfb-a5c6-edf4a12729d4",
+			"id": "27497799-baac-443a-9ae9-f8018854a388",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "f36f7841-1e23-4c34-923b-96352d8791e1",
+			"id": "8d6050b4-0521-44ca-adc1-043a22fa649a",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "a8f64978-8775-4b55-8f2a-937f003fe5c9",
+			"id": "1db04ba6-7d71-4f5c-95f2-b4bb72eeedb3",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "f4842d67-5695-4ba6-a972-4382684ca967",
+			"id": "6e665342-0304-4588-9e18-a2ab31fb74a0",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "81ea3b19-b676-432c-9a4f-d9bc4c28c291",
+			"id": "54aa787f-febb-4c1e-97bd-615508e321cf",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "12363f8c-074f-420f-82be-1638311b2339",
+			"id": "a625edc7-d00f-4543-9cbd-ac7b1df7d2ba",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "3b813fe9-b2af-4443-a662-81f4c78c7d8b",
+			"id": "288f051f-2a6e-4d6c-9f40-f606e221f899",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "dd014289-2626-4399-9498-232c35b2db54",
+			"id": "61dacc54-5773-4a28-936f-4ad93b834889",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "3e69b1a1-40d1-49e7-a94f-bf4a96a52d2c",
+			"id": "b883c38b-5c42-4c4b-8336-7d8e71a47b3d",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "d5eec426-c4af-4df2-9b5b-02e017a99d48",
+			"id": "6c7a2e89-7da8-4c5b-ad9c-ce8546f06b21",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "f8ac55b0-958d-4eeb-8ec1-e6648b2f2213",
+			"id": "d6d2c261-259b-4bb3-93a3-3e2d3e123e34",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "b6826df3-b33e-4059-82a3-999abe6e2414",
+			"id": "62213667-3137-4322-97d0-20fb8182f23c",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		}
