@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingaccess-admin
+  name: pingaccess-admin
+spec:
+  ports:
+  - name: pa-admin
+    port: 9000
+  - name: pa-cluster
+    port: 9090
+  selector:
+    role: pingaccess-admin
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: pingaccess-admin
+  name: pingaccess-admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: pingaccess-admin
+  template:
+    metadata:
+      labels:
+        role: pingaccess-admin
+      name: pingaccess-admin
+    spec:
+      initContainers:
+      - name: init-pingfederate
+        image: curlimages/curl:latest
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingfederate:9031 ; do echo waiting for admin ; sleep 3 ; done']
+      - name: init-cdrregister
+        image: curlimages/curl:latest
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k http://cdrregister:8084 ; do echo waiting for admin ; sleep 3 ; done']
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: pingaccess-admin-environment-variables
+        - secretRef:
+            name: devops-secret
+            optional: true
+        image: pingidentity/pingaccess:6.0.0-alpine-edge
+        imagePullPolicy: Always
+        name: pingaccess-admin
+        ports:
+        - containerPort: 9000
+        - containerPort: 9090
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1.5Gi

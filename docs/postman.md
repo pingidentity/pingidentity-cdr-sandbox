@@ -16,6 +16,7 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
 1. Open the Postman Settings page
 2. On the General tab
    * Disable "Automatically follow redirects"
+   * Disable "SSL Certificate Verification"
 3. On the Certificates tab
    * Add a Certificate with the following details
       * Host: sso.data-holder.local
@@ -37,7 +38,7 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
    
 ## Execute a Consent Flow Runner Test
 1. Click the "Runner" button
-2. Select "Consent Flow" in the All Colelctions window
+2. Select "Consent Flow" in the All Collections window
 3. Click  the "Run Consent Flow" button
 4. Verify all tests passed
 

@@ -1,0 +1,8 @@
+SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+SERVER_PROFILE_PATH=server_profiles/pingaccess-admin
+SERVER_PROFILE_BRANCH=edge
+OPERATIONAL_MODE=CLUSTERED_CONSOLE
+PA_CONSOLE_HOST=pingaccess-admin
+PA_ADMIN_PORT=9000
+PING_IDENTITY_PASSWORD=2FederateM0re
+

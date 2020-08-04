@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: deepthought-admin-service
+  name: deepthought-admin-service
+spec:
+  ports:
+  - name: deepthought-admin-service
+    port: 8080
+    targetPort: 8080
+  selector:
+    role: deepthought-admin-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: deepthought-admin-service
+  name: deepthought-admin-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: deepthought-admin-service
+  template:
+    metadata:
+      labels:
+        role: deepthought-admin-service
+      name: deepthought-admin-service
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: deepthought-admin-service-environment-variables
+        image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
+        imagePullPolicy: Always
+        name: deepthought-admin-service
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1.5Gi
+

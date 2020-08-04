@@ -1,0 +1,115 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+resources:
+- ../01-standalone/cdrregister
+- ../01-standalone/pingdirectory
+- ../01-standalone/pingfederate-cluster
+- ../01-standalone/pingaccess-admin
+- ../01-standalone/pingaccess
+- ../01-standalone/deepthought-admin-service
+- ../01-standalone/deepthought-bank-api
+- ../01-standalone/deepthought-h2-database
+- ../01-standalone/cdr-dr-client
+
+# The only difference in standalone deployments vs "fullstack" (integrated) is the product configurations. 
+# here we replace standalone server-profiles ("getting-started") with "baseline" for each product
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+- name: cdrregister-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.cdrregister
+- name: pingdirectory-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.pingdirectory
+- name: pingfederate-admin-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.pingfederate-admin
+- name: pingfederate-engine-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.pingfederate-engine
+- name: pingaccess-admin-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.pingaccess-admin
+- name: pingaccess-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.pingaccess
+- name: deepthought-admin-service-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.deepthought-admin-service
+- name: deepthought-bank-api-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.deepthought-bank-api
+- name: deepthought-h2-database-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.deepthought-h2-database
+- name: cdr-dr-client-environment-variables
+  behavior: replace
+  envs:
+    - env_vars.common
+    - env_vars.cdr-dr-client
+
+patches:
+- target:
+    kind: StatefulSet
+    name: ^pingdirectory$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200803
+- target:
+    kind: StatefulSet
+    name: ^pingdirectory$
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2
+- target:
+    kind: Deployment
+    name: ^pingaccess-admin$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
+- target:
+    kind: Deployment
+    name: ^pingaccess$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
+- target:
+    kind: Deployment
+    name: ^pingaccess$
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2
+- target:
+    kind: Deployment
+    name: ^pingfederate$
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2

@@ -1,0 +1,21 @@
+URL's:
+PF Admin - https://localhost:9999/pingfederate/app
+PA Admin - https://localhost:9000/
+Sample DR - http://localhost:8088/
+
+Port forwarding commands:
+kubectl port-forward svc/pingfederate 9999:9999
+kubectl port-forward svc/pingaccess 9000:9000
+sudo kubectl port-forward svc/pingaccess 443:443
+kubectl port-forward svc/cdr-dr-client 8080
+sudo kubectl port-forward svc/pingdirectory 389:389
+
+Clean environment:
+kubectl delete -R -f 01-standalone
+
+Build environment:
+kustomize build 02-completeinstall | envsubst '${PING_IDENTITY_K8S_NAMESPACE}' | kubectl apply -f -
+
+
+Ingress:
+k apply -f pingaccess-ingress.yaml
