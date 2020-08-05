@@ -75,7 +75,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-au/mock-register:20200803
+    image: gcr.io/ping-identity/cdr-au/mock-register:20200805
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -88,6 +88,8 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
+    volumes:
+       - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
 
   deepthought-product-api:
     image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-002
