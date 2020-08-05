@@ -36,7 +36,7 @@ openssl pkcs12 -export -out network.p12 -inkey client.key -in csrresponse.pem -p
 
 echo $("generate_post_data") > install-cert.txt
 
-keypairId=$(curl -X POST --silent --basic -u Administrator: ${PA_ADMIN_PASSWORD_INITIAL}--header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' --data '@install-cert.txt' https://localhost:9000/pa-admin-api/v3/keyPairs/import --insecure | jq .id)
+keypairId=$(curl -X POST --silent --basic -u Administrator:${PA_ADMIN_PASSWORD_INITIAL} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' --data '@install-cert.txt' https://localhost:9000/pa-admin-api/v3/keyPairs/import --insecure | jq .id)
 
 if [ -z "$keypairId" ] || [ $keypairId == null ]
 then
