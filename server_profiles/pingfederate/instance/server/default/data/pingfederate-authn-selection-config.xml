@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:AuthnSelectionConfig lastModifiedMillis="1595894807946" enableAuthnSelection="true" enableSpAuthnSelection="false" failIfNoSelection="false" xmlns:urn="urn:pingidentity.com:pf:authn-selection">
+<urn:AuthnSelectionConfig lastModifiedMillis="1596596863289" enableAuthnSelection="true" enableSpAuthnSelection="false" failIfNoSelection="false" xmlns:urn="urn:pingidentity.com:pf:authn-selection">
     <urn:AuthnSelectionTrees>
         <urn:AuthnSelectionTree treeName="Administrative Functions" disabled="false" authnApiApp="">
             <urn:AstRoot context="">
@@ -73,7 +73,7 @@
                                         <urn1:AttributeMap Name="cdrArrangementId" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="claims_cdrArrangementId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="persistentGrantLifetimeMinutes" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_persistentGrantLifetimeMinutes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="sharingDurationExpiresAt" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_sharingDurationExpiresAt" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-                                        <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="identityFirstAdapter" Value="entryUUID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                        <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="SAML_AUTHN_CTX" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_requestedACR" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="accounts" Type="Adapter" AttributeSourceId="cdrConsentAdapter" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
                                         <urn1:AttributeMap Name="idtokenClaims" Type="Adapter" AttributeSourceId="cdrSelectorAdapter" Value="claims_idtoken" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
@@ -119,4 +119,3 @@
     </urn:AuthnSelectionTrees>
     <urn:DefaultAuthnSources/>
 </urn:AuthnSelectionConfig>
-
