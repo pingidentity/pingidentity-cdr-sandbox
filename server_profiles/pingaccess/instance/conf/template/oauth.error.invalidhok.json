@@ -28,4 +28,4 @@ and any other locale specific properties files, the localized value can be added
 
 *#
 
-{"error":"access_denied", "error_description":"The certificate used to authenticate is invalid"}
+{"error":"invalid_request", "error_description":"The certificate used to authenticate is invalid"}
