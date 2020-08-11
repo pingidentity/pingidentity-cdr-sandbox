@@ -15,10 +15,10 @@
   <body class="consent">
   <div class="container mt-3">
     <div class="col-md-6 m-auto card p-5">
-    
+
 	<form method="POST" action="$action" autocomplete="off">
 		<input type="hidden" name="$ok" value=""/>
-		<input type="hidden" name="$cancel" value=""/>
+		<input type="hidden" name="CANCEL_BUTTON" value=""/>
 		<input type="hidden" name="CODE_VERIFICATION_STATE" value="true"/>
 		<input type="hidden" name="CSRF_TOKEN" value="$csrfToken"/>
             <div class="row">
@@ -57,7 +57,7 @@
 			document.forms[0].submit();
 		}
 		function postCancel() {
-			document.forms[0]['$cancel'].value = 'clicked';
+			document.forms[0]['CANCEL_BUTTON'].value = 'clicked';
 			document.forms[0].submit();
 		}
 
