@@ -147,7 +147,7 @@ pa.default.contentRewrite.buffer.min=1024
 pa.default.contentRewrite.buffer.default=2048
 
 # Requests
-pa.default.limitRequestLine=8192
+pa.default.limitRequestLine={{PA_LIMIT_REQUEST_LINE}}
 pa.default.maxHeaderCount=100
 pa.default.maxHttpHeaderSize=8192
 pa.default.maxRequestBodySize=204800

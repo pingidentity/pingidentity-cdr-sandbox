@@ -10,6 +10,7 @@ services:
       - PA_POST_CONFIGURATION_DELAY=0
       - OPERATIONAL_MODE=STANDALONE
       - PA_ADMIN_PORT=9000
+      - PA_LIMIT_REQUEST_LINE=40960
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
