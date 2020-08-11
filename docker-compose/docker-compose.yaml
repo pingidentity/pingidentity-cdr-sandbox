@@ -23,6 +23,7 @@ services:
     #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
     ports:
       - 443:3000
+      - 80:7080
       - 9000:9000
       - 9001:9001
     networks:
