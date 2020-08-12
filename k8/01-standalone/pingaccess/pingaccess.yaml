@@ -21,7 +21,7 @@ metadata:
     role: pingaccess
   name: pingaccess
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       role: pingaccess
@@ -48,10 +48,10 @@ spec:
         ports:
         - containerPort: 443
         - containerPort: 3000
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1.5Gi
-          requests:
-            cpu: "1"
-            memory: 1.5Gi
+#        resources:
+#          limits:
+#            cpu: "1"
+#            memory: 1.5Gi
+#          requests:
+#            cpu: "1"
+#            memory: 1.5Gi

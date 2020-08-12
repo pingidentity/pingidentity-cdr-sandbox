@@ -50,7 +50,7 @@ spec:
             path: /pingfederate/app
             port: 9999
             scheme: HTTPS
-          initialDelaySeconds: 100
+          initialDelaySeconds: 300
           periodSeconds: 1
         name: pingfederate-admin
         ports:
@@ -62,10 +62,10 @@ spec:
             port: 9999
             scheme: HTTPS
           periodSeconds: 10
-        resources:
-          limits:
-            cpu: "1"
-            memory: 1.5Gi
-          requests:
-            cpu: "1"
-            memory: 1.5Gi
+#        resources:
+#          limits:
+#            cpu: "1"
+#            memory: 1.5Gi
+#          requests:
+#            cpu: "1"
+#            memory: 1.5Gi

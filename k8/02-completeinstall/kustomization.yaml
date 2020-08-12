@@ -22,51 +22,61 @@ configMapGenerator:
 - name: cdrregister-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.cdrregister
 - name: pingdirectory-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.pingdirectory
 - name: pingfederate-admin-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.pingfederate-admin
 - name: pingfederate-engine-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.pingfederate-engine
 - name: pingaccess-admin-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.pingaccess-admin
 - name: pingaccess-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.pingaccess
 - name: deepthought-admin-service-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.deepthought-admin-service
 - name: deepthought-bank-api-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.deepthought-bank-api
 - name: deepthought-h2-database-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.deepthought-h2-database
 - name: cdr-dr-client-environment-variables
   behavior: replace
   envs:
+    - devops
     - env_vars.common
     - env_vars.cdr-dr-client
 
@@ -84,7 +94,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/replicas
-      value: 2
+      value: 1
 - target:
     kind: Deployment
     name: ^pingaccess-admin$
@@ -105,11 +115,11 @@ patches:
   patch: |-
     - op: replace
       path: /spec/replicas
-      value: 2
+      value: 1
 - target:
     kind: Deployment
     name: ^pingfederate$
   patch: |-
     - op: replace
       path: /spec/replicas
-      value: 2
+      value: 1

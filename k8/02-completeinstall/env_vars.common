@@ -1,4 +1,3 @@
-PING_IDENTITY_ACCEPT_EULA=YES
 
 BASE_HOSTNAME=data-holder.local
 USER_BASE_DN=dc=data-holder,dc=com
