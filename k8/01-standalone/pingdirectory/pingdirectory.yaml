@@ -58,6 +58,7 @@ spec:
             - /opt/liveness.sh
           initialDelaySeconds: 600
           periodSeconds: 30
+          failureThreshold: 20
         name: pingdirectory
         ports:
         - containerPort: 636
