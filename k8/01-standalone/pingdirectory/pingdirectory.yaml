@@ -70,11 +70,11 @@ spec:
             - /bin/sh
             - -c
             - /opt/liveness.sh
-#        resources:
-#          limits:
-#            cpu: "2"
-#            memory: 2Gi
-#          requests:
-#            cpu: "2"
-#            memory: 2Gi
+        resources:
+          limits:
+            cpu: "2"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
       terminationGracePeriodSeconds: 300

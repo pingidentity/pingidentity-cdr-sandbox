@@ -6,5 +6,6 @@ docker-compose/local-dr.env
 *backup*
 scripts/postman/cert
 scripts/postman/cert/*
+k8/02-completeinstall/devops
 server_profiles/pingaccess/instance/data/start-up-deployer/data.json
 server_profiles/pingaccess/instance/data/data.json
