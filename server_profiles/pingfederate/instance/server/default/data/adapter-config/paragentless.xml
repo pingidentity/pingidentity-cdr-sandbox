@@ -9,7 +9,7 @@
         <urn:Field name="Logout Service Endpoint"/>
         <urn:Field name="Account Linking Authentication Endpoint"/>
         <urn:Field name="Transport Mode">2</urn:Field>
-        <urn:Field name="Reference Duration">60</urn:Field>
+        <urn:Field name="Reference Duration">30</urn:Field>
         <urn:Field name="Reference Length">30</urn:Field>
         <urn:Field name="Require SSL/TLS">true</urn:Field>
         <urn:Field name="Outgoing Attribute Format">JSON</urn:Field>
@@ -19,7 +19,7 @@
     </urn:Fields>
     <urn:AdvancedFields>
         <urn:Field name="Transport Mode">2</urn:Field>
-        <urn:Field name="Reference Duration">60</urn:Field>
+        <urn:Field name="Reference Duration">30</urn:Field>
         <urn:Field name="Reference Length">30</urn:Field>
         <urn:Field name="Require SSL/TLS">true</urn:Field>
         <urn:Field name="Outgoing Attribute Format">JSON</urn:Field>
