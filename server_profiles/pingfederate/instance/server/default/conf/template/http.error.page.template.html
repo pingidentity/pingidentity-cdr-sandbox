@@ -47,7 +47,11 @@ is not recommended as it may interfere with expected server behavior.
                 $templateMessages.getMessage($messageKeyPrefix, "errorMessage")
             </div>
             <div class="ping-note-text">
-                $errorCode - $escape.escape($message)
+                #if($errorCode && ($errorCode == 400 || $errorCode.equals("400")))
+                  invalid_request - $escape.escape($message)
+                #else
+                  $errorCode - $escape.escape($message)
+                #end
             </div>
         </div>
     </div> <!-- .ping-body-container -->
