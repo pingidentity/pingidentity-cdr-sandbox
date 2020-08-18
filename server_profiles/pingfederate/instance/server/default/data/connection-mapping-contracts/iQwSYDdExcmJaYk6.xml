@@ -7,6 +7,7 @@
         <c2c:attr name="persistentGrantLifetimeMinutes"/>
         <c2c:attr name="cdrArrangementId"/>
         <c2c:attr name="sharingDurationExpiresAt"/>
+        <c2c:attr name="customerRef"/>
         <c2c:attr name="SAML_AUTHN_CTX"/>
         <c2c:attr name="accounts"/>
         <c2c:attr name="scopes"/>
