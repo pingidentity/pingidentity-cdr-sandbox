@@ -15,7 +15,7 @@
 - (CDR-153)	Push Authorization Request
 - (CDR-160)	Validate request_uri is not in the request object for a PAR request
 - (CDR-161)	Enable client authentication for PAR
-##### "cd_arrangement_id" Requirements
+##### "cdr_arrangement_id" Requirements
 - (CDR-154)	CDR Arrangment Endpoint
 - (CDR-162)	Change CDR Arrangement Endpoint to POST method
 - (CDR-163)	rename cdr arrangement endpoint to revocation
