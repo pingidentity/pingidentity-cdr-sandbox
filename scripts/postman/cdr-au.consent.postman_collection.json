@@ -129,7 +129,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "da87ec25-4184-4f13-99c8-edd4171618ef",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -147,7 +147,7 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "da87ec25-4184-4f13-99c8-edd4171618ef"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -943,6 +943,7 @@
 											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
 											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
 											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"    pm.environment.set(\"consent-cdr-arrangement-id\", response[\"cdr_arrangement_id\"]);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -2161,6 +2162,56 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S002.T007 Grant Management API",
+					"item": [
+						{
+							"name": "S001.T007.002 - Get Grant",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{grant-management-user}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{grant-management-password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-cdr-arrangement-id}}/grants",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"pf-ws",
+										"rest",
+										"oauth",
+										"users",
+										"{{consent-cdr-arrangement-id}}",
+										"grants"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"event": [
@@ -2387,7 +2438,7 @@
 								},
 								{
 									"key": "token-endpoint",
-									"value": "{{dh-idp-host}}",
+									"value": "{{dh-idp-host}}/as/par.oauth2",
 									"type": "text"
 								},
 								{
@@ -11068,84 +11119,94 @@
 	],
 	"variable": [
 		{
-			"id": "7b0861d9-8dda-49cb-984c-db737453e10a",
+			"id": "b2e139b1-1b2c-43ff-a1ea-c4cd63cedf0c",
 			"key": "cdr-register-testharness-host",
 			"value": "http://sso.data-holder.local:8084"
 		},
 		{
-			"id": "fe112cd3-adf3-4bc1-9103-e55ee7b50360",
+			"id": "080a2cea-0f37-4029-90c6-eb5798a99ad1",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "d1deb5b3-266e-4e9d-970c-6ae2a598b5a5",
+			"id": "d678d731-f6b1-4537-ac09-ff4924fc23c3",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "567e0bfa-ff30-490f-b0e5-c37bb9d7fea4",
+			"id": "79f22dff-3a77-4b03-b4d2-ba1c5c0da9a4",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "baa4c948-c8fd-40ab-a0fb-eeb5ea588ccd",
+			"id": "e50e69ec-ea1d-4027-9481-1a154a36ecfa",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "7885ef1a-ff6b-4994-898a-c7591ae2806f",
+			"id": "449de621-5a56-4e24-8950-2b9441ce42bc",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "844c5506-c072-4f1a-9327-28995d0737c1",
+			"id": "350eedcb-effa-43c2-bb94-5e520262a764",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "4ca42e90-5399-49b6-aaf6-a3b21fd82b3f",
+			"id": "0c763580-36f3-4923-bb19-b8a3b3418912",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "021c22e5-a2a9-4bb0-9cb7-c31f1f3bde2e",
+			"id": "4f53f926-c786-44b8-bf8f-637d7854e2dc",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "11b34fd7-4ce6-4b7f-8896-5ccd7d5a3fe9",
+			"id": "7191bb66-d73a-41dc-82b8-3c51a24839fe",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "0d87c450-3233-4336-a4b9-837b0c13f5ad",
+			"id": "331fe713-ea71-4e78-b728-a624ca2bf65b",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "9a00f1eb-a19a-46dd-a229-70c276190aa0",
+			"id": "5f03e42d-2dae-47cf-93b7-8b4208e17c95",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "c408a372-27b6-4693-a9a9-4356fe199888",
+			"id": "68d707fc-6661-488c-8f41-1d80a3e5631b",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "16393235-b05b-44c0-bcd8-aa5348b7f697",
+			"id": "1e141e4f-8259-47a3-a20f-a9afdf75a2e7",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "f8629dd7-28f0-4e87-a008-612a201f8836",
+			"id": "ed988b81-7776-4374-8e07-63df5818befd",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "43662af3-c12f-423a-b722-7a9365c132ce",
+			"id": "04fbf2c6-9083-4043-9136-ee633215326c",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
+		},
+		{
+			"id": "67e034d6-f821-42cf-b550-f8f9c35c9e73",
+			"key": "grant-management-user",
+			"value": "Administrator"
+		},
+		{
+			"id": "7b69f590-e4b4-4b90-8962-ca6e4fd8f792",
+			"key": "grant-management-password",
+			"value": "2FederateM0re"
 		}
 	],
 	"protocolProfileBehavior": {}
