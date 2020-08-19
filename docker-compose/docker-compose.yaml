@@ -136,7 +136,7 @@ services:
       - pingnet-dmz
 
   deepthought-h2-database:
-    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:20200819
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
