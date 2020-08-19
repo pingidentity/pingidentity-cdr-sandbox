@@ -611,7 +611,8 @@
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
 											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
 											"});"
 										],
 										"type": "text/javascript"
@@ -730,6 +731,11 @@
 										{
 											"key": "scopes",
 											"value": "bank:transactions:read",
+											"type": "text"
+										},
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account-2}}",
 											"type": "text"
 										}
 									],
@@ -1215,7 +1221,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/introspect.oauth2",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -1374,7 +1380,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/introspect.oauth2",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -2535,7 +2541,7 @@
 								},
 								{
 									"key": "token-endpoint",
-									"value": "{{dh-idp-host}}/as/par.oauth2",
+									"value": "{{dh-idp-host}}/as/token.oauth2",
 									"type": "text"
 								},
 								{
@@ -3693,7 +3699,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -4434,7 +4440,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -4586,7 +4592,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -4905,7 +4911,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -5479,7 +5485,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -6211,7 +6217,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -6526,7 +6532,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -7257,7 +7263,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -10221,92 +10227,92 @@
 	],
 	"variable": [
 		{
-			"id": "8166e02e-fc2b-4dbd-b6db-0416806c2828",
+			"id": "05172b02-97d8-4930-917b-683ff8fc519c",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "b6260bf8-2e3f-4118-b27d-7606723d82bb",
+			"id": "4ef2639c-e3cc-4caa-a684-07a96c334b5c",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "913ef15b-752e-4ba3-9e57-a59cb3cf3c4f",
+			"id": "52dc11e5-c11e-4fb5-84fd-0f89654c6efb",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "279b9585-e160-4b56-bb0f-bb3ba578c120",
+			"id": "5d99c834-e697-43a7-8857-2e38533c5ebd",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "aa10bc4f-e36d-435e-9e66-2c4678bb453e",
+			"id": "e44b325a-2369-48ae-a481-2e034b2d4dd6",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "eaf42774-8a0a-4119-9b1f-676b87f4dbd1",
+			"id": "a3dc9f80-317b-4070-a96a-c3d58cd8a2e8",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "aff19ee9-7483-4973-8beb-0dcf6aed2994",
+			"id": "ba8c1ca9-7124-48ee-b011-afe997e1f0c4",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "39959d14-9461-4e4f-8e66-b2bfae12e68a",
+			"id": "238a7441-75b9-4c6f-a47b-a0067779a64d",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "85e15aa6-fb54-48dd-b2aa-d00fb82fd054",
+			"id": "0bbd55af-4d89-4cc3-8321-75fe39bc78e6",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "dd764107-086b-4bf6-b71c-c0f023d58085",
+			"id": "cac8c5d7-b0cc-4bd3-b2e3-87f0d9cf0c21",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "1769a3ff-15c4-4fd1-a639-e83b07a9d8b2",
+			"id": "e57ab516-ef4c-4b1f-81c3-b4424cd47cd6",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "b913969f-511b-4090-8354-321b4c9f92f8",
+			"id": "262d284a-18f2-460a-a36d-db6b4abbca34",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "4145a4a3-9525-4a1c-a3d0-e61c292d55ef",
+			"id": "a304585a-7b96-4912-b4c4-49366bc016a4",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "a6743da3-2510-48aa-a9c5-02e66cfc54d9",
+			"id": "0e0470a6-7c4c-4dda-8ba5-8887b539e281",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "e3504e61-34b7-4b9f-a324-0ed9bcbfbc1f",
+			"id": "f0a594aa-d5df-45e1-9435-b857ff5f7c34",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "db3f00a1-83c5-4f49-9109-41a5325aab17",
+			"id": "91738a60-33a7-415e-80c2-f0a978023a05",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "f9e879fe-58f5-4042-8774-3912dbb23662",
+			"id": "23a93857-990b-45e8-9d1d-88db5098c2ca",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "1968eabe-a9ef-45d9-a84a-903fc882fcef",
+			"id": "4cbeeb34-4cad-4dbf-a072-c9e8288e3a92",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		}
