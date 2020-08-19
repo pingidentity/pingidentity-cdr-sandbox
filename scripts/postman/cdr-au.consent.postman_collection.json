@@ -40,6 +40,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -151,6 +154,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -194,6 +200,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -263,6 +272,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -372,6 +384,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -419,6 +434,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -517,6 +535,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -530,7 +551,7 @@
 							"response": []
 						},
 						{
-							"name": "S002.T001.004 - Provider username",
+							"name": "S002.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -546,6 +567,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -594,6 +618,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -670,6 +697,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": false,
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -735,6 +766,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -811,6 +845,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -865,6 +902,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -950,6 +990,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1057,6 +1100,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1143,6 +1189,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -1225,6 +1274,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -1296,6 +1348,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -1366,6 +1421,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -1446,6 +1504,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1520,6 +1581,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1629,6 +1693,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1681,6 +1748,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1767,6 +1837,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1852,6 +1925,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -1919,6 +1995,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -1995,6 +2074,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -2061,6 +2143,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -2167,7 +2252,10 @@
 					"name": "S002.T007 Grant Management API",
 					"item": [
 						{
-							"name": "S001.T007.002 - Get Grant",
+							"name": "S002.T007.002 - Get Grant",
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "basic",
@@ -2269,6 +2357,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -2312,6 +2403,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2415,6 +2509,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2490,6 +2587,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2550,6 +2650,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -2569,7 +2672,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.006 - Provider username",
+					"name": "S003.T001.006 - Provide username",
 					"event": [
 						{
 							"listen": "test",
@@ -2585,6 +2688,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2633,6 +2739,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2708,6 +2817,10 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2777,6 +2890,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2861,6 +2977,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2970,6 +3089,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3017,6 +3139,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3115,6 +3240,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3128,7 +3256,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.004 - Provider username",
+							"name": "S004.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -3144,6 +3272,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3192,6 +3323,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3267,6 +3401,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3336,6 +3474,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3420,6 +3561,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3523,6 +3667,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3605,6 +3752,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3680,6 +3830,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3727,6 +3880,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3825,6 +3981,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3838,7 +3997,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T003.004 - Provider username",
+							"name": "S004.T003.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -3854,6 +4013,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3902,6 +4064,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3977,6 +4142,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4046,6 +4215,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4130,6 +4302,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4233,6 +4408,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4315,6 +4493,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4379,6 +4560,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4461,6 +4645,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4536,6 +4723,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4583,6 +4773,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4686,6 +4879,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4761,6 +4957,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4821,6 +5020,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4840,7 +5042,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.006 - Provider username",
+							"name": "S004.T005.006 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -4856,6 +5058,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4904,6 +5109,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4979,6 +5187,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5048,6 +5260,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -5132,6 +5347,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5235,6 +5453,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -5317,6 +5538,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5391,6 +5615,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5457,6 +5684,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -5560,6 +5790,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5634,6 +5867,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -5737,6 +5973,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5811,6 +6050,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -5943,6 +6185,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6010,6 +6255,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6084,6 +6332,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6150,6 +6401,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6246,6 +6500,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6313,6 +6570,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6387,6 +6647,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6453,6 +6716,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6589,6 +6855,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -6636,6 +6905,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6731,6 +7003,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -6800,6 +7075,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -6847,6 +7125,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6950,6 +7231,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7017,6 +7301,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7150,6 +7437,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -7197,6 +7487,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7295,6 +7588,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -7308,7 +7604,7 @@
 									"response": []
 								},
 								{
-									"name": "S005.T001.004 - Provider username",
+									"name": "S005.T001.004 - Provide username",
 									"event": [
 										{
 											"listen": "test",
@@ -7324,6 +7620,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7372,6 +7671,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7447,6 +7749,10 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7512,6 +7818,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -7588,6 +7897,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7642,6 +7954,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7726,6 +8041,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7833,6 +8151,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7926,6 +8247,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8004,6 +8328,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8074,6 +8401,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -8135,6 +8465,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8189,6 +8522,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8256,6 +8592,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8330,6 +8669,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8397,6 +8739,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8512,6 +8857,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -8559,6 +8907,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8657,6 +9008,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -8670,7 +9024,7 @@
 							"response": []
 						},
 						{
-							"name": "S006.T001.004 - Provider username",
+							"name": "S006.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -8686,6 +9040,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8734,6 +9091,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8809,6 +9169,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8878,6 +9242,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8976,6 +9343,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -9046,6 +9416,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -9122,6 +9495,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -9176,6 +9552,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -9226,6 +9605,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -9249,7 +9631,35 @@
 			"name": "S007 Authentication Flow",
 			"item": [
 				{
-					"name": "S007.T001 Obtain Access Token",
+					"name": "S007.T000 Run the S001.T001 Create Client first",
+					"item": [],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7093b3c5-6bd2-4d05-bd49-2e85de806ff3",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3ad4440-b1ae-4996-9da9-ae164658c83b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S007.T001 Verify Respone Type of Access Token",
 					"item": [
 						{
 							"name": "S007.T001.001 - Download Private Key",
@@ -9279,6 +9689,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -9298,77 +9711,7 @@
 							"response": []
 						},
 						{
-							"name": "S007.T001.003 - Initiate Consent Request",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c43101d6-6e6b-40da-a07a-5c5458688843",
-										"exec": [
-											"",
-											"",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{consent-request-url}}",
-									"host": [
-										"{{consent-request-url}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S007.T001.007 - Download Enc Private Key",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "b67b0885-9681-4634-8325-f4700aeabc6d",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var responseBlob = btoa(pm.response.text());",
-											"    pm.environment.set(\"software-jwks-private-encryption\", responseBlob);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private/alg",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"softwarestatement",
-										"JWKS",
-										"{{softwareId}}",
-										"private",
-										"alg"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S007.T001.002 - Generate Request JWT",
+							"name": "S007.T001.002 - Generate Good Request JWT",
 							"event": [
 								{
 									"listen": "test",
@@ -9396,6 +9739,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -9476,518 +9822,324 @@
 							"response": []
 						},
 						{
-							"name": "S007.T001.004 - Provider username",
+							"name": "S007.T001.003 - Initiate Consent Request",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "5f8f3fc2-101b-43de-90f0-f9303f8b343a",
+										"id": "c43101d6-6e6b-40da-a07a-5c5458688843",
 										"exec": [
+											"",
+											"",
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-otp-csrf\", $( \"input[name='CSRF_TOKEN']\" ).val());",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
 											"});"
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "$ok",
-											"value": "clicked",
-											"type": "text"
-										},
-										{
-											"key": "subject",
-											"value": "crn0",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-request-url}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-request-url}}"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "S007.T001.005 - Verify OTP",
+							"name": "S007.T001.004 - Generate Negative Request JWT - code id_token token",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "c2725456-e8e5-4cc0-9f57-e485d7f80b74",
+										"id": "446485d4-a0b2-4e62-b25a-10a4cd8b760a",
 										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
 											"pm.test(\"Set environment variables for next test\", function () {",
-											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "$ok",
-											"value": "clicked",
-											"type": "text"
-										},
-										{
-											"key": "CODE_VERIFICATION_VALUE",
-											"value": "123456",
-											"type": "text"
-										},
-										{
-											"key": "CODE_VERIFICATION_STATE",
-											"value": "true",
-											"type": "text"
-										},
-										{
-											"key": "CSRF_TOKEN",
-											"value": "{{consent-request-otp-csrf}}",
-											"type": "text"
-										},
-										{
-											"key": "submitform",
-											"value": "true",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
-									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S007.T001.006 - Perform consent",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "addce8d6-8701-4f0f-8546-8d0423152f14",
-										"exec": [
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var locationHeader = pm.response.headers.get(\"Location\");",
-											"    if(!locationHeader)",
-											"        locationHeader = pm.response.headers.get(\"Referer\");",
-											"",
-											"    var locationParams = locationHeader.split(\"#\")[1];",
-											"    const eachParamArray = locationParams.split('&');",
-											"    let params = {};",
-											"    eachParamArray.forEach((param) => {",
-											"        const key = param.split('=')[0];",
-											"        const value = param.split('=')[1];",
-											"        Object.assign(params, {[key]: value});",
-											"    });",
-											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
-											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "accounts",
-											"value": "{{consent-request-consent-account}}",
-											"type": "text"
-										},
-										{
-											"key": "cSRFToken",
-											"value": "{{consent-request-consent-csrf}}",
-											"type": "text"
-										},
-										{
-											"key": "approved",
-											"value": "allow",
-											"type": "text"
-										},
-										{
-											"key": "scopes",
-											"value": "bank:accounts.basic:read",
-											"type": "text"
-										},
-										{
-											"key": "scopes",
-											"value": "bank:transactions:read",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
-									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S007.T001.008 - Test ID Token from Authz Endpoint",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "b60eaad0-a89c-4d11-bbc3-a90ee1de8688",
-										"exec": [
-											"",
-											"//CDR ID Token OIDC Requirements",
-											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('iss');",
-											"",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
 											"});",
-											"",
-											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('sub');",
-											"",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('exp');",
-											"",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('iat');",
-											"});",
-											"",
-											"//CDR ID Token FAPI-RW Requirements",
-											"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('nonce');",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('s_hash');",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('c_hash');",
-											"});",
-											"",
-											"",
-											"",
 											""
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "x-private-jwk",
-										"value": "{{software-jwks-private-encryption}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{{consent-request-authcode-callback-id_token}}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"testtool",
-										"tpp",
-										"reflectIDToken"
-									]
-								}
+							"protocolProfileBehavior": {
+								"strictSSL": false
 							},
-							"response": []
-						},
-						{
-							"name": "S007.T001.009 - Creates JWT-Bearer Client Assertion",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "1c9e6d4a-22bb-4c96-a786-4b6183a26bcd",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Validate client assertion is available\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('client-assertion');",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
 							"request": {
 								"method": "POST",
 								"header": [
 									{
 										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "client-id",
-											"value": "{{dcrClientId}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/token.oauth2",
-											"type": "text"
-										},
-										{
-											"key": "kid",
-											"value": "{{softwareId}}",
-											"type": "text"
-										}
-									],
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"createClientAssertion"
+										"requestGenericJWT"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "S007.T001.010 - Perform code exchange",
+							"name": "S007.T001.005 - Initiate Negative Consent Request - code id_token token",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "96d8210a-0850-4703-9d27-114f9ec05567",
+										"id": "02539e25-9659-4896-9889-d5594db4c9db",
 										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Validate access_token is available\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('access_token');",
-											"});",
-											"pm.test(\"Validate id_token is available\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('id_token');",
-											"});",
-											"pm.test(\"Validate refresh_token is available\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('refresh_token');",
-											"});",
+											"",
+											"",
 											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
-											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
-											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
 											"});"
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "code",
-											"value": "{{consent-request-authcode-callback-code}}",
-											"type": "text"
-										},
-										{
-											"key": "client_id",
-											"value": "{{dcrClientId}}",
-											"type": "text"
-										},
-										{
-											"key": "grant_type",
-											"value": "authorization_code",
-											"type": "text"
-										},
-										{
-											"key": "redirect_uri",
-											"value": "{{default-redirecturi}}",
-											"type": "text"
-										},
-										{
-											"key": "client_assertion_type",
-											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-											"type": "text"
-										},
-										{
-											"key": "client_assertion",
-											"value": "{{consent-client-assertion}}",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{consent-request-url}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{consent-request-url}}"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "S007.T001.011 - Test ID Token from Token Endpoint",
+							"name": "S007.T001.006 - Generate Negative Request JWT - code token",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "3ba7073b-4a5d-4442-9ebd-6f6e56ae5007",
+										"id": "7211782a-ac02-4226-87f4-046c7d21fc88",
 										"exec": [
-											"",
-											"//CDR ID Token OIDC Requirements",
-											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('iss');",
-											"",
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
 											"});",
-											"",
-											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('sub');",
-											"",
+											"    pm.expect(response).to.have.property('request-jwt');",
 											"});",
-											"",
-											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"pm.test(\"Validate request-url property exists\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('exp');",
-											"",
+											"    pm.expect(response).to.have.property('request-url');",
 											"});",
-											"",
-											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('iat');",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
 											"});",
-											"",
-											"//CDR ID Token FAPI-RW Requirements",
-											"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('nonce');",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('s_hash');",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('c_hash');",
-											"});",
-											"",
-											"",
-											"",
 											""
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
 									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
 										"key": "x-private-jwk",
-										"value": "{{software-jwks-private-encryption}}",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{consent-request-id-token}}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
 								},
 								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
 									"host": [
 										"{{cdr-register-testharness-host}}"
 									],
 									"path": [
 										"testtool",
 										"tpp",
-										"reflectIDToken"
+										"requestGenericJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.007 - Initiate Negative Consent Request - code token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "085fd8ff-c705-47c1-b350-36cef68422c7",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
 									]
 								}
 							},
@@ -10009,1056 +10161,6 @@
 							"listen": "test",
 							"script": {
 								"id": "01a8ba1e-daa3-47e8-bc42-4c1b63c59cdf",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "S002.T002 Introspect Tokens",
-					"item": [
-						{
-							"name": "S002.T002.001 Introspect Refresh Token",
-							"item": [
-								{
-									"name": "S002.T002.001.001 - Creates JWT-Bearer Client Assertion",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "23f0e1b7-c116-4b54-bde7-8ace0b64afbb",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Validate client assertion is available\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('client-assertion');",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "private-jwk",
-													"value": "{{software-jwks-private}}",
-													"type": "text"
-												},
-												{
-													"key": "client-id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/introspect.oauth2",
-													"type": "text"
-												},
-												{
-													"key": "kid",
-													"value": "{{softwareId}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"testtool",
-												"tpp",
-												"createClientAssertion"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "S002.T002.001.002 - Introspect Refresh Token",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "0be487af-2bc6-46b8-aa75-9ab07a249962",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Validate exp is available\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('exp');",
-													"});",
-													"pm.test(\"Validate cdr_arrangement_id is available\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('cdr_arrangement_id');",
-													"});",
-													"pm.test(\"Validate active=true\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response.active).to.equal(true);",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.environment.set(\"consent-cdr-arrangement-id\", response[\"cdr_arrangement_id\"]);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token",
-													"value": "{{consent-request-refresh-token}}",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
-											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
-						},
-						{
-							"name": "S003.T002.001 Introspect Access Token - Should fail",
-							"item": [
-								{
-									"name": "S003.T002.002.001 - Creates JWT-Bearer Client Assertion",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "9fb06c11-99ba-45bc-9294-3cafcc2ec00f",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Validate client assertion is available\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('client-assertion');",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "private-jwk",
-													"value": "{{software-jwks-private}}",
-													"type": "text"
-												},
-												{
-													"key": "client-id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/introspect.oauth2",
-													"type": "text"
-												},
-												{
-													"key": "kid",
-													"value": "{{softwareId}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"testtool",
-												"tpp",
-												"createClientAssertion"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "S003.T002.002.002 - Introspect Access Token",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "ef464984-908c-4dad-9cfc-d9a2b09aed6a",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Validate response active=false\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response.active).to.equal(false);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token",
-													"value": "{{consent-request-access-token}}",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}",
-													"type": "text"
-												},
-												{
-													"key": "token_type_hint",
-													"value": "refresh_token",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
-											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "S002.T003 Refresh Tokens",
-					"item": [
-						{
-							"name": "S002.T003.001 - Creates JWT-Bearer Client Assertion",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "42cfb401-6ec3-4260-9d5c-e75d9a1517b1",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Validate client assertion is available\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('client-assertion');",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "private-jwk",
-											"value": "{{software-jwks-private}}",
-											"type": "text"
-										},
-										{
-											"key": "client-id",
-											"value": "{{dcrClientId}}",
-											"type": "text"
-										},
-										{
-											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/token.oauth2",
-											"type": "text"
-										},
-										{
-											"key": "kid",
-											"value": "{{softwareId}}",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"testtool",
-										"tpp",
-										"createClientAssertion"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S002.T003.002 - Perform refresh token",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "1403433b-5dc0-4da5-9fe9-a913bd4a5e90",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Validate access_token is available\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('access_token');",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "refresh_token",
-											"value": "{{consent-request-refresh-token}}",
-											"type": "text"
-										},
-										{
-											"key": "client_id",
-											"value": "{{dcrClientId}}",
-											"type": "text"
-										},
-										{
-											"key": "grant_type",
-											"value": "refresh_token",
-											"type": "text"
-										},
-										{
-											"key": "redirect_uri",
-											"value": "{{default-redirecturi}}",
-											"type": "text"
-										},
-										{
-											"key": "client_assertion_type",
-											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-											"type": "text"
-										},
-										{
-											"key": "client_assertion",
-											"value": "{{consent-client-assertion}}",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
-									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "9391982b-1583-4b6e-83ad-81afa45a84eb",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "3ec8497c-2c78-41f5-9fb6-512aff19c267",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "S002.T004 Call Bank API's",
-					"item": [
-						{
-							"name": "S002.T004.001 - Get account list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "a0b3a2be-6f9a-4598-a160-856ee47bb6c0",
-										"exec": [
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    var accountId = response.data.accounts[0].accountId;",
-											"",
-											"    pm.environment.set(\"consent-request-account-id\", accountId);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "099ea011-ccd7-4270-9316-e8a74c7b0695",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{consent-request-access-token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "x-v",
-										"value": "1",
-										"type": "text"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{dh-api-host}}/v1/banking/accounts",
-									"host": [
-										"{{dh-api-host}}"
-									],
-									"path": [
-										"v1",
-										"banking",
-										"accounts"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S002.T004.002 - Get account balance",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "bbe5352c-1970-446f-9381-029a9a39196a",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{consent-request-access-token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "x-v",
-										"type": "text",
-										"value": "1"
-									},
-									{
-										"key": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}/balance",
-									"host": [
-										"{{dh-api-host}}"
-									],
-									"path": [
-										"v1",
-										"banking",
-										"accounts",
-										"{{consent-request-account-id}}",
-										"balance"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "5f081ff7-7221-4b8c-ac6f-7cc056e8a95c",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "a1ecb124-08d4-49f5-8a40-a1a4f415f947",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "S002.T005 Userinfo",
-					"item": [
-						{
-							"name": "S002.T005.001.002 - Call userinfo",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4342039c-133d-4259-b178-502805c65dd1",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{consent-request-access-token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [],
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
-									"host": [
-										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "9661a1de-9822-42e9-866c-ab44e9173d4c",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "c24a536b-d2a4-4faf-80f3-a7003c679cae",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "S002.T006 Revoke Tokens",
-					"item": [
-						{
-							"name": "S002.T006.001 Revocation",
-							"item": [
-								{
-									"name": "S002.T006.001.001 - Creates JWT-Bearer Client Assertion",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "3219f185-3f4a-4cf6-b871-7953f1cb0ee6",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Validate client assertion is available\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('client-assertion');",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "private-jwk",
-													"value": "{{software-jwks-private}}",
-													"type": "text"
-												},
-												{
-													"key": "client-id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/token.oauth2",
-													"type": "text"
-												},
-												{
-													"key": "kid",
-													"value": "{{softwareId}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"testtool",
-												"tpp",
-												"createClientAssertion"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "S002.T006.001.002 - Perform refresh token",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "d675ec37-21e6-49af-b23c-1894ffc2c85e",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token",
-													"value": "{{consent-request-refresh-token}}",
-													"type": "text"
-												},
-												{
-													"key": "token_type_hint",
-													"value": "refresh_token",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-revocation-endpoint}}",
-											"host": [
-												"{{dh-idp-host}}{{dh-idp-revocation-endpoint}}"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
-						},
-						{
-							"name": "S002.T006.002 Refresh Tokens - should fail",
-							"item": [
-								{
-									"name": "S002.T006.001 - Creates JWT-Bearer Client Assertion",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "33a17b30-5c35-4c92-84d8-b0d60aed97d6",
-												"exec": [
-													"pm.test(\"Validate response status=200\", function () {",
-													"    pm.response.to.have.status(200);",
-													"});",
-													"pm.test(\"Validate client assertion is available\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.expect(response).to.have.property('client-assertion');",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var response = pm.response.json();",
-													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/x-www-form-urlencoded"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "private-jwk",
-													"value": "{{software-jwks-private}}",
-													"type": "text"
-												},
-												{
-													"key": "client-id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/token.oauth2",
-													"type": "text"
-												},
-												{
-													"key": "kid",
-													"value": "{{softwareId}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{cdr-register-testharness-host}}/testtool/tpp/createClientAssertion",
-											"host": [
-												"{{cdr-register-testharness-host}}"
-											],
-											"path": [
-												"testtool",
-												"tpp",
-												"createClientAssertion"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "S002.T006.002 - Perform refresh token",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "f1e15deb-d721-424b-8171-1044bcf107f5",
-												"exec": [
-													"pm.test(\"Validate response status=400\", function () {",
-													"    pm.response.to.have.status(400);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "refresh_token",
-													"value": "{{consent-request-refresh-token}}",
-													"type": "text"
-												},
-												{
-													"key": "client_id",
-													"value": "{{dcrClientId}}",
-													"type": "text"
-												},
-												{
-													"key": "grant_type",
-													"value": "refresh_token",
-													"type": "text"
-												},
-												{
-													"key": "redirect_uri",
-													"value": "{{default-redirecturi}}",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion_type",
-													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-													"type": "text"
-												},
-												{
-													"key": "client_assertion",
-													"value": "{{consent-client-assertion}}",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
-											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
-											]
-										}
-									},
-									"response": []
-								}
-							],
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "f051a74a-a396-4b8f-86ae-2f6aa78b490c",
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"id": "7604b4e1-232d-4e79-b712-41ddf4733c54",
-										"type": "text/javascript",
-										"exec": [
-											""
-										]
-									}
-								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "11fa05ff-17d6-405e-8c9d-b4bc0ffe1a48",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "a7bdc88f-c5be-4167-9745-d0a64573be61",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -11119,92 +10221,92 @@
 	],
 	"variable": [
 		{
-			"id": "b2e139b1-1b2c-43ff-a1ea-c4cd63cedf0c",
+			"id": "8166e02e-fc2b-4dbd-b6db-0416806c2828",
 			"key": "cdr-register-testharness-host",
-			"value": "http://sso.data-holder.local:8084"
+			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "080a2cea-0f37-4029-90c6-eb5798a99ad1",
+			"id": "b6260bf8-2e3f-4118-b27d-7606723d82bb",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "d678d731-f6b1-4537-ac09-ff4924fc23c3",
+			"id": "913ef15b-752e-4ba3-9e57-a59cb3cf3c4f",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "79f22dff-3a77-4b03-b4d2-ba1c5c0da9a4",
+			"id": "279b9585-e160-4b56-bb0f-bb3ba578c120",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "e50e69ec-ea1d-4027-9481-1a154a36ecfa",
+			"id": "aa10bc4f-e36d-435e-9e66-2c4678bb453e",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "449de621-5a56-4e24-8950-2b9441ce42bc",
+			"id": "eaf42774-8a0a-4119-9b1f-676b87f4dbd1",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "350eedcb-effa-43c2-bb94-5e520262a764",
+			"id": "aff19ee9-7483-4973-8beb-0dcf6aed2994",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "0c763580-36f3-4923-bb19-b8a3b3418912",
+			"id": "39959d14-9461-4e4f-8e66-b2bfae12e68a",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "4f53f926-c786-44b8-bf8f-637d7854e2dc",
+			"id": "85e15aa6-fb54-48dd-b2aa-d00fb82fd054",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "7191bb66-d73a-41dc-82b8-3c51a24839fe",
+			"id": "dd764107-086b-4bf6-b71c-c0f023d58085",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "331fe713-ea71-4e78-b728-a624ca2bf65b",
+			"id": "1769a3ff-15c4-4fd1-a639-e83b07a9d8b2",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "5f03e42d-2dae-47cf-93b7-8b4208e17c95",
+			"id": "b913969f-511b-4090-8354-321b4c9f92f8",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "68d707fc-6661-488c-8f41-1d80a3e5631b",
+			"id": "4145a4a3-9525-4a1c-a3d0-e61c292d55ef",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "1e141e4f-8259-47a3-a20f-a9afdf75a2e7",
+			"id": "a6743da3-2510-48aa-a9c5-02e66cfc54d9",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "ed988b81-7776-4374-8e07-63df5818befd",
+			"id": "e3504e61-34b7-4b9f-a324-0ed9bcbfbc1f",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "04fbf2c6-9083-4043-9136-ee633215326c",
+			"id": "db3f00a1-83c5-4f49-9109-41a5325aab17",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "67e034d6-f821-42cf-b550-f8f9c35c9e73",
+			"id": "f9e879fe-58f5-4042-8774-3912dbb23662",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "7b69f590-e4b4-4b90-8962-ca6e4fd8f792",
+			"id": "1968eabe-a9ef-45d9-a84a-903fc882fcef",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		}

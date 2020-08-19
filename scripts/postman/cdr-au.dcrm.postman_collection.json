@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "5547f64b-8f74-4758-9a6b-25ae1e46177e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -36,10 +36,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "5547f64b-8f74-4758-9a6b-25ae1e46177e"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -129,7 +132,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "2f8fde37-7d8f-4282-a88e-02544c0bf8ea",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -147,10 +150,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "2f8fde37-7d8f-4282-a88e-02544c0bf8ea"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -194,6 +200,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -235,7 +244,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "025f9d32-7fba-4584-b576-c850c70a6587",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -259,10 +268,13 @@
 											"});",
 											""
 										],
-										"id": "025f9d32-7fba-4584-b576-c850c70a6587"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -322,7 +334,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "bcf89823-f0ed-4ce3-91b0-8a3691fb637d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -340,10 +352,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "bcf89823-f0ed-4ce3-91b0-8a3691fb637d"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -368,7 +383,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "b5287fc4-5930-4494-93b4-4c6bf1de01b3",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -382,10 +397,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "b5287fc4-5930-4494-93b4-4c6bf1de01b3"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -460,6 +478,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -516,7 +537,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "c7df47d7-4090-4b48-b0ac-91cfe9ba5878",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -537,10 +558,13 @@
 											"",
 											""
 										],
-										"id": "c7df47d7-4090-4b48-b0ac-91cfe9ba5878"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -589,7 +613,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "886febf7-e426-4f92-a872-c1f530a1623b",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -607,10 +631,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "886febf7-e426-4f92-a872-c1f530a1623b"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -635,7 +662,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "cc1f509a-a2ef-43de-8e86-85c909332e7a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -649,10 +676,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "cc1f509a-a2ef-43de-8e86-85c909332e7a"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -709,7 +739,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "16a2f5e6-d70a-492b-bdd6-5db1a18b1485",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -728,10 +758,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "16a2f5e6-d70a-492b-bdd6-5db1a18b1485"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -839,6 +872,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -903,6 +939,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -959,7 +998,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "1ccc92dd-b711-462f-8f66-12d1f239bddd",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -986,10 +1025,13 @@
 											"});",
 											""
 										],
-										"id": "1ccc92dd-b711-462f-8f66-12d1f239bddd"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1038,7 +1080,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "61f758bd-73bf-47b5-bb3f-afd1a24787f8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1067,10 +1109,13 @@
 											"",
 											""
 										],
-										"id": "61f758bd-73bf-47b5-bb3f-afd1a24787f8"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1141,7 +1186,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "68dc7de5-ccd9-4cee-a3b9-09ac07273b00",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1159,10 +1204,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "68dc7de5-ccd9-4cee-a3b9-09ac07273b00"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -1187,7 +1235,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "5600c132-93e3-4eef-bd75-7a913eba1c5b",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1201,10 +1249,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "5600c132-93e3-4eef-bd75-7a913eba1c5b"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1279,6 +1330,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1347,6 +1401,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1388,7 +1445,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "ad3b817b-8007-4844-84a1-356c6dfad9be",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1402,10 +1459,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "ad3b817b-8007-4844-84a1-356c6dfad9be"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1470,6 +1530,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1539,6 +1602,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1637,7 +1703,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "ba80011d-caad-4034-803b-0ea8ee1bfa96",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1648,10 +1714,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "ba80011d-caad-4034-803b-0ea8ee1bfa96"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1741,7 +1810,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "2df5b2d1-5e1c-4242-9060-36b2ba5a0f29",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1751,10 +1820,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "2df5b2d1-5e1c-4242-9060-36b2ba5a0f29"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -1794,6 +1866,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1835,7 +1910,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "4a4a9655-a8c6-4283-951f-665b1089cbd9",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -1846,10 +1921,13 @@
 											"});",
 											""
 										],
-										"id": "4a4a9655-a8c6-4283-951f-665b1089cbd9"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1909,7 +1987,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "22c46b4e-ac52-467b-b86c-e38d9ab0d652",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1919,10 +1997,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "22c46b4e-ac52-467b-b86c-e38d9ab0d652"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -1962,6 +2043,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2021,6 +2105,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2086,7 +2173,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "ec5712cd-5ede-4869-b913-c4498c77b4bc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2097,10 +2184,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "ec5712cd-5ede-4869-b913-c4498c77b4bc"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2190,7 +2280,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "1a4820ec-08e6-4179-8a9f-e60a823d10a5",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2200,10 +2290,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "1a4820ec-08e6-4179-8a9f-e60a823d10a5"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -2243,6 +2336,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2313,6 +2409,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2372,7 +2471,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f5b2dc61-532a-4cfe-bce4-d147f9d59530",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2383,10 +2482,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "f5b2dc61-532a-4cfe-bce4-d147f9d59530"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2476,7 +2578,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "d69e8539-e222-4a3b-b5c0-0316231293a9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2486,10 +2588,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "d69e8539-e222-4a3b-b5c0-0316231293a9"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -2529,6 +2634,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2570,7 +2678,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "3828372a-06f7-43c4-8868-dde53f3b5a8d",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -2581,10 +2689,13 @@
 											"});",
 											""
 										],
-										"id": "3828372a-06f7-43c4-8868-dde53f3b5a8d"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2615,7 +2726,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "5f95fedc-dd16-4c3a-b07b-8787639a65fa",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2629,10 +2740,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "5f95fedc-dd16-4c3a-b07b-8787639a65fa"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2707,6 +2821,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2781,6 +2898,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -2851,6 +2971,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -2956,7 +3079,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "4bd318bd-67e4-4e5a-a1b5-cc7ab05512cd",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2967,10 +3090,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "4bd318bd-67e4-4e5a-a1b5-cc7ab05512cd"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3060,7 +3186,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "bb524efc-5562-4d35-a775-c466ef95ab09",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3070,10 +3196,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "bb524efc-5562-4d35-a775-c466ef95ab09"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3113,6 +3242,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3183,6 +3315,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3242,7 +3377,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "e31ebd96-b16c-469b-8aa0-a10668165dd9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3253,10 +3388,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "e31ebd96-b16c-469b-8aa0-a10668165dd9"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3346,7 +3484,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "98749470-b970-4d74-9e82-0a8477c9284f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3356,10 +3494,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "98749470-b970-4d74-9e82-0a8477c9284f"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3399,6 +3540,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3440,7 +3584,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f458d25a-4ab8-44f9-9906-4f63df7dcf2f",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -3451,10 +3595,13 @@
 											"});",
 											""
 										],
-										"id": "f458d25a-4ab8-44f9-9906-4f63df7dcf2f"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3485,7 +3632,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "7613a07c-b8e6-40b2-ab8f-86f93ce4421f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3499,10 +3646,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "7613a07c-b8e6-40b2-ab8f-86f93ce4421f"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3577,6 +3727,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3651,6 +3804,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3721,6 +3877,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -3841,6 +4000,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3930,7 +4092,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "cb8d6d3e-535a-4483-b50c-e3fe39074ce8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3940,10 +4102,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "cb8d6d3e-535a-4483-b50c-e3fe39074ce8"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3983,6 +4148,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4046,6 +4214,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4105,7 +4276,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "3ef81298-7226-48a8-a4b3-61fd5bdb33e1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4116,10 +4287,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "3ef81298-7226-48a8-a4b3-61fd5bdb33e1"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4209,7 +4383,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "6c5fbb6d-1b10-439a-aba6-88797f326f26",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4219,10 +4393,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "6c5fbb6d-1b10-439a-aba6-88797f326f26"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4262,6 +4439,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4303,7 +4483,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "1a0a6748-02d1-4f2f-8327-0013b133872a",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4321,10 +4501,13 @@
 											"",
 											""
 										],
-										"id": "1a0a6748-02d1-4f2f-8327-0013b133872a"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4384,7 +4567,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "1bec43a9-32cf-4582-9e93-c40401a29b7d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4395,10 +4578,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "1bec43a9-32cf-4582-9e93-c40401a29b7d"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4488,7 +4674,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "84d2bc39-fec4-4519-8a28-713753002992",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4498,10 +4684,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "84d2bc39-fec4-4519-8a28-713753002992"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4541,6 +4730,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4601,6 +4793,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4688,7 +4883,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "e9cd3f72-63c7-4a7b-876a-7b1273a142c8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4707,10 +4902,13 @@
 											"    pm.environment.set(\"softwareId\", response.software_id);",
 											"});"
 										],
-										"id": "e9cd3f72-63c7-4a7b-876a-7b1273a142c8"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4800,7 +4998,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "2d878181-fcf3-4886-ac1c-9f14c0aa10d3",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4818,10 +5016,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "2d878181-fcf3-4886-ac1c-9f14c0aa10d3"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4865,6 +5066,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4906,7 +5110,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f29a9d08-78a0-41f3-8a2b-af6e4abaabfc",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4930,10 +5134,13 @@
 											"});",
 											""
 										],
-										"id": "f29a9d08-78a0-41f3-8a2b-af6e4abaabfc"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4993,7 +5200,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "f6334aa4-5a82-4dc0-958a-70e6b0e429d0",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5011,10 +5218,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "f6334aa4-5a82-4dc0-958a-70e6b0e429d0"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -5039,7 +5249,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "b3db8817-bf9b-49fa-a435-b5f369597b2f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5053,10 +5263,13 @@
 											"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
 											"});"
 										],
-										"id": "b3db8817-bf9b-49fa-a435-b5f369597b2f"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -5131,6 +5344,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -5201,6 +5417,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -5312,40 +5531,34 @@
 	],
 	"variable": [
 		{
-			"id": "0a78381e-d71a-48c8-b9ae-4ced5ab83f5a",
+			"id": "b7b5c8af-fbe3-42ea-acc2-630dc322a176",
 			"key": "cdr-register-testharness-host",
-			"value": "http://sso.data-holder.local:8084",
-			"type": "string"
+			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "5f690b67-272a-4d36-898f-c16a40898799",
+			"id": "c514410d-2b56-474f-a2f8-b739f05bba52",
 			"key": "dh-idp-host",
-			"value": "https://sso.data-holder.local",
-			"type": "string"
+			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "5149f633-7eca-4f21-ab38-f27a54534476",
+			"id": "f837b5e0-a9fe-43bf-aae7-3fcef448cdb3",
 			"key": "dh-idp-register-endpoint",
-			"value": "/as/clients.oauth2",
-			"type": "string"
+			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "9dd742c1-e7bf-4e4c-b48f-137004661a5c",
+			"id": "5e3e0a49-6997-4c5b-aeaa-f3e4035e5dd0",
 			"key": "dh-idp-token-endpoint",
-			"value": "/as/token.oauth2",
-			"type": "string"
+			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "f686db8e-6d15-4bc4-8d0a-4ea60b659eae",
+			"id": "b6cda5e6-6125-4dab-aa85-2da28d834d83",
 			"key": "dh-audience",
-			"value": "https://data-holder",
-			"type": "string"
+			"value": "https://data-holder"
 		},
 		{
-			"id": "8ac9e8f8-ffc6-43c7-a530-faabbb88a3c0",
+			"id": "2fca775a-62bb-4344-b0b9-bf63f2d0682b",
 			"key": "pki-basicheader",
-			"value": "Basic cGtpdXNlcjphYmNEMzBmZw==",
-			"type": "string"
+			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		}
 	],
 	"protocolProfileBehavior": {}
