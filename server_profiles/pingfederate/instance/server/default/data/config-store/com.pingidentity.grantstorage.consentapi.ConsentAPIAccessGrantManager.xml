@@ -3,8 +3,8 @@
 
     <!-- Data store ID -->
     <c:item name="CONSENT_API_HOST">https://pingdirectory:1443</c:item>
-    <c:item name="CONSENT_API_DEFAULT_DEFINITION"></c:item>
-    <c:item name="CONSENT_API_ADMINSCOPE">{"id":"pf-persistent-grant","locale":"en-AU","version":"1.0"}</c:item>
+    <!--<c:item name="CONSENT_API_DEFAULT_DEFINITION"></c:item>-->
+    <c:item name="CONSENT_API_ADMINSCOPE">consent_admin</c:item>
     <c:item name="CONSENT_API_CLIENTID"></c:item>
     <c:item name="CONSENT_API_ACCESSTOKENMANAGER">adminATM</c:item>
     <c:item name="CONSENT_API_DATATEXT">CDR Consent</c:item>
