@@ -89,7 +89,7 @@
                         org.sourceid.oauth20.token.AccessGrantManagerLDAPOracleImpl         : Use this service-point for a Oracle Directory Server Enterprise Edition implementation
                         org.sourceid.oauth20.token.AccessGrantManagerLDAPPingDirectoryImpl  : Use this service-point for a PingDirectory implementation
         -->
-        <create-instance class="org.sourceid.oauth20.token.AccessGrantManagerLDAPPingDirectoryImpl"/>
+        <create-instance class="com.pingidentity.grantstorage.consentapi.ConsentAPIAccessGrantManager"/>
     </service-point>
 
     <!-- Service/adapter for creating pseudonym name ids -->
