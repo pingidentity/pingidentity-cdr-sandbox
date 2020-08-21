@@ -22,7 +22,7 @@
         <urn:Field name="Issuer Claim Value"/>
         <urn:Field name="Audience Claim Value"/>
         <urn:Field name="JWT ID Claim Length">0</urn:Field>
-        <urn:Field name="Access Grant GUID Claim Name">pf_grantid</urn:Field>
+        <urn:Field name="Access Grant GUID Claim Name">cdr_arrangement_id</urn:Field>
         <urn:Field name="JWKS Endpoint Path">/cdrJWKS</urn:Field>
         <urn:Field name="JWKS Endpoint Cache Duration">720</urn:Field>
         <urn:Field name="Publish Key ID X.509 URL">false</urn:Field>
@@ -42,7 +42,7 @@
         <urn:Field name="Issuer Claim Value"/>
         <urn:Field name="Audience Claim Value"/>
         <urn:Field name="JWT ID Claim Length">0</urn:Field>
-        <urn:Field name="Access Grant GUID Claim Name">pf_grantid</urn:Field>
+        <urn:Field name="Access Grant GUID Claim Name">cdr_arrangement_id</urn:Field>
         <urn:Field name="JWKS Endpoint Path">/cdrJWKS</urn:Field>
         <urn:Field name="JWKS Endpoint Cache Duration">720</urn:Field>
         <urn:Field name="Publish Key ID X.509 URL">false</urn:Field>
