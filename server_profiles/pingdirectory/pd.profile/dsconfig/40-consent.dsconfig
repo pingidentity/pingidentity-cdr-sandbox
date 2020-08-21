@@ -2,7 +2,7 @@
 dsconfig create-consent-definition \
     --definition-name email  \
     --set 'display-name:Email Address'  \
-    --set 'description:Share your email address' 
+    --set 'description:Share your email address'
 
 dsconfig create-consent-definition-localization \
     --definition-name email  \
@@ -10,11 +10,11 @@ dsconfig create-consent-definition-localization \
     --set version:1.0  \
     --set 'title-text:Share your email address'  \
     --set 'data-text:Your email address'  \
-    --set 'purpose-text:Join Mailing List' 
+    --set 'purpose-text:Join Mailing List'
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name 'Directory REST API'  \
-    --set access-token-scope:ds 
+    --set access-token-scope:ds
 
 dsconfig create-identity-mapper \
     --mapper-name user-id-identity-mapper  \
@@ -24,14 +24,14 @@ dsconfig create-identity-mapper \
     --set match-attribute:entryUUID  \
     --set match-attribute:uid  \
     --set match-base-dn:cn=config  \
-    --set match-base-dn:ou=people,${USER_BASE_DN} 
+    --set match-base-dn:ou=people,${USER_BASE_DN}
 
 dsconfig create-access-token-validator \
     --validator-name mock-access-token-validator  \
     --type mock  \
     --set identity-mapper:user-id-identity-mapper  \
     --set enabled:true  \
-    --set evaluation-order-index:1 
+    --set evaluation-order-index:1
 
 dsconfig create-topology-admin-user \
   --user-name "Consent Internal Service Account" \
@@ -43,7 +43,7 @@ dsconfig create-topology-admin-user \
   --set password<${ROOT_USER_PASSWORD_FILE} \
   --set privilege:bypass-acl \
   --set privilege:config-read
-  
+
 dsconfig set-consent-service-prop \
     --set enabled:true  \
     --set base-dn:ou=Consents,${USER_BASE_DN}  \
@@ -51,8 +51,29 @@ dsconfig set-consent-service-prop \
     --set consent-record-identity-mapper:user-id-identity-mapper  \
     --set 'service-account-dn:uid=Consent Admin,ou=people,${USER_BASE_DN}'  \
     --set unprivileged-consent-scope:consent  \
-    --set privileged-consent-scope:consent_admin 
+    --set privileged-consent-scope:consent_admin
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name Consent  \
-    --set identity-mapper:user-id-identity-mapper 
+    --set identity-mapper:user-id-identity-mapper
+
+
+# [20/Aug/2020:21:55:49.594 +0000] conn=888 op=113 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
+# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
+# Undo command: dsconfig delete-consent-definition --definition-name pf-persistent-grant
+dsconfig create-consent-definition --definition-name pf-persistent-grant
+
+# [20/Aug/2020:21:56:08.865 +0000] conn=888 op=128 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
+# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
+# Undo command: dsconfig delete-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-US
+dsconfig create-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-US --set version:1.0 --set "title-text:PingFederate Persistent Grant" --set "data-text:PingFederate Persistent Grant" --set
+
+# [20/Aug/2020:21:56:19.444 +0000] conn=888 op=143 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
+# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
+# Undo command: dsconfig delete-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-AU
+dsconfig create-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-AU --set version:1.0 --set "title-text:PingFederate Persistent Grant" --set "data-text:PingFederate Persistent Grant" --set
+
+# [20/Aug/2020:21:56:26.822 +0000] conn=888 op=162 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
+# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
+# Undo command: dsconfig delete-consent-definition-localization --definition-name pf-persistent-grant --localization-name en
+dsconfig create-consent-definition-localization --definition-name pf-persistent-grant --localization-name en --set version:1.0 --set "title-text:PingFederate Persistent Grant" --set "data-text:PingFederate Persistent Grant" --set "pu
