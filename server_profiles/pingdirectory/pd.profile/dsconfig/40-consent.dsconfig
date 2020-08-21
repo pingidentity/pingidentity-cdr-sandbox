@@ -1,16 +1,32 @@
 
 dsconfig create-consent-definition \
-    --definition-name email  \
-    --set 'display-name:Email Address'  \
-    --set 'description:Share your email address'
+    --definition-name pf-persistent-grant  \
+    --set 'display-name:PingFederate grant'  \
+    --set 'description:PingFederate persistent grants'
 
 dsconfig create-consent-definition-localization \
-    --definition-name email  \
+    --definition-name pf-persistent-grant  \
+    --localization-name en-AU  \
+    --set version:1.0  \
+    --set 'title-text:CDR Consent'  \
+    --set 'data-text:CDR Consent'  \
+    --set 'purpose-text:CDR Consent'
+
+dsconfig create-consent-definition-localization \
+    --definition-name pf-persistent-grant  \
     --localization-name en-US  \
     --set version:1.0  \
-    --set 'title-text:Share your email address'  \
-    --set 'data-text:Your email address'  \
-    --set 'purpose-text:Join Mailing List'
+    --set 'title-text:CDR Consent'  \
+    --set 'data-text:CDR Consent'  \
+    --set 'purpose-text:CDR Consent'
+
+dsconfig create-consent-definition-localization \
+    --definition-name pf-persistent-grant  \
+    --localization-name en  \
+    --set version:1.0  \
+    --set 'title-text:CDR Consent'  \
+    --set 'data-text:CDR Consent'  \
+    --set 'purpose-text:CDR Consent'
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name 'Directory REST API'  \
@@ -58,22 +74,3 @@ dsconfig set-http-servlet-extension-prop \
     --set identity-mapper:user-id-identity-mapper
 
 
-# [20/Aug/2020:21:55:49.594 +0000] conn=888 op=113 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
-# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
-# Undo command: dsconfig delete-consent-definition --definition-name pf-persistent-grant
-dsconfig create-consent-definition --definition-name pf-persistent-grant
-
-# [20/Aug/2020:21:56:08.865 +0000] conn=888 op=128 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
-# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
-# Undo command: dsconfig delete-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-US
-dsconfig create-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-US --set version:1.0 --set "title-text:PingFederate Persistent Grant" --set "data-text:PingFederate Persistent Grant" --set
-
-# [20/Aug/2020:21:56:19.444 +0000] conn=888 op=143 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
-# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
-# Undo command: dsconfig delete-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-AU
-dsconfig create-consent-definition-localization --definition-name pf-persistent-grant --localization-name en-AU --set version:1.0 --set "title-text:PingFederate Persistent Grant" --set "data-text:PingFederate Persistent Grant" --set
-
-# [20/Aug/2020:21:56:26.822 +0000] conn=888 op=162 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
-# This change was made to mirrored configuration data, which is automatically kept in sync across all servers.
-# Undo command: dsconfig delete-consent-definition-localization --definition-name pf-persistent-grant --localization-name en
-dsconfig create-consent-definition-localization --definition-name pf-persistent-grant --localization-name en --set version:1.0 --set "title-text:PingFederate Persistent Grant" --set "data-text:PingFederate Persistent Grant" --set "pu
