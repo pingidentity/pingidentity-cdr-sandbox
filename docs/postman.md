@@ -50,4 +50,4 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
 5. Expand each section and select each request and click "Send" in order
    > Verify each request result returns an expected result
 
-6. Check the respoce from request "S002.T004.001 - Get account list" and ensure representative satat is returned.
+6. Check the response from request "S002.T004.001 - Get account list" and ensure representative data is returned.
