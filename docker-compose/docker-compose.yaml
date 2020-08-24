@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
+    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -30,7 +30,7 @@ services:
       - pingnet-dmz
 
   pingfederate:
-    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
+    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -45,7 +45,7 @@ services:
       - pingnet-internal
 
   pingdirectory:
-    image: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200803
+    image: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200824
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001

@@ -87,7 +87,7 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200803
+      value: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200824
 - target:
     kind: StatefulSet
     name: ^pingdirectory$
@@ -101,14 +101,14 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
+      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
 - target:
     kind: Deployment
     name: ^pingaccess$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
+      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
 - target:
     kind: Deployment
     name: ^pingaccess$
@@ -123,3 +123,10 @@ patches:
     - op: replace
       path: /spec/replicas
       value: 1
+- target:
+    kind: Deployment
+    name: ^pingfederate$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
