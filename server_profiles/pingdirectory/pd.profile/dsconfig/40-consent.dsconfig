@@ -1,20 +1,36 @@
 
 dsconfig create-consent-definition \
-    --definition-name email  \
-    --set 'display-name:Email Address'  \
-    --set 'description:Share your email address' 
+    --definition-name pf-persistent-grant  \
+    --set 'display-name:PingFederate grant'  \
+    --set 'description:PingFederate persistent grants'
 
 dsconfig create-consent-definition-localization \
-    --definition-name email  \
+    --definition-name pf-persistent-grant  \
+    --localization-name en-AU  \
+    --set version:1.0  \
+    --set 'title-text:CDR Consent'  \
+    --set 'data-text:CDR Consent'  \
+    --set 'purpose-text:CDR Consent'
+
+dsconfig create-consent-definition-localization \
+    --definition-name pf-persistent-grant  \
     --localization-name en-US  \
     --set version:1.0  \
-    --set 'title-text:Share your email address'  \
-    --set 'data-text:Your email address'  \
-    --set 'purpose-text:Join Mailing List' 
+    --set 'title-text:CDR Consent'  \
+    --set 'data-text:CDR Consent'  \
+    --set 'purpose-text:CDR Consent'
+
+dsconfig create-consent-definition-localization \
+    --definition-name pf-persistent-grant  \
+    --localization-name en  \
+    --set version:1.0  \
+    --set 'title-text:CDR Consent'  \
+    --set 'data-text:CDR Consent'  \
+    --set 'purpose-text:CDR Consent'
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name 'Directory REST API'  \
-    --set access-token-scope:ds 
+    --set access-token-scope:ds
 
 dsconfig create-identity-mapper \
     --mapper-name user-id-identity-mapper  \
@@ -24,14 +40,14 @@ dsconfig create-identity-mapper \
     --set match-attribute:entryUUID  \
     --set match-attribute:uid  \
     --set match-base-dn:cn=config  \
-    --set match-base-dn:ou=people,${USER_BASE_DN} 
+    --set match-base-dn:ou=people,${USER_BASE_DN}
 
 dsconfig create-access-token-validator \
     --validator-name mock-access-token-validator  \
     --type mock  \
     --set identity-mapper:user-id-identity-mapper  \
     --set enabled:true  \
-    --set evaluation-order-index:1 
+    --set evaluation-order-index:1
 
 dsconfig create-topology-admin-user \
   --user-name "Consent Internal Service Account" \
@@ -40,10 +56,10 @@ dsconfig create-topology-admin-user \
   --set "first-name:Consent" \
   --set inherit-default-root-privileges:false \
   --set "last-name:Internal Service Account" \
-  --set password:rootpassword \
+  --set password<${ROOT_USER_PASSWORD_FILE} \
   --set privilege:bypass-acl \
   --set privilege:config-read
-  
+
 dsconfig set-consent-service-prop \
     --set enabled:true  \
     --set base-dn:ou=Consents,${USER_BASE_DN}  \
@@ -51,8 +67,10 @@ dsconfig set-consent-service-prop \
     --set consent-record-identity-mapper:user-id-identity-mapper  \
     --set 'service-account-dn:uid=Consent Admin,ou=people,${USER_BASE_DN}'  \
     --set unprivileged-consent-scope:consent  \
-    --set privileged-consent-scope:consent_admin 
+    --set privileged-consent-scope:consent_admin
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name Consent  \
-    --set identity-mapper:user-id-identity-mapper 
+    --set identity-mapper:user-id-identity-mapper
+
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:AccessTokenManagerConfiguration inheritAccessControlSettings="false" inheritSelectionSettings="false" inheritSessionValidationSettings="false" restrictClients="false" includeSessionIdentifier="false" checkSessionRevocationStatus="false" checkValidAuthnSession="false" updateAuthnSessionActivity="false" defaultSubjectAttribute="" isInheritExtendedContractAttributes="false" name="obATM" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+<urn:AccessTokenManagerConfiguration inheritAccessControlSettings="false" inheritSelectionSettings="false" inheritSessionValidationSettings="false" restrictClients="false" includeSessionIdentifier="false" checkSessionRevocationStatus="false" checkValidAuthnSession="false" updateAuthnSessionActivity="false" defaultSubjectAttribute="cdr_arrangement_id" isInheritExtendedContractAttributes="false" name="obATM" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
     <urn:Fields>
         <urn:Field name="Token Lifetime">8</urn:Field>
         <urn:Field name="Use Centralized Signing Key">true</urn:Field>
@@ -22,7 +22,7 @@
         <urn:Field name="Issuer Claim Value"/>
         <urn:Field name="Audience Claim Value"/>
         <urn:Field name="JWT ID Claim Length">0</urn:Field>
-        <urn:Field name="Access Grant GUID Claim Name">pf_grantid</urn:Field>
+        <urn:Field name="Access Grant GUID Claim Name">cdr_arrangement_id</urn:Field>
         <urn:Field name="JWKS Endpoint Path">/cdrJWKS</urn:Field>
         <urn:Field name="JWKS Endpoint Cache Duration">720</urn:Field>
         <urn:Field name="Publish Key ID X.509 URL">false</urn:Field>
@@ -42,7 +42,7 @@
         <urn:Field name="Issuer Claim Value"/>
         <urn:Field name="Audience Claim Value"/>
         <urn:Field name="JWT ID Claim Length">0</urn:Field>
-        <urn:Field name="Access Grant GUID Claim Name">pf_grantid</urn:Field>
+        <urn:Field name="Access Grant GUID Claim Name">cdr_arrangement_id</urn:Field>
         <urn:Field name="JWKS Endpoint Path">/cdrJWKS</urn:Field>
         <urn:Field name="JWKS Endpoint Cache Duration">720</urn:Field>
         <urn:Field name="Publish Key ID X.509 URL">false</urn:Field>
@@ -56,7 +56,6 @@
     </urn:Tables>
     <urn:ExtendedContractAttributes>
         <urn:AttributeName>sub</urn:AttributeName>
-        <urn:AttributeName>cdr_arrangement_id</urn:AttributeName>
         <urn:AttributeName>cnf</urn:AttributeName>
         <urn:AttributeName>consent_id</urn:AttributeName>
     </urn:ExtendedContractAttributes>

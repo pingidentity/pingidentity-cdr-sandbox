@@ -4,8 +4,17 @@
         <con:ListItem>sso-admin.data-holder.local</con:ListItem>
         <con:ListItem>sso.data-holder.local</con:ListItem>
         <con:ListItem>pingfederate</con:ListItem>
+	<con:ListItem>pingaccess</con:ListItem>
     </con:list>
 </con:config>
+
+
+
+
+
+
+
+
 
 
 

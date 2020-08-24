@@ -23,7 +23,7 @@ metadata:
     role: pingdirectory
   name: pingdirectory
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       role: pingdirectory
@@ -56,8 +56,9 @@ spec:
             - /bin/sh
             - -c
             - /opt/liveness.sh
-          initialDelaySeconds: 300
+          initialDelaySeconds: 240
           periodSeconds: 30
+          failureThreshold: 60
         name: pingdirectory
         ports:
         - containerPort: 636
@@ -72,8 +73,8 @@ spec:
         resources:
           limits:
             cpu: "2"
-            memory: 2Gi
+            memory: 1.5Gi
           requests:
-            cpu: "2"
-            memory: 2Gi
+            cpu: "1"
+            memory: 1Gi
       terminationGracePeriodSeconds: 300

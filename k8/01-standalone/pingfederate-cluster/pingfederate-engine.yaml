@@ -22,7 +22,7 @@ metadata:
     role: pingfederate
     tier: engine
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       role: pingfederate
@@ -81,10 +81,10 @@ spec:
         resources:
           limits:
             cpu: "1"
-            memory: 1.5Gi
+            memory: 1Gi
           requests:
-            cpu: "1"
-            memory: 1.5Gi
+            cpu: "0.5"
+            memory: 0.5Gi
       # this helps on the _initial_ start of the cluster to ensure engines and admins don't create cluster islands
       initContainers:
       - name: init

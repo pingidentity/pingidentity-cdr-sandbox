@@ -45,13 +45,13 @@ spec:
         image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
         imagePullPolicy: Always
         livenessProbe:
-          failureThreshold: 1
+          failureThreshold: 60
           httpGet:
             path: /pingfederate/app
             port: 9999
             scheme: HTTPS
-          initialDelaySeconds: 100
-          periodSeconds: 1
+          initialDelaySeconds: 120
+          periodSeconds: 30
         name: pingfederate-admin
         ports:
         - containerPort: 9999
@@ -65,7 +65,7 @@ spec:
         resources:
           limits:
             cpu: "1"
-            memory: 1.5Gi
+            memory: 1Gi
           requests:
-            cpu: "1"
-            memory: 1.5Gi
+            cpu: "0.5"
+            memory: 0.5Gi

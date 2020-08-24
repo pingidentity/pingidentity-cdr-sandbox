@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urn:OAuthConfig enableOAuth="true" authzCodeLength="30" authzCodeTimeout="60" rollRefreshTokens="false" rollingInterval="0" refreshTokenLength="42" atmIdForOAuthGrantManagement="" scopeForOAuthGrantManagement="" globalPersistentGrantExpirationTime="-1" globalPersistentGrantExpirationTimeUnit="d" globalPersistentGrantIdleTimeout="30" globalPersistentGrantIdleTimeoutTimeUnit="d" tokenEndpointBaseUrl="" userAuthzUrl="" registeredAuthzPath="" pendingAuthzTimeout="600" bypassActivationCodeConfirmation="false" devicePollingInterval="5" authzConsentSetting="INTERNAL" xmlns:urn="urn:pingidentity.com:pf:oauth:conf">
+<urn:OAuthConfig enableOAuth="true" authzCodeLength="30" authzCodeTimeout="30" rollRefreshTokens="false" rollingInterval="0" refreshTokenLength="42" selectedPcv="adminPCV" atmIdForOAuthGrantManagement="adminATM" scopeForOAuthGrantManagement="urn:pingidentity:grant:admin" globalPersistentGrantExpirationTime="-1" globalPersistentGrantExpirationTimeUnit="d" globalPersistentGrantIdleTimeout="30" globalPersistentGrantIdleTimeoutTimeUnit="d" tokenEndpointBaseUrl="" userAuthzUrl="" registeredAuthzPath="" pendingAuthzTimeout="600" bypassActivationCodeConfirmation="false" devicePollingInterval="5" authzConsentSetting="" externalConsentAdapterId="" returnedScopeAttributeName="" xmlns:urn="urn:pingidentity.com:pf:oauth:conf">
     <urn:UserKeyToAccessTokenMapping contextId="authz_req|apc.TkNJ3HMIIvIeeZEM" tokenManagerId="adminATM">
         <urn1:AttributeMap Name="sub" Type="Persistent Grant" Value="USER_KEY" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:UserKeyToAccessTokenMapping>
     <urn:UserKeyToAccessTokenMapping contextId="authz_req|apc.iQwSYDdExcmJaYk6" tokenManagerId="obATM">
-        <urn1:AttributeMap Name="cdr_arrangement_id" Type="Authentication Policy Contract" Value="apc.cdrArrangementId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="sub" Type="Persistent Grant" Value="SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="cdr_arrangement_id" Type="Persistent Grant" Value="CONSENT_AUDIENCE" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="sub" Type="Persistent Grant" Value="CUSTOMER_REF" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="cnf" Type="Expression" Value="#THUMBPRINT_HEADER=&quot;X-CertificateThumbprint&quot;, #objReq = #this.get(&quot;context.HttpRequest&quot;).getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(&quot;x5t#S256&quot;, #headerValue):null, #mapValue" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="consent_id" Type="Persistent Grant" Value="CONSENT_ID" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:UserKeyToAccessTokenMapping>
     <urn:ApcToUserKeyMapping sourcePluginId="TkNJ3HMIIvIeeZEM">
         <urn1:AttributeMap Name="APPROVED_SCOPES" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="PERSISTENT_GRANT_LIFETIME" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="SHARING_DURATION_EXPIRES_AT" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="ACR_VALUES" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CONSENT_ID" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="AUTH_TIME" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="USER_NAME" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="CUSTOMER_REF" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="CONSENTAPI_ID" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="PERSISTENT_GRANT_LIFETIME" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="SHARING_DURATION_EXPIRES_AT" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="SELECTED_ACCOUNTS" Type="Expression" Value="null" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CLAIMS_IDTOKEN" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="SUBJECT" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="AUTH_TIME" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="USER_NAME" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="USER_KEY" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CLAIMS_USERINFO" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:ApcToUserKeyMapping>
     <urn:ApcToUserKeyMapping sourcePluginId="iQwSYDdExcmJaYk6">
         <urn1:AttributeMap Name="APPROVED_SCOPES" Type="Authentication Policy Contract" Value="scopes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="PERSISTENT_GRANT_LIFETIME" Type="Authentication Policy Contract" Value="persistentGrantLifetimeMinutes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="ACR_VALUES" Type="Authentication Policy Contract" Value="SAML_AUTHN_CTX" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="SHARING_DURATION_EXPIRES_AT" Type="Authentication Policy Contract" Value="sharingDurationExpiresAt" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CONSENT_ID" Type="Authentication Policy Contract" Value="cdr_consent_id" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="SELECTED_ACCOUNTS" Type="Authentication Policy Contract" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="CLAIMS_IDTOKEN" Type="Authentication Policy Contract" Value="idtokenClaims" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="SUBJECT" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="AUTH_TIME" Type="Expression" Value="(@java.time.Instant@now()).getEpochSecond()" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="USER_NAME" Type="Authentication Policy Contract" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="CUSTOMER_REF" Type="Authentication Policy Contract" Value="customerRef" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="CONSENTAPI_ID" Type="Authentication Policy Contract" Value="cdrArrangementId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="PERSISTENT_GRANT_LIFETIME" Type="Authentication Policy Contract" Value="persistentGrantLifetimeMinutes" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="SHARING_DURATION_EXPIRES_AT" Type="Authentication Policy Contract" Value="sharingDurationExpiresAt" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="SELECTED_ACCOUNTS" Type="Authentication Policy Contract" Value="accounts" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="CLAIMS_IDTOKEN" Type="Authentication Policy Contract" Value="idtokenClaims" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="SUBJECT" Type="Authentication Policy Contract" Value="cdrArrangementId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:AttributeMap Name="CLAIMS_USERINFO" Type="Authentication Policy Contract" Value="userinfoClaims" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
-        <urn1:AttributeMap Name="USER_KEY" Type="Authentication Policy Contract" Value="cdrArrangementId" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="USER_KEY" Type="Authentication Policy Contract" Value="customerRef" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
         <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
     </urn:ApcToUserKeyMapping>
     <urn:ClientCredentialsToAccessTokenMapping contextId="client_credentials" tokenManagerId="obATM">
@@ -58,5 +62,7 @@
     <urn:persistentGrantAttributes AttributeName="AUTH_TIME"/>
     <urn:persistentGrantAttributes AttributeName="ACR_VALUES"/>
     <urn:persistentGrantAttributes AttributeName="SUBJECT"/>
+    <urn:persistentGrantAttributes AttributeName="CUSTOMER_REF"/>
+    <urn:persistentGrantAttributes AttributeName="CONSENTAPI_ID"/>
     <urn:allowedOrigins>https://test.${BASE_HOSTNAME}</urn:allowedOrigins>
 </urn:OAuthConfig>

@@ -14,8 +14,7 @@ Clean environment:
 kubectl delete -R -f 01-standalone
 
 Build environment:
-kustomize build 02-completeinstall | envsubst '${PING_IDENTITY_K8S_NAMESPACE}' | kubectl apply -f -
-
+kustomize build 02-completeinstall | envsubst '${PING_IDENTITY_K8S_NAMESPACE}' | envsubst '${CDR_SERVER_PROFILE_BRANCH}' | kubectl apply -f -
 
 Ingress:
 k apply -f pingaccess-ingress.yaml

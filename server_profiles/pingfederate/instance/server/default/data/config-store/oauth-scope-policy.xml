@@ -8,7 +8,7 @@
         <con:item name="profile">View my profile</con:item>
         <con:item name="email">View my email</con:item>
     </con:map>
-    <con:item name="lastUpdated">1586222742292</con:item>
+    <con:item name="lastUpdated">1597716301312</con:item>
     <con:map name="scope-group-descriptions"/>
     <con:map name="scope-group-mappings"/>
     <con:list name="dynamic-common-scopes"/>
@@ -27,6 +27,7 @@
         <con:item name="bank:accounts.detail:read">bank:accounts.detail:read</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:BRANCH:WRITE">DEEPTHOUGHT:ADMIN:BRANCH:WRITE</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:PAYEE:WRITE">DEEPTHOUGHT:ADMIN:PAYEE:WRITE</con:item>
+        <con:item name="urn:pingidentity:grant:admin">Grant Management Access</con:item>
         <con:item name="bank:transactions:read">bank:transactions:read</con:item>
         <con:item name="common:customer.detail:read">common:customer.detail:read</con:item>
         <con:item name="common:customer.basic:read">common:customer.basic:read</con:item>

@@ -40,6 +40,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -129,7 +132,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
+										"id": "da87ec25-4184-4f13-99c8-edd4171618ef",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -147,10 +150,13 @@
 											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
 											"});"
 										],
-										"id": "da87ec25-4184-4f13-99c8-edd4171618ef"
+										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -194,6 +200,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -263,6 +272,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -372,6 +384,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -419,6 +434,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -479,7 +497,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -517,6 +535,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -530,7 +551,7 @@
 							"response": []
 						},
 						{
-							"name": "S002.T001.004 - Provider username",
+							"name": "S002.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -546,6 +567,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -587,13 +611,17 @@
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
 											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
 											"});"
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -670,6 +698,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": false,
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -699,6 +731,11 @@
 										{
 											"key": "scopes",
 											"value": "bank:transactions:read",
+											"type": "text"
+										},
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account-2}}",
 											"type": "text"
 										}
 									],
@@ -735,6 +772,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -811,6 +851,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -865,6 +908,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -940,15 +986,37 @@
 											"});",
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
+											"    var atJson = jwt_decode_payload(response.access_token);",
+											"    pm.environment.set(\"consent-request-access-token-sub\", atJson.sub);",
+											"    pm.environment.set(\"consent-request-access-token-pfguid\", atJson.pf_guid);",
 											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
 											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
 											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
-											"});"
+											"    pm.environment.set(\"consent-cdr-arrangement-id\", response[\"cdr_arrangement_id\"]);",
+											"});",
+											"",
+											"",
+											"function jwt_decode_payload(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[1]));",
+											"}",
+											"",
+											"function jwt_decode_header(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[0]));",
+											"}",
+											"function jwt_parts(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return parts.length;",
+											"}"
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1056,6 +1124,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1142,6 +1213,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -1165,7 +1239,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/introspect.oauth2",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -1224,6 +1298,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -1295,6 +1372,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -1318,7 +1398,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}/as/introspect.oauth2",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -1365,6 +1445,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -1445,6 +1528,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -1519,6 +1605,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -1628,6 +1717,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1680,6 +1772,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1766,6 +1861,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1851,6 +1949,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -1918,6 +2019,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -1994,6 +2098,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -2060,6 +2167,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -2161,6 +2271,136 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S002.T007 Grant Management API",
+					"item": [
+						{
+							"name": "S002.T007.001 - Get User Grants",
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{grant-management-user}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{grant-management-password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"pf-ws",
+										"rest",
+										"oauth",
+										"users",
+										"{{consent-request-access-token-sub}}",
+										"grants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T007.002 - Get Consent Details",
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"consent",
+										"v1",
+										"consents",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T007.003 - Get All User Consent Details",
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{dh-dir-host}}/consent/v1/consents",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"consent",
+										"v1",
+										"consents"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"event": [
@@ -2218,6 +2458,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -2261,6 +2504,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2321,7 +2567,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+							"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -2364,6 +2610,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2387,7 +2636,7 @@
 								},
 								{
 									"key": "token-endpoint",
-									"value": "{{dh-idp-host}}",
+									"value": "{{dh-idp-host}}/as/token.oauth2",
 									"type": "text"
 								},
 								{
@@ -2439,6 +2688,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2471,12 +2723,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://sso.data-holder.local/as/par.oauth2",
-							"protocol": "https",
+							"raw": "{{dh-idp-host}}/as/par.oauth2",
 							"host": [
-								"sso",
-								"data-holder",
-								"local"
+								"{{dh-idp-host}}"
 							],
 							"path": [
 								"as",
@@ -2505,6 +2754,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -2524,7 +2776,7 @@
 					"response": []
 				},
 				{
-					"name": "S003.T001.006 - Provider username",
+					"name": "S003.T001.006 - Provide username",
 					"event": [
 						{
 							"listen": "test",
@@ -2540,6 +2792,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2588,6 +2843,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2663,6 +2921,10 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followRedirects": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2732,6 +2994,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2816,6 +3081,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2925,6 +3193,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -2972,6 +3243,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3032,7 +3306,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -3070,6 +3344,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3083,7 +3360,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.004 - Provider username",
+							"name": "S004.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -3099,6 +3376,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3147,6 +3427,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3222,6 +3505,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3291,6 +3578,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3375,6 +3665,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3478,6 +3771,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3501,7 +3797,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -3560,6 +3856,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3608,7 +3907,7 @@
 					"name": "S004.T003 Obtain Concurrent Access Token",
 					"item": [
 						{
-							"name": "S004.T001.001 - Download Private Key",
+							"name": "S004.T003.001 - Download Private Key",
 							"event": [
 								{
 									"listen": "test",
@@ -3635,6 +3934,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3654,7 +3956,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.002 - Generate Request JWT",
+							"name": "S004.T003.002 - Generate Request JWT",
 							"event": [
 								{
 									"listen": "test",
@@ -3682,6 +3984,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -3742,7 +4047,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -3762,7 +4067,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.003 - Initiate Consent Request",
+							"name": "S004.T003.003 - Initiate Consent Request",
 							"event": [
 								{
 									"listen": "test",
@@ -3780,6 +4085,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3793,7 +4101,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.004 - Provider username",
+							"name": "S004.T003.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -3809,6 +4117,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3840,7 +4151,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.005 - Verify OTP",
+							"name": "S004.T003.005 - Verify OTP",
 							"event": [
 								{
 									"listen": "test",
@@ -3857,6 +4168,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3903,7 +4217,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.006 - Perform consent",
+							"name": "S004.T003.006 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
@@ -3932,6 +4246,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -3978,7 +4296,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.007 - Creates JWT-Bearer Client Assertion",
+							"name": "S004.T003.007 - Creates JWT-Bearer Client Assertion",
 							"event": [
 								{
 									"listen": "test",
@@ -4001,6 +4319,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4052,7 +4373,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T001.008 - Perform code exchange",
+							"name": "S004.T003.008 - Perform code exchange",
 							"event": [
 								{
 									"listen": "test",
@@ -4085,6 +4406,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4188,6 +4512,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4211,7 +4538,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -4270,6 +4597,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4334,6 +4664,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4357,7 +4690,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -4416,6 +4749,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4491,6 +4827,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4538,6 +4877,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4598,7 +4940,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"{{consent-cdr-arrangement-id}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"{{consent-cdr-arrangement-id}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -4641,6 +4983,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -4664,7 +5009,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -4716,6 +5061,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4748,12 +5096,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://sso.data-holder.local/as/par.oauth2",
-									"protocol": "https",
+									"raw": "{{dh-idp-host}}/as/par.oauth2",
 									"host": [
-										"sso",
-										"data-holder",
-										"local"
+										"{{dh-idp-host}}"
 									],
 									"path": [
 										"as",
@@ -4782,6 +5127,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -4801,7 +5149,7 @@
 							"response": []
 						},
 						{
-							"name": "S004.T005.006 - Provider username",
+							"name": "S004.T005.006 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -4817,6 +5165,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4865,6 +5216,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -4940,6 +5294,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5009,6 +5367,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -5093,6 +5454,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5196,6 +5560,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -5219,7 +5586,7 @@
 										},
 										{
 											"key": "token-endpoint",
-											"value": "{{dh-idp-host}}/as/introspect.oauth2",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
 											"type": "text"
 										},
 										{
@@ -5278,6 +5645,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5352,6 +5722,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5418,6 +5791,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -5521,6 +5897,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5595,6 +5974,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -5698,6 +6080,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5772,6 +6157,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -5904,6 +6292,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -5927,7 +6318,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -5971,6 +6362,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6045,6 +6439,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6111,6 +6508,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6207,6 +6607,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6230,7 +6633,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -6274,6 +6677,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6348,6 +6754,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6414,6 +6823,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -6523,7 +6935,7 @@
 							"name": "S004.T009.001 Validate standard authz request",
 							"item": [
 								{
-									"name": "S004.T001.001 - Download Private Key",
+									"name": "S004.T009.001.001 - Download Private Key",
 									"event": [
 										{
 											"listen": "test",
@@ -6550,6 +6962,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -6569,7 +6984,7 @@
 									"response": []
 								},
 								{
-									"name": "S004.T001.002 - Generate Request JWT",
+									"name": "S004.T009.001.002 - Generate Request JWT",
 									"event": [
 										{
 											"listen": "test",
@@ -6597,6 +7012,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6657,7 +7075,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\": \"xxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\": \"xxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 											"options": {
 												"raw": {}
 											}
@@ -6677,38 +7095,24 @@
 									"response": []
 								},
 								{
-									"name": "S004.T001.003 - Initiate Consent Request",
+									"name": "S004.T009.001.003 - Initiate Consent Request",
 									"event": [
 										{
 											"listen": "test",
 											"script": {
 												"id": "a2ccc9e1-3055-44d2-9e4b-4f4e090fefc6",
 												"exec": [
-													"pm.test(\"Validate response status=302\", function () {",
-													"    pm.response.to.have.status(302);",
-													"});",
-													"pm.test(\"Set environment variables for next test\", function () {",
-													"    var locationHeader = pm.response.headers.get(\"Location\");",
-													"    if(!locationHeader)",
-													"        locationHeader = pm.response.headers.get(\"Referer\");",
-													"",
-													"    var locationParams = locationHeader.split(\"#\")[1];",
-													"    const eachParamArray = locationParams.split('&');",
-													"    let params = {};",
-													"    eachParamArray.forEach((param) => {",
-													"        const key = param.split('=')[0];",
-													"        const value = param.split('=')[1];",
-													"        Object.assign(params, {[key]: value});",
-													"    });",
-													"",
-													"    pm.expect(params[\"error\"]).to.equal(\"server_error\");",
-													"    pm.environment.set(\"consent-request-authcode-callback-error\", params[\"error\"]);",
+													"pm.test(\"Validate response status=400\", function () {",
+													"    pm.response.to.have.status(400);",
 													"});"
 												],
 												"type": "text/javascript"
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -6751,7 +7155,7 @@
 							"name": "S004.T009.002 Validate PAR",
 							"item": [
 								{
-									"name": "S004.T005.001 - Download Private Key",
+									"name": "S004.T009.002.001 - Download Private Key",
 									"event": [
 										{
 											"listen": "test",
@@ -6778,6 +7182,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -6797,7 +7204,7 @@
 									"response": []
 								},
 								{
-									"name": "S004.T005.002 - Generate Request JWT",
+									"name": "S004.T009.002.002 - Generate Request JWT",
 									"event": [
 										{
 											"listen": "test",
@@ -6825,6 +7232,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6885,7 +7295,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"xxxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"xxxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 											"options": {
 												"raw": {}
 											}
@@ -6905,7 +7315,7 @@
 									"response": []
 								},
 								{
-									"name": "S004.T005.003 - Creates JWT-Bearer Client Assertion",
+									"name": "S004.T009.002.003 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -6928,6 +7338,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -6951,7 +7364,7 @@
 												},
 												{
 													"key": "token-endpoint",
-													"value": "{{dh-idp-host}}",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
 													"type": "text"
 												},
 												{
@@ -6979,7 +7392,7 @@
 									"response": []
 								},
 								{
-									"name": "S004.T005.004 - Initiate PAR",
+									"name": "S004.T009.002.004 - Initiate PAR",
 									"event": [
 										{
 											"listen": "test",
@@ -6995,6 +7408,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7027,12 +7443,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://sso.data-holder.local/as/par.oauth2",
-											"protocol": "https",
+											"raw": "{{dh-idp-host}}/as/par.oauth2",
 											"host": [
-												"sso",
-												"data-holder",
-												"local"
+												"{{dh-idp-host}}"
 											],
 											"path": [
 												"as",
@@ -7134,6 +7547,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -7181,6 +7597,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7241,7 +7660,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 											"options": {
 												"raw": {}
 											}
@@ -7279,6 +7698,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -7292,7 +7714,7 @@
 									"response": []
 								},
 								{
-									"name": "S005.T001.004 - Provider username",
+									"name": "S005.T001.004 - Provide username",
 									"event": [
 										{
 											"listen": "test",
@@ -7308,6 +7730,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7356,6 +7781,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7431,6 +7859,10 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7496,6 +7928,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "GET",
 										"header": [],
@@ -7572,6 +8007,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7626,6 +8064,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7710,6 +8151,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -7817,6 +8261,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
 									"request": {
 										"method": "POST",
 										"header": [
@@ -7910,6 +8357,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -7988,6 +8438,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8058,6 +8511,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -8119,6 +8575,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8173,6 +8632,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8240,6 +8702,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8314,6 +8779,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8381,6 +8849,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8496,6 +8967,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -8543,6 +9017,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8603,7 +9080,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -8641,6 +9118,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -8654,7 +9134,7 @@
 							"response": []
 						},
 						{
-							"name": "S006.T001.004 - Provider username",
+							"name": "S006.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
@@ -8670,6 +9150,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8718,6 +9201,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8793,6 +9279,10 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8862,6 +9352,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -8960,6 +9453,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -9030,6 +9526,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -9106,6 +9605,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "POST",
 								"header": [
@@ -9160,6 +9662,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -9210,6 +9715,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -9225,6 +9733,575 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "S007 Authentication Flow",
+			"item": [
+				{
+					"name": "S007.T001 Verify Respone Type of Access Token",
+					"item": [
+						{
+							"name": "S007.T001.001 - Download Private Key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ad6773f9-9e70-4fcf-bde4-d80453733323",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate kty is RSA\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.kty).to.equal('RSA');",
+											"});",
+											"pm.test(\"Validate algorithm is PS256\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.alg).to.equal('PS256');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = btoa(pm.response.text());",
+											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"softwarestatement",
+										"JWKS",
+										"{{softwareId}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.003 - Initiate Consent Request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c43101d6-6e6b-40da-a07a-5c5458688843",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.002 - Generate Good Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "737f401e-daa5-4b7f-9c9e-7c147444e517",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"requestGenericJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.004 - Generate Negative Request JWT - code id_token token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "446485d4-a0b2-4e62-b25a-10a4cd8b760a",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"requestGenericJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.005 - Initiate Negative Consent Request - code id_token token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "02539e25-9659-4896-9889-d5594db4c9db",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.006 - Generate Negative Request JWT - code token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7211782a-ac02-4226-87f4-046c7d21fc88",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/requestGenericJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"requestGenericJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S007.T001.007 - Initiate Negative Consent Request - code token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "085fd8ff-c705-47c1-b350-36cef68422c7",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "31796d8f-0b65-45d9-8c22-2c8c0c03e6ed",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "01a8ba1e-daa3-47e8-bc42-4c1b63c59cdf",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S007.T000 Run the S001.T001 Create Client first",
+					"item": [],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7093b3c5-6bd2-4d05-bd49-2e85de806ff3",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b3ad4440-b1ae-4996-9da9-ae164658c83b",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "87f6510f-86d4-4abb-813d-e6f0a89d13bb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e48edc36-47fd-4291-8c9c-74869af50aa5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -9254,84 +10331,99 @@
 	],
 	"variable": [
 		{
-			"id": "938b3386-71a6-402a-98c7-b01f0c4fdc0e",
+			"id": "fd1afb7d-aea2-400a-92e5-aa97e8b34f8e",
 			"key": "cdr-register-testharness-host",
-			"value": "http://sso.data-holder.local:8084"
+			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "4413f47e-8dfd-453a-ba12-3d3efe179711",
+			"id": "8f98faf4-14ed-4b22-84a6-27af3d6fd5d8",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "753fd902-91de-4b8e-902a-d6eda93c8ec6",
+			"id": "25f342cc-f657-4eb9-a0fb-e6305c1a653d",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "ca9bea17-88b9-4d36-9d6a-b7f5122494c4",
+			"id": "30b7accd-1b74-477a-bcfd-1c122c829754",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "c76b2a61-7427-4cfb-a5c6-edf4a12729d4",
+			"id": "119917a6-17d0-4e37-8d1d-5bbe625adeb3",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "f36f7841-1e23-4c34-923b-96352d8791e1",
+			"id": "5bf2a047-a387-45b8-ada9-61a564a1b679",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "a8f64978-8775-4b55-8f2a-937f003fe5c9",
+			"id": "eca24876-34f5-4398-ba47-8e7bca2986bf",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "f4842d67-5695-4ba6-a972-4382684ca967",
+			"id": "623f0423-026f-47ea-a923-656c1b5a206d",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "81ea3b19-b676-432c-9a4f-d9bc4c28c291",
+			"id": "b6b96817-2190-440d-ae5a-a41a874e31ea",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "12363f8c-074f-420f-82be-1638311b2339",
+			"id": "d523b829-9a9d-413c-b308-9d3cffe9634d",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "3b813fe9-b2af-4443-a662-81f4c78c7d8b",
+			"id": "354b8937-5fe2-4a3f-86b0-3d6dbe510813",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "dd014289-2626-4399-9498-232c35b2db54",
+			"id": "e609535b-c422-4cbc-814d-6805938f52e8",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "3e69b1a1-40d1-49e7-a94f-bf4a96a52d2c",
+			"id": "cf6bd37e-47e5-4792-8ba9-0b718078c8ed",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "d5eec426-c4af-4df2-9b5b-02e017a99d48",
+			"id": "4edfcb11-5c9b-42dc-909d-42edaa3c76bb",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "f8ac55b0-958d-4eeb-8ec1-e6648b2f2213",
+			"id": "ec1b0d88-f1e7-476f-87b7-dcc78a706c4a",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "b6826df3-b33e-4059-82a3-999abe6e2414",
+			"id": "64a40645-8e8d-4fa9-a669-828f304d29f3",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
+		},
+		{
+			"id": "8656c02b-9946-4a92-bf0f-b53a4196df3c",
+			"key": "grant-management-user",
+			"value": "Administrator"
+		},
+		{
+			"id": "66a732b8-8c69-4e82-8f2d-83f9c450a75a",
+			"key": "grant-management-password",
+			"value": "2FederateM0re"
+		},
+		{
+			"id": "98e6796c-f4a9-4d11-91bf-585c0754469c",
+			"key": "dh-dir-host",
+			"value": "https://localhost:1443"
 		}
 	],
 	"protocolProfileBehavior": {}

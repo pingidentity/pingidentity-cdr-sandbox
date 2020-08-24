@@ -9,6 +9,9 @@ spec:
   - name: pa-app
     port: 443
     targetPort: 3000
+  - name: pa-app-clear
+    port: 80
+    targetPort: 7080
   - name: pa-internal
     port: 3000
   selector:
@@ -21,7 +24,7 @@ metadata:
     role: pingaccess
   name: pingaccess
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       role: pingaccess
@@ -47,11 +50,12 @@ spec:
         name: pingaccess
         ports:
         - containerPort: 443
+        - containerPort: 80
         - containerPort: 3000
         resources:
           limits:
             cpu: "1"
-            memory: 1.5Gi
+            memory: 1Gi
           requests:
-            cpu: "1"
-            memory: 1.5Gi
+            cpu: "0.5"
+            memory: 0.5Gi

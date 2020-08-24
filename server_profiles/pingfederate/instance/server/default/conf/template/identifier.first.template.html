@@ -15,8 +15,8 @@
   <body class="consent">
   <div class="container mt-3">
     <div class="col-md-6 m-auto card p-5">
-    
-    
+
+
 	<form method="POST" action="$resume_url" autocomplete="off">
 		<input type="hidden" name="$ok" value="false"/>
 		<input type="hidden" name="$cancel" value="false"/>
@@ -51,7 +51,7 @@
 			document.forms[0].submit();
 		}
 		function postCancel() {
-			document.forms[0]['$cancel'].value = 'clicked';
+      document.forms[0]['$cancel'].value = 'true';
 			document.forms[0].submit();
 		}
 

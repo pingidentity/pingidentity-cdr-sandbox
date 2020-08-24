@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200803
+    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -10,6 +10,7 @@ services:
       - PA_POST_CONFIGURATION_DELAY=0
       - OPERATIONAL_MODE=STANDALONE
       - PA_ADMIN_PORT=9000
+      - PA_LIMIT_REQUEST_LINE=40960
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
@@ -22,13 +23,14 @@ services:
     #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
     ports:
       - 443:3000
+      - 80:7080
       - 9000:9000
       - 9001:9001
     networks:
       - pingnet-dmz
 
   pingfederate:
-    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
+    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
     command: entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -43,7 +45,7 @@ services:
       - pingnet-internal
 
   pingdirectory:
-    image: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200803
+    image: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200824
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
@@ -60,7 +62,7 @@ services:
       - pingnet-internal
 
   cdr-dr-client:
-    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200803
+    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200818
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -75,7 +77,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-au/mock-register:20200803
+    image: gcr.io/ping-identity/cdr-au/mock-register:20200817
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -88,6 +90,8 @@ services:
     networks:
       - pingnet-internal
       - pingnet-dmz
+    volumes:
+       - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
 
   deepthought-product-api:
     image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-002
@@ -132,7 +136,7 @@ services:
       - pingnet-dmz
 
   deepthought-h2-database:
-    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
+    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:20200819
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -147,7 +151,7 @@ services:
       - pingnet-dmz
 
   pingdataconsole:
-    image: pingidentity/pingdataconsole:8.1.0.0-alpine-edge
+    image: gcr.io/ping-identity/cdr-au/pingdataconsole-8.1:20200824
     ports:
       - "8443:8443"
     networks:

@@ -4,8 +4,17 @@
         <con:ListItem>sso-admin.${BASE_HOSTNAME}</con:ListItem>
         <con:ListItem>${PF_BASE_HOST}</con:ListItem>
         <con:ListItem>pingfederate</con:ListItem>
+	<con:ListItem>pingaccess</con:ListItem>
     </con:list>
 </con:config>
+
+
+
+
+
+
+
+
 
 
 

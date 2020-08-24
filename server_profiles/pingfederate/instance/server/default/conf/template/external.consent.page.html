@@ -67,13 +67,20 @@
                                                                 $account.displayName
                                                 </span><br>
                                         <span class="capital">
-                                                        Account Number: $account.accountNumber
+                                                        Account Number: $account.accountNumber<br/>
+
+                                                            #if(!$account.owner)
+                                                              (this is a joint account and cannot be selected)
+                                                            #end
                                                 </span>
 	                        </div>
 	                        <div class="switch-toggle-wrapper ml-auto mr-5" >
 		                        <div class="switch small">
-
-                                <input class="switch-input" id="chk_accounts_$account.id" type="checkbox" name="accounts" value="$account.id" checked>
+                                #if($account.owner)
+                                  <input class="switch-input" id="chk_accounts_$account.id" type="checkbox" name="accounts" value="$account.id" checked>
+                                #else
+                                  <input class="switch-input" id="chk_accounts_$account.id" type="checkbox" name="accounts_disabled" value="$account.id" disabled>
+                                #end
 
                                 <label class="switch-paddle" for="chk_accounts_$account.id">
                                 <span class="show-for-sr">$templateMessages.getMessage($messageKeyPrefix, "title")</span>
