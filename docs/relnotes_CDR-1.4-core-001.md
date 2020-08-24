@@ -38,6 +38,9 @@
 - (CDR-240)	Sample DR application change how it reads cdr_arrangement_id
 - (CDR-254)	Create Consent API persistent grant storage	Task
 
+#### Updated Product Images
+- (CDR-256)	Updated PingFederate, PingAccess and PingDirectory to 20200824
+
 ### Compliance Alignment
 - (CDR-197)	Reduce available scopes
 - (CDR-199)	Update OpenID Connect Metadata description for id_token_encryption_alg_values_supported
