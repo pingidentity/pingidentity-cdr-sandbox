@@ -151,7 +151,7 @@ services:
       - pingnet-dmz
 
   pingdataconsole:
-    image: pingidentity/pingdataconsole:8.1.0.0-alpine-edge
+    image: gcr.io/ping-identity/cdr-au/pingdataconsole-8.1:20200824
     ports:
       - "8443:8443"
     networks:
