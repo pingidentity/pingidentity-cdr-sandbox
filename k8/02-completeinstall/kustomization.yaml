@@ -130,3 +130,17 @@ patches:
     - op: replace
       path: /spec/template/spec/containers/0/image
       value: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
+- target:
+    kind: Deployment
+    name: ^cdr-dr-client$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/sample-dr-client:20200828
+- target:
+    kind: Deployment
+    name: ^deepthought-h2-database$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/deepthought-h2-database:20200819
