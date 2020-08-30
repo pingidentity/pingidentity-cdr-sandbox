@@ -11604,107 +11604,107 @@
 	],
 	"variable": [
 		{
-			"id": "de4a5d43-21c9-4816-9037-16cdca3fb5c0",
+			"id": "5c794e7e-b1e7-4247-8961-6155b5022849",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "d4f7b8fa-964c-4832-94f8-03fb807fd5b3",
+			"id": "ac144cae-b948-4720-b6fe-2726c40d8497",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "ff1a25ed-7f69-4dae-812e-f6119bbc6df4",
+			"id": "44a793de-f32a-4112-9fe8-fba73614d4ed",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "34f0ff69-9b2e-41ea-b2cc-7ec0a0719010",
+			"id": "817ee274-ea2d-4f90-837c-a01a86aca72a",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "787b1846-0ce7-452c-9e53-b2f2ca42ee3d",
+			"id": "827fe95f-adbe-41dc-8d0c-f13dfe0a2bf6",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "a31948cb-5aa6-403c-adca-49ec492a113a",
+			"id": "b16896b8-c662-45f4-bd51-bc2662800b06",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "40b06d9f-e998-4ff5-a244-d9d843c32e55",
+			"id": "e66eac11-decf-4bd6-b51d-735f81083d98",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "2397551c-1021-43d6-b7e8-bbdcbc96f618",
+			"id": "0847cfe1-c3d1-48e5-bdc1-168cd41450b0",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "f4d7acfa-1c72-42dc-8763-55ddc1e4ff52",
+			"id": "f70afb3b-9b29-49d5-8bc4-e5a80e83f65a",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "d099f5f5-3dc5-4891-b9f2-f3734015d70e",
+			"id": "eadb63a9-f302-4acc-ac31-f8ae8db65e6d",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "1cb88ddf-b6c6-438c-96b0-71ffb12b47ee",
+			"id": "ec7c599c-aba5-4ae8-9422-1b1f82b9f3f0",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "f1ef3186-7a2f-49d5-b400-eeaf76a92a65",
+			"id": "f1946484-b305-4251-be31-4a776fe0ad26",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "4085e203-fb15-4d54-80b3-4dde0ae7dedb",
+			"id": "230adb0d-27da-4ac9-a988-dceed028e2e4",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "3bcc2ae5-9ae3-4a92-85bc-66f041cb3b77",
+			"id": "dc92f990-6146-4c1e-8462-9aa75f6c3303",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "975a55a6-df06-4318-96a0-1f40483fa35c",
+			"id": "2023130c-557f-4362-9442-b8ce0d919b62",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "aa0266c0-b8ed-4bc3-8b67-a819bf68010d",
+			"id": "c0f44bc3-aa33-4db1-9576-03c3f41872af",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "a666506a-c387-4f73-a798-e889aca73d35",
+			"id": "0b832bf2-e3a9-4a2f-b328-03b9bbf62cee",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "d0969897-0472-4846-aa69-2f6a09e83776",
+			"id": "99c7391e-c1ca-414d-a6cf-a6d9e2f293fe",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "bb67386e-4af9-4886-b406-2e1245f276ba",
+			"id": "c37cfeaa-de30-470a-a49a-3c3b56860df7",
 			"key": "dh-dir-host",
 			"value": "https://localhost:1443"
 		},
 		{
-			"id": "41d7b30d-e66d-4f91-8518-2623203b2c74",
+			"id": "03cd3e97-3b9d-4b37-b46b-0a83329faf1c",
 			"key": "pkce-challenge",
-			"value": "E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM"
+			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "46736e06-b8a5-46d7-b909-a264809c2b1d",
+			"id": "6a20441d-65f3-43a5-acf7-6fa5e86dc81b",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		}
