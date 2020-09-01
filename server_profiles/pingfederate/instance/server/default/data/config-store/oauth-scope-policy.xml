@@ -8,12 +8,13 @@
         <con:item name="profile">View my profile</con:item>
         <con:item name="email">View my email</con:item>
     </con:map>
-    <con:item name="lastUpdated">1597716301312</con:item>
+    <con:item name="lastUpdated">1598946454845</con:item>
     <con:map name="scope-group-descriptions"/>
     <con:map name="scope-group-mappings"/>
     <con:list name="dynamic-common-scopes"/>
     <con:map name="exclusive-scope-descriptions">
         <con:item name="bank:accounts.basic:read">bank:accounts.basic:read</con:item>
+        <con:item name="consent_admin">Consent API - Admin</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:READ">DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:READ</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE">DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE</con:item>
         <con:item name="urn:pingidentity:directory-delegated-admin">urn:pingidentity:directory-delegated-admin</con:item>
@@ -31,6 +32,7 @@
         <con:item name="bank:transactions:read">bank:transactions:read</con:item>
         <con:item name="common:customer.detail:read">common:customer.detail:read</con:item>
         <con:item name="common:customer.basic:read">common:customer.basic:read</con:item>
+        <con:item name="consent">Consent API - User</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:CUSTOMER:READ">DEEPTHOUGHT:ADMIN:CUSTOMER:READ</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:GRANT:WRITE">DEEPTHOUGHT:ADMIN:GRANT:WRITE</con:item>
         <con:item name="DEEPTHOUGHT:ADMIN:PAYEE:READ">DEEPTHOUGHT:ADMIN:PAYEE:READ</con:item>

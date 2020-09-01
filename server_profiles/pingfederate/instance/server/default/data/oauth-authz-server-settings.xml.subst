@@ -70,3 +70,4 @@ parser.parse(&quot;{\&quot;accounts\&quot;:&quot; + #availableAccStr + &quot;}&q
     <urn:persistentGrantAttributes AttributeName="AVAILABLE_ACCOUNTS"/>
     <urn:allowedOrigins>https://test.${BASE_HOSTNAME}</urn:allowedOrigins>
 </urn:OAuthConfig>
+
