@@ -4,7 +4,6 @@
         <c2c:attr name="result"/>
         <c2c:attr name="acr"/>
         <c2c:attr name="cdr_consent_id"/>
-        <c2c:attr name="persistentGrantLifetimeMinutes"/>
         <c2c:attr name="cdrArrangementId"/>
         <c2c:attr name="sharingDurationExpiresAt"/>
         <c2c:attr name="customerRef"/>
@@ -12,6 +11,7 @@
         <c2c:attr name="accounts"/>
         <c2c:attr name="scopes"/>
         <c2c:attr name="idtokenClaims"/>
+        <c2c:attr name="accounts_available"/>
         <c2c:attr name="userinfoClaims"/>
     </c2c:extendedAttributes>
 </c2c:c2cContract>
