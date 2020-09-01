@@ -104,7 +104,7 @@ dsconfig create-access-token-validator   \
     --type "ping-federate" \
     --set enabled:true \
     --set "identity-mapper:entryUUIDMatch" \
-    --set "subject-claim-name:Username" \
+    --set "subject-claim-name:sub" \
     --set "authorization-server:pingfederate" \
     --set "client-id:pingdirectory" \
     --set "client-secret:2FederateM0re"
