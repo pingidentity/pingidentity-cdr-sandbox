@@ -1,0 +1,53 @@
+{
+  "search-replace":[
+    {
+      "search": "dc=example,d=com",
+      "replace": "${USER_BASE_DN}"
+    },
+    {
+      "search": "data-holder.local",
+      "replace": "${BASE_HOSTNAME}"
+    }
+  ],
+  "remove-config":[
+  	{
+  	  "key": "resourceType",
+	  "value": "/serverSettings/systemKeys"
+  	},
+  	{
+  	  "key": "id",
+	  "value": "ProvisionerDS"
+  	}
+  ],
+  "expose-parameters":[
+    {
+      "parameter-name": "fileData",
+      "unique-identifiers": [
+          "id"
+      ]
+    },
+    {
+      "parameter-name": "encryptedValue",
+      "replace-name": "value",
+      "unique-identifiers": [
+          "name"
+      ]
+    },
+    {
+      "parameter-name": "encryptedPassword",
+      "replace-name": "password",
+      "unique-identifiers": [
+          "id",
+          "username"
+      ]
+    },
+    {
+      "parameter-name": "encryptedKeyData",
+      "replace-name": "keyData",
+      "unique-identifiers": [
+          "id"
+      ]
+    }
+  ]
+}
+

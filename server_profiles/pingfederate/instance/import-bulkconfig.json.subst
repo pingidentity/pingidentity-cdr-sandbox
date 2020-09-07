@@ -73,21 +73,11 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=oauthClients,dc=example,dc=com",
+                    "stringValue": "ou=oauthClients,${USER_BASE_DN}",
                     "id": "SearchBase",
                     "type": "STRING"
                 }
             ],
-            "resourceType": "/configStore"
-        },
-        {
-            "operationType": "SAVE",
-            "subResource": "org.sourceid.oauth20.domain.ClientManagerXmlFileImpl",
-            "items": [{
-                "stringValue": "true",
-                "id": "MigrationComplete8.4",
-                "type": "STRING"
-            }],
             "resourceType": "/configStore"
         },
         {
@@ -113,7 +103,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=grants,dc=example,dc=com",
+                    "stringValue": "ou=grants,${USER_BASE_DN}",
                     "id": "SearchBase",
                     "type": "STRING"
                 }
@@ -180,7 +170,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=sessions,dc=example,dc=com",
+                    "stringValue": "ou=sessions,${USER_BASE_DN}",
                     "id": "SearchBase",
                     "type": "STRING"
                 }
@@ -229,19 +219,19 @@
             "operationType": "SAVE",
             "items": [{
                 "activeRuntimeServerCerts": [{
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
                     "id": "wxom4n4v8ayu7yx47eqbj8bl0"
                 }],
                 "activeAdminConsoleCerts": [{
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
                     "id": "wxom4n4v8ayu7yx47eqbj8bl0"
                 }],
                 "adminConsoleCertRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
                     "id": "wxom4n4v8ayu7yx47eqbj8bl0"
                 },
                 "runtimeServerCertRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/keyPairs/sslServer/wxom4n4v8ayu7yx47eqbj8bl0",
                     "id": "wxom4n4v8ayu7yx47eqbj8bl0"
                 }
             }],
@@ -263,37 +253,54 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "hostnamesTags": [{
-                    "defaultSource": true,
-                    "hostnames": ["pingdirectory"]
-                }],
-                "timeBetweenEvictions": 60000,
-                "binaryAttributes": [],
-                "ldapType": "PING_DIRECTORY",
-                "type": "LDAP",
-                "password": "${dataStores_items_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_password}",
-                "minConnections": 10,
-                "createIfNecessary": true,
-                "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
-                "ldapDnsSrvPrefix": "_ldap._tcp",
-                "connectionTimeout": 3000,
-                "maxConnections": 100,
-                "ldapsDnsSrvPrefix": "_ldaps._tcp",
-                "useDnsSrvRecords": false,
-                "bindAnonymously": false,
-                "maxWait": -1,
-                "verifyHost": true,
-                "hostnames": ["pingdirectory"],
-                "dnsTtl": 60000,
-                "useSsl": false,
-                "maskAttributeValues": false,
-                "testOnBorrow": false,
-                "testOnReturn": false,
-                "readTimeout": 3000,
-                "name": "pingdirectory",
-                "userDN": "cn=administrator"
-            }],
+            "items": [
+                {
+                    "hostnamesTags": [{
+                        "defaultSource": true,
+                        "hostnames": ["pingdirectory"]
+                    }],
+                    "timeBetweenEvictions": 60000,
+                    "binaryAttributes": [],
+                    "ldapType": "PING_DIRECTORY",
+                    "type": "LDAP",
+                    "password": "${dataStores_items_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_password}",
+                    "minConnections": 10,
+                    "createIfNecessary": true,
+                    "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                    "ldapDnsSrvPrefix": "_ldap._tcp",
+                    "connectionTimeout": 3000,
+                    "maxConnections": 100,
+                    "ldapsDnsSrvPrefix": "_ldaps._tcp",
+                    "useDnsSrvRecords": false,
+                    "bindAnonymously": false,
+                    "maxWait": -1,
+                    "verifyHost": true,
+                    "hostnames": ["pingdirectory"],
+                    "dnsTtl": 60000,
+                    "useSsl": false,
+                    "maskAttributeValues": false,
+                    "testOnBorrow": false,
+                    "testOnReturn": false,
+                    "readTimeout": 3000,
+                    "name": "pingdirectory",
+                    "userDN": "cn=administrator"
+                },
+                {
+                    "maskAttributeValues": false,
+                    "connectionUrlTags": [{
+                        "connectionUrl": "jdbc:hsqldb:${pf.server.data.dir}${/}hypersonic${/}ProvisionerDefaultDB;hsqldb.lock_file=false",
+                        "defaultSource": true
+                    }],
+                    "password": "${dataStores_items_ProvisionerDS_ProvisionerDS_password}",
+                    "allowMultiValueAttributes": false,
+                    "driverClass": "org.hsqldb.jdbcDriver",
+                    "name": "ProvisionerDS (sa)",
+                    "connectionUrl": "jdbc:hsqldb:${pf.server.data.dir}${/}hypersonic${/}ProvisionerDefaultDB;hsqldb.lock_file=false",
+                    "id": "ProvisionerDS",
+                    "type": "JDBC",
+                    "userName": "sa"
+                }
+            ],
             "resourceType": "/dataStores"
         },
         {
@@ -355,10 +362,10 @@
             "items": [{
                 "password": "${administrativeAccounts_items_Administrator_password}",
                 "roles": [
-                    "ADMINISTRATOR",
+                    "EXPRESSION_ADMINISTRATOR",
                     "CRYPTO_ADMINISTRATOR",
-                    "USER_ADMINISTRATOR",
-                    "EXPRESSION_ADMINISTRATOR"
+                    "ADMINISTRATOR",
+                    "USER_ADMINISTRATOR"
                 ],
                 "auditor": false,
                 "description": "Initial administrator user.",
@@ -470,7 +477,7 @@
                         },
                         {
                             "name": "Search Base",
-                            "value": "ou=people,dc=example,dc=com"
+                            "value": "ou=people,${USER_BASE_DN}"
                         },
                         {
                             "name": "Search Filter",
@@ -521,7 +528,7 @@
                 "name": "adminPCV",
                 "id": "adminPCV",
                 "pluginDescriptorRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
                     "id": "org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator"
                 },
                 "attributeContract": {
@@ -690,7 +697,7 @@
                     "name": "adminATM",
                     "id": "adminATM",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
@@ -839,7 +846,7 @@
                     "name": "obATM",
                     "id": "obATM",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
@@ -863,7 +870,7 @@
         {
             "operationType": "SAVE",
             "items": [{"defaultAccessTokenManagerRef": {
-                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
                 "id": "obATM"
             }}],
             "resourceType": "/oauth/accessTokenManagers/settings"
@@ -934,7 +941,7 @@
                     "name": "CDR - Consent",
                     "id": "cdrConsentAdapter",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.ExternalConsentPageAdapter",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.ExternalConsentPageAdapter",
                         "id": "com.pingidentity.adapter.idp.ExternalConsentPageAdapter"
                     },
                     "attributeContract": {
@@ -1024,7 +1031,7 @@
                     "name": "CDR - Initiate Request",
                     "id": "cdrSelectorAdapter",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.CDRAdapterSelector",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.CDRAdapterSelector",
                         "id": "com.pingidentity.adapter.idp.CDRAdapterSelector"
                     },
                     "attributeContract": {
@@ -1093,7 +1100,7 @@
                     "name": "General - SMS Verification",
                     "id": "clickatellAdapter",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.ClickatelSMSMFAAdapter",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.ClickatelSMSMFAAdapter",
                         "id": "com.pingidentity.adapter.idp.ClickatelSMSMFAAdapter"
                     },
                     "attributeContract": {
@@ -1350,7 +1357,7 @@
                     "name": "Administrators - Verify Credentials",
                     "id": "htmlFormAdapterAdministrators",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter",
                         "id": "com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter"
                     },
                     "attributeContract": {
@@ -1414,13 +1421,13 @@
                             "binaryAttributeSettings": {},
                             "searchScope": "SUBTREE",
                             "dataStoreRef": {
-                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
                                 "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
                             },
                             "description": "ldap",
                             "id": "ldap",
                             "type": "LDAP",
-                            "baseDn": "ou=people,dc=example,dc=com",
+                            "baseDn": "ou=people,${USER_BASE_DN}",
                             "searchFilter": "uid=${subject}"
                         }],
                         "issuanceCriteria": {"conditionalCriteria": []}
@@ -1449,7 +1456,7 @@
                     "name": "CDR - Get Account Number",
                     "id": "identityFirstAdapter",
                     "pluginDescriptorRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.identifierfirst.idp.IdentifierFirstAdapter",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.identifierfirst.idp.IdentifierFirstAdapter",
                         "id": "com.pingidentity.adapters.identifierfirst.idp.IdentifierFirstAdapter"
                     },
                     "attributeContract": {
@@ -1555,7 +1562,7 @@
                 "id": "paragentless",
                 "targetApplicationInfo": {},
                 "pluginDescriptorRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/sp/adapters/descriptors/com.pingidentity.pf.adapters.referenceid.SpBackchannelReferenceAuthnAdapter",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/sp/adapters/descriptors/com.pingidentity.pf.adapters.referenceid.SpBackchannelReferenceAuthnAdapter",
                     "id": "com.pingidentity.pf.adapters.referenceid.SpBackchannelReferenceAuthnAdapter"
                 },
                 "attributeContract": {
@@ -1682,7 +1689,7 @@
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/cdrConsentAdapter",
+                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/cdrConsentAdapter",
                             "id": "cdrConsentAdapter"
                         }
                     },
@@ -1696,7 +1703,7 @@
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter",
+                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter",
                             "id": "cdrSelectorAdapter"
                         }
                     },
@@ -1710,7 +1717,7 @@
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
+                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
                             "id": "identityFirstAdapter"
                         }
                     },
@@ -1724,7 +1731,7 @@
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
+                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
                             "id": "clickatellAdapter"
                         }
                     },
@@ -1999,7 +2006,7 @@
             "items": [
                 {
                     "authenticationPolicyContractRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM",
                         "id": "TkNJ3HMIIvIeeZEM"
                     },
                     "attributeContractFulfillment": {
@@ -2033,7 +2040,7 @@
                 },
                 {
                     "authenticationPolicyContractRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
                         "id": "iQwSYDdExcmJaYk6"
                     },
                     "attributeContractFulfillment": {
@@ -2131,7 +2138,7 @@
                         "extendedAttributes": []
                     },
                     "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/adminATM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/adminATM",
                         "id": "adminATM"
                     }
                 },
@@ -2180,13 +2187,13 @@
                             "binaryAttributeSettings": {},
                             "searchScope": "SUBTREE",
                             "dataStoreRef": {
-                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
                                 "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
                             },
                             "description": "ldap",
                             "id": "ldap",
                             "type": "LDAP",
-                            "baseDn": "ou=people,dc=example,dc=com",
+                            "baseDn": "ou=people,${USER_BASE_DN}",
                             "searchFilter": "entryUUID=${sub}"
                         }],
                         "issuanceCriteria": {"conditionalCriteria": []}
@@ -2254,7 +2261,7 @@
                         ]
                     },
                     "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
                         "id": "obATM"
                     }
                 }
@@ -2265,7 +2272,7 @@
             "operationType": "SAVE",
             "items": [{
                 "defaultPolicyRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/openIdConnect/policies/obOIDCPolicy",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/openIdConnect/policies/obOIDCPolicy",
                     "id": "obOIDCPolicy"
                 },
                 "sessionSettings": {
@@ -2345,7 +2352,7 @@
                 "name": "cdrAURegister",
                 "id": "cdrAURegister",
                 "pluginDescriptorRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/descriptors/com.pingidentity.clientregistration.CDRAUPlugin",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/descriptors/com.pingidentity.clientregistration.CDRAUPlugin",
                     "id": "com.pingidentity.clientregistration.CDRAUPlugin"
                 }
             }],
@@ -2359,7 +2366,7 @@
                     "requireSignedRequests": true,
                     "persistentGrantIdleTimeoutType": "SERVER_DEFAULT",
                     "policyRefs": [{
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/cdrAURegister",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/cdrAURegister",
                         "id": "cdrAURegister"
                     }],
                     "cibaRequireSignedRequests": false,
@@ -2378,7 +2385,7 @@
                     "deviceFlowSettingType": "SERVER_DEFAULT",
                     "disableRegistrationAccessTokens": true,
                     "defaultAccessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
                         "id": "obATM"
                     },
                     "requireProofKeyForCodeExchange": false,
@@ -2461,7 +2468,7 @@
                 {
                     "context": {
                         "contextRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM",
+                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM",
                             "id": "TkNJ3HMIIvIeeZEM"
                         },
                         "type": "AUTHENTICATION_POLICY_CONTRACT"
@@ -2474,14 +2481,14 @@
                     "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/adminATM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/adminATM",
                         "id": "adminATM"
                     }
                 },
                 {
                     "context": {
                         "contextRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
                             "id": "iQwSYDdExcmJaYk6"
                         },
                         "type": "AUTHENTICATION_POLICY_CONTRACT"
@@ -2504,7 +2511,7 @@
                     "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
                         "id": "obATM"
                     }
                 },
@@ -2528,7 +2535,7 @@
                     "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
                         "id": "obATM"
                     }
                 }
@@ -2548,7 +2555,7 @@
                 "name": "adminSelector",
                 "id": "adminSelector",
                 "pluginDescriptorRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
+                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
                     "id": "com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector"
                 },
                 "attributeContract": {"extendedAttributes": [{"name": "true"}]}
@@ -2592,7 +2599,7 @@
                                             "issuanceCriteria": {"conditionalCriteria": []}
                                         },
                                         "authenticationPolicyContractRef": {
-                                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM",
+                                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM",
                                             "id": "TkNJ3HMIIvIeeZEM"
                                         },
                                         "context": "Success",
@@ -2603,7 +2610,7 @@
                                     "authenticationSource": {
                                         "type": "IDP_ADAPTER",
                                         "sourceRef": {
-                                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/htmlFormAdapterAdministrators",
+                                            "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/htmlFormAdapterAdministrators",
                                             "id": "htmlFormAdapterAdministrators"
                                         }
                                     },
@@ -2613,7 +2620,7 @@
                             }],
                             "action": {
                                 "authenticationSelectorRef": {
-                                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationSelectors/adminSelector",
+                                    "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationSelectors/adminSelector",
                                     "id": "adminSelector"
                                 },
                                 "type": "AUTHN_SELECTOR"
@@ -2743,7 +2750,7 @@
                                                                 "issuanceCriteria": {"conditionalCriteria": []}
                                                             },
                                                             "authenticationPolicyContractRef": {
-                                                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                                                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
                                                                 "id": "iQwSYDdExcmJaYk6"
                                                             },
                                                             "context": "Success",
@@ -2754,7 +2761,7 @@
                                                         "authenticationSource": {
                                                             "type": "IDP_ADAPTER",
                                                             "sourceRef": {
-                                                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/cdrConsentAdapter",
+                                                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/cdrConsentAdapter",
                                                                 "id": "cdrConsentAdapter"
                                                             }
                                                         },
@@ -2774,7 +2781,7 @@
                                                 "authenticationSource": {
                                                     "type": "IDP_ADAPTER",
                                                     "sourceRef": {
-                                                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
+                                                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
                                                         "id": "clickatellAdapter"
                                                     }
                                                 },
@@ -2794,7 +2801,7 @@
                                         "authenticationSource": {
                                             "type": "IDP_ADAPTER",
                                             "sourceRef": {
-                                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
+                                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
                                                 "id": "identityFirstAdapter"
                                             }
                                         },
@@ -2841,7 +2848,7 @@
                                                 "issuanceCriteria": {"conditionalCriteria": []}
                                             },
                                             "authenticationPolicyContractRef": {
-                                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
                                                 "id": "iQwSYDdExcmJaYk6"
                                             },
                                             "context": "Success",
@@ -2852,7 +2859,7 @@
                                         "authenticationSource": {
                                             "type": "IDP_ADAPTER",
                                             "sourceRef": {
-                                                "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
+                                                "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
                                                 "id": "identityFirstAdapter"
                                             }
                                         },
@@ -2865,7 +2872,7 @@
                                 "authenticationSource": {
                                     "type": "IDP_ADAPTER",
                                     "sourceRef": {
-                                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter",
+                                        "location": "https://cbd8e4671072:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter",
                                         "id": "cdrSelectorAdapter"
                                     }
                                 },
