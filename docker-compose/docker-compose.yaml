@@ -3,7 +3,7 @@ version: "3.1"
 services:
   pingaccess:
     image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
-    command: entrypoint.sh start-server
+    command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - LICENSE_VERSION=6.0
@@ -32,7 +32,7 @@ services:
 
   pingfederate:
     image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
-    command: entrypoint.sh start-server
+    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
@@ -65,7 +65,7 @@ services:
 
   cdr-dr-client:
     image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200828
-    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
+    command: /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
