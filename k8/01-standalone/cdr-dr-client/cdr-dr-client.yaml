@@ -32,7 +32,7 @@ spec:
       initContainers:
       - name: init
         image: curlimages/curl:latest
-        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingdirectory ; do echo waiting for admin ; sleep 3 ; done']
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingaccess:3000 ; do echo waiting for admin ; sleep 3 ; done']
       containers:
       - envFrom:
         - configMapRef:
