@@ -86,7 +86,7 @@ spec:
             cpu: "0.5"
             memory: 0.5Gi
       # this helps on the _initial_ start of the cluster to ensure engines and admins don't create cluster islands
-      initContainers:
-      - name: init
-        image: curlimages/curl:latest
-        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingfederate-admin:9999/pingfederate/app ; do echo waiting for admin ; sleep 2 ; done']
+#      initContainers:
+#      - name: init
+#        image: curlimages/curl:latest
+#        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingfederate-admin:9999/pingfederate/app ; do echo waiting for admin ; sleep 2 ; done']
