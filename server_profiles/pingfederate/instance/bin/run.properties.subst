@@ -191,7 +191,7 @@ pf.operational.mode=${OPERATIONAL_MODE}
 # is *not* STANDALONE:
 pf.cluster.node.index=
 # A strong, randomly-generated key (22 or more alphanumerics) is recommended.
-pf.cluster.auth.pwd=
+pf.cluster.auth.pwd=P@ssword1P@ssword1P@ssword1
 pf.cluster.encrypt=false
 
 # Specify the key size to use with the AES encryption algorithm that is used
