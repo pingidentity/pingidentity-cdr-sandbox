@@ -1,7 +1,7 @@
 {
   "search-replace":[
     {
-      "search": "dc=example,d=com",
+      "search": "dc=data-holder,dc=com",
       "replace": "${USER_BASE_DN}"
     },
     {
