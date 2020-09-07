@@ -35,6 +35,7 @@ configMapGenerator:
   behavior: replace
   envs:
     - devops
+    - pf.env
     - env_vars.common
     - env_vars.pingfederate-admin
 - name: pingfederate-engine-environment-variables

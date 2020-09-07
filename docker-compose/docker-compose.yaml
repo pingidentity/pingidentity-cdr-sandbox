@@ -37,6 +37,7 @@ services:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
       - ~/.pingidentity/devops
+      - pf.env
       - cdr.env
     ports:
       - 9031:9031
