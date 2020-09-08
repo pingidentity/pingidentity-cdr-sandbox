@@ -6,7 +6,7 @@ The bulk export process performs the following:
 1. Extract configuration from a local sandbox deployment.
 2. Process the JSON export provided a process configuration (see [pa-config.json](pa-config.json) and [pf-config.json](pf-config.json) examples).
     - Search and replace (e.g. hostnames)
-    - Clean, add, and remove JSON members.
+    - Cleans, add, and remove JSON members as required.
     - Tokenise the configuration and maintain environment variables.
     - Outputs pretty JSON.
 
