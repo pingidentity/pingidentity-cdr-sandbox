@@ -8,6 +8,7 @@ The bulk export process performs the following:
     - Search and replace (e.g. hostnames)
     - Clean, add, and remove JSON members.
     - Tokenise the configuration and maintain environment variables.
+    - Outputs pretty JSON.
 
 The bulk export process also allows config injection for secrets and keys.
 
