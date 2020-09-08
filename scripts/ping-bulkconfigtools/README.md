@@ -54,7 +54,7 @@ You'll need to configure the following environment variable files. The export pr
 - k8/02-completeinstall/pa.env
 - k8/02-completeinstall/pf.env
 
-You do not need to commit the environment variables. In fact, outside the sandbox, you should excluded these files from being commited as they contain sensitive information such as certificate keys and passwords.
+You do not need to commit the environment variables. You should consider excluding these files from being committed as they may contain sensitive information such as certificate keys and passwords.
 
 Commit the following files to update the configuration:
 - server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst
