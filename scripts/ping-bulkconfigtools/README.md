@@ -35,8 +35,8 @@ You'll also need the CDR Sandbox running on your local machine.
         1) server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst
         2) server_profiles/pingaccess-admin/instance/data/start-up-deployer/data.json.subst (contains CONFIG QUERY http listener).
     - Creates/maintains the following environment variable files:
-            - docker-compose/pa.env
-            - k8/02-completeinstall/pa.env
+      - docker-compose/pa.env
+      - k8/02-completeinstall/pa.env
 4. Export PingFederate configuration
     - ./_pf_export-config.sh
     - GET's configuration from: https://localhost:9999/pf-admin-api/v1/bulk/export
