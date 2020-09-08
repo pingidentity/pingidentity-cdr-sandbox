@@ -71,7 +71,7 @@ Commit the following files to update the configuration:
 
 ## Appendix
 
-### Applying encoding fileData configuration
+### Applying encoded file configuration
 
 PingFederate and PingAccess both provide API's to import file content. This may be used for:
 - Importing certificates and PKCS12 keystores.
