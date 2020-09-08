@@ -47,11 +47,11 @@ You'll also need the CDR Sandbox running on your local machine.
 
 ### Applying encoding fileData configuration
 
-PingFederate and PingAccess both provide API's to import file contents. This may be used for:
+PingFederate and PingAccess both provide API's to import file content. This may be used for:
 - Importing certificates and PKCS12 keystores.
 - Importing property or binary files to adapter configuration.
 
-The bulk export process will expose fileData configuration options in the environment variable files (i.e. pf.env and pa.env). This provides the administrator the ability to inject certificate/file based configuration. You'll need to encode the file contents in base64, remove line breaks, and escape back slashes.
+The bulk export process will expose fileData configuration options in the environment variable files (i.e. pf.env and pa.env). This provides the administrator the ability to inject certificate/file based configuration. You'll need to encode the file content in base64, remove line breaks, and escape back slashes.
 
 Here's a command that can do that for you:
 - openssl base64 -in ~/Downloads/admin_signing.p12 | tr -d '\n' | sed 's/\//\\\//g'
