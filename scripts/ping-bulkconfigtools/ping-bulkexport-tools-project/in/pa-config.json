@@ -32,19 +32,6 @@
 	  "value": "ca-keypair-.*"
   	}
   ],
-  "add-config":[
-	  {
-	    "resourceType": "httpsListeners",
-	    "item":
-			{
-			    "id": 4,
-			    "name": "CONFIG QUERY",
-			    "keyPairId": 5,
-			    "useServerCipherSuiteOrder": true,
-			    "restartRequired": false
-			}
-	  }
-  ],
   "expose-parameters":[
     {
       "parameter-name": "fileData",
