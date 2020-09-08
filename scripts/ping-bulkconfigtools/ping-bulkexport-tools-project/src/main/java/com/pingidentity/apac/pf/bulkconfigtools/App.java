@@ -17,13 +17,14 @@ import org.json.simple.parser.ParseException;
 public class App {
 
 	private final static String DEFAULT_IN_CONFIG = "in/pa-config.json";
-	private final static String DEFAULT_IN_BULKCONFIG = "in/pa-bulk-config.json";
-	private final static String DEFAULT_IN_ENVPROPERTIES = "in/pa-env.properties";
+	private final static String DEFAULT_IN_BULKCONFIG = "in/pa-export.json";
+	private final static String DEFAULT_IN_ENVPROPERTIES = "in/out-pa-env.properties";
 	private final static String DEFAULT_IN_OUTCONFIG = "in/out-pa-bulk-config.json";
 	
 	private final JSONObject inConfigJSON;
 	private final JSONArray inConfigExposeParametersArray;
 	private final JSONArray inConfigRemoveConfig;
+	private final JSONArray inConfigAddConfig;
 	private final JSONArray inConfigChangeValue;
 	private final JSONObject inBulkJSON;
 	
@@ -50,6 +51,7 @@ public class App {
 		this.inConfigJSON = convertFileToJSON(inConfigFile);
 		this.inConfigExposeParametersArray = this.inConfigJSON.containsKey("expose-parameters")? (JSONArray) this.inConfigJSON.get("expose-parameters"): null;
 		this.inConfigRemoveConfig = this.inConfigJSON.containsKey("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
+		this.inConfigAddConfig = this.inConfigJSON.containsKey("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
 		this.inConfigChangeValue = this.inConfigJSON.containsKey("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
 		this.inBulkJSON = getReplacedJSONObject(inBulkFile, this.inConfigJSON);
 		this.envFileName = inEnvPropertiesFile;
@@ -65,6 +67,7 @@ public class App {
 		this.inConfigJSON = convertFileToJSON(DEFAULT_IN_CONFIG);
 		this.inConfigExposeParametersArray = this.inConfigJSON.containsKey("expose-parameters")? (JSONArray) this.inConfigJSON.get("expose-parameters"): null;
 		this.inConfigRemoveConfig = this.inConfigJSON.containsKey("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
+		this.inConfigAddConfig = this.inConfigJSON.containsKey("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
 		this.inConfigChangeValue = this.inConfigJSON.containsKey("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
 		this.inBulkJSON = getReplacedJSONObject(DEFAULT_IN_BULKCONFIG, this.inConfigJSON);
 		this.envFileName = DEFAULT_IN_ENVPROPERTIES;
@@ -83,7 +86,7 @@ public class App {
 	
 	@SuppressWarnings("unchecked")
 	private void processBulkJSONNode(String path, JSONObject jsonObject) throws RemoveNodeException {
-		
+
 		processRemoveConfig(jsonObject);
 		processChangeValue(jsonObject);
 		
@@ -137,6 +140,8 @@ public class App {
 					else
 						newJSONArray.add(currentObject);
 				}
+				
+				processAddConfig(newPath, newJSONArray);
 
 				jsonObject.put(key, newJSONArray);
 			}
@@ -166,6 +171,33 @@ public class App {
 						throw new RemoveNodeException();
 					}
 				}
+				
+			}
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void processAddConfig(String path, JSONArray jsonArray) throws RemoveNodeException
+	{
+		if(this.inConfigAddConfig != null)
+		{
+			for(Object configObject : this.inConfigAddConfig)
+			{
+				JSONObject configJSON = (JSONObject) configObject;
+				
+				if(!configJSON.containsKey("item") && !configJSON.containsKey("resourceType"))
+				{
+					System.out.println("Bad config for add-config: " + configJSON.toJSONString());
+					continue;
+				}
+				
+				String resourceType = String.valueOf(configJSON.get("resourceType"));
+				
+				if(!path.endsWith("_" + resourceType))
+					continue;
+				
+				JSONObject newObject = (JSONObject) configJSON.get("item");
+				jsonArray.add(newObject);
 				
 			}
 		}

@@ -11,5 +11,6 @@ curl -X GET --basic -u Administrator:$(prop 'administrativeAccounts_items_Admini
 echo "Creating/modifying docker-compose/pf.env and server_profiles/pingfederate/instance/import-bulkconfig.json.subst..."
 java -jar ping-bulkexport-tools-project/target/ping-bulkexport-tools-0.0.1-SNAPSHOT-jar-with-dependencies.jar pf-config.json ./out/pf-export.json ../../docker-compose/pf.env ../../server_profiles/pingfederate/instance/import-bulkconfig.json.subst > out/pf-export-convert.log
 
-echo "Copying pf.env to k8 server profile..."
-cp ../../docker-compose/pf.env ../../k8/02-completeinstall
+echo "Creating/modifying k8/02-completeinstall/pf.env and server_profiles/pingfederate/instance/import-bulkconfig.json.subst..."
+java -jar ping-bulkexport-tools-project/target/ping-bulkexport-tools-0.0.1-SNAPSHOT-jar-with-dependencies.jar pf-config.json ./out/pf-export.json ../../k8/02-completeinstall/pf.env ../../server_profiles/pingfederate/instance/import-bulkconfig.json.subst > out/pf-k8-export-convert.log
+
