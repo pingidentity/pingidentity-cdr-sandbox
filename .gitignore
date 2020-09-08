@@ -7,8 +7,8 @@ docker-compose/local-dr.env
 scripts/postman/cert
 scripts/postman/cert/*
 k8/02-completeinstall/devops
-scripts/pf-bulkconfigtools/out
-scripts/pf-bulkconfigtools/out/*
+scripts/ping-bulkconfigtools/out
+scripts/ping-bulkconfigtools/out/*
 server_profiles/deepthought/common-h2-database/localdb
 server_profiles/deepthought/common-h2-database/localdb/*
 server_profiles/pingaccess/instance/data/start-up-deployer/data.json
