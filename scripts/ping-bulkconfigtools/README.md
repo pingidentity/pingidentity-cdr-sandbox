@@ -43,8 +43,8 @@ You'll also need the CDR Sandbox running on your local machine.
     - This will then create the following: 
         1) server_profiles/pingfederate/instance/import-bulkconfig.json.subst
     - Creates/maintains the following environment variable files:
-            - docker-compose/pf.env
-            - k8/02-completeinstall/pf.env
+      - docker-compose/pf.env
+      - k8/02-completeinstall/pf.env
 
 ## Appendix
 
