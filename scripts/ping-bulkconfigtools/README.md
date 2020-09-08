@@ -48,7 +48,7 @@ You'll also need the CDR Sandbox running on your local machine.
 
 ## Configure and commit
 
-You'll need to configure the following environment variables. The export process will maintain values that have been previously set however, new parameters may be present so you should look out for them.
+You'll need to configure the following environment variable files. The export process will maintain values inside these files that have been previously set however, new parameters may be present so you should look out for them.
 - docker-compose/pa.env
 - docker-compose/pf.env
 - k8/02-completeinstall/pa.env
