@@ -30,7 +30,8 @@ You'll also need the CDR Sandbox running on your local machine.
     - ./_compile_bulkexporttool.sh
 3. Export PingAccess configuration
     - ./_pa_export-config.sh
-    - This will create 2 exports: 
+    - GET's configuration from: https://localhost:9000/pa-admin-api/v3/config/export
+    - This will then create 2 exports: 
         1) server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst
         2) server_profiles/pingaccess-admin/instance/data/start-up-deployer/data.json.subst (contains CONFIG QUERY http listener).
     - Creates/maintains the following environment variable files:
@@ -38,7 +39,8 @@ You'll also need the CDR Sandbox running on your local machine.
             - k8/02-completeinstall/pa.env
 4. Export PingFederate configuration
     - ./_pf_export-config.sh
-    - This will create 1 exports: 
+    - GET's configuration from: https://localhost:9999/pf-admin-api/v1/bulk/export
+    - This will then create the following: 
         1) server_profiles/pingfederate/instance/import-bulkconfig.json.subst
     - Creates/maintains the following environment variable files:
             - docker-compose/pf.env
