@@ -21,7 +21,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "",
+                    "stringValue": "ab327aad-7aae-3687-a5f7-887466d1cdf1",
                     "id": "CONSENT_API_CLIENTID",
                     "type": "STRING"
                 },
@@ -41,12 +41,12 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "2FederateM0re",
+                    "stringValue": "",
                     "id": "CONSENT_API_PASSWORD",
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "cn=consent service account",
+                    "stringValue": "",
                     "id": "CONSENT_API_USERNAME",
                     "type": "STRING"
                 },
