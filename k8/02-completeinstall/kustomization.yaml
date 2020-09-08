@@ -48,6 +48,7 @@ configMapGenerator:
   behavior: replace
   envs:
     - devops
+    - pa.env
     - env_vars.common
     - env_vars.pingaccess-admin
 - name: pingaccess-environment-variables

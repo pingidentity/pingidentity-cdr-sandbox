@@ -13,6 +13,7 @@ services:
       - PA_LIMIT_REQUEST_LINE=40960
     env_file:
       - ~/.pingidentity/devops
+      - pa.env
       - cdr.env
     # Example: Examples below for mounting local directories for inbound server profile and persisting
     #          server build.  The local /opt/out directory must be empty when building new server
