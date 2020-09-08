@@ -12,6 +12,14 @@ The bulk export process performs the following:
 
 The bulk export process also allows config injection for secrets and keys.
 
+### Example output:
+- PingAccess
+  - Configuration: [data.json.subst](../../server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst)
+  - Env Vars: [pa.env](../../docker-compose/pa.env)
+- PingFederate
+  - Configuration: [import-bulkconfig.json.subst](../../server_profiles/pingfederate/instance/import-bulkconfig.json.subst)
+  - Env Vars: [pa.env](../../docker-compose/pa.env)
+
 ## Pre-requisites
 
 The bulk export utility comes in pre-compiled source code. To build the project, you'll need:
