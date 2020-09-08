@@ -46,6 +46,21 @@ You'll also need the CDR Sandbox running on your local machine.
       - docker-compose/pf.env
       - k8/02-completeinstall/pf.env
 
+## Configure and commit
+
+You'll need to configure the following environment variables. The export process will maintain values that have been previously set however, new parameters may be present so you should look out for them.
+- docker-compose/pa.env
+- docker-compose/pf.env
+- k8/02-completeinstall/pa.env
+- k8/02-completeinstall/pf.env
+
+You do not need to commit the environment variables. In fact, outside the sandbox, you should excluded these files from being commited as they contain sensitive information such as certificate keys and passwords.
+
+Commit the following files to update the configuration:
+- server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst
+- server_profiles/pingaccess-admin/instance/data/start-up-deployer/data.json.subst
+- server_profiles/pingfederate/instance/import-bulkconfig.json.subst
+
 ## Appendix
 
 ### Applying encoding fileData configuration
