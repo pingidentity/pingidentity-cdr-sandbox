@@ -4,7 +4,7 @@ The bulk export process provides a simple way to extract holistic configuration 
 
 The bulk export process performs the following:
 1. Extract configuration from a local sandbox deployment.
-2. Process the JSON export provided a process configuration (see [pa-config.json](pa-config.json) and [pf-config.json](pf-config.json) examples).
+2. Process the JSON export provided a process configuration (see [pa-config.json](./ping-bulkexport-tools-project/in/pa-config.json) and [pf-config.json](./ping-bulkexport-tools-project/in/pf-config.json) examples).
     - Search and replace (e.g. hostnames)
     - Cleans, add, and remove JSON members as required.
     - Tokenise the configuration and maintain environment variables.
@@ -21,7 +21,7 @@ The bulk export utility comes in pre-compiled source code. To build the project,
     - MAVEN_HOME and PATH environment settings.
 
 You'll also need the CDR Sandbox running on your local machine.
-    - If you have changed the default settings (e.g. hostnames) you'll need to configure the configuration json files [pa-config.json](pa-config.json), [pa-admin-config.json](pa-admin-config.json), and [pf-config.json](pf-config.json).
+  - If you have changed the default settings (e.g. hostnames) you'll need to configure the configuration json files [pa-config.json](./ping-bulkexport-tools-project/in/pa-config.json), [pa-admin-config.json](./ping-bulkexport-tools-project/in/pa-admin-config.json), and [pf-config.json](./ping-bulkexport-tools-project/in/pf-config.json).
 
 ## Run the export utility.
 
