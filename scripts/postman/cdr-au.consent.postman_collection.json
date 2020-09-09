@@ -1663,6 +1663,7 @@
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1717,6 +1718,78 @@
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
 									"host": [
 										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T003.003 - Test ID Token from Token Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d89c1ad1-b842-4fb1-956e-71e7b6051680",
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iss');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('exp');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iat');",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private-encryption}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-id-token}}",
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/reflectIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"reflectIDToken"
 									]
 								}
 							},
@@ -1984,13 +2057,482 @@
 					"_postman_isSubFolder": true
 				},
 				{
-					"name": "S002.T006 Revoke Tokens",
+					"name": "S002.T006 Grant Management API",
 					"item": [
 						{
-							"name": "S002.T006.001 Revocation",
+							"name": "S002.T006.001 - PF - Get User Grants",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d25c3862-d365-46a6-836c-c0439507f73f",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{grant-management-user}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{grant-management-password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"pf-ws",
+										"rest",
+										"oauth",
+										"users",
+										"{{consent-request-access-token-sub}}",
+										"grants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.002 - PF - Get Active User Grant",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f0bf2d6a-7334-4430-8a52-044fccbd230b",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{grant-management-user}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{grant-management-password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"type": "text",
+										"value": "PingFederate"
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"pf-ws",
+										"rest",
+										"oauth",
+										"users",
+										"{{consent-request-access-token-sub}}",
+										"grants",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.003 - ConsentAPI - Get Consent Details",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d22d7705-c97b-49b6-a132-86ee14e17c67",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"consent",
+										"v1",
+										"consents",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.004 - ConsentAPI - Get All User Consent Details",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f82d790d-31cc-4ff6-a4e3-6e0f887d1691",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{dh-dir-host}}/consent/v1/consents",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"consent",
+										"v1",
+										"consents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.005 - ConsentAPI - User revoke consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2917730f-97ca-478f-b363-1e08538f0929",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"revoked\"\n}"
+								},
+								"url": {
+									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"consent",
+										"v1",
+										"consents",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.006 - PF - Get Revoked User Grant (404)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5c50b10e-3fd3-4762-8cd7-46cf1521ba9b",
+										"exec": [
+											"pm.test(\"Validate response status=404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{grant-management-user}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{grant-management-password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"type": "text",
+										"value": "PingFederate"
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"pf-ws",
+										"rest",
+										"oauth",
+										"users",
+										"{{consent-request-access-token-sub}}",
+										"grants",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.007 - ConsentAPI - User reactivate consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "513721e2-9c8f-4d7c-b32e-236a75f00b62",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": \"accepted\"\n}"
+								},
+								"url": {
+									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"consent",
+										"v1",
+										"consents",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T006.008 - PF - Get Reactived User Grant",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e1d77486-db20-481b-915b-9b55c99f534e",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{grant-management-user}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{grant-management-password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"type": "text",
+										"value": "PingFederate"
+									}
+								],
+								"url": {
+									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"pf-ws",
+										"rest",
+										"oauth",
+										"users",
+										"{{consent-request-access-token-sub}}",
+										"grants",
+										"{{consent-cdr-arrangement-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "S002.T007 Revoke Tokens",
+					"item": [
+						{
+							"name": "S002.T007.001 Revocation",
 							"item": [
 								{
-									"name": "S002.T006.001.001 - Creates JWT-Bearer Client Assertion",
+									"name": "S002.T007.001.001 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -2067,7 +2609,7 @@
 									"response": []
 								},
 								{
-									"name": "S002.T006.001.002 - Perform refresh token",
+									"name": "S002.T007.001.002 - Perform revoke token",
 									"event": [
 										{
 											"listen": "test",
@@ -2136,10 +2678,10 @@
 							"_postman_isSubFolder": true
 						},
 						{
-							"name": "S002.T006.002 Refresh Tokens - should fail",
+							"name": "S002.T007.002 Refresh Tokens - should fail",
 							"item": [
 								{
-									"name": "S002.T006.001 - Creates JWT-Bearer Client Assertion",
+									"name": "S002.T007.001 - Creates JWT-Bearer Client Assertion",
 									"event": [
 										{
 											"listen": "test",
@@ -2216,7 +2758,7 @@
 									"response": []
 								},
 								{
-									"name": "S002.T006.002 - Perform refresh token",
+									"name": "S002.T007.002 - Perform refresh token",
 									"event": [
 										{
 											"listen": "test",
@@ -2309,6 +2851,127 @@
 							],
 							"protocolProfileBehavior": {},
 							"_postman_isSubFolder": true
+						},
+						{
+							"name": "S002.T007.003 - Query Consent API",
+							"item": [
+								{
+									"name": "S002.T007.003.001 - PF - Get Revoked User Grant (404)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "878e7925-53fc-4eb3-84f4-172423c5bbc1",
+												"exec": [
+													"pm.test(\"Validate response status=404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{grant-management-user}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{grant-management-password}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-XSRF-HEADER",
+												"type": "text",
+												"value": "PingFederate"
+											}
+										],
+										"url": {
+											"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-idp-host}}"
+											],
+											"path": [
+												"pf-ws",
+												"rest",
+												"oauth",
+												"users",
+												"{{consent-request-access-token-sub}}",
+												"grants",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T007.003.001 - ConsentAPI - Get Consent Details (404)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "fb6c04d5-efe5-418f-ba37-4c6038ae5291",
+												"exec": [
+													"pm.test(\"Validate response status=404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-dir-host}}"
+											],
+											"path": [
+												"consent",
+												"v1",
+												"consents",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
 						}
 					],
 					"event": [
@@ -2331,136 +2994,6 @@
 									""
 								]
 							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "S002.T007 Grant Management API",
-					"item": [
-						{
-							"name": "S002.T007.001 - Get User Grants",
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"auth": {
-									"type": "basic",
-									"basic": [
-										{
-											"key": "username",
-											"value": "{{grant-management-user}}",
-											"type": "string"
-										},
-										{
-											"key": "password",
-											"value": "{{grant-management-password}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "X-XSRF-HEADER",
-										"value": "PingFederate",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants",
-									"host": [
-										"{{dh-idp-host}}"
-									],
-									"path": [
-										"pf-ws",
-										"rest",
-										"oauth",
-										"users",
-										"{{consent-request-access-token-sub}}",
-										"grants"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S002.T007.002 - Get Consent Details",
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
-									"host": [
-										"{{dh-dir-host}}"
-									],
-									"path": [
-										"consent",
-										"v1",
-										"consents",
-										"{{consent-cdr-arrangement-id}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S002.T007.003 - Get All User Consent Details",
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"url": {
-									"raw": "{{dh-dir-host}}/consent/v1/consents",
-									"host": [
-										"{{dh-dir-host}}"
-									],
-									"path": [
-										"consent",
-										"v1",
-										"consents"
-									]
-								}
-							},
-							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -2631,7 +3164,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+							"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 							"options": {
 								"raw": {}
 							}
@@ -3180,6 +3713,11 @@
 									"key": "client_assertion",
 									"value": "{{consent-client-assertion}}",
 									"type": "text"
+								},
+								{
+									"key": "code_verifier",
+									"value": "{{pkce-challenge-s256}}",
+									"type": "text"
 								}
 							],
 							"options": {
@@ -3367,7 +3905,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -3764,6 +4302,11 @@
 											"key": "client_assertion",
 											"value": "{{consent-client-assertion}}",
 											"type": "text"
+										},
+										{
+											"key": "code_verifier",
+											"value": "{{pkce-challenge-s256}}",
+											"type": "text"
 										}
 									],
 									"options": {
@@ -4108,7 +4651,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -4504,6 +5047,11 @@
 										{
 											"key": "client_assertion",
 											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "code_verifier",
+											"value": "{{pkce-challenge-s256}}",
 											"type": "text"
 										}
 									],
@@ -5001,7 +5549,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"{{consent-cdr-arrangement-id}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"{{consent-cdr-arrangement-id}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -5549,6 +6097,11 @@
 										{
 											"key": "client_assertion",
 											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "code_verifier",
+											"value": "{{pkce-challenge-s256}}",
 											"type": "text"
 										}
 									],
@@ -7133,7 +7686,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\": \"xxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\": \"xxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 											"options": {
 												"raw": {}
 											}
@@ -7353,7 +7906,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"xxxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"cdr_arrangement_id\":\"xxxx\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 											"options": {
 												"raw": {}
 											}
@@ -7715,7 +8268,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 											"options": {
 												"raw": {}
 											}
@@ -8243,6 +8796,11 @@
 												{
 													"key": "client_assertion",
 													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "code_verifier",
+													"value": "{{pkce-challenge-s256}}",
 													"type": "text"
 												}
 											],
@@ -9135,7 +9693,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -9545,6 +10103,11 @@
 										{
 											"key": "client_assertion",
 											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "code_verifier",
+											"value": "{{pkce-challenge-s256}}",
 											"type": "text"
 										}
 									],
@@ -9967,7 +10530,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -10536,7 +11099,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -11076,6 +11639,11 @@
 											"key": "client_assertion",
 											"value": "{{consent-client-assertion}}",
 											"type": "text"
+										},
+										{
+											"key": "code_verifier",
+											"value": "{{pkce-challenge-s256}}",
+											"type": "text"
 										}
 									],
 									"options": {
@@ -11233,317 +11801,327 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "S009.T001 Software Statement",
+			"name": "S00.9 DCR Tests",
 			"item": [
 				{
-					"name": "S009.T001.001 - DH downloads Software Statement from CDR Register",
-					"event": [
+					"name": "S009.T001 Software Statement",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"id": "05c414df-06f3-4558-b5b8-58bedd8b42eb",
-								"exec": [
-									"pm.test(\"Validate response status=200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"pm.test(\"Validate software_statement property exists\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response).to.have.property('software_statement');",
-									"});",
-									"pm.test(\"Validate software_id property exists\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response).to.have.property('software_id');",
-									"});",
-									"pm.test(\"Set environment variables for next test\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.environment.set(\"softwareStatement\", response.software_statement);",
-									"    pm.environment.set(\"softwareId\", response.software_id);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/x-www-form-urlencoded"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "{{pki-basicheader}}"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"name": "S009.T001.001 - DH downloads Software Statement from CDR Register",
+							"event": [
 								{
-									"key": "client_name",
-									"value": "Application abc",
-									"type": "text"
-								},
-								{
-									"key": "client_desc",
-									"value": "This is my application",
-									"type": "text"
-								},
-								{
-									"key": "version",
-									"value": "1.0",
-									"type": "text"
-								},
-								{
-									"key": "policy_uri",
-									"value": "https://idpv2.pingapac.com/pf/heartbeat.ping",
-									"type": "text"
-								},
-								{
-									"key": "terms_uri",
-									"value": "https://idpv2.pingapac.com/pf/heartbeat.ping",
-									"type": "text"
-								},
-								{
-									"key": "organisation_id",
-									"value": "BudgetGuide",
-									"type": "text"
-								},
-								{
-									"key": "redirect_uri",
-									"value": "https://www.google.com.au,{{default-redirecturi}}",
-									"type": "text"
-								},
-								{
-									"key": "software_id",
-									"value": "",
-									"type": "text"
-								},
-								{
-									"key": "issuer",
-									"value": "cdr-register",
-									"type": "text"
-								},
-								{
-									"key": "scope",
-									"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
-									"type": "text"
+									"listen": "test",
+									"script": {
+										"id": "a73f8770-5b24-4318-becb-d2699da3a240",
+										"exec": [
+											"_.test_http_status(200,pm.response);",
+											"var response_params = ['software_statement','software_id'];",
+											"_.test_params_object(response_params, pm.response.json(),\"is in response\");",
+											"",
+											"// Test software statement payload",
+											"var response = pm.response.json();",
+											"var ssa_payload = _.jwt_decode_payload(response.software_statement);",
+											"var request_params = [ 'iss', 'exp', 'jti', 'iat', 'org_id', 'org_name', 'client_name', 'client_description','client_uri', 'redirect_uris', 'logo_uri','jwks_uri', 'revocation_uri', 'software_id', 'software_roles', 'scope' ]; ",
+											"_.test_params_object(request_params,ssa_payload,\"is in software statement\");",
+											"",
+											"// Test software statement algorithm",
+											"var ssa_header = _.jwt_decode_header(response.software_statement);",
+											"_.test_jwt_alg(\"PS256\",ssa_header);",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"softwareStatement\", response.software_statement);",
+											"    pm.environment.set(\"softwareId\", response.software_id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
-							"options": {
-								"urlencoded": {}
-							}
-						},
-						"url": {
-							"raw": "{{cdr-register-testharness-host}}/softwarestatement",
-							"host": [
-								"{{cdr-register-testharness-host}}"
-							],
-							"path": [
-								"softwarestatement"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "S009.T001.002 - DR downloads Private Key from CDR Register",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "8cb3d4d6-0c04-44d8-b0dc-b67ef590030f",
-								"exec": [
-									"pm.test(\"Validate response status=200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"pm.test(\"Validate kty is RSA\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response.kty).to.equal('RSA');",
-									"});",
-									"pm.test(\"Validate algorithm is PS256\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response.alg).to.equal('PS256');",
-									"});",
-									"pm.test(\"Set environment variables for next test\", function () {",
-									"    var responseBlob = btoa(pm.response.text());",
-									"    pm.environment.set(\"software-jwks-private\", responseBlob);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
-							"host": [
-								"{{cdr-register-testharness-host}}"
-							],
-							"path": [
-								"softwarestatement",
-								"JWKS",
-								"{{softwareId}}",
-								"private"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "S009.T001.003 - DR creates Request JWT",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1448c693-5a9e-405a-a8be-63b41e42a149",
-								"exec": [
-									"pm.test(\"Validate response status=200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"pm.test(\"Validate request-jwt property exists\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response).to.have.property('request-jwt');",
-									"});",
-									"pm.test(\"Set environment variables for next test\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.environment.set(\"request-jwt-createclient\", response[\"request-jwt\"]);",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+							"protocolProfileBehavior": {
+								"strictSSL": false
 							},
-							{
-								"key": "x-private-jwk",
-								"value": "{{software-jwks-private}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-							"options": {
-								"raw": {}
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "{{pki-basicheader}}"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_name",
+											"value": "Application abc",
+											"type": "text"
+										},
+										{
+											"key": "client_desc",
+											"value": "This is my application",
+											"type": "text"
+										},
+										{
+											"key": "version",
+											"value": "1.0",
+											"type": "text"
+										},
+										{
+											"key": "policy_uri",
+											"value": "https://idpv2.pingapac.com/pf/heartbeat.ping",
+											"type": "text"
+										},
+										{
+											"key": "terms_uri",
+											"value": "https://idpv2.pingapac.com/pf/heartbeat.ping",
+											"type": "text"
+										},
+										{
+											"key": "organisation_id",
+											"value": "BudgetGuide",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://www.google.com.au,{{default-redirecturi}}",
+											"type": "text"
+										},
+										{
+											"key": "software_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "issuer",
+											"value": "cdr-register",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/softwarestatement",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"softwarestatement"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S009.T001.002 - DR downloads Private Key from CDR Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8cb3d4d6-0c04-44d8-b0dc-b67ef590030f",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate kty is RSA\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.kty).to.equal('RSA');",
+											"});",
+											"pm.test(\"Validate algorithm is PS256\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.alg).to.equal('PS256');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = btoa(pm.response.text());",
+											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"softwarestatement",
+										"JWKS",
+										"{{softwareId}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S009.T001.003 - DR creates Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1448c693-5a9e-405a-a8be-63b41e42a149",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"request-jwt-createclient\", response[\"request-jwt\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"tpp",
+										"dcr",
+										"requestCreateJwt"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S009.T001.004 - DR run DCR POST request to create a client against DH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "11b12f45-3bd8-496d-852d-55a94f4c38a1",
+										"exec": [
+											"pm.test(\"Validate response status=201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"pm.test(\"Validate client_id property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client_id');",
+											"});",
+											"pm.test(\"Validate redirect_uris property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('redirect_uris');",
+											"});",
+											"pm.test(\"Validate redirect_uris contains 'https://httpbin.org/get'\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.redirect_uris).to.include('https://httpbin.org/get');",
+											"    ",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"dcrClientId\", response.client_id);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/jwt"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{request-jwt-createclient}}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
+									"host": [
+										"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6e8dfad3-5a16-4bc7-bf53-e07fb7039bf4",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
 							}
 						},
-						"url": {
-							"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
-							"host": [
-								"{{cdr-register-testharness-host}}"
-							],
-							"path": [
-								"testtool",
-								"tpp",
-								"dcr",
-								"requestCreateJwt"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "S009.T001.004 - DR run DCR POST request to create a client against DH",
-					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "11b12f45-3bd8-496d-852d-55a94f4c38a1",
+								"id": "7e8637cd-9a6b-425f-b0e0-5acb5c64a180",
+								"type": "text/javascript",
 								"exec": [
-									"pm.test(\"Validate response status=201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									"pm.test(\"Validate client_id property exists\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response).to.have.property('client_id');",
-									"});",
-									"pm.test(\"Validate redirect_uris property exists\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response).to.have.property('redirect_uris');",
-									"});",
-									"pm.test(\"Validate redirect_uris contains 'https://httpbin.org/get'\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.expect(response.redirect_uris).to.include('https://httpbin.org/get');",
-									"    ",
-									"});",
-									"pm.test(\"Set environment variables for next test\", function () {",
-									"    var response = pm.response.json();",
-									"    pm.environment.set(\"dcrClientId\", response.client_id);",
-									"});",
 									""
-								],
-								"type": "text/javascript"
+								]
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"strictSSL": false
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/jwt"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{{request-jwt-createclient}}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
-							"host": [
-								"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "6e8dfad3-5a16-4bc7-bf53-e07fb7039bf4",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "7e8637cd-9a6b-425f-b0e0-5acb5c64a180",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -11604,107 +12182,107 @@
 	],
 	"variable": [
 		{
-			"id": "5c794e7e-b1e7-4247-8961-6155b5022849",
+			"id": "f0ab0f12-e1cf-4da8-be40-c21826e57511",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "ac144cae-b948-4720-b6fe-2726c40d8497",
+			"id": "30f464b5-d11c-41cc-aa87-a600177fe895",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "44a793de-f32a-4112-9fe8-fba73614d4ed",
+			"id": "55fd712e-e49d-49de-8c63-4a8364cd2333",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "817ee274-ea2d-4f90-837c-a01a86aca72a",
+			"id": "7169eab4-c4ac-415c-ae30-fb3a28e8768f",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "827fe95f-adbe-41dc-8d0c-f13dfe0a2bf6",
+			"id": "b67a14b9-2867-4ed8-94b0-76773f8518aa",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "b16896b8-c662-45f4-bd51-bc2662800b06",
+			"id": "7657a802-536c-47b2-8c62-5185f93d124c",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "e66eac11-decf-4bd6-b51d-735f81083d98",
+			"id": "93e9ae94-177e-482f-8a09-51e8af5e0d2b",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "0847cfe1-c3d1-48e5-bdc1-168cd41450b0",
+			"id": "3ab6f4df-c0d4-4d24-b4f3-ed5a1ba9901d",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "f70afb3b-9b29-49d5-8bc4-e5a80e83f65a",
+			"id": "dc8d026d-e167-4277-81be-027fe6f43bdb",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "eadb63a9-f302-4acc-ac31-f8ae8db65e6d",
+			"id": "f0484dbf-8be5-447f-989f-9064939d7af3",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "ec7c599c-aba5-4ae8-9422-1b1f82b9f3f0",
+			"id": "bbe04bbe-0bc8-45ba-82be-cb1f02a30062",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "f1946484-b305-4251-be31-4a776fe0ad26",
+			"id": "b6ca5522-243b-425a-bbed-48b7f603dd7a",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "230adb0d-27da-4ac9-a988-dceed028e2e4",
+			"id": "e5ff96af-fae5-4a3c-9a1a-f6c70460c086",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "dc92f990-6146-4c1e-8462-9aa75f6c3303",
+			"id": "b70421ac-216d-4b04-b089-f1bdcaad90e1",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "2023130c-557f-4362-9442-b8ce0d919b62",
+			"id": "5062ab9a-fb10-440d-bb0f-11818139c149",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "c0f44bc3-aa33-4db1-9576-03c3f41872af",
+			"id": "d2cd40e8-de34-4725-9888-9d2835b32393",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "0b832bf2-e3a9-4a2f-b328-03b9bbf62cee",
+			"id": "9b169b13-6c86-45d7-81e1-b43855637a60",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "99c7391e-c1ca-414d-a6cf-a6d9e2f293fe",
+			"id": "0bf455b3-a96a-4cec-a0ef-74c97514288a",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "c37cfeaa-de30-470a-a49a-3c3b56860df7",
+			"id": "b5560ae8-5d6c-45ff-8c4e-98f9dafba4c0",
 			"key": "dh-dir-host",
-			"value": "https://localhost:1443"
+			"value": "https://pd.data-holder.local"
 		},
 		{
-			"id": "03cd3e97-3b9d-4b37-b46b-0a83329faf1c",
+			"id": "6136405c-ed54-4222-ad9a-0dc31ac1ce93",
 			"key": "pkce-challenge",
 			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "6a20441d-65f3-43a5-acf7-6fa5e86dc81b",
+			"id": "48df9038-30f5-4787-b478-20c6fddeca8d",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		}

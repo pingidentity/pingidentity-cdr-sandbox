@@ -13,10 +13,6 @@
   ],
   "remove-config":[
   	{
-  	  "key": "resourceType",
-	  "value": "/serverSettings/systemKeys"
-  	},
-  	{
   	  "key": "id",
 	  "value": "ProvisionerDS"
   	}
