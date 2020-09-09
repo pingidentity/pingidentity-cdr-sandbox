@@ -19,5 +19,6 @@ scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/.classpath
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/.project
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/.settings
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/.settings/*
+scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/in/pa-export.json
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/in/out-pa-bulk-config.json
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/in/out-pa-env.properties

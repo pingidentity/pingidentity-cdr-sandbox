@@ -6,13 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.Properties;
 import java.util.Scanner;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class App {
 
@@ -49,10 +48,10 @@ public class App {
 	public App(String inConfigFile, String inBulkFile, String inEnvPropertiesFile, String outJSON) throws ParseException, IOException, RemoveNodeException
 	{
 		this.inConfigJSON = convertFileToJSON(inConfigFile);
-		this.inConfigExposeParametersArray = this.inConfigJSON.containsKey("expose-parameters")? (JSONArray) this.inConfigJSON.get("expose-parameters"): null;
-		this.inConfigRemoveConfig = this.inConfigJSON.containsKey("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
-		this.inConfigAddConfig = this.inConfigJSON.containsKey("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
-		this.inConfigChangeValue = this.inConfigJSON.containsKey("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
+		this.inConfigExposeParametersArray = this.inConfigJSON.has("expose-parameters")? (JSONArray) this.inConfigJSON.get("expose-parameters"): null;
+		this.inConfigRemoveConfig = this.inConfigJSON.has("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
+		this.inConfigAddConfig = this.inConfigJSON.has("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
+		this.inConfigChangeValue = this.inConfigJSON.has("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
 		this.inBulkJSON = getReplacedJSONObject(inBulkFile, this.inConfigJSON);
 		this.envFileName = inEnvPropertiesFile;
 		this.outJSON = outJSON;
@@ -65,10 +64,10 @@ public class App {
 	public App() throws ParseException, IOException, RemoveNodeException
 	{
 		this.inConfigJSON = convertFileToJSON(DEFAULT_IN_CONFIG);
-		this.inConfigExposeParametersArray = this.inConfigJSON.containsKey("expose-parameters")? (JSONArray) this.inConfigJSON.get("expose-parameters"): null;
-		this.inConfigRemoveConfig = this.inConfigJSON.containsKey("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
-		this.inConfigAddConfig = this.inConfigJSON.containsKey("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
-		this.inConfigChangeValue = this.inConfigJSON.containsKey("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
+		this.inConfigExposeParametersArray = this.inConfigJSON.has("expose-parameters")? (JSONArray) this.inConfigJSON.get("expose-parameters"): null;
+		this.inConfigRemoveConfig = this.inConfigJSON.has("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
+		this.inConfigAddConfig = this.inConfigJSON.has("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
+		this.inConfigChangeValue = this.inConfigJSON.has("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
 		this.inBulkJSON = getReplacedJSONObject(DEFAULT_IN_BULKCONFIG, this.inConfigJSON);
 		this.envFileName = DEFAULT_IN_ENVPROPERTIES;
 		this.outJSON = DEFAULT_IN_OUTCONFIG;
@@ -84,23 +83,22 @@ public class App {
 			processBulkJSONNode("", this.inBulkJSON);	
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void processBulkJSONNode(String path, JSONObject jsonObject) throws RemoveNodeException {
 
 		processRemoveConfig(jsonObject);
 		processChangeValue(jsonObject);
 		
-		if(jsonObject.containsKey("resourceType"))
+		if(jsonObject.has("resourceType"))
 			path = String.valueOf(jsonObject.get("resourceType")).replace("/", "_").substring(1);
 		
-		if(jsonObject.containsKey("id"))
+		if(jsonObject.has("id"))
 			path = path + "_" + getEscapedValue(String.valueOf(jsonObject.get("id")));
 		
 		System.out.println("Path: " + path);
 		
 		processExposeConfig(path, jsonObject);
 		
-		for(Object key : jsonObject.keySet())
+		for(String key : jsonObject.keySet())
 		{
 			if(jsonObject.get(key) instanceof JSONObject)
 			{
@@ -131,14 +129,14 @@ public class App {
 						try
 						{
 							processBulkJSONNode(newPath, (JSONObject) currentObject); 
-							newJSONArray.add(currentObject);
+							newJSONArray.put(currentObject);
 							
 						}catch(RemoveNodeException e)
 						{
 						}
 					}
 					else
-						newJSONArray.add(currentObject);
+						newJSONArray.put(currentObject);
 				}
 				
 				processAddConfig(newPath, newJSONArray);
@@ -161,7 +159,7 @@ public class App {
 				String key = String.valueOf(configJSON.get("key"));
 				String value = String.valueOf(configJSON.get("value"));
 				
-				if(jsonObject.containsKey(key))
+				if(jsonObject.has(key))
 				{
 					String jsonValue = String.valueOf(jsonObject.get(key));
 					
@@ -176,7 +174,6 @@ public class App {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void processAddConfig(String path, JSONArray jsonArray) throws RemoveNodeException
 	{
 		if(this.inConfigAddConfig != null)
@@ -185,9 +182,9 @@ public class App {
 			{
 				JSONObject configJSON = (JSONObject) configObject;
 				
-				if(!configJSON.containsKey("item") && !configJSON.containsKey("resourceType"))
+				if(!configJSON.has("item") && !configJSON.has("resourceType"))
 				{
-					System.out.println("Bad config for add-config: " + configJSON.toJSONString());
+					System.out.println("Bad config for add-config: " + configJSON.toString(4));
 					continue;
 				}
 				
@@ -197,13 +194,12 @@ public class App {
 					continue;
 				
 				JSONObject newObject = (JSONObject) configJSON.get("item");
-				jsonArray.add(newObject);
+				jsonArray.put(newObject);
 				
 			}
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void processChangeValue(JSONObject jsonObject)
 	{		
 		if(this.inConfigChangeValue != null)
@@ -218,7 +214,7 @@ public class App {
 				String matchingName = String.valueOf(matchingIdentifier.get("id-name"));
 				String matchingValue = String.valueOf(matchingIdentifier.get("id-value"));
 				
-				if(jsonObject.containsKey(matchingName) && jsonObject.get(matchingName).equals(matchingValue))
+				if(jsonObject.has(matchingName) && jsonObject.get(matchingName).equals(matchingValue))
 				{
 					Object newValue = configJSON.get("new-value");
 					jsonObject.put(key, newValue);
@@ -228,7 +224,6 @@ public class App {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void processExposeConfig(String path, JSONObject jsonObject)
 	{
 		
@@ -240,12 +235,12 @@ public class App {
 				
 				String parameterName = String.valueOf(configJSON.get("parameter-name"));
 				
-				if(jsonObject.containsKey(parameterName))
+				if(jsonObject.has(parameterName))
 				{
 					String replaceName = parameterName;
 					String replaceValue = "";
 					
-					if(configJSON.containsKey("replace-name"))
+					if(configJSON.has("replace-name"))
 					{
 						replaceName = String.valueOf(configJSON.get("replace-name"));
 						jsonObject.remove(parameterName);
@@ -254,13 +249,14 @@ public class App {
 						replaceValue = String.valueOf(jsonObject.get(parameterName));
 					
 					String currentIdentifier = null;
-					if(configJSON.containsKey("unique-identifiers"))
+					if(configJSON.has("unique-identifiers"))
 					{
 						JSONArray uidArray = (JSONArray) configJSON.get("unique-identifiers");
 						for(Object uidObj : uidArray)
 						{
-							if(jsonObject.containsKey(uidObj))
-								currentIdentifier = String.valueOf(jsonObject.get(uidObj));
+							String uid = String.valueOf(uidObj);
+							if(jsonObject.has(uid))
+								currentIdentifier = String.valueOf(jsonObject.get(uid));
 						}
 					}
 	
@@ -286,7 +282,7 @@ public class App {
 	{
 		String jsonString = convertFileToString(fileName);
 		
-		JSONArray searchReplaceConfigs = configuration.containsKey("search-replace")? (JSONArray) configuration.get("search-replace") : new JSONArray();
+		JSONArray searchReplaceConfigs = configuration.has("search-replace")? (JSONArray) configuration.get("search-replace") : new JSONArray();
 		
 		for(Object searchReplaceConfig : searchReplaceConfigs)
 		{
@@ -311,9 +307,7 @@ public class App {
 			}
 		}
 		
-		JSONParser parser = new JSONParser();
-		
-		JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
+		JSONObject jsonObject = new JSONObject(jsonString);
 		
 		return jsonObject;
 	}
@@ -321,9 +315,7 @@ public class App {
 	private JSONObject convertFileToJSON(String fileName) throws FileNotFoundException, ParseException {
 		String jsonString = convertFileToString(fileName);
 		
-		JSONParser parser = new JSONParser();
-		
-		JSONObject jsonObject = (JSONObject) parser.parse(jsonString);
+		JSONObject jsonObject = new JSONObject(jsonString);
 		
 		return jsonObject;
 	}
@@ -365,10 +357,8 @@ public class App {
 	}
 	
 	public void writeBulkConfigFile() throws IOException {
-		        
-        org.json.JSONObject confJSON = new org.json.JSONObject(this.inBulkJSON.toJSONString()); 
         FileOutputStream frBulkConfig = new FileOutputStream(this.outJSON);
-        frBulkConfig.write(confJSON.toString(4).getBytes());
+        frBulkConfig.write(this.inBulkJSON.toString(4).getBytes());
         frBulkConfig.close();
 		
 	}
