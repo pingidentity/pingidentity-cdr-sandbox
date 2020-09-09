@@ -25,8 +25,14 @@ The bulk export process also allows config injection for secrets and keys.
 The bulk export utility comes in pre-compiled source code. To build the project, you'll need:
 - JDK 11
     - JAVA_HOME and PATH environment settings.
+      - JAVA_HOME=/path/to/java
+      - PATH=$PATH:$JAVA_HOME/bin
+    - https://adoptopenjdk.net/
 - Maven
     - MAVEN_HOME and PATH environment settings.
+      - MAVEN_HOME=/path/to/maven
+      - PATH=$PATH:$MAVEN_HOME/bin
+    - https://maven.apache.org/
 
 You'll also need the CDR Sandbox running on your local machine.
   - If you have changed the default settings (e.g. hostnames) you'll need to configure the configuration json files [pa-config.json](./ping-bulkexport-tools-project/in/pa-config.json), [pa-admin-config.json](./ping-bulkexport-tools-project/in/pa-admin-config.json), and [pf-config.json](./ping-bulkexport-tools-project/in/pf-config.json).
