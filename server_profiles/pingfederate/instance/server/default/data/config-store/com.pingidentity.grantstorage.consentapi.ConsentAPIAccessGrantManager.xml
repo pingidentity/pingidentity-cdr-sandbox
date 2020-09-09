@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:item name="CONSENT_API_ACCESSTOKENMANAGER">adminATM</con:item>
+    <con:item name="CONSENT_API_ACTOR">cn=consent service account</con:item>
+    <con:item name="CONSENT_API_ADMINSCOPE">consent_admin</con:item>
+    <con:item name="CONSENT_API_CLIENTID">ab327aad-7aae-3687-a5f7-887466d1cdf1</con:item>
+    <con:item name="CONSENT_API_DATATEXT">CDR Consent</con:item>
+    <con:item name="CONSENT_API_DEFAULT_DEFINITION">{"id":"pf-persistent-grant","locale":"en-AU","version":"1.0"}</con:item>
+    <con:item name="CONSENT_API_HOST">https://pingdirectory</con:item>
+    <con:item name="CONSENT_API_PASSWORD"/>
+    <con:item name="CONSENT_API_USERNAME"/>
+    <con:item name="HTTP_IGNORE_SSL">true</con:item>
+    <con:item name="HTTP_MAX_CONNECTIONS">500</con:item>
+</con:config>
