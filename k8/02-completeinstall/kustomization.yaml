@@ -134,6 +134,13 @@ patches:
       value: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
 - target:
     kind: Deployment
+    name: ^cdrregister$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: gcr.io/ping-identity/cdr-au/mock-register:20200910
+- target:
+    kind: Deployment
     name: ^cdr-dr-client$
   patch: |-
     - op: replace
