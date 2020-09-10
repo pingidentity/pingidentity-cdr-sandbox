@@ -249,6 +249,9 @@
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
 											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"pm.test(\"Validate client_id property exists\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('client_id');",
@@ -972,6 +975,9 @@
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"pm.test(\"Validate access_token is available\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('access_token');",
@@ -1283,6 +1289,9 @@
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
 													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});",
 													"pm.test(\"Validate exp is available\", function () {",
 													"    var response = pm.response.json();",
 													"    pm.expect(response).to.have.property('exp');",
@@ -1498,64 +1507,6 @@
 										}
 									},
 									"response": []
-								},
-								{
-									"name": "S003.T002.002.002 - Introspect Access Token Copy",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "50a30b7b-a6b6-43f4-af03-4f1d6adf5652",
-												"exec": [
-													""
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"strictSSL": false
-									},
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "client_id",
-													"value": "pingaccess_validator",
-													"type": "text"
-												},
-												{
-													"key": "token",
-													"value": "{{consent-request-access-token}}@",
-													"type": "text"
-												},
-												{
-													"key": "token_type_hint",
-													"value": "refresh_token",
-													"type": "text",
-													"disabled": true
-												},
-												{
-													"key": "client_secret",
-													"value": "3Federate",
-													"type": "text"
-												}
-											],
-											"options": {
-												"urlencoded": {}
-											}
-										},
-										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
-											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
-											]
-										}
-									},
-									"response": []
 								}
 							],
 							"protocolProfileBehavior": {},
@@ -1655,6 +1606,9 @@
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 											"});",
 											"pm.test(\"Validate access_token is available\", function () {",
 											"    var response = pm.response.json();",
@@ -1838,7 +1792,10 @@
 											"",
 											"    pm.environment.set(\"consent-request-account-id\", accountId);",
 											"});",
-											""
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -1903,7 +1860,10 @@
 									"script": {
 										"id": "3b7a1e56-cf31-4374-a6ac-b9c0d683b10e",
 										"exec": [
-											""
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -1992,7 +1952,10 @@
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
-											""
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -2619,7 +2582,10 @@
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
 													"});",
-													""
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -3271,6 +3237,9 @@
 									"pm.test(\"Validate response status=201\", function () {",
 									"    pm.response.to.have.status(201);",
 									"});",
+									"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+									"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+									"});",
 									"pm.test(\"Validate request-jwt property exists\", function () {",
 									"    var response = pm.response.json();",
 									"    pm.expect(response).to.have.property('request_uri');",
@@ -3651,6 +3620,9 @@
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+									"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 									"});",
 									"pm.test(\"Validate access_token is available\", function () {",
 									"    var response = pm.response.json();",
@@ -4241,6 +4213,9 @@
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"pm.test(\"Validate access_token is available\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('access_token');",
@@ -4438,6 +4413,9 @@
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 											"});",
 											"pm.test(\"Validate exp is available\", function () {",
 											"    var response = pm.response.json();",
@@ -4987,6 +4965,9 @@
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"pm.test(\"Validate access_token is available\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('access_token');",
@@ -5185,6 +5166,9 @@
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"pm.test(\"Validate exp is available\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('exp');",
@@ -5336,6 +5320,9 @@
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 											"});",
 											"pm.test(\"Validate exp is available\", function () {",
 											"    var response = pm.response.json();",
@@ -5655,6 +5642,9 @@
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 											"});",
 											"pm.test(\"Validate request-jwt property exists\", function () {",
 											"    var response = pm.response.json();",
@@ -6037,6 +6027,9 @@
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"pm.test(\"Validate access_token is available\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('access_token');",
@@ -6234,6 +6227,9 @@
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 											"});",
 											"pm.test(\"Validate exp is available\", function () {",
 											"    var response = pm.response.json();",
@@ -6572,6 +6568,9 @@
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
 													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});",
 													"pm.test(\"Validate access_token is available\", function () {",
 													"    var response = pm.response.json();",
 													"    pm.expect(response).to.have.property('access_token');",
@@ -6754,6 +6753,9 @@
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 													"});",
 													"pm.test(\"Validate access_token is available\", function () {",
 													"    var response = pm.response.json();",
@@ -6966,6 +6968,9 @@
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
+													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 													"});",
 													""
 												],
@@ -7281,6 +7286,9 @@
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
+													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 													"});",
 													""
 												],
@@ -8736,6 +8744,10 @@
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
 													"});",
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});",
 													"pm.test(\"Validate access_token is available\", function () {",
 													"    var response = pm.response.json();",
 													"    pm.expect(response).to.have.property('access_token');",
@@ -9035,6 +9047,10 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"",
 											"pm.test(\"Validate access_token is available\", function () {",
 											"    var response = pm.response.json();",
@@ -10030,6 +10046,11 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"",
 											"pm.test(\"Validate id_token is available\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('id_token');",
@@ -10268,6 +10289,11 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"//CDR ID Token OIDC Requirements",
+											"",
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
 											"",
 											"pm.test(\"Validate UserInfo Response has sub - REQUIRED for OIDC\", function () {",
 											"    var response = pm.response.json();",
@@ -11799,332 +11825,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "S00.9 DCR Tests",
-			"item": [
-				{
-					"name": "S009.T001 Software Statement",
-					"item": [
-						{
-							"name": "S009.T001.001 - DH downloads Software Statement from CDR Register",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "a73f8770-5b24-4318-becb-d2699da3a240",
-										"exec": [
-											"_.test_http_status(200,pm.response);",
-											"var response_params = ['software_statement','software_id'];",
-											"_.test_params_object(response_params, pm.response.json(),\"is in response\");",
-											"",
-											"// Test software statement payload",
-											"var response = pm.response.json();",
-											"var ssa_payload = _.jwt_decode_payload(response.software_statement);",
-											"var request_params = [ 'iss', 'exp', 'jti', 'iat', 'org_id', 'org_name', 'client_name', 'client_description','client_uri', 'redirect_uris', 'logo_uri','jwks_uri', 'revocation_uri', 'software_id', 'software_roles', 'scope' ]; ",
-											"_.test_params_object(request_params,ssa_payload,\"is in software statement\");",
-											"",
-											"// Test software statement algorithm",
-											"var ssa_header = _.jwt_decode_header(response.software_statement);",
-											"_.test_jwt_alg(\"PS256\",ssa_header);",
-											"",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"softwareStatement\", response.software_statement);",
-											"    pm.environment.set(\"softwareId\", response.software_id);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/x-www-form-urlencoded"
-									},
-									{
-										"key": "Authorization",
-										"type": "text",
-										"value": "{{pki-basicheader}}"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "client_name",
-											"value": "Application abc",
-											"type": "text"
-										},
-										{
-											"key": "client_desc",
-											"value": "This is my application",
-											"type": "text"
-										},
-										{
-											"key": "version",
-											"value": "1.0",
-											"type": "text"
-										},
-										{
-											"key": "policy_uri",
-											"value": "https://idpv2.pingapac.com/pf/heartbeat.ping",
-											"type": "text"
-										},
-										{
-											"key": "terms_uri",
-											"value": "https://idpv2.pingapac.com/pf/heartbeat.ping",
-											"type": "text"
-										},
-										{
-											"key": "organisation_id",
-											"value": "BudgetGuide",
-											"type": "text"
-										},
-										{
-											"key": "redirect_uri",
-											"value": "https://www.google.com.au,{{default-redirecturi}}",
-											"type": "text"
-										},
-										{
-											"key": "software_id",
-											"value": "",
-											"type": "text"
-										},
-										{
-											"key": "issuer",
-											"value": "cdr-register",
-											"type": "text"
-										},
-										{
-											"key": "scope",
-											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/softwarestatement",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"softwarestatement"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S009.T001.002 - DR downloads Private Key from CDR Register",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8cb3d4d6-0c04-44d8-b0dc-b67ef590030f",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Validate kty is RSA\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response.kty).to.equal('RSA');",
-											"});",
-											"pm.test(\"Validate algorithm is PS256\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response.alg).to.equal('PS256');",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var responseBlob = btoa(pm.response.text());",
-											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/softwarestatement/JWKS/{{softwareId}}/private",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"softwarestatement",
-										"JWKS",
-										"{{softwareId}}",
-										"private"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S009.T001.003 - DR creates Request JWT",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "1448c693-5a9e-405a-a8be-63b41e42a149",
-										"exec": [
-											"pm.test(\"Validate response status=200\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"pm.test(\"Validate request-jwt property exists\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('request-jwt');",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"request-jwt-createclient\", response[\"request-jwt\"]);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "x-private-jwk",
-										"value": "{{software-jwks-private}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{cdr-register-testharness-host}}/testtool/tpp/dcr/requestCreateJwt",
-									"host": [
-										"{{cdr-register-testharness-host}}"
-									],
-									"path": [
-										"testtool",
-										"tpp",
-										"dcr",
-										"requestCreateJwt"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "S009.T001.004 - DR run DCR POST request to create a client against DH",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "11b12f45-3bd8-496d-852d-55a94f4c38a1",
-										"exec": [
-											"pm.test(\"Validate response status=201\", function () {",
-											"    pm.response.to.have.status(201);",
-											"});",
-											"pm.test(\"Validate client_id property exists\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('client_id');",
-											"});",
-											"pm.test(\"Validate redirect_uris property exists\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('redirect_uris');",
-											"});",
-											"pm.test(\"Validate redirect_uris contains 'https://httpbin.org/get'\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response.redirect_uris).to.include('https://httpbin.org/get');",
-											"    ",
-											"});",
-											"pm.test(\"Set environment variables for next test\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.environment.set(\"dcrClientId\", response.client_id);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/jwt"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
-								},
-								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
-									"host": [
-										"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "6e8dfad3-5a16-4bc7-bf53-e07fb7039bf4",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "7e8637cd-9a6b-425f-b0e0-5acb5c64a180",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
-				}
-			],
-			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -12182,107 +11882,107 @@
 	],
 	"variable": [
 		{
-			"id": "f0ab0f12-e1cf-4da8-be40-c21826e57511",
+			"id": "8f0661d9-958a-4bed-b9e0-e046e670f981",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "30f464b5-d11c-41cc-aa87-a600177fe895",
+			"id": "4d34f2fd-599b-4ae1-bffd-8fb195960d3c",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "55fd712e-e49d-49de-8c63-4a8364cd2333",
+			"id": "f2f6565e-c922-4f62-a9df-b78edd171464",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "7169eab4-c4ac-415c-ae30-fb3a28e8768f",
+			"id": "a6d3fc77-c65d-45c8-aae1-e3a310b468b4",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "b67a14b9-2867-4ed8-94b0-76773f8518aa",
+			"id": "157c03dd-f064-422d-9d66-5df4ded56d29",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "7657a802-536c-47b2-8c62-5185f93d124c",
+			"id": "adde62f1-414b-4dab-ba02-d01e2adf482c",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "93e9ae94-177e-482f-8a09-51e8af5e0d2b",
+			"id": "bf88e4ba-200f-4f3a-b94e-c042c80f242d",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "3ab6f4df-c0d4-4d24-b4f3-ed5a1ba9901d",
+			"id": "6dfdc5a1-504b-4187-84bc-29472abd399b",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "dc8d026d-e167-4277-81be-027fe6f43bdb",
+			"id": "252562fb-c31b-432a-ac18-c87aef8e66ad",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "f0484dbf-8be5-447f-989f-9064939d7af3",
+			"id": "b2011279-3a50-4c54-8873-78d60079ed6b",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "bbe04bbe-0bc8-45ba-82be-cb1f02a30062",
+			"id": "e8f8e49d-3d95-4aa5-a4e3-beea27795f96",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "b6ca5522-243b-425a-bbed-48b7f603dd7a",
+			"id": "a1c0d320-a9ff-4f8f-8284-be2ccef4b83b",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "e5ff96af-fae5-4a3c-9a1a-f6c70460c086",
+			"id": "eb6682d0-63a8-4b1d-9d21-92184d681918",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "b70421ac-216d-4b04-b089-f1bdcaad90e1",
+			"id": "3b688792-a6ef-4dc9-a121-34a990f52a20",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "5062ab9a-fb10-440d-bb0f-11818139c149",
+			"id": "da3d7936-3c7b-4f2e-ae28-d991f18da253",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "d2cd40e8-de34-4725-9888-9d2835b32393",
+			"id": "ec681db5-b039-40c0-a73a-de75bcf81f7a",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "9b169b13-6c86-45d7-81e1-b43855637a60",
+			"id": "6de78cac-ef8b-404e-8147-66db89e3552e",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "0bf455b3-a96a-4cec-a0ef-74c97514288a",
+			"id": "4892f448-211d-4c87-900d-3bd9a124ca7f",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "b5560ae8-5d6c-45ff-8c4e-98f9dafba4c0",
+			"id": "dba58b51-8a4a-4e59-bb61-99eab7fe18d8",
 			"key": "dh-dir-host",
 			"value": "https://pd.data-holder.local"
 		},
 		{
-			"id": "6136405c-ed54-4222-ad9a-0dc31ac1ce93",
+			"id": "8325af89-1017-4693-9fef-20c8f16dad45",
 			"key": "pkce-challenge",
 			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "48df9038-30f5-4787-b478-20c6fddeca8d",
+			"id": "b4f673f7-12ed-4674-a128-cc481f8c65e9",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		}
