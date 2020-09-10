@@ -853,6 +853,31 @@
                     "Web": [],
                     "API": []
                 }
+            },
+            {
+                "pathPrefixes": ["/arrangements/*"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "rootResource": false,
+                "name": "CDR Arrangement Endpoint",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 19,
+                "pathPatterns": [{
+                    "pattern": "/arrangements/*",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 1,
+                "policy": {
+                    "Web": [{
+                        "id": 8,
+                        "type": "Rule"
+                    }],
+                    "API": []
+                }
             }
         ],
         "unknownResources": {
@@ -1064,7 +1089,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1599728958943,
+                "agentCacheInvalidatedExpiration": 1599729853987,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1085,7 +1110,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1599728058943,
+                "lastModified": 1599728953987,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
