@@ -13,7 +13,7 @@ then
     echo "INFO: waiting for PingFederate to start before importing configuration"
     wait-for 127.0.0.1:9999 -t 200 -- echo PingFederate is up
 
-    ${HOOKS_DIR}/call-productapis.sh
+    ${HOOKS_DIR}/call-apis.sh
     
     if test "${OPERATIONAL_MODE}" = "CLUSTERED_CONSOLE"
     then
