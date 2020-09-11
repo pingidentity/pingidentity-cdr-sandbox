@@ -12,10 +12,8 @@ if test "${OPERATIONAL_MODE}" = "CLUSTERED_CONSOLE" || test "${OPERATIONAL_MODE}
 then
     echo "INFO: waiting for PingFederate to start before importing configuration"
     wait-for 127.0.0.1:9999 -t 200 -- echo PingFederate is up
-    curl -X PUT --header 'Content-Type: application/json' --header 'X-XSRF-Header: PingFederate' --data '@/opt/staging/hooks/licenseagree.json' https://localhost:9999/pf-admin-api/v1/license/agreement --insecure
-    curl -X POST --header 'Content-Type: application/json' --header 'X-XSRF-Header: PingFederate' --data '@/opt/staging/hooks/createadmin.json' https://localhost:9999/pf-admin-api/v1/administrativeAccounts --insecure
-    curl -X POST --basic -u Administrator:2FederateM0re --header 'Content-Type: application/json' --header 'X-XSRF-Header: PingFederate' --header 'X-BypassExternalValidation: true' --data '@/opt/out/instance/import-bulkconfig.json' https://localhost:9999/pf-admin-api/v1/bulk/import?failFast=false --insecure
-    rm /opt/out/instance/import-bulkconfig.json
+
+    ${HOOKS_DIR}/call-apis.sh
     
     if test "${OPERATIONAL_MODE}" = "CLUSTERED_CONSOLE"
     then
