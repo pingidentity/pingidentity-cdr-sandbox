@@ -29,5 +29,7 @@ if test -d "${API_DROPIN_FOLDER}" ; then
         httpStatus=$(eval $curlCommand)
 
         echo "HTTP Status Code: ${httpStatus}"
+
+	rm -r $API_DROPIN_FOLDER/$apiFolder
     done
 fi
