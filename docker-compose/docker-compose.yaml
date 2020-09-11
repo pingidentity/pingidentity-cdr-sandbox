@@ -33,8 +33,7 @@ services:
 
   pingfederate:
     image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
-    #command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
-    command: entrypoint.sh start-server
+    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
