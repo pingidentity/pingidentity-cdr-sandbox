@@ -9,7 +9,6 @@ ${VERBOSE} && set -x
 . "${HOOKS_DIR}/pingcommon.lib.sh"
 
 function apiprops {
-    echo "Reading properties file: $API_DROPIN_FOLDER/$apiFolder/request.properties"
     grep "${1}" $API_DROPIN_FOLDER/$apiFolder/request.properties|cut -d'=' -f2
 }
 
