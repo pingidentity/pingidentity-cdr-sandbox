@@ -19,7 +19,7 @@ API_DROPIN_FOLDER=/opt/out/instance/server/default/drop-in-config
 apiFolder=
 
 if test -d "${API_DROPIN_FOLDER}" ; then
-    for apiFolderName in $( find "${API_DROPIN_FOLDER}/" -type d 2>/dev/null | sort | uniq ) ; do
+    for apiFolderName in $( find "${API_DROPIN_FOLDER}/" -type d ! -name "drop*" 2>/dev/null | sort | uniq ) ; do
         apiFolder=$(basename ${apiFolderName})
         echo "API Folder: $apiFolder"
         requestUrl=$(apiprops 'request-url')
