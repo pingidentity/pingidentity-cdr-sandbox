@@ -26,7 +26,7 @@ if test -d "${API_DROPIN_FOLDER}" ; then
         requestUrl=$(apiprops 'request-url')
         curlParams=$(apiprops 'request-curl-commands')
         curlCommand="curl $curlParams -d @${apiFolderName}/requestBody.json $requestUrl --insecure --write-out '%{http_code}' --silent --output /dev/null"
-        echo "Calling API: $requestUrl with $curlParams"
+        echo "Calling API: $curlCommand"
         httpStatus=$(eval $curlCommand)
 
         echo "HTTP Status Code: ${httpStatus}"
