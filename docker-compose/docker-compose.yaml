@@ -67,7 +67,7 @@ services:
 
   cdr-dr-client:
     image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200828
-    command: /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh
+    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
