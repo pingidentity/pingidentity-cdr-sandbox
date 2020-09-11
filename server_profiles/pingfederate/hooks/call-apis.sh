@@ -23,12 +23,19 @@ if test -d "${API_DROPIN_FOLDER}" ; then
         apiFolder=$(basename ${apiFolderName})
         echo "API Folder: $apiFolder"
         requestUrl=$(apiprops 'request-url')
+        expectedHttpStatus=$(apiprops 'request-success-status')
         curlParams=$(apiprops 'request-curl-commands')
         curlCommand="curl $curlParams -d @${apiFolderName}/requestBody.json $requestUrl --insecure --write-out '%{http_code}' --silent --output /dev/null"
         echo "Calling API: $curlCommand"
         httpStatus=$(eval $curlCommand)
 
         echo "HTTP Status Code: ${httpStatus}"
+
+	if ! test "$httpStatus" = "$expectedHttpStatus"
+        then
+		echo "Expected status $expectedHttpStatus. Stopping container..."
+		exit 85
+	fi
 
 	rm -r $API_DROPIN_FOLDER/$apiFolder
     done
