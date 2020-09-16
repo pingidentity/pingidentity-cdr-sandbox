@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
+    image: pingidentity/pingaccess:edge
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -32,7 +32,7 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
+    image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -48,7 +48,7 @@ services:
       - pingnet-internal
 
   pingdirectory:
-    image: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200824
+    image: pingidentity/pingdirectory:edge
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
@@ -65,7 +65,7 @@ services:
       - pingnet-internal
 
   cdr-dr-client:
-    image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200911
+    image: cdrsandbox/sample-dr-client:20200916
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -80,7 +80,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: gcr.io/ping-identity/cdr-au/mock-register:20200910
+    image: cdrsandbox/mock-register:20200916
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -97,7 +97,7 @@ services:
        - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
 
   deepthought-product-api:
-    image: gcr.io/ping-identity/cdr-au/deepthought-product-api-service:cdr-1.2-core-002
+    image: cdrsandbox/deepthought-product-api-service:20200916
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -111,7 +111,7 @@ services:
       - pingnet-dmz
 
   deepthought-bank-api:
-    image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
+    image: cdrsandbox/deepthought-bank-api-service:20200916
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -125,7 +125,7 @@ services:
       - pingnet-dmz
 
   deepthought-admin-service:
-    image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
+    image: cdrsandbox/deepthought-admin-service:20200916
     environment:
   #    - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -139,7 +139,7 @@ services:
       - pingnet-dmz
 
   deepthought-h2-database:
-    image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:20200819
+    image: cdrsandbox/deepthought-h2-database:20200916
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
@@ -154,7 +154,7 @@ services:
       - pingnet-dmz
 
   pingdataconsole:
-    image: gcr.io/ping-identity/cdr-au/pingdataconsole-8.1:20200824
+    image: pingidentity/pingdataconsole:edge
     ports:
       - "8443:8443"
     networks:

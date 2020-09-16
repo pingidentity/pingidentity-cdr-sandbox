@@ -88,29 +88,8 @@ patches:
     name: ^pingdirectory$
   patch: |-
     - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingdirectory-8.1:20200824
-- target:
-    kind: StatefulSet
-    name: ^pingdirectory$
-  patch: |-
-    - op: replace
       path: /spec/replicas
       value: 1
-- target:
-    kind: Deployment
-    name: ^pingaccess-admin$
-  patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
-- target:
-    kind: Deployment
-    name: ^pingaccess$
-  patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingaccess-6.1:20200824
 - target:
     kind: Deployment
     name: ^pingaccess$
@@ -125,31 +104,10 @@ patches:
     - op: replace
       path: /spec/replicas
       value: 1
-- target:
-    kind: Deployment
-    name: ^pingfederate$
-  patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200824
-- target:
-    kind: Deployment
-    name: ^cdrregister$
-  patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/mock-register:20200910
 - target:
     kind: Deployment
     name: ^cdr-dr-client$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/sample-dr-client:20200828
-- target:
-    kind: Deployment
-    name: ^deepthought-h2-database$
-  patch: |-
-    - op: replace
-      path: /spec/template/spec/containers/0/image
-      value: gcr.io/ping-identity/cdr-au/deepthought-h2-database:20200819
+      value: cdrsandbox/sample-dr-client:20200916

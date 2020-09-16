@@ -32,7 +32,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: cdrregister-environment-variables
-        image: gcr.io/ping-identity/cdr-au/mock-register:20200803
+        image: cdrsandbox/mock-register:20200916
         imagePullPolicy: Always
         name: cdrregister
         ports:

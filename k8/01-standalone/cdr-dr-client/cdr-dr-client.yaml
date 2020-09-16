@@ -40,7 +40,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: cdr-dr-client-environment-variables
-        image: gcr.io/ping-identity/cdr-au/sample-dr-client:20200803
+        image: cdrsandbox/sample-dr-client:20200916
         imagePullPolicy: Always
         name: cdr-dr-client
         ports:

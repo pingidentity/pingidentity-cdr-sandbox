@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: pingfederate
-        image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
+        image: pingidentity/pingfederate:edge
         imagePullPolicy: Always
         ports:        
         - containerPort: 9031

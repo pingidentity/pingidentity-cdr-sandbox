@@ -34,7 +34,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: deepthought-h2-database-environment-variables
-        image: gcr.io/ping-identity/cdr-au/deepthought-h2-database:cdr-1.2-core-001
+        image: cdrsandbox/deepthought-h2-database:20200916
         imagePullPolicy: Always
         name: deepthought-h2-database
         ports:
