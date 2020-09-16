@@ -96,20 +96,6 @@ services:
     volumes:
        - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
 
-  deepthought-product-api:
-    image: cdrsandbox/deepthought-product-api-service:20200916
-    environment:
-  #    - VERBOSE=true
-      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
-    env_file:
-      - ~/.pingidentity/devops
-      - cdr.env
-    ports:
-      - 8089:8081
-    networks:
-      - pingnet-internal
-      - pingnet-dmz
-
   deepthought-bank-api:
     image: cdrsandbox/deepthought-bank-api-service:20200916
     environment:
@@ -153,13 +139,13 @@ services:
       - pingnet-internal
       - pingnet-dmz
 
-  pingdataconsole:
-    image: pingidentity/pingdataconsole:edge
-    ports:
-      - "8443:8443"
-    networks:
-      - pingnet-internal
-      - pingnet-dmz
+#  pingdataconsole:
+#    image: pingidentity/pingdataconsole:edge
+#    ports:
+#      - "8443:8443"
+#    networks:
+#      - pingnet-internal
+#      - pingnet-dmz
 
 networks:
     pingnet-internal:
