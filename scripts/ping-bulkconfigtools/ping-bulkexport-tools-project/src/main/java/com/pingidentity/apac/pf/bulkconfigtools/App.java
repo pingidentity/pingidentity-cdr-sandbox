@@ -19,18 +19,18 @@ public class App {
 	private final static String DEFAULT_IN_BULKCONFIG = "in/pa-export.json";
 	private final static String DEFAULT_IN_ENVPROPERTIES = "in/out-pa-env.properties";
 	private final static String DEFAULT_IN_OUTCONFIG = "in/out-pa-bulk-config.json";
-	
+
 	private final JSONObject inConfigJSON;
 	private final JSONArray inConfigExposeParametersArray;
 	private final JSONArray inConfigRemoveConfig;
 	private final JSONArray inConfigAddConfig;
 	private final JSONArray inConfigChangeValue;
 	private final JSONObject inBulkJSON;
-	
+
 	private final Properties returnProperties = new Properties();
-	
+
 	private final String envFileName, outJSON;
-	
+
 	public static void main(String [] args) throws ParseException, IOException, RemoveNodeException
 	{
 		App app = null;
@@ -38,11 +38,11 @@ public class App {
 			app = new App(args[0], args[1], args[2], args[3]);
 		else
 			app = new App();
-		
+
 		app.writeEnvFile();
 		app.writeBulkConfigFile();
-		
-		
+
+
 	}
 
 	public App(String inConfigFile, String inBulkFile, String inEnvPropertiesFile, String outJSON) throws ParseException, IOException, RemoveNodeException
@@ -55,9 +55,9 @@ public class App {
 		this.inBulkJSON = getReplacedJSONObject(inBulkFile, this.inConfigJSON);
 		this.envFileName = inEnvPropertiesFile;
 		this.outJSON = outJSON;
-		
+
 		loadProperties();
-		
+
 		processBulkJSON();
 	}
 
@@ -73,31 +73,31 @@ public class App {
 		this.outJSON = DEFAULT_IN_OUTCONFIG;
 
 		loadProperties();
-		
+
 		processBulkJSON();
 	}
-	
+
 	private void processBulkJSON() throws RemoveNodeException {
-		
+
 		if(this.inConfigExposeParametersArray != null)
-			processBulkJSONNode("", this.inBulkJSON);	
+			processBulkJSONNode("", this.inBulkJSON);
 	}
-	
+
 	private void processBulkJSONNode(String path, JSONObject jsonObject) throws RemoveNodeException {
 
 		processRemoveConfig(jsonObject);
 		processChangeValue(jsonObject);
-		
+
 		if(jsonObject.has("resourceType"))
 			path = String.valueOf(jsonObject.get("resourceType")).replace("/", "_").substring(1);
-		
+
 		if(jsonObject.has("id"))
 			path = path + "_" + getEscapedValue(String.valueOf(jsonObject.get("id")));
-		
+
 		System.out.println("Path: " + path);
-		
+
 		processExposeConfig(path, jsonObject);
-		
+
 		for(String key : jsonObject.keySet())
 		{
 			if(jsonObject.get(key) instanceof JSONObject)
@@ -105,7 +105,7 @@ public class App {
 				JSONObject currentJSON = (JSONObject) jsonObject.get(key);
 
 				String newPath = path + "_" + key;
-				
+
 				try
 				{
 					processBulkJSONNode(newPath, currentJSON);
@@ -117,20 +117,20 @@ public class App {
 			else if(jsonObject.get(key) instanceof JSONArray)
 			{
 				String newPath = path + "_" + key;
-				
+
 				JSONArray jsonArray = (JSONArray) jsonObject.get(key);
-				
+
 				JSONArray newJSONArray = new JSONArray();
-				
+
 				for(Object currentObject : jsonArray)
 				{
 					if(currentObject instanceof JSONObject)
 					{
 						try
 						{
-							processBulkJSONNode(newPath, (JSONObject) currentObject); 
+							processBulkJSONNode(newPath, (JSONObject) currentObject);
 							newJSONArray.put(currentObject);
-							
+
 						}catch(RemoveNodeException e)
 						{
 						}
@@ -138,16 +138,16 @@ public class App {
 					else
 						newJSONArray.put(currentObject);
 				}
-				
+
 				processAddConfig(newPath, newJSONArray);
 
 				jsonObject.put(key, newJSONArray);
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	private void processRemoveConfig(JSONObject jsonObject) throws RemoveNodeException
 	{
 		if(this.inConfigRemoveConfig != null)
@@ -158,22 +158,22 @@ public class App {
 
 				String key = String.valueOf(configJSON.get("key"));
 				String value = String.valueOf(configJSON.get("value"));
-				
+
 				if(jsonObject.has(key))
 				{
 					String jsonValue = String.valueOf(jsonObject.get(key));
-					
+
 					if(jsonValue.equals(value) || jsonValue.matches(value))
 					{
 						System.out.println("Ignoring " + key + ":" + value);
 						throw new RemoveNodeException();
 					}
 				}
-				
+
 			}
 		}
 	}
-	
+
 	private void processAddConfig(String path, JSONArray jsonArray) throws RemoveNodeException
 	{
 		if(this.inConfigAddConfig != null)
@@ -181,27 +181,27 @@ public class App {
 			for(Object configObject : this.inConfigAddConfig)
 			{
 				JSONObject configJSON = (JSONObject) configObject;
-				
+
 				if(!configJSON.has("item") && !configJSON.has("resourceType"))
 				{
 					System.out.println("Bad config for add-config: " + configJSON.toString(4));
 					continue;
 				}
-				
+
 				String resourceType = String.valueOf(configJSON.get("resourceType"));
-				
+
 				if(!path.endsWith("_" + resourceType))
 					continue;
-				
+
 				JSONObject newObject = (JSONObject) configJSON.get("item");
 				jsonArray.put(newObject);
-				
+
 			}
 		}
 	}
-	
+
 	private void processChangeValue(JSONObject jsonObject)
-	{		
+	{
 		if(this.inConfigChangeValue != null)
 		{
 			for(Object configObject : this.inConfigChangeValue)
@@ -209,37 +209,37 @@ public class App {
 				JSONObject configJSON = (JSONObject) configObject;
 
 				String key = String.valueOf(configJSON.get("parameter-name"));
-				
+
 				JSONObject matchingIdentifier = (JSONObject) configJSON.get("matching-identifier");
 				String matchingName = String.valueOf(matchingIdentifier.get("id-name"));
 				String matchingValue = String.valueOf(matchingIdentifier.get("id-value"));
-				
+
 				if(jsonObject.has(matchingName) && jsonObject.get(matchingName).equals(matchingValue))
 				{
 					Object newValue = configJSON.get("new-value");
 					jsonObject.put(key, newValue);
 				}
-				
+
 			}
 		}
 	}
-	
+
 	private void processExposeConfig(String path, JSONObject jsonObject)
 	{
-		
+
 		if(this.inConfigExposeParametersArray != null)
 		{
 			for(Object configObject : this.inConfigExposeParametersArray)
 			{
 				JSONObject configJSON = (JSONObject) configObject;
-				
+
 				String parameterName = String.valueOf(configJSON.get("parameter-name"));
-				
+
 				if(jsonObject.has(parameterName))
 				{
 					String replaceName = parameterName;
 					String replaceValue = "";
-					
+
 					if(configJSON.has("replace-name"))
 					{
 						replaceName = String.valueOf(configJSON.get("replace-name"));
@@ -247,7 +247,7 @@ public class App {
 					}
 					else
 						replaceValue = String.valueOf(jsonObject.get(parameterName));
-					
+
 					String currentIdentifier = null;
 					if(configJSON.has("unique-identifiers"))
 					{
@@ -259,77 +259,77 @@ public class App {
 								currentIdentifier = String.valueOf(jsonObject.get(uid));
 						}
 					}
-	
+
 					String propertyName = path + "_" + replaceName;
 					if(currentIdentifier != null)
 						propertyName = path + "_" + getEscapedValue(currentIdentifier) + "_" + getEscapedValue(replaceName);
-					
+
 					jsonObject.put(replaceName, "${" + propertyName + "}");
-					
+
 					if(!returnProperties.containsKey(propertyName))
 						returnProperties.put(propertyName, replaceValue);
 				}
 			}
 		}
 	}
-	
+
 	private String getEscapedValue(String in)
 	{
-		return in.replace(" ", "_").replace("-", "_").replace("|", "_").replace(":", "");
+		return in.replace(" ", "_").replace("-", "_").replace("|", "_").replace(":", "_").replace("\\.", "_");
 	}
-	
+
 	private JSONObject getReplacedJSONObject(String fileName, JSONObject configuration) throws FileNotFoundException, ParseException
 	{
 		String jsonString = convertFileToString(fileName);
-		
+
 		JSONArray searchReplaceConfigs = configuration.has("search-replace")? (JSONArray) configuration.get("search-replace") : new JSONArray();
-		
+
 		for(Object searchReplaceConfig : searchReplaceConfigs)
 		{
 			JSONObject searchReplaceConfigJSON = (JSONObject) searchReplaceConfig;
-			
+
 			String search = String.valueOf(searchReplaceConfigJSON.get("search"));
 			String replace = String.valueOf(searchReplaceConfigJSON.get("replace"));
 			String applyEnvFileStr = String.valueOf(searchReplaceConfigJSON.get("apply-env-file"));
 			Boolean isApplyEnvFile = Boolean.parseBoolean(applyEnvFileStr);
-			
-			
+
+
 			jsonString = jsonString.replace(search, replace);
-			
+
 			if(isApplyEnvFile)
 			{
 				String propertyName = replace.replace("$", "").replace("{", "").replace("}", "");
-							
+
 				if(!returnProperties.containsKey(propertyName))
 				{
 					returnProperties.put(propertyName, search);
 				}
 			}
 		}
-		
+
 		JSONObject jsonObject = new JSONObject(jsonString);
-		
+
 		return jsonObject;
 	}
 
 	private JSONObject convertFileToJSON(String fileName) throws FileNotFoundException, ParseException {
 		String jsonString = convertFileToString(fileName);
-		
+
 		JSONObject jsonObject = new JSONObject(jsonString);
-		
+
 		return jsonObject;
 	}
 
 	private String convertFileToString(String fileName) throws FileNotFoundException, ParseException {
 		Scanner scanner = new Scanner(new File(fileName));
-		
+
 		String jsonString = scanner.useDelimiter("\\Z").next();
-		
+
 		scanner.close();
-		
+
 		return jsonString;
 	}
-	
+
 	private void loadProperties() throws IOException {
 		try {
 			returnProperties.load(new FileInputStream(this.envFileName));
@@ -339,27 +339,28 @@ public class App {
 			throw e;
 		}
 	}
-	
+
 	public void writeEnvFile() throws IOException {
 		PrintWriter pw = new PrintWriter( this.envFileName );
-		
+
 		for(Object key : this.returnProperties.keySet())
 		{
 			String value = this.returnProperties.getProperty(String.valueOf(key), "");
 			if(value.equals("null"))
 				value = "";
-			
-			pw.println(String.valueOf(key) + "=" + value);
+
+			String finalValue = value.replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\\\", "\\\\").replace("-----BEGIN CERTIFICATE-----", "").replace("-----END CERTIFICATE-----", "");
+			pw.println(String.valueOf(key) + "=" + finalValue);
 		}
-		
+
 		pw.close();
-		
+
 	}
-	
+
 	public void writeBulkConfigFile() throws IOException {
         FileOutputStream frBulkConfig = new FileOutputStream(this.outJSON);
         frBulkConfig.write(this.inBulkJSON.toString(4).getBytes());
         frBulkConfig.close();
-		
+
 	}
 }
