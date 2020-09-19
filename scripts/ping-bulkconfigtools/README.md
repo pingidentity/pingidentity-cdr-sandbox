@@ -75,6 +75,18 @@ Commit the following files to update the configuration:
 - server_profiles/pingaccess-admin/instance/data/start-up-deployer/data.json.subst
 - server_profiles/pingfederate/instance/import-bulkconfig.json.subst
 
+## Known Issues
+
+### Old hivemodule.xml
+
+Bulk configuration requires the ability for PingFederate to reload configuration while running. When introduced, certain elements in hivemodule requires model="autoreloadable" to allow reloading of configuration. 
+
+If you have issues, you may have inherited an old hivemodule.xml in your server profile. Check and compare it aligns to the version of PingFederate that you are running.
+
+### LDAP authentication to Admin Console
+
+PingFederate can be configured to enable LDAP authentication to the admin console (web/api). This has not been tested and may require alterations to the startup deployer calls stored under server/default/drop-in-config.
+
 ## Appendix
 
 ### Applying encoded file configuration
