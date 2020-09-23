@@ -56,8 +56,13 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "500",
+                    "stringValue": "10",
                     "id": "HTTP_MAX_CONNECTIONS",
+                    "type": "STRING"
+                },
+                {   
+                    "stringValue": "500",
+                    "id": "HTTP_IDLE_TIMEOUT",
                     "type": "STRING"
                 }
             ],
