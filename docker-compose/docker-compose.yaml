@@ -32,7 +32,7 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: pingidentity/pingfederate:10.2.0-Beta-alpine-java11-edge
+    image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
