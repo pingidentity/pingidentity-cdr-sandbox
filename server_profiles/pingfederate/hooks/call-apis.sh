@@ -37,6 +37,9 @@ if test -d "${API_DROPIN_FOLDER}" ; then
 		exit 85
 	fi
 
-	rm -r $API_DROPIN_FOLDER/$apiFolder
+	if ! test "${KEEP_API_FOLDER}" = "true"
+	then
+		rm -r $API_DROPIN_FOLDER/$apiFolder
+	fi
     done
 fi
