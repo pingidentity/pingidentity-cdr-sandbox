@@ -390,7 +390,6 @@
             "operationType": "SAVE",
             "items": [{"virtualHostNames": [
                 "sso-admin.${BASE_HOSTNAME}",
-                "sso.${BASE_HOSTNAME}",
                 "pingfederate",
                 "pingaccess"
             ]}],
