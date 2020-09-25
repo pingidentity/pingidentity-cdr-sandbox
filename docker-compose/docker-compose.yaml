@@ -63,6 +63,7 @@ services:
     ports:
       - 1636:636
       - 1443:443
+      - 389:389
     networks:
       - pingnet-internal
 
