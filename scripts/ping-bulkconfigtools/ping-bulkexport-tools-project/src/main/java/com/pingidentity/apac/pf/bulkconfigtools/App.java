@@ -80,10 +80,10 @@ public class App {
 	private void processBulkJSON() throws RemoveNodeException {
 
 		if(this.inConfigExposeParametersArray != null)
-			processBulkJSONNode("", this.inBulkJSON);
+			processBulkJSONNode("", this.inBulkJSON, null);
 	}
 
-	private void processBulkJSONNode(String path, JSONObject jsonObject) throws RemoveNodeException {
+	private void processBulkJSONNode(String path, JSONObject jsonObject, JSONObject parentObject) throws RemoveNodeException {
 
 		processRemoveConfig(jsonObject);
 		processChangeValue(jsonObject);
@@ -96,7 +96,7 @@ public class App {
 
 		System.out.println("Path: " + path);
 
-		processExposeConfig(path, jsonObject);
+		processExposeConfig(path, jsonObject, parentObject);
 
 		for(String key : jsonObject.keySet())
 		{
@@ -108,7 +108,7 @@ public class App {
 
 				try
 				{
-					processBulkJSONNode(newPath, currentJSON);
+					processBulkJSONNode(newPath, currentJSON, jsonObject);
 				}catch(RemoveNodeException e)
 				{
 					jsonObject.remove(key);
@@ -128,7 +128,7 @@ public class App {
 					{
 						try
 						{
-							processBulkJSONNode(newPath, (JSONObject) currentObject);
+							processBulkJSONNode(newPath, (JSONObject) currentObject, jsonObject);
 							newJSONArray.put(currentObject);
 
 						}catch(RemoveNodeException e)
@@ -224,7 +224,7 @@ public class App {
 		}
 	}
 
-	private void processExposeConfig(String path, JSONObject jsonObject)
+	private void processExposeConfig(String path, JSONObject jsonObject, JSONObject parentObject)
 	{
 
 		if(this.inConfigExposeParametersArray != null)
@@ -248,17 +248,7 @@ public class App {
 					else
 						replaceValue = String.valueOf(jsonObject.get(parameterName));
 
-					String currentIdentifier = null;
-					if(configJSON.has("unique-identifiers"))
-					{
-						JSONArray uidArray = (JSONArray) configJSON.get("unique-identifiers");
-						for(Object uidObj : uidArray)
-						{
-							String uid = String.valueOf(uidObj);
-							if(jsonObject.has(uid))
-								currentIdentifier = String.valueOf(jsonObject.get(uid));
-						}
-					}
+					String currentIdentifier = getUniqueIdentifier(configJSON, jsonObject, parentObject);
 
 					String propertyName = path + "_" + replaceName;
 					if(currentIdentifier != null)
@@ -271,6 +261,24 @@ public class App {
 				}
 			}
 		}
+	}
+
+	private String getUniqueIdentifier(JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject) {
+		
+		if(configJSON.has("unique-identifiers"))
+		{
+			JSONArray uidArray = (JSONArray) configJSON.get("unique-identifiers");
+			for(Object uidObj : uidArray)
+			{
+				String uid = String.valueOf(uidObj);
+				if(jsonObject.has(uid))
+					return String.valueOf(jsonObject.get(uid));
+				else if(parentObject != null && parentObject.has(uid))
+					return String.valueOf(parentObject.get(uid));
+			}
+		}
+		
+		return null;
 	}
 
 	private String getEscapedValue(String in)

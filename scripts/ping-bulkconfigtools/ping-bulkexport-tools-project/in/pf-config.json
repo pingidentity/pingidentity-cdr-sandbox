@@ -45,6 +45,13 @@
       "unique-identifiers": [
           "id"
       ]
+    },
+    {
+      "parameter-name": "encryptedSecret",
+      "replace-name": "secret",
+      "unique-identifiers": [
+          "clientId"
+      ]
     }
   ]
 }
