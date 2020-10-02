@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -25,7 +27,7 @@ public class App {
 	private final JSONArray inConfigRemoveConfig;
 	private final JSONArray inConfigAddConfig;
 	private final JSONArray inConfigChangeValue;
-	private final JSONObject inConfigAliases;
+	private final JSONArray inConfigAliases;
 	private final JSONObject inBulkJSON;
 
 	private final Properties returnProperties = new Properties();
@@ -53,7 +55,7 @@ public class App {
 		this.inConfigRemoveConfig = this.inConfigJSON.has("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
 		this.inConfigAddConfig = this.inConfigJSON.has("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
 		this.inConfigChangeValue = this.inConfigJSON.has("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
-		this.inConfigAliases = this.inConfigJSON.has("config-aliases")? (JSONObject) this.inConfigJSON.get("config-aliases"): null;
+		this.inConfigAliases = this.inConfigJSON.has("config-aliases")? (JSONArray) this.inConfigJSON.get("config-aliases"): null;
 		this.inBulkJSON = getReplacedJSONObject(inBulkFile, this.inConfigJSON);
 		this.envFileName = inEnvPropertiesFile;
 		this.outJSON = outJSON;
@@ -70,7 +72,7 @@ public class App {
 		this.inConfigRemoveConfig = this.inConfigJSON.has("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
 		this.inConfigAddConfig = this.inConfigJSON.has("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
 		this.inConfigChangeValue = this.inConfigJSON.has("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
-		this.inConfigAliases = this.inConfigJSON.has("config-aliases")? (JSONObject) this.inConfigJSON.get("config-aliases"): null;
+		this.inConfigAliases = this.inConfigJSON.has("config-aliases")? (JSONArray) this.inConfigJSON.get("config-aliases"): null;
 		this.inBulkJSON = getReplacedJSONObject(DEFAULT_IN_BULKCONFIG, this.inConfigJSON);
 		this.envFileName = DEFAULT_IN_ENVPROPERTIES;
 		this.outJSON = DEFAULT_IN_OUTCONFIG;
@@ -271,27 +273,60 @@ public class App {
 	}
 
 	private boolean isSetEnvVar(String propertyName) {
-		if(this.inConfigAliases == null || !this.inConfigAliases.has(propertyName))
+		if(this.inConfigAliases == null)
 			return true;
 		
-		JSONObject configAliasConfig = (JSONObject) this.inConfigAliases.get(propertyName);
+		for(Object currentAliasConfigObj : this.inConfigAliases)
+		{
+			JSONObject configAliasConfig = (JSONObject) currentAliasConfigObj;
+			
+			List<String> configNameList = getConfigNameList(configAliasConfig);
+			
+			if(!configNameList.contains(propertyName))
+				continue;
+			
+			if(!configAliasConfig.has("is-apply-envfile"))
+				return true;
+			
+			return configAliasConfig.getBoolean("is-apply-envfile");
+		}
 		
-		if(!configAliasConfig.has("is-apply-envfile"))
-			return true;
-		
-		return configAliasConfig.getBoolean("is-apply-envfile");
+		return true;
 	}
 
 	private String getConfigAlias(String propertyName) {
-		if(this.inConfigAliases == null || !this.inConfigAliases.has(propertyName))
+		if(this.inConfigAliases == null)
 			return propertyName;
+
+		for(Object currentAliasConfigObj : this.inConfigAliases)
+		{
+			JSONObject configAliasConfig = (JSONObject) currentAliasConfigObj;
+			
+			List<String> configNameList = getConfigNameList(configAliasConfig);
+			System.out.println("Looking for config aliase: " + propertyName + ", " + configNameList.get(0));
+			
+			if(!configNameList.contains(propertyName))
+				continue;
+
+			System.out.println("Found config aliase: " + propertyName);
+			if(!configAliasConfig.has("replace-name"))
+				return propertyName;
+			System.out.println("New config aliase: " + configAliasConfig.getString("replace-name"));
+			
+			return configAliasConfig.getString("replace-name");
+		}
 		
-		JSONObject configAliasConfig = (JSONObject) this.inConfigAliases.get(propertyName);
+		return propertyName;		
+	}
+	
+	private List<String> getConfigNameList(JSONObject configAliasConfig)
+	{		
+		JSONArray configNames = (JSONArray) configAliasConfig.get("config-names");
 		
-		if(!configAliasConfig.has("replace-name"))
-			return propertyName;
+		String joinedConfigNames = configNames.join(",").replace("\"", "");
+		List<String> configNameList = Arrays.asList(joinedConfigNames.split(","));
 		
-		return configAliasConfig.getString("replace-name");
+		return configNameList;
 	}
 
 	private String getUniqueIdentifier(JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject) {

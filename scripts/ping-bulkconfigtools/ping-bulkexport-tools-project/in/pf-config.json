@@ -1,10 +1,13 @@
 {
-  "config-aliases":{
-	"administrativeAccounts_items_Administrator_password": {
-  		"replace-name": "PING_IDENTITY_PASSWORD",
-  		"is-apply-envfile": false
+  "config-aliases":[
+	{
+	  "config-names":[
+	    "administrativeAccounts_items_Administrator_password"
+	  ],
+  	  "replace-name": "PING_IDENTITY_PASSWORD",
+  	  "is-apply-envfile": false
   	}
-  },
+  ],
   "search-replace":[
     {
       "search": "dc=data-holder,dc=com",
