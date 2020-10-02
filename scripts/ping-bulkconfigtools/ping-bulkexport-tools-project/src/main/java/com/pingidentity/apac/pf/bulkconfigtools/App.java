@@ -25,6 +25,7 @@ public class App {
 	private final JSONArray inConfigRemoveConfig;
 	private final JSONArray inConfigAddConfig;
 	private final JSONArray inConfigChangeValue;
+	private final JSONObject inConfigAliases;
 	private final JSONObject inBulkJSON;
 
 	private final Properties returnProperties = new Properties();
@@ -52,6 +53,7 @@ public class App {
 		this.inConfigRemoveConfig = this.inConfigJSON.has("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
 		this.inConfigAddConfig = this.inConfigJSON.has("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
 		this.inConfigChangeValue = this.inConfigJSON.has("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
+		this.inConfigAliases = this.inConfigJSON.has("config-aliases")? (JSONObject) this.inConfigJSON.get("config-aliases"): null;
 		this.inBulkJSON = getReplacedJSONObject(inBulkFile, this.inConfigJSON);
 		this.envFileName = inEnvPropertiesFile;
 		this.outJSON = outJSON;
@@ -68,6 +70,7 @@ public class App {
 		this.inConfigRemoveConfig = this.inConfigJSON.has("remove-config")? (JSONArray) this.inConfigJSON.get("remove-config"): null;
 		this.inConfigAddConfig = this.inConfigJSON.has("add-config")? (JSONArray) this.inConfigJSON.get("add-config"): null;
 		this.inConfigChangeValue = this.inConfigJSON.has("change-value")? (JSONArray) this.inConfigJSON.get("change-value"): null;
+		this.inConfigAliases = this.inConfigJSON.has("config-aliases")? (JSONObject) this.inConfigJSON.get("config-aliases"): null;
 		this.inBulkJSON = getReplacedJSONObject(DEFAULT_IN_BULKCONFIG, this.inConfigJSON);
 		this.envFileName = DEFAULT_IN_ENVPROPERTIES;
 		this.outJSON = DEFAULT_IN_OUTCONFIG;
@@ -254,13 +257,41 @@ public class App {
 					if(currentIdentifier != null)
 						propertyName = path + "_" + getEscapedValue(currentIdentifier) + "_" + getEscapedValue(replaceName);
 
+					boolean isSetEnvVar = isSetEnvVar(propertyName);
+					
+					propertyName = getConfigAlias(propertyName);
+					
 					jsonObject.put(replaceName, "${" + propertyName + "}");
 
-					if(!returnProperties.containsKey(propertyName))
+					if(isSetEnvVar && !returnProperties.containsKey(propertyName))
 						returnProperties.put(propertyName, replaceValue);
 				}
 			}
 		}
+	}
+
+	private boolean isSetEnvVar(String propertyName) {
+		if(this.inConfigAliases == null || !this.inConfigAliases.has(propertyName))
+			return true;
+		
+		JSONObject configAliasConfig = (JSONObject) this.inConfigAliases.get(propertyName);
+		
+		if(!configAliasConfig.has("is-apply-envfile"))
+			return true;
+		
+		return configAliasConfig.getBoolean("is-apply-envfile");
+	}
+
+	private String getConfigAlias(String propertyName) {
+		if(this.inConfigAliases == null || !this.inConfigAliases.has(propertyName))
+			return propertyName;
+		
+		JSONObject configAliasConfig = (JSONObject) this.inConfigAliases.get(propertyName);
+		
+		if(!configAliasConfig.has("replace-name"))
+			return propertyName;
+		
+		return configAliasConfig.getString("replace-name");
 	}
 
 	private String getUniqueIdentifier(JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject) {
@@ -308,10 +339,12 @@ public class App {
 			{
 				String propertyName = replace.replace("$", "").replace("{", "").replace("}", "");
 
-				if(!returnProperties.containsKey(propertyName))
-				{
+				boolean isSetEnvVar = isSetEnvVar(propertyName);
+				
+				propertyName = getConfigAlias(propertyName);
+				
+				if(isSetEnvVar && !returnProperties.containsKey(propertyName))
 					returnProperties.put(propertyName, search);
-				}
 			}
 		}
 
