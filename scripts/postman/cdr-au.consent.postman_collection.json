@@ -220,7 +220,7 @@
 									"mode": "raw",
 									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -870,7 +870,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-authcode-callback-id_token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -1152,7 +1152,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-id-token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -1732,7 +1732,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-id-token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -2288,7 +2288,10 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"status\": \"revoked\"\n}"
+									"raw": "{\n    \"status\": \"revoked\"\n}",
+									"options": {
+										"raw": {}
+									}
 								},
 								"url": {
 									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
@@ -2406,7 +2409,10 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"status\": \"accepted\"\n}"
+									"raw": "{\n    \"status\": \"accepted\"\n}",
+									"options": {
+										"raw": {}
+									}
 								},
 								"url": {
 									"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
@@ -3199,7 +3205,7 @@
 								},
 								{
 									"key": "token-endpoint",
-									"value": "{{dh-idp-host}}/as/token.oauth2",
+									"value": "{{dh-idp-host}}/as/par.oauth2",
 									"type": "text"
 								},
 								{
@@ -3282,8 +3288,21 @@
 									"key": "client_assertion_type",
 									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid bank:accounts.basic:read bank:transactions:read",
+									"type": "text"
+								},
+								{
+									"key": "response_type",
+									"value": "code id_token",
+									"type": "text"
 								}
-							]
+							],
+							"options": {
+								"urlencoded": {}
+							}
 						},
 						"url": {
 							"raw": "{{dh-idp-host}}/as/par.oauth2",
@@ -3324,7 +3343,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}?request_uri={{consent-request-uri}}",
+							"raw": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}?request_uri={{consent-request-uri}}&client_id={{dcrClientId}}",
 							"host": [
 								"{{dh-idp-host}}{{dh-idp-authorization-endpoint}}"
 							],
@@ -3332,6 +3351,10 @@
 								{
 									"key": "request_uri",
 									"value": "{{consent-request-uri}}"
+								},
+								{
+									"key": "client_id",
+									"value": "{{dcrClientId}}"
 								}
 							]
 						}
@@ -5688,8 +5711,16 @@
 											"key": "client_assertion_type",
 											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 											"type": "text"
+										},
+										{
+											"key": "response_type",
+											"value": "code id_token",
+											"type": "text"
 										}
-									]
+									],
+									"options": {
+										"urlencoded": {}
+									}
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}/as/par.oauth2",
@@ -5730,7 +5761,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}?request_uri={{consent-request-uri}}",
+									"raw": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}?request_uri={{consent-request-uri}}&client_id={{dcrClientId}}",
 									"host": [
 										"{{dh-idp-host}}{{dh-idp-authorization-endpoint}}"
 									],
@@ -5738,6 +5769,10 @@
 										{
 											"key": "request_uri",
 											"value": "{{consent-request-uri}}"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}"
 										}
 									]
 								}
@@ -8056,7 +8091,10 @@
 													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
 													"type": "text"
 												}
-											]
+											],
+											"options": {
+												"urlencoded": {}
+											}
 										},
 										"url": {
 											"raw": "{{dh-idp-host}}/as/par.oauth2",
@@ -8639,7 +8677,7 @@
 											"mode": "raw",
 											"raw": "{{consent-request-authcode-callback-id_token}}",
 											"options": {
-												"urlencoded": {}
+												"raw": {}
 											}
 										},
 										"url": {
@@ -8902,7 +8940,7 @@
 											"mode": "raw",
 											"raw": "{{consent-request-id-token}}",
 											"options": {
-												"urlencoded": {}
+												"raw": {}
 											}
 										},
 										"url": {
@@ -9220,7 +9258,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-id-token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -10260,7 +10298,7 @@
 									"mode": "raw",
 									"raw": "{{consent-request-id-token}}",
 									"options": {
-										"urlencoded": {}
+										"raw": {}
 									}
 								},
 								"url": {
@@ -11882,107 +11920,107 @@
 	],
 	"variable": [
 		{
-			"id": "8f0661d9-958a-4bed-b9e0-e046e670f981",
+			"id": "ff96b204-0966-460a-aa78-e543ea5cf79a",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "4d34f2fd-599b-4ae1-bffd-8fb195960d3c",
+			"id": "eb463465-6951-4f8c-8513-0627b62600f3",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "f2f6565e-c922-4f62-a9df-b78edd171464",
+			"id": "8fc3ef43-2ec6-4ef8-9196-b799c0d4c0c5",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "a6d3fc77-c65d-45c8-aae1-e3a310b468b4",
+			"id": "28c85e45-0fcf-45bd-8708-043e509969dd",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "157c03dd-f064-422d-9d66-5df4ded56d29",
+			"id": "8879cfd4-4aea-45b0-b308-7bc9045d1b82",
 			"key": "dh-audience",
 			"value": "https://data-holder"
 		},
 		{
-			"id": "adde62f1-414b-4dab-ba02-d01e2adf482c",
+			"id": "eefd6598-ce65-43f3-873d-f367e0a12d7f",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "bf88e4ba-200f-4f3a-b94e-c042c80f242d",
+			"id": "845c7630-9814-4ab9-8388-2f48e5ed4203",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "6dfdc5a1-504b-4187-84bc-29472abd399b",
+			"id": "27a75ede-c4e3-447d-86b2-01c5dbf243c1",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "252562fb-c31b-432a-ac18-c87aef8e66ad",
+			"id": "753f5528-6fcf-4271-be0f-8fd9ded4fd08",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "b2011279-3a50-4c54-8873-78d60079ed6b",
+			"id": "5e37c1b6-8589-4350-a4d8-ba10f7dc8669",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "e8f8e49d-3d95-4aa5-a4e3-beea27795f96",
+			"id": "a8023699-a161-4c74-a658-e0aaa5a7aecd",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "a1c0d320-a9ff-4f8f-8284-be2ccef4b83b",
+			"id": "45186cab-0cb0-40a1-9509-e53b77f66133",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "eb6682d0-63a8-4b1d-9d21-92184d681918",
+			"id": "5941ca5d-5861-4205-a558-b238fdaa368f",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "3b688792-a6ef-4dc9-a121-34a990f52a20",
+			"id": "c77e761f-cf35-4d0d-8bc9-e3865c940037",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "da3d7936-3c7b-4f2e-ae28-d991f18da253",
+			"id": "2e168d06-0f8e-4317-94d7-cf4fb15e767a",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "ec681db5-b039-40c0-a73a-de75bcf81f7a",
+			"id": "55ed963b-daa1-4710-b912-23d7578ce758",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "6de78cac-ef8b-404e-8147-66db89e3552e",
+			"id": "74bdb971-9faf-4242-8340-d9d6bb2bf09d",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "4892f448-211d-4c87-900d-3bd9a124ca7f",
+			"id": "30f5ada1-3126-4b04-b1ce-9cacdf508268",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "dba58b51-8a4a-4e59-bb61-99eab7fe18d8",
+			"id": "219d64ae-812b-4fff-a748-ed24b5955586",
 			"key": "dh-dir-host",
 			"value": "https://pd.data-holder.local"
 		},
 		{
-			"id": "8325af89-1017-4693-9fef-20c8f16dad45",
+			"id": "fc581617-13c2-4184-9ebe-f72d7c6f7526",
 			"key": "pkce-challenge",
 			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "b4f673f7-12ed-4674-a128-cc481f8c65e9",
+			"id": "b510ca73-e27c-43fe-83d3-cd12ead75bdc",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		}
