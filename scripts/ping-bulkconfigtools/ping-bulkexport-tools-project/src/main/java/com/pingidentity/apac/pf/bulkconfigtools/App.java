@@ -17,10 +17,10 @@ import org.json.JSONObject;
 
 public class App {
 
-	private final static String DEFAULT_IN_CONFIG = "in/pa-config.json";
-	private final static String DEFAULT_IN_BULKCONFIG = "in/pa-export.json";
-	private final static String DEFAULT_IN_ENVPROPERTIES = "in/out-pa-env.properties";
-	private final static String DEFAULT_IN_OUTCONFIG = "in/out-pa-bulk-config.json";
+	private final static String DEFAULT_IN_CONFIG = "in/pf-config-2.json";
+	private final static String DEFAULT_IN_BULKCONFIG = "in/pf-export-2.json";
+	private final static String DEFAULT_IN_ENVPROPERTIES = "in/out-pf-env.properties";
+	private final static String DEFAULT_IN_OUTCONFIG = "in/out-pf-bulk-config.json";
 
 	private final JSONObject inConfigJSON;
 	private final JSONArray inConfigExposeParametersArray;
@@ -253,10 +253,13 @@ public class App {
 					else
 						replaceValue = String.valueOf(jsonObject.get(parameterName));
 
-					String currentIdentifier = getUniqueIdentifier(configJSON, jsonObject, parentObject);
+					String currentIdentifier = getUniqueIdentifier(path, configJSON, jsonObject, parentObject);
 
+					if(currentIdentifier == null)
+						continue;
+					
 					String propertyName = path + "_" + replaceName;
-					if(currentIdentifier != null)
+					if(!currentIdentifier.equals(""))
 						propertyName = path + "_" + getEscapedValue(currentIdentifier) + "_" + getEscapedValue(replaceName);
 
 					boolean isSetEnvVar = isSetEnvVar(propertyName);
@@ -329,19 +332,40 @@ public class App {
 		return configNameList;
 	}
 
-	private String getUniqueIdentifier(JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject) {
+	private String getUniqueIdentifier(String path, JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject) {
 		
 		if(configJSON.has("unique-identifiers"))
 		{
 			JSONArray uidArray = (JSONArray) configJSON.get("unique-identifiers");
 			for(Object uidObj : uidArray)
 			{
-				String uid = String.valueOf(uidObj);
+				String uidConfig = String.valueOf(uidObj);
+				String uid = null;
+				String expectedUIDValue = null;
+				
+				if(uidConfig.contains("="))
+				{
+					String[] uidConfigSplit = uidConfig.split("=");
+					uid = uidConfigSplit[0];
+					expectedUIDValue = uidConfigSplit[1];
+				}
+				else
+					uid = uidConfig;
+				
+				String returnUidValue = null;
 				if(jsonObject.has(uid))
-					return String.valueOf(jsonObject.get(uid));
+					returnUidValue = String.valueOf(jsonObject.get(uid));
 				else if(parentObject != null && parentObject.has(uid))
-					return String.valueOf(parentObject.get(uid));
+					returnUidValue = String.valueOf(parentObject.get(uid));
+				
+				if(expectedUIDValue != null && (returnUidValue == null || !returnUidValue.equals(expectedUIDValue)))
+					return null;
+				
+				if(returnUidValue != null)
+					return returnUidValue;
 			}
+			
+			return "";
 		}
 		
 		return null;
