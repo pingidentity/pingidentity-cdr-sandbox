@@ -1,6 +1,6 @@
 .DS_Store
-docker-compose/cdr.env
 docker-compose/local-dr.env
+docker-compose/cdr.env
 *.subst_*
 *.bak
 *backup*
