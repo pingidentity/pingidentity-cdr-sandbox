@@ -73,4 +73,10 @@ dsconfig set-http-servlet-extension-prop \
     --extension-name Consent  \
     --set identity-mapper:user-id-identity-mapper
 
+# [01/Sep/2020:07:50:44.160 +0000] conn=38 op=17 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
+# Undo command: dsconfig delete-http-servlet-cross-origin-policy --policy-name "Consent API CORS Policy"
+dsconfig create-http-servlet-cross-origin-policy --policy-name "Consent API CORS Policy" --set cors-allowed-methods:GET --set cors-allowed-methods:PATCH --set cors-allowed-origins:http://localhost:4200
 
+# [01/Sep/2020:07:51:26.981 +0000] conn=38 op=114 dn='cn=Directory Manager,cn=Root DNs,cn=config' authtype=[Simple] from=172.19.0.3 to=172.19.0.2
+# Undo command: dsconfig set-http-servlet-extension-prop --extension-name Consent --remove "cross-origin-policy:Consent API CORS Policy"
+dsconfig set-http-servlet-extension-prop --extension-name Consent --set "cross-origin-policy:Consent API CORS Policy"

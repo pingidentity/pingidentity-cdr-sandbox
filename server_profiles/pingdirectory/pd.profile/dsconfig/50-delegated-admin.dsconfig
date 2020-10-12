@@ -102,12 +102,14 @@ dsconfig create-identity-mapper   \
 dsconfig create-access-token-validator   \
     --validator-name "pingfederate-validator" \
     --type "ping-federate" \
-    --set enabled:true \
+    --set enabled:false \
     --set "identity-mapper:entryUUIDMatch" \
-    --set "subject-claim-name:Username" \
+    --set "subject-claim-name:sub" \
     --set "authorization-server:pingfederate" \
     --set "client-id:pingdirectory" \
     --set "client-secret:2FederateM0re"
+
+dsconfig create-access-token-validator --validator-name AdminATMValidator --type jwt --set identity-mapper:entryUUIDMatch --set enabled:true --set authorization-server:pingfederate --set jwks-endpoint-path:/ext/AdminJWKS
 
 #
 # Complete the configuration of the Delegated Admin API.

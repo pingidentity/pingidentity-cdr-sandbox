@@ -33,7 +33,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: deepthought-admin-service-environment-variables
-        image: gcr.io/ping-identity/cdr-au/deepthought-admin-service:cdr-1.2-core-002
+        image: cdrsandbox/deepthought-admin-service:20200916
         imagePullPolicy: Always
         name: deepthought-admin-service
         ports:

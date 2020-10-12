@@ -33,7 +33,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: deepthought-bank-api-environment-variables
-        image: gcr.io/ping-identity/cdr-au/deepthought-bank-api-service:cdr-1.2-core-002
+        image: cdrsandbox/deepthought-bank-api-service:20200916
         imagePullPolicy: Always
         name: deepthought-bank-api
         ports:

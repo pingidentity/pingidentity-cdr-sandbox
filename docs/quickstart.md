@@ -10,10 +10,13 @@ The CDR Sandbox is an all-encompassing “black-box” environment created using
   * At least 8GB of RAM available to docker
   
   
-* A GitHub Account **[2 min]**<br>
+* A GitHub Account **[2 min]**<br> 
 https://github.com/join
 
-* A working Ping Identity devops installation **[60 min; allow 1-2 days for credentials]**<br>
+* An active Ping Identity support account **[2 min]**<br>
+https://www.pingidentity.com/en/account/register.html
+
+* A working Ping Identity devops installation **[56 min]**<br>
 https://pingidentity-devops.gitbook.io/devops/getstarted
 
 # Step by Step Guide
@@ -40,6 +43,7 @@ git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git ~/project
     127.0.0.1 api.data-holder.local
     127.0.0.1 dr.data-recipient.local
     127.0.0.1 mockregister.data-holder.local
+    127.0.0.1 pd.data-holder.local
     ```
 3.  Use docker-compose to bring the CDR Sandbox stack up:    
     ```sh

@@ -1,0 +1,13 @@
+{
+  "username": "Administrator",
+  "password": "2FederateM0re",
+  "description": "Initial administrator user.",
+  "auditor": false,
+  "active": true,
+  "roles": [
+    "USER_ADMINISTRATOR",
+    "CRYPTO_ADMINISTRATOR",
+    "EXPRESSION_ADMINISTRATOR",
+    "ADMINISTRATOR"
+  ]
+}

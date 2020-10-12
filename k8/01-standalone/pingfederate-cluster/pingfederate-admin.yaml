@@ -42,7 +42,7 @@ spec:
         - secretRef:
             name: devops-secret
             optional: true
-        image: gcr.io/ping-identity/cdr-au/pingfederate-10.1:20200803
+        image: pingidentity/pingfederate:edge
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 60

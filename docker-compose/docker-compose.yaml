@@ -3,7 +3,7 @@ version: "3.1"
 services:
   pingaccess:
     image: pingidentity/pingaccess:edge
-    command: entrypoint.sh start-server
+    command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - LICENSE_VERSION=6.0
@@ -13,6 +13,7 @@ services:
       - PA_LIMIT_REQUEST_LINE=40960
     env_file:
       - ~/.pingidentity/devops
+      - pa.env
       - cdr.env
     # Example: Examples below for mounting local directories for inbound server profile and persisting
     #          server build.  The local /opt/out directory must be empty when building new server
@@ -28,14 +29,16 @@ services:
       - 9001:9001
     networks:
       - pingnet-dmz
+      - pingnet-internal
 
   pingfederate:
     image: pingidentity/pingfederate:edge
-    command: entrypoint.sh start-server
+    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
       - ~/.pingidentity/devops
+      - pf.env
       - cdr.env
     ports:
       - 9031:9031
@@ -43,6 +46,8 @@ services:
     networks:
       - pingnet-dmz
       - pingnet-internal
+    #volumes:
+    #  - ./pingfederate-out:/opt/out
 
   pingdirectory:
     image: pingidentity/pingdirectory:edge
@@ -58,12 +63,13 @@ services:
     ports:
       - 1636:636
       - 1443:443
+      - 389:389
     networks:
       - pingnet-internal
 
   cdr-dr-client:
     image: cdrsandbox/sample-dr-client:20200916
-    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/hooks/start-service.sh
+    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
