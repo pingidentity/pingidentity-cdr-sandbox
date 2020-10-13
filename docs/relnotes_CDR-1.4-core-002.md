@@ -5,15 +5,13 @@
 ### New Features
 - CDR-11	Configuration Injection method updated to API
 - CDR-10	Replaced Grant Management to use PingDirectory Consent APIs directly
-
-
+- CDR-189	Acheive FAPI RW Certification for new CDR testing profile (https://www.certification.openid.net/plan-detail.html?plan=KbvzUzkOkII3W&public=true)
 
 ### Compliance Alignment
 - CDR-57	9.3 Client Authentication: Data Recipients calling Data Holders
 - CDR-58	10. OIDC Client Types
 - CDR-59	11.1 Consent: OIDC Scopes
 - CDR-67	12.2 Tokens: Access Token
-- CDR-189	FAPI RW Validation
 - CDR-251	Track FAPI compliance issue #820
 - CDR-261	fapi-rw-id2-ensure-valid-pkce-succeeds
 - CDR-276	PKCE for PAR
