@@ -1567,7 +1567,7 @@
                         },
                         {
                             "name": "Logout Mode",
-                            "value": "FRONT"
+                            "value": "NONE"
                         },
                         {
                             "name": "Skip Host Name Validation ",
