@@ -49,7 +49,7 @@ pf-oauth-client-supplemental-info: 37:TOKEN_ENDPOINT_AUTH_SIGNING_ALGORITHM:nul
 pf-oauth-client-supplemental-info: 28:id_token_signed_response_alg:null
 pf-oauth-client-id: deepthought-admin-service
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
-pf-oauth-client-authn-type: NONE
+pf-oauth-client-authn-type: SECRET
 pf-oauth-client-enforce-replay-prevention: FALSE
 pf-oauth-client-bypass-approval-page: FALSE
 
