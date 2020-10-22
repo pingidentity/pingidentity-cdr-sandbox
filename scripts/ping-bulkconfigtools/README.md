@@ -17,7 +17,7 @@ The bulk export process also allows config injection for secrets and keys.
   - Configuration: [data.json.subst](../../server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst)
   - Env Vars: [pa.env](../../docker-compose/pa.env)
 - PingFederate
-  - Configuration: [import-bulkconfig.json.subst](../../server_profiles/pingfederate/instance/import-bulkconfig.json.subst)
+  - Configuration: [import-bulkconfig.json.subst](../../server_profiles/pingfederate/instance/server/default/drop-in-config/003-importbulkconfig/requestBody.json.subst)
   - Env Vars: [pa.env](../../docker-compose/pa.env)
 
 ## Pre-requisites
@@ -79,40 +79,6 @@ Commit the following files to update the configuration:
 
 ### Old hivemodule.xml
 
-If you see something like this...
-
-```
-2020-10-19 13:55:01,191  INFO  [org.sourceid.saml20.domain.mgmt.impl.DataDeployer] Deploying: /opt/out/instance/server/default/conf/data-default.zip
-2020-10-19 13:55:01,297  ERROR [org.sourceid.saml20.domain.mgmt.impl.SslServerPkCertManagerImpl] Unable to get PkCert with alias '1dnwo2o6nuzd1cme89rhyz9u9'
-java.security.KeyStoreException: No password found for key alias: 1dnwo2o6nuzd1cme89rhyz9u9
-	at org.sourceid.saml20.domain.mgmt.impl.PkCertManagerBase.getPkCert(PkCertManagerBase.java:510) ~[pf-protocolengine.jar:?]
-	at org.sourceid.saml20.domain.mgmt.impl.PkCertManagerBase.buildPkCertsCache(PkCertManagerBase.java:450) ~[pf-protocolengine.jar:?]
-	at org.sourceid.saml20.domain.mgmt.impl.PkCertManagerBase.buildPkCertsCacheIfNecessary(PkCertManagerBase.java:406) ~[pf-protocolengine.jar:?]
-	at org.sourceid.saml20.domain.mgmt.impl.PkCertManagerBase.<init>(PkCertManagerBase.java:79) ~[pf-protocolengine.jar:?]
-	at org.sourceid.saml20.domain.mgmt.impl.SslServerPkCertManagerImpl.<init>(SslServerPkCertManagerImpl.java:55) ~[pf-protocolengine.jar:?]
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:?]
-	at jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:?]
-	at jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:?]
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:490) ~[?:?]
-	at org.apache.hivemind.util.ConstructorUtils.invoke(ConstructorUtils.java:139) ~[hivemind.jar:?]
-	at org.apache.hivemind.service.impl.BuilderFactoryLogic.instantiateConstructorAutowiredInstance(BuilderFactoryLogic.java:191) ~[hivemind.jar:?]
-	at org.apache.hivemind.service.impl.BuilderFactoryLogic.instantiateCoreServiceInstance(BuilderFactoryLogic.java:106) ~[hivemind.jar:?]
-	at org.apache.hivemind.service.impl.BuilderFactoryLogic.createService(BuilderFactoryLogic.java:75) ~[hivemind.jar:?]
-	at org.apache.hivemind.service.impl.BuilderFactory.createCoreServiceImplementation(BuilderFactory.java:42) ~[hivemind.jar:?]
-	at org.apache.hivemind.impl.InvokeFactoryServiceConstructor.constructCoreServiceImplementation(InvokeFactoryServiceConstructor.java:62) ~[hivemind.jar:?]
-	at org.apache.hivemind.impl.servicemodel.AbstractServiceModelImpl.constructCoreServiceImplementation(AbstractServiceModelImpl.java:108) ~[hivemind.jar:?]
-	at org.apache.hivemind.impl.servicemodel.AbstractServiceModelImpl.constructNewServiceImplementation(AbstractServiceModelImpl.java:158) ~[hivemind.jar:?]
-	at org.apache.hivemind.impl.servicemodel.AbstractServiceModelImpl.constructServiceImplementation(AbstractServiceModelImpl.java:140) ~[hivemind.jar:?]
-	at com.pingidentity.hivemind.AutoReloadableServiceModel.createServiceImplementation(AutoReloadableServiceModel.java:34) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.AutoReloadableServiceProxy.makeServiceInstance(AutoReloadableServiceProxy.java:142) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.AutoReloadableServiceProxy.lambda$getTarget$1(AutoReloadableServiceProxy.java:137) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.ServiceSet$ServiceReference.get(ServiceSet.java:53) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.ServiceSet.getService(ServiceSet.java:17) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.AutoReloadableServiceProxy.getTarget(AutoReloadableServiceProxy.java:136) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.AutoReloadableServiceProxy.serviceSetReload(AutoReloadableServiceProxy.java:102) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.hivemind.AutoReloadableServiceProxy.lambda$new$0(AutoReloadableServiceProxy.java:33) ~[pf-protocolengine.jar:?]
-	at com.pingidentity.configservice.ReloadRegistry.lambda$reload$0(ReloadRegistry.java:60) ~[pf-protocolengine.jar:?]
-```
 Bulk configuration requires the ability for PingFederate to reload configuration while running. When introduced, certain elements in hivemodule requires model="autoreloadable" to allow reloading of configuration. 
 
 If you have issues, you may have inherited an old hivemodule.xml in your server profile. Check and compare it aligns to the version of PingFederate that you are running.
