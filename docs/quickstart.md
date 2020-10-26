@@ -44,6 +44,7 @@ git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git ~/project
     127.0.0.1 dr.data-recipient.local
     127.0.0.1 mockregister.data-holder.local
     127.0.0.1 pd.data-holder.local
+    127.0.0.1 consent.data-holder.local
     ```
 3.  Use docker-compose to bring the CDR Sandbox stack up:    
     ```sh
