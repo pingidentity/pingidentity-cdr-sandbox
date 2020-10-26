@@ -31,6 +31,20 @@ services:
       - pingnet-dmz
       - pingnet-internal
 
+  agentless-consentapp:
+    image: cdrsandbox/agentless-consentapp:20201026
+#    command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8082:7879
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
   pingfederate:
     image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
