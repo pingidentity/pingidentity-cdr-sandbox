@@ -28,7 +28,7 @@
 
   <filter>
     <filter-name>PARAuthorizationEndpoint</filter-name>
-    <filter-class>com.pingidentity.cdr.par.PARAuthorizationParamFilter</filter-class>
+    <filter-class>com.pingidentity.ps.cdr.pf.cdr.par.PARAuthorizationParamFilter</filter-class>
     <init-param>
       <param-name>PFAgentlessUsername</param-name>
       <param-value>paragentless</param-value>
@@ -328,7 +328,7 @@
 
   <servlet>
     <servlet-name>PARRequest</servlet-name>
-    <servlet-class>com.pingidentity.cdr.par.PARRequestServlet</servlet-class>
+    <servlet-class>com.pingidentity.ps.cdr.pf.cdr.par.PARRequestServlet</servlet-class>
     <init-param>
       <param-name>PFAgentlessUsername</param-name>
       <param-value>paragentless</param-value>
@@ -353,7 +353,7 @@
 
   <servlet>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
-    <servlet-class>com.pingidentity.cdr.sharing_arrangement_id.CDRArrangementServlet</servlet-class>
+    <servlet-class>com.pingidentity.ps.cdr.pf.cdr.sharing_arrangement_id.CDRArrangementServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
