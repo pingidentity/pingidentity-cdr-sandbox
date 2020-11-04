@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "769edd35-3386-4aa2-a348-a9d79abce6ec",
-		"name": "Consent Flow",
+		"_postman_id": "0e8dd247-9232-4937-9a93-49d2b9af8724",
+		"name": "Consent Flow v1.1 - External Consent",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7fe98cd3-0fea-4170-bd73-12814fe854a2",
+										"id": "0473e985-f692-47ee-bda7-9f6b9591b287",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -91,7 +91,7 @@
 										},
 										{
 											"key": "redirect_uri",
-											"value": "https://www.google.com.au,{{default-redirecturi}}",
+											"value": "https://www.google.com.au,{{default-redirecturi}},https://hostname/ext/cdrcb",
 											"type": "text"
 										},
 										{
@@ -132,7 +132,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "da87ec25-4184-4f13-99c8-edd4171618ef",
+										"id": "2b7f883f-0983-400d-9284-9880fbef7dfc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -181,7 +181,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9ac3c84a-c7a0-4e09-a15e-941ab7c3f678",
+										"id": "cb7e1c0a-4732-45de-be7d-0b437356600c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -218,7 +218,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
+									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -244,7 +244,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2a4e2756-45e7-4f2f-8bc2-6e76974ce02a",
+										"id": "c9eb5dba-5359-4c49-a742-383f1b8b7bcf",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -307,7 +307,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "451c11cf-fbfe-4bc1-93d3-e2fc3464d45f",
+								"id": "f9fffda4-a154-43b2-b186-5fbdc64fd417",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -317,7 +317,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9409bf6d-3b43-4dbd-b9e5-c6061df11ac6",
+								"id": "28d4fad2-7918-490f-a625-22f7b45b785c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -333,7 +333,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d24a7ba5-3d7a-4f18-9cde-2521f38fe441",
+						"id": "afba46a4-380a-4f21-bf84-82e2123b55df",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -343,7 +343,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c9ed2c3a-da06-432a-89ef-2c1c21b26dc2",
+						"id": "b79a8030-022f-44fc-bd48-7904a9050114",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -365,7 +365,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2e20d0a1-919d-4966-bd1e-e448a8c1ac3f",
+										"id": "f949bf48-069e-4460-9949-59102395ce4a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -414,7 +414,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9dc57aae-42c1-448e-85f1-0ad2e77f34b8",
+										"id": "e858f67f-0bed-4b78-9b33-a55127393ad1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -500,7 +500,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -525,7 +525,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7833facb-c7f4-4d29-bb12-dc1e904ce600",
+										"id": "8ef3dcd6-f474-458b-9599-42131598a2c0",
 										"exec": [
 											"",
 											"",
@@ -539,7 +539,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -559,7 +560,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e5fd0078-4d4d-4373-ad4b-52e99f80d274",
+										"id": "4a413f85-0f0d-43d7-9629-80ec9cc1fb63",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -609,14 +610,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "df437d39-b714-4908-9b04-c77fc3141339",
+										"id": "71d76674-53f7-466d-b9c2-88f42d8b02c5",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
-											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
-											"});"
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -671,12 +672,137 @@
 							"response": []
 						},
 						{
+							"name": "S002.T001.006 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6e7a4421-3fd4-4679-91ae-3d7e07916ff6",
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S002.T001.006 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "d463b341-dfef-40e4-afb3-b72d2dadf73b",
+										"id": "dac11146-e30f-487f-aa33-b35d5a708a09",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false,
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account}}",
+											"type": "text"
+										},
+										{
+											"key": "approved",
+											"value": "allow",
+											"type": "text"
+										},
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account-2}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-request-consent-completeurl}}",
+									"host": [
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.006 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c0556859-082c-492b-aea3-c40a2face2ad",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
@@ -702,54 +828,15 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"followRedirects": false,
-								"strictSSL": false
+								"followRedirects": false
 							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "accounts",
-											"value": "{{consent-request-consent-account}}",
-											"type": "text"
-										},
-										{
-											"key": "cSRFToken",
-											"value": "{{consent-request-consent-csrf}}",
-											"type": "text"
-										},
-										{
-											"key": "approved",
-											"value": "allow",
-											"type": "text"
-										},
-										{
-											"key": "scopes",
-											"value": "bank:accounts.basic:read",
-											"type": "text"
-										},
-										{
-											"key": "scopes",
-											"value": "bank:transactions:read",
-											"type": "text"
-										},
-										{
-											"key": "accounts",
-											"value": "{{consent-request-consent-account-2}}",
-											"type": "text"
-										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
-								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-ref-redirect}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-ref-redirect}}"
 									]
 								}
 							},
@@ -761,7 +848,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e0e1713d-559c-4ca4-a6b8-85ea415127de",
+										"id": "26325f41-b012-4cc6-b6bc-39ee7728fe2e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -803,7 +890,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3cd2077d-8b10-4967-8d5f-cba8c22eb701",
+										"id": "ac514bda-e263-421e-bafc-6e696359440b",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -893,7 +980,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8166aa63-ac12-4e4c-b53a-69e0adb82884",
+										"id": "c7b67165-94d0-42b3-bf47-c23ebeab179d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -970,7 +1057,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fdde9038-edf5-42c0-8637-50c9601f412b",
+										"id": "ca806355-d536-4282-af7d-daea800ad11b",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1085,7 +1172,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8b14866f-cb24-481b-ac5e-e10321a47204",
+										"id": "505d6969-80d1-4695-9fda-54aae953ad71",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -1174,7 +1261,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a09d4681-caaa-4f63-8502-f96d2c3f860c",
+								"id": "6263e0b7-afc9-4e6b-93a8-69190f8af3fa",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1184,7 +1271,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1100ef66-c2be-4d17-833c-f38d12c9add0",
+								"id": "77e88b84-e84f-4ab2-b2be-a6e46c982eb9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1207,7 +1294,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "6cef8112-c84c-4f0f-a828-f7eff24f3967",
+												"id": "b0fa261e-f768-4e48-9e90-de4bbbb1d626",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1284,7 +1371,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "35025674-e99b-4650-a74a-4b80bda364ec",
+												"id": "1f54f8c6-32c4-446e-9d90-798b47760e46",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1369,7 +1456,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "e9e4b946-0b5a-4b01-b35e-dc2ad27f3242",
+												"id": "8f5629dd-2926-4ba0-bf3d-fa03692d4ccf",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1446,7 +1533,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "84c22704-1f40-4996-82a9-982389266440",
+												"id": "b2185df7-e47a-43ed-a74a-a941d3625f45",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -1525,7 +1612,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "189a3dbc-8b36-4446-b7c9-9c623fc885af",
+										"id": "dbcca2fc-d9af-40a7-b704-b30e7ba1d69e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1602,7 +1689,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a8ef4234-ca22-4dda-aa1d-e8b184fef337",
+										"id": "24ef06fc-a76c-4ae8-bb42-365dc6e2b827",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1683,7 +1770,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d89c1ad1-b842-4fb1-956e-71e7b6051680",
+										"id": "f402776c-f155-4c68-8be9-d6a16f36ead9",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -1754,7 +1841,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2bd5396d-1d60-4cb0-8916-30501e2a365a",
+								"id": "4da1dc2f-dcbd-499c-8c0e-1005b8469c48",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1764,7 +1851,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "750c688c-2ed0-40c1-bb19-60ec079f524d",
+								"id": "a85f44de-8365-4701-9366-bdb24bfd6feb",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1784,7 +1871,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "15953aeb-31c8-4d0b-86ce-651e85c139ea",
+										"id": "9cb0764a-3a81-42bc-b07c-627ec357c7a7",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
@@ -1803,7 +1890,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "3933a137-6b21-44a1-a45b-a834d6ea604e",
+										"id": "4286744e-45bf-4c09-8182-9ad59f7f41c6",
 										"exec": [
 											""
 										],
@@ -1858,7 +1945,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3b7a1e56-cf31-4374-a6ac-b9c0d683b10e",
+										"id": "fbde3cf8-395c-4903-8201-94438bdc0345",
 										"exec": [
 											"",
 											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
@@ -1917,7 +2004,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d20cf9af-61ca-46fb-a36e-47c223961a03",
+								"id": "625c63ba-e370-4c9f-b2da-ea8897956948",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1927,7 +2014,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "dcddddf3-4c9c-460e-9be9-20a9f2ef6fab",
+								"id": "a32616e8-5c17-422c-be4c-ebdd74b8354f",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1947,7 +2034,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5b8ca1ee-b4b3-44d7-bcac-ea5758e4c5c0",
+										"id": "15698982-a17d-4d89-8aa5-2ef62bf5031a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1998,7 +2085,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "692c6b24-0d1c-4735-9e65-d9b6e8bf00e8",
+								"id": "388d2b3a-cd07-4e72-ac0d-d6b6d0fa44e5",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2008,7 +2095,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8c2fdb00-a813-4223-bd45-c638d3eda18c",
+								"id": "aa56e653-065b-4f14-bd2e-15d514ffa766",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2028,7 +2115,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d25c3862-d365-46a6-836c-c0439507f73f",
+										"id": "57bdc1fe-8741-408e-b306-7c58961cc901",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2088,7 +2175,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f0bf2d6a-7334-4430-8a52-044fccbd230b",
+										"id": "0a5e2fa1-d8ba-4089-bae3-b799132b78de",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2149,7 +2236,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d22d7705-c97b-49b6-a132-86ee14e17c67",
+										"id": "2ace2cc7-8897-41b7-9511-ab5ef9afab29",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2202,7 +2289,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f82d790d-31cc-4ff6-a4e3-6e0f887d1691",
+										"id": "66c7eaf0-9661-4bb4-9755-af45c98feea3",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2254,7 +2341,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2917730f-97ca-478f-b363-1e08538f0929",
+										"id": "9d1a88d7-a19e-465e-bc5e-6ddc6ce42294",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2314,7 +2401,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5c50b10e-3fd3-4762-8cd7-46cf1521ba9b",
+										"id": "f909866e-cfcf-4207-863e-5fecb2d988d7",
 										"exec": [
 											"pm.test(\"Validate response status=404\", function () {",
 											"    pm.response.to.have.status(404);",
@@ -2375,7 +2462,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "513721e2-9c8f-4d7c-b32e-236a75f00b62",
+										"id": "685ca963-7c69-4eba-b33e-10f35c28794f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2435,7 +2522,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e1d77486-db20-481b-915b-9b55c99f534e",
+										"id": "45751c8d-9151-44c1-8909-5e8c8793c7c1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2506,7 +2593,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "96e4fca5-9354-4b87-ae05-7142d52c4af1",
+												"id": "1cdbd796-c2d0-40b5-b23c-5198ab036bd0",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -2583,7 +2670,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "a57d91cb-193e-4403-8369-e595065c3bf9",
+												"id": "072cb947-c413-41dc-93c4-12176badd731",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -2658,7 +2745,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "92ee5899-94f3-48e6-bf2c-c9e76301e639",
+												"id": "3c253384-76a7-4ce7-8292-ecfcf36af125",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -2735,7 +2822,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c488bd96-74df-4dc2-89da-0c211ec4dcfa",
+												"id": "56ab5363-0075-4f60-a5a1-8782f5e33641",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -2803,7 +2890,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "2ff5b98c-9dfa-45c7-8d1f-1cef61a3650d",
+										"id": "283d65ae-4600-4889-b138-d17ad05fbf0a",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -2813,7 +2900,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "06931ec2-bc70-4fe5-b8ce-3cf4fc4bc019",
+										"id": "a1f40a73-a54d-48d7-9f52-ba04892aecbc",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -2833,7 +2920,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "878e7925-53fc-4eb3-84f4-172423c5bbc1",
+												"id": "e45d7fe6-b4e5-47f2-9cb4-9e191856b3c6",
 												"exec": [
 													"pm.test(\"Validate response status=404\", function () {",
 													"    pm.response.to.have.status(404);",
@@ -2894,7 +2981,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "fb6c04d5-efe5-418f-ba37-4c6038ae5291",
+												"id": "7471f92f-7cb8-4ed5-9400-730c25686e1a",
 												"exec": [
 													"pm.test(\"Validate response status=404\", function () {",
 													"    pm.response.to.have.status(404);",
@@ -2950,7 +3037,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b7e37169-19c9-4c2a-8397-d592fc7c0fdd",
+								"id": "7b2a9de8-d968-4bdd-8232-47f2b5638650",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2960,7 +3047,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "667c3ff6-685b-4c86-84f1-4d5dae93a252",
+								"id": "76aecffa-ff20-4cb2-b6cd-407cac8205ea",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2976,7 +3063,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "324b17c6-2687-4e00-bcac-d44cac06793b",
+						"id": "6724b617-3352-4a77-af05-c89bc8c1eee7",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -2986,7 +3073,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f4b5de80-fd9e-4ace-a3eb-69b3f1e0a113",
+						"id": "56e4632c-d6cf-49db-bb00-3bf01570cf19",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3005,7 +3092,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "88d1d711-3bfa-4b88-a8ad-b0f5cd5dae5f",
+								"id": "55f17eae-210d-4e7c-b3ff-3df234cedbb8",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -3054,7 +3141,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3d2b1735-56ce-486e-a0b3-57083d1671b2",
+								"id": "719f0bf8-fdb0-4f7f-9dd2-3f7e021dc97f",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -3161,7 +3248,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d1d92caf-f488-42c4-8521-63fec722109a",
+								"id": "ce3eba12-44b8-4257-b5af-edb689987f58",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -3238,7 +3325,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2a335af3-f47e-4a47-819f-33a9c1007bc9",
+								"id": "ec7b970d-4720-4a6a-b4d4-4e593174028c",
 								"exec": [
 									"pm.test(\"Validate response status=201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -3323,7 +3410,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "29a37f6b-3168-45ff-9f0c-861d901c4003",
+								"id": "7254f2e8-2345-4b65-aa34-0293349e62b2",
 								"exec": [
 									"",
 									"",
@@ -3367,7 +3454,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9df23f10-593d-4f4e-9e38-79785a9a24cc",
+								"id": "b462d555-7107-4b4a-8240-68e93c3cb654",
 								"exec": [
 									"pm.test(\"Set environment variables for next test\", function () {",
 									"    const $ = cheerio.load(responseBody);",
@@ -3417,13 +3504,14 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "51eef326-a619-4561-a312-7e8de1a41362",
+								"id": "25c9a82c-5f99-409a-a13e-f0019edf9774",
 								"exec": [
 									"pm.test(\"Set environment variables for next test\", function () {",
 									"    const $ = cheerio.load(responseBody);",
-									"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-									"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-									"});"
+									"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+									"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+									"});",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3478,29 +3566,85 @@
 					"response": []
 				},
 				{
+					"name": "S003.T001.008 - Load Consent Agentless App",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86c0bcc8-6dbd-45cd-a82f-26aaad607ddf",
+								"exec": [
+									"",
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    const $ = cheerio.load(responseBody);",
+									"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+									"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+									"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "allowInteraction",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "connectionId",
+									"value": "{{dcrClientId}}",
+									"type": "text"
+								},
+								{
+									"key": "resumePath",
+									"value": "{{consent-request-nonceurl}}",
+									"type": "text"
+								},
+								{
+									"key": "reauth",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "REF",
+									"value": "{{consent-ref}}",
+									"type": "text"
+								}
+							],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{consent-action}}",
+							"host": [
+								"{{consent-action}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "S003.T001.008 - Perform consent",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "75496d5f-145e-420a-a5d5-cc016841528b",
+								"id": "45c5c82c-bda0-4b8e-8584-b155074a8df0",
 								"exec": [
 									"pm.test(\"Set environment variables for next test\", function () {",
 									"    var locationHeader = pm.response.headers.get(\"Location\");",
-									"    if(!locationHeader)",
-									"        locationHeader = pm.response.headers.get(\"Referer\");",
-									"",
-									"    var locationParams = locationHeader.split(\"#\")[1];",
-									"    const eachParamArray = locationParams.split('&');",
-									"    let params = {};",
-									"    eachParamArray.forEach((param) => {",
-									"        const key = param.split('=')[0];",
-									"        const value = param.split('=')[1];",
-									"        Object.assign(params, {[key]: value});",
-									"    });",
-									"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-									"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-									"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+									"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3548,9 +3692,55 @@
 							}
 						},
 						"url": {
-							"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+							"raw": "{{consent-request-consent-completeurl}}",
 							"host": [
-								"{{dh-idp-host}}{{consent-request-nonceurl}}"
+								"{{consent-request-consent-completeurl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S003.T001.008 - Follow REF Redirect",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "438618dd-dc3a-4c96-85d1-6ec1a53c9977",
+								"exec": [
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    var locationHeader = pm.response.headers.get(\"Location\");",
+									"    if(!locationHeader)",
+									"        locationHeader = pm.response.headers.get(\"Referer\");",
+									"",
+									"    var locationParams = locationHeader.split(\"#\")[1];",
+									"    const eachParamArray = locationParams.split('&');",
+									"    let params = {};",
+									"    eachParamArray.forEach((param) => {",
+									"        const key = param.split('=')[0];",
+									"        const value = param.split('=')[1];",
+									"        Object.assign(params, {[key]: value});",
+									"    });",
+									"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+									"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+									"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+									"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{consent-ref-redirect}}",
+							"host": [
+								"{{consent-ref-redirect}}"
 							]
 						}
 					},
@@ -3562,7 +3752,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b2e5c9db-dfe5-44c4-91c2-3434dd3de506",
+								"id": "0f0cef23-7f1c-4142-b956-cb862cad281e",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -3639,7 +3829,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3de854b5-2220-403d-86d2-65c0d4926638",
+								"id": "8c52dc64-3344-447c-9bf9-11e4904bd56e",
 								"exec": [
 									"pm.test(\"Validate response status=200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -3733,7 +3923,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "44ca477d-62ce-4637-b76f-3e7cde1a91cb",
+						"id": "abba8128-287e-42ac-93b1-dd8ee6560f52",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3743,7 +3933,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "06080960-1af3-4869-a057-cc1637d6f78c",
+						"id": "ed1dcfce-9f9e-4872-9468-03cfd6de9cc1",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3765,7 +3955,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "288c43aa-1532-48a9-86e2-f7bcb29fa8a2",
+										"id": "17983092-4573-4a4b-bbee-eb6ae8708852",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3814,7 +4004,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "21ff7519-f4c0-4e51-8760-870b9b06439d",
+										"id": "c88f3df6-09fb-4b56-a6d8-fbc831e593e9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3925,7 +4115,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3559a88b-3381-4f08-9665-b11df8adc143",
+										"id": "4d304a02-7ab7-425f-84ab-abdd18849f82",
 										"exec": [
 											"",
 											"",
@@ -3959,7 +4149,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5534e411-f691-4131-aa36-f36d094d3082",
+										"id": "776be84b-8886-4f8c-b7db-27da94ae95b9",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -4009,13 +4199,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6d6beb5c-11c7-459e-899f-8e36cd728977",
+										"id": "857bb879-6c41-488b-a19e-f8f8608bc521",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-											"});"
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -4070,29 +4261,85 @@
 							"response": []
 						},
 						{
+							"name": "S004.T001.006 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f9e742a6-2297-4c6a-8563-0d48d3118323",
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S004.T001.006 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "2bb8d18e-dcf2-4453-b67e-08cd62ff4d14",
+										"id": "f6e9d7c0-86e3-4673-93d3-699abf8c9be7",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
-											"    if(!locationHeader)",
-											"        locationHeader = pm.response.headers.get(\"Referer\");",
-											"",
-											"    var locationParams = locationHeader.split(\"#\")[1];",
-											"    const eachParamArray = locationParams.split('&');",
-											"    let params = {};",
-											"    eachParamArray.forEach((param) => {",
-											"        const key = param.split('=')[0];",
-											"        const value = param.split('=')[1];",
-											"        Object.assign(params, {[key]: value});",
-											"    });",
-											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -4140,9 +4387,55 @@
 									}
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-request-consent-completeurl}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S004.T001.006 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0d47a09c-441e-4f42-9c15-8dcfd1f5309b",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-ref-redirect}}",
+									"host": [
+										"{{consent-ref-redirect}}"
 									]
 								}
 							},
@@ -4154,7 +4447,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "76fef14e-de99-4e8a-96d6-766f86c8381a",
+										"id": "a06befea-9e8b-4f8f-8067-1ea45b3ab960",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4231,7 +4524,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e146ec3c-d40f-416e-b780-5dc0072f57ad",
+										"id": "000e1df2-d23c-4f6f-865a-adb67a6f6a75",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4325,7 +4618,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3f24a143-9874-4c96-8f75-8c59160a6b9d",
+								"id": "6e17cde2-943e-44a3-b28a-71dffcb33db3",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4335,7 +4628,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "2772e7a6-1033-4e33-a6c5-ddf1e648b144",
+								"id": "0d3d3075-fd42-4bdb-9f5a-20984d29bfa9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4355,7 +4648,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "df92e652-0137-40f6-9581-e151a8c7fce3",
+										"id": "73f113dc-0560-47f5-bc78-90d0d2895b60",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4432,7 +4725,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f57513ed-fb53-4154-bc26-99e1321c3a79",
+										"id": "c0248628-69e4-40c5-9be6-6530c04a65f7",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4517,7 +4810,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "740035d7-6c48-4e9f-9d3d-1e0c56603292",
+										"id": "d7c39e56-1345-4d0d-b891-a5ca28093279",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4566,7 +4859,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a1a521ae-e84d-4faf-8270-5e36e2f6f3f2",
+										"id": "770077f7-07e4-47d6-b82a-7571e1c4eed5",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4677,7 +4970,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a7b983f6-737e-4a06-83c1-d5e26d49b9a0",
+										"id": "66ac9a8b-95e7-4f00-a8af-309b1db0d654",
 										"exec": [
 											"",
 											"",
@@ -4711,7 +5004,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d07d4c4a-368f-4ee1-92f2-7510cf625969",
+										"id": "fd4d9dc5-5543-4608-b892-77233089bd0d",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -4761,13 +5054,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fde9ab17-8b58-4dfe-bc5e-bb9031c3acb0",
+										"id": "307c1adb-6291-4b2a-a432-a075b4e59e6f",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-											"});"
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -4822,29 +5116,85 @@
 							"response": []
 						},
 						{
+							"name": "S004.T003.006 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "96a7f4e1-b028-4542-8002-d4be60ff470e",
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S004.T003.006 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "56345512-4da5-4937-8afa-e4abb8a81e75",
+										"id": "0d1af567-aec5-4da2-ada6-d4fafc9b81b1",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
-											"    if(!locationHeader)",
-											"        locationHeader = pm.response.headers.get(\"Referer\");",
-											"",
-											"    var locationParams = locationHeader.split(\"#\")[1];",
-											"    const eachParamArray = locationParams.split('&');",
-											"    let params = {};",
-											"    eachParamArray.forEach((param) => {",
-											"        const key = param.split('=')[0];",
-											"        const value = param.split('=')[1];",
-											"        Object.assign(params, {[key]: value});",
-											"    });",
-											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -4892,9 +5242,55 @@
 									}
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-request-consent-completeurl}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S004.T003.006 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "412a8bd2-7eda-4abf-9762-723767ca0a45",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-ref-redirect}}",
+									"host": [
+										"{{consent-ref-redirect}}"
 									]
 								}
 							},
@@ -4906,7 +5302,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d1caa430-c816-4825-9be7-2248bdcec909",
+										"id": "f8fb9685-7f63-4b32-af77-c4094a1f0e47",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4983,7 +5379,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1bd5d760-1f46-44c3-9062-ad9e1ca810ed",
+										"id": "36c9ec2f-350b-46be-89a9-322639d22bdd",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5077,7 +5473,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "40848d85-fd41-443a-a4b8-ea26c51453d2",
+								"id": "67642f28-ccc8-4981-9e93-b65cbd50ade5",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5087,7 +5483,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5384862b-82e7-430e-bee5-c81969123077",
+								"id": "60f3fbf5-36f5-4bee-903b-104cb8a52ef3",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5107,7 +5503,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c508dd36-75f0-48ec-a54d-28a11e395d5b",
+										"id": "11ce66e3-5343-47d5-a8ee-9ee1dcb86b80",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5184,7 +5580,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5598931b-63b9-493d-bc45-4c5d05e57019",
+										"id": "d0242172-4323-4c11-a48a-6f08598d83f1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5262,7 +5658,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a73e14a7-bc73-4769-89d6-0f4682ac4848",
+										"id": "d0260f05-03e7-457b-b5d8-453719978e6a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5339,7 +5735,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "13ab8a3b-f830-4512-aca7-783a23e1ec28",
+										"id": "8dab9eed-f774-4174-b592-68a5c177f0cb",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5424,7 +5820,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e2b09d16-6abd-4b6c-b874-e1ed1abf70c7",
+										"id": "bb7e566f-2693-43c2-a49d-3b6f5880874d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5473,7 +5869,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fa118a8b-4379-4587-bb14-bf93f92fef9a",
+										"id": "3bcdabdc-9e37-4a49-a344-12cbf8491242",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5584,7 +5980,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ddafad73-bc82-4787-9e49-4e64add76b94",
+										"id": "f7be55cb-1513-41a1-8634-106b1152c95a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5661,7 +6057,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4e2d3825-a3f5-42b5-a365-80d27b9de13b",
+										"id": "e49beeae-570a-45c9-9fa3-30a5b476c001",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -5741,7 +6137,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "80b98477-3ea7-4520-8207-3861c9489673",
+										"id": "ed6d19cb-cb7e-46da-a2d5-c40f0d079fd3",
 										"exec": [
 											"",
 											"",
@@ -5785,7 +6181,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "43429bbe-409f-4029-87e1-abd7a80c907b",
+										"id": "17df6673-95cc-4108-a134-7c283102d789",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -5835,13 +6231,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "87013e43-ecab-4fa0-bec2-a0aa55c0060b",
+										"id": "f398f081-214c-4a9a-bc0c-385c9c1a5fc5",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-											"});"
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -5896,29 +6293,85 @@
 							"response": []
 						},
 						{
+							"name": "S004.T005.008 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fa99489a-c554-4d53-aa9f-0a00e14f8f43",
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S004.T005.008 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "a8c34102-eda5-43f6-a868-9a34b6c47867",
+										"id": "a9c0d275-d9e8-4581-826d-ea51efb94d49",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
-											"    if(!locationHeader)",
-											"        locationHeader = pm.response.headers.get(\"Referer\");",
-											"",
-											"    var locationParams = locationHeader.split(\"#\")[1];",
-											"    const eachParamArray = locationParams.split('&');",
-											"    let params = {};",
-											"    eachParamArray.forEach((param) => {",
-											"        const key = param.split('=')[0];",
-											"        const value = param.split('=')[1];",
-											"        Object.assign(params, {[key]: value});",
-											"    });",
-											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -5966,9 +6419,55 @@
 									}
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-request-consent-completeurl}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S004.T005.008 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f340b9af-64e5-47fb-bc6d-5156e45442b2",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-ref-redirect}}",
+									"host": [
+										"{{consent-ref-redirect}}"
 									]
 								}
 							},
@@ -5980,7 +6479,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c4732996-aa39-47fb-a969-2ddd7adae099",
+										"id": "099eb4a9-6e16-4340-b082-14540275fe9b",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6057,7 +6556,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fa138de4-066e-471b-8f12-54a31f3b74b2",
+										"id": "5bc869f9-4e80-4bb4-b8fb-eb07af9be42e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6151,7 +6650,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "06517f60-c251-4d30-bc37-2564e9881e4a",
+								"id": "2b406149-6c4f-4b3a-9330-396116a4dd55",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6161,7 +6660,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ea0345bc-c5f2-4ab4-8bb9-c570c65bbce3",
+								"id": "d7e0db23-5091-4163-80f5-1a4b17ef57df",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6181,7 +6680,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9868d7d6-2ecc-45d9-a7cc-e666ea2f2e55",
+										"id": "655a096d-78c9-418d-8ff8-b3fd5f9741a9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6258,7 +6757,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3ebdde7a-1418-4a36-bfa1-a1d9182ffbba",
+										"id": "51c8e11f-fadf-4eaf-8a27-9785c0b1bd8d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6346,7 +6845,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c1f072c4-e4b9-4b09-8d21-9397d9da6752",
+												"id": "22490dd4-0317-4181-90a4-a24a38bbecdf",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6423,7 +6922,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "82d60e55-0c46-4553-9469-fadbd65e4d44",
+												"id": "21f64dbf-d95d-4000-8319-aec0dcb56968",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -6491,7 +6990,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "0101187e-cbc1-4bb2-bbae-efb3a1b02cba",
+										"id": "af7e02b6-79e1-4f88-b0af-a84197b05bcb",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6501,7 +7000,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "528f0296-05cb-40ef-863d-403623c224d2",
+										"id": "25c6dc5e-040c-4d33-bbbd-14ac57606e46",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6521,7 +7020,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "a0e644b4-11bf-48ea-b823-7882fa6784ed",
+												"id": "2397943a-0049-4ad0-b38c-da82a48772c5",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6598,7 +7097,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "14d54a6f-4dd8-474d-b2e0-ba1d14323ddd",
+												"id": "445b1049-59da-48f7-a918-d6ced9122a7c",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6677,7 +7176,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "05ddc574-23db-4270-b36c-9517cc762482",
+										"id": "e48137aa-7e52-4dec-ba91-8507b0c220f6",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6687,7 +7186,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d9708705-de4e-4c0f-9fa7-c848d73cfb6b",
+										"id": "40980448-f55a-42e0-9820-742d682397f0",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6707,7 +7206,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "34de268a-5850-48a3-bba9-467fe15eb6c6",
+												"id": "b7732434-36d3-4446-9153-5817627213dc",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6784,7 +7283,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "3acafae8-7f95-4878-94e2-36698042565f",
+												"id": "622e5414-b821-42b5-94f2-f4e70bc87832",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6863,7 +7362,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "2e8ea8fb-62dd-448d-8cf1-93b6dca4ba81",
+										"id": "44da6939-540f-4d84-a021-0ad3c4f16c41",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6873,7 +7372,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e2423747-e5e3-40a8-9835-0c1c0e488536",
+										"id": "d0e58510-9082-4ad9-af6c-7dcf37030f55",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -6889,7 +7388,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a3e6866d-10ae-4870-80b9-40ba5e25278a",
+								"id": "43afd105-5939-4c3d-9fdc-3ad1ebfd88e6",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6899,7 +7398,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3f904f29-10b0-4e1f-8791-a21a1260abda",
+								"id": "465b678f-395b-495e-827f-7a3d62f34b59",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6922,7 +7421,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "ac1dd5a6-6738-45d2-8864-325a3f82b0d6",
+												"id": "2f9c9f75-d471-415a-a2b2-c7f1822a751f",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -6999,7 +7498,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "87359d82-5c51-4378-b858-1a7b5a336f7d",
+												"id": "19363669-1612-41d2-ae82-8cbbef5ccaab",
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
@@ -7072,7 +7571,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "f2bee872-7dcb-44e7-a7b9-515fc9206e76",
+												"id": "732afddb-1482-442a-90c7-bfa32becc12a",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7149,7 +7648,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "a003f614-fef9-4399-88da-63555308c076",
+												"id": "c9bc3e19-63fb-4c6e-918e-41789f99678a",
 												"exec": [
 													"pm.test(\"Validate response status=422\", function () {",
 													"    pm.response.to.have.status(422);",
@@ -7210,7 +7709,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "ceee531f-883e-4811-aae8-d7d46edfb02b",
+										"id": "5d9aee7a-d4e6-40d0-a274-012c4d80a3ec",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -7220,7 +7719,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8c230fa0-a9f2-465a-9a9d-6d57f60679b3",
+										"id": "6afbf106-7d2b-4309-8cfd-c7d761b3fe55",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -7240,7 +7739,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "d845a276-eb6a-4b35-9554-a99ed8d4a116",
+												"id": "bec7e131-9819-4563-bf5c-3dae03b4a8c3",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7317,7 +7816,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "8066066f-e9f0-4057-a5b9-372a4953c8cd",
+												"id": "8797533b-e92e-4854-adbc-eda0da41f1ee",
 												"exec": [
 													"pm.test(\"Validate response status=204\", function () {",
 													"    pm.response.to.have.status(204);",
@@ -7390,7 +7889,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "b269ab46-69a3-434f-add0-5e473480865f",
+												"id": "247862fd-f444-49d4-a838-a0b9cb79e30c",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7467,7 +7966,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "b915f1d6-6f69-4a41-afb8-a2ce09671580",
+												"id": "14a16c47-eb59-4f26-8b20-1036a2fea9fa",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -7535,7 +8034,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "1cf37f90-6702-4486-8636-c6f8fb25392e",
+										"id": "ed560c3f-fdb6-485d-b1a3-beb3627eb8a3",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -7545,7 +8044,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bb607312-1bcc-4f96-8d59-e95773564e87",
+										"id": "058e005a-4dca-43c2-ab4a-8bf255949e33",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -7561,7 +8060,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "87eed448-db9c-4914-bd66-45e15e2ad00a",
+								"id": "f07ad912-e028-461e-9235-7a34df848246",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -7571,7 +8070,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "23fe79c5-4fe5-4838-baf1-58d82fe55ca9",
+								"id": "2bb76f0f-6e30-47d2-9ca5-096400fca8bc",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -7594,7 +8093,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "35369972-c7f9-40b2-a4b3-8ef46247bfb0",
+												"id": "45dce326-dd38-4558-836c-bc4c09ae3930",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7643,7 +8142,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "13e897e9-45ea-4db9-9d7e-f058c0f55b4b",
+												"id": "04c8a32c-5b44-4f3f-b129-9db28797aabc",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7754,7 +8253,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "a2ccc9e1-3055-44d2-9e4b-4f4e090fefc6",
+												"id": "8c6db4b3-5e2d-495d-9a6d-8315d3d54f61",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -7784,7 +8283,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "e2c9cd60-0ce1-48cf-8786-5c8b88496624",
+										"id": "e93e27b1-5262-4a66-8e82-a371689310aa",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -7794,7 +8293,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "04b0a9fe-d99f-41ba-a432-bf3190351ecc",
+										"id": "78d66790-6afd-440d-907c-0fd2493bc86d",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -7814,7 +8313,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c43b1124-809b-409e-9ac2-28f0bf553b8f",
+												"id": "37ab6f3d-6366-41fb-bb89-ee6ca25859c1",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7863,7 +8362,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "db116654-bcb3-4708-825e-8bd24f71117f",
+												"id": "f90a250d-d014-4899-bbba-f83e21ab75e8",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -7974,7 +8473,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "59f34562-7875-446a-813a-7c613e0d9354",
+												"id": "b6a8c490-9c26-4f67-8efd-0a6273214c59",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -8051,7 +8550,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "dc620166-7ad9-466e-a8c2-48d94b93da50",
+												"id": "bee8518a-9ce3-421d-bc3a-964620fcd1a2",
 												"exec": [
 													"pm.test(\"Validate response status=400\", function () {",
 													"    pm.response.to.have.status(400);",
@@ -8114,7 +8613,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "1fe0ab5a-1269-4c4d-8767-058db6411f77",
+										"id": "223a77a5-84bc-4cd5-ad31-d806b6bfeef6",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -8124,7 +8623,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2d53a117-81c4-44bc-bd44-635006413632",
+										"id": "98e51571-2be2-4283-b88f-80a81b60553f",
 										"type": "text/javascript",
 										"exec": [
 											""
@@ -8144,7 +8643,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1ec06f86-0214-418b-a3db-0378b64a8023",
+						"id": "9bc62e34-d87e-4757-8a9d-6af0d1f58713",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -8154,7 +8653,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "441ac6ae-a6d9-45fc-8ad8-dc7b92cba12c",
+						"id": "9431ec0a-042a-46ea-a13e-ff28cf509cf7",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -8179,7 +8678,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "86d3860b-2db3-4b73-96fe-f7e8468a39d8",
+												"id": "de0e3b96-af59-44d7-b889-9dbd12559565",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -8228,7 +8727,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "cc1ab9e7-443a-4fac-81f0-d46bc7ab426e",
+												"id": "530b16f6-7393-49fe-aa8c-e1dd808cf823",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -8339,7 +8838,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "0545087e-c937-4d25-a5ff-cdd7d08d87d1",
+												"id": "25af63f9-4887-4b7d-b091-c88c9dcf29db",
 												"exec": [
 													"",
 													"",
@@ -8373,7 +8872,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "3cc48ec3-25ee-4611-a5f8-4b90d07a33fc",
+												"id": "4148e21d-2ac7-4346-84b3-6834368ac266",
 												"exec": [
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    const $ = cheerio.load(responseBody);",
@@ -8423,13 +8922,14 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "6b23efdc-470c-4247-bce3-7e10fea8f29f",
+												"id": "e680aac3-685b-4a70-9abc-c37f6fac2ad5",
 												"exec": [
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    const $ = cheerio.load(responseBody);",
-													"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-													"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-													"});"
+													"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+													"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+													"});",
+													""
 												],
 												"type": "text/javascript"
 											}
@@ -8484,29 +8984,85 @@
 									"response": []
 								},
 								{
+									"name": "S005.T001.006 - Load Consent Agentless App",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "cdb6c356-8c82-4d8c-a2cc-8583b66161fe",
+												"exec": [
+													"",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    const $ = cheerio.load(responseBody);",
+													"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+													"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+													"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "allowInteraction",
+													"value": "true",
+													"type": "text"
+												},
+												{
+													"key": "connectionId",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "resumePath",
+													"value": "{{consent-request-nonceurl}}",
+													"type": "text"
+												},
+												{
+													"key": "reauth",
+													"value": "false",
+													"type": "text"
+												},
+												{
+													"key": "REF",
+													"value": "{{consent-ref}}",
+													"type": "text"
+												}
+											],
+											"options": {
+												"urlencoded": {}
+											}
+										},
+										"url": {
+											"raw": "{{consent-action}}",
+											"host": [
+												"{{consent-action}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "S005.T001.006 - Perform consent",
 									"event": [
 										{
 											"listen": "test",
 											"script": {
-												"id": "2e62e62f-9429-4ccb-896e-3b4e5cd170ee",
+												"id": "766660a5-e961-49ac-a65e-881d32240615",
 												"exec": [
 													"pm.test(\"Set environment variables for next test\", function () {",
 													"    var locationHeader = pm.response.headers.get(\"Location\");",
-													"    if(!locationHeader)",
-													"        locationHeader = pm.response.headers.get(\"Referer\");",
-													"",
-													"    var locationParams = locationHeader.split(\"#\")[1];",
-													"    const eachParamArray = locationParams.split('&');",
-													"    let params = {};",
-													"    eachParamArray.forEach((param) => {",
-													"        const key = param.split('=')[0];",
-													"        const value = param.split('=')[1];",
-													"        Object.assign(params, {[key]: value});",
-													"    });",
-													"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-													"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-													"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+													"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 													"});"
 												],
 												"type": "text/javascript"
@@ -8554,9 +9110,55 @@
 											}
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+											"raw": "{{consent-request-consent-completeurl}}",
 											"host": [
-												"{{dh-idp-host}}{{consent-request-nonceurl}}"
+												"{{consent-request-consent-completeurl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S005.T001.006 - Follow REF Redirect",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "99b2a6be-635a-42cb-8175-ef09e446a4a1",
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var locationHeader = pm.response.headers.get(\"Location\");",
+													"    if(!locationHeader)",
+													"        locationHeader = pm.response.headers.get(\"Referer\");",
+													"",
+													"    var locationParams = locationHeader.split(\"#\")[1];",
+													"    const eachParamArray = locationParams.split('&');",
+													"    let params = {};",
+													"    eachParamArray.forEach((param) => {",
+													"        const key = param.split('=')[0];",
+													"        const value = param.split('=')[1];",
+													"        Object.assign(params, {[key]: value});",
+													"    });",
+													"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+													"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+													"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+													"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{consent-ref-redirect}}",
+											"host": [
+												"{{consent-ref-redirect}}"
 											]
 										}
 									},
@@ -8568,7 +9170,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "cc42dc0d-0979-4adc-bdad-47d60a132d55",
+												"id": "8eb3736b-cef3-4c1b-9759-2a138476ca14",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -8610,7 +9212,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "63b6d129-3c68-434c-8ae2-663c78eb6b97",
+												"id": "909045d5-6223-4c46-997a-c2e9ab4a3f06",
 												"exec": [
 													"",
 													"//CDR ID Token OIDC Requirements",
@@ -8700,7 +9302,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "66efd9ab-421b-491e-b528-1891c99f64cb",
+												"id": "cd0542ff-1665-4e57-8bad-758b2a9de04f",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -8777,7 +9379,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "ea6e0fe4-3894-4f3f-9d96-56a543db9c58",
+												"id": "0cfbc132-8fb7-4f5c-b8c3-87d12af3c169",
 												"exec": [
 													"pm.test(\"Validate response status=200\", function () {",
 													"    pm.response.to.have.status(200);",
@@ -8873,7 +9475,7 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "9d44e956-3999-46d3-ac96-ab914f94b253",
+												"id": "841b4652-f70b-4851-b0b0-6e312c55d81a",
 												"exec": [
 													"",
 													"//CDR ID Token OIDC Requirements",
@@ -8972,7 +9574,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "45003f48-3d2c-4cba-bc35-90ee3614dba2",
+								"id": "692b6154-d3d6-48ac-adf7-80270bade752",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -8982,7 +9584,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "031fcb5f-1db0-4155-8301-5d0ab76a229a",
+								"id": "d28c5dac-fe98-4786-8c57-c9f4e5bded90",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -9002,7 +9604,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "94745cde-936d-4d3c-9446-ba09f02d2293",
+										"id": "12f4f5a6-b516-4bb2-a259-1f31a9dfd631",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9079,7 +9681,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "60936935-4064-46f5-b69a-9f9bb113f124",
+										"id": "8d9e4fea-caf5-4d02-a87a-e58c18585edd",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9164,7 +9766,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c2c12422-5f3e-4f6b-b15a-0de7b07b8e35",
+										"id": "1634a940-b5d3-4551-806d-d20ab010adc4",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9201,12 +9803,12 @@
 							"response": []
 						},
 						{
-							"name": "S005.T002.004 - Test ID Token Copy 2",
+							"name": "S005.T002.004 - Test ID Token",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "21883476-746e-4d61-8b35-c95f775a08f2",
+										"id": "2aae8cbb-14b5-4e85-a840-b62f8064727d",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -9281,7 +9883,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5f06d737-14e3-4880-ab01-eff55976f823",
+										"id": "b6d511c5-17a3-46b2-9e31-935dfe015d83",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9358,7 +9960,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d2bb9345-bdc6-4a71-958b-502d379d2ca9",
+										"id": "c6c692b5-146c-4937-9922-8ae95d83a91c",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -9428,7 +10030,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4d6dfb87-14b6-4e27-af2f-790c805a33cc",
+										"id": "7c488a00-aa88-4714-8f6c-e13e1bd3e085",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9505,7 +10107,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "aeb52f0b-b39c-40d2-97ef-f2d82c08e472",
+										"id": "7c178b30-47b2-4cd3-97e8-a83fb7a57584",
 										"exec": [
 											"pm.test(\"Validate response status=401\", function () {",
 											"    pm.response.to.have.status(401);",
@@ -9576,7 +10178,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "cb665b8e-c483-4620-9ac2-5c872469e3e8",
+								"id": "53b3a647-2295-4874-a44f-c72bef3a407b",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -9586,7 +10188,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "fd9ac5bd-9ba4-429e-a6b7-c8a1e6306387",
+								"id": "fd5464cf-150b-4eeb-8464-dd45de55b30d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -9612,7 +10214,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9d2fed3d-0540-46a7-9442-c95ad579c6f0",
+										"id": "f302983c-423c-4bc1-bd10-3c6fff73a8b0",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9661,7 +10263,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "75bc58b3-ce92-4b19-8862-86640796b470",
+										"id": "f078328a-bd4c-43d1-8716-0ac0698160f8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -9772,7 +10374,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "44afcb65-f914-4426-ac45-d96d8314dcee",
+										"id": "e5114034-c6a4-4d51-a3da-bbe1fc760d1a",
 										"exec": [
 											"",
 											"",
@@ -9806,7 +10408,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d9b91097-9e71-4f2a-9f3a-820d3ba45be5",
+										"id": "606e545d-ff73-481f-90d2-aa071c93467a",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -9856,13 +10458,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "52de82a5-1305-4e8b-9e3c-c39b68c6ca28",
+										"id": "decf8024-4841-457d-afbc-7d6a7d209a78",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).val());",
-											"});"
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -9917,29 +10520,85 @@
 							"response": []
 						},
 						{
+							"name": "S006.T001.006 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "855478e7-0e3d-4b22-8038-acaca6eb63a2",
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S006.T001.006 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "4b1e9d16-63c3-442a-913e-b378e91cbb9f",
+										"id": "ab17afcf-6101-4673-b3b0-18d995be2c8f",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
-											"    if(!locationHeader)",
-											"        locationHeader = pm.response.headers.get(\"Referer\");",
-											"",
-											"    var locationParams = locationHeader.split(\"#\")[1];",
-											"    const eachParamArray = locationParams.split('&');",
-											"    let params = {};",
-											"    eachParamArray.forEach((param) => {",
-											"        const key = param.split('=')[0];",
-											"        const value = param.split('=')[1];",
-											"        Object.assign(params, {[key]: value});",
-											"    });",
-											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -9987,9 +10646,55 @@
 									}
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-request-consent-completeurl}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S006.T001.006 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3852b859-30f5-418d-a2ea-93beb39e0b32",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-ref-redirect}}",
+									"host": [
+										"{{consent-ref-redirect}}"
 									]
 								}
 							},
@@ -10001,7 +10706,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "acdde0ba-20e2-425f-bfac-3f857f709ab5",
+										"id": "545968d5-82b2-484b-ad36-ea276566b0b6",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10078,7 +10783,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "63bac7e0-4e92-4f6b-b7b4-04eb3501b421",
+										"id": "7d977f63-1d1b-4908-966b-dc23bcf44712",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10189,7 +10894,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c37e7e38-ba16-4a32-b642-a0f782925eb7",
+										"id": "f74e7b13-da77-4fb9-8095-06197c4a0a5e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10231,7 +10936,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7535201f-ce8e-4a1b-a91c-1a88fdc9c788",
+										"id": "d9c26e77-2c57-4212-b78a-73656c2172de",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -10321,7 +11026,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8f615ce7-e5a8-4964-929e-cb0a9febbd35",
+										"id": "86b4855d-1d4b-4358-ae4c-cc768b43cf0c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10382,7 +11087,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "13151d66-6f2c-44d6-836d-0a25e51ac06a",
+										"id": "30479bdf-0ebd-4879-a03c-fdc363e6facf",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10429,7 +11134,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "7093b3c5-6bd2-4d05-bd49-2e85de806ff3",
+								"id": "0aa9403d-c825-4b6c-a380-5f46dfd024e2",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -10439,7 +11144,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b3ad4440-b1ae-4996-9da9-ae164658c83b",
+								"id": "81191421-5746-41a5-b77c-8902f880fcf5",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -10459,7 +11164,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ad6773f9-9e70-4fcf-bde4-d80453733323",
+										"id": "2bb5e852-cf73-4ab9-8a4f-9264be128a41",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10508,7 +11213,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "737f401e-daa5-4b7f-9c9e-7c147444e517",
+										"id": "ca7f18c1-7f28-409b-ade7-65254b6bc063",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10619,7 +11324,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c43101d6-6e6b-40da-a07a-5c5458688843",
+										"id": "45597e27-ddaf-497d-9c18-9a344bf35f78",
 										"exec": [
 											"",
 											"",
@@ -10653,7 +11358,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "446485d4-a0b2-4e62-b25a-10a4cd8b760a",
+										"id": "ebd6fdcf-b300-40b0-8931-c76fe69e74e5",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10764,7 +11469,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "02539e25-9659-4896-9889-d5594db4c9db",
+										"id": "49fe20c5-59b8-4bbe-8ad3-ecfaf294ae88",
 										"exec": [
 											"",
 											"",
@@ -10798,7 +11503,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7211782a-ac02-4226-87f4-046c7d21fc88",
+										"id": "a6713828-6311-4e8a-a757-4dbffb29f560",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -10909,7 +11614,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "085fd8ff-c705-47c1-b350-36cef68422c7",
+										"id": "4e3644bd-d038-4456-8b6c-5925a61fe1ec",
 										"exec": [
 											"",
 											"",
@@ -10942,7 +11647,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "31796d8f-0b65-45d9-8c22-2c8c0c03e6ed",
+								"id": "ea4b6594-ec52-4bbd-b45a-76bd65aa866e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -10952,7 +11657,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "01a8ba1e-daa3-47e8-bc42-4c1b63c59cdf",
+								"id": "45e8643d-11d4-4ea8-92e8-ca13e475db4c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -10968,7 +11673,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "87f6510f-86d4-4abb-813d-e6f0a89d13bb",
+						"id": "91a9964d-e391-4899-901c-01871c3bd917",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -10978,7 +11683,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e48edc36-47fd-4291-8c9c-74869af50aa5",
+						"id": "51a838bb-13e2-4165-b23b-972ccf5fb0fd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -10998,7 +11703,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2f4f0f9e-33db-40aa-a300-46726676e7b1",
+								"id": "26521cdf-24d4-4f16-83f0-3cf4af7b5989",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -11008,7 +11713,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "53bdf943-241f-4bfa-919a-1e54a633f600",
+								"id": "9d6a9295-20bd-4087-8716-041b01e4bf01",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -11028,7 +11733,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "08bf1092-bf9b-46f7-b4b8-5a10349ed514",
+										"id": "b4b0bca5-4dbb-4f69-adad-127ab811f757",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -11077,7 +11782,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "47edddcf-92d5-498f-87df-36e7e4f70b7c",
+										"id": "bb624f0c-45f9-42dc-833c-d02be3f7028e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -11188,7 +11893,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a10a26e0-629d-4c59-a3ec-a23106128c89",
+										"id": "18a81abe-74bd-4e3e-abb5-c0980a19f25f",
 										"exec": [
 											"",
 											"",
@@ -11217,12 +11922,12 @@
 							"response": []
 						},
 						{
-							"name": "S002.T001.004 - Provide username",
+							"name": "S008.T001.004 - Provide username",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "8585c739-bcfd-4e0b-a45c-81a16705b58e",
+										"id": "0123507b-2ffa-4c0d-aee8-ecd36b680df6",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
@@ -11272,14 +11977,14 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b3a5f248-dfe7-40bd-a553-585e324d3b6f",
+										"id": "a7a372cc-4eaf-4f98-a464-30937df2c2ea",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    const $ = cheerio.load(responseBody);",
-											"    pm.environment.set(\"consent-request-consent-csrf\", $( \"input[name='cSRFToken']\" ).val());",
-											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
-											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
-											"});"
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -11334,30 +12039,85 @@
 							"response": []
 						},
 						{
+							"name": "S008.T001.006 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1ce601a4-0190-4c35-8c2c-5bca5de00f8b",
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									],
+									"options": {
+										"urlencoded": {}
+									}
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S008.T001.006 - Perform consent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "664cddd6-47af-48c3-9762-6ef60096d35a",
+										"id": "fe3f6b09-d839-44e0-bb5c-9239d376786e",
 										"exec": [
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var locationHeader = pm.response.headers.get(\"Location\");",
-											"    if(!locationHeader)",
-											"        locationHeader = pm.response.headers.get(\"Referer\");",
-											"",
-											"    var locationParams = locationHeader.split(\"#\")[1];",
-											"    const eachParamArray = locationParams.split('&');",
-											"    let params = {};",
-											"    eachParamArray.forEach((param) => {",
-											"        const key = param.split('=')[0];",
-											"        const value = param.split('=')[1];",
-											"        Object.assign(params, {[key]: value});",
-											"    });",
-											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
-											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
-											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
-											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -11410,9 +12170,55 @@
 									}
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"raw": "{{consent-request-consent-completeurl}}",
 									"host": [
-										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S008.T001.006 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3ecc26d8-d7e9-4348-a61d-1e2dacd3ba77",
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-ref-redirect}}",
+									"host": [
+										"{{consent-ref-redirect}}"
 									]
 								}
 							},
@@ -11424,7 +12230,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c5d9557e-10ab-4287-8908-38db61315e2f",
+										"id": "2992c32c-8972-405c-bff7-7829112f8bf6",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -11466,7 +12272,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4a5f9a66-44f4-4e4f-8dc2-712ac4353169",
+										"id": "af4c6195-9fbf-4815-90f0-c2907826114a",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -11556,7 +12362,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a233115e-0e27-4ce9-9f55-34bdbb443181",
+										"id": "4a4a5cbc-21bb-4e80-8e87-1002c769fcab",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -11633,7 +12439,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "961c1f4a-a1cd-43bf-ba51-792c52e336ce",
+										"id": "064b100c-9ca2-4e7c-a199-f1f680d93a73",
 										"exec": [
 											"_.test_http_status(200,pm.response);",
 											"var response_params = ['access_token','id_token','refresh_token'];",
@@ -11729,7 +12535,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "678a7d54-9a3e-4e5b-81c4-2583bf453090",
+										"id": "3a6be8ed-993b-424a-94c9-2abf3ddf5632",
 										"exec": [
 											"",
 											"//CDR ID Token OIDC Requirements",
@@ -11818,7 +12624,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4a787738-3355-4668-9178-16695db667ca",
+								"id": "4f2849cc-c991-4d56-be9b-d0fb963d3ae1",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -11828,7 +12634,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ae2e6716-eb15-44e2-b9c1-ecb6989c6e4a",
+								"id": "810d0078-bc74-4f20-8e85-c3189f6459e2",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -11844,7 +12650,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "31061a15-d83e-4897-979c-afaab2bdb2ed",
+						"id": "64ba26a4-7e63-4397-ba8e-0c5ade908506",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -11854,7 +12660,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "48ee7780-2273-4eeb-bcbc-206424c343b2",
+						"id": "d6ff55c1-3626-4322-884f-6a4783984f92",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -11869,7 +12675,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "8d1fb4e6-2f09-4569-9240-b85fba1ea683",
+				"id": "3ecd9ad5-13a7-4b09-a9d0-bc1b07790d6b",
 				"type": "text/javascript",
 				"exec": [
 					"Object.prototype.jwt_decode_payload = function(jwt) {",
@@ -11910,7 +12716,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "b3329356-0985-4b52-b37c-6f35af8c2aaa",
+				"id": "757b75fb-c6de-47e1-9eff-adc9f3d8f56e",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -11920,107 +12726,102 @@
 	],
 	"variable": [
 		{
-			"id": "ff96b204-0966-460a-aa78-e543ea5cf79a",
+			"id": "db6b9dc2-56ca-4f55-a254-634faaf2fca1",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "eb463465-6951-4f8c-8513-0627b62600f3",
+			"id": "fba50aa7-9e55-43a2-a6f7-7f5e812fb7da",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "8fc3ef43-2ec6-4ef8-9196-b799c0d4c0c5",
+			"id": "7f29aa23-0560-49d8-b7d5-0e7d3cc565ff",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "28c85e45-0fcf-45bd-8708-043e509969dd",
+			"id": "ad59e6d9-fb1a-448f-a976-fae02eb85b59",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "8879cfd4-4aea-45b0-b308-7bc9045d1b82",
-			"key": "dh-audience",
-			"value": "https://data-holder"
-		},
-		{
-			"id": "eefd6598-ce65-43f3-873d-f367e0a12d7f",
+			"id": "9b2ca8be-d651-4442-990f-4400f85df119",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "845c7630-9814-4ab9-8388-2f48e5ed4203",
+			"id": "634cd2fc-1793-4cc8-a137-61ce84b70f3c",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "27a75ede-c4e3-447d-86b2-01c5dbf243c1",
+			"id": "8d271cee-dc1a-4d4b-b860-eb644f7793c4",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "753f5528-6fcf-4271-be0f-8fd9ded4fd08",
+			"id": "8fd6e34d-f33a-4620-adc6-029686dfb867",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "5e37c1b6-8589-4350-a4d8-ba10f7dc8669",
+			"id": "7f6f7b53-832d-4fa3-89b6-6b508a8b0d60",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "a8023699-a161-4c74-a658-e0aaa5a7aecd",
+			"id": "2760c3ad-6967-4d52-a31e-f2d226ced803",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "45186cab-0cb0-40a1-9509-e53b77f66133",
+			"id": "656abf0c-32e2-420b-9bfb-05a14ed4fa5d",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "5941ca5d-5861-4205-a558-b238fdaa368f",
+			"id": "3e6bc9a9-4913-4f35-a730-80e1832ac9bf",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "c77e761f-cf35-4d0d-8bc9-e3865c940037",
+			"id": "3bec0601-df15-4b6e-9200-431edd0ec3f3",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "2e168d06-0f8e-4317-94d7-cf4fb15e767a",
+			"id": "ae2f7dcd-e48d-480e-b523-a6fc92e4c5ce",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "55ed963b-daa1-4710-b912-23d7578ce758",
+			"id": "8f419970-c293-4725-923e-674b76331831",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "74bdb971-9faf-4242-8340-d9d6bb2bf09d",
+			"id": "58df2fa4-1b40-484b-9243-3d2ebee09f2c",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "30f5ada1-3126-4b04-b1ce-9cacdf508268",
+			"id": "505dd17e-8bd5-4d19-9bd4-4e95339ae9a0",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "219d64ae-812b-4fff-a748-ed24b5955586",
+			"id": "42874c65-e9a7-44ea-b2f8-f7f9f820d2e3",
 			"key": "dh-dir-host",
 			"value": "https://pd.data-holder.local"
 		},
 		{
-			"id": "fc581617-13c2-4184-9ebe-f72d7c6f7526",
+			"id": "2a3bab70-4e4d-42b7-8168-33840de5fe10",
 			"key": "pkce-challenge",
 			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "b510ca73-e27c-43fe-83d3-cd12ead75bdc",
+			"id": "579ae228-ec22-411d-9e30-118543944761",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		}

@@ -35,7 +35,7 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
    
 ## Execute a Consent Flow Runner Test
 1. Click the "Runner" button
-2. Select "Consent Flow" in the All Collections window
+2. Select "Consent Flow v1.1 - External Consent" in the All Collections window
 3. Click  the "Run Consent Flow" button
 4. Verify all tests passed
 
@@ -43,7 +43,7 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
 
 > Note: To execute individual requests you must specify a Postman "Environment". If none exists please create an empty Environment and ensure its selected.
 
-1. Expand the Consent Flow collection in the left pane
+1. Expand the "Consent Flow v1.1 - External Consent" collection in the left pane
 2. Expand S001 Create Client | S001.T001 Create Client
 3. Select each request and click "Send" in order
 4. Expand S002 Consent Flow - Happy Scenario

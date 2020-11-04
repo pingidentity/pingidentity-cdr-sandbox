@@ -1,10 +1,17 @@
 {
   "config-aliases":[
+        {
+          "config-names":[
+            "administrativeAccounts_items_Administrator_password"
+          ],
+          "replace-name": "PING_IDENTITY_PASSWORD",
+          "is-apply-envfile": false
+        },
 	{
 	  "config-names":[
-	    "administrativeAccounts_items_Administrator_password"
+	    "idp_adapters_items_consentAgentlessAdapter_configuration_fields_Pass_Phrase_value"
 	  ],
-  	  "replace-name": "PING_IDENTITY_PASSWORD",
+  	  "replace-name": "CONSENT_APP_agentless_password",
   	  "is-apply-envfile": false
   	}
   ],

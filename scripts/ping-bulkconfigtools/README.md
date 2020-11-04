@@ -17,7 +17,7 @@ The bulk export process also allows config injection for secrets and keys.
   - Configuration: [data.json.subst](../../server_profiles/pingaccess/instance/data/start-up-deployer/data.json.subst)
   - Env Vars: [pa.env](../../docker-compose/pa.env)
 - PingFederate
-  - Configuration: [import-bulkconfig.json.subst](../../server_profiles/pingfederate/instance/import-bulkconfig.json.subst)
+  - Configuration: [import-bulkconfig.json.subst](../../server_profiles/pingfederate/instance/server/default/drop-in-config/003-importbulkconfig/requestBody.json.subst)
   - Env Vars: [pa.env](../../docker-compose/pa.env)
 
 ## Pre-requisites

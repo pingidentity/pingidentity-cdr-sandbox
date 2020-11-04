@@ -6,14 +6,16 @@ pf-oauth-client-last-modified: 1586349581497
 pf-oauth-client-restrict-scopes: FALSE
 pf-oauth-client-require-signed-requests: FALSE
 pf-oauth-client-grant-type: implicit
+pf-oauth-client-grant-type: client_credentials
 pf-oauth-client-grant-type: authorization_code
 pf-oauth-client-redirect-uri: http://localhost:4200
 pf-oauth-client-supplemental-info: 22:ALLOW_EXCLUSIVE_SCOPES:true
 pf-oauth-client-supplemental-info: 44:BYPASS_ACTIVATION_CODE_CONFIRMATION_OVERR
  IDE:null
+pf-oauth-client-hashed-secret: vF6KGbzc8MEdmtJ2ZYSBWWKmyFBKmYHCsjjt-jgJ630.zNz3PhVQ.2
 pf-oauth-client-supplemental-info: 18:pf_ecm_is_admin_00:true
 pf-oauth-client-supplemental-info: 19:DEVICE_FLOW_SETTING:SERVER_DEFAULT
-pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:null
+pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:adminATM
 pf-oauth-client-supplemental-info: 32:DEVICE_POLLING_INTERVAL_OVERRIDE:null
 pf-oauth-client-supplemental-info: 26:PING_ACCESS_LOGOUT_CAPABLE:false
 pf-oauth-client-supplemental-info: 23:RESTRICT_RESPONSE_TYPES:false
@@ -47,7 +49,7 @@ pf-oauth-client-supplemental-info: 37:TOKEN_ENDPOINT_AUTH_SIGNING_ALGORITHM:nul
 pf-oauth-client-supplemental-info: 28:id_token_signed_response_alg:null
 pf-oauth-client-id: deepthought-admin-service
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
-pf-oauth-client-authn-type: NONE
+pf-oauth-client-authn-type: SECRET
 pf-oauth-client-enforce-replay-prevention: FALSE
 pf-oauth-client-bypass-approval-page: FALSE
 
