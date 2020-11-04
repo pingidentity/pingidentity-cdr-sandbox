@@ -218,7 +218,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-audience}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
+									"raw": "{\n  \"iss\": \"{{softwareId}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"{{default-redirecturi}}\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
 									"options": {
 										"urlencoded": {}
 									}
@@ -500,7 +500,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\"\n}",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}",
 									"options": {
 										"raw": {}
 									}
@@ -692,6 +692,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -723,7 +726,10 @@
 											"value": "{{consent-ref}}",
 											"type": "text"
 										}
-									]
+									],
+									"options": {
+										"urlencoded": {}
+									}
 								},
 								"url": {
 									"raw": "{{consent-action}}",
@@ -767,27 +773,9 @@
 											"type": "text"
 										},
 										{
-											"key": "cSRFToken",
-											"value": "{{consent-request-consent-csrf}}",
-											"type": "text",
-											"disabled": true
-										},
-										{
 											"key": "approved",
 											"value": "allow",
 											"type": "text"
-										},
-										{
-											"key": "scopes",
-											"value": "bank:accounts.basic:read",
-											"type": "text",
-											"disabled": true
-										},
-										{
-											"key": "scopes",
-											"value": "bank:transactions:read",
-											"type": "text",
-											"disabled": true
 										},
 										{
 											"key": "accounts",
@@ -3589,6 +3577,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"followRedirects": true
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -4278,6 +4269,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -5127,6 +5121,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -6295,6 +6292,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -8977,6 +8977,9 @@
 											}
 										}
 									],
+									"protocolProfileBehavior": {
+										"followRedirects": true
+									},
 									"request": {
 										"method": "POST",
 										"header": [],
@@ -10507,6 +10510,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -12020,6 +12026,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -12681,107 +12690,102 @@
 	],
 	"variable": [
 		{
-			"id": "7c96fef1-b1ec-40af-8aa3-7e942b97934b",
+			"id": "29e04142-4bf8-41da-89a3-977d14d14ccb",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "c1ca20b3-528e-42be-a43a-3d56de2d3428",
+			"id": "e685ea9a-a4b7-4a92-b543-76cbc6bf7999",
 			"key": "dh-idp-host",
-			"value": "https://sso.data-holder.local:7443"
+			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "ed871709-6ca1-43aa-b0b8-79f97c2a4a51",
+			"id": "ffcbb313-6f44-4262-8474-3fbf5fae8929",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "95b31643-37d4-4034-a2c9-75482c2b750f",
+			"id": "1350d6de-fdf2-4bf6-b6ab-483a5dc98934",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "61a7fa60-3f83-44b2-8252-21ce053deb3a",
-			"key": "dh-audience",
-			"value": "https://data-holder"
-		},
-		{
-			"id": "824c05d9-2982-48e3-bed8-9623f164bdc7",
+			"id": "9ec38971-496f-491c-9350-83cbeac291ee",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "97697053-cd83-4fa5-baef-c4be3541e698",
+			"id": "49be4e00-bea8-42f3-9e5f-585821fe606b",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "1dea1029-0612-4ffa-95b3-51bb5cf4dcb8",
+			"id": "45311811-45b9-44c8-a7a2-fc139bc300df",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "1c853c26-8fe7-4b44-8c36-d65bcb0c803d",
+			"id": "b81e269f-ce3f-4a0b-9a02-1b4c936f4a27",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "b712790d-a701-412e-8b84-7d9e95df021d",
+			"id": "4e0f5dda-a1cc-41c1-ad8a-b7cdf4944421",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "872b5bf1-eca7-47e6-9c30-4692184e40cc",
+			"id": "2817ea97-11de-414c-9a60-8210b107d802",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "818a7b18-e9ce-4e69-b08b-944f4e1cee93",
+			"id": "bcfc04ea-72f8-49db-8375-a0a072b33bbb",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "4332498f-4903-4c67-b46b-860850f4d7ba",
+			"id": "e3c6f5df-17f7-4557-978a-198e4075ac6d",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "53c74f40-e020-4634-b666-af75133757ae",
+			"id": "e23779fc-3caf-4eab-8500-06e5d9cf6ff7",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "34e869d1-d093-4916-9d70-d7ffb3f9e475",
+			"id": "1279edf3-eefe-487e-81f2-6ce3d44510d5",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "696b0aca-7296-425c-8303-7cd8ced0b19a",
+			"id": "9beaf3e9-04a3-42b4-93dd-159630856793",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "6c9a9f0e-9d54-4ae1-ba59-956b4ee9ba99",
+			"id": "623bb3e1-ce43-44e7-908a-229939e2a9f9",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "5834d283-2d94-4c15-912f-ff9e28804597",
+			"id": "3e99132e-2a26-422a-ade4-337d488bd3b5",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "27803f25-d0ec-4d16-94fe-1fa35c8aaaf7",
+			"id": "53d00ed6-afa6-4f53-96f8-90bb9d60ef61",
 			"key": "dh-dir-host",
 			"value": "https://pd.data-holder.local"
 		},
 		{
-			"id": "3ea62ee1-eca8-4113-a630-f68f3a1df736",
+			"id": "4e038b52-712e-49ff-823c-cf3b67fce741",
 			"key": "pkce-challenge",
 			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "08df02b2-ec81-4e03-87af-c9b14bf6ff2a",
+			"id": "b8e3e65c-1175-48e0-bf8e-6bcdc924775b",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		}
