@@ -86,6 +86,25 @@ docker ps -f "name=pingdirectory"
 ```
 And verify that the value of STATUS is “healthy”
 
+### Reset Client DH_Host Parameter
+ > There is currently a known issue with the inital setup of the DR Client configuration. The follow is only required to be run once each time teh SandBox is run.
+ 
+1. Log into the PingFederate management console
+    * Go to https://localhost:9999/pingfederate/app
+    * Log in with `Administrator / 2FederateM0re'
+
+2. Click on the **Oauth Clients** icon
+
+3. Select the Oauth Client starting with "dcr". If there are multiple perform steps 4 to 6 for all.
+
+4. Identify the **dh_host** entry and click the "Edit" link
+
+5. Set the value to **sso.data-holder.local**
+
+6. Click on the "Update" link and then "Save"
+
+7. Sign Out of the Administration Screen
+
 ### Running the DR Client
 
 1.  Open your web browser and goto:<br>
