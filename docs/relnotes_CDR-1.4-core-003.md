@@ -4,12 +4,12 @@
 
 ### New Features
 
-## Sanbox now built to use CDR Integration Kit
+#### Sandbox now built to use CDR Integration Kit
 - CDR-292	Test PSE supported PA module
 - CDR-298	Create Agentless Adapter sample consent application
 - CDR-300	Update sandbox to use PS provided IK
 
-## Simplified configuration management between pipeline deployments
+#### Simplified configuration management between pipeline deployments
 - CDR-299	Decomission custom config hooks in favour of the new devops hooks	Task
 
 ### Compliance Alignment
