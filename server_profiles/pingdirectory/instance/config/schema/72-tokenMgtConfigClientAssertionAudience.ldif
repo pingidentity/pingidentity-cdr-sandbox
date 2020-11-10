@@ -1,7 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtConfigClientAssertionAudience-OID NAME 'tokenMgtConfigClientAssertionAudience' SINGLE-VALUE USAGE userApplications )
-

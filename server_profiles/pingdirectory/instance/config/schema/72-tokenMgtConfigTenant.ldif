@@ -1,6 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtConfigTenant-OID NAME 'tokenMgtConfigTenant' SINGLE-VALUE USAGE userApplications )

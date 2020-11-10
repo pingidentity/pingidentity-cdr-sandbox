@@ -1,7 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtAuthCode-OID NAME 'tokenMgtAuthCode' SINGLE-VALUE USAGE userApplications )
-

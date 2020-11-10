@@ -1,7 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtRefreshToken-OID NAME 'tokenMgtRefreshToken' SINGLE-VALUE USAGE userApplications )
-

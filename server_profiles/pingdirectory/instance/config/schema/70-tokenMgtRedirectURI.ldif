@@ -1,7 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtRedirectURI-OID NAME 'tokenMgtRedirectURI' SINGLE-VALUE USAGE userApplications )
-

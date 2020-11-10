@@ -1,7 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtIDTokenJSON-OID NAME 'tokenMgtIDTokenJSON' SYNTAX 1.3.6.1.4.1.30221.2.3.4 SINGLE-VALUE USAGE userApplications )
-

@@ -1,7 +1,0 @@
-dn: cn=schema
-objectClass: top
-objectClass: ldapSubentry
-objectClass: subschema
-cn: schema
-attributeTypes: ( tokenMgtExpectedNonce-OID NAME 'tokenMgtExpectedNonce' SINGLE-VALUE USAGE userApplications )
-
