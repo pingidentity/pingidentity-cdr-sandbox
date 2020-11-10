@@ -1,0 +1,7 @@
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+attributeTypes: ( tokenMgtClientId-OID NAME 'tokenMgtClientId' SINGLE-VALUE USAGE userApplications )
+

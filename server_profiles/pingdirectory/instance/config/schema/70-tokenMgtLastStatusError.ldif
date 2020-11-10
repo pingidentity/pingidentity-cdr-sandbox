@@ -1,0 +1,9 @@
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+attributeTypes: ( tokenMgtLastStatusError-OID NAME 'tokenMgtLastStatusError' SINGLE-VALUE USAGE userApplications )
+
+
+
