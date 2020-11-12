@@ -11,6 +11,7 @@ resources:
 - ../01-standalone/deepthought-bank-api
 - ../01-standalone/deepthought-h2-database
 - ../01-standalone/cdr-dr-client
+- ../01-standalone/agentless-consentapp
 
 # The only difference in standalone deployments vs "fullstack" (integrated) is the product configurations. 
 # here we replace standalone server-profiles ("getting-started") with "baseline" for each product
@@ -81,6 +82,12 @@ configMapGenerator:
     - devops
     - env_vars.common
     - env_vars.cdr-dr-client
+- name: agentless-consentapp-environment-variables
+  behavior: replace
+  envs:
+    - devops
+    - env_vars.common
+    - env_vars.agentless-consentapp
 
 patches:
 - target:

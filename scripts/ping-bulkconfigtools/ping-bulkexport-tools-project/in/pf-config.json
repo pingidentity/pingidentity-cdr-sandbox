@@ -22,6 +22,11 @@
       "apply-env-file": false
     },
     {
+      "search": "https://consent.data-holder.local",
+      "replace": "${CONSENT_BASEURL}",
+      "apply-env-file": false
+    },
+    {
       "search": "data-holder.local",
       "replace": "${BASE_HOSTNAME}",
       "apply-env-file": false
