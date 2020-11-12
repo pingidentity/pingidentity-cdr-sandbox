@@ -132,6 +132,34 @@ spec:
 
 ---
 
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pingaccess-agentlessconsent-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    kubernetes.io/ingress.class: nginx-public-passthrough
+    # Possible fix for some 502 failures on admin assets and api requests.
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+spec:
+  rules:
+  - host: consent.accc.pingapac.com
+    http:
+      paths:
+      # This rule gives internal access to the pingaccess admin services.
+      - path: /.well-known/acme-challenge/
+        backend:
+          serviceName: pingaccess
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: pingaccess
+          servicePort: 443
+
+---
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
