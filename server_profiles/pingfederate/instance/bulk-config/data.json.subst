@@ -1742,6 +1742,11 @@
                     "name": "tos_uri",
                     "description": "tos_uri",
                     "multiValued": false
+                },  
+                {   
+                    "name": "recipient_base_uri",
+                    "description": "recipient_base_uri",
+                    "multiValued": false
                 }
             ],
             "resourceType": "/extendedProperties"
