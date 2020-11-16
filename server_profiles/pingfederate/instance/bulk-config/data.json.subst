@@ -2564,6 +2564,11 @@
                         "parameter": "policy_uri",
                         "description": "policy_uri",
                         "multiValued": false
+                    },
+                    {
+                        "parameter": "recipient_base_uri",
+                        "description": "recipient_base_uri",
+                        "multiValued": false
                     }
                 ]
             }],
