@@ -310,6 +310,16 @@
                     "Site",
                     "Agent"
                 ]
+            },
+            {
+                "configuration": {
+                    "mapTo": "/as/clients.oauth2$1",
+                    "mapFrom": "^/register(.*)"
+                },
+                "name": "ClientRegistration-URLRewrite",
+                "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
+                "id": 12,
+                "supportedDestinations": ["Site"]
             }
         ],
         "sites": [
@@ -562,7 +572,10 @@
                 }
             },
             {
-                "pathPrefixes": ["/as/clients.oauth2"],
+                "pathPrefixes": [
+                    "/as/clients.oauth2",
+                    "/register"
+                ],
                 "methods": ["*"],
                 "auditLevel": "ON",
                 "defaultAuthTypeOverride": "Web",
@@ -572,17 +585,29 @@
                 "anonymous": false,
                 "queryParamConfig": null,
                 "id": 4,
-                "pathPatterns": [{
-                    "pattern": "/as/clients.oauth2",
-                    "type": "WILDCARD"
-                }],
+                "pathPatterns": [
+                    {
+                        "pattern": "/as/clients.oauth2",
+                        "type": "WILDCARD"
+                    },
+                    {
+                        "pattern": "/register",
+                        "type": "WILDCARD"
+                    }
+                ],
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
-                    "Web": [{
-                        "id": 8,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 12,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 8,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
                 }
             },
@@ -807,7 +832,10 @@
                 }
             },
             {
-                "pathPrefixes": ["/as/clients.oauth2/*"],
+                "pathPrefixes": [
+                    "/register/*",
+                    "/as/clients.oauth2/*"
+                ],
                 "methods": ["*"],
                 "auditLevel": "ON",
                 "defaultAuthTypeOverride": "Web",
@@ -817,14 +845,24 @@
                 "anonymous": false,
                 "queryParamConfig": null,
                 "id": 14,
-                "pathPatterns": [{
-                    "pattern": "/as/clients.oauth2/*",
-                    "type": "WILDCARD"
-                }],
+                "pathPatterns": [
+                    {
+                        "pattern": "/register/*",
+                        "type": "WILDCARD"
+                    },
+                    {
+                        "pattern": "/as/clients.oauth2/*",
+                        "type": "WILDCARD"
+                    }
+                ],
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 12,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -1194,7 +1232,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605152390880,
+                "agentCacheInvalidatedExpiration": 1605576094968,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1218,7 +1256,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1605151490880,
+                "lastModified": 1605575194968,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
