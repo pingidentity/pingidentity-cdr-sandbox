@@ -59,8 +59,7 @@ pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
 pf-oauth-client-require-signed-requests: FALSE
 pf-oauth-client-restrict-scopes: FALSE
 pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:adminATM
-pf-oauth-client-supplemental-info: 16:EXCLUSIVE_SCOPES:["adr-clients-read","
- adr-clients-write"]
+pf-oauth-client-supplemental-info: 16:EXCLUSIVE_SCOPES:["adr-clients-read"]
 pf-oauth-client-supplemental-info: 19:DEVICE_FLOW_SETTING:SERVER_DEFAULT
 pf-oauth-client-supplemental-info: 22:ALLOW_EXCLUSIVE_SCOPES:true
 pf-oauth-client-supplemental-info: 23:RESTRICT_RESPONSE_TYPES:false
