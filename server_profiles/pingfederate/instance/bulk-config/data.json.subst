@@ -1078,7 +1078,7 @@
                         "fields": [
                             {
                                 "name": "Authentication Endpoint",
-                                "value": "http://localhost:7879/init"
+                                "value": "${CONSENT_BASEURL}/init"
                             },
                             {
                                 "name": "User Name",
@@ -1741,11 +1741,6 @@
                 {
                     "name": "tos_uri",
                     "description": "tos_uri",
-                    "multiValued": false
-                },  
-                {   
-                    "name": "recipient_base_uri",
-                    "description": "recipient_base_uri",
                     "multiValued": false
                 }
             ],
@@ -2411,7 +2406,7 @@
                         },
                         {
                             "name": "Issuer",
-                            "value": "cdr-register"
+                            "value": "cdr-register-bad-fixme"
                         },
                         {
                             "name": "JWKS URL",
@@ -2563,11 +2558,6 @@
                     {
                         "parameter": "policy_uri",
                         "description": "policy_uri",
-                        "multiValued": false
-                    },
-                    {
-                        "parameter": "recipient_base_uri",
-                        "description": "recipient_base_uri",
                         "multiValued": false
                     }
                 ]
