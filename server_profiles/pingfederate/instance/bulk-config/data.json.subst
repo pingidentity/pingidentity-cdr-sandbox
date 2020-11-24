@@ -1072,7 +1072,7 @@
                         "fields": [
                             {
                                 "name": "Authentication Endpoint",
-                                "value": "http://localhost:7879/init"
+                                "value": "${CONSENT_BASEURL}/init"
                             },
                             {
                                 "name": "User Name",
