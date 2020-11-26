@@ -1472,7 +1472,7 @@
                         "attributeContractFulfillment": {
                             "entryUUID": {
                                 "source": {"type": "EXPRESSION"},
-                                "value": "@java.util.UUID@nameUUIDFromBytes(#this.get(\"subject\").toString().getBytes())"
+                                "value": "#this.get(\"ds.ldap.entryUUID\") != null && !(#this.get(\"ds.ldap.entryUUID\").toString().equals(\"\"))?#this.get(\"ds.ldap.entryUUID\"): @java.util.UUID@nameUUIDFromBytes(#this.get(\"subject\").toString().getBytes())"
                             },
                             "subject": {
                                 "source": {"type": "ADAPTER"},
@@ -1488,10 +1488,23 @@
                             },
                             "username": {
                                 "source": {"type": "EXPRESSION"},
-                                "value": "@java.util.UUID@nameUUIDFromBytes(#this.get(\"subject\").toString().getBytes())"
+                                "value": "#this.get(\"ds.ldap.entryUUID\") != null && !(#this.get(\"ds.ldap.entryUUID\").toString().equals(\"\"))?#this.get(\"ds.ldap.entryUUID\"): @java.util.UUID@nameUUIDFromBytes(#this.get(\"subject\").toString().getBytes())"
                             }
                         },
-                        "attributeSources": [],
+                        "attributeSources": [{
+                            "memberOfNestedGroup": false,
+                            "binaryAttributeSettings": {},
+                            "searchScope": "SUBTREE",
+                            "dataStoreRef": {
+                                "location": "https://47649f437a12:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                                "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
+                            },
+                            "description": "ldap",
+                            "id": "ldap",
+                            "type": "LDAP",
+                            "baseDn": "ou=people,${USER_BASE_DN}",
+                            "searchFilter": "uid=${subject}"
+                        }],
                         "issuanceCriteria": {"conditionalCriteria": []}
                     },
                     "configuration": {
