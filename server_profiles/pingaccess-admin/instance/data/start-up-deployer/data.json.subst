@@ -448,6 +448,24 @@
                 "id": 9,
                 "availabilityProfileId": 1,
                 "maxConnections": -1
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "loadBalancingStrategyId": 0,
+                "maxWebSocketConnections": -1,
+                "keepAliveTimeout": 0,
+                "useTargetHostHeader": false,
+                "siteAuthenticatorIds": [],
+                "useProxy": false,
+                "secure": false,
+                "sendPaCookie": true,
+                "targets": ["mock-dh-api:6879"],
+                "expectedHostname": null,
+                "skipHostnameVerification": false,
+                "name": "mock-dh-api",
+                "id": 10,
+                "availabilityProfileId": 1,
+                "maxConnections": -1
             }
         ],
         "adminAuthBasic": {"enabled": true},
@@ -573,8 +591,8 @@
             },
             {
                 "pathPrefixes": [
-                    "/as/clients.oauth2",
-                    "/register"
+                    "/register",
+                    "/as/clients.oauth2"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -587,11 +605,11 @@
                 "id": 4,
                 "pathPatterns": [
                     {
-                        "pattern": "/as/clients.oauth2",
+                        "pattern": "/register",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/register",
+                        "pattern": "/as/clients.oauth2",
                         "type": "WILDCARD"
                     }
                 ],
@@ -1111,7 +1129,7 @@
             "configuration": {
                 "headerClientCertificateMappings": [],
                 "attributeHeaderMappings": [{
-                    "headerName": "X-SUB",
+                    "headerName": "X-USER",
                     "subject": true,
                     "attributeName": "sub"
                 }]
@@ -1232,7 +1250,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605576094968,
+                "agentCacheInvalidatedExpiration": 1606356054157,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1256,7 +1274,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1605575194968,
+                "lastModified": 1606355154157,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1272,7 +1290,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574204,
+                "agentCacheInvalidatedExpiration": 1606356053933,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1296,7 +1314,7 @@
                 "name": "Deepthought Product Admin Service",
                 "siteId": 4,
                 "realm": null,
-                "lastModified": 1605142674204,
+                "lastModified": 1606355153933,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1313,7 +1331,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574236,
+                "agentCacheInvalidatedExpiration": 1606356053997,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1343,7 +1361,7 @@
                 "name": "Deepthought Product API",
                 "siteId": 5,
                 "realm": null,
-                "lastModified": 1605142674236,
+                "lastModified": 1606355153997,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1360,7 +1378,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574243,
+                "agentCacheInvalidatedExpiration": 1606356753782,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1385,13 +1403,13 @@
                 "contextRoot": "/cds-au/v1/banking",
                 "identityMappingIds": {
                     "Web": 0,
-                    "API": 0
+                    "API": 1
                 },
                 "name": "Deepthought Bank API",
-                "siteId": 6,
+                "siteId": 10,
                 "realm": null,
-                "lastModified": 1605142674243,
-                "accessValidatorId": 0,
+                "lastModified": 1606355853782,
+                "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
             {
@@ -1403,7 +1421,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574238,
+                "agentCacheInvalidatedExpiration": 1606356054044,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1433,7 +1451,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1605142674238,
+                "lastModified": 1606355154044,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1446,7 +1464,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574262,
+                "agentCacheInvalidatedExpiration": 1606356054042,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1467,7 +1485,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1605142674262,
+                "lastModified": 1606355154042,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1480,7 +1498,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574285,
+                "agentCacheInvalidatedExpiration": 1606356054111,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1504,7 +1522,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1605142674285,
+                "lastModified": 1606355154111,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
