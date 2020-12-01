@@ -32,7 +32,7 @@ services:
       - pingnet-internal
 
   agentless-consentapp:
-    image: cdrsandbox/agentless-consentapp:20201026
+    image: cdrsandbox/agentless-consentapp:20201126
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -41,6 +41,20 @@ services:
       - cdr.env
     ports:
       - 8082:7879
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
+
+  mock-dh-api:
+    image: cdrsandbox/mock-dh-apis:20201126
+#    command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 6879:6879
     networks:
       - pingnet-internal
       - pingnet-dmz
@@ -112,49 +126,6 @@ services:
       - pingnet-dmz
     volumes:
        - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
-
-  deepthought-bank-api:
-    image: cdrsandbox/deepthought-bank-api-service:20200916
-    environment:
-  #    - VERBOSE=true
-      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
-    env_file:
-      - ~/.pingidentity/devops
-      - cdr.env
-    ports:
-      - 8090:8081
-    networks:
-      - pingnet-internal
-      - pingnet-dmz
-
-  deepthought-admin-service:
-    image: cdrsandbox/deepthought-admin-service:20200916
-    environment:
-  #    - VERBOSE=true
-      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
-    env_file:
-      - ~/.pingidentity/devops
-      - cdr.env
-    ports:
-      - 8088:8080
-    networks:
-      - pingnet-internal
-      - pingnet-dmz
-
-  deepthought-h2-database:
-    image: cdrsandbox/deepthought-h2-database:20200916
-    environment:
-      - VERBOSE=true
-      - SERVER_PROFILE_PATH=server_profiles/datarecipient-config/config
-    env_file:
-      - ~/.pingidentity/devops
-      - cdr.env
-    ports:
-      - 1521:1521
-      - 81:81
-    networks:
-      - pingnet-internal
-      - pingnet-dmz
 
 #  pingdataconsole:
 #    image: pingidentity/pingdataconsole:edge
