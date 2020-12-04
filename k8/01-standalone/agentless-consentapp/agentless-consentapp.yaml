@@ -33,7 +33,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: agentless-consentapp-environment-variables
-        image: cdrsandbox/agentless-consentapp:20201026
+        image: cdrsandbox/agentless-consentapp:20201126
         imagePullPolicy: Always
         name: agentless-consentapp
         ports:
