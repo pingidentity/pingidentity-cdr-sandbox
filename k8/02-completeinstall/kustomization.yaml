@@ -13,6 +13,7 @@ resources:
 - ../01-standalone/cdr-dr-client
 - ../01-standalone/agentless-consentapp
 - ../01-standalone/mock-dh-api
+- ../01-standalone/pingdatasync
 
 
 # The only difference in standalone deployments vs "fullstack" (integrated) is the product configurations. 
@@ -96,7 +97,12 @@ configMapGenerator:
     - devops
     - env_vars.common
     - env_vars.mock-dh-api
-
+- name: pingdatasync-environment-variables
+  behavior: replace
+  envs:
+    - devops
+    - env_vars.common
+    - env_vars.pingdatasync
 
 patches:
 - target:
