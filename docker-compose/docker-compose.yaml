@@ -95,6 +95,31 @@ services:
     networks:
       - pingnet-internal
 
+  pingdatasync:
+    image: pingidentity/pingdatasync:edge
+    command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
+    environment:
+#      - SERVER_PROFILE_URL=https://github.com/ttranatping/refresh-token-management.git
+#      - SERVER_PROFILE_PATH=simple-sync/pingdatasync
+      - SERVER_PROFILE_PATH=server_profiles/pingdatasync
+      - USER_BASE_DN=o=sync
+    env_file:
+      - ${HOME}/.pingidentity/devops
+      - cdr.env
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "2636:636"
+      - "2443:443"
+    networks:
+      - pingnet-dmz
+      - pingnet-internal
+
   cdr-dr-client:
     image: cdrsandbox/sample-dr-client:20200916
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh

@@ -1714,6 +1714,11 @@
                     "multiValued": false
                 },
                 {
+                    "name": "recipient_base_uri",
+                    "description": "recipient_base_uri",
+                    "multiValued": false
+                },
+                {
                     "name": "revocation_uri",
                     "description": "revocation_uri",
                     "multiValued": false
@@ -2548,6 +2553,11 @@
                     {
                         "parameter": "org_name",
                         "description": "org_name",
+                        "multiValued": false
+                    },
+                    {
+                        "parameter": "recipient_base_uri",
+                        "description": "recipient_base_uri",
                         "multiValued": false
                     },
                     {
