@@ -22,7 +22,7 @@ dsconfig create-external-server \
 
 #dsconfig create-external-server --server-name PingDirectory --type ping-identity-ds --set server-host-name:localhost --set server-port:389 --set "bind-dn:cn=Directory Manager" --set "password:AABHzwpye6vwyFGITb+IQQPmJ4kI0ADc6FQ="
 
-dsconfig create-sync-source --source-name PingDirectoryConsentStatusSource --type ping-identity --set base-dn:ou=Consents,dc=datain,dc=com --set server:PingDirectory
+dsconfig create-sync-source --source-name PingDirectoryConsentStatusSource --type ping-identity --set base-dn:ou=consents,${USER_BASE_DN} --set server:PingDirectory
 
 dsconfig create-sync-destination --destination-name RevokeADRConsentDestination --type third-party --set extension-class:com.pingidentity.ps.cdr.data.in.pds.RevokeDataRecipientConsentSyncDest --set extension-argument:client-storage-pingdirectory-external-server-id=PingDirectory --set extension-argument:client-storage-base-dn=ou=oauthClients,dc=data-holder,dc=com --set extension-argument:ignore-ssl-errors=true --set extension-argument:pingfederate-token-endpoint=https://pingfederate:9031/as/token.oauth2 --set extension-argument:pingfederate-client-id=dataholderClient --set extension-argument:pingfederate-client-secret=2FederateM0re --set extension-argument:data-holder-id=brand-a79caf98-6440-4cea-adea-2feea53d4270
 
