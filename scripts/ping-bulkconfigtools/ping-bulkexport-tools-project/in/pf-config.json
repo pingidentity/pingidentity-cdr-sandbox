@@ -40,6 +40,12 @@
   ],
   "expose-parameters":[
     {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=JWKS URL"
+      ]
+    },
+    {
       "parameter-name": "fileData",
       "unique-identifiers": [
           "id"

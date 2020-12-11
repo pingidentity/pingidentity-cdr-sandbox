@@ -2410,7 +2410,7 @@
                         },
                         {
                             "name": "JWKS URL",
-                            "value": "http://cdrregister:8084/registration/JWKS"
+                            "value": "${REGISTER_JWKS_ENDPOINT}"
                         },
                         {
                             "name": "CDR Access Token Manager",
