@@ -344,7 +344,7 @@
                 "useProxy": false,
                 "secure": false,
                 "sendPaCookie": true,
-                "targets": ["cdrregister:6084"],
+                "targets": ["cdrregister:8084"],
                 "expectedHostname": null,
                 "skipHostnameVerification": false,
                 "name": "cdr-register",

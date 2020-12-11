@@ -13,7 +13,15 @@
 	  ],
   	  "replace-name": "CONSENT_APP_agentless_password",
   	  "is-apply-envfile": false
-  	}
+  	},
+	{
+	  "config-names":[
+	     "oauth_clientRegistrationPolicies_items_cdrAURegister_configuration_fields_JWKS_URL_value"
+	  ],
+	  "replace-name": "REGISTER_JWKS_ENDPOINT",
+          "is-apply-envfile": false
+	}
+
   ],
   "search-replace":[
     {
