@@ -120,7 +120,7 @@ services:
       - pingnet-internal
 
   cdr-dr-client:
-    image: cdrsandbox/sample-dr-client:20200916
+    image: cdrsandbox/sample-dr-client:20201211
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:3000 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
