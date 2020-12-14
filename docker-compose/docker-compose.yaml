@@ -133,7 +133,7 @@ services:
       - pingnet-dmz
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20201211
+    image: cdrsandbox/cdr-register-testharness:20201214
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
