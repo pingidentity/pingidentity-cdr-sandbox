@@ -1,0 +1,19 @@
+
+dn: ou=metadataCache,${USER_BASE_DN}
+objectClass: organizationalUnit
+objectClass: top
+ou: metadataCache
+aci: (targetattr="*")(version 3.0; acl "ACI for adh-cache-read scope"; allow (read,search,compare) oauthscope="adh-cache-read";)
+
+dn: cn=GetDataRecipientsStatus,ou=metadataCache,${USER_BASE_DN}
+objectClass: cachedEndpoint
+objectClass: top
+cn: GetDataRecipientsStatus
+cachedJSON: {}
+
+
+dn: cn=GetSoftwareProductsStatus,ou=metadataCache,${USER_BASE_DN}
+objectClass: cachedEndpoint
+objectClass: top
+cn: GetSoftwareProductsStatus
+cachedJSON: {}
