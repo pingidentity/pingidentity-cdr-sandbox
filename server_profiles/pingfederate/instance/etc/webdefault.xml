@@ -26,28 +26,6 @@
     This file is applied to a Web application before it's own WEB_INF/web.xml file
   </description>
 
-  <filter>
-    <filter-name>PARAuthorizationEndpoint</filter-name>
-    <filter-class>com.pingidentity.ps.cdr.pf.cdr.par.PARAuthorizationParamFilter</filter-class>
-    <init-param>
-      <param-name>PFAgentlessUsername</param-name>
-      <param-value>paragentless</param-value>
-    </init-param>
-    <init-param>
-      <param-name>PFAgentlessPassword</param-name>
-      <param-value>2FederateM0re</param-value>
-    </init-param>
-    <init-param>
-      <param-name>PFAgentlessAdapterId</param-name>
-      <param-value>paragentless</param-value>
-    </init-param>
-  </filter>
-
-  <filter-mapping>
-    <filter-name>PARAuthorizationEndpoint</filter-name>
-    <url-pattern>/as/authorization.oauth2</url-pattern>
-  </filter-mapping>
-
   <!-- ==================================================================== -->
   <!-- Removes static references to beans from javax.el.BeanELResolver to   -->
   <!-- ensure webapp classloader can be released on undeploy                -->
@@ -322,34 +300,6 @@
     <url-pattern>*.JSPX</url-pattern>
     <url-pattern>*.XSP</url-pattern>
   </servlet-mapping>
-
-
-
-
-  <servlet>
-    <servlet-name>PARRequest</servlet-name>
-    <servlet-class>com.pingidentity.ps.cdr.pf.cdr.par.PARRequestServlet</servlet-class>
-    <init-param>
-      <param-name>PFAgentlessUsername</param-name>
-      <param-value>paragentless</param-value>
-    </init-param>
-    <init-param>
-      <param-name>PFAgentlessPassword</param-name>
-      <param-value>2FederateM0re</param-value>
-    </init-param>
-    <init-param>
-      <param-name>PFAgentlessAdapterId</param-name>
-      <param-value>paragentless</param-value>
-    </init-param>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>PARRequest</servlet-name>
-    <url-pattern>/as/par.oauth2</url-pattern>
-  </servlet-mapping>
-
-
-
 
   <servlet>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
