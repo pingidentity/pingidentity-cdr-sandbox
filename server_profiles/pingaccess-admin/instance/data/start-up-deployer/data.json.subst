@@ -105,6 +105,13 @@
                 "useServerCipherSuiteOrder": true,
                 "id": 4,
                 "keyPairId": 5
+            },
+            {
+                "restartRequired": false,
+                "name": "CONFIG QUERY",
+                "useServerCipherSuiteOrder": true,
+                "id": 4,
+                "keyPairId": 5
             }
         ],
         "rules": [
@@ -173,7 +180,8 @@
                     "cacheMaxAge": 600,
                     "allowedOrigins": ["*"],
                     "overriddenReqMethods": null,
-                    "allowCredentials": false
+                    "allowCredentials": false,
+                    "maskWildcardPolicy": false
                 },
                 "name": "CORS - Allow All",
                 "className": "com.pingidentity.pa.policy.cors.CrossOriginRequestPolicyInterceptor",
@@ -320,6 +328,25 @@
                 "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
                 "id": 12,
                 "supportedDestinations": ["Site"]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "errorResponseTemplateFile": "oauth.error.json",
+                    "errorResponseContentType": "application/json; charset=UTF-8",
+                    "errorResponseCode": 400,
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_13_configuration_clientSecret_value}"},
+                    "clientScope": "consent_admin",
+                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
+                },
+                "name": "CDR Validate Arrangement",
+                "className": "com.pingidentity.pa.cdr.CDRValidateArrangementRule",
+                "id": 13,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
             }
         ],
         "sites": [
@@ -448,6 +475,7 @@
             "cookieType": "Encrypted"
         },
         "pingFederate": {
+            "loadBalancingStrategyId": 0,
             "trustedCertificateGroupId": 4,
             "useSlo": false,
             "auditLevel": "OFF",
@@ -456,11 +484,13 @@
             "targets": ["pingfederate:9031"],
             "expectedHostname": "",
             "backChannelBasePath": null,
+            "application": null,
             "basePath": null,
             "port": 443,
             "skipHostnameVerification": true,
             "backChannelSecure": true,
-            "host": "sso.${BASE_HOSTNAME}"
+            "host": "sso.${BASE_HOSTNAME}",
+            "availabilityProfileId": 0
         },
         "trustedCerts": [
             {
@@ -514,6 +544,7 @@
         }],
         "resources": [
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -533,9 +564,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
                     "/register",
                     "/as/clients.oauth2"
@@ -573,9 +607,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/revoke_token.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -604,9 +641,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/introspect.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -639,9 +679,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/idp/userinfo.openid"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -670,9 +713,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/token.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -705,9 +751,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/.well-known/openid-configuration"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -727,9 +776,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -749,9 +801,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
                     "/as/clients.oauth2/*",
                     "/register/*"
@@ -793,9 +848,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -815,9 +873,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/par.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -843,12 +904,19 @@
                         {
                             "id": 7,
                             "type": "Rule"
+                        },
+                        {
+                            "id": 13,
+                            "type": "Rule"
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/authorization.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -871,9 +939,12 @@
                         "type": "Rule"
                     }],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -893,9 +964,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/arrangements/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -918,9 +992,12 @@
                         "type": "Rule"
                     }],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -940,9 +1017,25 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             }
         ],
+        "thirdPartyServices": [{
+            "trustedCertificateGroupId": 2,
+            "loadBalancingStrategyId": 0,
+            "skipHostnameVerification": true,
+            "name": "PingDirectoryWeb",
+            "id": "acd68d0e-f601-4dc9-b4e2-293e67b388a0",
+            "useProxy": false,
+            "secure": true,
+            "targets": ["pingdirectory:443"],
+            "availabilityProfileId": 1,
+            "hostValue": null,
+            "maxConnections": -1,
+            "expectedHostname": null
+        }],
         "unknownResources": {
             "errorContentType": "HTML",
             "errorTemplateFile": "general.error.page.template.html",
@@ -1027,9 +1120,13 @@
                 "url": "https://acme-staging-v02.api.letsencrypt.org/directory"
             }
         ],
+        "environment": {"name": null},
         "identityMappings": [{
             "configuration": {
+                "exclusionList": false,
+                "exclusionListSubject": null,
                 "headerClientCertificateMappings": [],
+                "exclusionListAttributes": [],
                 "attributeHeaderMappings": [
                     {
                         "headerName": "X-USER",
@@ -1041,7 +1138,8 @@
                         "subject": false,
                         "attributeName": "accounts"
                     }
-                ]
+                ],
+                "headerNamePrefix": null
             },
             "name": "Default Identity Mapping",
             "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
@@ -1159,7 +1257,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1606799993903,
+                "agentCacheInvalidatedExpiration": 1608168231259,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1173,6 +1271,7 @@
                     }],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1183,7 +1282,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1606799093903,
+                "lastModified": 1608167331259,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1200,7 +1299,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1606800113965,
+                "agentCacheInvalidatedExpiration": 1608168120351,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1220,6 +1319,7 @@
                         }
                     ]
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/cds-au/v1/banking",
@@ -1230,7 +1330,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1606799213965,
+                "lastModified": 1608167220351,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1243,7 +1343,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1606799993792,
+                "agentCacheInvalidatedExpiration": 1608168120364,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1263,6 +1363,7 @@
                     ],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1273,7 +1374,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1606799093792,
+                "lastModified": 1608167220364,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1286,7 +1387,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1606799993842,
+                "agentCacheInvalidatedExpiration": 1608168120396,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1297,6 +1398,7 @@
                     "Web": [],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1307,7 +1409,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1606799093842,
+                "lastModified": 1608167220396,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1320,7 +1422,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1606799993869,
+                "agentCacheInvalidatedExpiration": 1608168120438,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1334,6 +1436,7 @@
                     }],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1344,7 +1447,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1606799093869,
+                "lastModified": 1608167220438,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
@@ -1355,5 +1458,5 @@
             "keyRollPeriodInHours": 24
         }
     },
-    "version": "6.1.3.0"
+    "version": "6.2.0.3"
 }
