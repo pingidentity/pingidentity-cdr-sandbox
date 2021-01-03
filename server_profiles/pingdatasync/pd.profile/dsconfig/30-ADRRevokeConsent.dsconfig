@@ -1,26 +1,3 @@
-#
-# Configure the sync pipe end-to-end
-#
-dsconfig set-trust-manager-provider-prop \
-    --provider-name 'Blind Trust'  \
-    --set enabled:true
-
-dsconfig create-external-server \
-    --server-name pingdirectory \
-    --type ping-identity-ds \
-	--set server-host-name:${PD_ENGINE_PRIVATE_HOSTNAME} \
-    --set server-port:${LDAPS_PORT} \
-	--set bind-dn:cn=sync \
-    --set "password:AABkwRkIRfApR+R1uZPSciaUPmtEtTzjC/4=" \
-    --set authorization-method:none \
-    --set location:${LOCATION} \
-    --set connection-security:ssl \
-    --set key-manager-provider:Null \
-    --set 'trust-manager-provider:Blind Trust' \
-	--set initial-connections:1 \
-	--set max-connections:4
-
-#dsconfig create-external-server --server-name PingDirectory --type ping-identity-ds --set server-host-name:localhost --set server-port:389 --set "bind-dn:cn=Directory Manager" --set "password:AABHzwpye6vwyFGITb+IQQPmJ4kI0ADc6FQ="
 
 dsconfig create-sync-source --source-name PingDirectoryConsentStatusSource --type ping-identity --set base-dn:ou=consents,${USER_BASE_DN} --set server:PingDirectory
 
