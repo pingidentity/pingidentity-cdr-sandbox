@@ -17,7 +17,13 @@ dsconfig create-sync-destination \
  --set base-dn:ou=metadataCache,${USER_BASE_DN} \
  --set "server:PingDirectory"
 
-dsconfig create-sync-pipe --pipe-name "Retrieve GetDataRecipients Endpoint" --set started:true --set sync-source:GetDataRecipientsStatusEndpoint --set sync-destination:GetDataRecipientsEntity --set include-changes-for-unchanged-attributes:true
+dsconfig create-sync-pipe \
+ --pipe-name "Retrieve GetDataRecipients Endpoint" \
+ --set started:true \
+ --set sync-source:GetDataRecipientsStatusEndpoint \
+ --set sync-destination:GetDataRecipientsEntity \
+ --set include-changes-for-unchanged-attributes:true \
+ --set "change-detection-polling-interval:10 s"
 
 dsconfig create-sync-class \
  --pipe-name "Retrieve GetDataRecipients Endpoint" \
