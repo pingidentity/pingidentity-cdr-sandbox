@@ -1,6 +1,6 @@
 
 dsconfig create-sync-source \
- --source-name "GetDataRecipientsStatus Endpoint" \
+ --source-name GetDataRecipientsStatusEndpoint \
  --type third-party \
  --set extension-class:com.pingidentity.ps.cdr.data.in.pds.MetaDataCacheRetrievalSyncSource \
  --set extension-argument:endpoint-name=cn=GetDataRecipientsStatus \
@@ -11,6 +11,13 @@ dsconfig create-sync-source \
  --set extension-argument:register-endpoint-url=http://cdrregister:8084/cdr-register/v2/banking/data-recipients/status \
 --set extension-argument:base-dn=ou=metadataCache,${USER_BASE_DN}
 
+dsconfig create-sync-destination \
+ --destination-name GetDataRecipientsEntity \
+ --type ping-identity \
+ --set base-dn:ou=metadataCache,${USER_BASE_DN} \
+ --set "server:PingDirectory"
+
+dsconfig create-sync-pipe --pipe-name "Retrieve GetDataRecipients Endpoint" --set started:true --set sync-source:GetDataRecipientsStatusEndpoint --set sync-destination:GetDataRecipientsEntity --set include-changes-for-unchanged-attributes:true
 
 dsconfig create-sync-class \
  --pipe-name "Retrieve GetDataRecipients Endpoint" \
@@ -19,10 +26,3 @@ dsconfig create-sync-class \
  --set auto-mapped-source-attribute:nextUpdate \
  --set synchronize-deletes:false \
  --set attribute-synchronization-mode:all-attributes
-
-
- dsconfig create-sync-destination \
-  --destination-name "GetDataRecipients Entity" \
-  --type ping-identity \
-  --set base-dn:ou=metadataCache,${USER_BASE_DN} \
-  --set "server:PingDirectory"
