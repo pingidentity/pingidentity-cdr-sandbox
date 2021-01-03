@@ -17,10 +17,10 @@ dsconfig create-sync-destination \
  --set base-dn:ou=metadataCache,${USER_BASE_DN} \
  --set "server:PingDirectory"
 
-dsconfig create-sync-pipe --pipe-name "Retrieve GetDataRecipients Endpoint" --set started:true --set sync-source:GetSoftwareProductsStatusEndpoint --set sync-destination:GetSoftwareProductsStatusEntity --set include-changes-for-unchanged-attributes:true
+dsconfig create-sync-pipe --pipe-name "Retrieve GetSoftwareProductsStatus Endpoint" --set started:true --set sync-source:GetSoftwareProductsStatusEndpoint --set sync-destination:GetSoftwareProductsStatusEntity --set include-changes-for-unchanged-attributes:true
 
 dsconfig create-sync-class \
- --pipe-name "Retrieve GetDataRecipients Endpoint" \
+ --pipe-name "Retrieve GetSoftwareProductsStatus Endpoint" \
  --class-name "Map GetSoftwareProductsStatus" \
  --set auto-mapped-source-attribute:cachedJSON \
  --set auto-mapped-source-attribute:nextUpdate \
