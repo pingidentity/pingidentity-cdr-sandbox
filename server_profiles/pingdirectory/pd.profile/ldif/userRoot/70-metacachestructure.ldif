@@ -4,6 +4,7 @@ objectClass: organizationalUnit
 objectClass: top
 ou: metadataCache
 aci: (targetattr="*")(version 3.0; acl "ACI for adh-cache-read scope"; allow (read,search,compare) oauthscope="adh-cache-read";)
+aci: (targetattr="*")(version 3.0; acl "ACI for adh-cache-write scope"; allow (read,search,write,compare) oauthscope="adh-cache-write";)
 
 dn: cn=GetDataRecipientsStatus,ou=metadataCache,${USER_BASE_DN}
 objectClass: cachedEndpoint

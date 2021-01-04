@@ -302,6 +302,36 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>CDRAdminAPIEndpoint</servlet-name>
+    <servlet-class>com.pingidentity.cdr.adminapi.CDRAdminAPIServlet</servlet-class>
+    <init-param>
+      <param-name>CDR_REGISTER_JWKS</param-name>
+      <param-value>http://cdrregister:8084/.well-known/openid-configuration/JWKS</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIM_ADMIN_SCOPE</param-name>
+      <param-value>adh-cache-write</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIM_ADMIN_ATM</param-name>
+      <param-value>adminATM</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIM_ENDPOINT</param-name>
+      <param-value>https://pingdirectory/scim/v2/adh-cache</param-value>
+    </init-param>
+    <init-param>
+      <param-name>IGNORE_SSL</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CDRAdminAPIEndpoint</servlet-name>
+    <url-pattern>/cds-au/v1/admin/register/metadata</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
     <servlet-class>com.pingidentity.ps.cdr.pf.cdr.sharing_arrangement_id.CDRArrangementServlet</servlet-class>
   </servlet>
