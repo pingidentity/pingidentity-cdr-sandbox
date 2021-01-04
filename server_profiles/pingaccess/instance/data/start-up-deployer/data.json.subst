@@ -387,7 +387,8 @@
                         "/as/introspect.oauth2",
                         "/as/par.oauth2",
                         "/as/clients.oauth2",
-                        "/cds-au"
+                        "/cds-au",
+                        "/register"
                     ]
                 },
                 "name": "CDR Validate Status Rule - API",
