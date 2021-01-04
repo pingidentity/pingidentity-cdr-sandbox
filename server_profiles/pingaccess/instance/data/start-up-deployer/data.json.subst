@@ -345,7 +345,7 @@
                 "configuration": {
                     "clientId": "pingaccess-cc",
                     "isIgnoreSSL": true,
-                    "refreshInterval": 30,
+                    "refreshInterval": 10,
                     "errorResponseCode": 403,
                     "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
                     "clientIdPrefix": "dcr-",
