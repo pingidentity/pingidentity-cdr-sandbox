@@ -340,6 +340,63 @@
                     "Site",
                     "Agent"
                 ]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "isIgnoreSSL": true,
+                    "refreshInterval": 30,
+                    "errorResponseCode": 403,
+                    "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
+                    "clientIdPrefix": "dcr-",
+                    "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "errorResponseContentType": "text/html; charset=UTF-8",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_14_configuration_clientSecret_value}"},
+                    "oauthTokenEndpoint": "https://pingfederate:9031/as/token.oauth2",
+                    "clientScope": "adh-cache-read",
+                    "managedEndpoints": ["/as/authorization.oauth2"]
+                },
+                "name": "CDR Validate Status Rule - Web",
+                "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
+                "id": 14,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "isIgnoreSSL": true,
+                    "refreshInterval": 0,
+                    "errorResponseCode": 403,
+                    "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
+                    "clientIdPrefix": "dcr-",
+                    "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
+                    "errorResponseTemplateFile": "general.error.json",
+                    "errorResponseContentType": "application/json; charset=UTF-8",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_15_configuration_clientSecret_value}"},
+                    "oauthTokenEndpoint": "https://pingfederate:9031/as/token.oauth2",
+                    "clientScope": "adh-cache-read",
+                    "managedEndpoints": [
+                        "/as/token.oauth2",
+                        "/idp/userinfo.openid",
+                        "/as/introspect.oauth2",
+                        "/as/par.oauth2",
+                        "/as/clients.oauth2",
+                        "/cds-au"
+                    ]
+                },
+                "name": "CDR Validate Status Rule - API",
+                "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
+                "id": 15,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
             }
         ],
         "sites": [
@@ -801,8 +858,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/as/clients.oauth2/*",
-                    "/register/*"
+                    "/register/*",
+                    "/as/clients.oauth2/*"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -815,11 +872,11 @@
                 "id": 14,
                 "pathPatterns": [
                     {
-                        "pattern": "/as/clients.oauth2/*",
+                        "pattern": "/register/*",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/register/*",
+                        "pattern": "/as/clients.oauth2/*",
                         "type": "WILDCARD"
                     }
                 ],
@@ -927,10 +984,16 @@
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
-                    "Web": [{
-                        "id": 7,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 14,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 7,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
                 },
                 "resourceType": "Standard",
@@ -1250,7 +1313,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1608168231259,
+                "agentCacheInvalidatedExpiration": 1609719674949,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1258,10 +1321,16 @@
                 "id": 1,
                 "manualOrderingEnabled": false,
                 "policy": {
-                    "Web": [{
-                        "id": 11,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 15,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 11,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
                 },
                 "authenticationChallengePolicyId": null,
@@ -1275,7 +1344,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1608167331259,
+                "lastModified": 1609718774949,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1292,7 +1361,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1608168120351,
+                "agentCacheInvalidatedExpiration": 1609719703669,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1302,6 +1371,10 @@
                 "policy": {
                     "Web": [],
                     "API": [
+                        {
+                            "id": 15,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -1323,7 +1396,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1608167220351,
+                "lastModified": 1609718803669,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1336,7 +1409,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1608168120364,
+                "agentCacheInvalidatedExpiration": 1609718555274,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1367,7 +1440,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1608167220364,
+                "lastModified": 1609717655274,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1380,7 +1453,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1608168120396,
+                "agentCacheInvalidatedExpiration": 1609718555281,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1402,7 +1475,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1608167220396,
+                "lastModified": 1609717655281,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1415,7 +1488,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1608168120438,
+                "agentCacheInvalidatedExpiration": 1609718555332,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1440,7 +1513,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1608167220438,
+                "lastModified": 1609717655332,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
