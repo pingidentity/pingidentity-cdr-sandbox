@@ -306,7 +306,7 @@
     <servlet-class>com.pingidentity.cdr.adminapi.CDRAdminAPIServlet</servlet-class>
     <init-param>
       <param-name>CDR_REGISTER_JWKS</param-name>
-      <param-value>http://cdrregister:8084/.well-known/openid-configuration/JWKS</param-value>
+      <param-value>${REGISTER_JWKS_ENDPOINT}</param-value>
     </init-param>
     <init-param>
       <param-name>SCIM_ADMIN_SCOPE</param-name>
