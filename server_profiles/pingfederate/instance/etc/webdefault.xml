@@ -325,8 +325,8 @@
       <param-value>true</param-value>
     </init-param>
     <init-param>
-      <param-name>HOST_HEADER</param-name>
-      <param-value>Host</param-value>
+      <param-name>EXPECTED_JWT_AUDIENCE</param-name>
+      <param-value>https://sso.data-holder.local</param-value>
     </init-param>
 
   </servlet>
