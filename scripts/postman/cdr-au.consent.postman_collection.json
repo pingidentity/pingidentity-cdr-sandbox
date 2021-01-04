@@ -12412,6 +12412,249 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "S009 Inactivate Software",
+			"item": [
+				{
+					"name": "S009.T001.001 - Update Product Status to Inactive",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6c014e96-3caa-4c4c-8432-4086128c32ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "56c1da5d-b376-4fea-936d-f6ecea51b796",
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"ACTIVE\",\n    \"legalEntityId\": \"{{legalEntityId}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"INACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get\",\n                    \"scope\": \"bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
+						},
+						"url": {
+							"raw": "{{cdr-register-testharness-host}}/admin/model/dataRecipient/{{legalEntityId}}",
+							"host": [
+								"{{cdr-register-testharness-host}}"
+							],
+							"path": [
+								"admin",
+								"model",
+								"dataRecipient",
+								"{{legalEntityId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S009.T001.002 - Get CDR Register Private JWK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f44c996a-b78c-4163-a43c-2e758ad16372",
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validate kty is RSA\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response.keys[0].kty).to.equal('RSA');",
+									"});",
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.environment.set(\"software-jwks-global-private\", btoa(JSON.stringify(response.keys[0])));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{cdr-register-testharness-host}}/helper/JWKS/_GLOBAL_/private",
+							"host": [
+								"{{cdr-register-testharness-host}}"
+							],
+							"path": [
+								"helper",
+								"JWKS",
+								"_GLOBAL_",
+								"private"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S009.T001.003 - Generate Client Authentication JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "722d4f89-6f47-4ebf-8ec8-75da0634bff1",
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.environment.set(\"cdrregister-jwt\", response[\"client-assertion\"]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-private-jwk",
+								"value": "{{software-jwks-global-private}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client-id",
+									"value": "cdr-register",
+									"type": "text"
+								},
+								{
+									"key": "audience",
+									"value": "{{dh-idp-host}}",
+									"type": "text"
+								},
+								{
+									"key": "kid",
+									"value": "_GLOBAL_",
+									"type": "text"
+								},
+								{
+									"key": "token-endpoint",
+									"value": "{{dh-idp-host}}",
+									"type": "text"
+								},
+								{
+									"key": "private-jwk",
+									"value": "{{software-jwks-global-private}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+							"host": [
+								"{{cdr-register-testharness-host}}"
+							],
+							"path": [
+								"testtool",
+								"datarecipient",
+								"createClientAssertion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S009.T001.004 - Call Admin API to force refresh",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8ff8c520-e859-4e02-bf22-ff4529be652c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "1e1edc2c-ad16-4a1f-b7f7-62df3b8baa39",
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{cdrregister-jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\":\n    {\n        \"action\":\"REFRESH\"\n    }    \n}"
+						},
+						"url": {
+							"raw": "{{dh-idp-host}}/cds-au/v1/admin/register/metadata",
+							"host": [
+								"{{dh-idp-host}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"admin",
+								"register",
+								"metadata"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -12469,107 +12712,107 @@
 	],
 	"variable": [
 		{
-			"id": "4a203a71-e358-4d3f-8018-d73b7a0f1201",
+			"id": "ff25a5fa-981f-449e-9a6d-a1bc1e2f1b6c",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "aa471bda-39bb-4ae6-94a0-c499a42bc085",
+			"id": "e930e462-ede7-4342-ae37-3071a03c4294",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "c4296b14-0d32-4ff9-bdbe-9702aefe78c6",
+			"id": "19be0474-3829-4418-a1eb-30fa9bc3cd0d",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "3d099442-1fa6-4376-a858-630e624b5ef2",
+			"id": "f03f6224-55ad-4d6c-a50c-c98ec9df19af",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "4479e062-dcfd-4b1b-8963-2fd86262cebf",
+			"id": "ab276563-db42-4067-b85e-3197ae5c0157",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "b8a913d3-e775-4986-8f00-a36f8d0a83a4",
+			"id": "852f1722-d0eb-4ad6-8507-f3753bde537d",
 			"key": "default-nonce",
 			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
 		},
 		{
-			"id": "cc80b1a4-2155-4741-b7a9-8eaad357a839",
+			"id": "c8be5594-6e1e-4ecc-b7eb-62b8450bcfd5",
 			"key": "default-state",
 			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
 		},
 		{
-			"id": "e4513e94-419e-4778-afbe-7066355e057c",
+			"id": "37400e75-c10e-418f-b29a-904dedd58b2b",
 			"key": "dh-idp-authorization-endpoint",
 			"value": "/as/authorization.oauth2"
 		},
 		{
-			"id": "582491fb-b3d1-4b18-b46a-eaaee9efd6f0",
+			"id": "1e09e78a-4cf2-4dbd-9a98-ba0192fd2668",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "c2f72bac-8794-45c4-ad54-3dda88edb163",
+			"id": "05a7ffc9-5882-44c6-984b-f94f7d19f8a9",
 			"key": "dh-idp-introspect-endpoint",
 			"value": "/as/introspect.oauth2"
 		},
 		{
-			"id": "3a3be780-6b91-4459-8c82-b5e0e3a0a8ff",
+			"id": "4a2f4897-056b-4c72-8201-b8462c234649",
 			"key": "dh-api-host",
 			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
-			"id": "726f02de-4a7c-4fea-a75d-02c409982b18",
+			"id": "43947d5b-d554-465e-9d30-34f4d9e7dca0",
 			"key": "dh-idp-revocation-endpoint",
 			"value": "/as/revoke_token.oauth2"
 		},
 		{
-			"id": "6f13d9ec-9e66-4f54-8205-6162891b79e0",
+			"id": "5a84fd8b-6ee7-4d4e-87dd-9d92cf26b7cc",
 			"key": "dh-idp-userinfo-endpoint",
 			"value": "/idp/userinfo.openid"
 		},
 		{
-			"id": "fe382dec-58be-4b10-9489-cfe9a66ae1a8",
+			"id": "38797370-74ea-4386-b810-3793beb9daed",
 			"key": "dh-idp-cdrarrangement-endpoint",
 			"value": "/arrangements"
 		},
 		{
-			"id": "f0c3c444-9e95-4eb1-87ce-366adc6b164b",
+			"id": "9fbf0fdb-8a5e-4549-9c6d-266b1314195c",
 			"key": "openid-configuration",
 			"value": "/.well-known/openid-configuration"
 		},
 		{
-			"id": "5403f86c-1f2b-4528-8f86-b0b6d7aa396d",
+			"id": "d90bd73b-dbde-4d44-b924-a1193baeffcb",
 			"key": "grant-management-user",
 			"value": "Administrator"
 		},
 		{
-			"id": "1948cd02-b4df-4fe5-ac31-91d619facd2e",
+			"id": "aa149eaf-754e-421a-b04b-c437482c8014",
 			"key": "grant-management-password",
 			"value": "2FederateM0re"
 		},
 		{
-			"id": "64a65f24-b3ac-481e-88a9-86528478904d",
+			"id": "698c5f9e-42d5-4058-960d-7a5e42edefbf",
 			"key": "dh-dir-host",
 			"value": "https://pd.data-holder.local"
 		},
 		{
-			"id": "8891074e-857d-41bb-b5fc-9c6a093ae9fd",
+			"id": "4da3370a-b019-4e9b-a7f6-04767ca5a0da",
 			"key": "pkce-challenge",
 			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
 		},
 		{
-			"id": "22e49c55-5486-42d7-a357-2760722e7906",
+			"id": "21865283-fa5a-467b-b467-f56c42776ffc",
 			"key": "pkce-challenge-s256",
 			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
 		},
 		{
-			"id": "2604c031-9854-433d-b7e1-aefd85d7fe6b",
+			"id": "d34e35d0-e4d8-4e3c-9f8b-f45031a076c3",
 			"key": "data-recipient-id",
 			"value": "abcd"
 		}
