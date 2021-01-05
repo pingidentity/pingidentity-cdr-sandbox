@@ -31,7 +31,8 @@ dsconfig create-sync-pipe \
   --set synchronize-creates:false \
   --set synchronize-modifies:false \
   --set allow-destination-renames:false \
-  --set evaluation-order-index:1
+  --set evaluation-order-index:1 \
+  --set destination-correlation-attributes-on-delete:pf-oauth-client-id
 
  dsconfig create-sync-class \
   --pipe-name "Process CDR Product Cleanup" \
@@ -41,4 +42,5 @@ dsconfig create-sync-pipe \
   --set synchronize-creates:false \
   --set synchronize-modifies:false \
   --set allow-destination-renames:false \
-  --set evaluation-order-index:2
+  --set evaluation-order-index:2 \
+  --set destination-correlation-attributes-on-delete:entryUUID
