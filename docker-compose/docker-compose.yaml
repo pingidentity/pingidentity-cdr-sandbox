@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   pingaccess:
-    image: pingidentity/pingaccess:edge
+    image: pingidentity/pingaccess:6.1.3-edge
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -46,7 +46,7 @@ services:
       - pingnet-dmz
 
   pingfederate:
-    image: pingidentity/pingfederate:edge
+    image: pingidentity/pingfederate:10.1.3-edge
     command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -64,7 +64,7 @@ services:
     #  - ./pingfederate-out:/opt/out
 
   pingdirectory:
-    image: pingidentity/pingdirectory:edge
+    image: pingidentity/pingdirectory:8.1.0.2-edge
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
