@@ -17,7 +17,7 @@ dsconfig create-sync-destination \
 
 dsconfig create-sync-pipe \
  --pipe-name "Process CDR Product Cleanup" \
- --set started:false \
+ --set started:true \
  --set sync-source:GetSoftwareProductsStatusEndpointCleanup \
  --set sync-destination:LDAPDestination \
  --set include-changes-for-unchanged-attributes:true \
