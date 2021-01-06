@@ -326,7 +326,7 @@
     </init-param>
     <init-param>
       <param-name>EXPECTED_JWT_AUDIENCE</param-name>
-      <param-value>https://sso.data-holder.local</param-value>
+      <param-value>https://${PF_BASE_HOST}</param-value>
     </init-param>
 
   </servlet>
