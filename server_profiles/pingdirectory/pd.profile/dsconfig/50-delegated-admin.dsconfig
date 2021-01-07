@@ -97,6 +97,7 @@ dsconfig create-identity-mapper   \
     --type "exact-match" \
     --set enabled:true \
     --set "match-attribute:entryUUID" \
+    --set match-attribute:uid  \
     --set "match-base-dn:${USER_BASE_DN}"
 
 dsconfig create-access-token-validator   \
