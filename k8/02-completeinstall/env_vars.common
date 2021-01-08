@@ -42,7 +42,8 @@ CONSENT_APP_agentless_password=2FederateM0re
 
 CONSENT_BASEURL=https://consent.accc.pingapac.com
 
-
+REGISTER_STATUS_BASEURL=http://cdrregister:8084/cdr-register/v2/banking
+REGISTER_JWKS_ENDPOINT=http://cdrregister:8084/.well-known/openid-configuration/JWKS
 
 
 

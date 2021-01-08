@@ -5,6 +5,7 @@ metadata:
     role: pingdirectory
   name: pingdirectory
 spec:
+  publishNotReadyAddresses: true
   clusterIP: None
   ports:
   - name: ldaps

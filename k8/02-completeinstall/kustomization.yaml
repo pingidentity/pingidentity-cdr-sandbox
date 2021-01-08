@@ -7,9 +7,6 @@ resources:
 - ../01-standalone/pingfederate-cluster
 - ../01-standalone/pingaccess-admin
 - ../01-standalone/pingaccess
-- ../01-standalone/deepthought-admin-service
-- ../01-standalone/deepthought-bank-api
-- ../01-standalone/deepthought-h2-database
 - ../01-standalone/cdr-dr-client
 - ../01-standalone/agentless-consentapp
 - ../01-standalone/mock-dh-api
@@ -61,24 +58,6 @@ configMapGenerator:
     - devops
     - env_vars.common
     - env_vars.pingaccess
-- name: deepthought-admin-service-environment-variables
-  behavior: replace
-  envs:
-    - devops
-    - env_vars.common
-    - env_vars.deepthought-admin-service
-- name: deepthought-bank-api-environment-variables
-  behavior: replace
-  envs:
-    - devops
-    - env_vars.common
-    - env_vars.deepthought-bank-api
-- name: deepthought-h2-database-environment-variables
-  behavior: replace
-  envs:
-    - devops
-    - env_vars.common
-    - env_vars.deepthought-h2-database
 - name: cdr-dr-client-environment-variables
   behavior: replace
   envs:
@@ -132,4 +111,60 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: cdrsandbox/sample-dr-client:20200916
+      value: cdrsandbox/sample-dr-client:20201214
+- target:
+    kind: Deployment
+    name: ^cdrregister$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: cdrsandbox/cdr-register-testharness:20201214
+- target:
+    kind: Deployment
+    name: ^pingfederate$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingfederate:10.2.0-edge
+- target:
+    kind: Deployment
+    name: ^pingfederate-admin$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingfederate:10.2.0-edge
+- target:
+    kind: Deployment
+    name: ^pingaccess$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingaccess:6.2.0-edge
+- target:
+    kind: Deployment
+    name: ^pingaccess-admin$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingaccess:6.2.0-edge
+- target:
+    kind: Deployment
+    name: ^pingdirectory$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingdirectory:8.2.0.0-edge
+- target:
+    kind: Deployment
+    name: ^pingdatasync$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingdatasync:8.2.0.0-edge
+- target:
+    kind: StatefulSet
+    name: ^pingdirectory$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingdirectory:8.2.0.0-edge

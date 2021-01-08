@@ -34,6 +34,10 @@ spec:
         role: pingdatasync
       name: pingdatasync
     spec:
+      initContainers:
+      - name: init
+        image: curlimages/curl:latest
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingdirectory ; do echo waiting for admin ; sleep 3 ; done']
       containers:
       - envFrom:
         - configMapRef:

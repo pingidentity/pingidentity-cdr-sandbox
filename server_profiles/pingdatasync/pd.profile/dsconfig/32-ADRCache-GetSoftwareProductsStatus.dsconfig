@@ -8,7 +8,7 @@ dsconfig create-sync-source \
  --set extension-argument:cache-lifetime=180 \
  --set "extension-argument:ldap-server=PingDirectory" \
  --set extension-argument:endpoint-class=cachedEndpoint \
- --set extension-argument:register-endpoint-url=http://cdrregister:8084/cdr-register/v2/banking/data-recipients/brands/software-products/status \
+ --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
 --set extension-argument:base-dn=ou=metadataCache,${USER_BASE_DN}
 
 dsconfig create-sync-destination \

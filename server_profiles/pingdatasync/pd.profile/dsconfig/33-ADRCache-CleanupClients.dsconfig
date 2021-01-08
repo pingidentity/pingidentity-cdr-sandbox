@@ -4,7 +4,7 @@ dsconfig create-sync-source \
  --type third-party \
  --set extension-class:com.pingidentity.ps.cdr.data.in.pds.MetaDataCacheCleanupSyncSource \
  --set "extension-argument:ldap-server=PingDirectory" \
- --set extension-argument:register-endpoint-url=http://cdrregister:8084/cdr-register/v2/banking/data-recipients/brands/software-products/status \
+ --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
  --set extension-argument:consent-storage-basedn=ou=consents,${USER_BASE_DN} \
  --set extension-argument:client-storage-basedn=ou=oauthClients,${USER_BASE_DN} \
  --set extension-argument:clientid-prefix=dcr-
