@@ -3,7 +3,7 @@
 # Ping Identity DevOps - Docker Build Hooks
 #
 ${VERBOSE} && set -x
-#exit 0
+exit 0
 
 FILES="configuration.yml keystore.p12"
 #FILES="options.yml"
