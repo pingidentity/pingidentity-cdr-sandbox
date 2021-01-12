@@ -149,13 +149,63 @@ services:
     volumes:
        - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
 
-#  pingdataconsole:
-#    image: pingidentity/pingdataconsole:edge
-#    ports:
-#      - "8443:8443"
-#    networks:
-#      - pingnet-internal
-#      - pingnet-dmz
+
+  pingdatagovernance:
+    image: pingidentity/pingdatagovernance:8.2.0.0-edge
+    command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_BRANCH=PDG
+      - SERVER_PROFILE_PATH=server_profiles/pdg-pap-integration/pingdatagovernance
+    env_file:
+      - ${HOME}/.pingidentity/devops
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "9080:80"
+      - "7443:443"
+    networks:
+      - pingnet-dmz
+      - pingnet-internal
+
+  pingdatagovernancepap:
+    image: pingidentity/pingdatagovernancepap:8.2.0.0-edge
+    # command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_BRANCH=PDG
+      - SERVER_PROFILE_PATH=server_profiles/pdg-pap-integration/pingdatagovernancepap
+      - HTTPS_PORT=8443
+    env_file:
+      - ${HOME}/.pingidentity/devops
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "8443:8443"
+    networks:
+      - pingnet-dmz
+      - pingnet-internal
+    #volumes:
+    #  - ./pingdatagovernancepap-out:/opt/out
+    #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
+
+  pingdataconsole:
+    image: pingidentity/pingdataconsole:edge
+    ports:
+      - "9443:8443"
+    networks:
+      - pingnet-internal
+      - pingnet-dmz
 
 networks:
     pingnet-internal:
