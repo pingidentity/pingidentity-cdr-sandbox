@@ -1189,18 +1189,11 @@
                 "exclusionListSubject": null,
                 "headerClientCertificateMappings": [],
                 "exclusionListAttributes": [],
-                "attributeHeaderMappings": [
-                    {
-                        "headerName": "X-USER",
-                        "subject": true,
-                        "attributeName": "sub"
-                    },
-                    {
-                        "headerName": "X-ACCOUNTS",
-                        "subject": false,
-                        "attributeName": "accounts"
-                    }
-                ],
+                "attributeHeaderMappings": [{
+                    "headerName": "X-USER",
+                    "subject": true,
+                    "attributeName": "sub"
+                }],
                 "headerNamePrefix": null
             },
             "name": "Default Identity Mapping",
@@ -1326,7 +1319,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610507194703,
+                "agentCacheInvalidatedExpiration": 1610576175274,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1357,7 +1350,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1610506294703,
+                "lastModified": 1610575275274,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1374,7 +1367,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610507193333,
+                "agentCacheInvalidatedExpiration": 1610576549611,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1409,7 +1402,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1610506293333,
+                "lastModified": 1610575649611,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1422,7 +1415,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610507192928,
+                "agentCacheInvalidatedExpiration": 1610576174497,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1453,7 +1446,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1610506292928,
+                "lastModified": 1610575274497,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1466,7 +1459,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610507193332,
+                "agentCacheInvalidatedExpiration": 1610576174639,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1488,7 +1481,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1610506293332,
+                "lastModified": 1610575274639,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1501,7 +1494,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610507193636,
+                "agentCacheInvalidatedExpiration": 1610576174804,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1526,7 +1519,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1610506293636,
+                "lastModified": 1610575274804,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
