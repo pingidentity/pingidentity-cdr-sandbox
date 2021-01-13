@@ -104,7 +104,7 @@
                 "name": "CONFIG QUERY",
                 "useServerCipherSuiteOrder": true,
                 "id": 4,
-                "keyPairId": 5
+                "keyPairId": 11
             }
         ],
         "rules": [
@@ -474,18 +474,18 @@
                 "maxConnections": -1
             },
             {
-                "trustedCertificateGroupId": 0,
+                "trustedCertificateGroupId": 2,
                 "loadBalancingStrategyId": 0,
                 "maxWebSocketConnections": -1,
                 "keepAliveTimeout": 0,
                 "useTargetHostHeader": false,
                 "siteAuthenticatorIds": [],
                 "useProxy": false,
-                "secure": false,
+                "secure": true,
                 "sendPaCookie": true,
-                "targets": ["mock-dh-api:6879"],
+                "targets": ["pingdatagovernance:443"],
                 "expectedHostname": null,
-                "skipHostnameVerification": false,
+                "skipHostnameVerification": true,
                 "name": "mock-dh-api",
                 "id": 10,
                 "availabilityProfileId": 1,
@@ -553,6 +553,11 @@
                 "fileData": "${_data_trustedCerts_17_cdr_trustcert_default_fileData}",
                 "alias": "cdr_trustcert_default",
                 "id": 17
+            },
+            {
+                "fileData": "${_data_trustedCerts_18_cdr_register_local_3170_fileData}",
+                "alias": "cdr-register-local-3170",
+                "id": 18
             }
         ],
         "engineListeners": [
@@ -1253,6 +1258,13 @@
                 "alias": "pingaccess-console",
                 "hsmProviderId": 0,
                 "id": 9
+            },
+            {
+                "password": "${_data_keyPairs_11_pingaccess_password}",
+                "fileData": "${_data_keyPairs_11_pingaccess_fileData}",
+                "alias": "pingaccess",
+                "hsmProviderId": 0,
+                "id": 11
             }
         ],
         "trustedCertGroups": [
@@ -1260,7 +1272,7 @@
                 "skipCertificateDateCheck": true,
                 "name": "MTLS Certificate Group",
                 "useJavaTrustStore": false,
-                "certIds": [17],
+                "certIds": [18],
                 "id": 3,
                 "systemGroup": false,
                 "ignoreAllCertificateErrors": false,
@@ -1314,7 +1326,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1609719674949,
+                "agentCacheInvalidatedExpiration": 1610507194703,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1345,7 +1357,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1609718774949,
+                "lastModified": 1610506294703,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1362,7 +1374,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1609719703669,
+                "agentCacheInvalidatedExpiration": 1610507193333,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1397,7 +1409,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1609718803669,
+                "lastModified": 1610506293333,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1410,7 +1422,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1609718555274,
+                "agentCacheInvalidatedExpiration": 1610507192928,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1441,7 +1453,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1609717655274,
+                "lastModified": 1610506292928,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1454,7 +1466,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1609718555281,
+                "agentCacheInvalidatedExpiration": 1610507193332,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1476,7 +1488,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1609717655281,
+                "lastModified": 1610506293332,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1489,7 +1501,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1609718555332,
+                "agentCacheInvalidatedExpiration": 1610507193636,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1514,7 +1526,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1609717655332,
+                "lastModified": 1610506293636,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
