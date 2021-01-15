@@ -11,9 +11,11 @@ resources:
 - ../01-standalone/agentless-consentapp
 - ../01-standalone/mock-dh-api
 - ../01-standalone/pingdatasync
+- ../01-standalone/pingdatagovernance
+- ../01-standalone/pingdatagovernancepap
 
 
-# The only difference in standalone deployments vs "fullstack" (integrated) is the product configurations. 
+# The only difference in standalone deployments vs "fullstack" (integrated) is the product configurations.
 # here we replace standalone server-profiles ("getting-started") with "baseline" for each product
 
 generatorOptions:
@@ -82,6 +84,18 @@ configMapGenerator:
     - devops
     - env_vars.common
     - env_vars.pingdatasync
+- name: pingdatagovernance-environment-variables
+  behavior: replace
+  envs:
+    - devops
+    - env_vars.common
+    - env_vars.pingdatagovernance
+- name: pingdatagovernancepap-environment-variables
+  behavior: replace
+  envs:
+    - devops
+    - env_vars.common
+    - env_vars.pingdatagovernancepap
 
 patches:
 - target:
@@ -168,3 +182,17 @@ patches:
     - op: replace
       path: /spec/template/spec/containers/0/image
       value: pingidentity/pingdirectory:8.2.0.0-edge
+- target:
+    kind: Deployment
+    name: ^pingdatagovernance$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingdatagovernance:8.2.0.0-edge
+- target:
+    kind: Deployment
+    name: ^pingdatagovernancepap$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: pingidentity/pingdatagovernancepap:8.2.0.0-edge
