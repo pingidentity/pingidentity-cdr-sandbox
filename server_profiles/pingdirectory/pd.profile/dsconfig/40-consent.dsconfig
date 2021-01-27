@@ -54,7 +54,7 @@ dsconfig create-topology-admin-user \
   --set "description:Consent API internal service account" \
   --set "alternate-bind-dn:cn=consent service account" \
   --set "first-name:Consent" \
-  --set inherit-default-root-privileges:false \
+  --set inherit-default-root-privileges:true \
   --set "last-name:Internal Service Account" \
   --set password<${ROOT_USER_PASSWORD_FILE} \
   --set privilege:bypass-acl \
