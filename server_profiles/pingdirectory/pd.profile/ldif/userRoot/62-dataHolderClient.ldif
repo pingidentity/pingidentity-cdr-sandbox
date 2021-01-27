@@ -15,7 +15,7 @@ pf-oauth-client-name: Data Holder Client
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
 pf-oauth-client-require-signed-requests: FALSE
 pf-oauth-client-restrict-scopes: FALSE
-pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:dataHolderATM
+pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:cdrADRNotfATM
 pf-oauth-client-supplemental-info: 16:EXCLUSIVE_SCOPES:null
 pf-oauth-client-supplemental-info: 19:DEVICE_FLOW_SETTING:SERVER_DEFAULT
 pf-oauth-client-supplemental-info: 22:ALLOW_EXCLUSIVE_SCOPES:false
