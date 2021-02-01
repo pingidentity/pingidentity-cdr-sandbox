@@ -46,7 +46,7 @@ services:
       - pingnet-dmz
 
   mock-dh-api:
-    image: cdrsandbox/mock-dh-apis:20210129
+    image: cdrsandbox/mock-dh-apis:20210201
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true

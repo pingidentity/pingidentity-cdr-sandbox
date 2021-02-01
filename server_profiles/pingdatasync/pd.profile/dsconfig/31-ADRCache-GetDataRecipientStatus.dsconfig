@@ -23,6 +23,7 @@ dsconfig create-sync-pipe \
  --set sync-source:GetDataRecipientsStatusEndpoint \
  --set sync-destination:GetDataRecipientsEntity \
  --set include-changes-for-unchanged-attributes:true \
+ --set max-operation-attempts:1 \
  --set "change-detection-polling-interval:10 s"
 
 dsconfig create-sync-class \

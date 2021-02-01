@@ -21,6 +21,7 @@ dsconfig create-sync-pipe \
  --set sync-source:GetSoftwareProductsStatusEndpointCleanup \
  --set sync-destination:LDAPDestination \
  --set include-changes-for-unchanged-attributes:true \
+ --set max-operation-attempts:1 \
  --set "change-detection-polling-interval:30 s"
 
  dsconfig create-sync-class \

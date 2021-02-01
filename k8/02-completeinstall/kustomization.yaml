@@ -196,3 +196,10 @@ patches:
     - op: replace
       path: /spec/template/spec/containers/0/image
       value: pingidentity/pingdatagovernancepap:8.2.0.0-edge
+- target:
+    kind: Deployment
+    name: ^mock-dh-api$
+  patch: |-
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: cdrsandbox/mock-dh-apis:20210201
