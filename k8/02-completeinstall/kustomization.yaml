@@ -202,4 +202,4 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: cdrsandbox/mock-dh-apis:20210201
+      value: cdrsandbox/mock-dh-apis:20210202
