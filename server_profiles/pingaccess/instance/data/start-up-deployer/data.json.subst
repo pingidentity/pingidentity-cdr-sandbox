@@ -346,7 +346,7 @@
                     "clientId": "pingaccess-cc",
                     "isIgnoreSSL": true,
                     "refreshInterval": 10,
-                    "errorResponseCode": 403,
+                    "errorResponseCode": 400,
                     "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
                     "clientIdPrefix": "dcr-",
                     "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
