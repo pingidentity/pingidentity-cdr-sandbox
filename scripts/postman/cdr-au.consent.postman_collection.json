@@ -3178,7 +3178,214 @@
 					"name": "S002.T007 Revoke Tokens",
 					"item": [
 						{
-							"name": "S002.T007.001 Revocation",
+							"name": "S002.T007.000 Revocation - Access Token",
+							"item": [
+								{
+									"name": "S002.T007.000.001 - Creates JWT-Bearer Client Assertion",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate client assertion is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('client-assertion');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "private-jwk",
+													"value": "{{software-jwks-private}}",
+													"type": "text"
+												},
+												{
+													"key": "client-id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "token-endpoint",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
+													"type": "text"
+												},
+												{
+													"key": "kid",
+													"value": "{{softwareId}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"createClientAssertion"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T007.000.002 - Perform revoke token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "token",
+													"value": "{{consent-request-refresh-token}}",
+													"type": "text"
+												},
+												{
+													"key": "token_type_hint",
+													"value": "refresh_token",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{dh-idp-host}}{{dh-idp-revocation-endpoint}}",
+											"host": [
+												"{{dh-idp-host}}{{dh-idp-revocation-endpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T007.000.003 - Get account list - should fail",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=401\", function () {",
+													"    pm.response.to.have.status(401);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "S002.T007.001 Revocation - Refresh Token",
 							"item": [
 								{
 									"name": "S002.T007.001.001 - Creates JWT-Bearer Client Assertion",
