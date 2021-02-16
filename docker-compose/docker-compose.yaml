@@ -28,7 +28,6 @@ services:
       - 9000:9000
       - 9001:9001
     networks:
-      - pingnet-dmz
       - pingnet-internal
 
   agentless-consentapp:
@@ -43,7 +42,6 @@ services:
       - 8082:7879
     networks:
       - pingnet-internal
-      - pingnet-dmz
 
   mock-dh-api:
     image: cdrsandbox/mock-dh-apis:20210202
@@ -57,10 +55,9 @@ services:
       - 6879:6879
     networks:
       - pingnet-internal
-      - pingnet-dmz
 
   pingfederate:
-    image: pingidentity/pingfederate:10.2.0-edge
+    image: pingidentity/pingfederate:10.2.1-edge
     command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
@@ -72,13 +69,12 @@ services:
       - 9031:9031
       - 9999:9999
     networks:
-      - pingnet-dmz
       - pingnet-internal
     #volumes:
     #  - ./pingfederate-out:/opt/out
 
   pingdirectory:
-    image: pingidentity/pingdirectory:8.2.0.0-edge
+    image: pingidentity/pingdirectory:8.2.0.1-edge
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
@@ -114,7 +110,6 @@ services:
       - "2636:636"
       - "2443:443"
     networks:
-      - pingnet-dmz
       - pingnet-internal
 
   cdr-dr-client:
@@ -130,7 +125,6 @@ services:
       - 8080:7878
     networks:
       - pingnet-internal
-      - pingnet-dmz
 
   cdrregister:
     image: cdrsandbox/cdr-register-testharness:20201214
@@ -145,13 +139,12 @@ services:
       - 8084:8084
     networks:
       - pingnet-internal
-      - pingnet-dmz
     volumes:
        - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
 
 
   pingdatagovernance:
-    image: pingidentity/pingdatagovernance:8.2.0.0-edge
+    image: pingidentity/pingdatagovernance:8.2.0.1-edge
     command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
@@ -170,11 +163,10 @@ services:
       - "9080:80"
       - "7443:443"
     networks:
-      - pingnet-dmz
       - pingnet-internal
 
   pingdatagovernancepap:
-    image: pingidentity/pingdatagovernancepap:8.2.0.0-edge
+    image: pingidentity/pingdatagovernancepap:8.2.0.1-edge
     # command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
@@ -193,7 +185,6 @@ services:
     ports:
       - "8443:8443"
     networks:
-      - pingnet-dmz
       - pingnet-internal
     #volumes:
     #  - ./pingdatagovernancepap-out:/opt/out
@@ -205,8 +196,6 @@ services:
       - "9443:8443"
     networks:
       - pingnet-internal
-      - pingnet-dmz
 
 networks:
     pingnet-internal:
-    pingnet-dmz:
