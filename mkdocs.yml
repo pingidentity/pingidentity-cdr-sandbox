@@ -1,7 +1,7 @@
 site_name: Ping Identity CDR Sandbox
 repo_name: pingidentity/pingidentity-cdr-sandbox
 repo_url: https://github.com/pingidentity/pingidentity-cdr-sandbox
-site_url: https://cdr.pingidentity.com/
+site_url: https://pingidentity.github.io/pingidentity-cdr-sandbox/
 copyright: © Copyright 2021 Ping Identity
 #google_analytics: ['UA-156953351-1', 'devops.pingidentity.com']
 extra_css:
@@ -38,7 +38,7 @@ markdown_extensions:
 
 nav:
   - Introduction:
-      - CDR Quick Start: "quickstart.md"
+      - CDR Quick Start: "README.md"
       - Postman Setup: "postman.md"
   - How Tos:
       - Access Administration Consoles: "howtos/howto_adminconsoles.md"
