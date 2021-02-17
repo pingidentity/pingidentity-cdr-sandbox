@@ -224,24 +224,6 @@
             },
             {
                 "configuration": {
-                    "rejectionHandler": "1",
-                    "errorResponseTemplateFile": "policy.error.page.template.html",
-                    "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "import java.util.Base64\nimport com.fasterxml.jackson.databind.JsonNode\nimport com.fasterxml.jackson.databind.ObjectMapper\n\n\nif(!exc?.response && getRequestParameter(exc?.request, \"request\") != null)\n{\n  def requestJwt = getRequestParameter(exc?.request, \"request\");\n  \n  def challengeMethod = getJwtTokenClaim(requestJwt, \"code_challenge_method\");\n  \n  // Removing S256 code challenge validation however it may come later\n  \n  // enforce S256 challenge method\n  //if(challengeMethod && challengeMethod.equalsIgnoreCase(\"S256\"))\n  //{\n  \tcopyRequestObjectParameters(exc?.request, requestJwt, \"code_challenge\");\n  \tcopyRequestObjectParameters(exc?.request, requestJwt, \"code_challenge_method\");\n  //}\n  //else\n  //{\n  //\tclearRequestObjectParameters(exc?.request, \"code_challenge\");\n  //\tclearRequestObjectParameters(exc?.request, \"code_challenge_method\");\n  //}\n  \n}\n\nanything();\n\nvoid clearRequestObjectParameters(def request, def paramName)\n{\n  if(request?.method?.methodName?.equalsIgnoreCase(\"POST\"))\n  {\n    def bodyStr = new String(request?.body?.getContent());\n    bodyStr = bodyStr?.replaceAll(paramName + \"=\", paramName + \"_old=\");\n    request?.setBodyContent(bodyStr.getBytes());\n  }\n  else\n  {\n    def delimiter = '?';\n    if(request?.uri.contains('?'))\n      delimiter = '&';\n\n    def newUri = request?.uri.replaceAll(paramName + \"=\", paramName + \"_old=\");    \n    request?.setUri(newUri);\n  }\n}\n\nvoid copyRequestObjectParameters(def request, def requestJwt, def paramName)\n{\n  if(getJwtTokenClaim(requestJwt, paramName) == null)\n  \treturn;\n  \n  if(request?.method?.methodName?.equalsIgnoreCase(\"POST\"))\n  {\n    def bodyStr = new String(request?.body?.getContent());\n    bodyStr = bodyStr?.replaceAll(paramName + \"=\", paramName + \"_old=\");\n    bodyStr = bodyStr + \"&\" + paramName + \"=\" + getJwtTokenClaim(requestJwt, paramName);\n    request?.setBodyContent(bodyStr.getBytes());\n  }\n  else\n  {\n    def delimiter = '?';\n    if(request?.uri.contains('?'))\n      delimiter = '&';\n\n    def newUri = request?.uri.replaceAll(paramName + \"=\", paramName + \"_old=\");    \n    request?.setUri(newUri + delimiter + paramName + \"=\" + getJwtTokenClaim(requestJwt, paramName));\n  }\n}\n\nString getRequestParameter(def request, def paramName)\n{\n  def paramValue = null;\n  if(request?.method?.methodName?.equalsIgnoreCase(\"POST\"))\n  \tparamValue = getPostParameter(request, paramName);\n  else\n    paramValue = getQueryParameter(request, paramName);\n  \n  return paramValue;\n}\n\nString getQueryParameter(def request, def paramName)\n{\n  def params = request?.getQueryStringParams();\n  \n  if(params == null)\n    return null;\n  \n  if(!params.containsKey(paramName))\n    return null;\n  \n  return params.get(paramName)[0];\n}\n\nString getPostParameter(def request, def paramName)\n{\n  def params = request?.getPostParams();\n  \n  if(params == null)\n    return null;\n  \n  if(!params.containsKey(paramName))\n    return null;\n  \n  return params.get(paramName)[0];\n}\n\nString getJwtTokenClaim(String jwt, String claim)\n{\n    def jwtSplit = jwt.split(\"\\\\.\");\n    if(jwtSplit.length != 3)\n      return null;\n  \n    def jwtBodyEncoded = jwtSplit[1];\n    def jwtBody = new String(Base64.getDecoder().decode(jwtBodyEncoded));\n  \n    return getClaimValue(jwtBody, claim);\n}\n\nString getClaimValue(String responseStr, String jsonPath)\n{\n    ObjectMapper mapper = new ObjectMapper();       \n    JsonNode resultObject = mapper.readTree(responseStr);\n\n    String [] splitJsonPath = jsonPath.split(\"\\\\.\");\n\n    for(String path : splitJsonPath)\n    {\n        resultObject = resultObject.findPath(path);\n    }\n\n    return resultObject.textValue();\n\n}",
-                    "rejectionHandlingEnabled": true,
-                    "errorResponseCode": 403,
-                    "errorResponseStatusMsg": "Forbidden"
-                },
-                "name": "FAPI Conformance - Fix PKCE",
-                "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
-                "id": 7,
-                "supportedDestinations": [
-                    "Site",
-                    "Agent"
-                ]
-            },
-            {
-                "configuration": {
                     "rejectionHandler": "5",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
@@ -558,6 +540,11 @@
                 "fileData": "${_data_trustedCerts_18_cdr_register_local_3170_fileData}",
                 "alias": "cdr-register-local-3170",
                 "id": 18
+            },
+            {
+                "fileData": "${_data_trustedCerts_19_cdr_register_local_25023_fileData}",
+                "alias": "cdr-register-local-25023",
+                "id": 19
             }
         ],
         "engineListeners": [
@@ -627,8 +614,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/register",
-                    "/as/clients.oauth2"
+                    "/as/clients.oauth2",
+                    "/register"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -641,11 +628,11 @@
                 "id": 4,
                 "pathPatterns": [
                     {
-                        "pattern": "/register",
+                        "pattern": "/as/clients.oauth2",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/as/clients.oauth2",
+                        "pattern": "/register",
                         "type": "WILDCARD"
                     }
                 ],
@@ -958,10 +945,6 @@
                             "type": "Rule"
                         },
                         {
-                            "id": 7,
-                            "type": "Rule"
-                        },
-                        {
                             "id": 13,
                             "type": "Rule"
                         }
@@ -990,16 +973,10 @@
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
-                    "Web": [
-                        {
-                            "id": 14,
-                            "type": "Rule"
-                        },
-                        {
-                            "id": 7,
-                            "type": "Rule"
-                        }
-                    ],
+                    "Web": [{
+                        "id": 14,
+                        "type": "Rule"
+                    }],
                     "API": []
                 },
                 "resourceType": "Standard",
@@ -1265,7 +1242,7 @@
                 "skipCertificateDateCheck": true,
                 "name": "MTLS Certificate Group",
                 "useJavaTrustStore": false,
-                "certIds": [18],
+                "certIds": [19],
                 "id": 3,
                 "systemGroup": false,
                 "ignoreAllCertificateErrors": false,
@@ -1319,7 +1296,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610576175274,
+                "agentCacheInvalidatedExpiration": 1613529418598,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1350,7 +1327,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1610575275274,
+                "lastModified": 1613528518598,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1367,7 +1344,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610576549611,
+                "agentCacheInvalidatedExpiration": 1613524080904,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1402,7 +1379,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1610575649611,
+                "lastModified": 1613523180904,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1415,7 +1392,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610576174497,
+                "agentCacheInvalidatedExpiration": 1613524080878,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1446,7 +1423,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1610575274497,
+                "lastModified": 1613523180878,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1459,7 +1436,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610576174639,
+                "agentCacheInvalidatedExpiration": 1613524081083,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1481,7 +1458,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1610575274639,
+                "lastModified": 1613523181083,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1494,7 +1471,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1610576174804,
+                "agentCacheInvalidatedExpiration": 1613524081147,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1519,7 +1496,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1610575274804,
+                "lastModified": 1613523181147,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
