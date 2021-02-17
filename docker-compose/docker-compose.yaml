@@ -70,6 +70,8 @@ services:
       - 9999:9999
     networks:
       - pingnet-internal
+    cap_add:
+      - NET_ADMIN
     #volumes:
     #  - ./pingfederate-out:/opt/out
 
