@@ -25,8 +25,10 @@ CDR_REGISTER-server-allowed-origins=https://mockregister.accc.pingapac.com
 CDR_REGISTER_BASE_URL=http://cdrregister:8084
 
 CONSENT_APP_server_baseurl=https://consent.accc.pingapac.com
-CONSENT_APP_account_retriever_configuration={ "baseUrl": "http://deepthought-admin-service:8080/dio-au", "client-id": "deepthought-admin-service", "client-secret": "2FederateM0re", "scopes": "DEEPTHOUGHT:ADMIN:GRANT:WRITE DEEPTHOUGHT:ADMIN:CUSTOMER:READ DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE", "brand-id": "abaaef28-e212-4532-8223-c875e80692ac", "ignore-ssl": true }
-CONSENT_APP_external_consent_configuration={ "baseUrl": "http://deepthought-admin-service:8080/dio-au", "client-id": "deepthought-admin-service", "client-secret": "2FederateM0re", "scopes": "DEEPTHOUGHT:ADMIN:GRANT:WRITE DEEPTHOUGHT:ADMIN:CUSTOMER:READ DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE", "brand-id": "abaaef28-e212-4532-8223-c875e80692ac", "ignore-ssl": true }
+CONSENT_APP_account_retriever_class_impl=com.pingidentity.ps.cdr.consentapp.impl.mock.account.MockAPIAccountRetriever
+CONSENT_APP_account_retriever_configuration={ "baseUrl": "http://mock-dh-api:6879", "ignore-ssl": true }
+CONSENT_APP_external_consent_class_impl=com.pingidentity.ps.cdr.consentapp.impl.standard.extconsent.NoExternalConsentStorageImpl
+CONSENT_APP_external_consent_configuration={}
 
 CONSENT_APP_pf_baseurl=https://sso.accc.pingapac.com
 CONSENT_APP_pf_baseurl_backend=https://pingfederate:9031
@@ -40,9 +42,9 @@ CONSENT_APP_agentless_password=2FederateM0re
 
 CONSENT_BASEURL=https://consent.accc.pingapac.com
 
-
-
-
+#REGISTER_STATUS_BASEURL=http://cdrregister:8084/cdr-register/v2/banking
+#REGISTER_JWKS_ENDPOINT=http://cdrregister:8084/.well-known/openid-configuration/JWKS
+#DATAHOLDER_BRAND_ID=brand-a79caf98-6440-4cea-adea-2feea53d4270
 
 
 

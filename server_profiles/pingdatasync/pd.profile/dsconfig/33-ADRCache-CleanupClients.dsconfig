@@ -1,0 +1,47 @@
+
+dsconfig create-sync-source \
+ --source-name GetSoftwareProductsStatusEndpointCleanup \
+ --type third-party \
+ --set extension-class:com.pingidentity.ps.cdr.data.in.pds.MetaDataCacheCleanupSyncSource \
+ --set "extension-argument:ldap-server=PingDirectory" \
+ --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
+ --set extension-argument:consent-storage-basedn=ou=consents,${USER_BASE_DN} \
+ --set extension-argument:client-storage-basedn=ou=oauthClients,${USER_BASE_DN} \
+ --set extension-argument:clientid-prefix=dcr-
+
+dsconfig create-sync-destination \
+ --destination-name LDAPDestination \
+ --type ping-identity \
+ --set base-dn:${USER_BASE_DN} \
+ --set "server:PingDirectory"
+
+dsconfig create-sync-pipe \
+ --pipe-name "Process CDR Product Cleanup" \
+ --set started:true \
+ --set sync-source:GetSoftwareProductsStatusEndpointCleanup \
+ --set sync-destination:LDAPDestination \
+ --set include-changes-for-unchanged-attributes:true \
+ --set max-operation-attempts:1 \
+ --set "change-detection-polling-interval:30 s"
+
+ dsconfig create-sync-class \
+  --pipe-name "Process CDR Product Cleanup" \
+  --class-name "OAuth Client Cleanup" \
+  --set include-base-dn:ou=oauthClients,${USER_BASE_DN} \
+  --set auto-mapped-source-attribute:-none- \
+  --set synchronize-creates:false \
+  --set synchronize-modifies:false \
+  --set allow-destination-renames:false \
+  --set evaluation-order-index:1 \
+  --set destination-correlation-attributes-on-delete:pf-oauth-client-id
+
+ dsconfig create-sync-class \
+  --pipe-name "Process CDR Product Cleanup" \
+  --class-name "CDR Consent Cleanup" \
+  --set include-base-dn:ou=consents,${USER_BASE_DN} \
+  --set auto-mapped-source-attribute:-none- \
+  --set synchronize-creates:false \
+  --set synchronize-modifies:false \
+  --set allow-destination-renames:false \
+  --set evaluation-order-index:2 \
+  --set destination-correlation-attributes-on-delete:entryUUID

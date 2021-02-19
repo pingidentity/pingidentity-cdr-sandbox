@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+#
+# Ping Identity DevOps - Docker Build Hooks
+#
+${VERBOSE} && set -x
+#exit 0
+
+#FILES="configuration.yml keystore.p12 admin-keystore.p12"
+FILES="options.yml"
+for FILE in ${FILES}
+do
+  SRC_DIR=/opt/staging
+  SRC_FILE=${SRC_DIR}/${FILE}
+  DEST_DIR=${SERVER_ROOT_DIR}/config
+  DEST_FILE=${DEST_DIR}/${FILE}
+
+  echo "Copying ${SRC_FILE} to ${DEST_FILE}"
+  cp ${SRC_FILE} ${DEST_FILE}
+done

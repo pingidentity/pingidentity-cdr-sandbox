@@ -13,7 +13,12 @@ Once you see that the containers are healthy in `docker ps`
 * Log in with 'Administrator / 2FederateM0re'
 * Note: You may be asked to accept license agreement and change password
 
-## PingDirectory
+## PingDataGovernance Symphonic PAP
+
+* Go to [https://localhost:8443](https://localhost:8443)
+* Log in with 'Admin / password123'
+
+## PingDirectory management
 
 * Go to [https://localhost:8443/console](https://localhost:8443/console)
 * Log in with:

@@ -1,0 +1,88 @@
+# Example setup options that may be overlayed during setup
+# using the --optionsFile option. Run `setup --help` for further
+# instructions.
+core:
+  # Add policy configuration keys here. The value for a policy 
+  # configuration key may be provided via an environment variable 
+  # using the notation '${environment-variable}'.
+  #
+  #  PolicyConfigurationKeyName: PolicyConfigurationKeyValue
+  AttributeProcessing.SpEL.AllowedClasses: "com.nimbusds.jwt.SignedJWT,java.util.Base64,org.springframework.util.CollectionUtils"
+  RecentRequest.buffer.size: 60
+keystores:
+  #  - name: CustomKeyStore
+  #    resource: /path/to/custom-keystore.jks
+  #    password: keystore-password
+truststores:
+  #  - name: CustomTrustStore
+  #    resource: /path/to/custom-truststore.jks
+  #    password: truststore-password
+logging:
+  level: INFO
+  loggers:
+    "DataNucleus": ERROR
+    "DataNucleus.Enhancer": "OFF"
+    "org.glassfish.jersey.internal.Errors": ERROR
+    "com.symphonicsoft.policyanalysis.PolicyTranslator": ERROR
+    "DECISION_AUDIT_LOG":
+      level: INFO
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: logs/decision-audit.log
+          archive: true
+          maxFileSize: 250MB
+          archivedLogFilenamePattern: logs/decision-audit.%i.log.gz
+          archivedFileCount: 10
+          logFormat: "[%date{ISO8601}] %msg%n"
+    "DECISION_DIAGNOSTIC_LOG":
+      level: "OFF"
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: logs/decision-diagnostic.log
+          archive: true
+          maxFileSize: 250MB
+          archivedLogFilenamePattern: logs/decision-audit.%i.log.gz
+          archivedFileCount: 10
+          logFormat: "%msg%n"
+    "MANAGEMENT_AUDIT":
+      level: INFO
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: logs/management-audit.log
+          archive: false
+          archivedLogFilenamePattern: logs/management-audit.%i.log.gz
+          archivedFileCount: 10
+          logFormat: "[%date{ISO8601}] %msg%n"
+    metrics:
+      additive: false
+      appenders:
+        - type: file
+          currentLogFilename: logs/metrics.log
+          maxFileSize: 250MB
+          archive: true
+          archivedLogFilenamePattern: logs/metrics.%i.log.gz
+          archivedFileCount: 10
+          logFormat: "logger=metrics, timestamp=%date{yyyyMMdd'T'HHmmss.SSS}, %msg%n"
+  appenders:
+    - type: console
+      threshold: INFO
+      target: stdout
+      logFormat: "%-5level [%date{ISO8601}] %c: %msg%n"
+    - type: file
+      currentLogFilename: logs/debug.log
+      maxFileSize: 250MB
+      archive: true
+      archivedLogFilenamePattern: logs/debug.%i.log.gz
+      archivedFileCount: 10
+      logFormat: "%-5level [%date{ISO8601}] [%thread] %c: %msg%n"
+    - type: file
+      threshold: INFO
+      currentLogFilename: logs/datagovernance-pap.log
+      maxFileSize: 250MB
+      archive: true
+      archivedLogFilenamePattern: logs/datagovernance-pap.%i.log.gz
+      archivedFileCount: 10
+      logFormat: "%-5level [%date{ISO8601}] %c: %msg%n"

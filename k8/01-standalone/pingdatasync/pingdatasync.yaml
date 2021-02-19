@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingdatasync
+  name: pingdatasync
+spec:
+  clusterIP: None
+  ports:
+  - name: ldaps
+    port: 636
+  - name: ssl
+    port: 443
+  - name: ldap
+    port: 389
+  selector:
+    role: pingdatasync
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    role: pingdatasync
+  name: pingdatasync
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: pingdatasync
+  serviceName: pingdatasync
+  template:
+    metadata:
+      labels:
+        role: pingdatasync
+      name: pingdatasync
+    spec:
+      initContainers:
+      - name: init
+        image: curlimages/curl:latest
+        command: ['sh', '-c', 'until curl --connect-timeout 1 --silent -k https://pingdirectory ; do echo waiting for admin ; sleep 3 ; done']
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: pingdatasync-environment-variables
+        - secretRef:
+            name: devops-secret
+            optional: true
+        image: pingidentity/pingdatasync:edge
+        imagePullPolicy: Always
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - /preStop.sh
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+          initialDelaySeconds: 240
+          periodSeconds: 30
+          failureThreshold: 60
+        name: pingdatasync
+        ports:
+        - containerPort: 636
+        - containerPort: 443
+        - containerPort: 389
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+        resources:
+          limits:
+            cpu: "2"
+            memory: 1.5Gi
+          requests:
+            cpu: "1"
+            memory: 1Gi
+      terminationGracePeriodSeconds: 300
