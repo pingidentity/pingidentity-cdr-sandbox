@@ -1,0 +1,966 @@
+{
+	"info": {
+		"_postman_id": "aca8f8b5-91b2-4d3a-ada3-d50f474d28a9",
+		"name": "_CDR Test Harness Tests v1.2",
+		"description": "First release of CDR Register Test Harness v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin API's",
+			"item": [
+				{
+					"name": "Data Recipient CRUD",
+					"item": [
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "94f3560b-4262-4309-98e4-5567fd085b6d",
+										"exec": [
+											"pm.test(\"Validate response status=201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"legalEntityId\", response[\"data\"].legalEntityId);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7c499778-0ec5-4f6a-849e-a3c10200dde4",
+										"exec": [
+											"var uuid = require('uuid');",
+											"var myUUID = uuid.v4();",
+											"",
+											"pm.environment.set(\"flowUUID-datarecipient\", myUUID);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://sso-1.data-holder.local:8444/ext/cdr/data-in/callback\",\n                    \"scope\": \"bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read\",\n                    \"recipientBaseUri\": \"https://sso-1.data-holder.local:8444\",\n                    \"jwksUri\": \"https://sso-1.data-holder.local:8444/pf/JWKS\",\n                    \"revocationJwksUri\": \"{{base-url}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataRecipient?pageSize=10000",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataRecipient"
+									],
+									"query": [
+										{
+											"key": "pageSize",
+											"value": "10000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataRecipient/{{legalEntityId}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataRecipient",
+										"{{legalEntityId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read All",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataRecipient?page-size=5&page=1",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataRecipient"
+									],
+									"query": [
+										{
+											"key": "page-size",
+											"value": "5"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"{{legalEntityId}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty - Updated\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"status\": \"ACTIVE\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataRecipient/{{legalEntityId}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataRecipient",
+										"{{legalEntityId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataRecipient/{{legalEntityId}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataRecipient",
+										"{{legalEntityId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Data Holder CRUD",
+					"item": [
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c89cfadc-2102-4d3e-8f27-9bc556393b65",
+										"exec": [
+											"pm.test(\"Validate response status=201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"dataHolderBrandId\", response[\"data\"].dataHolderBrandId);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "27c27ebe-7fa2-4d8b-8b0f-f98c1257577f",
+										"exec": [
+											"var uuid = require('uuid');",
+											"var myUUID = uuid.v4();",
+											"",
+											"pm.environment.set(\"flowUUID-dataholder\", myUUID);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dataHolderBrandId\": \"{{data-holder-id}}-{{flowUUID-dataholder}}\",\n    \"brandName\": \"Brand {{data-holder-id}}\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany/logo.png\",\n    \"legalEntity\": {\n        \"legalEntityId\": \"123232323232\",\n        \"legalEntityName\": \"Ping Identity\",\n        \"logoUri\": \"https://www.pingidentity.com/logo.png\",\n        \"registrationNumber\": \"REG12333222\",\n        \"registrationDate\": \"2019-10-24\",\n        \"registeredCountry\": \"AU\",\n        \"abn\": \"ABN123232323232\",\n        \"acn\": \"ACN123232323232\",\n        \"arbn\": \"ARBN123232323232\",\n        \"industryCode\": \"123\",\n        \"organisationType\": \"SOLE_TRADER\"\n    },\n    \"endpointDetail\": {\n        \"version\": \"1.0\",\n        \"publicBaseUri\": \"https://mycompany\",\n        \"resourceBaseUri\": \"https://mycompany\",\n        \"infosecBaseUri\": \"https://sso.accc.pingapac.com\",\n        \"extensionBaseUri\": \"https://sso.accc.pingapac.com/ext\",\n        \"websiteUri\": \"https://mycompany\"\n    },\n    \"authDetails\": [\n        {\n            \"registerUType\": \"SIGNED-JWT\",\n            \"jwksEndpoint\": \"https://sso.accc.pingapac.com/pf/JWKS\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataHolder",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataHolder"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataHolder/{{dataHolderBrandId}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataHolder",
+										"{{dataHolderBrandId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read All",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataHolder",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataHolder"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"dataHolderBrandId\": \"{{dataHolderBrandId}}\",\n    \"brandName\": \"Brand {{data-holder-id}} - Updated\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany/logo.png\",\n    \"status\": \"ACTIVE\",\n    \"legalEntity\": {\n        \"legalEntityId\": \"123232323232\",\n        \"legalEntityName\": \"Ping Identity\",\n        \"logoUri\": \"https://www.pingidentity.com/logo.png\",\n        \"registrationNumber\": \"REG12333222\",\n        \"registrationDate\": \"2019-10-24\",\n        \"registeredCountry\": \"AU\",\n        \"abn\": \"ABN123232323232\",\n        \"acn\": \"ACN123232323232\",\n        \"arbn\": \"ARBN123232323232\",\n        \"industryCode\": \"123\",\n        \"organisationType\": \"SOLE_TRADER\"\n    },\n    \"endpointDetail\": {\n        \"version\": \"1.0\",\n        \"publicBaseUri\": \"https://mycompany\",\n        \"resourceBaseUri\": \"https://mycompany\",\n        \"infosecBaseUri\": \"https://sso.accc.pingapac.com\",\n        \"extensionBaseUri\": \"https://sso.accc.pingapac.com/ext\",\n        \"websiteUri\": \"https://mycompany\"\n    },\n    \"authDetails\": [\n        {\n            \"registerUType\": \"SIGNED-JWT\",\n            \"jwksEndpoint\": \"https://sso.accc.pingapac.com/pf/JWKS\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataHolder/{{dataHolderBrandId}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataHolder",
+										"{{dataHolderBrandId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/admin/model/dataHolder/{{dataHolderBrandId}}",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataHolder",
+										"{{dataHolderBrandId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CDR Standard Calls",
+			"item": [
+				{
+					"name": "CDR Endpoints",
+					"item": [
+						{
+							"name": "GetDataRecipients",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/cdr-register/v2/banking/data-recipients?page=4",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"cdr-register",
+										"v2",
+										"banking",
+										"data-recipients"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetSoftwareProductsStatus",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/cdr-register/v2/banking/data-recipients/brands/software-products/status",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"cdr-register",
+										"v2",
+										"banking",
+										"data-recipients",
+										"brands",
+										"software-products",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetDataRecipientsStatus",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/cdr-register/v2/banking/data-recipients/status",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"cdr-register",
+										"v2",
+										"banking",
+										"data-recipients",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetDataHolderBrands",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"xyza\",\n    \"legalEntityName\": \"My Legal Entity Ltd Pty1\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand1\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\"\n        },\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"xyza_brand2\",\n            \"brandName\": \"Brand Two\",\n            \"logoUri\": \"https://mycompany.com/brand2/logo.png\"\n        }\n    ]\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url}}/cdr-register/v2/banking/data-holders/brands",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"cdr-register",
+										"v2",
+										"banking",
+										"data-holders",
+										"brands"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "JWKS Endpoints",
+					"item": [
+						{
+							"name": "CDR Register - Global JWKS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/.well-known/openid-configuration/JWKS",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										".well-known",
+										"openid-configuration",
+										"JWKS"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Helper - Get Global JWK - Private",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/helper/JWKS/_GLOBAL_/private",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"_GLOBAL_",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Helper - Get random JWK - Public",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/helper/JWKS/mykidvalue",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"mykidvalue"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Helper - Get random JWK - Private",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/helper/JWKS/mykidvalue/private",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"mykidvalue",
+										"private"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Client Registration Flow",
+					"item": [
+						{
+							"name": "Get CDR Register Endpoints",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "41db0d14-c137-496b-a562-c1685012cdf6",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate token_endpoint property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('token_endpoint');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"registerTokenEndpoint\", response.token_endpoint);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/.well-known/openid-configuration",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										".well-known",
+										"openid-configuration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get CDR Register Access Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0dccdb9e-8729-44b3-9dde-c74638da8216",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate access_token property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"registerAccessToken\", response.access_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/as/token.oauth2",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"as",
+										"token.oauth2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get SSA From Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3886dac5-fc27-4a35-982e-0abdf94ca19a",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = pm.response.text();",
+											"    pm.environment.set(\"software-ssa\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{registerAccessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/jwt",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base-url}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"banking",
+										"data-recipients",
+										"brands",
+										"brand-{{flowUUID-datarecipient}}",
+										"software-products",
+										"software-{{flowUUID-datarecipient}}",
+										"ssa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Private JWK (non-standard)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "499ec7a5-d47d-4a2b-9600-56fee9fc1b96",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate kty is RSA\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.keys[0].kty).to.equal('RSA');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"software-jwks-private\", btoa(JSON.stringify(response.keys[0])));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url}}/helper/JWKS/{{flowUUID-datarecipient}}/private",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"{{flowUUID-datarecipient}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3920dab5-f40e-4e7b-8b83-6213f892485d",
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"software-dcr-requestjwt\", response[\"request-jwt\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{data-holder-base-url}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://sso-1.data-holder.local:8444/ext/cdr/data-in/callback\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
+								},
+								"url": {
+									"raw": "{{base-url}}/testtool/datarecipient/dcr",
+									"host": [
+										"{{base-url}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"dcr"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Call PingFederate DCR POST",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/jwt",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{software-dcr-requestjwt}}"
+								},
+								"url": {
+									"raw": "{{data-holder-base-url}}/as/clients.oauth2",
+									"host": [
+										"{{data-holder-base-url}}"
+									],
+									"path": [
+										"as",
+										"clients.oauth2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c06b8780-3e60-4f78-81ae-727eddc21892",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0d626048-fb91-407b-96af-5f90cac2ac77",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "49f65250-b8d2-44a9-995a-0c3e0e6df8b1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "350605da-aab9-4740-a9c7-66b2072d5403",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "09bd3d98-9fa3-42cc-843e-d48b5fa4961a",
+			"key": "data-recipient-id",
+			"value": "abcde"
+		},
+		{
+			"id": "19ef806a-bff1-4b2c-a42f-5b9bdea47237",
+			"key": "data-holder-id",
+			"value": "xyz"
+		},
+		{
+			"id": "f5faf4ba-c6ed-47cc-b705-b9a109586e57",
+			"key": "base-url",
+			"value": "https://mockregister.data-holder.local"
+		},
+		{
+			"id": "b893fb47-d969-4d60-b736-f17a8f0efda4",
+			"key": "data-holder-base-url",
+			"value": "https://sso.data-holder.local"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

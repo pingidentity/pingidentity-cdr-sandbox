@@ -121,5 +121,5 @@ Keys available for use with the $info variable:
   "backchannel_user_code_parameter_supported": $info.get('backchannel_user_code_parameter_supported'),
   "tls_client_certificate_bound_access_tokens": true,
   "pushed_authorization_request_endpoint": "$info.get('issuer')/as/par.oauth2",
-  "cdr_arrangement_endpoint": "$info.get('issuer')/arrangements"
+  "cdr_arrangement_revocation_endpoint": "$info.get('issuer')/arrangements/revoke"
 }

@@ -4,4 +4,5 @@
 dsconfig set-backend-prop \
     --backend-name changelog \
     --set enabled:true \
-    --set "changelog-maximum-age:2 h"
+    --set "changelog-maximum-age:2 h" \
+    --set changelog-max-before-after-values:1

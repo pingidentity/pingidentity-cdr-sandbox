@@ -98,6 +98,13 @@
                 "useServerCipherSuiteOrder": true,
                 "id": 3,
                 "keyPairId": 7
+            },
+            {
+                "restartRequired": false,
+                "name": "CONFIG QUERY",
+                "useServerCipherSuiteOrder": true,
+                "id": 4,
+                "keyPairId": 11
             }
         ],
         "rules": [
@@ -166,7 +173,8 @@
                     "cacheMaxAge": 600,
                     "allowedOrigins": ["*"],
                     "overriddenReqMethods": null,
-                    "allowCredentials": false
+                    "allowCredentials": false,
+                    "maskWildcardPolicy": false
                 },
                 "name": "CORS - Allow All",
                 "className": "com.pingidentity.pa.policy.cors.CrossOriginRequestPolicyInterceptor",
@@ -209,24 +217,6 @@
                 "name": "CDR AU - Refresh Token Processor",
                 "className": "com.pingidentity.pa.cdr.CDRRefreshTokenProcessor",
                 "id": 6,
-                "supportedDestinations": [
-                    "Site",
-                    "Agent"
-                ]
-            },
-            {
-                "configuration": {
-                    "rejectionHandler": "1",
-                    "errorResponseTemplateFile": "policy.error.page.template.html",
-                    "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "import java.util.Base64\nimport com.fasterxml.jackson.databind.JsonNode\nimport com.fasterxml.jackson.databind.ObjectMapper\n\n\nif(!exc?.response && getRequestParameter(exc?.request, \"request\") != null)\n{\n  def requestJwt = getRequestParameter(exc?.request, \"request\");\n  \n  def challengeMethod = getJwtTokenClaim(requestJwt, \"code_challenge_method\");\n  \n  // Removing S256 code challenge validation however it may come later\n  \n  // enforce S256 challenge method\n  //if(challengeMethod && challengeMethod.equalsIgnoreCase(\"S256\"))\n  //{\n  \tcopyRequestObjectParameters(exc?.request, requestJwt, \"code_challenge\");\n  \tcopyRequestObjectParameters(exc?.request, requestJwt, \"code_challenge_method\");\n  //}\n  //else\n  //{\n  //\tclearRequestObjectParameters(exc?.request, \"code_challenge\");\n  //\tclearRequestObjectParameters(exc?.request, \"code_challenge_method\");\n  //}\n  \n}\n\nanything();\n\nvoid clearRequestObjectParameters(def request, def paramName)\n{\n  if(request?.method?.methodName?.equalsIgnoreCase(\"POST\"))\n  {\n    def bodyStr = new String(request?.body?.getContent());\n    bodyStr = bodyStr?.replaceAll(paramName + \"=\", paramName + \"_old=\");\n    request?.setBodyContent(bodyStr.getBytes());\n  }\n  else\n  {\n    def delimiter = '?';\n    if(request?.uri.contains('?'))\n      delimiter = '&';\n\n    def newUri = request?.uri.replaceAll(paramName + \"=\", paramName + \"_old=\");    \n    request?.setUri(newUri);\n  }\n}\n\nvoid copyRequestObjectParameters(def request, def requestJwt, def paramName)\n{\n  if(getJwtTokenClaim(requestJwt, paramName) == null)\n  \treturn;\n  \n  if(request?.method?.methodName?.equalsIgnoreCase(\"POST\"))\n  {\n    def bodyStr = new String(request?.body?.getContent());\n    bodyStr = bodyStr?.replaceAll(paramName + \"=\", paramName + \"_old=\");\n    bodyStr = bodyStr + \"&\" + paramName + \"=\" + getJwtTokenClaim(requestJwt, paramName);\n    request?.setBodyContent(bodyStr.getBytes());\n  }\n  else\n  {\n    def delimiter = '?';\n    if(request?.uri.contains('?'))\n      delimiter = '&';\n\n    def newUri = request?.uri.replaceAll(paramName + \"=\", paramName + \"_old=\");    \n    request?.setUri(newUri + delimiter + paramName + \"=\" + getJwtTokenClaim(requestJwt, paramName));\n  }\n}\n\nString getRequestParameter(def request, def paramName)\n{\n  def paramValue = null;\n  if(request?.method?.methodName?.equalsIgnoreCase(\"POST\"))\n  \tparamValue = getPostParameter(request, paramName);\n  else\n    paramValue = getQueryParameter(request, paramName);\n  \n  return paramValue;\n}\n\nString getQueryParameter(def request, def paramName)\n{\n  def params = request?.getQueryStringParams();\n  \n  if(params == null)\n    return null;\n  \n  if(!params.containsKey(paramName))\n    return null;\n  \n  return params.get(paramName)[0];\n}\n\nString getPostParameter(def request, def paramName)\n{\n  def params = request?.getPostParams();\n  \n  if(params == null)\n    return null;\n  \n  if(!params.containsKey(paramName))\n    return null;\n  \n  return params.get(paramName)[0];\n}\n\nString getJwtTokenClaim(String jwt, String claim)\n{\n    def jwtSplit = jwt.split(\"\\\\.\");\n    if(jwtSplit.length != 3)\n      return null;\n  \n    def jwtBodyEncoded = jwtSplit[1];\n    def jwtBody = new String(Base64.getDecoder().decode(jwtBodyEncoded));\n  \n    return getClaimValue(jwtBody, claim);\n}\n\nString getClaimValue(String responseStr, String jsonPath)\n{\n    ObjectMapper mapper = new ObjectMapper();       \n    JsonNode resultObject = mapper.readTree(responseStr);\n\n    String [] splitJsonPath = jsonPath.split(\"\\\\.\");\n\n    for(String path : splitJsonPath)\n    {\n        resultObject = resultObject.findPath(path);\n    }\n\n    return resultObject.textValue();\n\n}",
-                    "rejectionHandlingEnabled": true,
-                    "errorResponseCode": 403,
-                    "errorResponseStatusMsg": "Forbidden"
-                },
-                "name": "FAPI Conformance - Fix PKCE",
-                "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
-                "id": 7,
                 "supportedDestinations": [
                     "Site",
                     "Agent"
@@ -303,6 +293,93 @@
                     "Site",
                     "Agent"
                 ]
+            },
+            {
+                "configuration": {
+                    "mapTo": "/as/clients.oauth2$1",
+                    "mapFrom": "^/register(.*)"
+                },
+                "name": "ClientRegistration-URLRewrite",
+                "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
+                "id": 12,
+                "supportedDestinations": ["Site"]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "errorResponseTemplateFile": "oauth.error.json",
+                    "errorResponseContentType": "application/json; charset=UTF-8",
+                    "errorResponseCode": 400,
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_13_configuration_clientSecret_value}"},
+                    "clientScope": "consent_admin",
+                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
+                },
+                "name": "CDR Validate Arrangement",
+                "className": "com.pingidentity.pa.cdr.CDRValidateArrangementRule",
+                "id": 13,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "isIgnoreSSL": true,
+                    "refreshInterval": 10,
+                    "errorResponseCode": 400,
+                    "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
+                    "clientIdPrefix": "dcr-",
+                    "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "errorResponseContentType": "text/html; charset=UTF-8",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_14_configuration_clientSecret_value}"},
+                    "oauthTokenEndpoint": "https://pingfederate:9031/as/token.oauth2",
+                    "clientScope": "adh-cache-read",
+                    "managedEndpoints": ["/as/authorization.oauth2"]
+                },
+                "name": "CDR Validate Status Rule - Web",
+                "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
+                "id": 14,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "isIgnoreSSL": true,
+                    "refreshInterval": 0,
+                    "errorResponseCode": 403,
+                    "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
+                    "clientIdPrefix": "dcr-",
+                    "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
+                    "errorResponseTemplateFile": "general.error.json",
+                    "errorResponseContentType": "application/json; charset=UTF-8",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_15_configuration_clientSecret_value}"},
+                    "oauthTokenEndpoint": "https://pingfederate:9031/as/token.oauth2",
+                    "clientScope": "adh-cache-read",
+                    "managedEndpoints": [
+                        "/as/token.oauth2",
+                        "/idp/userinfo.openid",
+                        "/as/introspect.oauth2",
+                        "/as/par.oauth2",
+                        "/as/clients.oauth2",
+                        "/cds-au",
+                        "/register"
+                    ]
+                },
+                "name": "CDR Validate Status Rule - API",
+                "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
+                "id": 15,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
             }
         ],
         "sites": [
@@ -321,60 +398,6 @@
                 "skipHostnameVerification": true,
                 "name": "pingfederate",
                 "id": 1,
-                "availabilityProfileId": 1,
-                "maxConnections": -1
-            },
-            {
-                "trustedCertificateGroupId": 0,
-                "loadBalancingStrategyId": 0,
-                "maxWebSocketConnections": -1,
-                "keepAliveTimeout": 0,
-                "useTargetHostHeader": false,
-                "siteAuthenticatorIds": [],
-                "useProxy": false,
-                "secure": false,
-                "sendPaCookie": true,
-                "targets": ["deepthought-admin-service:8080"],
-                "expectedHostname": null,
-                "skipHostnameVerification": false,
-                "name": "Deepthought Product Admin Service Site",
-                "id": 4,
-                "availabilityProfileId": 1,
-                "maxConnections": -1
-            },
-            {
-                "trustedCertificateGroupId": 0,
-                "loadBalancingStrategyId": 0,
-                "maxWebSocketConnections": -1,
-                "keepAliveTimeout": 0,
-                "useTargetHostHeader": false,
-                "siteAuthenticatorIds": [],
-                "useProxy": false,
-                "secure": false,
-                "sendPaCookie": true,
-                "targets": ["deepthought-product-api:8081"],
-                "expectedHostname": null,
-                "skipHostnameVerification": false,
-                "name": "Deepthought Product Service",
-                "id": 5,
-                "availabilityProfileId": 1,
-                "maxConnections": -1
-            },
-            {
-                "trustedCertificateGroupId": 0,
-                "loadBalancingStrategyId": 0,
-                "maxWebSocketConnections": -1,
-                "keepAliveTimeout": 0,
-                "useTargetHostHeader": false,
-                "siteAuthenticatorIds": [],
-                "useProxy": false,
-                "secure": false,
-                "sendPaCookie": true,
-                "targets": ["deepthought-bank-api:8081"],
-                "expectedHostname": null,
-                "skipHostnameVerification": false,
-                "name": "Deepthought Banking API",
-                "id": 6,
                 "availabilityProfileId": 1,
                 "maxConnections": -1
             },
@@ -431,6 +454,24 @@
                 "id": 9,
                 "availabilityProfileId": 1,
                 "maxConnections": -1
+            },
+            {
+                "trustedCertificateGroupId": 2,
+                "loadBalancingStrategyId": 0,
+                "maxWebSocketConnections": -1,
+                "keepAliveTimeout": 0,
+                "useTargetHostHeader": false,
+                "siteAuthenticatorIds": [],
+                "useProxy": false,
+                "secure": true,
+                "sendPaCookie": true,
+                "targets": ["pingdatagovernance:443"],
+                "expectedHostname": null,
+                "skipHostnameVerification": true,
+                "name": "mock-dh-api",
+                "id": 10,
+                "availabilityProfileId": 1,
+                "maxConnections": -1
             }
         ],
         "adminAuthBasic": {"enabled": true},
@@ -467,6 +508,7 @@
             "cookieType": "Encrypted"
         },
         "pingFederate": {
+            "loadBalancingStrategyId": 0,
             "trustedCertificateGroupId": 4,
             "useSlo": false,
             "auditLevel": "OFF",
@@ -475,11 +517,13 @@
             "targets": ["pingfederate:9031"],
             "expectedHostname": "",
             "backChannelBasePath": null,
+            "application": null,
             "basePath": null,
             "port": 443,
             "skipHostnameVerification": true,
             "backChannelSecure": true,
-            "host": "sso.${BASE_HOSTNAME}"
+            "host": "sso.${BASE_HOSTNAME}",
+            "availabilityProfileId": 0
         },
         "trustedCerts": [
             {
@@ -491,6 +535,16 @@
                 "fileData": "${_data_trustedCerts_17_cdr_trustcert_default_fileData}",
                 "alias": "cdr_trustcert_default",
                 "id": 17
+            },
+            {
+                "fileData": "${_data_trustedCerts_18_cdr_register_local_3170_fileData}",
+                "alias": "cdr-register-local-3170",
+                "id": 18
+            },
+            {
+                "fileData": "${_data_trustedCerts_19_cdr_register_local_25023_fileData}",
+                "alias": "cdr-register-local-25023",
+                "id": 19
             }
         ],
         "engineListeners": [
@@ -533,6 +587,7 @@
         }],
         "resources": [
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -552,10 +607,16 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
-                "pathPrefixes": ["/as/clients.oauth2"],
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": [
+                    "/as/clients.oauth2",
+                    "/register"
+                ],
                 "methods": ["*"],
                 "auditLevel": "ON",
                 "defaultAuthTypeOverride": "Web",
@@ -565,21 +626,36 @@
                 "anonymous": false,
                 "queryParamConfig": null,
                 "id": 4,
-                "pathPatterns": [{
-                    "pattern": "/as/clients.oauth2",
-                    "type": "WILDCARD"
-                }],
+                "pathPatterns": [
+                    {
+                        "pattern": "/as/clients.oauth2",
+                        "type": "WILDCARD"
+                    },
+                    {
+                        "pattern": "/register",
+                        "type": "WILDCARD"
+                    }
+                ],
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
-                    "Web": [{
-                        "id": 8,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 12,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 8,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/revoke_token.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -608,9 +684,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/introspect.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -643,9 +722,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/idp/userinfo.openid"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -674,9 +756,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/token.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -709,31 +794,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
-                "pathPrefixes": ["/*"],
-                "methods": ["*"],
-                "auditLevel": "ON",
-                "defaultAuthTypeOverride": null,
-                "enabled": true,
-                "rootResource": true,
-                "name": "Root Resource",
-                "anonymous": false,
-                "queryParamConfig": null,
-                "id": 10,
-                "pathPatterns": [{
-                    "pattern": "/*",
-                    "type": "WILDCARD"
-                }],
-                "unprotected": false,
-                "applicationId": 5,
-                "policy": {
-                    "Web": [],
-                    "API": []
-                }
-            },
-            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/.well-known/openid-configuration"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -753,31 +819,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
-                "pathPrefixes": ["/*"],
-                "methods": ["*"],
-                "auditLevel": "ON",
-                "defaultAuthTypeOverride": null,
-                "enabled": true,
-                "rootResource": true,
-                "name": "Root Resource",
-                "anonymous": false,
-                "queryParamConfig": null,
-                "id": 12,
-                "pathPatterns": [{
-                    "pattern": "/*",
-                    "type": "WILDCARD"
-                }],
-                "unprotected": false,
-                "applicationId": 6,
-                "policy": {
-                    "Web": [],
-                    "API": []
-                }
-            },
-            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -797,10 +844,16 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
-                "pathPrefixes": ["/as/clients.oauth2/*"],
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": [
+                    "/register/*",
+                    "/as/clients.oauth2/*"
+                ],
                 "methods": ["*"],
                 "auditLevel": "ON",
                 "defaultAuthTypeOverride": "Web",
@@ -810,14 +863,24 @@
                 "anonymous": false,
                 "queryParamConfig": null,
                 "id": 14,
-                "pathPatterns": [{
-                    "pattern": "/as/clients.oauth2/*",
-                    "type": "WILDCARD"
-                }],
+                "pathPatterns": [
+                    {
+                        "pattern": "/register/*",
+                        "type": "WILDCARD"
+                    },
+                    {
+                        "pattern": "/as/clients.oauth2/*",
+                        "type": "WILDCARD"
+                    }
+                ],
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 12,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -828,9 +891,12 @@
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -850,9 +916,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/par.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -876,14 +945,17 @@
                             "type": "Rule"
                         },
                         {
-                            "id": 7,
+                            "id": 13,
                             "type": "Rule"
                         }
                     ],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/as/authorization.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -902,13 +974,16 @@
                 "applicationId": 1,
                 "policy": {
                     "Web": [{
-                        "id": 7,
+                        "id": 14,
                         "type": "Rule"
                     }],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -928,9 +1003,12 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/arrangements/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -953,9 +1031,12 @@
                         "type": "Rule"
                     }],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             },
             {
+                "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": ["/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -975,9 +1056,25 @@
                 "policy": {
                     "Web": [],
                     "API": []
-                }
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             }
         ],
+        "thirdPartyServices": [{
+            "trustedCertificateGroupId": 2,
+            "loadBalancingStrategyId": 0,
+            "skipHostnameVerification": true,
+            "name": "PingDirectoryWeb",
+            "id": "acd68d0e-f601-4dc9-b4e2-293e67b388a0",
+            "useProxy": false,
+            "secure": true,
+            "targets": ["pingdirectory:443"],
+            "availabilityProfileId": 1,
+            "hostValue": null,
+            "maxConnections": -1,
+            "expectedHostname": null
+        }],
         "unknownResources": {
             "errorContentType": "HTML",
             "errorTemplateFile": "general.error.page.template.html",
@@ -1062,14 +1159,19 @@
                 "url": "https://acme-staging-v02.api.letsencrypt.org/directory"
             }
         ],
+        "environment": {"name": null},
         "identityMappings": [{
             "configuration": {
+                "exclusionList": false,
+                "exclusionListSubject": null,
                 "headerClientCertificateMappings": [],
+                "exclusionListAttributes": [],
                 "attributeHeaderMappings": [{
-                    "headerName": "X-SUB",
+                    "headerName": "X-USER",
                     "subject": true,
                     "attributeName": "sub"
-                }]
+                }],
+                "headerNamePrefix": null
             },
             "name": "Default Identity Mapping",
             "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
@@ -1126,6 +1228,13 @@
                 "alias": "pingaccess-console",
                 "hsmProviderId": 0,
                 "id": 9
+            },
+            {
+                "password": "${_data_keyPairs_11_pingaccess_password}",
+                "fileData": "${_data_keyPairs_11_pingaccess_fileData}",
+                "alias": "pingaccess",
+                "hsmProviderId": 0,
+                "id": 11
             }
         ],
         "trustedCertGroups": [
@@ -1133,7 +1242,7 @@
                 "skipCertificateDateCheck": true,
                 "name": "MTLS Certificate Group",
                 "useJavaTrustStore": false,
-                "certIds": [17],
+                "certIds": [19],
                 "id": 3,
                 "systemGroup": false,
                 "ignoreAllCertificateErrors": false,
@@ -1187,7 +1296,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605152390880,
+                "agentCacheInvalidatedExpiration": 1613529418598,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1195,12 +1304,19 @@
                 "id": 1,
                 "manualOrderingEnabled": false,
                 "policy": {
-                    "Web": [{
-                        "id": 11,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 15,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 11,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1211,7 +1327,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1605151490880,
+                "lastModified": 1613528518598,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1220,46 +1336,6 @@
                 "agentId": 0,
                 "virtualHostIds": [
                     10,
-                    12
-                ],
-                "spaSupportEnabled": true,
-                "webSessionId": 0,
-                "destination": "Site",
-                "description": "",
-                "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574204,
-                "enabled": true,
-                "agentCacheInvalidatedResponseDuration": 900,
-                "issuer": null,
-                "defaultAuthType": "API",
-                "id": 5,
-                "manualOrderingEnabled": false,
-                "policy": {
-                    "Web": [],
-                    "API": [{
-                        "id": 4,
-                        "type": "Rule"
-                    }]
-                },
-                "resourceOrder": [],
-                "requireHTTPS": false,
-                "contextRoot": "/dio-au",
-                "identityMappingIds": {
-                    "Web": 0,
-                    "API": 0
-                },
-                "name": "Deepthought Product Admin Service",
-                "siteId": 4,
-                "realm": null,
-                "lastModified": 1605142674204,
-                "accessValidatorId": 1,
-                "caseSensitivePath": false
-            },
-            {
-                "applicationType": "API",
-                "agentId": 0,
-                "virtualHostIds": [
-                    10,
                     11,
                     12
                 ],
@@ -1268,54 +1344,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574236,
-                "enabled": true,
-                "agentCacheInvalidatedResponseDuration": 900,
-                "issuer": null,
-                "defaultAuthType": "API",
-                "id": 6,
-                "manualOrderingEnabled": false,
-                "policy": {
-                    "Web": [],
-                    "API": [
-                        {
-                            "id": 3,
-                            "type": "Rule"
-                        },
-                        {
-                            "id": 2,
-                            "type": "Rule"
-                        }
-                    ]
-                },
-                "resourceOrder": [],
-                "requireHTTPS": true,
-                "contextRoot": "/cds-au/v1/banking/products",
-                "identityMappingIds": {
-                    "Web": 0,
-                    "API": 0
-                },
-                "name": "Deepthought Product API",
-                "siteId": 5,
-                "realm": null,
-                "lastModified": 1605142674236,
-                "accessValidatorId": 1,
-                "caseSensitivePath": false
-            },
-            {
-                "applicationType": "API",
-                "agentId": 0,
-                "virtualHostIds": [
-                    10,
-                    11,
-                    12
-                ],
-                "spaSupportEnabled": true,
-                "webSessionId": 0,
-                "destination": "Site",
-                "description": "",
-                "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574243,
+                "agentCacheInvalidatedExpiration": 1613524080904,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1326,6 +1355,10 @@
                     "Web": [],
                     "API": [
                         {
+                            "id": 15,
+                            "type": "Rule"
+                        },
+                        {
                             "id": 3,
                             "type": "Rule"
                         },
@@ -1335,18 +1368,19 @@
                         }
                     ]
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/cds-au/v1/banking",
                 "identityMappingIds": {
                     "Web": 0,
-                    "API": 0
+                    "API": 1
                 },
-                "name": "Deepthought Bank API",
-                "siteId": 6,
+                "name": "Mock Bank API",
+                "siteId": 10,
                 "realm": null,
-                "lastModified": 1605142674243,
-                "accessValidatorId": 0,
+                "lastModified": 1613523180904,
+                "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
             {
@@ -1358,7 +1392,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574238,
+                "agentCacheInvalidatedExpiration": 1613524080878,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1378,6 +1412,7 @@
                     ],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1388,7 +1423,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1605142674238,
+                "lastModified": 1613523180878,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1401,7 +1436,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574262,
+                "agentCacheInvalidatedExpiration": 1613524081083,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1412,6 +1447,7 @@
                     "Web": [],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1422,7 +1458,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1605142674262,
+                "lastModified": 1613523181083,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1435,7 +1471,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1605143574285,
+                "agentCacheInvalidatedExpiration": 1613524081147,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1449,6 +1485,7 @@
                     }],
                     "API": []
                 },
+                "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
                 "contextRoot": "/",
@@ -1459,7 +1496,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1605142674285,
+                "lastModified": 1613523181147,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
@@ -1470,5 +1507,5 @@
             "keyRollPeriodInHours": 24
         }
     },
-    "version": "6.1.3.0"
+    "version": "6.2.0.3"
 }

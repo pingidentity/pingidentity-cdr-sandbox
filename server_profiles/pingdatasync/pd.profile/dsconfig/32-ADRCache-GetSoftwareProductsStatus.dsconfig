@@ -1,0 +1,35 @@
+
+dsconfig create-sync-source \
+ --source-name GetSoftwareProductsStatusEndpoint \
+ --type third-party \
+ --set extension-class:com.pingidentity.ps.cdr.data.in.pds.MetaDataCacheRetrievalSyncSource \
+ --set extension-argument:endpoint-name=cn=GetSoftwareProductsStatus \
+ --set extension-argument:cache-attribute-name=cachedJSON \
+ --set extension-argument:cache-lifetime=180 \
+ --set "extension-argument:ldap-server=PingDirectory" \
+ --set extension-argument:endpoint-class=cachedEndpoint \
+ --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
+--set extension-argument:base-dn=ou=metadataCache,${USER_BASE_DN}
+
+dsconfig create-sync-destination \
+ --destination-name GetSoftwareProductsStatusEntity \
+ --type ping-identity \
+ --set base-dn:ou=metadataCache,${USER_BASE_DN} \
+ --set "server:PingDirectory"
+
+dsconfig create-sync-pipe \
+ --pipe-name "Retrieve GetSoftwareProductsStatus Endpoint" \
+ --set started:true \
+ --set sync-source:GetSoftwareProductsStatusEndpoint \
+ --set sync-destination:GetSoftwareProductsStatusEntity \
+ --set include-changes-for-unchanged-attributes:true \
+ --set max-operation-attempts:1 \
+ --set "change-detection-polling-interval:10 s"
+
+dsconfig create-sync-class \
+ --pipe-name "Retrieve GetSoftwareProductsStatus Endpoint" \
+ --class-name "Map GetSoftwareProductsStatus" \
+ --set auto-mapped-source-attribute:cachedJSON \
+ --set auto-mapped-source-attribute:nextUpdate \
+ --set synchronize-deletes:false \
+ --set attribute-synchronization-mode:all-attributes
