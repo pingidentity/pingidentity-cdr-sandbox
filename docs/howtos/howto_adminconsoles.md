@@ -18,7 +18,7 @@ Once you see that the containers are healthy in `docker ps`
 * Go to [https://localhost:8443](https://localhost:8443)
 * Log in with 'Admin / password123'
 
-## PingDirectory management
+## PingDirectory
 
 * Go to [https://localhost:8443/console](https://localhost:8443/console)
 * Log in with:
