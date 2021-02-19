@@ -47,7 +47,7 @@
 NIL
 
 ### Documentation
-NIL
+- CDR-341 Updated Administration documentation to include Data Gov login
 
 ### Resolved defects
 - CDR-308	request_object_signing_alg optional and default to PS256
