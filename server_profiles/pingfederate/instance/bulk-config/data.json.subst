@@ -3,7 +3,7 @@
     "operations": [
         {
             "operationType": "SAVE",
-            "subResource": "com.pingidentity.ps.cdr.pf.grantstorage.consentapi.ConsentAPIAccessGrantManager",
+            "subResource": "com.pingidentity.grantstorage.consentapi.ConsentAPIAccessGrantManager",
             "items": [
                 {
                     "stringValue": "adminATM",
