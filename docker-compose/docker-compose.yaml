@@ -129,7 +129,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20201214
+    image: cdrsandbox/cdr-register-testharness:20210219
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
