@@ -1,7 +1,7 @@
 site_name: Ping Identity CDR Sandbox
 repo_name: pingidentity/pingidentity-cdr-sandbox
 repo_url: https://github.com/pingidentity/pingidentity-cdr-sandbox
-site_url: https://pingidentity.github.io/pingidentity-cdr-sandbox/
+site_url: https://cdr.pingidentity.com/
 copyright: © Copyright 2021 Ping Identity
 #google_analytics: ['UA-156953351-1', 'devops.pingidentity.com']
 extra_css:
