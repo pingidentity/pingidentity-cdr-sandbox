@@ -755,7 +755,7 @@ dsconfig create-scim-attribute \
 dsconfig create-external-server \
     --server-name PingFederateServer  \
     --type http  \
-    --set base-url:https://sso-1.data-holder.local:8444  \
+    --set base-url:https://sso.data-holder.local  \
     --set hostname-verification-method:allow-all  \
     --set 'trust-manager-provider:Blind Trust'
 
