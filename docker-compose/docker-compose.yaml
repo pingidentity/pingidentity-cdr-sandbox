@@ -45,7 +45,6 @@ services:
       - "pingaccess:sso.data-holder.local"
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
-      - "pingaccess:sso.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
       - 8082:7879
@@ -64,7 +63,6 @@ services:
       - "pingaccess:sso.data-holder.local"
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
-      - "pingaccess:sso.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
       - 6879:6879
@@ -91,7 +89,6 @@ services:
       - "pingaccess:sso.data-holder.local"
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
-      - "pingaccess:sso.data-holder.local"
       - "pingaccess:api.data-holder.local"
     #volumes:
     #  - ./pingfederate-out:/opt/out
@@ -111,7 +108,6 @@ services:
       - "pingaccess:sso.data-holder.local"
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
-      - "pingaccess:sso.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
       - 1636:636
@@ -139,7 +135,6 @@ services:
       - "pingaccess:sso.data-holder.local"
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
-      - "pingaccess:sso.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
       - "2636:636"
@@ -160,7 +155,6 @@ services:
       - "pingaccess:sso.data-holder.local"
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
-      - "pingaccess:sso.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
       - 8080:7878
