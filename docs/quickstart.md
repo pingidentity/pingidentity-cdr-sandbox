@@ -17,7 +17,7 @@ https://github.com/join
 https://www.pingidentity.com/en/account/register.html
 
 * A working Ping Identity devops installation **[56 min]**<br>
-https://pingidentity-devops.gitbook.io/devops/getstarted
+https://devops.pingidentity.com/get-started/getStarted/
 
 # Step by Step Guide
 
