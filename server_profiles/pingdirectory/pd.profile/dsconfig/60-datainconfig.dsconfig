@@ -771,6 +771,11 @@ dsconfig create-json-field-constraints \
     --set index-values:true  \
     --set prime-index:true
 
+dsconfig create-connection-criteria \
+    --criteria-name 'Include only SCIM2 User Connection Criteria'  \
+    --type simple  \
+    --set 'included-user-base-dn:cn=SCIM2 Servlet,cn=Root DNs,cn=config'
+
 dsconfig create-request-criteria \
     --criteria-name tokenMgtInstanceSearchCriteria  \
     --type simple  \
