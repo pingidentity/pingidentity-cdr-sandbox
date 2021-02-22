@@ -1118,8 +1118,8 @@
                     "name": "CDR - Initiate Request",
                     "id": "cdrSelectorAdapter",
                     "pluginDescriptorRef": {
-                        "location": "https://9d8d85bf5f47:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.ps.cdr.pf.adapter.idp.CDRAdapterSelector",
-                        "id": "com.pingidentity.ps.cdr.pf.adapter.idp.CDRAdapterSelector"
+                        "location": "https://9d8d85bf5f47:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.CDRAdapterSelector",
+                        "id": "com.pingidentity.adapter.idp.CDRAdapterSelector"
                     },
                     "attributeContract": {
                         "maskOgnlValues": false,
