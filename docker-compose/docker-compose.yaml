@@ -225,6 +225,13 @@ services:
     #  - ./pingdatagovernancepap-out:/opt/out
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
+  data-in-spa:
+    image: cdrsandbox/data-in-spa:20210223
+    ports:
+      - "8686:80"
+    networks:
+      - pingnet-internal
+
   pingdataconsole:
     image: pingidentity/pingdataconsole:edge
     ports:
