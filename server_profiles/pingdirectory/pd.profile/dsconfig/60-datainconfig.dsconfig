@@ -1,0 +1,794 @@
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceRefreshToken  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtStatus  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtDataHolderClientId  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtDataHolderSoftwareId  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceCDRArrangementId  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceClientId  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceContext  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceDataHolder  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceSoftwareId  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name userRoot  \
+    --index-name tokenMgtInstanceUserRef  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --set 'display-name:ADR Data Holder Read'
+
+dsconfig create-scim-resource-type \
+    --type-name ADRDataHolderRead  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:adr-dataholder-read  \
+    --set structural-ldap-objectclass:organizationalUnit  \
+    --set auxiliary-ldap-objectclass:tokenMgtDataHolderAux  \
+    --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
+    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-filter:(&(objectClass=tokenMgtDataHolderAux)(tokenMgtStatus=active))  \
+    --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set core-schema:urn:pingidentity:adr:dataholder:read
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name software_id  \
+    --set scim-resource-type-attribute:software_id  \
+    --set ldap-attribute:tokenMgtDataHolderSoftwareId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name status  \
+    --set scim-resource-type-attribute:status  \
+    --set ldap-attribute:tokenMgtStatus  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name data_holder_issuer  \
+    --set scim-resource-type-attribute:data_holder_issuer  \
+    --set ldap-attribute:ou  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name software_id  \
+    --set required:true
+
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name data_holder_issuer  \
+    --set required:true
+
+
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --set 'display-name:ADR Data Holder'
+
+dsconfig create-scim-resource-type \
+    --type-name ADRDataHolder  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:adr-dataholder  \
+    --set structural-ldap-objectclass:organizationalUnit  \
+    --set auxiliary-ldap-objectclass:tokenMgtDataHolderAux  \
+    --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
+    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-filter:(&(objectClass=tokenMgtDataHolderAux)(tokenMgtStatus=active))  \
+    --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set core-schema:urn:pingidentity:adr:dataholder
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name status  \
+    --set scim-resource-type-attribute:status  \
+    --set ldap-attribute:tokenMgtStatus  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name status_msg  \
+    --set scim-resource-type-attribute:status_msg  \
+    --set ldap-attribute:tokenMgtStatusMsg  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name base_uri_override  \
+    --set scim-resource-type-attribute:base_uri_override  \
+    --set ldap-attribute:tokenMgtDataHolderLocalBaseUri  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name brand_id  \
+    --set scim-resource-type-attribute:brand_id  \
+    --set ldap-attribute:tokenMgtDataHolderBrandId  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name client_assertion_jwk  \
+    --set scim-resource-type-attribute:client_assertion_jwk  \
+    --set ldap-attribute:tokenMgtDataHolderClientAssertionJWK  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name client_id  \
+    --set scim-resource-type-attribute:client_id  \
+    --set ldap-attribute:tokenMgtDataHolderClientId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name data_holder_issuer  \
+    --set scim-resource-type-attribute:data_holder_issuer  \
+    --set ldap-attribute:ou  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name software_id  \
+    --set scim-resource-type-attribute:software_id  \
+    --set ldap-attribute:tokenMgtDataHolderSoftwareId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name token_endpoint  \
+    --set scim-resource-type-attribute:token_endpoint  \
+    --set ldap-attribute:tokenMgtDataHolderTokenEndpoint  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name jwks_endpoint  \
+    --set scim-resource-type-attribute:jwks_endpoint  \
+    --set ldap-attribute:tokenMgtDataHolderJWKSEndpoint  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name status_msg
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name base_uri_override   \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name brand_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name client_assertion_jwk  \
+    --set type:complex   \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name client_id  \
+    --set required:true  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name data_holder_issuer  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name software_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name token_endpoint  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name jwks_endpoint  \
+    --set required:true
+
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:software  \
+    --set 'display-name:ADR Software'
+
+dsconfig create-scim-resource-type \
+    --type-name ADRSoftware  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:adr-software  \
+    --set structural-ldap-objectclass:organizationalUnit  \
+    --set auxiliary-ldap-objectclass:tokenMgtSoftwareAux  \
+    --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
+    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-filter:(tokenMgtStatus=active)  \
+    --set create-dn-pattern:ou={ou},ou=adr-software,${USER_BASE_DN}  \
+    --set core-schema:urn:pingidentity:adr:software
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRSoftware  \
+    --mapping-name status  \
+    --set scim-resource-type-attribute:status  \
+    --set ldap-attribute:tokenMgtStatus  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRSoftware  \
+    --mapping-name status_msg  \
+    --set scim-resource-type-attribute:status_msg  \
+    --set ldap-attribute:tokenMgtStatusMsg  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRSoftware  \
+    --mapping-name brand_id  \
+    --set scim-resource-type-attribute:brand_id  \
+    --set ldap-attribute:tokenMgtSoftwareBrandId  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRSoftware  \
+    --mapping-name software_id  \
+    --set scim-resource-type-attribute:software_id  \
+    --set ldap-attribute:ou  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:software  \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:software  \
+    --attribute-name status_msg
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:software  \
+    --attribute-name brand_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:software  \
+    --attribute-name software_id  \
+    --set required:true
+
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --set display-name:ADRTokenInstance
+
+dsconfig create-scim-resource-type \
+    --type-name ADRTokenInstance  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:adr-token  \
+    --set structural-ldap-objectclass:tokenMgtInstance  \
+    --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
+    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-filter:(tokenMgtStatus=active)  \
+    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set core-schema:urn:pingidentity:adr:token:instance
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name status  \
+    --set scim-resource-type-attribute:status  \
+    --set ldap-attribute:tokenMgtStatus  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name status_msg  \
+    --set scim-resource-type-attribute:status_msg  \
+    --set ldap-attribute:tokenMgtStatusMsg  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name access_token  \
+    --set scim-resource-type-attribute:access_token  \
+    --set ldap-attribute:tokenMgtInstanceAccessTokenJWT  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name access_token_json  \
+    --set scim-resource-type-attribute:access_token_json  \
+    --set ldap-attribute:tokenMgtInstanceAccessTokenJSON  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name auth_code  \
+    --set scim-resource-type-attribute:auth_code  \
+    --set ldap-attribute:tokenMgtInstanceAuthCode  \
+    --set readable:false
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name brand_id  \
+    --set scim-resource-type-attribute:brand_id  \
+    --set ldap-attribute:tokenMgtInstanceBrandId  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name cdr_arrangement_id  \
+    --set scim-resource-type-attribute:cdr_arrangement_id  \
+    --set ldap-attribute:tokenMgtInstanceCDRArrangementId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name client_id  \
+    --set scim-resource-type-attribute:client_id  \
+    --set ldap-attribute:tokenMgtInstanceClientId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name context  \
+    --set scim-resource-type-attribute:context  \
+    --set ldap-attribute:tokenMgtInstanceContext  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name data_holder_issuer  \
+    --set scim-resource-type-attribute:data_holder_issuer  \
+    --set ldap-attribute:tokenMgtInstanceDataHolder  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name expected_nonce  \
+    --set scim-resource-type-attribute:expected_nonce  \
+    --set ldap-attribute:tokenMgtInstanceExpectedNonce  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name id_token  \
+    --set scim-resource-type-attribute:id_token  \
+    --set ldap-attribute:tokenMgtInstanceIDTokenJWT  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name id_token_json  \
+    --set scim-resource-type-attribute:id_token_json  \
+    --set ldap-attribute:tokenMgtInstanceIDTokenJSON  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name redirect_uri  \
+    --set scim-resource-type-attribute:redirect_uri  \
+    --set ldap-attribute:tokenMgtInstanceRedirectURI  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name refresh_token  \
+    --set scim-resource-type-attribute:refresh_token  \
+    --set ldap-attribute:tokenMgtInstanceRefreshToken  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name software_id  \
+    --set scim-resource-type-attribute:software_id  \
+    --set ldap-attribute:tokenMgtInstanceSoftwareId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name user_ref  \
+    --set scim-resource-type-attribute:user_ref  \
+    --set ldap-attribute:tokenMgtInstanceUserRef  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name status_msg
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name access_token  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name access_token_json  \
+    --set type:complex
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name auth_code  \
+    --set case-exact:true  \
+    --set mutability:immutable  \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name brand_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name cdr_arrangement_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name client_id  \
+    --set required:true  \
+    --set case-exact:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name context  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name data_holder_issuer  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name expected_nonce  \
+    --set case-exact:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name id_token  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name id_token_json  \
+    --set type:complex
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name redirect_uri  \
+    --set required:true  \
+    --set case-exact:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name refresh_token  \
+    --set case-exact:true  \
+    --set multi-valued:true  \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name software_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name user_ref  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --set display-name:ADRTokenInstanceRefresh
+
+dsconfig create-scim-resource-type \
+    --type-name ADRTokenInstanceRefresh  \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:adr-token-refresh  \
+    --set structural-ldap-objectclass:tokenMgtInstance  \
+    --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
+    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-filter:(&(!(objectClass=force_refresh_signal))(tokenMgtStatus=active))  \
+    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set core-schema:urn:pingidentity:adr:token:instance:refresh
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name software_id  \
+    --set scim-resource-type-attribute:software_id  \
+    --set ldap-attribute:tokenMgtInstanceSoftwareId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name status  \
+    --set scim-resource-type-attribute:status  \
+    --set ldap-attribute:tokenMgtStatus  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name status_msg  \
+    --set scim-resource-type-attribute:status_msg  \
+    --set ldap-attribute:tokenMgtStatusMsg  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name access_token  \
+    --set scim-resource-type-attribute:access_token  \
+    --set ldap-attribute:tokenMgtInstanceAccessTokenJWT  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name context  \
+    --set scim-resource-type-attribute:context  \
+    --set ldap-attribute:tokenMgtInstanceContext  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name data_holder_issuer  \
+    --set scim-resource-type-attribute:data_holder_issuer  \
+    --set ldap-attribute:tokenMgtInstanceDataHolder  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name user_ref  \
+    --set scim-resource-type-attribute:user_ref  \
+    --set ldap-attribute:tokenMgtInstanceUserRef  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name status_msg
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name access_token  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name context  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name data_holder_issuer  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name user_ref  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name software_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:token:instance:revoke  \
+    --set display-name:ADRTokenInstanceRevoke
+
+dsconfig create-scim-resource-type \
+    --type-name ADRTokenInstanceRevoke \
+    --type ldap-mapping  \
+    --set enabled:true  \
+    --set endpoint:adr-token-revoke \
+    --set structural-ldap-objectclass:tokenMgtInstance  \
+    --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
+    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-filter:(tokenMgtStatus=active)  \
+    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set core-schema:urn:pingidentity:adr:token:instance:revoke
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRevoke \
+    --mapping-name status  \
+    --set scim-resource-type-attribute:status  \
+    --set ldap-attribute:tokenMgtStatus  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRevoke \
+    --mapping-name status_msg  \
+    --set scim-resource-type-attribute:status_msg  \
+    --set ldap-attribute:tokenMgtStatusMsg  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRevoke  \
+    --mapping-name cdr_arrangement_id  \
+    --set scim-resource-type-attribute:cdr_arrangement_id  \
+    --set ldap-attribute:tokenMgtInstanceCDRArrangementId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRevoke \
+    --mapping-name data_holder_issuer  \
+    --set scim-resource-type-attribute:data_holder_issuer  \
+    --set ldap-attribute:tokenMgtInstanceDataHolder  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRevoke \
+    --mapping-name user_ref  \
+    --set scim-resource-type-attribute:user_ref  \
+    --set ldap-attribute:tokenMgtInstanceUserRef  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
+    --attribute-name status_msg
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:revoke  \
+    --attribute-name cdr_arrangement_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
+    --attribute-name data_holder_issuer  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
+    --attribute-name user_ref  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-external-server \
+    --server-name PingFederateServer  \
+    --type http  \
+    --set base-url:https://sso.data-holder.local  \
+    --set hostname-verification-method:allow-all  \
+    --set 'trust-manager-provider:Blind Trust'
+
+dsconfig create-json-attribute-constraints \
+    --attribute-type tokenMgtInstanceAccessTokenJSON  \
+    --set enabled:true
+
+dsconfig create-json-field-constraints \
+    --attribute-type tokenMgtInstanceAccessTokenJSON  \
+    --json-field exp  \
+    --set value-type:integer  \
+    --set is-required:true  \
+    --set index-values:true  \
+    --set prime-index:true
+
+dsconfig create-connection-criteria \
+    --criteria-name 'Include only SCIM2 User Connection Criteria'  \
+    --type simple  \
+    --set 'included-user-base-dn:cn=SCIM2 Servlet,cn=Root DNs,cn=config'
+
+dsconfig create-request-criteria \
+    --criteria-name tokenMgtInstanceSearchCriteria  \
+    --type simple  \
+    --set operation-type:search  \
+    --set 'connection-criteria:Include only SCIM2 User Connection Criteria'  \
+    --set all-included-target-entry-filter:(|(objectClass=tokenMgtInstance)(objectClass=organizationalUnit))
+
+dsconfig create-plugin \
+    --plugin-name TokenManagement-SearchEntry-RefreshToken  \
+    --type third-party  \
+    --set enabled:true  \
+    --set plugin-type:searchresultentry  \
+    --set extension-class:com.pingidentity.ps.cdr.data.in.pd.TokenMgtRetrieveRefreshTokenPlugin  \
+    --set extension-argument:ignore-ssl-errors=true  \
+    --set extension-argument:refresh-advance-seconds=120  \
+    --set request-criteria:tokenMgtInstanceSearchCriteria

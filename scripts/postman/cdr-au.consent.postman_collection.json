@@ -19140,7 +19140,7 @@
 		},
 		{
 			"key": "dh-idp-cdrarrangement-endpoint",
-			"value": "/arrangements"
+			"value": "/data-holder/arrangements"
 		},
 		{
 			"key": "openid-configuration",

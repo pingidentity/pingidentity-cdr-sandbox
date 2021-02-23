@@ -1,4 +1,4 @@
-version: "3.1"
+version: "3.4"
 
 services:
   pingaccess:
@@ -23,10 +23,13 @@ services:
     #   - ${HOME}/projects/devops/volumes/full-stack.pingaccess:/opt/out
     #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
     ports:
+      - 3000:443
       - 443:3000
       - 80:7080
       - 9000:9000
       - 9001:9001
+    expose:
+      - 443
     networks:
       - pingnet-internal
 
@@ -38,6 +41,11 @@ services:
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
+    links:
+      - "pingaccess:sso.data-holder.local"
+      - "pingaccess:mockregister.data-holder.local"
+      - "pingaccess:pd.data-holder.local"
+      - "pingaccess:api.data-holder.local"
     ports:
       - 8082:7879
     networks:
@@ -51,6 +59,11 @@ services:
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
+    links:
+      - "pingaccess:sso.data-holder.local"
+      - "pingaccess:mockregister.data-holder.local"
+      - "pingaccess:pd.data-holder.local"
+      - "pingaccess:api.data-holder.local"
     ports:
       - 6879:6879
     networks:
@@ -72,6 +85,11 @@ services:
       - pingnet-internal
     cap_add:
       - NET_ADMIN
+    links:
+      - "pingaccess:sso.data-holder.local"
+      - "pingaccess:mockregister.data-holder.local"
+      - "pingaccess:pd.data-holder.local"
+      - "pingaccess:api.data-holder.local"
     #volumes:
     #  - ./pingfederate-out:/opt/out
 
@@ -86,6 +104,11 @@ services:
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
+    links:
+      - "pingaccess:sso.data-holder.local"
+      - "pingaccess:mockregister.data-holder.local"
+      - "pingaccess:pd.data-holder.local"
+      - "pingaccess:api.data-holder.local"
     ports:
       - 1636:636
       - 1443:443
@@ -108,6 +131,11 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+    links:
+      - "pingaccess:sso.data-holder.local"
+      - "pingaccess:mockregister.data-holder.local"
+      - "pingaccess:pd.data-holder.local"
+      - "pingaccess:api.data-holder.local"
     ports:
       - "2636:636"
       - "2443:443"
@@ -123,13 +151,18 @@ services:
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
+    links:
+      - "pingaccess:sso.data-holder.local"
+      - "pingaccess:mockregister.data-holder.local"
+      - "pingaccess:pd.data-holder.local"
+      - "pingaccess:api.data-holder.local"
     ports:
       - 8080:7878
     networks:
       - pingnet-internal
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20210219
+    image: cdrsandbox/cdr-register-testharness:20210223
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -142,7 +175,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210223:/tmp/cache
 
 
   pingdatagovernance:
@@ -191,6 +224,13 @@ services:
     #volumes:
     #  - ./pingdatagovernancepap-out:/opt/out
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
+
+  data-in-spa:
+    image: cdrsandbox/data-in-spa:20210223
+    ports:
+      - "8686:80"
+    networks:
+      - pingnet-internal
 
   pingdataconsole:
     image: pingidentity/pingdataconsole:edge

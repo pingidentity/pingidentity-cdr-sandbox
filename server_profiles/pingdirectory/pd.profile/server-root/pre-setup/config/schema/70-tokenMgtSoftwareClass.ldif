@@ -1,0 +1,8 @@
+
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+attributeTypes: ( tokenMgtSoftwareBrandId-OID NAME 'tokenMgtSoftwareBrandId' SINGLE-VALUE USAGE userApplications )
+objectClasses: ( tokenMgtSoftwareAux-OID NAME 'tokenMgtSoftwareAux' AUXILIARY MUST ( ou $ tokenMgtSoftwareBrandId ) )
