@@ -3,7 +3,7 @@ generate_post_data()
 {
   cat <<EOF
 {
-  "alias": "${PA_CONSOLE_HOST}",
+  "alias": "pingaccess-configlistener-keypair",
   "fileData": "$(cat network.p12 | base64)",
   "password": "P@ssword1"
 }
