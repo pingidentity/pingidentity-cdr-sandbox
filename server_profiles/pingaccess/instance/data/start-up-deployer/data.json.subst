@@ -659,13 +659,6 @@
                 "name": "HTTP Engine Listener",
                 "id": 3,
                 "secure": false
-            },
-            {
-                "trustedCertificateGroupId": 0,
-                "port": 443,
-                "name": "HTTPS Engine Listener",
-                "id": 4,
-                "secure": true
             }
         ],
         "httpIpSource": {
