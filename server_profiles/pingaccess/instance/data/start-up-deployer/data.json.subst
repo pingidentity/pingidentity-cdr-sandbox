@@ -551,7 +551,7 @@
             }
         ],
         "siteAuthenticators": [{
-            "configuration": {"keyPairId": "8"},
+            "configuration": {"keyPairId": "5"},
             "name": "ADR-MTLS-To-DataHolder",
             "className": "com.pingidentity.pa.siteauthenticators.MutualTlsSiteAuthenticator",
             "id": 1
@@ -930,8 +930,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/register/*",
-                    "/as/clients.oauth2/*"
+                    "/as/clients.oauth2/*",
+                    "/register/*"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -944,11 +944,11 @@
                 "id": 14,
                 "pathPatterns": [
                     {
-                        "pattern": "/register/*",
+                        "pattern": "/as/clients.oauth2/*",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/as/clients.oauth2/*",
+                        "pattern": "/register/*",
                         "type": "WILDCARD"
                     }
                 ],
@@ -1289,23 +1289,42 @@
             }
         ],
         "environment": {"name": null},
-        "identityMappings": [{
-            "configuration": {
-                "exclusionList": false,
-                "exclusionListSubject": null,
-                "headerClientCertificateMappings": [],
-                "exclusionListAttributes": [],
-                "attributeHeaderMappings": [{
-                    "headerName": "X-USER",
-                    "subject": true,
-                    "attributeName": "sub"
-                }],
-                "headerNamePrefix": null
+        "identityMappings": [
+            {
+                "configuration": {
+                    "exclusionList": false,
+                    "exclusionListSubject": null,
+                    "headerClientCertificateMappings": [],
+                    "exclusionListAttributes": [],
+                    "attributeHeaderMappings": [{
+                        "headerName": "X-USER",
+                        "subject": true,
+                        "attributeName": "sub"
+                    }],
+                    "headerNamePrefix": null
+                },
+                "name": "Default Identity Mapping",
+                "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
+                "id": 1
             },
-            "name": "Default Identity Mapping",
-            "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
-            "id": 1
-        }],
+            {
+                "configuration": {
+                    "exclusionList": false,
+                    "exclusionListSubject": null,
+                    "headerClientCertificateMappings": [],
+                    "exclusionListAttributes": [],
+                    "attributeHeaderMappings": [{
+                        "headerName": "X-SUBJECT",
+                        "subject": true,
+                        "attributeName": "sub"
+                    }],
+                    "headerNamePrefix": null
+                },
+                "name": "ADR-IdentityMapping",
+                "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
+                "id": 2
+            }
+        ],
         "pingFederateOAuth": {
             "clientId": "pingaccess_validator",
             "tokenTimeToLiveSeconds": -1,
@@ -1394,7 +1413,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614032679570,
+                "agentCacheInvalidatedExpiration": 1614040048409,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1425,7 +1444,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1614031779570,
+                "lastModified": 1614039148409,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1434,7 +1453,6 @@
                 "agentId": 0,
                 "virtualHostIds": [
                     10,
-                    11,
                     12
                 ],
                 "spaSupportEnabled": true,
@@ -1442,7 +1460,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613977036784,
+                "agentCacheInvalidatedExpiration": 1614045553699,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1477,7 +1495,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1613976136784,
+                "lastModified": 1614044653699,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1490,7 +1508,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613977036641,
+                "agentCacheInvalidatedExpiration": 1614040048120,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1521,7 +1539,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1613976136641,
+                "lastModified": 1614039148120,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1534,7 +1552,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613977036739,
+                "agentCacheInvalidatedExpiration": 1614040048200,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1556,7 +1574,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1613976136739,
+                "lastModified": 1614039148200,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1569,7 +1587,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613977036866,
+                "agentCacheInvalidatedExpiration": 1614040048322,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1594,7 +1612,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1613976136866,
+                "lastModified": 1614039148322,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1607,7 +1625,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614034939725,
+                "agentCacheInvalidatedExpiration": 1614040048368,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1629,7 +1647,7 @@
                 "name": "Application-DataHolder-sso.${BASE_HOSTNAME}",
                 "siteId": 11,
                 "realm": null,
-                "lastModified": 1614034039725,
+                "lastModified": 1614039148368,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1642,7 +1660,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614032965595,
+                "agentCacheInvalidatedExpiration": 1614045924503,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1662,12 +1680,12 @@
                 "contextRoot": "/cds-au",
                 "identityMappingIds": {
                     "Web": 0,
-                    "API": 0
+                    "API": 2
                 },
                 "name": "Application-DataHolder-api.${BASE_HOSTNAME}",
                 "siteId": 12,
                 "realm": null,
-                "lastModified": 1614032065595,
+                "lastModified": 1614045024503,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             }
