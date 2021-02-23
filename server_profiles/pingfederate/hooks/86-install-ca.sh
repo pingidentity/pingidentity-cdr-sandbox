@@ -2,7 +2,6 @@ generate_post_data()
 {
   cat <<EOF
 {
-  "alias": "cdr-register-local-$RANDOM",
   "fileData": "$(cat public.pem | sed '1,1d' | sed '$ d')"
 }
 EOF
