@@ -3752,10 +3752,6 @@
                                         "type": "AUTHN_SOURCE"
                                     }
                                 },
-                                {"action": {
-                                    "context": "No Match",
-                                    "type": "CONTINUE"
-                                }},
                                 {
                                     "children": [
                                         {"action": {
