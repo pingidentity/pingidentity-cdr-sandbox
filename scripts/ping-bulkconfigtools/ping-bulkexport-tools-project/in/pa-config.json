@@ -9,7 +9,7 @@
   "change-value":[
   	{
   	  "parameter-name": "keyPairId",
-      "matching-identifier": 
+      "matching-identifier":
           {
           	"id-name": "name",
           	"id-value": "ENGINE"
@@ -18,7 +18,7 @@
   	},
   	{
   	  "parameter-name": "keyPairId",
-      "matching-identifier": 
+      "matching-identifier":
           {
           	"id-name": "name",
           	"id-value": "ADMIN"
@@ -29,12 +29,66 @@
   "remove-config":[
   	{
   	  "key": "alias",
-	  "value": "ca-keypair-.*"
+	    "value": "ca-keypair-.*"
+  	},
+  	{
+  	  "key": "alias",
+	    "value": "siteauthenticator-keypair-.*"
   	},
   	{
   	  "key": "name",
 	  "value": "HTTPS Engine Listener"
+  	},
+  	{
+  	  "key": "name",
+	    "value": "ADR-MTLS-To-DataHolder"
+  	},
+  	{
+  	  "key": "alias",
+	    "value": "cdr-register-local-.*"
+  	},
+  	{
+  	  "key": "alias",
+	    "value": "pingaccess-configlistener-keypair"
+  	},
+  	{
+  	  "key": "name",
+	    "value": "CONFIG QUERY"
+  	},
+  	{
+  	  "key": "name",
+	    "value": "MTLS Certificate Group"
   	}
+  ],
+  "add-config":[
+	  {
+	    "resourceType": "siteAuthenticators",
+	    "item":
+      {
+          "configuration": {"keyPairId": "5"},
+          "name": "ADR-MTLS-To-DataHolder",
+          "className": "com.pingidentity.pa.siteauthenticators.MutualTlsSiteAuthenticator",
+          "id": 1
+      }
+	  },
+	  {
+	    "resourceType": "trustedCertGroups",
+	    "item":
+      {
+          "skipCertificateDateCheck": true,
+          "name": "MTLS Certificate Group",
+          "useJavaTrustStore": false,
+          "certIds": [17],
+          "id": 3,
+          "systemGroup": false,
+          "ignoreAllCertificateErrors": false,
+          "revocationChecking": {
+              "ocsp": false,
+              "denyRevocationStatusUnknown": false,
+              "crlChecking": false
+          }
+      }
+	  }
   ],
   "expose-parameters":[
     {
@@ -58,4 +112,3 @@
     }
   ]
 }
-
