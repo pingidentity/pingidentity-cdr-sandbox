@@ -12,6 +12,6 @@
 echo "INFO: OPERATIONAL_MODE: ${OPERATIONAL_MODE}"
 if test -n "${OPERATIONAL_MODE}" && test "${OPERATIONAL_MODE}" = "STANDALONE"
 then
-    echo "INFO: Shutting down the eth0 interface..."
-    ip link set eth0 down
+#    echo "INFO: Shutting down the eth0 interface..."
+#    ip link set eth0 down
 fi
