@@ -162,7 +162,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20210219
+    image: cdrsandbox/cdr-register-testharness:20210223
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -175,7 +175,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister:/tmp/cache
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210223:/tmp/cache
 
 
   pingdatagovernance:

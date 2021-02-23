@@ -343,8 +343,36 @@
 
   <servlet-mapping>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
+    <url-pattern>/data-holder/arrangements/revoke</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>DataRecipientCDRArrangementEndpoint</servlet-name>
+    <servlet-class>com.pingidentity.ps.cdr.data.in.pf.servlet.CDRArrangementServlet</servlet-class>
+    <init-param>
+      <param-name>SCIMClientATM</param-name>
+      <param-value>adminATM</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIMClientScope</param-name>
+      <param-value>adr-clients-write</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIMBaseUrlEndpoint</param-name>
+      <param-value>https://pd.data-holder.local/scim/v2/</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIMIgnoreSSL</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DataRecipientCDRArrangementEndpoint</servlet-name>
     <url-pattern>/arrangements/revoke</url-pattern>
   </servlet-mapping>
+
   <!-- ==================================================================== -->
   <!-- Dynamic Servlet Invoker.                                             -->
   <!-- This servlet invokes anonymous servlets that have not been defined   -->
