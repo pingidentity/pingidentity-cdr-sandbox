@@ -106,13 +106,6 @@
                 "useServerCipherSuiteOrder": true,
                 "id": 3,
                 "keyPairId": 7
-            },
-            {
-                "restartRequired": false,
-                "name": "CONFIG QUERY",
-                "useServerCipherSuiteOrder": true,
-                "id": 4,
-                "keyPairId": 5
             }
         ],
         "rules": [
@@ -1108,8 +1101,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/data-holder/arrangements/*",
-                    "/arrangements/*"
+                    "/arrangements/*",
+                    "/data-holder/arrangements/*"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -1122,11 +1115,11 @@
                 "id": 19,
                 "pathPatterns": [
                     {
-                        "pattern": "/data-holder/arrangements/*",
+                        "pattern": "/arrangements/*",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/arrangements/*",
+                        "pattern": "/data-holder/arrangements/*",
                         "type": "WILDCARD"
                     }
                 ],
@@ -1466,7 +1459,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614061972261,
+                "agentCacheInvalidatedExpiration": 1614119745800,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1497,7 +1490,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1614061072261,
+                "lastModified": 1614118845800,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1513,7 +1506,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060951779,
+                "agentCacheInvalidatedExpiration": 1614119745315,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1548,7 +1541,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1614060051779,
+                "lastModified": 1614118845315,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1561,7 +1554,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060951693,
+                "agentCacheInvalidatedExpiration": 1614119745108,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1592,7 +1585,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1614060051693,
+                "lastModified": 1614118845108,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1605,7 +1598,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060951784,
+                "agentCacheInvalidatedExpiration": 1614119745232,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1627,7 +1620,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1614060051784,
+                "lastModified": 1614118845232,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1640,7 +1633,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060951903,
+                "agentCacheInvalidatedExpiration": 1614119745443,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1665,7 +1658,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1614060051903,
+                "lastModified": 1614118845443,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1678,7 +1671,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060951914,
+                "agentCacheInvalidatedExpiration": 1614119745502,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1700,7 +1693,7 @@
                 "name": "Application-DataHolder-sso.${BASE_HOSTNAME}",
                 "siteId": 11,
                 "realm": null,
-                "lastModified": 1614060051914,
+                "lastModified": 1614118845502,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1713,7 +1706,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060952070,
+                "agentCacheInvalidatedExpiration": 1614119745736,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1738,7 +1731,7 @@
                 "name": "Application-DataHolder-api.${BASE_HOSTNAME}",
                 "siteId": 12,
                 "realm": null,
-                "lastModified": 1614060052070,
+                "lastModified": 1614118845736,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1751,7 +1744,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614060952023,
+                "agentCacheInvalidatedExpiration": 1614119745614,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1773,7 +1766,7 @@
                 "name": "Application-DataIn-SPA",
                 "siteId": 13,
                 "realm": null,
-                "lastModified": 1614060052023,
+                "lastModified": 1614118845614,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }
