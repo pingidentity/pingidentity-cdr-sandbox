@@ -8,11 +8,11 @@ pf-oauth-client-authn-type: NONE
 pf-oauth-client-bypass-approval-page: TRUE
 pf-oauth-client-enforce-replay-prevention: FALSE
 pf-oauth-client-grant-type: implicit
+pf-oauth-client-grant-type: authorization_code
 pf-oauth-client-last-modified: 1614043174198
 pf-oauth-client-name: Sample Data In Client
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
-pf-oauth-client-redirect-uri: https://sso.data-holder.local/pf/heartbeat.pin
- g
+pf-oauth-client-redirect-uri: https://spa.data-recipient.local/index.html
 pf-oauth-client-require-signed-requests: FALSE
 pf-oauth-client-restrict-scopes: FALSE
 pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:adrATM
