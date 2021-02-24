@@ -239,5 +239,13 @@ services:
     networks:
       - pingnet-internal
 
+  datain-configurepf:
+    image: cdrsandbox/datain-configure-pf:20210225
+    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
+    env_file:
+      - cdr.env
+    networks:
+      - pingnet-internal
+
 networks:
     pingnet-internal:
