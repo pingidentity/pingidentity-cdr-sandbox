@@ -5,7 +5,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: Brooke
-cn: raeann
+cn: rbrooke
 givenName: Raeann
 uid: CRN0
 userPassword: password
@@ -20,7 +20,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: Stone
-cn: alice
+cn: astone
 givenName: Alice
 uid: CRN1
 userPassword: password
@@ -35,7 +35,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: Hope
-cn: bob
+cn: bhope
 givenName: Bob
 uid: CRN2
 userPassword: password
@@ -50,7 +50,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: King
-cn: carol
+cn: kking
 givenName: Carol
 uid: CRN3
 userPassword: password
@@ -65,7 +65,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: Watts
-cn: emily
+cn: ewatts
 givenName: Emily
 uid: CRN4
 userPassword: password
@@ -80,7 +80,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: Jones
-cn: tom
+cn: tjones
 givenName: Tom
 uid: CRN5
 userPassword: password
