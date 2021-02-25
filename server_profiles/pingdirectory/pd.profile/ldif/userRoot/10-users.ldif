@@ -5,7 +5,7 @@ objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
 sn: Brooke
-cn: Raeann Brooke
+cn: raeann
 givenName: Raeann
 uid: CRN0
 userPassword: password
@@ -19,9 +19,9 @@ objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
-sn: Seawell
-cn: Esko Seawell
-givenName: Esko
+sn: Stone
+cn: alice
+givenName: Alice
 uid: CRN1
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN1
@@ -34,9 +34,9 @@ objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
-sn: Tancordo
-cn: Sidonia Tancordo
-givenName: Sidonia
+sn: Hope
+cn: bob
+givenName: Bob
 uid: CRN2
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN2
@@ -49,9 +49,9 @@ objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
-sn: Knio
-cn: Pierre-Marc Knio
-givenName: Pierre-Marc
+sn: King
+cn: carol
+givenName: Carol
 uid: CRN3
 userPassword: password
 pf-connected-identity: auth-source=pf-local-ideontity:user-id=CRN3
@@ -64,13 +64,28 @@ objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
 objectClass: pf-connected-identities
-sn: Psutka
-cn: Terza Psutka
-givenName: Terza
+sn: Watts
+cn: emily
+givenName: Emily
 uid: CRN4
 userPassword: password
 pf-connected-identity: auth-source=pf-local-identity:user-id=CRN4
 entryuuid: 593bc98c-75b9-3b19-8db9-9302c5aa435c
+modifyTimestamp: 20200626044309.209Z
+
+dn: uid=CRN5,ou=People,${USER_BASE_DN}
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: pf-connected-identities
+sn: Jones
+cn: tom
+givenName: Tom
+uid: CRN5
+userPassword: password
+pf-connected-identity: auth-source=pf-local-identity:user-id=CRN5
+entryuuid: c98c593b-75b9-3b19-8db9-9302c5aa435c
 modifyTimestamp: 20200626044309.209Z
 
 dn: uid=administrator,ou=People,${USER_BASE_DN}
