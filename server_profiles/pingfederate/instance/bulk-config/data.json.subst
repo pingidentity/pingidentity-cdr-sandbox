@@ -1302,11 +1302,11 @@
                             },
                             {
                                 "name": "CDR Brand ID",
-                                "value": "brand-cdr-sandbox-data-in-sample-dr-0005"
+                                "value": "${DATAHOLDER_BRAND_ID}"
                             },
                             {
                                 "name": "CDR Software ID",
-                                "value": "software-cdr-sandbox-data-in-sample-dr-0005"
+                                "value": "${DATAHOLDER_SOFTWARE_ID}"
                             },
                             {
                                 "name": "SCIMv2 Base URL",
@@ -3769,7 +3769,7 @@
                                                         "attributeContractFulfillment": {
                                                             "software_id": {
                                                                 "source": {"type": "TEXT"},
-                                                                "value": "software-cdr-sandbox-data-in-sample-dr-0005"
+                                                                "value": "${DATAHOLDER_SOFTWARE_ID}"
                                                             },
                                                             "subject": {
                                                                 "source": {
