@@ -10,7 +10,7 @@ The CDR Sandbox is an all-encompassing “black-box” environment created using
     - At least 8GB of RAM available to Docker
 - A GitHub Account
 - An active Ping Identity support account [(Link)](https://www.pingidentity.com/en/account/register.html)
-- A working Ping Identity DevOps installation [(Link)](https://devops.pingidenity.com)
+- A working Ping Identity DevOps installation [(Link)](https://devops.pingidentity.com)
 
 ## Step by Step Guide
 
