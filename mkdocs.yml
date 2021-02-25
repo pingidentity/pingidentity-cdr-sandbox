@@ -44,7 +44,8 @@ nav:
       - Access Administration Consoles: "howtos/howto_adminconsoles.md"
       - Generate MTLS Authentication Keys: "howtos/howto_generatecerts.md"
   - Release Notes:
-      - Current (CDR 1.5): "release-notes/relnotes_CDR-1.5-core-001.md"
+      - Current (CDR 1.6): "release-notes/relnotes_CDR-1.6-core-001.md"
+      - CDR 1.5 (core 001)): "release-notes/relnotes_CDR-1.5-core-001.md"
       - CDR 1.4 (core 003): "release-notes/relnotes_CDR-1.4-core-003.md"
       - CDR 1.4 (core 002): "release-notes/relnotes_CDR-1.4-core-002.md"
       - CDR 1.4 (core 001): "release-notes/relnotes_CDR-1.4-core-001.md"
