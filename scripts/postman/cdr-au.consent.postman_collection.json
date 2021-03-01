@@ -3288,12 +3288,7 @@
 												},
 												{
 													"key": "token",
-													"value": "{{consent-request-refresh-token}}",
-													"type": "text"
-												},
-												{
-													"key": "token_type_hint",
-													"value": "refresh_token",
+													"value": "{{consent-request-access-token}}",
 													"type": "text"
 												},
 												{
