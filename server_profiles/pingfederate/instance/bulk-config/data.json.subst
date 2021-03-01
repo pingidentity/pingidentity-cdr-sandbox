@@ -718,8 +718,8 @@
                     "name": "adminATM",
                     "id": "adminATM",
                     "pluginDescriptorRef": {
-                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
-                        "id": "com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
+                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
+                        "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
                         "restrictClients": false,
@@ -879,8 +879,8 @@
                     "name": "adrATM",
                     "id": "adrATM",
                     "pluginDescriptorRef": {
-                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
-                        "id": "com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
+                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
+                        "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
                         "restrictClients": false,
@@ -1033,8 +1033,8 @@
                     "name": "cdrADRNotfATM",
                     "id": "cdrADRNotfATM",
                     "pluginDescriptorRef": {
-                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
-                        "id": "com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
+                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
+                        "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
                         "restrictClients": true,
@@ -1201,8 +1201,8 @@
                     "name": "obATM",
                     "id": "obATM",
                     "pluginDescriptorRef": {
-                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
-                        "id": "com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
+                        "location": "https://ad56a0b69861:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
+                        "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
                         "restrictClients": false,
