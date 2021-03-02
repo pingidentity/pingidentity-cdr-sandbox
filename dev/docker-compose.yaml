@@ -1,0 +1,55 @@
+version: "3.4"
+
+services:
+
+  agentless-consentapp:
+    image: cdrsandbox/agentless-consentapp:20210222
+#    command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8082:7879
+    networks:
+      - pingnet-internal
+
+  mock-dh-api:
+    image: cdrsandbox/mock-dh-apis:20210202
+#    command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 6879:6879
+    networks:
+      - pingnet-internal
+
+  cdrregister:
+    image: cdrsandbox/cdr-register-testharness:20210225
+    #command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8084:8084
+    networks:
+      - pingnet-internal
+    volumes:
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210225:/tmp/cache
+
+  data-in-spa:
+    image: cdrsandbox/data-in-spa:20210225
+    ports:
+      - "8686:80"
+    networks:
+      - pingnet-internal
+
+networks:
+    pingnet-internal:

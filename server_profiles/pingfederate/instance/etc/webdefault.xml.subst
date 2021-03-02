@@ -326,7 +326,7 @@
     </init-param>
     <init-param>
       <param-name>EXPECTED_JWT_AUDIENCE</param-name>
-      <param-value>https://${PF_BASE_HOST}</param-value>
+      <param-value>https://${PF_BASE_HOST},https://${PF_BASE_HOST}:6443</param-value>
     </init-param>
 
   </servlet>

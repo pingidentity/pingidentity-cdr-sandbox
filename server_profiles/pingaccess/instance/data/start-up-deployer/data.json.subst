@@ -79,6 +79,62 @@
                 "id": 16,
                 "keyPairId": 0,
                 "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 3,
+                "port": 6443,
+                "host": "api.${BASE_HOSTNAME}",
+                "id": 17,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "consent.${BASE_HOSTNAME}",
+                "id": 18,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "mockregister.${BASE_HOSTNAME}",
+                "id": 19,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "pd.${BASE_HOSTNAME}",
+                "id": 20,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "spa.data-recipient.local",
+                "id": 21,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 3,
+                "port": 6443,
+                "host": "sso.${BASE_HOSTNAME}",
+                "id": 22,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 3,
+                "port": 6443,
+                "host": "sso-local.${BASE_HOSTNAME}",
+                "id": 23,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
             }
         ],
         "acmeDefaultServer": {
@@ -620,7 +676,7 @@
             "backChannelBasePath": null,
             "application": null,
             "basePath": null,
-            "port": 443,
+            "port": 6443,
             "skipHostnameVerification": true,
             "backChannelSecure": true,
             "host": "sso.${BASE_HOSTNAME}",
@@ -648,10 +704,10 @@
             },
             {
                 "trustedCertificateGroupId": 0,
-                "port": 7080,
-                "name": "HTTP Engine Listener",
-                "id": 3,
-                "secure": false
+                "port": 6443,
+                "name": "Local Dev Listener",
+                "id": 5,
+                "secure": true
             }
         ],
         "httpIpSource": {
@@ -1443,14 +1499,16 @@
                 "virtualHostIds": [
                     5,
                     7,
-                    12
+                    12,
+                    22,
+                    23
                 ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614557121349,
+                "agentCacheInvalidatedExpiration": 1614724345428,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1481,7 +1539,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1614556221349,
+                "lastModified": 1614723445428,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1490,14 +1548,15 @@
                 "agentId": 0,
                 "virtualHostIds": [
                     10,
-                    12
+                    12,
+                    17
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614574151058,
+                "agentCacheInvalidatedExpiration": 1614723306852,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1532,20 +1591,23 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1614573251058,
+                "lastModified": 1614722406852,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "Web",
                 "agentId": 0,
-                "virtualHostIds": [13],
+                "virtualHostIds": [
+                    13,
+                    19
+                ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614557120633,
+                "agentCacheInvalidatedExpiration": 1614723275857,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1576,20 +1638,23 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1614556220633,
+                "lastModified": 1614722375857,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "API",
                 "agentId": 0,
-                "virtualHostIds": [14],
+                "virtualHostIds": [
+                    14,
+                    20
+                ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614557120717,
+                "agentCacheInvalidatedExpiration": 1614723326720,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1611,20 +1676,23 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1614556220717,
+                "lastModified": 1614722426720,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "Web",
                 "agentId": 0,
-                "virtualHostIds": [15],
+                "virtualHostIds": [
+                    15,
+                    18
+                ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614557120955,
+                "agentCacheInvalidatedExpiration": 1614723289918,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1649,7 +1717,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1614556220955,
+                "lastModified": 1614722389918,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1662,7 +1730,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614574151058,
+                "agentCacheInvalidatedExpiration": 1614722813424,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1684,7 +1752,7 @@
                 "name": "Application-DataHolder-sso.${BASE_HOSTNAME}",
                 "siteId": 11,
                 "realm": null,
-                "lastModified": 1614573251058,
+                "lastModified": 1614721913424,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1693,14 +1761,15 @@
                 "agentId": 0,
                 "virtualHostIds": [
                     11,
-                    16
+                    16,
+                    21
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614574151058,
+                "agentCacheInvalidatedExpiration": 1614723233520,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1725,20 +1794,23 @@
                 "name": "Application-DataHolder-api.${BASE_HOSTNAME}",
                 "siteId": 12,
                 "realm": null,
-                "lastModified": 1614573251058,
+                "lastModified": 1614722333520,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "Web",
                 "agentId": 0,
-                "virtualHostIds": [16],
+                "virtualHostIds": [
+                    16,
+                    21
+                ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1614557121143,
+                "agentCacheInvalidatedExpiration": 1614723264304,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1760,7 +1832,7 @@
                 "name": "Application-DataIn-SPA",
                 "siteId": 13,
                 "realm": null,
-                "lastModified": 1614556221143,
+                "lastModified": 1614722364304,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }

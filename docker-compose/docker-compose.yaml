@@ -23,6 +23,7 @@ services:
     #   - ${HOME}/projects/devops/volumes/full-stack.pingaccess:/opt/out
     #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
     ports:
+      - 6443:6443
       - 3000:443
       - 443:3000
       - 80:7080
