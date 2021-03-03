@@ -25,4 +25,9 @@ Alternatively run the following in order:
 - ./scripts/start-pf.sh
 - ./scripts/start-pa.sh
 
-3) Run ./stop-all.sh to stop all services.
+3) Update the following Postman Collection Variables:
+- cdr-register-testharness-host = https://mockregister.data-holder.local:6443
+- dh-idp-host = https://sso-local.data-holder.local:6443
+- dh-api-host = https://api.data-holder.local:6443/cds-au
+- dh-dir-host = https://pd.data-holder.local:6443
+5) Run ./stop-all.sh to stop all services.
