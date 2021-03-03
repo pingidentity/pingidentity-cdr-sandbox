@@ -7,6 +7,10 @@ while read line; do
     export $line
 done < ../cdr.env
 
+while read line; do
+    export $line
+done < ../pd.env
+
 echo "Extracting new PingDirectory binary..."
 unzip ../binaries/directory-*.zip -d .
 
