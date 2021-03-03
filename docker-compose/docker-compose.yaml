@@ -111,12 +111,19 @@ services:
       - "pingaccess:pd.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
-      - 3443:443
-      - 3389:389
+      - "3389:389"
+      - "3443:443"
       - 3636:636
       - 1636:636
       - 1443:443
       - 389:389
+    expose:
+      - 443
+      - 3443
+      - 389
+      - 3389
+      - 636
+      - 3636
     networks:
       - pingnet-internal
 
