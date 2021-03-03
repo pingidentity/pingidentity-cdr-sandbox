@@ -9,3 +9,6 @@ echo "Stopping PingFederate"
 
 echo "Stopping PingAccess"
 ./scripts/stop-pa.sh
+
+echo "Stopping PingDataSync"
+./scripts/stop-pds.sh

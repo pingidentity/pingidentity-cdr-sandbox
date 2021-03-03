@@ -12,3 +12,6 @@ echo "Staring PingFederate"
 
 echo "Starting PingAccess"
 ./scripts/start-pa.sh
+
+echo "Starting PingDataSync"
+./scripts/start-pds.sh

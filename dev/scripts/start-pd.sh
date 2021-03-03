@@ -29,7 +29,7 @@ cp /tmp/product.lic ./PingDirectory.lic
 echo ${PING_IDENTITY_PASSWORD} > password-file
 
 cp -R ../../../server_profiles/pingdirectory/pd.profile .
-cp ../../scripts/files/setup-arguments.txt ./pd.profile
+cp ../../scripts/files/pd-setup-arguments.txt ./pd.profile/setup-arguments.txt
 cp ../../../server_profiles/pingdirectory/instance/lib/extensions/* ./lib/extensions
 
 rm pd.profile/dsconfig/30-daily-encrypted-export.dsconfig
