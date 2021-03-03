@@ -399,6 +399,7 @@
                 "sso-admin.${BASE_HOSTNAME}",
                 "pingfederate",
                 "pingaccess",
+		"host.docker.internal",
                 "sso-local.${BASE_HOSTNAME}"
             ]}],
             "resourceType": "/virtualHostNames"

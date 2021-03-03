@@ -51,5 +51,51 @@ services:
     networks:
       - pingnet-internal
 
+  pingdatagovernance:
+    image: pingidentity/pingdatagovernance:8.2.0.1-edge
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
+      - PD_ENGINE_PRIVATE_HOSTNAME=host.docker.internal
+      - LDAPS_PORT=3636
+      - HTTPS_PORT=3443
+    env_file:
+      - ${HOME}/.pingidentity/devops
+      - cdr.env
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "9080:80"
+      - "7443:3443"
+      - "443:3443"
+    networks:
+      - pingnet-internal
+
+  pingdatagovernancepap:
+    image: pingidentity/pingdatagovernancepap:8.2.0.1-edge
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
+      - HTTPS_PORT=8443
+    env_file:
+      - ${HOME}/.pingidentity/devops
+      - cdr.env
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "8443:8443"
+    networks:
+      - pingnet-internal
+
 networks:
     pingnet-internal:
