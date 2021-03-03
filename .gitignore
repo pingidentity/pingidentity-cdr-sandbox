@@ -4,7 +4,7 @@ docker-compose/cdr.env
 *.subst_*
 *.bak
 *backup*
-dev/binaries
+dev/binaries/*.zip
 dev/temp
 scripts/postman/cert
 scripts/postman/cert/*
