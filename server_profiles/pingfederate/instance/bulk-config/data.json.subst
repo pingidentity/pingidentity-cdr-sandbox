@@ -363,13 +363,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -377,10 +371,10 @@
             "items": [{
                 "password": "${PING_IDENTITY_PASSWORD}",
                 "roles": [
-                    "USER_ADMINISTRATOR",
-                    "EXPRESSION_ADMINISTRATOR",
                     "CRYPTO_ADMINISTRATOR",
-                    "ADMINISTRATOR"
+                    "ADMINISTRATOR",
+                    "USER_ADMINISTRATOR",
+                    "EXPRESSION_ADMINISTRATOR"
                 ],
                 "auditor": false,
                 "description": "Initial administrator user.",
@@ -2628,9 +2622,9 @@
                         "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
                         "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
                         "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE",
-                        "DEEPTHOUGHT:ADMIN:PAYEE:READ",
                         "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
                         "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
+                        "DEEPTHOUGHT:ADMIN:PAYEE:READ",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
@@ -2638,8 +2632,8 @@
                         "DEEPTHOUGHT:ADMIN:BRANCH:READ",
                         "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
-                        "DEEPTHOUGHT:ADMIN:GRANT:READ",
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ"
+                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
+                        "DEEPTHOUGHT:ADMIN:GRANT:READ"
                     ]
                 }],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
