@@ -1,3 +1,12 @@
+# Pre-requisites #
+
+- Unix/linux based operating system.
+- docker engine 20.10.2 and docker-compose installed.
+- Ping Identity devops registration and setup (click [here](https://devops.pingidentity.com/get-started/devopsRegistration/))
+- Java 11 (e.g. [adoptjdk](https://adoptopenjdk.net/)) with JAVA_HOME and PATH variables
+- Packages installed: unzip, curl, jt, sed, envsubst (gettext)
+
+# Steps #
 
 1) Add the following hostnames: 
 ```
