@@ -4,6 +4,16 @@
       "search": "data-holder.local",
       "replace": "${BASE_HOSTNAME}",
       "apply-env-file": false
+    },
+    {
+      "search": "pingdirectory:3443",
+      "replace": "pingdirectory:443",
+      "apply-env-file": false
+    },
+    {
+      "search": "\\\"6443\\\"",
+      "replace": "\\\"443\\\"",
+      "apply-env-file": false
     }
   ],
   "change-value":[
