@@ -40,13 +40,23 @@
       "apply-env-file": false
     },
     {
-      "search": "https://consent.data-holder.local",
+      "search": "https://consent.data-holder.local:6443",
       "replace": "${CONSENT_BASEURL}",
       "apply-env-file": false
     },
     {
       "search": "data-holder.local",
       "replace": "${BASE_HOSTNAME}",
+      "apply-env-file": false
+    },
+    {
+      "search": "pingdirectory:3389",
+      "replace": "pingdirectory:389",
+      "apply-env-file": false
+    },
+    {
+      "search": "pingdirectory:3443",
+      "replace": "pingdirectory:443",
       "apply-env-file": false
     }
   ],
@@ -116,4 +126,3 @@
     }
   ]
 }
-
