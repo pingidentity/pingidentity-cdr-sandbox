@@ -17,7 +17,12 @@
 127.0.0.1       spa.data-recipient.local
 ```
 
-2) Run ./start-all.sh to start all services.
+2) Copy Ping software binaries to the binaries folder. Software versions currently tested:
+- directory-8.2.0.0-EA-image.zip
+- pingaccess-6.2.0.zip
+- pingfederate-10.2.1.zip
+
+3) Run ./start-all.sh to start all services.
 
 Alternatively run the following in order:
 - docker-compose up -d
@@ -25,7 +30,7 @@ Alternatively run the following in order:
 - ./scripts/start-pf.sh
 - ./scripts/start-pa.sh
 
-3) Update the following Postman Collection Variables:
+4) Update the following Postman Collection Variables:
 - cdr-register-testharness-host = https://mockregister.data-holder.local:6443
 - dh-idp-host = https://sso-local.data-holder.local:6443
 - dh-api-host = https://api.data-holder.local:6443/cds-au
