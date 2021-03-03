@@ -36,7 +36,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "https://pingdirectory",
+                    "stringValue": "https://pingdirectory:443",
                     "id": "CONSENT_API_HOST",
                     "type": "STRING"
                 },
@@ -268,7 +268,7 @@
             "items": [{
                 "hostnamesTags": [{
                     "defaultSource": true,
-                    "hostnames": ["pingdirectory"]
+                    "hostnames": ["pingdirectory:389"]
                 }],
                 "timeBetweenEvictions": 60000,
                 "binaryAttributes": [],
@@ -286,7 +286,7 @@
                 "bindAnonymously": false,
                 "maxWait": -1,
                 "verifyHost": true,
-                "hostnames": ["pingdirectory"],
+                "hostnames": ["pingdirectory:389"],
                 "dnsTtl": 60000,
                 "useSsl": false,
                 "maskAttributeValues": false,
@@ -1343,7 +1343,7 @@
                             },
                             {
                                 "name": "SCIMv2 Base URL",
-                                "value": "https://pingdirectory/scim/v2/"
+                                "value": "https://pingdirectory:443/scim/v2/"
                             },
                             {
                                 "name": "CDR MTLS Network Certificate",
