@@ -19083,11 +19083,11 @@
 	"variable": [
 		{
 			"key": "cdr-register-testharness-host",
-			"value": "https://mockregister.data-holder.local"
+			"value": "https://mockregister.data-holder.local:6443"
 		},
 		{
 			"key": "dh-idp-host",
-			"value": "https://sso.data-holder.local"
+			"value": "https://sso.data-holder.local:6443"
 		},
 		{
 			"key": "dh-idp-register-endpoint",
@@ -19123,7 +19123,7 @@
 		},
 		{
 			"key": "dh-api-host",
-			"value": "https://api.data-holder.local/cds-au"
+			"value": "https://api.data-holder.local:6443/cds-au"
 		},
 		{
 			"key": "dh-idp-revocation-endpoint",
@@ -19151,7 +19151,7 @@
 		},
 		{
 			"key": "dh-dir-host",
-			"value": "https://pd.data-holder.local"
+			"value": "https://pd.data-holder.local:6443"
 		},
 		{
 			"key": "pkce-challenge",
