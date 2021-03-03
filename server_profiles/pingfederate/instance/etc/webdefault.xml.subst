@@ -318,7 +318,7 @@
     </init-param>
     <init-param>
       <param-name>SCIM_ENDPOINT</param-name>
-      <param-value>https://pingdirectory/scim/v2/adh-cache</param-value>
+      <param-value>https://pingdirectory:3443/scim/v2/adh-cache</param-value>
     </init-param>
     <init-param>
       <param-name>IGNORE_SSL</param-name>
