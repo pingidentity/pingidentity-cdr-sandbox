@@ -2,6 +2,8 @@
 # using the --optionsFile option. Run `setup --help` for further
 # instructions.
 core:
+  PINGDIRECTORY_BASEURL: ${PINGDIRECTORY_BASEURL}
+  PINGFEDERATE_BASEURL: ${CONSENT_APP_pf_baseurl_backend}
   # Add policy configuration keys here. The value for a policy 
   # configuration key may be provided via an environment variable 
   # using the notation '${environment-variable}'.
