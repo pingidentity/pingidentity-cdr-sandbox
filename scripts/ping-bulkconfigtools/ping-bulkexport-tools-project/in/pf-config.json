@@ -55,6 +55,11 @@
       "apply-env-file": false
     },
     {
+      "search": "https://consent.data-holder.local",
+      "replace": "${CONSENT_BASEURL}",
+      "apply-env-file": false
+    },
+    {
       "search": "6443/init",
       "replace": "/init",
       "apply-env-file": false
