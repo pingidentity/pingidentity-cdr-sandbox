@@ -32,6 +32,10 @@ done < ../../docker-compose/pf.env
 
 while read line; do
     export $line
+done < ../pf.override.env
+
+while read line; do
+    export $line
 done < ../cdr.env
 
 sed -e "s/pingdirectory:443/pingdirectory:3443/g" -e "s/pingdirectory:389/pingdirectory:3389/g" ./pingfederate/bulk-config/data.json.subst > ./pingfederate/bulk-config/data.json.tmp

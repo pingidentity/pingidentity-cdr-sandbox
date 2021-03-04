@@ -30,6 +30,16 @@
       "apply-env-file": false
     },
     {
+      "search": "brand-cdr-sandbox-data-in-local-dr-0005",
+      "replace": "${DATAHOLDER_BRAND_ID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "software-cdr-sandbox-data-in-local-dr-0005",
+      "replace": "${DATAHOLDER_SOFTWARE_ID}",
+      "apply-env-file": false
+    },
+    {
       "search": "brand-cdr-sandbox-data-in-sample-dr-0005",
       "replace": "${DATAHOLDER_BRAND_ID}",
       "apply-env-file": false
@@ -76,6 +86,24 @@
   	}
   ],
   "expose-parameters":[
+    {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=Issuer"
+      ]
+    },
+    {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=Data Recipient Issuer"
+      ]
+    },
+    {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=CDR Register Base URL"
+      ]
+    },
     {
       "parameter-name": "value",
       "unique-identifiers": [

@@ -1,6 +1,26 @@
 {
   "search-replace":[
     {
+      "search": "\"sso.data-holder.local:443\"",
+      "replace": "\"${ADR_SSO_ENDPOINT}\"",
+      "apply-env-file": false
+    },
+    {
+      "search": "\"sso.data-holder.local:6443\"",
+      "replace": "\"${ADR_SSO_ENDPOINT}\"",
+      "apply-env-file": false
+    },
+    {
+      "search": "\"api.data-holder.local:443\"",
+      "replace": "\"${ADR_API_ENDPOINT}\"",
+      "apply-env-file": false
+    },
+    {
+      "search": "\"api.data-holder.local:6443\"",
+      "replace": "\"${ADR_API_ENDPOINT}\"",
+      "apply-env-file": false
+    },
+    {
       "search": "data-holder.local",
       "replace": "${BASE_HOSTNAME}",
       "apply-env-file": false

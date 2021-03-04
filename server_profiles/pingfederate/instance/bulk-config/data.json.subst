@@ -363,7 +363,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -372,8 +378,8 @@
                 "password": "${PING_IDENTITY_PASSWORD}",
                 "roles": [
                     "CRYPTO_ADMINISTRATOR",
-                    "ADMINISTRATOR",
                     "USER_ADMINISTRATOR",
+                    "ADMINISTRATOR",
                     "EXPRESSION_ADMINISTRATOR"
                 ],
                 "auditor": false,
@@ -1312,7 +1318,7 @@
                                 "fields": [
                                     {
                                         "name": "Issuer",
-                                        "value": "https://sso.${BASE_HOSTNAME}"
+                                        "value": "${idp_adapters_items_ADRDataInSelector_configuration_tables_rows_fields_Issuer_value}"
                                     },
                                     {
                                         "name": "Local Base URL",
@@ -1328,11 +1334,11 @@
                         "fields": [
                             {
                                 "name": "Data Recipient Issuer",
-                                "value": "https://sso.${BASE_HOSTNAME}"
+                                "value": "${idp_adapters_items_ADRDataInSelector_configuration_fields_Data_Recipient_Issuer_value}"
                             },
                             {
                                 "name": "CDR Register Base URL",
-                                "value": "https://mockregister.${BASE_HOSTNAME}"
+                                "value": "${idp_adapters_items_ADRDataInSelector_configuration_fields_CDR_Register_Base_URL_value}"
                             },
                             {
                                 "name": "CDR Brand ID",
@@ -2622,9 +2628,9 @@
                         "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
                         "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
                         "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE",
-                        "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
                         "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
                         "DEEPTHOUGHT:ADMIN:PAYEE:READ",
+                        "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
@@ -2632,8 +2638,8 @@
                         "DEEPTHOUGHT:ADMIN:BRANCH:READ",
                         "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
-                        "DEEPTHOUGHT:ADMIN:GRANT:READ"
+                        "DEEPTHOUGHT:ADMIN:GRANT:READ",
+                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ"
                     ]
                 }],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
@@ -3230,7 +3236,7 @@
                         },
                         {
                             "name": "Issuer",
-                            "value": "cdr-register"
+                            "value": "${oauth_clientRegistrationPolicies_items_cdrAURegister_configuration_fields_Issuer_value}"
                         },
                         {
                             "name": "JWKS URL",
