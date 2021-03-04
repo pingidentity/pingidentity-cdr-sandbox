@@ -366,6 +366,10 @@
       <param-name>SCIMIgnoreSSL</param-name>
       <param-value>true</param-value>
     </init-param>
+    <init-param>
+      <param-name>ExpectedAudience</param-name>
+      <param-value>https://${PF_BASE_HOST},https://${PF_BASE_HOST}:6443,https://sso-local.${BASE_HOSTNAME}:6443</param-value>
+    </init-param>
   </servlet>
 
   <servlet-mapping>
