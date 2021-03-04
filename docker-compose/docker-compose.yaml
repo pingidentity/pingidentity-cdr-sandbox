@@ -237,7 +237,9 @@ services:
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
   data-in-spa:
-    image: cdrsandbox/data-in-spa:20210225
+    image: cdrsandbox/data-in-spa:20210304
+    env_file:
+      - cdr.env
     ports:
       - "8686:80"
     networks:
