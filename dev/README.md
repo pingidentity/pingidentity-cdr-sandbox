@@ -23,12 +23,14 @@
 127.0.0.1       api.data-holder.local
 127.0.0.1       dr.data-recipient.local
 127.0.0.1       spa.data-recipient.local
+127.0.0.1	spa.data-recipient.local
 ```
 
 2) Copy Ping software binaries to the binaries folder. Software versions currently tested:
-- directory-8.2.0.0-EA-image.zip
+- PingDirectory-8.2.0.2.zip
 - pingaccess-6.2.0.zip
 - pingfederate-10.2.1.zip
+- PingDataSync-8.2.0.2.zip
 
 3) Run ./start-all.sh to start all services.
 
@@ -37,5 +39,7 @@ Alternatively run the following in order:
 - ./scripts/start-pd.sh
 - ./scripts/start-pf.sh
 - ./scripts/start-pa.sh
+- ./scripts/start-pds.sh
+- ./scripts/configure_datain.sh
 
 4) Run ./stop-all.sh to stop all services.

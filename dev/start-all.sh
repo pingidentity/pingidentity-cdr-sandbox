@@ -15,3 +15,6 @@ echo "Starting PingAccess"
 
 echo "Starting PingDataSync"
 ./scripts/start-pds.sh
+
+echo "Configuring Data In"
+./scripts/configure_datain.sh

@@ -12,7 +12,7 @@ while read line; do
 done < ../pd.env
 
 echo "Extracting new PingDirectory binary..."
-unzip ../binaries/directory-*.zip -d .
+unzip ../binaries/PingDirectory-*.zip -d .
 
 cd PingDirectory
 

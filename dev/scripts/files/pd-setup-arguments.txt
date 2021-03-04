@@ -14,7 +14,7 @@
     --skipHostnameCheck  \
     --rootUserDN "cn=Directory Manager"  \
     --rootUserPasswordFile password-file  \
-    --maxHeapSize 768m  \
+    --maxHeapSize 1024m  \
     --ldapsPort 3636  \
     --httpsPort 3443  \
     --instanceName Localhost  \
