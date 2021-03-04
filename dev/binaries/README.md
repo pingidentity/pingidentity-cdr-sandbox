@@ -1,5 +1,5 @@
 Copy the following binaries into this folder:
-- directory-*.zip
+- PingDirectory-*.zip
 - pingfederate-*.zip
 - pingaccess-*.zip
-
+- PingDataSync-*.zip
