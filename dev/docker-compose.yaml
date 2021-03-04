@@ -45,9 +45,11 @@ services:
        - ${HOME}/projects/devops/volumes/cdr.mockregister.20210225:/tmp/cache
 
   data-in-spa:
-    image: cdrsandbox/data-in-spa:20210225
+    image: cdrsandbox/data-in-spa:20210304
+    env_file:
+      - cdr.env
     ports:
-      - "8686:80"
+      - "2280:2280"
     networks:
       - pingnet-internal
 

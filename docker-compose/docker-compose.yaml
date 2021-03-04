@@ -241,7 +241,7 @@ services:
     env_file:
       - cdr.env
     ports:
-      - "8686:80"
+      - "2280:2280"
     networks:
       - pingnet-internal
 

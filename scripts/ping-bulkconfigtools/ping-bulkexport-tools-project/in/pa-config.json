@@ -38,6 +38,15 @@
   ],
   "change-value":[
   	{
+  	  "parameter-name": "dataHolderIssuer",
+      "matching-identifier":
+          {
+          	"id-name": "dataHolderIssuer",
+          	"id-value": ".*"
+          },
+  	  "new-value": "${CONSENT_APP_pf_baseurl}"
+  	},
+  	{
   	  "parameter-name": "keyPairId",
       "matching-identifier":
           {
