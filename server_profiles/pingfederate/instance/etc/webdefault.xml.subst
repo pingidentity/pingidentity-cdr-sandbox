@@ -360,7 +360,7 @@
     </init-param>
     <init-param>
       <param-name>SCIMBaseUrlEndpoint</param-name>
-      <param-value>https://pd.data-holder.local/scim/v2/</param-value>
+      <param-value>${SCIM_BASEURL}</param-value>
     </init-param>
     <init-param>
       <param-name>SCIMIgnoreSSL</param-name>
