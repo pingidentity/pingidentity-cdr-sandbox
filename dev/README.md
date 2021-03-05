@@ -26,13 +26,22 @@
 127.0.0.1	spa.data-recipient.local
 ```
 
-2) Copy Ping software binaries to the binaries folder. Software versions currently tested:
+2) Git clone this repository and navigate to the /dev folder.
+
+```
+git clone https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+cd pingidentity-cdr-sandbox
+git checkout edge (currently only available in edge)
+cd dev
+```
+
+3) Copy Ping software binaries to the binaries folder. Software versions currently tested:
 - PingDirectory-8.2.0.2.zip
 - pingaccess-6.2.0.zip
 - pingfederate-10.2.1.zip
 - PingDataSync-8.2.0.2.zip
 
-3) Run ./start-all.sh to start all services.
+4) Run ./start-all.sh to start all services.
 
 Alternatively run the following in order:
 - docker-compose up -d
@@ -42,8 +51,8 @@ Alternatively run the following in order:
 - ./scripts/start-pds.sh
 - ./scripts/configure_datain.sh
 
-4) When creating postman network certificates, use the create-postman-certs-dev.sh script instead.
+5) When creating postman network certificates, use the create-postman-certs-dev.sh script instead.
 
-5) Run postman scripts or Data In module, starting at: https://spa.data-recipient.local
+6) Run postman scripts or Data In module, starting at: https://spa.data-recipient.local
 
-6) Run ./stop-all.sh to stop all services.
+7) Run ./stop-all.sh to stop all services.
