@@ -42,4 +42,8 @@ Alternatively run the following in order:
 - ./scripts/start-pds.sh
 - ./scripts/configure_datain.sh
 
-4) Run ./stop-all.sh to stop all services.
+4) When creating postman network certificates, use the create-postman-certs-dev.sh script instead.
+
+5) Run postman scripts or Data In module, starting at: https://spa.data-recipient.local
+
+6) Run ./stop-all.sh to stop all services.
