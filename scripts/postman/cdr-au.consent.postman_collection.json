@@ -53,7 +53,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get\",\n                    \"scope\": \"bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
+									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get\",\n                    \"scope\": \"bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/admin/model/dataRecipient",
@@ -16920,6 +16920,213 @@
 							}
 						}
 					]
+				},
+				{
+					"name": "S009.T006 Obtain Request cdr:registration",
+					"item": [
+						{
+							"name": "S009.T005.001 - Download Private Key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    var responseBlob = btoa(JSON.stringify(response.keys[0]));",
+											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"{{flowUUID-datarecipient}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S009.T005.002 - Generate Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read cdr:registration",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read bank:accounts.detail:read bank:regular_payments:read cdr:registration\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"requestJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S009.T005.003 - Initiate Consent Request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
 				}
 			],
 			"event": [
@@ -19083,11 +19290,11 @@
 	"variable": [
 		{
 			"key": "cdr-register-testharness-host",
-			"value": "https://mockregister.data-holder.local:6443"
+			"value": "https://mockregister.data-holder.local"
 		},
 		{
 			"key": "dh-idp-host",
-			"value": "https://sso.data-holder.local:6443"
+			"value": "https://sso.data-holder.local"
 		},
 		{
 			"key": "dh-idp-register-endpoint",
@@ -19123,7 +19330,7 @@
 		},
 		{
 			"key": "dh-api-host",
-			"value": "https://api.data-holder.local:6443/cds-au"
+			"value": "https://api.data-holder.local/cds-au"
 		},
 		{
 			"key": "dh-idp-revocation-endpoint",
@@ -19151,7 +19358,7 @@
 		},
 		{
 			"key": "dh-dir-host",
-			"value": "https://pd.data-holder.local:6443"
+			"value": "https://pd.data-holder.local"
 		},
 		{
 			"key": "pkce-challenge",

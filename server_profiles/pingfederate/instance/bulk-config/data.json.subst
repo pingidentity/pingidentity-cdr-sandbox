@@ -363,7 +363,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -371,10 +377,10 @@
             "items": [{
                 "password": "${PING_IDENTITY_PASSWORD}",
                 "roles": [
-                    "ADMINISTRATOR",
+                    "CRYPTO_ADMINISTRATOR",
                     "USER_ADMINISTRATOR",
                     "EXPRESSION_ADMINISTRATOR",
-                    "CRYPTO_ADMINISTRATOR"
+                    "ADMINISTRATOR"
                 ],
                 "auditor": false,
                 "description": "Initial administrator user.",
@@ -2454,11 +2460,6 @@
                     "multiValued": false
                 },
                 {
-                    "name": "software_statement_storage",
-                    "description": "software_statement_storage",
-                    "multiValued": false
-                },
-                {
                     "name": "tos_uri",
                     "description": "tos_uri",
                     "multiValued": false
@@ -2627,9 +2628,9 @@
                         "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
                         "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
                         "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE",
-                        "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
                         "DEEPTHOUGHT:ADMIN:PAYEE:READ",
                         "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
+                        "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
@@ -2637,8 +2638,8 @@
                         "DEEPTHOUGHT:ADMIN:BRANCH:READ",
                         "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
-                        "DEEPTHOUGHT:ADMIN:GRANT:READ"
+                        "DEEPTHOUGHT:ADMIN:GRANT:READ",
+                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ"
                     ]
                 }],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
@@ -3272,6 +3273,10 @@
                         {
                             "name": "Revoked JWKS validation",
                             "value": "true"
+                        },
+                        {
+                            "name": "Prefix Two Header Name",
+                            "value": ""
                         }
                     ]
                 },
@@ -3358,11 +3363,6 @@
                     {
                         "parameter": "software_id",
                         "description": "software_id",
-                        "multiValued": false
-                    },
-                    {
-                        "parameter": "software_statement_storage",
-                        "description": "software_statement_storage",
                         "multiValued": false
                     },
                     {
@@ -3488,36 +3488,6 @@
                     }
                 },
                 {
-                    "context": {
-                        "contextRef": {
-                            "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                            "id": "iQwSYDdExcmJaYk6"
-                        },
-                        "type": "AUTHENTICATION_POLICY_CONTRACT"
-                    },
-                    "attributeContractFulfillment": {
-                        "sub": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "CUSTOMER_REF"
-                        },
-                        "cnf": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "#THUMBPRINT_HEADER=\"X-CertificateThumbprint\", #objReq = #this.get(\"context.HttpRequest\").getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(\"x5t#S256\", #headerValue):null, #mapValue"
-                        },
-                        "consent_id": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "CONSENT_ID"
-                        }
-                    },
-                    "id": "authz_req|apc.iQwSYDdExcmJaYk6|obATM",
-                    "attributeSources": [],
-                    "issuanceCriteria": {"conditionalCriteria": []},
-                    "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
-                        "id": "obATM"
-                    }
-                },
-                {
                     "context": {"type": "CLIENT_CREDENTIALS"},
                     "attributeContractFulfillment": {"sub": {
                         "source": {"type": "TEXT"},
@@ -3566,17 +3536,20 @@
                             "source": {"type": "EXPRESSION"},
                             "value": "#THUMBPRINT_HEADER=\"X-CertificateThumbprint\", #objReq = #this.get(\"context.HttpRequest\").getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(\"x5t#S256\", #headerValue):null, #mapValue"
                         },
-                        "consent_id": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "null"
-                        }
+                        "consent_id": {"source": {"type": "NO_MAPPING"}}
                     },
-                    "id": "client_credentials|obATM",
+                    "id": "client_credentials|cdrRevocableATM",
                     "attributeSources": [],
-                    "issuanceCriteria": {"conditionalCriteria": []},
+                    "issuanceCriteria": {
+                        "expressionCriteria": [{
+                            "expression": "#scopes = #this.get(\"context.OAuthScopes\") != null?#this.get(\"context.OAuthScopes\").toString():\"\",\r\n#scopes.equals(\"\") || #scopes.equals(\"cdr:registration\")",
+                            "errorResult": "Invalid_Scope"
+                        }],
+                        "conditionalCriteria": []
+                    },
                     "accessTokenManagerRef": {
-                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
-                        "id": "obATM"
+                        "location": "https://tamtran-r.lan:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
+                        "id": "cdrRevocableATM"
                     }
                 }
             ],

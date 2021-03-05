@@ -1,7 +1,8 @@
 {
 	"info": {
 		"_postman_id": "37e70964-93d4-47f4-bc75-195f70d33c70",
-		"name": "DCR Flow 1.2 - CDR Register Test Harness v2",
+		"name": "_DCR Flow v1.2",
+		"description": "20201211 - updated to work with CDR Register Test Harness v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -17,7 +18,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "9e7df2a5-69bd-4ce3-8f61-6fcf055089c0",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -30,7 +30,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a05bffaf-3e4e-4ae1-8886-c333acde1ef6",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -76,7 +75,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ec9c31e2-75bd-4389-b00d-181d58ef4d18",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -116,7 +114,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6ababf9c-c6e8-40fe-a746-89d1b8b5310e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -156,7 +153,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1e5c919f-533b-41ed-829f-8aec9e44573e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -218,7 +214,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "031161f5-3618-4f9f-9493-7fb738d674b9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -260,7 +255,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b0c5897a-0bad-4b97-a9e5-5a9cf4f1b872",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -310,7 +304,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7cf80153-f3b0-4eeb-949f-b8b41c75d698",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -368,9 +361,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S001.T002 Read Client",
@@ -381,7 +372,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f1b5b982-ff4d-41a5-a8e6-239d5e0a698e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -426,7 +416,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "59ab3310-2ca1-40c8-a14b-9beca19a3c8e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -478,10 +467,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -503,7 +489,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f60e18bb-a8f6-4f1f-a749-ec2a6387e3e3",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -560,10 +545,7 @@
 											"value": "cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -580,7 +562,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "133d44ec-494e-483f-a20f-36387e987abd",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -652,9 +633,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S001.T003 Update Client",
@@ -665,7 +644,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "39f842ac-27c6-406c-b2ad-881cf18132f1",
 										"exec": [
 											""
 										],
@@ -675,7 +653,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "96fa25ac-abb0-4373-aa41-7ac0e4f4adf0",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -722,7 +699,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e8b51ad4-ff94-40c9-9520-9552e5ea3f1d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -767,7 +743,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b341a8ac-ea87-463e-89f0-dfc84727a125",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -807,7 +782,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a0b369d1-74fc-4dd4-99cc-2dc5a1b202ad",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -901,10 +875,7 @@
 											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
@@ -930,7 +901,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1998a688-d70b-4e1b-9dbf-42a7e8485f2e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -971,10 +941,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatementUpdate}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"http://localhost:8088/*\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatementUpdate}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"http://localhost:8088/*\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -996,7 +963,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0535c9fc-e8d8-4bf9-952b-fa1bcd0f9330",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1048,10 +1014,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -1073,7 +1036,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b001ce77-e089-4b73-8dcf-a813c0233bd0",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1130,10 +1092,7 @@
 											"value": "cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -1150,7 +1109,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "75eaa504-dc33-4b40-8841-7694bbd32f8f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1209,10 +1167,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-updateclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-updateclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}/{{dcrClientId}}",
@@ -1232,7 +1187,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "015463fd-1e92-4f37-9cec-1a841d105f9a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1308,7 +1262,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4d27bdea-62b3-4777-ad60-3b751adc73c9",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1318,16 +1271,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6b49ad07-14e4-4b76-b32d-b3a80924a78a",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S001.T004 Delete Client",
@@ -1338,7 +1288,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bc6bbe39-3858-43d7-93e8-77cc2e50b59e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1383,7 +1332,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2a97d9c1-2c5f-4a60-ae59-3604736d95cc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1435,10 +1383,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -1460,7 +1405,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1afc404b-29e2-4b0c-aff2-7ceec8029241",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1517,10 +1461,7 @@
 											"value": "cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -1537,7 +1478,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8633ea8b-d8da-4b02-ae44-3ac9ec6ef716",
 										"exec": [
 											"pm.test(\"Validate response status=204\", function () {",
 											"    pm.response.to.have.status(204);",
@@ -1593,7 +1533,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fe997cb5-45c0-4115-ad3e-c9ae1153434f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1645,10 +1584,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -1670,7 +1606,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8d941ea2-5c9f-49e5-94d9-1edea12fb7ed",
 										"exec": [
 											""
 										],
@@ -1717,10 +1652,7 @@
 											"value": "cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -1737,7 +1669,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e66d0b64-1f55-4d44-8f13-ba2e0b45ccdd",
 										"exec": [
 											"pm.test(\"Validate response status=401\", function () {",
 											"    pm.response.to.have.status(401);",
@@ -1793,7 +1724,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "02c9c55c-8984-4bab-a358-06a0cee088ec",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -1803,23 +1733,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1e1751f2-0f91-4e1e-aed4-cdb773357b77",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "56c9418d-086f-4a61-b539-0f1d40822f7f",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1829,15 +1755,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "edfe4b2f-158c-403e-b373-e94923cc6a2f",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "S002 Duplicate Create Validation",
@@ -1851,7 +1775,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "79ab9621-6972-42c3-85e3-a6d186eddbec",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -1864,7 +1787,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "91fb0790-5d3b-449d-b543-f20dfd96e9a1",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -1910,7 +1832,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4fc4b9f9-2cda-47c3-9021-f968971417db",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1950,7 +1871,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1899c80e-d65b-4cad-b6fa-355478ab2919",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2044,10 +1964,7 @@
 											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
@@ -2073,7 +1990,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f38bcc0c-26b4-42ca-92db-08b2362af7fb",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2118,7 +2034,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8f208f47-9049-4bff-afc0-f0c8086bec22",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2151,10 +2066,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -2176,7 +2088,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ae577fe4-93ba-4f96-9404-0502b7dc6972",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -2204,10 +2115,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -2223,7 +2131,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "3cffe645-2eb3-41e3-8120-dcda3017a399",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2233,16 +2140,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0121e96f-4652-4cd1-89a4-d24372112a57",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S002.T002 Create Client Again - Should fail",
@@ -2253,7 +2157,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "69c18c47-e487-4fa0-94d4-6c46197628bb",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2286,10 +2189,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -2311,7 +2211,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "09e31049-1cb5-43b2-a900-564d320c4a8f",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2342,10 +2241,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -2361,7 +2257,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "ff830329-20a5-42ac-aeae-76a9dbceed40",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2371,19 +2266,15 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "addc8d8d-e0d0-4010-854d-4c6d628eb362",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "S003 Request Invalid Response Types",
@@ -2397,7 +2288,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "f1513f36-fa93-4cb7-82e3-d1fc49680a39",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -2410,7 +2300,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9e1fe969-20a0-4030-a4ce-0a0b08788350",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -2456,7 +2345,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "114b0fdc-b5e5-497b-9a1d-827f8cd679b8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2550,10 +2438,7 @@
 											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
@@ -2579,7 +2464,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "85c89a94-268a-4ccb-9f0b-cebb8736e2d1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2624,7 +2508,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d5e689fe-1d28-45f7-9057-12b9012bb7bc",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2657,10 +2540,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -2682,7 +2562,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b99e932d-7653-4e38-90f3-466213493b25",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2724,10 +2603,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -2743,7 +2619,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "95e0c6dc-b0e0-43f0-ae6f-df27ac0fed5d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2753,16 +2628,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f9ad8f5b-90e7-4198-82b7-73d46e766356",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S003.T002 Create Client then Update with bad Response Type",
@@ -2773,7 +2645,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2ba210f5-4a6e-447b-b5f8-021079977e97",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2867,10 +2738,7 @@
 											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
@@ -2896,7 +2764,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7cf9adac-d86e-400e-9f9c-bb20893eece4",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2929,10 +2796,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -2954,7 +2818,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8459a514-d52a-475e-8888-c7e0d60265d8",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -2982,10 +2845,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -3002,7 +2862,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0c9553b7-e553-4389-b091-badf7e2d3e56",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3054,10 +2913,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -3079,7 +2935,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "08205b8a-8da0-42d9-a3ec-18eec790770e",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3136,10 +2991,7 @@
 											"value": "cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -3156,7 +3008,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3d657262-d67e-4c50-9031-a4c232b3acc6",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3192,10 +3043,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -3217,7 +3065,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a5e2a144-7f45-4042-bbab-5e50da6dab26",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3274,10 +3121,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-updateclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-updateclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}/{{dcrClientId}}",
@@ -3296,7 +3140,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "a38f146f-6760-45c9-a728-ec5d7b4f0299",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3306,23 +3149,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a968483f-6694-463e-9998-ddfe7afa3fa5",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "997dc208-e168-456d-9c5f-285ed6e1d779",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -3332,15 +3171,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "afd075b6-5bd9-4f4a-b5f2-53e5a3c45240",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "S004 Request Invalid Token Auth Algorithm",
@@ -3354,7 +3191,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "684577fc-931f-4ccc-8a4e-9440e9b0030c",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3448,10 +3284,7 @@
 											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
@@ -3477,7 +3310,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a3d28458-6ef7-438c-9b27-459edb2595d4",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3510,10 +3342,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"RS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}\n",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"RS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}\n"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -3535,7 +3364,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "07c9f4a0-c187-4a37-a079-f6964558f354",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3577,10 +3405,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -3596,7 +3421,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "15ce481d-2ac4-49bd-b7e5-67ad4d751953",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -3606,16 +3430,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "edad18b8-23e1-4ad1-a5f0-34a86f976b75",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S003.T002 Create Client then Update with bad Token Algorithm",
@@ -3626,7 +3447,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "4f40c982-532f-4f0a-bfaa-82732e8a88be",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -3639,7 +3459,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e7c84380-67fd-4614-a442-245de3b738e3",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -3685,7 +3504,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9f91402a-cf33-453f-8f0a-b63c1e49d841",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3730,7 +3548,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d464cbfd-ee7b-4fe5-8fa9-e372d9dc8599",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3824,10 +3641,7 @@
 											"value": "bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
@@ -3853,7 +3667,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "44ca7671-9795-45e6-ac12-0bf18d03348a",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3886,10 +3699,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -3911,7 +3721,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b9e23f8b-7191-45ff-978f-bce180839601",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -3939,10 +3748,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -3959,7 +3765,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c60ac239-4568-4407-8c1f-6f6918ab5e42",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4011,10 +3816,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -4036,7 +3838,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "154f24ba-f0da-4afb-a111-62ddefe69365",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4093,10 +3894,7 @@
 											"value": "cdr:registration",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -4113,7 +3911,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5f342db8-32ef-4564-b188-e45b9dfbcfc5",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4149,10 +3946,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"RS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"RS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -4174,7 +3968,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ec3101a9-8361-4e57-8f1a-be8a14a2a82a",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -4231,10 +4024,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-updateclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-updateclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}/{{dcrClientId}}",
@@ -4253,7 +4043,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "001cfe1e-2b33-4a09-8419-11948259c8d3",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4263,23 +4052,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a259ce8a-edb0-44f5-a0c7-61da7d061680",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "0bd45d2b-a789-49f0-902c-65a997c5d278",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -4289,15 +4074,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1d78c225-85b8-4b78-8d09-fa311fc51d61",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "S005 Redirect URI validation",
@@ -4311,7 +4094,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "dca37f88-2fef-49aa-ad95-cd2352b1776f",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -4324,7 +4106,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "78d0199c-fe99-4f93-85f4-5d7597d9e5f6",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4370,7 +4151,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "509891fe-f047-40c0-b0cd-16af1eb207f0",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4415,7 +4195,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "843b5219-8115-4bef-9c85-14af683bd457",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4479,7 +4258,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "86a5afb4-3622-488c-8e60-b191180497a9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4512,10 +4290,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -4537,7 +4312,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8d3d5a2d-e71c-47ef-89c7-3384806c1657",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4572,10 +4346,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -4591,7 +4362,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "dbef063b-a8d4-4846-9958-653cfd51e4a7",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4601,16 +4371,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "08a582cc-b5e8-46ed-89fc-dae5cd0002d4",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S005.T002 Request JWT contains 1 valid Redirect URI",
@@ -4621,7 +4388,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "10a0156f-01cb-42ad-abc6-396cfa7164da",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -4634,7 +4400,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "cb01419a-c47e-438a-a8af-9411eb62a51f",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4680,7 +4445,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "41fd35a6-7f2e-49d9-9b11-51e12da67c02",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4725,7 +4489,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "42b58442-1fd5-414e-aa4f-1eb91cd7287d",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4789,7 +4552,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c8f1e794-ce12-4050-9032-3b3b2f2f75f9",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4822,10 +4584,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cbabc\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cbabc\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -4847,7 +4606,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "597be9c6-d4fe-4d16-9f92-8947af39eba6",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4882,10 +4640,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -4901,7 +4656,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "990c5bdd-7009-4667-abc8-85fb4ef322ad",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4911,16 +4665,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "12a31873-5787-4a27-91b1-744db0d0edda",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S005.T003 Request JWT contains bad Redirect URI",
@@ -4931,7 +4682,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "1ff7db82-b71e-4467-b8b9-cc2ba04b13f2",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -4944,7 +4694,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e05c0622-d173-402d-a3b5-e5a7869f331a",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -4990,7 +4739,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9b0b78fd-1146-4db3-b856-e18517c87238",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5035,7 +4783,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3af9d04f-ffe8-462a-9e69-1a668f0bf2f8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5099,7 +4846,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e577cca7-8720-4cad-896f-86b21b4532fe",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5132,10 +4878,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://baduri.com\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://baduri.com\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -5157,7 +4900,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "560536b9-398a-45f3-b0e8-d6454e675b4f",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -5189,10 +4931,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -5208,7 +4947,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2bfb9ffd-4608-4a8d-9ef6-a70e58c2964c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5218,23 +4956,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1d941258-8ba5-474c-8c6f-94d9eb75ba81",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "39da2c2a-6ed7-4c2c-b592-7518694c9371",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5244,15 +4978,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e475eacf-9c58-469c-9f87-e3583eaddad1",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "S007 Test missing cdr:registration scope",
@@ -5266,7 +4998,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "ee07e3b4-2480-44f7-9d5c-41f9ce99dfa4",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -5279,7 +5010,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "145cd461-b20e-4a71-b429-8a6bd4abe8c0",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -5325,7 +5055,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "428dbb96-84c4-4b2e-97ca-5721f70f7042",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5370,7 +5099,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "049a1e88-5c6f-4653-952d-67ed82a64c89",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5434,7 +5162,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b7f09416-6db4-4f15-ac2b-a82f4da56c06",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5471,10 +5198,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"urlencoded": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cb\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -5496,7 +5220,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "da51da8f-5a4c-4e01-953d-8da2c9ff1efa",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -5537,10 +5260,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -5556,7 +5276,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "dce1efb7-9a95-49ca-9df0-14c041873b8e",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5566,16 +5285,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "48b22495-055a-4a06-80d6-216b1d5aa2be",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S007.T002 Read Client with invalid AT",
@@ -5586,7 +5302,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bacf3111-301d-432d-8841-d8e8a23223ef",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5638,10 +5353,7 @@
 											"value": "{{softwareId}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
@@ -5663,7 +5375,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1e9ffa79-1569-4dad-b7fa-a62fb9e4b698",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5715,10 +5426,7 @@
 											"value": "{{dcr-client-assertion}}",
 											"type": "text"
 										}
-									],
-									"options": {
-										"urlencoded": {}
-									}
+									]
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
@@ -5735,7 +5443,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2705aef8-f84d-4f27-910f-55502b7aed49",
 										"exec": [
 											"pm.test(\"Validate response status=401\", function () {",
 											"    pm.response.to.have.status(401);",
@@ -5797,7 +5504,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "e229998a-5667-4ad9-b4a8-4b0e0fbb340f",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -5807,23 +5513,19 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a5cb29c4-2b90-4e22-826e-50b14febcd19",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "866cec2b-3802-480c-8bda-2d19290fcbd1",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -5833,15 +5535,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3eaebcac-4406-4d3e-a4e2-108566c71f90",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "S008 DCR claims tests",
@@ -5855,7 +5555,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "743b652b-19ef-45ed-9ce5-9f4ffbf0c590",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -5868,7 +5567,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "15cbc186-f6c2-4ce8-9472-159f529583e0",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -5914,7 +5612,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2e9e9d8e-ccdc-47e4-8828-a3ea98edd581",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5959,7 +5656,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "63545097-81ca-425c-8827-6842734843a2",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6023,7 +5719,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6b66c984-1cf9-44a5-a1bf-14b1b8aeb4ea",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6060,10 +5755,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cbabc\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cbabc\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -6085,7 +5777,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0884d87e-ce56-4811-a122-88ef2dc68188",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -6126,10 +5817,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -6145,7 +5833,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "9029b4b1-9239-48ed-9b86-564ae4adde3d",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6155,16 +5842,13 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a7e5963d-9967-49c4-9541-0614d7f0f221",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "S008.T001 fail when test iss not equal to software_id",
@@ -6175,7 +5859,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "09341155-6c9d-49f6-bb8a-32dfa8403d07",
 										"exec": [
 											"var uuid = require('uuid');",
 											"var myUUID = uuid.v4();",
@@ -6188,7 +5871,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f037da1d-26fb-4617-932b-68ae6e08fcc5",
 										"exec": [
 											"pm.test(\"Validate response status=201\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -6234,7 +5916,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "66f9557c-0a6d-4d0d-96c8-9090949e1ab8",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6279,7 +5960,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a7e8b8a5-5d77-4ce5-b5f4-cc6162420ed1",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6343,7 +6023,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "832cd7a9-b3c3-4f14-bbd5-5ca178a2e70f",
 										"exec": [
 											"pm.test(\"Validate response status=200\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -6380,10 +6059,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}-bad\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cbabc\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}-bad\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{softwareStatement}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://myapp.com/cbabc\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -6405,7 +6081,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "35c2cb00-44e2-4a24-ab2d-fbffcdf69c98",
 										"exec": [
 											"pm.test(\"Validate response status=400\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -6428,10 +6103,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{{request-jwt-createclient}}",
-									"options": {
-										"raw": {}
-									}
+									"raw": "{{request-jwt-createclient}}"
 								},
 								"url": {
 									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
@@ -6447,7 +6119,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "4e273502-9609-4343-a44a-ee6cbb8b1ae2",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -6457,26 +6128,259 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "74332df1-9fa9-4207-aaaa-eef91084d3b7",
 								"type": "text/javascript",
 								"exec": [
 									""
 								]
 							}
 						}
+					]
+				}
+			]
+		},
+		{
+			"name": "S009 Invalid Scope Tests",
+			"item": [
+				{
+					"name": "S001.T002.001 - DR downloads Private Key from CDR Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validate kty is RSA\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response.keys[0].kty).to.equal('RSA');",
+									"});",
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.environment.set(\"software-jwks-private\", btoa(JSON.stringify(response.keys[0])));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/private",
+							"host": [
+								"{{cdr-register-testharness-host}}"
+							],
+							"path": [
+								"helper",
+								"JWKS",
+								"{{flowUUID-datarecipient}}",
+								"private"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S001.T002.002 - DR creates JWT-Bearer Client Assertion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate response status=200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Validate client assertion is available\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.expect(response).to.have.property('client-assertion');",
+									"});",
+									"pm.test(\"Set environment variables for next test\", function () {",
+									"    var response = pm.response.json();",
+									"    pm.environment.set(\"dcr-client-assertion\", response[\"client-assertion\"]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "private-jwk",
+									"value": "{{software-jwks-private}}",
+									"type": "text"
+								},
+								{
+									"key": "client-id",
+									"value": "{{dcrClientId}}",
+									"type": "text"
+								},
+								{
+									"key": "token-endpoint",
+									"value": "{{dh-idp-host}}/as/token.oauth2",
+									"type": "text"
+								},
+								{
+									"key": "kid",
+									"value": "{{softwareId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+							"host": [
+								"{{cdr-register-testharness-host}}"
+							],
+							"path": [
+								"testtool",
+								"datarecipient",
+								"createClientAssertion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "S001.T002.003 - DR requests Access Token from DH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate response status=400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{dcrClientId}}",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion_type",
+									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion",
+									"value": "{{dcr-client-assertion}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "cdr:registration bank:accounts.basic:read",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+							"host": [
+								"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Brand/Software (for PF Data In)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid');",
+							"var myUUID = uuid.v4();",
+							"",
+							"pm.environment.set(\"flowUUID-datarecipient\", \"cdr-sandbox-data-in-sample-dr-0004\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
-			"protocolProfileBehavior": {}
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://sso.data-holder.local/ext/cdr/data-in/callback\",\n                    \"scope\": \"bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"https://sso.data-holder.local/pf/JWKS\",\n                    \"revocationJwksUri\": \"https://mockregister.data-holder.local/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
+				},
+				"url": {
+					"raw": "{{cdr-register-testharness-host}}/admin/model/dataRecipient",
+					"host": [
+						"{{cdr-register-testharness-host}}"
+					],
+					"path": [
+						"admin",
+						"model",
+						"dataRecipient"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f5ba78a2-5f24-4b1f-afd1-0e9482ead960",
 				"type": "text/javascript",
 				"exec": [
 					"Object.prototype.jwt_decode_payload = function(jwt) {",
@@ -6517,7 +6421,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4f0d708f-08ef-4cd4-8b57-d78565f9fbfe",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -6527,40 +6430,32 @@
 	],
 	"variable": [
 		{
-			"id": "fff22714-2452-4516-bc7d-951f2c47e5ca",
 			"key": "cdr-register-testharness-host",
 			"value": "https://mockregister.data-holder.local"
 		},
 		{
-			"id": "cfe7012a-ee57-434b-9b19-d453b4c6303d",
 			"key": "dh-idp-host",
 			"value": "https://sso.data-holder.local"
 		},
 		{
-			"id": "cf6d7f43-2b88-431f-830c-a3d7563cb915",
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
 		{
-			"id": "3752aa71-4dd1-4ac7-b311-5efa117425da",
 			"key": "dh-idp-token-endpoint",
 			"value": "/as/token.oauth2"
 		},
 		{
-			"id": "1c1f9fbc-050f-4ab2-8268-fa34b2096600",
 			"key": "pki-basicheader",
 			"value": "Basic cGtpdXNlcjphYmNEMzBmZw=="
 		},
 		{
-			"id": "e0fb8cd8-bf7a-47c8-95a9-963f5280993e",
 			"key": "default-redirecturi",
 			"value": "https://httpbin.org/get"
 		},
 		{
-			"id": "7eecedff-60b2-458a-99d1-5264eb07e0cc",
 			"key": "data-recipient-id",
 			"value": "mycompanya"
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
