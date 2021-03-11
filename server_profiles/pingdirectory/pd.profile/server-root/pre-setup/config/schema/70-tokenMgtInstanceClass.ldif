@@ -4,7 +4,7 @@ objectClass: top
 objectClass: ldapSubentry
 objectClass: subschema
 cn: schema
-attributeTypes: ( tokenMgtInstanceAccessTokenJSON-OID NAME 'tokenMgtInstanceAccessTokenJSON' SYNTAX 1.3.6.1.4.1.30221.2.3.4 SINGLE-VALUE USAGE userApplications )
+attributeTypes: ( tokenMgtInstanceAccessTokenExpires-OID NAME 'tokenMgtInstanceAccessTokenExpires' SINGLE-VALUE USAGE userApplications )
 attributeTypes: ( tokenMgtInstanceAccessTokenJWT-OID NAME 'tokenMgtInstanceAccessTokenJWT' SINGLE-VALUE USAGE userApplications )
 attributeTypes: ( tokenMgtInstanceAuthCode-OID NAME 'tokenMgtInstanceAuthCode' SINGLE-VALUE USAGE userApplications )
 attributeTypes: ( tokenMgtInstanceClientId-OID NAME 'tokenMgtInstanceClientId' SINGLE-VALUE USAGE userApplications )
@@ -22,4 +22,4 @@ attributeTypes: ( tokenMgtInstanceDataHolder-OID NAME 'tokenMgtInstanceDataHolde
 attributeTypes: ( tokenMgtInstanceUserRef-OID NAME 'tokenMgtInstanceUserRef' SINGLE-VALUE USAGE userApplications )
 attributeTypes: ( tokenMgtInstanceCDRArrangementId-OID NAME 'tokenMgtInstanceCDRArrangementId' SINGLE-VALUE USAGE userApplications )
 attributeTypes: ( tokenMgtInstanceContext-OID NAME 'tokenMgtInstanceContext' SINGLE-VALUE USAGE userApplications )
-objectClasses: ( tokenMgtInstance-OID NAME 'tokenMgtInstance' STRUCTURAL MUST ( tokenMgtInstanceContext $ tokenMgtInstanceUserRef $ tokenMgtInstanceCDRArrangementId $ tokenMgtInstanceDataHolder $ tokenMgtInstanceBrandId $ tokenMgtInstanceSoftwareId $ tokenMgtInstanceClientId $ tokenMgtInstanceRedirectURI ) MAY ( tokenMgtInstanceRetryAttempts $ tokenMgtInstanceAccessTokenJSON $ tokenMgtInstanceAccessTokenJWT $ tokenMgtInstanceIDTokenJSON $ tokenMgtInstanceIDTokenJWT $ tokenMgtInstanceRefreshToken $ tokenMgtInstanceLastStatusError $ tokenMgtInstanceLastStatusCode $ tokenMgtInstanceAuthCode $ tokenMgtInstanceExpectedNonce ) )
+objectClasses: ( tokenMgtInstance-OID NAME 'tokenMgtInstance' STRUCTURAL MUST ( tokenMgtInstanceContext $ tokenMgtInstanceUserRef $ tokenMgtInstanceCDRArrangementId $ tokenMgtInstanceDataHolder $ tokenMgtInstanceBrandId $ tokenMgtInstanceSoftwareId $ tokenMgtInstanceClientId $ tokenMgtInstanceRedirectURI ) MAY ( tokenMgtInstanceRetryAttempts $ tokenMgtInstanceAccessTokenExpires $ tokenMgtInstanceAccessTokenJWT $ tokenMgtInstanceIDTokenJSON $ tokenMgtInstanceIDTokenJWT $ tokenMgtInstanceRefreshToken $ tokenMgtInstanceLastStatusError $ tokenMgtInstanceLastStatusCode $ tokenMgtInstanceAuthCode $ tokenMgtInstanceExpectedNonce ) )

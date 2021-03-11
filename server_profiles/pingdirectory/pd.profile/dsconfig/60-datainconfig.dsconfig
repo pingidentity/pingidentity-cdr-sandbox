@@ -364,13 +364,6 @@ dsconfig create-scim-attribute-mapping \
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRTokenInstance  \
-    --mapping-name access_token_json  \
-    --set scim-resource-type-attribute:access_token_json  \
-    --set ldap-attribute:tokenMgtInstanceAccessTokenJSON  \
-    --set authoritative:true
-
-dsconfig create-scim-attribute-mapping \
-    --type-name ADRTokenInstance  \
     --mapping-name auth_code  \
     --set scim-resource-type-attribute:auth_code  \
     --set ldap-attribute:tokenMgtInstanceAuthCode  \
@@ -479,11 +472,6 @@ dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:token:instance  \
     --attribute-name access_token  \
     --set case-exact:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name access_token_json  \
-    --set type:complex
 
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:token:instance  \
