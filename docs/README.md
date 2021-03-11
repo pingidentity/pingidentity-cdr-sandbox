@@ -47,6 +47,7 @@ git clone \
     127.0.0.1 mockregister.data-holder.local
     127.0.0.1 pd.data-holder.local
     127.0.0.1 consent.data-holder.local
+    127.0.0.1 spa.data-recipient.local
     ```
 
 1. Use docker-compose to bring the CDR Sandbox stack up:
