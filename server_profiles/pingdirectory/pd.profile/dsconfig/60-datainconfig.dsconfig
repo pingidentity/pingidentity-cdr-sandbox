@@ -364,6 +364,13 @@ dsconfig create-scim-attribute-mapping \
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRTokenInstance  \
+    --mapping-name expires_at  \
+    --set scim-resource-type-attribute:expires_at  \
+    --set ldap-attribute:tokenMgtInstanceAccessTokenExpires  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
     --mapping-name auth_code  \
     --set scim-resource-type-attribute:auth_code  \
     --set ldap-attribute:tokenMgtInstanceAuthCode  \
@@ -471,6 +478,11 @@ dsconfig create-scim-attribute \
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:token:instance  \
     --attribute-name access_token  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name expires_at  \
     --set case-exact:true
 
 dsconfig create-scim-attribute \
