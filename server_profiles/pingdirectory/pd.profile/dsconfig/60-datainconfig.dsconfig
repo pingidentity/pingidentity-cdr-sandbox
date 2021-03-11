@@ -759,18 +759,6 @@ dsconfig create-external-server \
     --set hostname-verification-method:allow-all  \
     --set 'trust-manager-provider:Blind Trust'
 
-dsconfig create-json-attribute-constraints \
-    --attribute-type tokenMgtInstanceAccessTokenJSON  \
-    --set enabled:true
-
-dsconfig create-json-field-constraints \
-    --attribute-type tokenMgtInstanceAccessTokenJSON  \
-    --json-field exp  \
-    --set value-type:integer  \
-    --set is-required:true  \
-    --set index-values:true  \
-    --set prime-index:true
-
 dsconfig create-connection-criteria \
     --criteria-name 'Include only SCIM2 User Connection Criteria'  \
     --type simple  \
