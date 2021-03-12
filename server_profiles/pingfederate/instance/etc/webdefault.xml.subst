@@ -313,6 +313,14 @@
       <param-value>adh-cache-write</param-value>
     </init-param>
     <init-param>
+      <param-name>SCIM_ADMIN_CLIENTID</param-name>
+      <param-value>cdr_admin_client</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIM_ADMIN_SUBJECT</param-name>
+      <param-value>administrator</param-value>
+    </init-param>
+    <init-param>
       <param-name>SCIM_ADMIN_ATM</param-name>
       <param-value>adminATM</param-value>
     </init-param>

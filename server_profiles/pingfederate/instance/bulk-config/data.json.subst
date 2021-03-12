@@ -11,6 +11,11 @@
                     "type": "STRING"
                 },
                 {
+                    "stringValue": "administrator",
+                    "id": "CONSENT_API_ACCESSTOKEN_SUBJECT",
+                    "type": "STRING"
+                },
+                {
                     "stringValue": "cn=consent service account",
                     "id": "CONSENT_API_ACTOR",
                     "type": "STRING"
@@ -21,7 +26,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "administrator",
+                    "stringValue": "pingfederate_grants",
                     "id": "CONSENT_API_CLIENTID",
                     "type": "STRING"
                 },
