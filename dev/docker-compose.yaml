@@ -42,7 +42,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210225:/tmp/cache
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210304:/tmp/cache
 
   data-in-spa:
     image: cdrsandbox/data-in-spa:20210304
