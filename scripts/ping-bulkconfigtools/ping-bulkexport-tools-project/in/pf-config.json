@@ -11,7 +11,7 @@
 	  "config-names":[
 	    "idp_adapters_items_consentAgentlessAdapter_configuration_fields_Pass_Phrase_value"
 	  ],
-  	  "replace-name": "CONSENT_APP_agentless_password",
+  	  "replace-name": "CONSENT_APP_pf_agentless_password",
   	  "is-apply-envfile": false
   	},
 	{

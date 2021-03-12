@@ -1630,7 +1630,7 @@
                             },
                             {
                                 "name": "Pass Phrase",
-                                "value": "${CONSENT_APP_agentless_password}"
+                                "value": "${CONSENT_APP_pf_agentless_password}"
                             },
                             {
                                 "name": "Allowed Subject DN",
