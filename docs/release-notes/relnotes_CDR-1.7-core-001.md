@@ -12,7 +12,6 @@ Release Date: March 15, 2021
 #### Added Data Recipient Functionality
 - CDR-346: Data-out and data-in convergence
 
-
 #### Miscellaneous Improvements
 - CDR-350:	Access Token retrieval management for Data In CDRInjectDataHolderTokenRule
 - CDR-351:	Default new 10.2 client options
@@ -26,7 +25,7 @@ NIL
 - CDR-355:	Requested scopes require validation
 
 ### Documentation
-
+- CDR-356: Update Quickstart with Data-In requirements and run through
 
 
 ### Resolved Defects
