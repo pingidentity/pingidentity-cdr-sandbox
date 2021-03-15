@@ -71,6 +71,70 @@
                 "id": 15,
                 "keyPairId": 0,
                 "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 443,
+                "host": "spa.data-recipient.local",
+                "id": 16,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 3,
+                "port": 6443,
+                "host": "api.${BASE_HOSTNAME}",
+                "id": 17,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "consent.${BASE_HOSTNAME}",
+                "id": 18,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "mockregister.${BASE_HOSTNAME}",
+                "id": 19,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "pd.${BASE_HOSTNAME}",
+                "id": 20,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "port": 6443,
+                "host": "spa.data-recipient.local",
+                "id": 21,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 3,
+                "port": 6443,
+                "host": "sso.${BASE_HOSTNAME}",
+                "id": 22,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
+            },
+            {
+                "trustedCertificateGroupId": 3,
+                "port": 6443,
+                "host": "sso-local.${BASE_HOSTNAME}",
+                "id": 23,
+                "keyPairId": 0,
+                "agentResourceCacheTTL": 900
             }
         ],
         "acmeDefaultServer": {
@@ -98,13 +162,6 @@
                 "useServerCipherSuiteOrder": true,
                 "id": 3,
                 "keyPairId": 7
-            },
-            {
-                "restartRequired": false,
-                "name": "CONFIG QUERY",
-                "useServerCipherSuiteOrder": true,
-                "id": 4,
-                "keyPairId": 11
             }
         ],
         "rules": [
@@ -331,7 +388,7 @@
                     "errorResponseCode": 400,
                     "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
                     "clientIdPrefix": "dcr-",
-                    "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
+                    "scimEndpoint": "https://pingdirectory:443/scim/v2/adh-cache",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
                     "errorResponseStatusMsg": "Forbidden",
@@ -356,7 +413,7 @@
                     "errorResponseCode": 403,
                     "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
                     "clientIdPrefix": "dcr-",
-                    "scimEndpoint": "https://pingdirectory/scim/v2/adh-cache",
+                    "scimEndpoint": "https://pingdirectory:443/scim/v2/adh-cache",
                     "errorResponseTemplateFile": "general.error.json",
                     "errorResponseContentType": "application/json; charset=UTF-8",
                     "errorResponseStatusMsg": "Forbidden",
@@ -376,6 +433,46 @@
                 "name": "CDR Validate Status Rule - API",
                 "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
                 "id": 15,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "errorResponseTemplateFile": "oauth.error.json",
+                    "errorResponseContentType": "application/json; charset=UTF-8",
+                    "errorResponseCode": 403,
+                    "scimTokenEndpoint": "adr-token-refresh",
+                    "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_16_configuration_clientSecret_value}"},
+                    "dataHolderIssuer": "${CONSENT_APP_pf_baseurl}",
+                    "clientScope": "adr-clients-read",
+                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
+                },
+                "name": "Rule-ADR-InjectToken-sso.${BASE_HOSTNAME}",
+                "className": "com.pingidentity.ps.cdr.data.in.pa.CDRInjectDataHolderTokenRule",
+                "id": 16,
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ]
+            },
+            {
+                "configuration": {
+                    "rejectionHandler": "1",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "errorResponseContentType": "text/html; charset=UTF-8",
+                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Proto\", \"https\");\nheader?.add(\"X-Forwarded-Port\", \"443\");\nanything(\"Custom header set into request\");",
+                    "rejectionHandlingEnabled": true,
+                    "errorResponseCode": 403,
+                    "errorResponseStatusMsg": "Forbidden"
+                },
+                "name": "X-Forwarded-Proto-HTTPS",
+                "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
+                "id": 17,
                 "supportedDestinations": [
                     "Site",
                     "Agent"
@@ -472,8 +569,68 @@
                 "id": 10,
                 "availabilityProfileId": 1,
                 "maxConnections": -1
+            },
+            {
+                "trustedCertificateGroupId": 2,
+                "loadBalancingStrategyId": 0,
+                "maxWebSocketConnections": -1,
+                "keepAliveTimeout": 0,
+                "useTargetHostHeader": true,
+                "siteAuthenticatorIds": [1],
+                "useProxy": false,
+                "secure": true,
+                "sendPaCookie": false,
+                "targets": ["${ADR_SSO_ENDPOINT}"],
+                "expectedHostname": null,
+                "skipHostnameVerification": false,
+                "name": "DataHolder-Site-sso.${BASE_HOSTNAME}",
+                "id": 11,
+                "availabilityProfileId": 1,
+                "maxConnections": -1
+            },
+            {
+                "trustedCertificateGroupId": 2,
+                "loadBalancingStrategyId": 0,
+                "maxWebSocketConnections": -1,
+                "keepAliveTimeout": 0,
+                "useTargetHostHeader": true,
+                "siteAuthenticatorIds": [1],
+                "useProxy": false,
+                "secure": true,
+                "sendPaCookie": false,
+                "targets": ["${ADR_API_ENDPOINT}"],
+                "expectedHostname": null,
+                "skipHostnameVerification": false,
+                "name": "DataHolder-Site-api.${BASE_HOSTNAME}",
+                "id": 12,
+                "availabilityProfileId": 1,
+                "maxConnections": -1
+            },
+            {
+                "trustedCertificateGroupId": 0,
+                "loadBalancingStrategyId": 0,
+                "maxWebSocketConnections": -1,
+                "keepAliveTimeout": 0,
+                "useTargetHostHeader": true,
+                "siteAuthenticatorIds": [],
+                "useProxy": false,
+                "secure": false,
+                "sendPaCookie": true,
+                "targets": ["data-in-spa:2280"],
+                "expectedHostname": null,
+                "skipHostnameVerification": false,
+                "name": "Site-DataInSPA",
+                "id": 13,
+                "availabilityProfileId": 1,
+                "maxConnections": -1
             }
         ],
+        "siteAuthenticators": [{
+            "configuration": {"keyPairId": "5"},
+            "name": "ADR-MTLS-To-DataHolder",
+            "className": "com.pingidentity.pa.siteauthenticators.MutualTlsSiteAuthenticator",
+            "id": 1
+        }],
         "adminAuthBasic": {"enabled": true},
         "httpMonitoring": {"auditLevel": "OFF"},
         "httpProtocolSource": {"headerName": "X-Forwarded-Proto"},
@@ -509,7 +666,7 @@
         },
         "pingFederate": {
             "loadBalancingStrategyId": 0,
-            "trustedCertificateGroupId": 4,
+            "trustedCertificateGroupId": 2,
             "useSlo": false,
             "auditLevel": "OFF",
             "useProxy": false,
@@ -519,7 +676,7 @@
             "backChannelBasePath": null,
             "application": null,
             "basePath": null,
-            "port": 443,
+            "port": 6443,
             "skipHostnameVerification": true,
             "backChannelSecure": true,
             "host": "sso.${BASE_HOSTNAME}",
@@ -535,16 +692,6 @@
                 "fileData": "${_data_trustedCerts_17_cdr_trustcert_default_fileData}",
                 "alias": "cdr_trustcert_default",
                 "id": 17
-            },
-            {
-                "fileData": "${_data_trustedCerts_18_cdr_register_local_3170_fileData}",
-                "alias": "cdr-register-local-3170",
-                "id": 18
-            },
-            {
-                "fileData": "${_data_trustedCerts_19_cdr_register_local_25023_fileData}",
-                "alias": "cdr-register-local-25023",
-                "id": 19
             }
         ],
         "engineListeners": [
@@ -557,10 +704,10 @@
             },
             {
                 "trustedCertificateGroupId": 0,
-                "port": 7080,
-                "name": "HTTP Engine Listener",
-                "id": 3,
-                "secure": false
+                "port": 6443,
+                "name": "Local Dev Listener",
+                "id": 5,
+                "secure": true
             }
         ],
         "httpIpSource": {
@@ -851,8 +998,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/register/*",
-                    "/as/clients.oauth2/*"
+                    "/as/clients.oauth2/*",
+                    "/register/*"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -865,11 +1012,11 @@
                 "id": 14,
                 "pathPatterns": [
                     {
-                        "pattern": "/register/*",
+                        "pattern": "/as/clients.oauth2/*",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/as/clients.oauth2/*",
+                        "pattern": "/register/*",
                         "type": "WILDCARD"
                     }
                 ],
@@ -1009,18 +1156,18 @@
             },
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
-                "pathPrefixes": ["/arrangements/*"],
+                "pathPrefixes": ["/data-holder/arrangements/*"],
                 "methods": ["*"],
                 "auditLevel": "ON",
                 "defaultAuthTypeOverride": "Web",
                 "enabled": true,
                 "rootResource": false,
-                "name": "CDR Arrangement Endpoint",
+                "name": "CDR Arrangement Endpoint - ADH",
                 "anonymous": false,
                 "queryParamConfig": null,
                 "id": 19,
                 "pathPatterns": [{
-                    "pattern": "/arrangements/*",
+                    "pattern": "/data-holder/arrangements/*",
                     "type": "WILDCARD"
                 }],
                 "unprotected": false,
@@ -1053,6 +1200,81 @@
                 }],
                 "unprotected": false,
                 "applicationId": 10,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": ["/*"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "rootResource": true,
+                "name": "Root Resource",
+                "anonymous": true,
+                "queryParamConfig": null,
+                "id": 21,
+                "pathPatterns": [{
+                    "pattern": "/*",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 11,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": ["/*"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "rootResource": true,
+                "name": "Root Resource",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 22,
+                "pathPatterns": [{
+                    "pattern": "/*",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 12,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": ["/*"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "rootResource": true,
+                "name": "Root Resource",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 23,
+                "pathPatterns": [{
+                    "pattern": "/*",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 13,
                 "policy": {
                     "Web": [],
                     "API": []
@@ -1160,23 +1382,42 @@
             }
         ],
         "environment": {"name": null},
-        "identityMappings": [{
-            "configuration": {
-                "exclusionList": false,
-                "exclusionListSubject": null,
-                "headerClientCertificateMappings": [],
-                "exclusionListAttributes": [],
-                "attributeHeaderMappings": [{
-                    "headerName": "X-USER",
-                    "subject": true,
-                    "attributeName": "sub"
-                }],
-                "headerNamePrefix": null
+        "identityMappings": [
+            {
+                "configuration": {
+                    "exclusionList": false,
+                    "exclusionListSubject": null,
+                    "headerClientCertificateMappings": [],
+                    "exclusionListAttributes": [],
+                    "attributeHeaderMappings": [{
+                        "headerName": "X-USER",
+                        "subject": true,
+                        "attributeName": "sub"
+                    }],
+                    "headerNamePrefix": null
+                },
+                "name": "Default Identity Mapping",
+                "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
+                "id": 1
             },
-            "name": "Default Identity Mapping",
-            "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
-            "id": 1
-        }],
+            {
+                "configuration": {
+                    "exclusionList": false,
+                    "exclusionListSubject": null,
+                    "headerClientCertificateMappings": [],
+                    "exclusionListAttributes": [],
+                    "attributeHeaderMappings": [{
+                        "headerName": "X-SUBJECT",
+                        "subject": true,
+                        "attributeName": "sub"
+                    }],
+                    "headerNamePrefix": null
+                },
+                "name": "ADR-IdentityMapping",
+                "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
+                "id": 2
+            }
+        ],
         "pingFederateOAuth": {
             "clientId": "pingaccess_validator",
             "tokenTimeToLiveSeconds": -1,
@@ -1191,7 +1432,7 @@
             "clientSecret": {"value": "${_data_pingFederateOAuth_clientSecret_PingFederate_value}"},
             "cacheTokens": false,
             "accessValidatorId": 1,
-            "sendAudience": false,
+            "sendAudience": true,
             "useTokenIntrospection": true
         },
         "authTokenMgmt": {
@@ -1221,52 +1462,22 @@
                 "alias": "Generated: ENGINE",
                 "hsmProviderId": 0,
                 "id": 8
-            },
-            {
-                "password": "${_data_keyPairs_9_pingaccess_console_password}",
-                "fileData": "${_data_keyPairs_9_pingaccess_console_fileData}",
-                "alias": "pingaccess-console",
-                "hsmProviderId": 0,
-                "id": 9
-            },
-            {
-                "password": "${_data_keyPairs_11_pingaccess_password}",
-                "fileData": "${_data_keyPairs_11_pingaccess_fileData}",
-                "alias": "pingaccess",
-                "hsmProviderId": 0,
-                "id": 11
             }
         ],
-        "trustedCertGroups": [
-            {
-                "skipCertificateDateCheck": true,
-                "name": "MTLS Certificate Group",
-                "useJavaTrustStore": false,
-                "certIds": [19],
-                "id": 3,
-                "systemGroup": false,
-                "ignoreAllCertificateErrors": false,
-                "revocationChecking": {
-                    "ocsp": false,
-                    "denyRevocationStatusUnknown": false,
-                    "crlChecking": false
-                }
-            },
-            {
-                "skipCertificateDateCheck": true,
-                "name": "PingFederate-Trust",
-                "useJavaTrustStore": false,
-                "certIds": [3],
-                "id": 4,
-                "systemGroup": false,
-                "ignoreAllCertificateErrors": false,
-                "revocationChecking": {
-                    "ocsp": false,
-                    "denyRevocationStatusUnknown": false,
-                    "crlChecking": false
-                }
+        "trustedCertGroups": [{
+            "skipCertificateDateCheck": true,
+            "name": "MTLS Certificate Group",
+            "useJavaTrustStore": false,
+            "certIds": [17],
+            "id": 3,
+            "systemGroup": false,
+            "ignoreAllCertificateErrors": false,
+            "revocationChecking": {
+                "ocsp": false,
+                "denyRevocationStatusUnknown": false,
+                "crlChecking": false
             }
-        ],
+        }],
         "availabilityProfiles": [{
             "configuration": {
                 "retryDelay": 250,
@@ -1288,15 +1499,16 @@
                 "virtualHostIds": [
                     5,
                     7,
-                    11,
-                    12
+                    12,
+                    22,
+                    23
                 ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613529418598,
+                "agentCacheInvalidatedExpiration": 1614835231463,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1327,7 +1539,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1613528518598,
+                "lastModified": 1614834331463,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1336,15 +1548,15 @@
                 "agentId": 0,
                 "virtualHostIds": [
                     10,
-                    11,
-                    12
+                    12,
+                    17
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613524080904,
+                "agentCacheInvalidatedExpiration": 1614835231321,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1379,20 +1591,23 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1613523180904,
+                "lastModified": 1614834331321,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "Web",
                 "agentId": 0,
-                "virtualHostIds": [13],
+                "virtualHostIds": [
+                    13,
+                    19
+                ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613524080878,
+                "agentCacheInvalidatedExpiration": 1614835231275,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1423,20 +1638,23 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1613523180878,
+                "lastModified": 1614834331275,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "API",
                 "agentId": 0,
-                "virtualHostIds": [14],
+                "virtualHostIds": [
+                    14,
+                    20
+                ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613524081083,
+                "agentCacheInvalidatedExpiration": 1614835231298,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1458,20 +1676,23 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1613523181083,
+                "lastModified": 1614834331298,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
             {
                 "applicationType": "Web",
                 "agentId": 0,
-                "virtualHostIds": [15],
+                "virtualHostIds": [
+                    15,
+                    18
+                ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1613524081147,
+                "agentCacheInvalidatedExpiration": 1614835231357,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1496,7 +1717,122 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1613523181147,
+                "lastModified": 1614834331357,
+                "accessValidatorId": 0,
+                "caseSensitivePath": false
+            },
+            {
+                "applicationType": "API",
+                "agentId": 0,
+                "virtualHostIds": [11],
+                "spaSupportEnabled": true,
+                "webSessionId": 0,
+                "destination": "Site",
+                "description": "",
+                "allowEmptyPathSegments": false,
+                "agentCacheInvalidatedExpiration": 1614835231373,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "issuer": null,
+                "defaultAuthType": "API",
+                "id": 11,
+                "manualOrderingEnabled": false,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "authenticationChallengePolicyId": null,
+                "resourceOrder": [],
+                "requireHTTPS": true,
+                "contextRoot": "/",
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 0
+                },
+                "name": "Application-DataHolder-sso.${BASE_HOSTNAME}",
+                "siteId": 11,
+                "realm": null,
+                "lastModified": 1614834331373,
+                "accessValidatorId": 1,
+                "caseSensitivePath": false
+            },
+            {
+                "applicationType": "API",
+                "agentId": 0,
+                "virtualHostIds": [
+                    11,
+                    16,
+                    21
+                ],
+                "spaSupportEnabled": true,
+                "webSessionId": 0,
+                "destination": "Site",
+                "description": "",
+                "allowEmptyPathSegments": false,
+                "agentCacheInvalidatedExpiration": 1614836186770,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "issuer": null,
+                "defaultAuthType": "API",
+                "id": 12,
+                "manualOrderingEnabled": false,
+                "policy": {
+                    "Web": [],
+                    "API": [{
+                        "id": 16,
+                        "type": "Rule"
+                    }]
+                },
+                "authenticationChallengePolicyId": null,
+                "resourceOrder": [],
+                "requireHTTPS": true,
+                "contextRoot": "/cds-au",
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 2
+                },
+                "name": "Application-DataHolder-api.${BASE_HOSTNAME}",
+                "siteId": 12,
+                "realm": null,
+                "lastModified": 1614835286770,
+                "accessValidatorId": 1,
+                "caseSensitivePath": false
+            },
+            {
+                "applicationType": "Web",
+                "agentId": 0,
+                "virtualHostIds": [
+                    16,
+                    21
+                ],
+                "spaSupportEnabled": true,
+                "webSessionId": 0,
+                "destination": "Site",
+                "description": "",
+                "allowEmptyPathSegments": false,
+                "agentCacheInvalidatedExpiration": 1614835231420,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "issuer": null,
+                "defaultAuthType": "Web",
+                "id": 13,
+                "manualOrderingEnabled": false,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "authenticationChallengePolicyId": null,
+                "resourceOrder": [],
+                "requireHTTPS": true,
+                "contextRoot": "/",
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 0
+                },
+                "name": "Application-DataIn-SPA",
+                "siteId": 13,
+                "realm": null,
+                "lastModified": 1614834331420,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }

@@ -4,6 +4,8 @@ docker-compose/cdr.env
 *.subst_*
 *.bak
 *backup*
+dev/binaries/*.zip
+dev/temp
 scripts/postman/cert
 scripts/postman/cert/*
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/target

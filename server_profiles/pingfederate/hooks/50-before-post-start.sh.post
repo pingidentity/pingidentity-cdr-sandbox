@@ -10,8 +10,8 @@
 . "${HOOKS_DIR}/pingcommon.lib.sh"
 
 echo "INFO: OPERATIONAL_MODE: ${OPERATIONAL_MODE}"
-if test -n "${OPERATIONAL_MODE}" && test "${OPERATIONAL_MODE}" = "STANDALONE"
-then
-    echo "INFO: Shutting down the eth0 interface..."
-    ip link set eth0 down
-fi
+#if test -n "${OPERATIONAL_MODE}" && test "${OPERATIONAL_MODE}" = "STANDALONE"
+#then
+#    echo "INFO: Shutting down the eth0 interface..."
+#    ip link set eth0 down
+#fi

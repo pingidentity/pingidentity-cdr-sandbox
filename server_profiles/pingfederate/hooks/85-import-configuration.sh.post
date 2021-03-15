@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-# 
+#
 # Ping Identity DevOps - Docker Build Hooks
 #
 #- This is called after the start or restart sequence has finished and before
@@ -15,3 +15,5 @@ then
     echo "INFO: Starting up the eth0 interface..."
     ip link set eth0 up
 fi
+
+${HOOKS_DIR}/86-install-ca.sh

@@ -313,12 +313,20 @@
       <param-value>adh-cache-write</param-value>
     </init-param>
     <init-param>
+      <param-name>SCIM_ADMIN_CLIENTID</param-name>
+      <param-value>cdr_admin_client</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIM_ADMIN_SUBJECT</param-name>
+      <param-value>administrator</param-value>
+    </init-param>
+    <init-param>
       <param-name>SCIM_ADMIN_ATM</param-name>
       <param-value>adminATM</param-value>
     </init-param>
     <init-param>
       <param-name>SCIM_ENDPOINT</param-name>
-      <param-value>https://pingdirectory/scim/v2/adh-cache</param-value>
+      <param-value>https://pingdirectory:443/scim/v2/adh-cache</param-value>
     </init-param>
     <init-param>
       <param-name>IGNORE_SSL</param-name>
@@ -326,7 +334,7 @@
     </init-param>
     <init-param>
       <param-name>EXPECTED_JWT_AUDIENCE</param-name>
-      <param-value>https://${PF_BASE_HOST}</param-value>
+      <param-value>https://${PF_BASE_HOST},https://${PF_BASE_HOST}:6443,https://sso-local.${BASE_HOSTNAME}:6443</param-value>
     </init-param>
 
   </servlet>
@@ -343,8 +351,40 @@
 
   <servlet-mapping>
     <servlet-name>CDRArrangementEndpoint</servlet-name>
+    <url-pattern>/data-holder/arrangements/revoke</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>DataRecipientCDRArrangementEndpoint</servlet-name>
+    <servlet-class>com.pingidentity.ps.cdr.data.in.pf.servlet.CDRArrangementServlet</servlet-class>
+    <init-param>
+      <param-name>SCIMClientATM</param-name>
+      <param-value>adminATM</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIMClientScope</param-name>
+      <param-value>adr-clients-write</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIMBaseUrlEndpoint</param-name>
+      <param-value>${SCIM_BASEURL}</param-value>
+    </init-param>
+    <init-param>
+      <param-name>SCIMIgnoreSSL</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>ExpectedAudience</param-name>
+      <param-value>https://${PF_BASE_HOST},https://${PF_BASE_HOST}:6443,https://sso-local.${BASE_HOSTNAME}:6443</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DataRecipientCDRArrangementEndpoint</servlet-name>
     <url-pattern>/arrangements/revoke</url-pattern>
   </servlet-mapping>
+
   <!-- ==================================================================== -->
   <!-- Dynamic Servlet Invoker.                                             -->
   <!-- This servlet invokes anonymous servlets that have not been defined   -->

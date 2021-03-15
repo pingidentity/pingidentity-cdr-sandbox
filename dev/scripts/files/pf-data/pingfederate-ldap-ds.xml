@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ldap:ldap-sources xmlns:ldap="http://pingidentity.com/2004/09/ldap-ds">
+    <ldap:ldap-source id="LDAP-C29DCC21274C10A483A76237675C3A22715D638C" maskAttributeValues="false" ldapType="PingDirectory" ldapTypeDesc="PingDirectory" testOnBorrow="false" testOnReturn="false" createIfNecessary="true" minIdle="10" maxActive="100" maxWait="-1" timeBetweenEvictionRunsMillis="60000" readTimeoutMillis="3000" connTimeoutMillis="3000" verifyHost="true" dnsTtlMillis="60000" ldapDnsSrvPrefix="_ldap._tcp" ldapsDnsSrvPrefix="_ldaps._tcp">
+        <ldap:host>pingdirectory:3389</ldap:host>
+        <ldap:principal>cn=administrator</ldap:principal>
+        <ldap:use-ssl>false</ldap:use-ssl>
+        <ldap:use-dns-srv-records>false</ldap:use-dns-srv-records>
+        <ldap:ad-referral>false</ldap:ad-referral>
+        <ldap:credentials>eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiTWVpempoejBWayIsInZlcnNpb24iOiIxMC4yLjEuMSJ9..he0JWw0ATBbuTbyMPZeSWQ.IjKyNXaXSV1Wajfzc9YJ7A.qz3EU-vfpx-j1r-w6kL6iw</ldap:credentials>
+        <ldap:authenticationMeth>simple</ldap:authenticationMeth>
+        <ldap:description>pingdirectory:3389</ldap:description>
+        <ldap:name>pingdirectory</ldap:name>
+        <ldap:binaryAttributes/>
+        <ldap:ldapHostTagList>
+            <ldap:tagEntry host="pingdirectory:3389" tags=""/>
+        </ldap:ldapHostTagList>
+    </ldap:ldap-source>
+</ldap:ldap-sources>

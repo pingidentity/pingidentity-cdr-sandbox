@@ -11,7 +11,7 @@
 	  "config-names":[
 	    "idp_adapters_items_consentAgentlessAdapter_configuration_fields_Pass_Phrase_value"
 	  ],
-  	  "replace-name": "CONSENT_APP_agentless_password",
+  	  "replace-name": "CONSENT_APP_pf_agentless_password",
   	  "is-apply-envfile": false
   	},
 	{
@@ -30,13 +30,53 @@
       "apply-env-file": false
     },
     {
+      "search": "brand-cdr-sandbox-data-in-local-dr-0005",
+      "replace": "${DATAHOLDER_BRAND_ID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "software-cdr-sandbox-data-in-local-dr-0005",
+      "replace": "${DATAHOLDER_SOFTWARE_ID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "brand-cdr-sandbox-data-in-sample-dr-0005",
+      "replace": "${DATAHOLDER_BRAND_ID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "software-cdr-sandbox-data-in-sample-dr-0005",
+      "replace": "${DATAHOLDER_SOFTWARE_ID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "https://consent.data-holder.local:6443",
+      "replace": "${CONSENT_BASEURL}",
+      "apply-env-file": false
+    },
+    {
       "search": "https://consent.data-holder.local",
       "replace": "${CONSENT_BASEURL}",
       "apply-env-file": false
     },
     {
+      "search": "6443/init",
+      "replace": "/init",
+      "apply-env-file": false
+    },
+    {
       "search": "data-holder.local",
       "replace": "${BASE_HOSTNAME}",
+      "apply-env-file": false
+    },
+    {
+      "search": "pingdirectory:3389",
+      "replace": "pingdirectory:389",
+      "apply-env-file": false
+    },
+    {
+      "search": "pingdirectory:3443",
+      "replace": "pingdirectory:443",
       "apply-env-file": false
     }
   ],
@@ -44,9 +84,31 @@
   	{
   	  "key": "id",
 	  "value": "ProvisionerDS"
+  	},
+  	{
+  	  "key": "resourceType",
+	  "value": "/certificates/ca"
   	}
   ],
   "expose-parameters":[
+    {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=Issuer"
+      ]
+    },
+    {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=Data Recipient Issuer"
+      ]
+    },
+    {
+      "parameter-name": "value",
+      "unique-identifiers": [
+          "name=CDR Register Base URL"
+      ]
+    },
     {
       "parameter-name": "value",
       "unique-identifiers": [
@@ -102,4 +164,3 @@
     }
   ]
 }
-

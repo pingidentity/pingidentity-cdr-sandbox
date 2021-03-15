@@ -1,7 +1,7 @@
 dsconfig create-external-server \
     --server-name pingfederate-http  \
     --type http  \
-    --set base-url:https://pingfederate:9031  \
+    --set base-url:https://${PINGFEDERATE_HOSTNAME}  \
     --set hostname-verification-method:allow-all  \
     --set "trust-manager-provider:Blind Trust" 
 

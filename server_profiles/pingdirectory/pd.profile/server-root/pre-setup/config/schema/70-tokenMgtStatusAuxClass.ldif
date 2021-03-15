@@ -1,0 +1,8 @@
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+attributeTypes: ( tokenMgtStatus-OID NAME 'tokenMgtStatus' SINGLE-VALUE USAGE userApplications )
+attributeTypes: ( tokenMgtStatusMsg-OID NAME 'tokenMgtStatusMsg' SINGLE-VALUE USAGE userApplications )
+objectClasses: ( tokenMgtStatusAux-OID NAME 'tokenMgtStatusAux' AUXILIARY MUST ( tokenMgtStatus ) MAY ( tokenMgtStatusMsg) )
