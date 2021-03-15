@@ -184,7 +184,7 @@ And verify that the value of STATUS is “healthy”
         
 1. Select "Any Bank" from the drop down list and click Submit
 1. You will be asked to authenticate as a customer of the 3rd Party Data Holder
-1.  * Username: CRN0
+1.  * Username: bhope
     * Password: password
 1. You will now be redirected to AnyBank to Authenticate and Authorise the consent.
 1. At the AnyBank Customer ID prompt enter in Alice’s bank identifier:
