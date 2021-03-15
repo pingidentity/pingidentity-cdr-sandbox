@@ -47,6 +47,7 @@ git clone \
     127.0.0.1 mockregister.data-holder.local
     127.0.0.1 pd.data-holder.local
     127.0.0.1 consent.data-holder.local
+    127.0.0.1 spa.data-recipient.local
     ```
 
 1. Use docker-compose to bring the CDR Sandbox stack up:
@@ -73,7 +74,7 @@ git clone \
     docker ps
     ```
 
-### Run the Data Recipient Demonstration Application
+### Run the Data Recipient Demonstration Application - DATA OUT for Data Holders
 
 The Data Recipient Demonstration Application (DR Client) has been provided for the purposes of demonstrating the basic Consumer Journey as detailed in the [Consumer Standards Consumer Experience Guidelines](https://consumerdatastandards.org.au/wp-content/uploads/2020/01/CX-Guidelines-v1.2.0-1.pdf).
 
@@ -148,6 +149,70 @@ And verify that the value of STATUS is “healthy”
     The DR Client uses the following DR users and DH Customer Numbers. Any combination of Username and Customer Number can be used however only one at a time.
 
     ![Accounts Table](images/account_table.png)
+
+### Run the Data Recipient SPA Application - DATA IN for Data Holders
+The Data Recipient SPA Application (SPA Appliction) is designed to demonstrate the interaction between a DH acting as a DR to "consume" shared data from 3rd party Data Holders. It implements the CDR consent lifecycle allowing customer to consnet a DH to obtain data from anothet DH.
+
+The SPA Appliction used 4 actors that implement the three main roles as defined in the Consumer Data Rights standard:
+
+1. The Data Holders - 3rd Party Data Holder and Any Bank
+1. The Data Recipient - SPA Application (spa.data-recipient.local)
+1. The Customer - 3rd Party Data Holder (CRN0), ANY Bank (CRN1)
+
+The following steps will demonstrate how:
+
+- Access the 3rd Party Data Holder's DR application
+- Authenticate to the 3rd Party Data Holder
+- Initiate a sharing flow with Any Bank (Consent)
+- Authenticate and Authorise the Consent with Any Bank
+- Use the SPA Appliction to access transaction data
+
+The SPA Appliction is already running as a service if you followed the steps detailed above. To confirm that the service is running enter:
+
+```sh
+docker ps -f "name=pingdirectory"
+```
+
+And verify that the value of STATUS is “healthy”
+
+### Running the SPA Appliction
+
+1. Open your web browser and goto [https://spa.data-recipient.local/](https://spa.data-recipient.local/)
+
+    !!! warning "SSL Certificates"
+        The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the SPA Appliction.
+        
+1. Select "Any Bank" from the drop down list and click Submit
+1. You will be asked to authenticate as a customer of the 3rd Party Data Holder
+1.  * Username: bhope
+    * Password: password
+1. You will now be redirected to AnyBank to Authenticate and Authorise the consent.
+1. At the AnyBank Customer ID prompt enter in Alice’s bank identifier:
+    * Customer ID: crn0
+
+1. At the SMS OTP field provide the value:
+    * SMS OTP: 123456
+
+    !!! Note
+        The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
+
+1. AnyBank will present the Authorisation prompt. Review the authorisation.<br>
+
+    !!! Note
+        The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
+
+1. Select the 1st the Transaction Account to share transaction data with 3rd Party Data Holder
+1. Click the Confirm button. You should be redirected back to SPA Appliction.
+1. Click "Exchange Code for Token Response" to continue
+1. Click "Get Accounts" to retrieve the consented accounts from Any Bank for Customer CRN1.
+
+#### Accessing Account Data with Existing Arrangement ID
+1. Click "Start Again"
+1. Select "..." from the drop down list and click Submit
+1. Click "Exchange Code for Token Response" to continue
+1. Click "Get Accounts" to retrieve the consented accounts from Any Bank for Customer CRN1.
+!!! Note
+        You should not be prompted to reconsent.
 
 ### Shut Down the Stack
 
