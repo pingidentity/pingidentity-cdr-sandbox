@@ -50,3 +50,11 @@ cd dev
 
 5) When creating postman network certificates, use the create-postman-certs-dev.sh script instead.
 
+
+7) Admin URL's
+
+PingFederate: https://localhost:9999/pingfederate/app
+PingAccess: https://localhost:9000
+
+Credentials: Administrator/2FederateM0re
+
