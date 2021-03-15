@@ -8,7 +8,7 @@ cd temp
 
 
 echo "Extracting new PingAccess binary..."
-unzip ../binaries/pingaccess-*.zip -d .
+unzip -q ../binaries/pingaccess-*.zip -d .
 mv ./pingaccess-* ./pingaccess
 
 echo "Copying license..."

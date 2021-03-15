@@ -12,7 +12,7 @@ while read line; do
 done < ../pds.env
 
 echo "Extracting new PingDataSync binary..."
-unzip ../binaries/PingDataSync-*.zip -d .
+unzip -q ../binaries/PingDataSync-*.zip -d .
 
 cd PingDataSync
 

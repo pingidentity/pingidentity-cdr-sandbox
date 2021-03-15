@@ -7,7 +7,7 @@ mkdir temp
 cd temp
 
 echo "Extracting new PingFederate binary..."
-unzip ../binaries/pingfederate-*.zip -d .
+unzip -q ../binaries/pingfederate-*.zip -d .
 mv ./pingfederate-*/pingfederate ./pingfederate
 rm -R ./pingfederate-*
 
