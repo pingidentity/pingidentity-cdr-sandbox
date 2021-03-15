@@ -1,0 +1,59 @@
+site_name: Ping Identity CDR Sandbox
+repo_name: pingidentity/pingidentity-cdr-sandbox
+repo_url: https://github.com/pingidentity/pingidentity-cdr-sandbox
+site_url: https://cdr.pingidentity.com/
+copyright: © Copyright 2021 Ping Identity
+#google_analytics: ['UA-156953351-1', 'devops.pingidentity.com']
+extra_css:
+  - mkdocs/overrides/stylesheets/extra.css
+
+theme:
+  name: material
+  custom_dir: docs/mkdocs/overrides
+  favicon: images/favicon.png
+
+  features:
+    - navigation.tabs
+    - instant
+
+  palette:
+    primary: indigo
+    accent: blue
+
+edit_uri: ""
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji
+  - admonition
+  - codehilite
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences
+  - meta
+  - toc:
+      # insert a blank space before the character
+      permalink: " ¶"
+
+nav:
+  - Introduction:
+      - CDR Quick Start: "README.md"
+      - Postman Setup: "postman.md"
+  - How Tos:
+      - Access Administration Consoles: "howtos/howto_adminconsoles.md"
+      - Generate MTLS Authentication Keys: "howtos/howto_generatecerts.md"
+  - Release Notes:
+      - Current (CDR 1.6): "release-notes/relnotes_CDR-1.6-core-001.md"
+      - CDR 1.5 (core 001)): "release-notes/relnotes_CDR-1.5-core-001.md"
+      - CDR 1.4 (core 003): "release-notes/relnotes_CDR-1.4-core-003.md"
+      - CDR 1.4 (core 002): "release-notes/relnotes_CDR-1.4-core-002.md"
+      - CDR 1.4 (core 001): "release-notes/relnotes_CDR-1.4-core-001.md"
+      - CDR 1.3.1 (core 001): "release-notes/relnotes_CDR-1.3.1-core-001.md"
+      - CDR 1.2 (core 003): "release-notes/relnotes_CDR-1.2-core-003.md"
+      - CDR 1.2 (core 002): "release-notes/relnotes_CDR-1.2-core-002.md"
+  - Legal:
+      - License: "legal/license.md"
+      - Disclaimer: "legal/disclaimer.md"
+      - Third-Party Software: "legal/3rdPartySoftware.md"
+      - Contributing: "legal/contributing.md"

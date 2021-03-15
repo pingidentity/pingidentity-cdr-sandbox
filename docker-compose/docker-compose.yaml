@@ -154,7 +154,7 @@ services:
       - pingnet-internal
 
   cdr-dr-client:
-    image: cdrsandbox/sample-dr-client:20210222
+    image: cdrsandbox/sample-dr-client:20210315
     command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
