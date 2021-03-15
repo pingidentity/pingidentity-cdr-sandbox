@@ -41,13 +41,12 @@ cd dev
 - pingfederate-10.2.1.zip
 - PingDataSync-8.2.0.2.zip
 
-4) Run ./start-all.sh to start all services.
-
-Alternatively run the following in order:
+4) Run the following in order to stand up PingFederate and PingAccess, unconfigured:
 - docker-compose up -d
 - ./scripts/start-pd.sh
 - ./scripts/start-pf-unconfigured.sh
 - ./scripts/start-pa-unconfigured.sh
+- ./scripts/start-pds.sh
 
 5) When creating postman network certificates, use the create-postman-certs-dev.sh script instead.
 
