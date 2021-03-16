@@ -34,6 +34,8 @@ cp ../../../server_profiles/pingdirectory/instance/lib/extensions/* ./lib/extens
 
 rm pd.profile/dsconfig/30-daily-encrypted-export.dsconfig
 
+../../scripts/create-localhost-keypair.sh
+
 bin/manage-profile setup --profile pd.profile -E
 
 bin/encryption-settings create --cipher-algorithm AES --key-length-bits 128 --set-preferred --passphrase-file password-file

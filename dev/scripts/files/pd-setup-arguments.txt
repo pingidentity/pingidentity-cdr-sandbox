@@ -20,5 +20,6 @@
     --instanceName Localhost  \
     --location Localhost  \
     --enableStartTLS  \
-    --generateSelfSignedCertificate  \
+    --keyStorePassword "P@ssword1" \
+    --usePkcs12Keystore "cert/network.p12"
     --no-prompt
