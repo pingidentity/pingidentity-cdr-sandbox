@@ -1,0 +1,131 @@
+version: "3.4"
+
+services:
+
+  pingdirectory:
+    image: pingidentity/pingdirectory:8.2.0.1-edge
+    environment:
+      - SERVER_PROFILE_PATH=server_profiles/pingdirectory
+      #- SERVER_PROFILE_BRANCH=2001
+      - MAKELDIF_USERS=10
+      #- VERBOSE=true
+      - MAX_HEAP_SIZE=768m
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - "3389:389"
+      - "3443:443"
+      - 3636:636
+      - 1636:636
+      - 1443:443
+      - 389:389
+    expose:
+      - 443
+      - 3443
+      - 389
+      - 3389
+      - 636
+      - 3636
+    networks:
+      - pingnet-internal
+
+  agentless-consentapp:
+    image: cdrsandbox/agentless-consentapp:20210222
+#    command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 7879:7879
+    networks:
+      - pingnet-internal
+
+  mock-dh-api:
+    image: cdrsandbox/mock-dh-apis:20210202
+#    command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 6879:6879
+    networks:
+      - pingnet-internal
+
+  cdrregister:
+    image: cdrsandbox/cdr-register-testharness:20210304
+    #command: /tmp/hooks/start-service.sh
+    environment:
+      - VERBOSE=true
+      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
+    env_file:
+      - ~/.pingidentity/devops
+      - cdr.env
+    ports:
+      - 8084:8084
+    networks:
+      - pingnet-internal
+    volumes:
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210304:/tmp/cache
+
+  data-in-spa:
+    image: cdrsandbox/data-in-spa:20210304
+    env_file:
+      - cdr.env
+    ports:
+      - "2280:2280"
+    networks:
+      - pingnet-internal
+
+  pingdatagovernance:
+    image: pingidentity/pingdatagovernance:8.2.0.1-edge
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
+      - PD_ENGINE_PRIVATE_HOSTNAME=host.docker.internal
+      - LDAPS_PORT=3636
+      - HTTPS_PORT=3443
+    env_file:
+      - ${HOME}/.pingidentity/devops
+      - cdr.env
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "9080:80"
+      - "7443:3443"
+      - "443:3443"
+    networks:
+      - pingnet-internal
+
+  pingdatagovernancepap:
+    image: pingidentity/pingdatagovernancepap:8.2.0.1-edge
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
+      - HTTPS_PORT=8443
+    env_file:
+      - ${HOME}/.pingidentity/devops
+      - cdr.env
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "8443:8443"
+    networks:
+      - pingnet-internal
+
+networks:
+    pingnet-internal:
