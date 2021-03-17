@@ -562,7 +562,7 @@
                 "useProxy": false,
                 "secure": true,
                 "sendPaCookie": true,
-                "targets": ["pingdatagovernance:443"],
+                "targets": ["pingdatagovernance:1443"],
                 "expectedHostname": null,
                 "skipHostnameVerification": true,
                 "name": "mock-dh-api",

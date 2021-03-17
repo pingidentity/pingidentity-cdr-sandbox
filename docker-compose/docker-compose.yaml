@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   pingaccess:
-    image: pingidentity/pingaccess:6.2.0-edge
+    image: pingidentity/pingaccess:6.2.1-edge
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
@@ -71,8 +71,8 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: pingidentity/pingfederate:10.2.1-edge
-    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
+    image: pingidentity/pingfederate:10.2.2-edge
+    command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
@@ -95,7 +95,7 @@ services:
     #  - ./pingfederate-out:/opt/out
 
   pingdirectory:
-    image: pingidentity/pingdirectory:8.2.0.1-edge
+    image: pingidentity/pingdirectory:8.2.0.3-edge
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
@@ -111,14 +111,15 @@ services:
       - "pingaccess:pd.data-holder.local"
       - "pingaccess:api.data-holder.local"
     ports:
-      - "3389:389"
-      - "3443:443"
-      - 3636:636
-      - 1636:636
-      - 1443:443
-      - 389:389
+      - "3389:1389"
+      - "3443:1443"
+      - 3636:1636
+      - 1636:1636
+      - 1443:1443
+      - 389:1389
     expose:
       - 443
+      - 1443
       - 3443
       - 389
       - 3389
@@ -129,7 +130,7 @@ services:
 
   pingdatasync:
     image: pingidentity/pingdatasync:edge
-    command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
+    command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_PATH=server_profiles/pingdatasync
     env_file:
@@ -155,7 +156,7 @@ services:
 
   cdr-dr-client:
     image: cdrsandbox/sample-dr-client:20210315
-    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
+    command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
       - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
@@ -191,7 +192,7 @@ services:
 
   pingdatagovernance:
     image: pingidentity/pingdatagovernance:8.2.0.1-edge
-    command: wait-for pingdirectory:389 -t 900 -- entrypoint.sh start-server
+    command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
       - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
@@ -213,7 +214,7 @@ services:
 
   pingdatagovernancepap:
     image: pingidentity/pingdatagovernancepap:8.2.0.1-edge
-    # command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
+    # command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
       - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
@@ -254,7 +255,7 @@ services:
 
   datain-configurepf:
     image: cdrsandbox/datain-configure-pf:20210225
-    command: /tmp/wait-for pingdirectory:389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
+    command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env
     networks:
