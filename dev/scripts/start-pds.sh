@@ -32,6 +32,10 @@ cp -R ../../../server_profiles/pingdatasync/pd.profile .
 cp ../../scripts/files/pds-setup-arguments.txt ./pd.profile/setup-arguments.txt
 cp ../../../server_profiles/pingdatasync/instance/lib/extensions/* ./lib/extensions
 
+export CERT_ALIAS=pingdatasync
+
+../../scripts/create-localhost-keypair.sh
+
 bin/manage-profile setup --profile pd.profile -E
 
 cd ..

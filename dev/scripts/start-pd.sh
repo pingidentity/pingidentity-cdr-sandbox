@@ -34,6 +34,8 @@ cp ../../../server_profiles/pingdirectory/instance/lib/extensions/* ./lib/extens
 
 rm pd.profile/dsconfig/30-daily-encrypted-export.dsconfig
 
+export CERT_ALIAS=pingdirectory
+
 ../../scripts/create-localhost-keypair.sh
 
 bin/manage-profile setup --profile pd.profile -E

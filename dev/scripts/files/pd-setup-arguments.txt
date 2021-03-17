@@ -21,5 +21,7 @@
     --location Localhost  \
     --enableStartTLS  \
     --keyStorePassword "P@ssword1" \
-    --usePkcs12Keystore "cert/network.p12"
+    --usePkcs12Keystore "cert/network.p12" \
+    --interServerCertPEMFile "cert/servercerts.pem" \
+    --interServerCertPrivateKeyFile "cert/client.key" \
     --no-prompt
