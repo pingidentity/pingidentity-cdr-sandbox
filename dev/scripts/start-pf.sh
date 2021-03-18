@@ -38,9 +38,9 @@ while read line; do
     export $line
 done < ../cdr.env
 
-sed -e "s/pingdirectory:443/pingdirectory:3443/g" -e "s/pingdirectory:389/pingdirectory:3389/g" ./pingfederate/bulk-config/data.json.subst > ./pingfederate/bulk-config/data.json.tmp
+sed -e "s/pingdirectory:1443/pingdirectory:3443/g" -e "s/pingdirectory:1389/pingdirectory:3389/g" ./pingfederate/bulk-config/data.json.subst > ./pingfederate/bulk-config/data.json.tmp
 
-sed -e "s/pingdirectory:443/pingdirectory:3443"/g ./pingfederate/etc/webdefault.xml.subst > ./pingfederate/etc/webdefault.xml.tmp
+sed -e "s/pingdirectory:1443/pingdirectory:3443"/g ./pingfederate/etc/webdefault.xml.subst > ./pingfederate/etc/webdefault.xml.tmp
 
 envsubst "'$(getEnvKeys)'" < ./pingfederate/bulk-config/data.json.tmp > ./pingfederate/bulk-config/data.json
 envsubst "'$(getEnvKeys)'" < ./pingfederate/etc/webdefault.xml.tmp > ./pingfederate/etc/webdefault.xml

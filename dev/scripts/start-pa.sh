@@ -34,7 +34,7 @@ while read line; do
     export $line
 done < ../cdr.env
 
-sed -e "s/pingdirectory:443/pingdirectory:3443/g" -e "s/\\\\\"443\\\\\"/\\\\\"6443\\\\\"/g" ./pingaccess/data/start-up-deployer/data.json.subst > ./pingaccess/data/start-up-deployer/data.json.tmp
+sed -e "s/pingdatagovernance:1443/pingdatagovernance:7443/g" -e "s/pingdirectory:1443/pingdirectory:3443/g" -e "s/\\\\\"443\\\\\"/\\\\\"6443\\\\\"/g" ./pingaccess/data/start-up-deployer/data.json.subst > ./pingaccess/data/start-up-deployer/data.json.tmp
 
 envsubst "'$(getEnvKeys)'" < ./pingaccess/data/start-up-deployer/data.json.tmp > ./pingaccess/data/start-up-deployer/data.json
 
