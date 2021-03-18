@@ -191,7 +191,7 @@ services:
 
 
   pingdatagovernance:
-    image: pingidentity/pingdatagovernance:8.2.0.1-edge
+    image: pingidentity/pingdatagovernance:8.2.0.3-edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
@@ -213,7 +213,7 @@ services:
       - pingnet-internal
 
   pingdatagovernancepap:
-    image: pingidentity/pingdatagovernancepap:8.2.0.1-edge
+    image: pingidentity/pingdatagovernancepap:8.2.0.3-edge
     # command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
@@ -254,7 +254,7 @@ services:
       - pingnet-internal
 
   datain-configurepf:
-    image: cdrsandbox/datain-configure-pf:20210225
+    image: cdrsandbox/datain-configure-pf:20210318
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env
