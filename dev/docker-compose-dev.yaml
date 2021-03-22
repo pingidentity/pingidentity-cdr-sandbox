@@ -84,6 +84,8 @@ services:
   pingdatagovernance:
     image: pingidentity/pingdatagovernance:8.2.0.1-edge
     environment:
+      - LICENSE_DIR=/opt/licenses
+      - LICENSE_FILE_NAME=PingDataGovernance.lic
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
       - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
       - PD_ENGINE_PRIVATE_HOSTNAME=host.docker.internal
@@ -103,12 +105,16 @@ services:
       - "9080:80"
       - "7443:3443"
       - "443:3443"
+    volumes:
+      - ../docker-compose/licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     networks:
       - pingnet-internal
 
   pingdatagovernancepap:
     image: pingidentity/pingdatagovernancepap:8.2.0.1-edge
     environment:
+      - LICENSE_DIR=/opt/licenses
+      - LICENSE_FILE_NAME=PingDataGovernance.lic
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
       - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
       - HTTPS_PORT=8443
@@ -124,6 +130,8 @@ services:
         hard: 65535
     ports:
       - "8443:8443"
+    volumes:
+      - ../docker-compose/licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     networks:
       - pingnet-internal
 
