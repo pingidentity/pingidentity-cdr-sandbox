@@ -203,7 +203,8 @@ services:
       - pingnet-internal
     volumes:
        - ${HOME}/projects/devops/volumes/cdr.mockregister.20210304:/tmp/cache
-
+       - ./datarecipients/cdr-sandbox-data-in-local-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-local-dr-0005
+       - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
 
   pingdatagovernance:
     image: pingidentity/pingdatagovernance:8.2.0.3-edge
