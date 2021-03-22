@@ -5,8 +5,8 @@ services:
     image: pingidentity/pingaccess:6.2.1-edge
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
-      - LICENSE_DIR=/opt/in/instance/conf
-      - LICENSE_FILE_NAME=pingaccess.lic
+#      - LICENSE_DIR=/opt/in/instance/conf
+#      - LICENSE_FILE_NAME=pingaccess.lic
       - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - LICENSE_VERSION=6.0
       - PA_POST_CONFIGURATION_DELAY=0
@@ -33,8 +33,8 @@ services:
       - 9001:9001
     expose:
       - 443
-    volumes:
-      - ./licenses/pingaccess.lic:/opt/in/instance/conf/pingaccess.lic
+#    volumes:
+#      - ./licenses/pingaccess.lic:/opt/in/instance/conf/pingaccess.lic
     networks:
       - pingnet-internal
 
@@ -78,8 +78,8 @@ services:
     image: pingidentity/pingfederate:10.2.2-edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
-      - LICENSE_DIR=/opt/in/instance/server/default/conf
-      - LICENSE_FILE_NAME=pingfederate.lic
+#      - LICENSE_DIR=/opt/in/instance/server/default/conf
+#      - LICENSE_FILE_NAME=pingfederate.lic
       - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
       - ~/.pingidentity/devops
@@ -97,15 +97,15 @@ services:
       - "pingaccess:mockregister.data-holder.local"
       - "pingaccess:pd.data-holder.local"
       - "pingaccess:api.data-holder.local"
-    volumes:
-      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
+#    volumes:
+#      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
     #  - ./pingfederate-out:/opt/out
 
   pingdirectory:
     image: pingidentity/pingdirectory:8.2.0.3-edge
     environment:
-      - LICENSE_DIR=/opt/licenses
-      - LICENSE_FILE_NAME=PingDirectory.lic
+#      - LICENSE_DIR=/opt/licenses
+#      - LICENSE_FILE_NAME=PingDirectory.lic
       - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
       - MAKELDIF_USERS=10
@@ -134,8 +134,8 @@ services:
       - 3389
       - 636
       - 3636
-    volumes:
-      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
+#    volumes:
+#      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
 
@@ -143,8 +143,8 @@ services:
     image: pingidentity/pingdatasync:edge
     command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
-      - LICENSE_DIR=/opt/licenses
-      - LICENSE_FILE_NAME=PingDirectory.lic
+#      - LICENSE_DIR=/opt/licenses
+#      - LICENSE_FILE_NAME=PingDirectory.lic
       - SERVER_PROFILE_PATH=server_profiles/pingdatasync
     env_file:
       - ${HOME}/.pingidentity/devops
@@ -164,8 +164,8 @@ services:
     ports:
       - "2636:636"
       - "2443:443"
-    volumes:
-      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
+#    volumes:
+#      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
 
@@ -209,8 +209,8 @@ services:
     image: pingidentity/pingdatagovernance:8.2.0.3-edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
-      - LICENSE_DIR=/opt/licenses
-      - LICENSE_FILE_NAME=PingDataGovernance.lic
+#      - LICENSE_DIR=/opt/licenses
+#      - LICENSE_FILE_NAME=PingDataGovernance.lic
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
       - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
     env_file:
@@ -226,8 +226,8 @@ services:
     ports:
       - "9080:80"
       - "7443:443"
-    volumes:
-      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
+#    volumes:
+#      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     networks:
       - pingnet-internal
 
@@ -235,8 +235,8 @@ services:
     image: pingidentity/pingdatagovernancepap:8.2.0.3-edge
     # command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
-      - LICENSE_DIR=/opt/licenses
-      - LICENSE_FILE_NAME=PingDataGovernance.lic
+#      - LICENSE_DIR=/opt/licenses
+#      - LICENSE_FILE_NAME=PingDataGovernance.lic
       - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
       - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
       - HTTPS_PORT=8443
@@ -254,8 +254,8 @@ services:
       - "8443:8443"
     networks:
       - pingnet-internal
-    volumes:
-      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
+#    volumes:
+#      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     #  - ./pingdatagovernancepap-out:/opt/out
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
