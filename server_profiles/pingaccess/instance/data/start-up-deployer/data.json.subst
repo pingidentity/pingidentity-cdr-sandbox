@@ -75,7 +75,7 @@
             {
                 "trustedCertificateGroupId": 0,
                 "port": 443,
-                "host": "spa.data-recipient.local",
+                "host": "spa.${DR_BASE_HOSTNAME}",
                 "id": 16,
                 "keyPairId": 0,
                 "agentResourceCacheTTL": 900
@@ -115,7 +115,7 @@
             {
                 "trustedCertificateGroupId": 0,
                 "port": 6443,
-                "host": "spa.data-recipient.local",
+                "host": "spa.${DR_BASE_HOSTNAME}",
                 "id": 21,
                 "keyPairId": 0,
                 "agentResourceCacheTTL": 900

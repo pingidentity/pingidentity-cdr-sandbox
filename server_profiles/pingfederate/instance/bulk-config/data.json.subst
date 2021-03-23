@@ -909,8 +909,8 @@
                         ]
                     },
                     "selectionSettings": {"resourceUris": [
-                        "https://spa.data-recipient.local",
-                        "https://spa.data-recipient.local:6443"
+                        "https://spa.${DR_BASE_HOSTNAME}",
+                        "https://spa.${DR_BASE_HOSTNAME}:6443"
                     ]}
                 },
                 {
@@ -2615,8 +2615,8 @@
                 "rollRefreshTokenValues": true,
                 "allowedOrigins": [
                     "https://test.${BASE_HOSTNAME}",
-                    "https://spa.data-recipient.local",
-                    "https://spa.data-recipient.local:6443"
+                    "https://spa.${DR_BASE_HOSTNAME}",
+                    "https://spa.${DR_BASE_HOSTNAME}:6443"
                 ],
                 "allowUnidentifiedClientExtensionGrants": false,
                 "devicePollingInterval": 5,
