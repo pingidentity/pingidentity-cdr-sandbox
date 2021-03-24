@@ -3252,7 +3252,7 @@
                         },
                         {
                             "name": "Audience",
-                            "value": "https://sso.${BASE_HOSTNAME},https://sso-local.${BASE_HOSTNAME}:6443,https://sso.${BASE_HOSTNAME}:6443"
+                            "value": "https://sso.${BASE_HOSTNAME},https://sso-local.${BASE_HOSTNAME}:6443,https://sso.${BASE_HOSTNAME}:6443,https://sso-2.${BASE_HOSTNAME},https://sso-2.${BASE_HOSTNAME}:6443"
                         },
                         {
                             "name": "ECDSA",
