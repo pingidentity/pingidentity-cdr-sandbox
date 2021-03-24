@@ -1363,11 +1363,11 @@
                         "fields": [
                             {
                                 "name": "Data Recipient Issuer",
-                                "value": "https://sso.${BASE_HOSTNAME}"
+                                "value": "https://sso.${BASE_HOSTNAME}:6443"
                             },
                             {
                                 "name": "CDR Register Base URL",
-                                "value": "https://mockregister.${BASE_HOSTNAME}"
+                                "value": "https://mockregister.${BASE_HOSTNAME}:6443"
                             },
                             {
                                 "name": "CDR Brand ID",

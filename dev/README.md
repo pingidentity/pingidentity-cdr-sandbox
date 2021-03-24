@@ -23,6 +23,8 @@
 127.0.0.1       api.data-holder.local
 127.0.0.1       dr.data-recipient.local
 127.0.0.1       spa.data-recipient.local
+127.0.0.1	sso.internal
+127.0.0.1	sso-2.internal
 ```
 
 2) Git clone this repository and navigate to the /dev folder.

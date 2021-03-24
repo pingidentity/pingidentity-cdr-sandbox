@@ -4,6 +4,8 @@ echo "Stopping all services"
 echo "Starting auxiliary services via docker-compose"
 docker-compose up -d
 
+./scripts/helper/wait-for cdrregister:8084 -t 200
+
 echo "Starting PingDirectory"
 ./scripts/start-pd.sh
 
