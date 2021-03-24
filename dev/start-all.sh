@@ -1,8 +1,8 @@
 echo "Stopping all services"
 ./stop-all.sh
 
-echo "Starting auxiliary services via docker-compose"
-docker-compose up -d
+#echo "Starting auxiliary services via docker-compose"
+#docker-compose up -d
 
 ./scripts/helper/wait-for cdrregister:8084 -t 200
 
