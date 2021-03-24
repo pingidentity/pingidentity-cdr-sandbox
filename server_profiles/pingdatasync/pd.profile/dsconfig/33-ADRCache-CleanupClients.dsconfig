@@ -7,7 +7,7 @@ dsconfig create-sync-source \
  --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
  --set extension-argument:consent-storage-basedn=ou=consents,${USER_BASE_DN} \
  --set extension-argument:client-storage-basedn=ou=oauthClients,${USER_BASE_DN} \
- --set extension-argument:clientid-prefix=dcr-
+ --set extension-argument:clientid-prefix=dcr-sso-,dcr-sso_2-
 
 dsconfig create-sync-destination \
  --destination-name LDAPDestination \

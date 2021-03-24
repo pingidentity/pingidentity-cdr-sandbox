@@ -23,6 +23,8 @@
 127.0.0.1       api.data-holder.local
 127.0.0.1       dr.data-recipient.local
 127.0.0.1       spa.data-recipient.local
+127.0.0.1	sso.internal
+127.0.0.1	sso-2.internal
 ```
 
 2) Git clone this repository and navigate to the /dev folder.
@@ -40,10 +42,14 @@ cd dev
 - pingfederate-10.2.1.zip
 - PingDataSync-8.2.0.2.zip
 
-4) Run ./start-all.sh to start all services.
+4) Run:
+- docker-compose up -d
+- Wait 30 seconds for the CDR Register to start
+- ./start-all.sh
 
 Alternatively run the following in order:
 - docker-compose up -d
+- Wait 30 seconds for the CDR Register to start
 - ./scripts/start-pd.sh
 - ./scripts/start-pf.sh
 - ./scripts/start-pa.sh

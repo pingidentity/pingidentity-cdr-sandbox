@@ -17,8 +17,8 @@ import org.json.JSONObject;
 
 public class App {
 
-	private final static String DEFAULT_IN_CONFIG = "in/pf-config-2.json";
-	private final static String DEFAULT_IN_BULKCONFIG = "in/pf-export-2.json";
+	private final static String DEFAULT_IN_CONFIG = "in/pf-config.json";
+	private final static String DEFAULT_IN_BULKCONFIG = "in/pf-export.json";
 	private final static String DEFAULT_IN_ENVPROPERTIES = "in/out-pf-env.properties";
 	private final static String DEFAULT_IN_OUTCONFIG = "in/out-pf-bulk-config.json";
 
@@ -85,10 +85,10 @@ public class App {
 	private void processBulkJSON() throws RemoveNodeException {
 
 		if(this.inConfigExposeParametersArray != null)
-			processBulkJSONNode("", this.inBulkJSON, null);
+			processBulkJSONNode("", this.inBulkJSON, null, null);
 	}
 
-	private void processBulkJSONNode(String path, JSONObject jsonObject, JSONObject parentObject) throws RemoveNodeException {
+	private void processBulkJSONNode(String path, JSONObject jsonObject, JSONObject parentObject, JSONArray arrayPeers) throws RemoveNodeException {
 
 		processRemoveConfig(jsonObject);
 		processChangeValue(jsonObject);
@@ -101,7 +101,7 @@ public class App {
 
 		System.out.println("Path: " + path);
 
-		processExposeConfig(path, jsonObject, parentObject);
+		processExposeConfig(path, jsonObject, parentObject, arrayPeers);
 
 		for(String key : jsonObject.keySet())
 		{
@@ -113,7 +113,7 @@ public class App {
 
 				try
 				{
-					processBulkJSONNode(newPath, currentJSON, jsonObject);
+					processBulkJSONNode(newPath, currentJSON, jsonObject, null);
 				}catch(RemoveNodeException e)
 				{
 					jsonObject.remove(key);
@@ -133,7 +133,7 @@ public class App {
 					{
 						try
 						{
-							processBulkJSONNode(newPath, (JSONObject) currentObject, jsonObject);
+							processBulkJSONNode(newPath, (JSONObject) currentObject, jsonObject, jsonArray);
 							newJSONArray.put(currentObject);
 
 						}catch(RemoveNodeException e)
@@ -229,7 +229,7 @@ public class App {
 		}
 	}
 
-	private void processExposeConfig(String path, JSONObject jsonObject, JSONObject parentObject)
+	private void processExposeConfig(String path, JSONObject jsonObject, JSONObject parentObject, JSONArray arrayPeers)
 	{
 
 		if(this.inConfigExposeParametersArray != null)
@@ -253,19 +253,19 @@ public class App {
 					else
 						replaceValue = String.valueOf(jsonObject.get(parameterName));
 
-					String currentIdentifier = getUniqueIdentifier(path, configJSON, jsonObject, parentObject);
+					String currentIdentifier = getUniqueIdentifier(path, configJSON, jsonObject, parentObject, arrayPeers);
 
 					if(currentIdentifier == null)
 						continue;
-					
+
 					String propertyName = path + "_" + replaceName;
 					if(!currentIdentifier.equals(""))
 						propertyName = path + "_" + getEscapedValue(currentIdentifier) + "_" + getEscapedValue(replaceName);
 
 					boolean isSetEnvVar = isSetEnvVar(propertyName);
-					
+
 					propertyName = getConfigAlias(propertyName);
-					
+
 					jsonObject.put(replaceName, "${" + propertyName + "}");
 
 					if(isSetEnvVar && !returnProperties.containsKey(propertyName))
@@ -278,22 +278,22 @@ public class App {
 	private boolean isSetEnvVar(String propertyName) {
 		if(this.inConfigAliases == null)
 			return true;
-		
+
 		for(Object currentAliasConfigObj : this.inConfigAliases)
 		{
 			JSONObject configAliasConfig = (JSONObject) currentAliasConfigObj;
-			
+
 			List<String> configNameList = getConfigNameList(configAliasConfig);
-			
+
 			if(!configNameList.contains(propertyName))
 				continue;
-			
+
 			if(!configAliasConfig.has("is-apply-envfile"))
 				return true;
-			
+
 			return configAliasConfig.getBoolean("is-apply-envfile");
 		}
-		
+
 		return true;
 	}
 
@@ -304,10 +304,10 @@ public class App {
 		for(Object currentAliasConfigObj : this.inConfigAliases)
 		{
 			JSONObject configAliasConfig = (JSONObject) currentAliasConfigObj;
-			
+
 			List<String> configNameList = getConfigNameList(configAliasConfig);
 			System.out.println("Looking for config aliase: " + propertyName + ", " + configNameList.get(0));
-			
+
 			if(!configNameList.contains(propertyName))
 				continue;
 
@@ -315,25 +315,25 @@ public class App {
 			if(!configAliasConfig.has("replace-name"))
 				return propertyName;
 			System.out.println("New config aliase: " + configAliasConfig.getString("replace-name"));
-			
+
 			return configAliasConfig.getString("replace-name");
 		}
-		
-		return propertyName;		
+
+		return propertyName;
 	}
-	
+
 	private List<String> getConfigNameList(JSONObject configAliasConfig)
-	{		
+	{
 		JSONArray configNames = (JSONArray) configAliasConfig.get("config-names");
-		
+
 		String joinedConfigNames = configNames.join(",").replace("\"", "");
 		List<String> configNameList = Arrays.asList(joinedConfigNames.split(","));
-		
+
 		return configNameList;
 	}
 
-	private String getUniqueIdentifier(String path, JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject) {
-		
+	private String getUniqueIdentifier(String path, JSONObject configJSON, JSONObject jsonObject, JSONObject parentObject, JSONArray arrayPeers) {
+
 		if(configJSON.has("unique-identifiers"))
 		{
 			JSONArray uidArray = (JSONArray) configJSON.get("unique-identifiers");
@@ -342,7 +342,7 @@ public class App {
 				String uidConfig = String.valueOf(uidObj);
 				String uid = null;
 				String expectedUIDValue = null;
-				
+
 				if(uidConfig.contains("="))
 				{
 					String[] uidConfigSplit = uidConfig.split("=");
@@ -351,21 +351,70 @@ public class App {
 				}
 				else
 					uid = uidConfig;
-				
+
 				String returnUidValue = null;
-				if(jsonObject.has(uid))
-					returnUidValue = String.valueOf(jsonObject.get(uid));
-				else if(parentObject != null && parentObject.has(uid))
-					returnUidValue = String.valueOf(parentObject.get(uid));
+				
+				if(arrayPeers != null)
+				{
+					String localUID = getUniqueIdentifier(path, configJSON, jsonObject, parentObject, null);
+					if(getUIDFromPeer(arrayPeers, uid, localUID) != null)
+						returnUidValue = getUIDFromPeer(arrayPeers, uid, localUID);
+				}
+				
+				if(returnUidValue == null)
+				{
+					if(arrayPeers == null && jsonObject.has(uid))
+						returnUidValue = String.valueOf(jsonObject.get(uid));
+					else if(parentObject != null && parentObject.has(uid))
+						returnUidValue = String.valueOf(parentObject.get(uid));
+				}
 				
 				if(expectedUIDValue != null && (returnUidValue == null || !returnUidValue.equals(expectedUIDValue)))
 					return null;
-				
+
 				if(returnUidValue != null)
-					return returnUidValue;
+					return getEscapedValue(returnUidValue);
 			}
 			
+			if(arrayPeers != null)
+				return getUniqueIdentifier(path, configJSON, jsonObject, parentObject, null);
+			
 			return "";
+		}
+
+		return null;
+	}
+
+	private String getUIDFromPeer(JSONArray arrayPeers, String uid, String localUID) {
+		
+		if(arrayPeers == null)
+			return null;
+		
+		if(!uid.contains("/"))
+			return null;
+		
+		String searchComponent = uid.substring(0, uid.indexOf("/"));
+		String peerClaimValue = uid.substring(uid.indexOf("/") + 1);
+		
+		if(!searchComponent.contains("~"))
+			return null;
+		
+		String [] searchComponentSplit = searchComponent.split("\\~");
+		
+		String searchName = searchComponentSplit[0];
+		String searchNameValue = searchComponentSplit[1];
+		
+		for(Object currentPeer : arrayPeers)
+		{
+			JSONObject currentPeerJSON = (JSONObject) currentPeer;
+			
+			if(!currentPeerJSON.has(searchName))
+				continue;
+			
+			String matchingValue = String.valueOf(currentPeerJSON.get(searchName));
+			
+			if(matchingValue != null && matchingValue.equals(searchNameValue))
+				return getEscapedValue(localUID + "_" + searchNameValue + "_" + String.valueOf(currentPeerJSON.get(peerClaimValue)));
 		}
 		
 		return null;
@@ -399,9 +448,9 @@ public class App {
 				String propertyName = replace.replace("$", "").replace("{", "").replace("}", "");
 
 				boolean isSetEnvVar = isSetEnvVar(propertyName);
-				
+
 				propertyName = getConfigAlias(propertyName);
-				
+
 				if(isSetEnvVar && !returnProperties.containsKey(propertyName))
 					returnProperties.put(propertyName, search);
 			}
