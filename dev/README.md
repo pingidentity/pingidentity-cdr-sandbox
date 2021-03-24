@@ -58,6 +58,6 @@ Alternatively run the following in order:
 
 5) When creating postman network certificates, use the create-postman-certs-dev.sh script instead.
 
-6) Run postman scripts or Data In module, starting at: https://spa.data-recipient.local
+6) Run postman scripts or Data In module, starting at: https://spa.data-recipient.local:6443
 
 7) Run ./stop-all.sh to stop all services.
