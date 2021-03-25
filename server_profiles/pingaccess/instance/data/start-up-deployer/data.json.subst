@@ -2,8 +2,8 @@
     "data": {
         "httpHostSource": {
             "headerNameList": [
-                "X-Forwarded-Host",
-                "Host"
+                "Host",
+                "X-Forwarded-Host"
             ],
             "listValueLocation": "LAST"
         },
@@ -211,8 +211,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 1,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -229,8 +229,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 2,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -247,16 +247,16 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 3,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
                 "configuration": {
                     "allowedReqHeaders": [
-                        "Authorization",
+                        "Accept",
                         "Content-Type",
-                        "Accept"
+                        "Authorization"
                     ],
                     "exposedRespHeaders": [],
                     "cacheMaxAge": 600,
@@ -269,8 +269,8 @@
                 "className": "com.pingidentity.pa.policy.cors.CrossOriginRequestPolicyInterceptor",
                 "id": 4,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -287,8 +287,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 5,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -307,8 +307,8 @@
                 "className": "com.pingidentity.pa.cdr.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -325,8 +325,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 8,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -343,8 +343,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 9,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -361,8 +361,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 10,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -379,8 +379,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 11,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -408,8 +408,8 @@
                 "className": "com.pingidentity.pa.cdr.CDRValidateArrangementRule",
                 "id": 13,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -433,8 +433,8 @@
                 "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
                 "id": 14,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -453,21 +453,21 @@
                     "oauthTokenEndpoint": "https://pingfederate:9031/as/token.oauth2",
                     "clientScope": "adh-cache-read",
                     "managedEndpoints": [
-                        "/as/token.oauth2",
-                        "/idp/userinfo.openid",
-                        "/as/introspect.oauth2",
-                        "/as/par.oauth2",
-                        "/as/clients.oauth2",
+                        "/register",
                         "/cds-au",
-                        "/register"
+                        "/as/clients.oauth2",
+                        "/as/par.oauth2",
+                        "/as/introspect.oauth2",
+                        "/idp/userinfo.openid",
+                        "/as/token.oauth2"
                     ]
                 },
                 "name": "CDR Validate Status Rule - API",
                 "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
                 "id": 15,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -488,8 +488,8 @@
                 "className": "com.pingidentity.ps.cdr.data.in.pa.CDRInjectDataHolderTokenRule",
                 "id": 16,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -506,8 +506,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 17,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             },
             {
@@ -524,8 +524,8 @@
                 "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
                 "id": 18,
                 "supportedDestinations": [
-                    "Site",
-                    "Agent"
+                    "Agent",
+                    "Site"
                 ]
             }
         ],
@@ -843,11 +843,11 @@
                 "id": 4,
                 "pathPatterns": [
                     {
-                        "pattern": "/as/clients.oauth2",
+                        "pattern": "/register",
                         "type": "WILDCARD"
                     },
                     {
-                        "pattern": "/register",
+                        "pattern": "/as/clients.oauth2",
                         "type": "WILDCARD"
                     }
                 ],
@@ -1070,8 +1070,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/as/clients.oauth2/*",
-                    "/register/*"
+                    "/register/*",
+                    "/as/clients.oauth2/*"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
@@ -1598,20 +1598,20 @@
                 "applicationType": "Web",
                 "agentId": 0,
                 "virtualHostIds": [
-                    5,
-                    7,
-                    12,
-                    22,
-                    23,
+                    25,
                     24,
-                    25
+                    23,
+                    22,
+                    12,
+                    7,
+                    5
                 ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616644313541,
+                "agentCacheInvalidatedExpiration": 1616709250468,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1642,7 +1642,7 @@
                 "name": "PingFederate-Application",
                 "siteId": 1,
                 "realm": null,
-                "lastModified": 1616643413541,
+                "lastModified": 1616708350468,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1650,16 +1650,16 @@
                 "applicationType": "API",
                 "agentId": 0,
                 "virtualHostIds": [
-                    10,
+                    17,
                     12,
-                    17
+                    10
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581585,
+                "agentCacheInvalidatedExpiration": 1616709250022,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1694,7 +1694,7 @@
                 "name": "Mock Bank API",
                 "siteId": 10,
                 "realm": null,
-                "lastModified": 1616618681585,
+                "lastModified": 1616708350022,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1702,15 +1702,15 @@
                 "applicationType": "Web",
                 "agentId": 0,
                 "virtualHostIds": [
-                    13,
-                    19
+                    19,
+                    13
                 ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581441,
+                "agentCacheInvalidatedExpiration": 1616709249892,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1741,7 +1741,7 @@
                 "name": "CDR Register",
                 "siteId": 7,
                 "realm": null,
-                "lastModified": 1616618681441,
+                "lastModified": 1616708349892,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1749,15 +1749,15 @@
                 "applicationType": "API",
                 "agentId": 0,
                 "virtualHostIds": [
-                    14,
-                    20
+                    20,
+                    14
                 ],
                 "spaSupportEnabled": false,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581566,
+                "agentCacheInvalidatedExpiration": 1616709249982,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1779,7 +1779,7 @@
                 "name": "PingDirectory-Web",
                 "siteId": 8,
                 "realm": null,
-                "lastModified": 1616618681566,
+                "lastModified": 1616708349982,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1787,15 +1787,15 @@
                 "applicationType": "Web",
                 "agentId": 0,
                 "virtualHostIds": [
-                    15,
-                    18
+                    18,
+                    15
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581771,
+                "agentCacheInvalidatedExpiration": 1616709250121,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1820,7 +1820,7 @@
                 "name": "Consent Application",
                 "siteId": 9,
                 "realm": null,
-                "lastModified": 1616618681771,
+                "lastModified": 1616708350121,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1833,7 +1833,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581697,
+                "agentCacheInvalidatedExpiration": 1616709250120,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1855,7 +1855,7 @@
                 "name": "Application-DataHolder-sso.${BASE_HOSTNAME}",
                 "siteId": 11,
                 "realm": null,
-                "lastModified": 1616618681697,
+                "lastModified": 1616708350120,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1863,16 +1863,16 @@
                 "applicationType": "API",
                 "agentId": 0,
                 "virtualHostIds": [
-                    11,
+                    21,
                     16,
-                    21
+                    11
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581874,
+                "agentCacheInvalidatedExpiration": 1616709250288,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1897,7 +1897,7 @@
                 "name": "Application-DataHolder-api.${BASE_HOSTNAME}",
                 "siteId": 12,
                 "realm": null,
-                "lastModified": 1616618681874,
+                "lastModified": 1616708350288,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1905,15 +1905,15 @@
                 "applicationType": "Web",
                 "agentId": 0,
                 "virtualHostIds": [
-                    16,
-                    21
+                    21,
+                    16
                 ],
                 "spaSupportEnabled": true,
                 "webSessionId": 0,
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581877,
+                "agentCacheInvalidatedExpiration": 1616709250180,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1935,7 +1935,7 @@
                 "name": "Application-DataIn-SPA",
                 "siteId": 13,
                 "realm": null,
-                "lastModified": 1616618681877,
+                "lastModified": 1616708350180,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1948,7 +1948,7 @@
                 "destination": "Site",
                 "description": "",
                 "allowEmptyPathSegments": false,
-                "agentCacheInvalidatedExpiration": 1616619581899,
+                "agentCacheInvalidatedExpiration": 1616709250286,
                 "enabled": true,
                 "agentCacheInvalidatedResponseDuration": 900,
                 "issuer": null,
@@ -1970,7 +1970,7 @@
                 "name": "Application-DataHolder-sso-2.${BASE_HOSTNAME}",
                 "siteId": 14,
                 "realm": null,
-                "lastModified": 1616618681899,
+                "lastModified": 1616708350286,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             }

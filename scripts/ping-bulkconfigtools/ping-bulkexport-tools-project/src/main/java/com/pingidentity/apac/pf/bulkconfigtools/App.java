@@ -6,8 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -92,6 +97,7 @@ public class App {
 
 		processRemoveConfig(jsonObject);
 		processChangeValue(jsonObject);
+		fixLocation(jsonObject);
 
 		if(jsonObject.has("resourceType"))
 			path = String.valueOf(jsonObject.get("resourceType")).replace("/", "_").substring(1);
@@ -124,8 +130,8 @@ public class App {
 				String newPath = path + "_" + key;
 
 				JSONArray jsonArray = (JSONArray) jsonObject.get(key);
-
-				JSONArray newJSONArray = new JSONArray();
+				
+				List<SortableList> arrayList = new ArrayList<SortableList>();
 
 				for(Object currentObject : jsonArray)
 				{
@@ -134,15 +140,26 @@ public class App {
 						try
 						{
 							processBulkJSONNode(newPath, (JSONObject) currentObject, jsonObject, jsonArray);
-							newJSONArray.put(currentObject);
+							SortableList sortableObject = new SortableList(currentObject);
+							arrayList.add(sortableObject);
 
 						}catch(RemoveNodeException e)
 						{
 						}
 					}
 					else
-						newJSONArray.put(currentObject);
+					{
+						SortableList sortableObject = new SortableList(currentObject);
+						arrayList.add(sortableObject);
+					}
 				}
+				
+				Collections.sort(arrayList);
+
+				JSONArray newJSONArray = new JSONArray();
+				
+				for(SortableList sortableObject : arrayList)
+					newJSONArray.put(sortableObject.getObject());
 
 				processAddConfig(newPath, newJSONArray);
 
@@ -151,6 +168,21 @@ public class App {
 		}
 
 
+	}
+
+	private void fixLocation(JSONObject jsonObject) {
+		if(!jsonObject.has("location"))
+			return;
+		
+		String location = jsonObject.getString("location");
+		
+		try {
+			URI uri = new URI(location);
+			
+			jsonObject.put("location", String.format("%s://localhost:%s%s", uri.getScheme(), uri.getPort(), uri.getPath()));
+		} catch (URISyntaxException e) {
+			return;
+		}
 	}
 
 	private void processRemoveConfig(JSONObject jsonObject) throws RemoveNodeException
@@ -527,5 +559,25 @@ public class App {
         frBulkConfig.write(this.inBulkJSON.toString(4).getBytes());
         frBulkConfig.close();
 
+	}
+	
+	class SortableList implements Comparable<Object>
+	{
+		final Object src;
+		
+		SortableList(Object src)
+		{
+			this.src = src;
+		}
+		
+		public Object getObject() {
+			return src;
+		}
+
+		@Override
+		public int compareTo(Object compare) {
+			return src.toString().compareTo(compare.toString());
+		}
+		
 	}
 }
