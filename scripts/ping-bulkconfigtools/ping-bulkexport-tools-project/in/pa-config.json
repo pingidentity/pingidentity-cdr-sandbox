@@ -1,6 +1,6 @@
 {
   "sort-arrays":[
-        "supportedDestinations","pathPatterns","virtualHostIds"
+        "pathPrefixes","supportedDestinations","pathPatterns","virtualHostIds"
   ],
   "search-replace":[
     {

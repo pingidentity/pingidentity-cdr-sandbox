@@ -1070,8 +1070,8 @@
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
                 "pathPrefixes": [
-                    "/register/*",
-                    "/as/clients.oauth2/*"
+                    "/as/clients.oauth2/*",
+                    "/register/*"
                 ],
                 "methods": ["*"],
                 "auditLevel": "ON",
