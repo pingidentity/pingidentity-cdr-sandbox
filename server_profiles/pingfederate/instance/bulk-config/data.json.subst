@@ -368,7 +368,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1094,8 +1100,7 @@
                         "extendedAttributes": [
                             {"name": "sub"},
                             {"name": "iss"},
-                            {"name": "cnf"},
-                            {"name": "consent_id"}
+                            {"name": "cnf"}
                         ]
                     },
                     "selectionSettings": {"resourceUris": [
@@ -1265,8 +1270,7 @@
                         "extendedAttributes": [
                             {"name": "sub"},
                             {"name": "iss"},
-                            {"name": "cnf"},
-                            {"name": "consent_id"}
+                            {"name": "cnf"}
                         ]
                     },
                     "selectionSettings": {"resourceUris": []}
@@ -2604,7 +2608,6 @@
                     ],
                     "extendedAttributes": [
                         {"name": "SELECTED_ACCOUNTS"},
-                        {"name": "CONSENT_ID"},
                         {"name": "SHARING_DURATION_EXPIRES_AT"},
                         {"name": "APPROVED_SCOPES"},
                         {"name": "CLAIMS_USERINFO"},
@@ -2896,7 +2899,6 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
-                        "CONSENT_ID": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
@@ -2932,7 +2934,6 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
-                        "CONSENT_ID": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
@@ -2977,10 +2978,6 @@
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "SAML_AUTHN_CTX"
                         },
-                        "CONSENT_ID": {
-                            "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
-                            "value": "cdr_consent_id"
-                        },
                         "AUTH_TIME": {
                             "source": {"type": "EXPRESSION"},
                             "value": "(@java.time.Instant@now()).getEpochSecond()"
@@ -2999,7 +2996,7 @@
                         },
                         "ISSUER": {
                             "source": {"type": "EXPRESSION"},
-                            "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(),\r\n#url=new java.net.URL(#requestString),\r\n#port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(),\r\n#url.getProtocol() + \"://\" + #url.getHost() + #port"
+                            "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(), #url=new java.net.URL(#requestString), #port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(), #url.getProtocol() + \"://\" + #url.getHost() + #port"
                         },
                         "CONSENTAPI_DEFINITION": {
                             "source": {"type": "TEXT"},
@@ -3510,15 +3507,11 @@
                         },
                         "iss": {
                             "source": {"type": "EXPRESSION"},
-                            "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(),\r\n#url=new java.net.URL(#requestString),\r\n#port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(),\r\n#url.getProtocol() + \"://\" + #url.getHost() + #port"
+                            "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(), #url=new java.net.URL(#requestString), #port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(), #url.getProtocol() + \"://\" + #url.getHost() + #port"
                         },
                         "cnf": {
                             "source": {"type": "EXPRESSION"},
                             "value": "#THUMBPRINT_HEADER=\"X-CertificateThumbprint\", #objReq = #this.get(\"context.HttpRequest\").getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(\"x5t#S256\", #headerValue):null, #mapValue"
-                        },
-                        "consent_id": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "CONSENT_ID"
                         }
                     },
                     "id": "authz_req|apc.iQwSYDdExcmJaYk6|cdrRevocableATM",
@@ -3576,13 +3569,12 @@
                         },
                         "iss": {
                             "source": {"type": "EXPRESSION"},
-                            "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(),\r\n#url=new java.net.URL(#requestString),\r\n#port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(),\r\n#url.getProtocol() + \"://\" + #url.getHost() + #port"
+                            "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(), #url=new java.net.URL(#requestString), #port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(), #url.getProtocol() + \"://\" + #url.getHost() + #port"
                         },
                         "cnf": {
                             "source": {"type": "EXPRESSION"},
                             "value": "#THUMBPRINT_HEADER=\"X-CertificateThumbprint\", #objReq = #this.get(\"context.HttpRequest\").getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(\"x5t#S256\", #headerValue):null, #mapValue"
-                        },
-                        "consent_id": {"source": {"type": "NO_MAPPING"}}
+                        }
                     },
                     "id": "client_credentials|cdrRevocableATM",
                     "attributeSources": [],
