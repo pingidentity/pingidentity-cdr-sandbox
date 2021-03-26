@@ -1,4 +1,7 @@
 {
+  "sort-arrays":[
+        "supportedDestinations","pathPatterns","virtualHostIds"
+  ],
   "search-replace":[
     {
       "search": "\"sso.data-holder.local:443\"",
@@ -68,7 +71,25 @@
           	"id-value": "ADMIN"
           },
   	  "new-value": 5
-  	}
+  	},
+        {
+          "parameter-name": "agentCacheInvalidatedExpiration",
+      "matching-identifier":
+          {
+                "id-name": "agentCacheInvalidatedExpiration",
+                "id-value": ".*"
+          },
+          "new-value": 1616709250468
+        },
+        {
+          "parameter-name": "lastModified",
+      "matching-identifier":
+          {
+                "id-name": "lastModified",
+                "id-value": ".*"
+          },
+          "new-value": 1616709250468
+        }
   ],
   "remove-config":[
   	{
