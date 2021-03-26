@@ -368,13 +368,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -383,9 +377,9 @@
                 "password": "${PING_IDENTITY_PASSWORD}",
                 "roles": [
                     "ADMINISTRATOR",
-                    "USER_ADMINISTRATOR",
                     "CRYPTO_ADMINISTRATOR",
-                    "EXPRESSION_ADMINISTRATOR"
+                    "EXPRESSION_ADMINISTRATOR",
+                    "USER_ADMINISTRATOR"
                 ],
                 "auditor": false,
                 "description": "Initial administrator user.",
@@ -2650,24 +2644,24 @@
                     "name": "DEEPTHOUGHT:ADMIN",
                     "description": "Provide all Deepthought admin rights",
                     "scopes": [
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
-                        "DEEPTHOUGHT:ADMIN:GRANT:READ",
-                        "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
+                        "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ",
                         "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
                         "DEEPTHOUGHT:ADMIN:BRANCH:READ",
-                        "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ",
+                        "DEEPTHOUGHT:ADMIN:BRANCH:WRITE",
+                        "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
+                        "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
+                        "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
                         "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
+                        "DEEPTHOUGHT:ADMIN:GRANT:READ",
+                        "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
+                        "DEEPTHOUGHT:ADMIN:PAYEE:READ",
+                        "DEEPTHOUGHT:ADMIN:PAYEE:WRITE",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
                         "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
-                        "DEEPTHOUGHT:ADMIN:PAYEE:READ",
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE",
-                        "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
-                        "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
                         "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:READ",
-                        "DEEPTHOUGHT:ADMIN:PAYEE:WRITE",
-                        "DEEPTHOUGHT:ADMIN:BRANCH:WRITE"
+                        "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
+                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
+                        "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE"
                     ]
                 }],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
@@ -2686,13 +2680,8 @@
                         "dynamic": false
                     },
                     {
-                        "name": "phone",
-                        "description": "View my phone",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "openid",
-                        "description": "OpenID Connect",
+                        "name": "email",
+                        "description": "View my email",
                         "dynamic": false
                     },
                     {
@@ -2701,13 +2690,18 @@
                         "dynamic": false
                     },
                     {
-                        "name": "profile",
-                        "description": "View my profile",
+                        "name": "openid",
+                        "description": "OpenID Connect",
                         "dynamic": false
                     },
                     {
-                        "name": "email",
-                        "description": "View my email",
+                        "name": "phone",
+                        "description": "View my phone",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "profile",
+                        "description": "View my profile",
                         "dynamic": false
                     }
                 ],
@@ -3347,12 +3341,12 @@
                     "cibaRequireSignedRequests": false,
                     "restrictCommonScopes": false,
                     "allowedExclusiveScopes": [
-                        "cdr:registration",
-                        "bank:transactions:read",
-                        "bank:regular_payments:read",
-                        "bank:payees:read",
-                        "bank:accounts.detail:read",
                         "bank:accounts.basic:read",
+                        "bank:accounts.detail:read",
+                        "bank:payees:read",
+                        "bank:regular_payments:read",
+                        "bank:transactions:read",
+                        "cdr:registration",
                         "common:customer.basic:read",
                         "common:customer.detail:read"
                     ],
