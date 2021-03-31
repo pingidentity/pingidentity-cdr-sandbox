@@ -1,35 +1,32 @@
 {
-  "sort-arrays":[
-        "pathPrefixes","supportedDestinations","pathPatterns","virtualHostIds"
-  ],
   "search-replace":[
     {
-      "search": "\"sso.data-holder.local:443\"",
+      "search": "\"sso.dev.open-banking.aws.cua:443\"",
       "replace": "\"${ADR_SSO_ENDPOINT}\"",
       "apply-env-file": false
     },
     {
-      "search": "\"sso.data-holder.local:6443\"",
+      "search": "\"sso.dev.open-banking.aws.cua:6443\"",
       "replace": "\"${ADR_SSO_ENDPOINT}\"",
       "apply-env-file": false
     },
     {
-      "search": "\"api.data-holder.local:443\"",
+      "search": "\"api.dev.open-banking.aws.cua:443\"",
       "replace": "\"${ADR_API_ENDPOINT}\"",
       "apply-env-file": false
     },
     {
-      "search": "\"api.data-holder.local:6443\"",
+      "search": "\"api.dev.open-banking.aws.cua:6443\"",
       "replace": "\"${ADR_API_ENDPOINT}\"",
       "apply-env-file": false
     },
     {
-      "search": "data-recipient.local",
-      "replace": "${DR_BASE_HOSTNAME}",
+      "search": "spa.dev.open-banking.aws.cua",
+      "replace": "spa.${DR_BASE_HOSTNAME}",
       "apply-env-file": false
     },
     {
-      "search": "data-holder.local",
+      "search": "dev.open-banking.aws.cua",
       "replace": "${BASE_HOSTNAME}",
       "apply-env-file": false
     },
@@ -71,25 +68,7 @@
           	"id-value": "ADMIN"
           },
   	  "new-value": 5
-  	},
-        {
-          "parameter-name": "agentCacheInvalidatedExpiration",
-      "matching-identifier":
-          {
-                "id-name": "agentCacheInvalidatedExpiration",
-                "id-value": ".*"
-          },
-          "new-value": 1616709250468
-        },
-        {
-          "parameter-name": "lastModified",
-      "matching-identifier":
-          {
-                "id-name": "lastModified",
-                "id-value": ".*"
-          },
-          "new-value": 1616709250468
-        }
+  	}
   ],
   "remove-config":[
   	{

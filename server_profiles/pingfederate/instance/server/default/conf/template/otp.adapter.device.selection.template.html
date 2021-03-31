@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+device selection is required.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: otp.adapter.device.selection.template.html -->
+
+#set( $messageKeyPrefix = "otp.adapter.device.selection.template." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/otp-adapter.css">
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="page brand-background" data-id="page">
+    <div class="page__content">
+        <div class="card card--no-padding">
+            <div class="card__content">
+                <div class="org-logo"><img class="org-logo__image"
+                                           src="assets/images/ping-logo.svg"
+                                           alt="Company Logo"/></div>
+                <div class="stack stack--large" data-id="stack">
+                    <div>
+                        <h1 class="heading" data-id="heading">$languagePackMessages.getMessage($messageKeyPrefix,
+                            "header")</h1>
+                        <h4 class="heading heading--4" data-id="heading">
+                            $languagePackMessages.getMessage($messageKeyPrefix, "message")</h4>
+                    </div>
+                    <div data-id="tile-selector">
+                        <div class="tile-selector tile-selector--stacked">
+                            #foreach($device in $devices)
+                            #set ($deviceMessageKey = ${deviceTypeToMessageKeyMap.get($device.type)})
+                            #set( $deviceMessageKeyPrefix = "${deviceMessageKey}.$messageKeyPrefix" )
+                            #set( $deviceIcon = $languagePackMessages.getMessage($deviceMessageKeyPrefix, "icon"))
+                            <button class="tile-button tile-button--side-icon"
+                                    data-id="tile-selector-button-${device.type}"
+                                    role="button"
+                                    onclick="selectDevice('$device.id')">
+                                <div class="tile-button__icon-container">
+                                    <div class="device-icon">
+                                        #if($deviceIcon == "sms")
+                                        <svg width="30" height="30" viewBox="0 0 1147 1024">
+                                            <path d="M573.44 0c-316.703 0-573.44 201.728-573.44 450.56 0 153.641 98.038 289.157 247.48 370.483-9.667 58.163-42.291 128.901-124.6 202.957 0 0 214.774-0.102 333.271-132.383 37.868 6.185 77.087 9.503 117.289 9.503 316.703 0 573.44-201.728 573.44-450.56s-256.737-450.56-573.44-450.56zM573.44 860.16c-46.244 0-90.87-4.997-133.612-13.517-80.282 111.944-226.058 131.277-226.058 131.277 53.924-62.894 70.595-128.737 72.376-182.845-147.354-72.847-245.187-199.782-245.187-344.515 0-226.222 238.408-409.6 532.48-409.6s532.48 183.378 532.48 409.6-238.408 409.6-532.48 409.6z"></path>
+                                        </svg>
+                                        #elseif($deviceIcon == "email")
+                                        <svg width="30" height="30" viewBox="0 0 28.4 20.85">
+                                            <path d="M26.54,0.36H1.84c-0.83,0-1.5,0.67-1.5,1.5v17.1c0,0.83,0.67,1.5,1.5,1.5h24.7c0.83,0,1.5-0.67,1.5-1.5V1.86 C28.04,1.03,27.37,0.36,26.54,0.36z M27.04,1.86v17.1c0,0.11-0.04,0.2-0.1,0.28l-7.99-8.67l8.03-8.95 C27.01,1.7,27.04,1.78,27.04,1.86z M1.34,18.96V1.86c0-0.06,0.01-0.11,0.03-0.16l7.96,8.87L1.35,19 C1.35,18.99,1.34,18.98,1.34,18.96z M14.81,13.69c-0.37,0.37-0.96,0.37-1.31,0.02L2.41,1.36h23.47L14.81,13.69z M10.01,11.32 l2.77,3.08c0.38,0.38,0.87,0.56,1.36,0.56c0.5,0,1.01-0.19,1.4-0.58l2.74-3.05l7.51,8.14H2.29L10.01,11.32z"></path>
+                                        </svg>
+                                        #elseif($deviceIcon == "voice")
+                                        <svg class="device-icon__icon--mobile" width="27px" height="27px"
+                                             viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="mobile" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                                                <g id="Group" transform="translate(4.000000, 0.000000)">
+                                                    <rect id="Rectangle" x="0.5" y="0.5" width="15" height="23"
+                                                          rx="1.6"/>
+                                                    <path d="M6.65,21 C6.65,20.2545224 7.25414218,19.65 8,19.65 C8.74521255,19.65
+                                  9.35,20.2547876 9.35,21 C9.35,21.7452127 8.74521266,22.35 8,22.35 C7.25414206,22.35
+                                  6.65,21.7454779 6.65,21 Z M7.35,21 C7.35,21.3589771 7.64083996,21.65 8,21.65
+                                  C8.35861334,21.65 8.65,21.3586133 8.65,21 C8.65,20.6413869 8.35861318,20.35 8,20.35
+                                  C7.64084012,20.35 7.35,20.6410231 7.35,21 Z"
+                                                          fillRule="nonzero"
+                                                    />
+                                                    <path d="M6,3.85 L10,3.85 C10.1932997,3.85 10.35,3.69329966 10.35,3.5
+                                  C10.35,3.30670034 10.1932997,3.15 10,3.15 L6,3.15 C5.80670034,3.15 5.65,3.30670034
+                                  5.65,3.5 C5.65,3.69329966 5.80670034,3.85 6,3.85 Z"
+                                                          fillRule="nonzero"
+                                                    />
+                                                </g>
+                                            </g>
+                                        </svg>
+                                        #end
+                                        <div class="device-icon__title">
+                                            $languagePackMessages.getMessage($deviceMessageKeyPrefix, "method")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tile-button__content-container">
+                                    <div class="flex-row flex-row--align-stretch flex-row--justify-start flex-row--flex-direction-column flex-row--column-spacing-sm"
+                                         data-id="flex-row">
+                                        <div class="tile-button__content">
+                                            $languagePackMessages.getMessage($deviceMessageKeyPrefix, "message")
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
+                            #end
+                        </div>
+                    </div>
+                    <div class="text-block" data-id="textblock">
+                        <div class="text-block--overflow-wrap">
+                            <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                               onclick="cancelAuthentication()">$languagePackMessages.getMessage($messageKeyPrefix,
+                                "cancel.button.title")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page__footer">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+        </div>
+    </div>
+</div>
+<form method="post" action="$resumePath" autocomplete="off">
+    <input type="hidden" name="$selectedDeviceId" value=""/>
+    <input type="hidden" name="$cancelAuthentication" value=""/>
+</form>
+<script type="text/javascript">
+    function selectDevice(deviceId) {
+        document.forms[0]['$selectedDeviceId'].value = deviceId;
+        submit('$selectedDeviceId')
+    }
+
+    function cancelAuthentication() {
+        document.forms[0]['$cancelAuthentication'].value = 'true';
+        submit('$cancelAuthentication')
+    }
+
+    function submit(inputName) {
+        // Prevent unused inputs from being submitted
+        var inputs = document.forms[0].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name !== inputName) {
+                input.removeAttribute('name');
+            }
+        }
+        document.forms[0].submit();
+    }
+</script>
+</body>
+</html>

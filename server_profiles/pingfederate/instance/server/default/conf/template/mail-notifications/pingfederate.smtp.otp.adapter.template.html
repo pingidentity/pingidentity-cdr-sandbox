@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- template name: pingfederate.smtp.otp.adapter.template.html -->
+
+#set( $messageKeyPrefix = "pingfederate.smtp.otp.adapter.template." )
+#set( $globalKeyPrefix = "global." )
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!--[if !mso]><!-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<!--<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title></title>
+	<style type="text/css">
+        * {
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-width: 100%;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        table {
+            border-spacing: 0;
+            color: #282828;
+            font-family: Arial, sans-serif;
+        }
+        img {
+            border: 0;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        .webkit {
+            max-width: 600px;
+        }
+        .outer {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+        }
+        p {
+            text-align: left;
+            font-size: 12px;
+            font-family: Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 18px;
+            margin: 0;
+            padding-bottom: 10px;
+            padding-left: 1px;
+        }
+        p.info {
+            text-align: left;
+            font-size: 12px;
+            line-height: 24px;
+            font-weight: bold;
+            padding-bottom: 10px;
+            padding-left: 30px;
+        }
+        p.signature {
+            padding-top: 10px;
+        }
+        .h1 {
+            font-size: 21px;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-family: Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-family: Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .contents {
+            text-align: left;
+            font-family: Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+        }
+        .img-align-vertical img {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+    </style>
+	<!--[if (gte mso 9)|(IE)]>
+	<style type="text/css">
+        table {border-collapse: collapse !important;}
+    </style>
+	<![endif]-->
+</head>
+<body style="Margin:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;min-width:100%;background-color:#d9e4ec;">
+<center class="wrapper" style="width:100%;table-layout:fixed;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background-color:#d9e4ec;">
+	<table width="100%" cellpadding="5" cellspacing="0" border="0" style="background-color:#d9e4ec;" bgcolor="#d9e4ec;">
+		<tr>
+			<td width="100%">
+				&nbsp;
+			</td>
+		</tr>
+	</table>
+	<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#d9e4ec;" bgcolor="#d9e4ec;">
+		<tr>
+			<td width="100%">
+				<div class="webkit" style="max-width:600px;Margin:0 auto;">
+					<!--[if (gte mso 9)|(IE)]>
+					<table width="600" align="center" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;font-family: Calibri, sans-serif;color:#333333;" >
+						<tr>
+							<td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;" >
+					<![endif]-->
+					<table class="outer" align="center" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0;font-family: Arial, sans-serif;color:#333333;Margin:0 auto;width:100%;max-width:600px;" bgcolor="#d9e4ec">
+						<tr>
+							<td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;">
+								<table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;max-width: 600px;background-color: #ffffff;" bgcolor="#ffffff">
+									<tr>
+										<td bgcolor="#ffffff" width="600" align="center" valign="top" style="text-align:center;">
+											<table cellpadding="30" cellspacing="0" border="0">
+												<tr>
+													<td style="padding-top:20px;padding-bottom:30px;padding-right:30px;padding-left:30px; text-align:left;" align="left">
+														<!------------------------------------------------------------------------------------------------>
+														<!-- EMAIL CONTENT START ------------------------------------------------------------------------->
+														<!------------------------------------------------------------------------------------------------>
+														<!-- This header will be displayed if the file [pf-home]/server/default/conf/template/assets/images/company-logo.png exists-->
+														#if ($COMPANY_LOGO_EXISTS == 'true')
+														<!-- COMPANY LOGO -->
+														<table border="0" cellspacing="0" width="100%">
+															<tr><td width="100" height="56" align="left" style="text-align:left;">
+																<img src="${BASE_URL}assets/images/company-logo.png" style="width:100px; height:56px"  />
+															</td>
+																<td width="100%"></td>
+															</tr>
+														</table>
+
+														<!-- PADDING -->
+														<table cellpadding="0" cellspacing="0" border="0"><tr><td height="20" width="540" style="font-size:20px; line-height:20px;">&nbsp;</td></tr></table>
+
+														<!-- LOGO DIVIDER -->
+														<table bgcolor="#e2e2e2" cellpadding="0" cellspacing="0" border="0"><tr><td height="2" width="540" style="font-size:2px; line-height:2px;">&nbsp;</td></tr></table>
+
+														<!-- PADDING -->
+														<table cellpadding="0" cellspacing="0" border="0"><tr><td height="20" width="540" style="font-size:20px; line-height:20px;">&nbsp;</td></tr></table>
+														#end
+
+														<!-- TEXT PARAGRAPHS -->
+														<p>
+															$templateMessages.getMessage($messageKeyPrefix, "greetUser",$params)
+														</p>
+														<p>
+															$templateMessages.getMessage($messageKeyPrefix, "code",$params)
+														</p>
+
+														<p class="signature">
+															$templateMessages.getMessage($globalKeyPrefix, "bestRegards")<br>
+															$templateMessages.getMessage($globalKeyPrefix, "pfTeam")
+														</p>
+
+
+														<!------------------------------------------------------------------------------------------------>
+														<!-- EMAIL CONTENT END --------------------------------------------------------------------------->
+														<!------------------------------------------------------------------------------------------------>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								<table cellpadding="0" cellspacing="0" border="0"><tr><td height="5" width="100%" style="font-size:5px; line-height:5px;">&nbsp;</td></tr></table>
+								<table class="one-column" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-spacing:0;max-width: 600px;background-color: #ffffff;" bgcolor="#ffffff">
+									<tr>
+										<td bgcolor="#ffffff" width="600" align="center" valign="top" style="text-align:center;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;">
+											<table cellpadding="0" cellspacing="0" border="0" width="100%" height="45">
+												<tr>
+													<td></td>
+													<td style="font-size:11px; line-height:16px; padding-right:10px; color:#767575;whitespace: nowrap; text-align: right;" align="right">$templateMessages.getMessage($globalKeyPrefix, "footerMessage")</td>
+													<td width="45" align="right" style="text-align:right;"><img src="${BASE_URL}assets/images/ping-email-logo.png" width="45" height="45" style="width:45px; height:45px; display:block; border:none; outline:none;"></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					<!--[if (gte mso 9)|(IE)]>
+					</td>
+					</tr>
+					</table>
+					<![endif]-->
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table width="100%" cellpadding="5" cellspacing="0" border="0" style="background-color:#d9e4ec;" bgcolor="#d9e4ec;">
+		<tr>
+			<td width="100%">
+				&nbsp;
+			</td>
+		</tr>
+	</table>
+</center>
+</body>
+
+</html>

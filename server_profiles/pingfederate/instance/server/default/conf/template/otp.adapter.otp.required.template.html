@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+an OTP is required.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: otp.adapter.otp.required.template.html -->
+
+#set( $messageKeyPrefix = "otp.adapter.otp.required.template." )
+#set ($deviceMessageKey = ${deviceTypeToMessageKeyMap.get($selectedDevice.type)})
+#set( $deviceMessageKeyPrefix = "${deviceMessageKey}.$messageKeyPrefix" )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/otp-adapter.css">
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="setFocus()">
+<div class="page brand-background" data-id="page">
+    <div class="page__content">
+        <div class="card card--no-padding">
+            <div class="card__content">
+                <form class="form" data-id="form" method="post" action="$resumePath" autocomplete="off">
+                    <div class="step-link step-link--back" style="margin: 0; text-align: left;">
+                        <div style="margin: 0; text-align: left;">
+                            <button class="button pf-back-button" onclick="unselectDevice()"><span
+                                    class="pingicon-left"></span></button>
+                        </div>
+                        <input type="hidden" name="$selectedDeviceId" value=""/>
+                    </div>
+                    <div class="org-logo"><img class="org-logo__image"
+                                               src="assets/images/ping-logo.svg"
+                                               alt="Company Logo"/></div>
+                    #if($errorMessageKey)
+                    <div class="feedback feedback--error" data-id="feedback"><span
+                            class="feedback__icon pingicon-error-triangle"></span>
+                        <div class="feedback__message">$languagePackMessages.getMessage($messageKeyPrefix,
+                            $errorMessageKey)
+                        </div>
+                    </div>
+                    #end
+                    <div class="stack stack--small" data-id="stack">
+                        <h1 class="heading" data-id="heading">$languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                            "header")</h1>
+                        <div class="text-block" data-id="textblock">
+                            <div class="text-block--overflow-wrap">
+                                $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                                "message")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-input__icon"></div>
+                    <input id="passcode" type="text" class="text-input text-input--primary" data-id="text-input"
+                           name="$otp"
+                           value="" onKeyPress="return checkOtpOnReturn(event)"/>
+                    <div class="form-aside">
+                        <div class="stack" data-id="stack">
+                            <div class="stack stack--small" data-id="stack">
+                                <div class="text-block" data-id="textblock">
+                                    <div class="text-block--overflow-wrap">
+                                        $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                                        "otp.sent.text")
+                                    </div>
+                                </div>
+                                <div class="text-block text-block--large" data-id="textblock">
+                                    <div class="text-block--overflow-wrap">$selectedDevice.target</div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="button file-input--button button--tertiary" data-id="button"
+                                        type="button" onclick="resendOtp()">
+                                    $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                                    "resend.button.title")
+                                </button>
+                                <input type="hidden" name="$resendOtp" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-block" data-id="textblock">
+                        <div class="text-block--overflow-wrap">
+                            <div class="stack" data-id="stack">
+                                <div>
+                                    <button class="button file-input--button button--primary brand-primary-bg"
+                                            data-id="button" type="button" onclick="checkOtp()">
+                                        $languagePackMessages.getMessage($messageKeyPrefix, "sign.on.button.title")
+                                    </button>
+                                </div>
+                                <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                                   onclick="cancelAuthentication()">$languagePackMessages.getMessage($messageKeyPrefix,
+                                    "cancel.button.title")
+                                    <input type="hidden" name="$cancelAuthentication" value=""/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="page__footer">
+        <div class="ping-footer">
+            <div class="ping-credits"></div>
+            <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function setFocus() {
+        var platform = navigator.platform;
+        if (platform != null && platform.indexOf("iPhone") == -1) {
+            document.getElementById('passcode').focus();
+        }
+    }
+
+    function checkOtp() {
+        submit('$otp')
+    }
+
+    function resendOtp() {
+        document.forms[0]['$resendOtp'].value = 'true';
+        submit('$resendOtp')
+    }
+
+    function unselectDevice() {
+        document.forms[0]['$selectedDeviceId'].value = '';
+        submit('$selectedDeviceId')
+    }
+
+    function cancelAuthentication() {
+        document.forms[0]['$cancelAuthentication'].value = 'true';
+        submit('$cancelAuthentication')
+    }
+
+    function submit(inputName) {
+        // Prevent unused inputs from being submitted
+        var inputs = document.forms[0].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name !== inputName) {
+                input.removeAttribute('name');
+            }
+        }
+        document.forms[0].submit();
+    }
+
+    function checkOtpOnReturn(e) {
+        var keycode;
+        if (window.event) keycode = window.event.keyCode;
+        else if (e) keycode = e.which;
+        else return true;
+
+        if (keycode == 13) {
+            checkOtp();
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

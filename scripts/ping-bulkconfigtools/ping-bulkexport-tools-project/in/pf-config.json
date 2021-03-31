@@ -1,7 +1,4 @@
 {
-  "sort-arrays":[
-	"roles","scopes"
-  ],
   "config-aliases":[
         {
           "config-names":[
@@ -16,16 +13,19 @@
 	  ],
   	  "replace-name": "CONSENT_APP_pf_agentless_password",
   	  "is-apply-envfile": false
-  	}
+  	},
+	{
+	  "config-names":[
+	     "oauth_clientRegistrationPolicies_items_cdrAURegister_configuration_fields_JWKS_URL_value"
+	  ],
+	  "replace-name": "REGISTER_JWKS_ENDPOINT",
+          "is-apply-envfile": false
+	}
+
   ],
   "search-replace":[
     {
-      "search": "http://cdrregister:8084/.well-known/openid-configuration/JWKS",
-      "replace": "${REGISTER_JWKS_ENDPOINT}",
-      "apply-env-file": false
-    },
-    {
-      "search": "dc=data-holder,dc=com",
+      "search": "dc=dev,dc=open-banking,dc=aws,dc=com",
       "replace": "${USER_BASE_DN}",
       "apply-env-file": false
     },
@@ -50,12 +50,12 @@
       "apply-env-file": false
     },
     {
-      "search": "https://consent.data-holder.local:6443",
+      "search": "https://consent.dev.open-banking.aws.cua:6443",
       "replace": "${CONSENT_BASEURL}",
       "apply-env-file": false
     },
     {
-      "search": "https://consent.data-holder.local",
+      "search": "https://consent.dev.open-banking.aws.cua",
       "replace": "${CONSENT_BASEURL}",
       "apply-env-file": false
     },
@@ -65,12 +65,7 @@
       "apply-env-file": false
     },
     {
-      "search": "data-recipient.local",
-      "replace": "${DR_BASE_HOSTNAME}",
-      "apply-env-file": false
-    },
-    {
-      "search": "data-holder.local",
+      "search": "dev.open-banking.aws.cua",
       "replace": "${BASE_HOSTNAME}",
       "apply-env-file": false
     },

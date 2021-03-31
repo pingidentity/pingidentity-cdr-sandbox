@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+a user has failed multi-factor authentication.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: otp.adapter.mfa.failed.template.html -->
+
+#set( $messageKeyPrefix = "otp.adapter.mfa.failed.template." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/otp-adapter.css">
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<div class="page brand-background" data-id="page">
+    <div class="page__content">
+        <div class="card card--no-padding">
+            <div class="card__content">
+                <div class="org-logo"><img class="org-logo__image"
+                                           src="assets/images/ping-logo.svg"
+                                           alt="Company Logo"/></div>
+                <div class="icon-feedback icon-feedback--timeout  icon-feedback--error"><span
+                        class="icon-feedback__icon pingicon-ghost-error"></span>
+                    <p class="icon-feedback__label">
+                    <p class="icon-feedback--error">$languagePackMessages.getMessage($messageKeyPrefix, "header")</p>
+                    </p>
+                </div>
+                <div class="text-block text-block--small" data-id="textblock">
+                    <div class="text-block--overflow-wrap">$languagePackMessages.getMessage($messageKeyPrefix,
+                        $errorMessageKey)
+                    </div>
+                </div>
+                <div class="text-block" data-id="textblock">
+                    <div class="text-block--overflow-wrap">
+                        <div class="stack" data-id="stack">
+                            <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                               onclick="cancelAuthentication()">$languagePackMessages.getMessage($messageKeyPrefix,
+                                "cancel.button.title")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="post" action="$resumePath" autocomplete="off">
+    <input type="hidden" name="$cancelAuthentication" value="true">
+</form>
+<script type="text/javascript">
+    function cancelAuthentication() {
+        document.forms[0].submit();
+    }
+</script>
+</body>
+</html>
