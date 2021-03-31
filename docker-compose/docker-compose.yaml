@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   pingaccess:
-    image: pingidentity/pingaccess:6.2.1-edge
+    image: cdrsandbox/pingaccess:latest
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/in/instance/conf
