@@ -13,4 +13,4 @@ RUN apk add openssl
 
 RUN rm -f /sbin/apk
 
-USER ping 
+#USER ping 
