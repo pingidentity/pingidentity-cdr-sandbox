@@ -52,7 +52,7 @@
           	"id-name": "dataHolderIssuer",
           	"id-value": ".*"
           },
-  	  "new-value": "${CONSENT_APP_pf_baseurl}"
+  	  "new-value": "${ADH_ID}"
   	},
   	{
   	  "parameter-name": "keyPairId",

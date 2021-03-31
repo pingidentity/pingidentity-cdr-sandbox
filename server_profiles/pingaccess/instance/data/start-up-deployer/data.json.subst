@@ -480,7 +480,7 @@
                     "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
                     "errorResponseStatusMsg": "Forbidden",
                     "clientSecret": {"value": "${_data_rules_16_configuration_clientSecret_value}"},
-                    "dataHolderIssuer": "${CONSENT_APP_pf_baseurl}",
+                    "dataHolderIssuer": "${ADH_ID}",
                     "clientScope": "adr-clients-read",
                     "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
                 },
