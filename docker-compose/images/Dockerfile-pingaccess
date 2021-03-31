@@ -13,4 +13,6 @@ RUN apk add openssl
 
 RUN rm -f /sbin/apk
 
-USER ping 
+#leaving as root because the sandbox requires 443
+#not recommended for production
+#USER ping 
