@@ -2,7 +2,7 @@
 dsconfig create-sync-source \
  --source-name GetSoftwareProductsStatusEndpointCleanup \
  --type third-party \
- --set extension-class:com.pingidentity.ps.cdr.data.out.pds.MetaDataCacheCleanupSyncSource \
+ --set extension-class:com.pingidentity.ps.cdr.pds.MetaDataCacheCleanupSyncSource \
  --set "extension-argument:ldap-server=PingDirectory" \
  --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
  --set extension-argument:consent-storage-basedn=ou=consents,${USER_BASE_DN} \

@@ -304,7 +304,7 @@
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
-                "className": "com.pingidentity.pa.cdr.CDRRefreshTokenProcessor",
+                "className": "com.pingidentity.ps.cdr.pa.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
                     "Agent",
@@ -405,7 +405,7 @@
                     "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
                 },
                 "name": "CDR Validate Arrangement",
-                "className": "com.pingidentity.pa.cdr.CDRValidateArrangementRule",
+                "className": "com.pingidentity.ps.cdr.pa.CDRValidateArrangementRule",
                 "id": 13,
                 "supportedDestinations": [
                     "Agent",
@@ -430,7 +430,7 @@
                     "managedEndpoints": ["/as/authorization.oauth2"]
                 },
                 "name": "CDR Validate Status Rule - Web",
-                "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
+                "className": "com.pingidentity.ps.cdr.pa.CDRValidateStatusRule",
                 "id": 14,
                 "supportedDestinations": [
                     "Agent",
@@ -463,7 +463,7 @@
                     ]
                 },
                 "name": "CDR Validate Status Rule - API",
-                "className": "com.pingidentity.pa.cdr.CDRValidateStatusRule",
+                "className": "com.pingidentity.ps.cdr.pa.CDRValidateStatusRule",
                 "id": 15,
                 "supportedDestinations": [
                     "Agent",
