@@ -304,7 +304,7 @@
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
-                "className": "com.pingidentity.pa.cdr.CDRRefreshTokenProcessor",
+                "className": "com.pingidentity.ps.cdr.pa.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
                     "Agent",
