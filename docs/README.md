@@ -35,7 +35,7 @@ git clone \
     ./build-all.sh
     ```
 
-1. Copy the cdr.env.template file to cdr.env
+1. Navigate to ~/projects/cdr/docker-compose and copy the cdr.env.template file to cdr.env
 
     ```sh
     cp \
