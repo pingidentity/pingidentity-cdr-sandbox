@@ -1,187 +1,298 @@
 <!DOCTYPE html>
-#*
-The server renders this HTML page in an end-user's browser when
-an OTP is required.
-
-Velocity variables (identified by the $ character) are generated
-at runtime by the server.
-
-Change text or formatting as needed. Modifying Velocity statements
-is not recommended as it may interfere with expected server behavior.
+#* The server renders this HTML page in an end-user's browser when an OTP is
+required. Velocity variables (identified by the $ character) are generated at
+runtime by the server. Change text or formatting as needed. Modifying Velocity
+statements is not recommended as it may interfere with expected server behavior.
 *#
 
 <!-- template name: otp.adapter.otp.required.template.html -->
 
-#set( $messageKeyPrefix = "otp.adapter.otp.required.template." )
-#set ($deviceMessageKey = ${deviceTypeToMessageKeyMap.get($selectedDevice.type)})
+#set( $messageKeyPrefix = "otp.adapter.otp.required.template." ) 
+#set( $deviceMessageKey = ${deviceTypeToMessageKeyMap.get($selectedDevice.type)})
 #set( $deviceMessageKeyPrefix = "${deviceMessageKey}.$messageKeyPrefix" )
 
 <html lang="$locale.getLanguage()" dir="ltr">
-<head>
-    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
-    <base href="$CurrentPingFedBaseURL"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
-    user-scalable=no"/>
-    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-    <link rel="stylesheet" href="assets/css/otp-adapter.css">
-    <style>
-        .page__content:before {
-            content: none;
-        }
+  <head>
+    <title>
+      $languagePackMessages.getMessage($messageKeyPrefix, "cua banking")
+    </title>
+    <base href="$CurrentPingFedBaseURL" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <link rel="stylesheet" href="assets/css/otp-adapter.css" />
+  </head>
 
-        .page__content {
-            margin-top: 50px;
-        }
+  <body onload="setFocus()">
+    <div>
+      <div class="cua-header"><img src="./assets/images/cua header.png" /></div>
+      <div class="cua-wrapper">
+        <div class="cua-space">
+          <div class="cua-title">
+            <h2>Connect to CUA</h2>
+            <p>Please enter your One Time Password (Security Code).</p>
+          </div>
+          <div class="cumember">
+            <div class="member-info">
+              <p>
+                One time Passwords (Security Codes) are used to share CDR Data.
+                You will never be asked to provide your Web Access Code (WAC) to
+                share CDR Data.
+              </p>
+              <p>
+                A One Time Password has been sent via SMS to
+                {otpData.mobileNumber} to securely connect to CUA Online
+                Banking.
+                <br />
+                Please enter the code below to continue.
+              </p>
 
-        @media (max-width: 480px) {
-            .page__content {
-                margin-top: 0;
-            }
-        }
-    </style>
-</head>
-<body onload="setFocus()">
-<div class="page brand-background" data-id="page">
-    <div class="page__content">
-        <div class="card card--no-padding">
-            <div class="card__content">
-                <form class="form" data-id="form" method="post" action="$resumePath" autocomplete="off">
-                    <div class="step-link step-link--back" style="margin: 0; text-align: left;">
-                        <div style="margin: 0; text-align: left;">
-                            <button class="button pf-back-button" onclick="unselectDevice()"><span
-                                    class="pingicon-left"></span></button>
-                        </div>
-                        <input type="hidden" name="$selectedDeviceId" value=""/>
+              <div class="codeexpire-wrap">
+                <div class="codeexpire">
+                  <span class="infocircle"> &#9432; </span>
+                  The code will expire in
+                  <strong> <span id="time">05:00</span> </strong>
+                </div>
+              </div>
+
+              <form
+                class="form"
+                data-id="form"
+                method="post"
+                action="$resumePath"
+                autocomplete="off"
+              >
+                <div
+                  class="step-link step-link--back"
+                  style="margin: 0; text-align: left"
+                >
+                  <input type="hidden" name="$selectedDeviceId" value="" />
+                </div>
+
+                <div class="text-input__icon otpwrap">
+                  <p class="security-code">One Time Password (Security Code)</p>
+                </div>
+                <input
+                  id="passcode"
+                  type="text"
+                  class="text-input text-input--primary"
+                  data-id="text-input"
+                  name="$otp"
+                  value=""
+                  onKeyPress="return checkOtpOnReturn(event)"
+                />
+
+                #if($errorMessageKey)
+                <span class="otp-error">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="rgb(212, 13, 18)"
+                    class="bi bi-exclamation-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                    />
+                  </svg>
+                  Please enter your 6-digit One Time Password.
+                </span>
+                <div class="feedback feedback--error" data-id="feedback">
+                  <div class="feedback__message">
+                    $languagePackMessages.getMessage($messageKeyPrefix,
+                    $errorMessageKey)
+                  </div>
+                </div>
+                #end
+                <div class="stack stack--small" data-id="stack">
+                  <h1 class="heading" data-id="heading">
+                    $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                    "header")
+                  </h1>
+                  <div class="text-block" data-id="textblock">
+                    <div class="text-block--overflow-wrap">
+                      $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                      "message")
                     </div>
-                    <div class="org-logo"><img class="org-logo__image"
-                                               src="assets/images/ping-logo.svg"
-                                               alt="Company Logo"/></div>
-                    #if($errorMessageKey)
-                    <div class="feedback feedback--error" data-id="feedback"><span
-                            class="feedback__icon pingicon-error-triangle"></span>
-                        <div class="feedback__message">$languagePackMessages.getMessage($messageKeyPrefix,
-                            $errorMessageKey)
-                        </div>
-                    </div>
-                    #end
+                  </div>
+                </div>
+
+                <div class="form-aside">
+                  <div class="stack" data-id="stack">
                     <div class="stack stack--small" data-id="stack">
-                        <h1 class="heading" data-id="heading">$languagePackMessages.getMessage($deviceMessageKeyPrefix,
-                            "header")</h1>
-                        <div class="text-block" data-id="textblock">
-                            <div class="text-block--overflow-wrap">
-                                $languagePackMessages.getMessage($deviceMessageKeyPrefix,
-                                "message")
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-input__icon"></div>
-                    <input id="passcode" type="text" class="text-input text-input--primary" data-id="text-input"
-                           name="$otp"
-                           value="" onKeyPress="return checkOtpOnReturn(event)"/>
-                    <div class="form-aside">
-                        <div class="stack" data-id="stack">
-                            <div class="stack stack--small" data-id="stack">
-                                <div class="text-block" data-id="textblock">
-                                    <div class="text-block--overflow-wrap">
-                                        $languagePackMessages.getMessage($deviceMessageKeyPrefix,
-                                        "otp.sent.text")
-                                    </div>
-                                </div>
-                                <div class="text-block text-block--large" data-id="textblock">
-                                    <div class="text-block--overflow-wrap">$selectedDevice.target</div>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="button file-input--button button--tertiary" data-id="button"
-                                        type="button" onclick="resendOtp()">
-                                    $languagePackMessages.getMessage($deviceMessageKeyPrefix,
-                                    "resend.button.title")
-                                </button>
-                                <input type="hidden" name="$resendOtp" value=""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-block" data-id="textblock">
+                      <div class="text-block" data-id="textblock">
                         <div class="text-block--overflow-wrap">
-                            <div class="stack" data-id="stack">
-                                <div>
-                                    <button class="button file-input--button button--primary brand-primary-bg"
-                                            data-id="button" type="button" onclick="checkOtp()">
-                                        $languagePackMessages.getMessage($messageKeyPrefix, "sign.on.button.title")
-                                    </button>
-                                </div>
-                                <a tabindex="0" data-id="content-link" target="_self" class="anchor"
-                                   onclick="cancelAuthentication()">$languagePackMessages.getMessage($messageKeyPrefix,
-                                    "cancel.button.title")
-                                    <input type="hidden" name="$cancelAuthentication" value=""/>
-                                </a>
-                            </div>
+                          $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                          "otp.sent.text")
                         </div>
+                      </div>
+                      <div
+                        class="text-block text-block--large"
+                        data-id="textblock"
+                      >
+                        <div class="text-block--overflow-wrap">
+                          $selectedDevice.target
+                        </div>
+                      </div>
                     </div>
-                </form>
+                    <div>
+                      <span>Didn't get the code? </span>
+                      <a href="#" onclick="resendOtp()">
+                        $languagePackMessages.getMessage($deviceMessageKeyPrefix,
+                        "Send the code again,")</a
+                      >
+                      or go to the CUA Online Banking website to update your
+                      contact details.
+                      <input type="hidden" name="$resendOtp" value="" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-block" data-id="textblock">
+                  <div class="text-block--overflow-wrap">
+                    <div class="cua-btns" data-id="stack">
+                      <button
+                        tabindex="0"
+                        data-id="content-link"
+                        target="_self"
+                        class="btn btn-cancel"
+                        data-id="button"
+                        type="button"
+                        onclick="cancelAuthentication()"
+                      >
+                        $languagePackMessages.getMessage($messageKeyPrefix,
+                        "Cancel")
+                        <input
+                          type="hidden"
+                          name="$cancelAuthentication"
+                          value=""
+                        />
+                      </button>
+
+                      <div>
+                        <button
+                          class="btn btn-continue"
+                          data-id="button"
+                          type="button"
+                          onclick="checkOtp()"
+                        >
+                          $languagePackMessages.getMessage($messageKeyPrefix,
+                          "Continue
+                          <span class="right-arr">
+                            &nbsp; &nbsp;
+                            <img
+                              src="assets/images/right arrow.png"
+                              alt="Right arrow" /></span
+                          >")
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cu-ftr-info">
+                  <p>
+                    Your Member Number will not be shared with BudgetGuide. One
+                    time Passwords are used to share CDR data. You will never be
+                    asked to provide your Web Access Code (WAC) to share CDR
+                    data.
+                  </p>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="page__footer">
-        <div class="ping-footer">
-            <div class="ping-credits"></div>
-            <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    function setFocus() {
+
+    <script type="text/javascript">
+      function setFocus() {
         var platform = navigator.platform;
         if (platform != null && platform.indexOf("iPhone") == -1) {
-            document.getElementById('passcode').focus();
+          document.getElementById("passcode").focus();
         }
-    }
+      }
 
-    function checkOtp() {
-        submit('$otp')
-    }
+      function checkOtp() {
+        submit("$otp");
+      }
 
-    function resendOtp() {
-        document.forms[0]['$resendOtp'].value = 'true';
-        submit('$resendOtp')
-    }
+      function resendOtp() {
+        document.forms[0]["$resendOtp"].value = "true";
+        submit("$resendOtp");
+      }
 
-    function unselectDevice() {
-        document.forms[0]['$selectedDeviceId'].value = '';
-        submit('$selectedDeviceId')
-    }
+      function unselectDevice() {
+        document.forms[0]["$selectedDeviceId"].value = "";
+        submit("$selectedDeviceId");
+      }
 
-    function cancelAuthentication() {
-        document.forms[0]['$cancelAuthentication'].value = 'true';
-        submit('$cancelAuthentication')
-    }
+      function cancelAuthentication() {
+        document.forms[0]["$cancelAuthentication"].value = "true";
+        submit("$cancelAuthentication");
+      }
 
-    function submit(inputName) {
+      function submit(inputName) {
         // Prevent unused inputs from being submitted
         var inputs = document.forms[0].getElementsByTagName("input");
         for (var i = 0; i < inputs.length; i++) {
-            var input = inputs[i];
-            if (input.name !== inputName) {
-                input.removeAttribute('name');
-            }
+          var input = inputs[i];
+          if (input.name !== inputName) {
+            input.removeAttribute("name");
+          }
         }
         document.forms[0].submit();
-    }
+      }
 
-    function checkOtpOnReturn(e) {
+      function checkOtpOnReturn(e) {
         var keycode;
         if (window.event) keycode = window.event.keyCode;
         else if (e) keycode = e.which;
         else return true;
 
         if (keycode == 13) {
-            checkOtp();
-            return false;
+          checkOtp();
+          return false;
         } else {
-            return true;
+          return true;
         }
-    }
-</script>
-</body>
+      }
+
+      function startTimer(duration, display) {
+        var timer = duration,
+          minutes,
+          seconds;
+        setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = minutes + ":" + seconds;
+
+          if (--timer < 0) {
+            timer = duration;
+            display.textContent = "Code Expired";
+            window.open(
+              "/otp.adapter.otp.verified.template.html",
+              (target = "_self")
+            );
+          }
+        }, 1000);
+      }
+
+      window.onload = function () {
+        var fiveMinutes = 60 * 5,
+          display = document.querySelector("#time");
+        startTimer(fiveMinutes, display);
+        return;
+      };
+    </script>
+  </body>
 </html>
