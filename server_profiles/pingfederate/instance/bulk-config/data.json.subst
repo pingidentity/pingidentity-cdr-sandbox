@@ -3,7 +3,7 @@
     "operations": [
         {
             "operationType": "SAVE",
-            "subResource": "com.pingidentity.grantstorage.consentapi.ConsentAPIAccessGrantManager",
+            "subResource": "com.pingidentity.ps.cdr.pf.grantstorage.consentapi.ConsentAPIAccessGrantManager",
             "items": [
                 {
                     "stringValue": "adminATM",
@@ -1087,8 +1087,8 @@
                     "name": "cdrRevocableATM",
                     "id": "cdrRevocableATM",
                     "pluginDescriptorRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
-                        "id": "com.pingidentity.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.ps.cdr.pf.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
+                        "id": "com.pingidentity.ps.cdr.pf.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
                     },
                     "accessControlSettings": {
                         "restrictClients": false,
@@ -1528,8 +1528,8 @@
                     "name": "CDR - Initiate Request",
                     "id": "cdrSelectorAdapter",
                     "pluginDescriptorRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.CDRAdapterSelector",
-                        "id": "com.pingidentity.adapter.idp.CDRAdapterSelector"
+                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.ps.cdr.pf.adapter.idp.CDRAdapterSelector",
+                        "id": "com.pingidentity.ps.cdr.pf.adapter.idp.CDRAdapterSelector"
                     },
                     "attributeContract": {
                         "maskOgnlValues": false,
@@ -3318,8 +3318,8 @@
                 "name": "cdrAURegister",
                 "id": "cdrAURegister",
                 "pluginDescriptorRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/descriptors/com.pingidentity.clientregistration.CDRAUPlugin",
-                    "id": "com.pingidentity.clientregistration.CDRAUPlugin"
+                    "location": "https://localhost:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/descriptors/com.pingidentity.ps.cdr.pf.clientregistration.CDRAUPlugin",
+                    "id": "com.pingidentity.ps.cdr.pf.clientregistration.CDRAUPlugin"
                 }
             }],
             "resourceType": "/oauth/clientRegistrationPolicies"

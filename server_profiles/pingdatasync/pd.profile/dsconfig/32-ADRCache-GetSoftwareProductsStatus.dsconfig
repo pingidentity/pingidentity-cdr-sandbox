@@ -2,7 +2,7 @@
 dsconfig create-sync-source \
  --source-name GetSoftwareProductsStatusEndpoint \
  --type third-party \
- --set extension-class:com.pingidentity.ps.cdr.data.out.pds.MetaDataCacheRetrievalSyncSource \
+ --set extension-class:com.pingidentity.ps.cdr.pds.MetaDataCacheRetrievalSyncSource \
  --set extension-argument:endpoint-name=cn=GetSoftwareProductsStatus \
  --set extension-argument:cache-attribute-name=cachedJSON \
  --set extension-argument:cache-lifetime=180 \

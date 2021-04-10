@@ -303,7 +303,7 @@
 
   <servlet>
     <servlet-name>CDRAdminAPIEndpoint</servlet-name>
-    <servlet-class>com.pingidentity.cdr.adminapi.CDRAdminAPIServlet</servlet-class>
+    <servlet-class>com.pingidentity.ps.cdr.pf.cdr.adminapi.CDRAdminAPIServlet</servlet-class>
     <init-param>
       <param-name>CDR_REGISTER_JWKS</param-name>
       <param-value>${REGISTER_JWKS_ENDPOINT}</param-value>
