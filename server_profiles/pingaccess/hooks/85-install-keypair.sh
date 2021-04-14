@@ -25,7 +25,6 @@ EOF
 
 curl -o public.pem http://cdrregister:8084/public/download
 
-apk add openssl
 openssl genrsa -out client.key 2048
 openssl req -new -key client.key -out client.csr -subj "/CN=*.${BASE_HOSTNAME}/O=My Company Name LTD./C=AU"
 
