@@ -279,13 +279,18 @@ services:
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
   data-in-spa:
-    image: cdrsandbox/data-in-spa:20210324
+    image: cdrsandbox/datain-app:20210415
+    environment:
+      - PORT=2280
     env_file:
       - cdr.env
     ports:
       - "2280:2280"
     networks:
       - pingnet-internal
+    stdin_open: true
+    volumes:
+      - ./datain-app-config.js:/app/src/config.js
 
   pingdataconsole:
     image: pingidentity/pingdataconsole:edge
