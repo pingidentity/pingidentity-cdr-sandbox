@@ -53,6 +53,15 @@ export default {
     color: "#ff9900"
 },
 {
+    dh_id: "https://sso-2.data-holder.local:6443",
+    dh_api: "https://spa.data-recipient.local/sso-2",
+    img: "genericbank-logo.png",
+    name: "GenericBank",
+    linkname: "GenericBank",
+    description: "For GenericBank",
+    color: "#ff9900"
+},
+{
   dh_id: "https://sso.data-holder.local:6443",
   dh_api: "https://spa.data-recipient.local",
   img: "bx-logo-color.png",

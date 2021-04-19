@@ -415,12 +415,12 @@
             {
                 "configuration": {
                     "clientId": "pingaccess-cc",
-                    "isIgnoreSSL": true,
                     "refreshInterval": 10,
                     "errorResponseCode": 400,
                     "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
                     "clientIdPrefix": "dcr-sso-,dcr-sso_2-",
                     "scimEndpoint": "https://pingdirectory:1443/scim/v2/adh-cache",
+                    "ignoreSSL": false,
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
                     "errorResponseStatusMsg": "Forbidden",
@@ -440,12 +440,12 @@
             {
                 "configuration": {
                     "clientId": "pingaccess-cc",
-                    "isIgnoreSSL": true,
                     "refreshInterval": 0,
                     "errorResponseCode": 403,
                     "scimFilter": "endpoint-name eq \"GetSoftwareProductsStatus\"",
                     "clientIdPrefix": "dcr-sso-,dcr-sso_2-",
                     "scimEndpoint": "https://pingdirectory:1443/scim/v2/adh-cache",
+                    "ignoreSSL": false,
                     "errorResponseTemplateFile": "general.error.json",
                     "errorResponseContentType": "application/json; charset=UTF-8",
                     "errorResponseStatusMsg": "Forbidden",
@@ -527,6 +527,48 @@
                     "Agent",
                     "Site"
                 ]
+            },
+            {
+                "configuration": {
+                    "mapTo": "/",
+                    "mapFrom": "/sso-1/"
+                },
+                "name": "DataIn-SSO1-URLRewrite",
+                "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
+                "id": 19,
+                "supportedDestinations": ["Site"]
+            },
+            {
+                "configuration": {
+                    "clientId": "pingaccess-cc",
+                    "errorResponseTemplateFile": "oauth.error.json",
+                    "errorResponseContentType": "application/json; charset=UTF-8",
+                    "errorResponseCode": 403,
+                    "scimTokenEndpoint": "adr-token-refresh",
+                    "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
+                    "errorResponseStatusMsg": "Forbidden",
+                    "clientSecret": {"value": "${_data_rules_20_configuration_clientSecret_value}"},
+                    "dataHolderIssuer": "${ADH_ID}",
+                    "clientScope": "adr-clients-read",
+                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
+                },
+                "name": "Rule-ADR-InjectToken-sso-2.${BASE_HOSTNAME}",
+                "className": "com.pingidentity.ps.cdr.data.in.pa.CDRInjectDataHolderTokenRule",
+                "id": 20,
+                "supportedDestinations": [
+                    "Agent",
+                    "Site"
+                ]
+            },
+            {
+                "configuration": {
+                    "mapTo": "/",
+                    "mapFrom": "/sso-2/"
+                },
+                "name": "DataIn-SSO2-URLRewrite",
+                "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
+                "id": 21,
+                "supportedDestinations": ["Site"]
             }
         ],
         "sites": [
@@ -1382,6 +1424,31 @@
                 },
                 "resourceType": "Standard",
                 "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": ["/*"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "rootResource": true,
+                "name": "Root Resource",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 25,
+                "pathPatterns": [{
+                    "pattern": "/*",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 15,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             }
         ],
         "thirdPartyServices": [{
@@ -1881,20 +1948,26 @@
                 "manualOrderingEnabled": false,
                 "policy": {
                     "Web": [],
-                    "API": [{
-                        "id": 16,
-                        "type": "Rule"
-                    }]
+                    "API": [
+                        {
+                            "id": 19,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 16,
+                            "type": "Rule"
+                        }
+                    ]
                 },
                 "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
-                "contextRoot": "/cds-au",
+                "contextRoot": "/sso-1/cds-au",
                 "identityMappingIds": {
                     "Web": 0,
                     "API": 2
                 },
-                "name": "Application-DataHolder-api.${BASE_HOSTNAME}",
+                "name": "API-DataHolder-sso-1",
                 "siteId": 12,
                 "realm": null,
                 "lastModified": 1616709250468,
@@ -1972,6 +2045,50 @@
                 "realm": null,
                 "lastModified": 1616709250468,
                 "accessValidatorId": 0,
+                "caseSensitivePath": false
+            },
+            {
+                "applicationType": "API",
+                "agentId": 0,
+                "virtualHostIds": ["16"],
+                "spaSupportEnabled": true,
+                "webSessionId": 0,
+                "destination": "Site",
+                "description": "",
+                "allowEmptyPathSegments": false,
+                "agentCacheInvalidatedExpiration": 1616709250468,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "issuer": null,
+                "defaultAuthType": "API",
+                "id": 15,
+                "manualOrderingEnabled": false,
+                "policy": {
+                    "Web": [],
+                    "API": [
+                        {
+                            "id": 21,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 20,
+                            "type": "Rule"
+                        }
+                    ]
+                },
+                "authenticationChallengePolicyId": null,
+                "resourceOrder": [],
+                "requireHTTPS": true,
+                "contextRoot": "/sso-2/cds-au",
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 2
+                },
+                "name": "API-DataHolder-sso-2",
+                "siteId": 12,
+                "realm": null,
+                "lastModified": 1616709250468,
+                "accessValidatorId": 1,
                 "caseSensitivePath": false
             }
         ],

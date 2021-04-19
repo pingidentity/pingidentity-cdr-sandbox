@@ -279,7 +279,7 @@ services:
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
   data-in-spa:
-    image: cdrsandbox/datain-app:20210415
+    image: cdrsandbox/datain-app:20210419
     environment:
       - PORT=2280
     env_file:
