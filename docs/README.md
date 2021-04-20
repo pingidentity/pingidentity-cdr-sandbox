@@ -30,11 +30,6 @@ git clone \
 ### Configure and Start the Stack
 
 
-1. Navigate to ~/projects/cdr/docker-compose/images and run
-    ```sh
-    ./build-all.sh
-    ```
-
 1. Navigate to ~/projects/cdr/docker-compose and copy the cdr.env.template file to cdr.env
 
     ```sh
