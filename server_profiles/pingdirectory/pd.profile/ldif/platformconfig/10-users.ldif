@@ -26,7 +26,7 @@ userPassword: 2FederateM0re
 pf-connected-identity: auth-source=pf-local-identity:user-id=access2federate
 
 
-dn: uid=auditor,ou=People,ou=admins,o=platformconfig
+dn: uid=auditor,ou=admins,o=platformconfig
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
