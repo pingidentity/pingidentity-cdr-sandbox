@@ -368,7 +368,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -489,90 +495,173 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "configuration": {
-                    "tables": [{
-                        "name": "Authentication Error Overrides",
-                        "rows": []
-                    }],
-                    "fields": [
-                        {
-                            "name": "LDAP Datastore",
-                            "value": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
-                        },
-                        {
-                            "name": "Search Base",
-                            "value": "ou=admins,o=platformconfig"
-                        },
-                        {
-                            "name": "Search Filter",
-                            "value": "(|(uid=${username})(cn=${username}))"
-                        },
-                        {
-                            "name": "Scope of Search",
-                            "value": "Subtree"
-                        },
-                        {
-                            "name": "Case-Sensitive Matching",
-                            "value": "true"
-                        },
-                        {
-                            "name": "Display Name Attribute",
-                            "value": "displayName"
-                        },
-                        {
-                            "name": "Mail Attribute",
-                            "value": "mail"
-                        },
-                        {
-                            "name": "SMS Attribute",
-                            "value": ""
-                        },
-                        {
-                            "name": "PingID Username Attribute",
-                            "value": ""
-                        },
-                        {
-                            "name": "Mail Search Filter",
-                            "value": ""
-                        },
-                        {
-                            "name": "Username Attribute",
-                            "value": ""
-                        },
-                        {
-                            "name": "Trim Username Spaces For Search",
-                            "value": "true"
-                        },
-                        {
-                            "name": "Mail Verified Attribute",
-                            "value": ""
-                        },
-                        {
-                            "name": "Enable PingDirectory Detailed Password Policy Requirement Messaging",
-                            "value": "true"
-                        }
-                    ]
+            "items": [
+                {
+                    "configuration": {
+                        "tables": [{
+                            "name": "Authentication Error Overrides",
+                            "rows": []
+                        }],
+                        "fields": [
+                            {
+                                "name": "LDAP Datastore",
+                                "value": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
+                            },
+                            {
+                                "name": "Search Base",
+                                "value": "ou=admins,o=platformconfig"
+                            },
+                            {
+                                "name": "Search Filter",
+                                "value": "(|(uid=${username})(cn=${username}))"
+                            },
+                            {
+                                "name": "Scope of Search",
+                                "value": "Subtree"
+                            },
+                            {
+                                "name": "Case-Sensitive Matching",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Display Name Attribute",
+                                "value": "displayName"
+                            },
+                            {
+                                "name": "Mail Attribute",
+                                "value": "mail"
+                            },
+                            {
+                                "name": "SMS Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "PingID Username Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "Mail Search Filter",
+                                "value": ""
+                            },
+                            {
+                                "name": "Username Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "Trim Username Spaces For Search",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Mail Verified Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "Enable PingDirectory Detailed Password Policy Requirement Messaging",
+                                "value": "true"
+                            }
+                        ]
+                    },
+                    "name": "adminPCV",
+                    "id": "adminPCV",
+                    "pluginDescriptorRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
+                        "id": "org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator"
+                    },
+                    "attributeContract": {
+                        "coreAttributes": [
+                            {"name": "mail"},
+                            {"name": "givenName"},
+                            {"name": "DN"},
+                            {"name": "username"}
+                        ],
+                        "extendedAttributes": [
+                            {"name": "entryUUID"},
+                            {"name": "sn"}
+                        ]
+                    }
                 },
-                "name": "adminPCV",
-                "id": "adminPCV",
-                "pluginDescriptorRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
-                    "id": "org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator"
-                },
-                "attributeContract": {
-                    "coreAttributes": [
-                        {"name": "mail"},
-                        {"name": "givenName"},
-                        {"name": "DN"},
-                        {"name": "username"}
-                    ],
-                    "extendedAttributes": [
-                        {"name": "entryUUID"},
-                        {"name": "sn"}
-                    ]
+                {
+                    "configuration": {
+                        "tables": [{
+                            "name": "Authentication Error Overrides",
+                            "rows": []
+                        }],
+                        "fields": [
+                            {
+                                "name": "LDAP Datastore",
+                                "value": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
+                            },
+                            {
+                                "name": "Search Base",
+                                "value": "ou=people,${USER_BASE_DN}"
+                            },
+                            {
+                                "name": "Search Filter",
+                                "value": "cn=${username}"
+                            },
+                            {
+                                "name": "Scope of Search",
+                                "value": "Subtree"
+                            },
+                            {
+                                "name": "Case-Sensitive Matching",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Display Name Attribute",
+                                "value": "displayName"
+                            },
+                            {
+                                "name": "Mail Attribute",
+                                "value": "mail"
+                            },
+                            {
+                                "name": "SMS Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "PingID Username Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "Mail Search Filter",
+                                "value": ""
+                            },
+                            {
+                                "name": "Username Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "Trim Username Spaces For Search",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Mail Verified Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "Enable PingDirectory Detailed Password Policy Requirement Messaging",
+                                "value": "true"
+                            }
+                        ]
+                    },
+                    "name": "adrUserPCV",
+                    "id": "adrUserPCV",
+                    "pluginDescriptorRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
+                        "id": "org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator"
+                    },
+                    "attributeContract": {
+                        "coreAttributes": [
+                            {"name": "mail"},
+                            {"name": "givenName"},
+                            {"name": "DN"},
+                            {"name": "username"}
+                        ],
+                        "extendedAttributes": []
+                    }
                 }
-            }],
+            ],
             "resourceType": "/passwordCredentialValidators"
         },
         {
@@ -1767,7 +1856,7 @@
                                 "defaultRow": false,
                                 "fields": [{
                                     "name": "Password Credential Validator Instance",
-                                    "value": "adminPCV"
+                                    "value": "adrUserPCV"
                                 }]
                             }]
                         }],
