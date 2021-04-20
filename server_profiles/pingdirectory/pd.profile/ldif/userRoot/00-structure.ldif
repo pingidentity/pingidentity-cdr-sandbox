@@ -1,13 +1,3 @@
-dn: o=appintegrations
-objectClass: top
-objectClass: organization
-o: appintegrations
-
-dn: o=platformconfig
-objectClass: top
-objectClass: organization
-o: platformconfig
-
 dn: ${USER_BASE_DN}
 objectClass: top
 objectClass: ${BASE_CLASS}
@@ -28,44 +18,6 @@ objectClass: organizationalUnit
 ou: People
 
 dn: ou=groups,${USER_BASE_DN}
-aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
-objectClass: top
-objectClass: organizationalUnit
-ou: groups
-
-dn: ou=consents,o=appintegrations
-objectClass: top
-objectClass: organizationalUnit
-ou: consents
-
-dn: ou=oauthClients,o=appintegrations
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: oauthClients
-
-dn: ou=sessions,o=appintegrations
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: sessions
-
-
-dn: ou=admins,o=platformconfig
-aci: (targetattr="*")(version 3.0; acl "allow self-manage"; allow(all) userdn="ldap:///self";)
-aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
-objectClass: top
-objectClass: organizationalUnit
-ou: admins
-
-dn: ou=serviceaccounts,o=platformconfig
-aci: (targetattr="*")(version 3.0; acl "allow self-manage"; allow(all) userdn="ldap:///self";)
-aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
-objectClass: top
-objectClass: organizationalUnit
-ou: serviceaccounts
-
-dn: ou=groups,o=platformconfig
 aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
 objectClass: top
 objectClass: organizationalUnit
