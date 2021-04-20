@@ -9,12 +9,12 @@ dsconfig create-sync-source \
  --set "extension-argument:ldap-server=PingDirectory" \
  --set extension-argument:endpoint-class=cachedEndpoint \
  --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
---set extension-argument:base-dn=ou=metadataCache,${USER_BASE_DN}
+--set extension-argument:base-dn=ou=metadataCache,o=appintegrations
 
 dsconfig create-sync-destination \
  --destination-name GetSoftwareProductsStatusEntity \
  --type ping-identity \
- --set base-dn:ou=metadataCache,${USER_BASE_DN} \
+ --set base-dn:ou=metadataCache,o=appintegrations \
  --set "server:PingDirectory"
 
 dsconfig create-sync-pipe \

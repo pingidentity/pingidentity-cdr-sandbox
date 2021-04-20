@@ -1,6 +1,6 @@
 version: 1
 
-dn: pf-oauth-client-id=privacy-dashboard,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=privacy-dashboard,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: privacy-dashboard
@@ -43,7 +43,7 @@ pf-oauth-client-supplemental-info: 44:BYPASS_ACTIVATION_CODE_CONFIRMATION_OV
 pf-oauth-client-supplemental-info: 7:ENABLED:true
 
 
-dn: pf-oauth-client-id=pingdirectory,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=pingdirectory,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: pingdirectory

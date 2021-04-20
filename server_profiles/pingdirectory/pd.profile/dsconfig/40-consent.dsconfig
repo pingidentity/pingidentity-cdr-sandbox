@@ -62,7 +62,7 @@ dsconfig create-topology-admin-user \
 
 dsconfig set-consent-service-prop \
     --set enabled:true  \
-    --set base-dn:ou=Consents,${USER_BASE_DN}  \
+    --set base-dn:ou=Consents,o=appintegrations  \
     --set 'bind-dn:cn=consent service account'  \
     --set consent-record-identity-mapper:user-id-identity-mapper  \
     --set 'service-account-dn:uid=Consent Admin,ou=people,${USER_BASE_DN}'  \

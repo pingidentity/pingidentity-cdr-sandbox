@@ -1,59 +1,59 @@
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceRefreshToken  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtStatus  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtDataHolderClientId  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtDataHolderSoftwareId  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceCDRArrangementId  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceClientId  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceContext  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceDataHolder  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceSoftwareId  \
     --set index-type:equality  \
     --set prime-index:true
 
 dsconfig create-local-db-index \
-    --backend-name userRoot  \
+    --backend-name appintegrations  \
     --index-name tokenMgtInstanceUserRef  \
     --set index-type:equality  \
     --set prime-index:true
@@ -70,9 +70,9 @@ dsconfig create-scim-resource-type \
     --set structural-ldap-objectclass:organizationalUnit  \
     --set auxiliary-ldap-objectclass:tokenMgtDataHolderAux  \
     --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
-    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-base-dn:ou=adr-software,o=appintegrations  \
     --set include-filter:(&(objectClass=tokenMgtDataHolderAux)(tokenMgtStatus=active))  \
-    --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:dataholder:read
 
 dsconfig create-scim-attribute-mapping \
@@ -128,9 +128,9 @@ dsconfig create-scim-resource-type \
     --set structural-ldap-objectclass:organizationalUnit  \
     --set auxiliary-ldap-objectclass:tokenMgtDataHolderAux  \
     --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
-    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-base-dn:ou=adr-software,o=appintegrations  \
     --set include-filter:(&(objectClass=tokenMgtDataHolderAux)(tokenMgtStatus=active))  \
-    --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:dataholder
 
 dsconfig create-scim-attribute-mapping \
@@ -270,9 +270,9 @@ dsconfig create-scim-resource-type \
     --set structural-ldap-objectclass:organizationalUnit  \
     --set auxiliary-ldap-objectclass:tokenMgtSoftwareAux  \
     --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
-    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-base-dn:ou=adr-software,o=appintegrations  \
     --set include-filter:(tokenMgtStatus=active)  \
-    --set create-dn-pattern:ou={ou},ou=adr-software,${USER_BASE_DN}  \
+    --set create-dn-pattern:ou={ou},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:software
 
 dsconfig create-scim-attribute-mapping \
@@ -335,9 +335,9 @@ dsconfig create-scim-resource-type \
     --set endpoint:adr-token  \
     --set structural-ldap-objectclass:tokenMgtInstance  \
     --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
-    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-base-dn:ou=adr-software,o=appintegrations  \
     --set include-filter:(tokenMgtStatus=active)  \
-    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:token:instance
 
 dsconfig create-scim-attribute-mapping \
@@ -575,9 +575,9 @@ dsconfig create-scim-resource-type \
     --set endpoint:adr-token-refresh  \
     --set structural-ldap-objectclass:tokenMgtInstance  \
     --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
-    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-base-dn:ou=adr-software,o=appintegrations  \
     --set include-filter:(&(!(objectClass=force_refresh_signal))(tokenMgtStatus=active))  \
-    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:token:instance:refresh
 
 dsconfig create-scim-attribute-mapping \
@@ -682,9 +682,9 @@ dsconfig create-scim-resource-type \
     --set endpoint:adr-token-revoke \
     --set structural-ldap-objectclass:tokenMgtInstance  \
     --set auxiliary-ldap-objectclass:tokenMgtStatusAux  \
-    --set include-base-dn:ou=adr-software,${USER_BASE_DN}  \
+    --set include-base-dn:ou=adr-software,o=appintegrations  \
     --set include-filter:(tokenMgtStatus=active)  \
-    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,${USER_BASE_DN}  \
+    --set create-dn-pattern:tokenMgtInstanceCDRArrangementId={tokenMgtInstanceCDRArrangementId},ou={tokenMgtInstanceDataHolder},ou={tokenMgtInstanceSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:token:instance:revoke
 
 dsconfig create-scim-attribute-mapping \

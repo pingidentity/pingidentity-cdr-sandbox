@@ -1,6 +1,6 @@
 version: 1
 
-dn: pf-oauth-client-id=pingaccess_validator,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=pingaccess_validator,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: pingaccess_validator
@@ -43,7 +43,7 @@ pf-oauth-client-supplemental-info: 37:TOKEN_ENDPOINT_AUTH_SIGNING_ALGORITHM:
 pf-oauth-client-supplemental-info: 28:id_token_signed_response_alg:null
 
 
-dn: pf-oauth-client-id=pingaccess-cc,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=pingaccess-cc,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: pingaccess-cc
@@ -88,7 +88,7 @@ pf-oauth-client-supplemental-info: 7:ENABLED:true
 
 
 
-dn: pf-oauth-client-id=testclient,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=testclient,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: testclient
@@ -130,5 +130,3 @@ pf-oauth-client-supplemental-info: 37:TOKEN_ENDPOINT_AUTH_SIGNING_ALGORITHM:
 pf-oauth-client-supplemental-info: 44:BYPASS_ACTIVATION_CODE_CONFIRMATION_OV
  ERRIDE:null
 pf-oauth-client-supplemental-info: 7:ENABLED:true
-
-

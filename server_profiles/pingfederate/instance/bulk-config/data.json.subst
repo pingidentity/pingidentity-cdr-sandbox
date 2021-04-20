@@ -83,7 +83,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=oauthClients,${USER_BASE_DN}",
+                    "stringValue": "ou=oauthClients,o=appintegrations",
                     "id": "SearchBase",
                     "type": "STRING"
                 }
@@ -113,7 +113,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=grants,${USER_BASE_DN}",
+                    "stringValue": "ou=grants,o=appintegrations",
                     "id": "SearchBase",
                     "type": "STRING"
                 }
@@ -183,7 +183,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=sessions,${USER_BASE_DN}",
+                    "stringValue": "ou=sessions,o=appintegrations",
                     "id": "SearchBase",
                     "type": "STRING"
                 }
