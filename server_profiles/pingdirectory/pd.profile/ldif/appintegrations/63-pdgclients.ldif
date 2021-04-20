@@ -1,21 +1,20 @@
-version: 1
-
-dn: pf-oauth-client-id=dataholderClient,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=pdgRsClient,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
-pf-oauth-client-id: dataholderClient
+pf-oauth-client-id: pdgRsClient
 pf-oauth-client-authn-type: SECRET
 pf-oauth-client-bypass-approval-page: FALSE
 pf-oauth-client-enforce-replay-prevention: FALSE
-pf-oauth-client-grant-type: client_credentials
-pf-oauth-client-hashed-secret: EomKsk3in_ZxEiHbRdj8zErRJv3zwNBm9F9bT3qXPio.F
- 8q6aVqJ.2
-pf-oauth-client-last-modified: 1606090792430
-pf-oauth-client-name: Data Holder Client
+pf-oauth-client-grant-type: urn:pingidentity.com:oauth2:grant_type:validate_
+ bearer
+pf-oauth-client-hashed-secret: GlIo2U_9NtY0yzZiPPmTCewXawl5uvh8ob6MH_oIlWM.P
+ 7dLMZ4j.2
+pf-oauth-client-last-modified: 1605514655657
+pf-oauth-client-name: PDG RS client
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
 pf-oauth-client-require-signed-requests: FALSE
 pf-oauth-client-restrict-scopes: FALSE
-pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:cdrADRNotfATM
+pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:obATM
 pf-oauth-client-supplemental-info: 16:EXCLUSIVE_SCOPES:null
 pf-oauth-client-supplemental-info: 19:DEVICE_FLOW_SETTING:SERVER_DEFAULT
 pf-oauth-client-supplemental-info: 22:ALLOW_EXCLUSIVE_SCOPES:false
@@ -32,7 +31,7 @@ pf-oauth-client-supplemental-info: 31:id_token_encrypted_response_alg:null
 pf-oauth-client-supplemental-info: 31:id_token_encrypted_response_enc:null
 pf-oauth-client-supplemental-info: 32:DEVICE_POLLING_INTERVAL_OVERRIDE:null
 pf-oauth-client-supplemental-info: 32:REQUEST_OBJECT_SIGNING_ALGORITHM:null
-pf-oauth-client-supplemental-info: 32:VALIDATE_USING_ALL_ELIGIBLE_ATMS:false
+pf-oauth-client-supplemental-info: 32:VALIDATE_USING_ALL_ELIGIBLE_ATMS:true
 pf-oauth-client-supplemental-info: 34:PERSISTENT_GRANT_IDLE_TIMEOUT_TYPE:SER
  VER_DEFAULT
 pf-oauth-client-supplemental-info: 35:REQUIRE_PROOF_KEY_FOR_CODE_EXCHANGE:fa

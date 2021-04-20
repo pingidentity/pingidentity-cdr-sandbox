@@ -1,29 +1,27 @@
 version: 1
 
-dn: pf-oauth-client-id=sample-data-in-application,ou=oauthClients,${USER_BASE_DN}
+dn: pf-oauth-client-id=dataholderClient,ou=oauthClients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
-pf-oauth-client-id: sample-data-in-application
-pf-oauth-client-authn-type: NONE
-pf-oauth-client-bypass-approval-page: TRUE
+pf-oauth-client-id: dataholderClient
+pf-oauth-client-authn-type: SECRET
+pf-oauth-client-bypass-approval-page: FALSE
 pf-oauth-client-enforce-replay-prevention: FALSE
-pf-oauth-client-grant-type: implicit
-pf-oauth-client-grant-type: authorization_code
-pf-oauth-client-last-modified: 1614043174198
-pf-oauth-client-name: Sample Data In Client
+pf-oauth-client-grant-type: client_credentials
+pf-oauth-client-hashed-secret: EomKsk3in_ZxEiHbRdj8zErRJv3zwNBm9F9bT3qXPio.F
+ 8q6aVqJ.2
+pf-oauth-client-last-modified: 1606090792430
+pf-oauth-client-name: Data Holder Client
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
-pf-oauth-client-redirect-uri: https://spa.${DR_BASE_HOSTNAME}/index.html
-pf-oauth-client-redirect-uri: https://spa.${DR_BASE_HOSTNAME}:6443/index.html
 pf-oauth-client-require-signed-requests: FALSE
 pf-oauth-client-restrict-scopes: FALSE
-pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:adrATM
+pf-oauth-client-supplemental-info: 14:DEFAULT_ATM_ID:cdrADRNotfATM
 pf-oauth-client-supplemental-info: 16:EXCLUSIVE_SCOPES:null
 pf-oauth-client-supplemental-info: 19:DEVICE_FLOW_SETTING:SERVER_DEFAULT
 pf-oauth-client-supplemental-info: 22:ALLOW_EXCLUSIVE_SCOPES:false
 pf-oauth-client-supplemental-info: 23:RESTRICT_RESPONSE_TYPES:false
-pf-oauth-client-supplemental-info: 23:RESTRICT_TO_DEFAULT_ATM:false
 pf-oauth-client-supplemental-info: 23:USER_AUTHZ_URL_OVERRIDE:null
-pf-oauth-client-supplemental-info: 24:vnd.ping.policy_group_id:adrOIDCPolicy
+pf-oauth-client-supplemental-info: 24:vnd.ping.policy_group_id:null
 pf-oauth-client-supplemental-info: 26:PING_ACCESS_LOGOUT_CAPABLE:false
 pf-oauth-client-supplemental-info: 28:id_token_signed_response_alg:null
 pf-oauth-client-supplemental-info: 29:ACCESS_SESSION_MANAGEMENT_API:false

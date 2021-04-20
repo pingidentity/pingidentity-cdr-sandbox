@@ -1,6 +1,6 @@
 version: 1
 
-dn: ou=adr-software,${USER_BASE_DN}
+dn: ou=adr-software,o=appintegrations
 objectClass: organizationalUnit
 objectClass: top
 ou: adr-software

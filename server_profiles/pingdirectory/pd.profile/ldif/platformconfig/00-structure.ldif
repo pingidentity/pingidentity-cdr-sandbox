@@ -1,0 +1,24 @@
+dn: o=platformconfig
+objectClass: top
+objectClass: organization
+o: platformconfig
+
+dn: ou=admins,o=platformconfig
+aci: (targetattr="*")(version 3.0; acl "allow self-manage"; allow(all) userdn="ldap:///self";)
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
+objectClass: top
+objectClass: organizationalUnit
+ou: admins
+
+dn: ou=serviceaccounts,o=platformconfig
+aci: (targetattr="*")(version 3.0; acl "allow self-manage"; allow(all) userdn="ldap:///self";)
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
+objectClass: top
+objectClass: organizationalUnit
+ou: serviceaccounts
+
+dn: ou=groups,o=platformconfig
+aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:///uid=administrator,ou=People,${USER_BASE_DN}";)
+objectClass: top
+objectClass: organizationalUnit
+ou: groups

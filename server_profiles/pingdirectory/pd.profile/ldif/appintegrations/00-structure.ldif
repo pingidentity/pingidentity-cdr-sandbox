@@ -1,0 +1,21 @@
+dn: o=appintegrations
+objectClass: top
+objectClass: organization
+o: appintegrations
+
+dn: ou=accessgrants,o=appintegrations
+objectClass: top
+objectClass: organizationalUnit
+ou: accessgrants
+
+dn: ou=oauthClients,o=appintegrations
+aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+objectClass: top
+objectClass: organizationalUnit
+ou: oauthClients
+
+dn: ou=sessions,o=appintegrations
+aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
+objectClass: top
+objectClass: organizationalUnit
+ou: sessions

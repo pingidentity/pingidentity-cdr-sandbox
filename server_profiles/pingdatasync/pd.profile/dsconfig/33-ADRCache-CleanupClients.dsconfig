@@ -5,14 +5,14 @@ dsconfig create-sync-source \
  --set extension-class:com.pingidentity.ps.cdr.pds.MetaDataCacheCleanupSyncSource \
  --set "extension-argument:ldap-server=PingDirectory" \
  --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
- --set extension-argument:consent-storage-basedn=ou=consents,${USER_BASE_DN} \
- --set extension-argument:client-storage-basedn=ou=oauthClients,${USER_BASE_DN} \
+ --set extension-argument:consent-storage-basedn=ou=accessgrants,o=appintegrations \
+ --set extension-argument:client-storage-basedn=ou=oauthClients,o=appintegrations \
  --set extension-argument:clientid-prefix=dcr-sso-,dcr-sso_2-
 
 dsconfig create-sync-destination \
  --destination-name LDAPDestination \
  --type ping-identity \
- --set base-dn:${USER_BASE_DN} \
+ --set base-dn:o=appintegrations \
  --set "server:PingDirectory"
 
 dsconfig create-sync-pipe \
@@ -27,7 +27,7 @@ dsconfig create-sync-pipe \
  dsconfig create-sync-class \
   --pipe-name "Process CDR Product Cleanup" \
   --class-name "OAuth Client Cleanup" \
-  --set include-base-dn:ou=oauthClients,${USER_BASE_DN} \
+  --set include-base-dn:ou=oauthClients,o=appintegrations \
   --set auto-mapped-source-attribute:-none- \
   --set synchronize-creates:false \
   --set synchronize-modifies:false \
@@ -38,7 +38,7 @@ dsconfig create-sync-pipe \
  dsconfig create-sync-class \
   --pipe-name "Process CDR Product Cleanup" \
   --class-name "CDR Consent Cleanup" \
-  --set include-base-dn:ou=consents,${USER_BASE_DN} \
+  --set include-base-dn:ou=accessgrants,o=appintegrations \
   --set auto-mapped-source-attribute:-none- \
   --set synchronize-creates:false \
   --set synchronize-modifies:false \

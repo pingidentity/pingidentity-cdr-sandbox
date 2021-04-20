@@ -22,26 +22,3 @@ aci: (targetAttr="*")(version 3.0; acl "admin rights"; allow(all) userdn="ldap:/
 objectClass: top
 objectClass: organizationalUnit
 ou: groups
-
-dn: ou=consents,${USER_BASE_DN}
-objectClass: top
-objectClass: organizationalUnit
-ou: consents
-
-dn: ou=oauthClients,${USER_BASE_DN}
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: oauthClients
-
-dn: ou=grants,${USER_BASE_DN}
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: grants
-
-dn: ou=sessions,${USER_BASE_DN}
-aci: (targetattr="*")(version 3.0; acl "Allow the pingfederate user to do everything in this branch"; allow(all) userdn="ldap:///cn=pingfederate,cn=root dns,cn=config";)
-objectClass: top
-objectClass: organizationalUnit
-ou: sessions

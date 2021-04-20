@@ -2,7 +2,6 @@
 # This is for pingfederate's local identity store
 #
 dsconfig create-local-db-index \
-  --backend-name userRoot \
+  --backend-name appintegrations \
   --index-name pf-connected-identity \
   --set index-type:equality
-
