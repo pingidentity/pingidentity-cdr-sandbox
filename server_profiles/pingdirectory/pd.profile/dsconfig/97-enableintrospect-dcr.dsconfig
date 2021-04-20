@@ -1,1 +1,10 @@
-dsconfig create-virtual-attribute --name "Add Introspect to DCR Clients" --type user-defined --set enabled:true --set attribute-type:pf-oauth-client-grant-type --set base-dn:ou=oauthClients,o=appintegrations --set 'filter:pf-oauth-client-id=dcr-*' --set conflict-behavior:merge-real-and-virtual --set value:implicit --set value:urn:pingidentity.com:oauth2:grant_type:validate_bearer
+dsconfig create-virtual-attribute \
+	--name "Add Introspect to DCR Clients" \
+	--type user-defined \
+	--set enabled:true \
+	--set attribute-type:pf-oauth-client-grant-type \
+	--set base-dn:ou=oauthClients,o=appintegrations \
+	--set 'filter:pf-oauth-client-id=dcr-*' \
+	--set conflict-behavior:merge-real-and-virtual \
+	--set value:implicit \
+	--set value:urn:pingidentity.com:oauth2:grant_type:validate_bearer
