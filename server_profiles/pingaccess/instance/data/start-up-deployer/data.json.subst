@@ -548,7 +548,7 @@
                     "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
                     "errorResponseStatusMsg": "Forbidden",
                     "clientSecret": {"value": "${_data_rules_20_configuration_clientSecret_value}"},
-                    "dataHolderIssuer": "${ADH_ID}",
+                    "dataHolderIssuer": "${ADH2_ID}",
                     "clientScope": "adr-clients-read",
                     "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
                 },

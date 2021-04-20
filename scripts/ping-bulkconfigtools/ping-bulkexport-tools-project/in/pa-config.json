@@ -50,10 +50,19 @@
       "matching-identifier":
           {
           	"id-name": "dataHolderIssuer",
-          	"id-value": ".*"
+          	"id-value": "(.*)sso\\.(.*)"
           },
   	  "new-value": "${ADH_ID}"
   	},
+        {
+          "parameter-name": "dataHolderIssuer",
+      "matching-identifier":
+          {
+                "id-name": "dataHolderIssuer",
+                "id-value": "(.*)sso\\-2\\.(.*)"
+          },
+          "new-value": "${ADH2_ID}"
+        },
   	{
   	  "parameter-name": "keyPairId",
       "matching-identifier":
