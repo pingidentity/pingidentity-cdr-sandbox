@@ -28,10 +28,6 @@ dsconfig create-consent-definition-localization \
     --set 'data-text:CDR Consent'  \
     --set 'purpose-text:CDR Consent'
 
-dsconfig set-http-servlet-extension-prop \
-    --extension-name 'Directory REST API'  \
-    --set access-token-scope:ds
-
 dsconfig create-identity-mapper \
     --mapper-name user-id-identity-mapper  \
     --type exact-match  \
