@@ -83,7 +83,7 @@
                     "type": "STRING"
                 },
                 {
-                    "stringValue": "ou=oauthClients,o=appintegrations",
+                    "stringValue": "ou=clients,o=appintegrations",
                     "id": "SearchBase",
                     "type": "STRING"
                 }

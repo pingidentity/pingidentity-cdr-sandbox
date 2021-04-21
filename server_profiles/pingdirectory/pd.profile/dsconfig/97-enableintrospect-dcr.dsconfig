@@ -3,7 +3,7 @@ dsconfig create-virtual-attribute \
 	--type user-defined \
 	--set enabled:true \
 	--set attribute-type:pf-oauth-client-grant-type \
-	--set base-dn:ou=oauthClients,o=appintegrations \
+	--set base-dn:ou=clients,o=appintegrations \
 	--set 'filter:pf-oauth-client-id=dcr-*' \
 	--set conflict-behavior:merge-real-and-virtual \
 	--set value:implicit \

@@ -1,4 +1,4 @@
-dn: pf-oauth-client-id=pdgRsClient,ou=oauthClients,o=appintegrations
+dn: pf-oauth-client-id=pdgRsClient,ou=clients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: pdgRsClient

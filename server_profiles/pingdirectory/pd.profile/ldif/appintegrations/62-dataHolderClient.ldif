@@ -1,6 +1,6 @@
 version: 1
 
-dn: pf-oauth-client-id=dataholderClient,ou=oauthClients,o=appintegrations
+dn: pf-oauth-client-id=dataholderClient,ou=clients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: dataholderClient

@@ -6,7 +6,7 @@ dsconfig create-sync-source \
  --set "extension-argument:ldap-server=PingDirectory" \
  --set extension-argument:register-endpoint-url=${REGISTER_STATUS_BASEURL}/data-recipients/brands/software-products/status \
  --set extension-argument:consent-storage-basedn=ou=accessgrants,o=appintegrations \
- --set extension-argument:client-storage-basedn=ou=oauthClients,o=appintegrations \
+ --set extension-argument:client-storage-basedn=ou=clients,o=appintegrations \
  --set extension-argument:clientid-prefix=dcr-sso-,dcr-sso_2-
 
 dsconfig create-sync-destination \
@@ -27,7 +27,7 @@ dsconfig create-sync-pipe \
  dsconfig create-sync-class \
   --pipe-name "Process CDR Product Cleanup" \
   --class-name "OAuth Client Cleanup" \
-  --set include-base-dn:ou=oauthClients,o=appintegrations \
+  --set include-base-dn:ou=clients,o=appintegrations \
   --set auto-mapped-source-attribute:-none- \
   --set synchronize-creates:false \
   --set synchronize-modifies:false \

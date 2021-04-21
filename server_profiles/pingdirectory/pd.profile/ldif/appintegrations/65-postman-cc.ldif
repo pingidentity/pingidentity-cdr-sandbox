@@ -1,6 +1,6 @@
 version: 1
 
-dn: pf-oauth-client-id=postman-cc,ou=oauthClients,o=appintegrations
+dn: pf-oauth-client-id=postman-cc,ou=clients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: postman-cc
@@ -43,4 +43,3 @@ pf-oauth-client-supplemental-info: 37:TOKEN_ENDPOINT_AUTH_SIGNING_ALGORITHM:
 pf-oauth-client-supplemental-info: 44:BYPASS_ACTIVATION_CODE_CONFIRMATION_OV
  ERRIDE:null
 pf-oauth-client-supplemental-info: 7:ENABLED:true
-
