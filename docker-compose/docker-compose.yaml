@@ -279,7 +279,7 @@ services:
     #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
   data-in-spa:
-    image: cdrsandbox/datain-app:20210419
+    image: cdrsandbox/datain-app:20210421
     environment:
       - PORT=2280
     env_file:
@@ -300,7 +300,7 @@ services:
       - pingnet-internal
 
   datain-configurepf:
-    image: cdrsandbox/datain-configure-pf:20210318
+    image: cdrsandbox/datain-configure-pf:20210421
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env

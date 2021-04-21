@@ -30,7 +30,7 @@ export default {
 
   API_URI: 'https://api.pingone.com/v1',
   AUTH_URI: 'https://auth.pingone.com',
-  
+
   audience: "https://data-holder",
 
   issuer: "https://sso.data-holder.local",
@@ -44,8 +44,9 @@ export default {
   introspection_endpoint: "https://sso.data-holder.local/as/introspect.oauth2",
 
   CDR_BANKS: [{
+    id: "bankOne",
     dh_id: "https://sso.data-holder.local:6443",
-    dh_api: "https://spa.data-recipient.local",
+    dh_api: "https://spa.data-recipient.local/sso-1",
     img: "anybank-logo.png",
     name: "AnyBank",
     linkname: "AnyBank",
@@ -53,6 +54,7 @@ export default {
     color: "#ff9900"
 },
 {
+    id: "bankTwo",
     dh_id: "https://sso-2.data-holder.local:6443",
     dh_api: "https://spa.data-recipient.local/sso-2",
     img: "genericbank-logo.png",
@@ -117,4 +119,3 @@ export default {
 }]
 
 };
-

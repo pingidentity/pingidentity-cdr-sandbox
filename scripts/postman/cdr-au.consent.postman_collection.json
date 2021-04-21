@@ -18941,6 +18941,152 @@
 			"name": "S999 Inactivate Software",
 			"item": [
 				{
+					"name": "S999.T000 Get Current Next-Update value",
+					"item": [
+						{
+							"name": "S999.T000.001 Get Access Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"postmanAT\", response[\"access_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "postman-cc",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "2FederateM0re",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "adh-cache-write",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}/as/token.oauth2",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"as",
+										"token.oauth2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S999.T000.002 GET Product Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"productObjectId\", response.Resources[0].id);",
+											"    pm.environment.set(\"productObjectNextUpdate\", response.Resources[0][\"next-update\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{postmanAT}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "postman-cc",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "2FederateM0re",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "adh-cache-write",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-dir-host}}/scim/v2/adh-cache?filter=endpoint-name eq \"GetSoftwareProductsStatus\"",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"scim",
+										"v2",
+										"adh-cache"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "endpoint-name eq \"GetSoftwareProductsStatus\""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "S999.T001 Inactive Test (Disable access)",
 					"item": [
 						{
@@ -19177,10 +19323,163 @@
 					]
 				},
 				{
-					"name": "S999.T002 Remove Test (Remove client and consent)",
+					"name": "S999.T002 Test Latest Next-Update value has changed",
 					"item": [
 						{
-							"name": "S999.T002.001 - Update Product Status to Remove",
+							"name": "S999.T002.001 Get Access Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"postmanAT\", response[\"access_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "postman-cc",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "2FederateM0re",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "adh-cache-write",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}/as/token.oauth2",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"as",
+										"token.oauth2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S999.T002.002 GET Product Status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate next-update has changed\", function () {",
+											"    var response = pm.response.json();",
+											"    var latestNextUpdate = response.Resources[0][\"next-update\"];",
+											"    var currentNextUpdate = pm.environment.get(\"productObjectNextUpdate\");",
+											"",
+											"    pm.expect(latestNextUpdate).to.not.equal(currentNextUpdate);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"productObjectId\", response.Resources[0].id);",
+											"    pm.environment.set(\"productObjectNextUpdate\", response.Resources[0][\"next-update\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{postmanAT}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "postman-cc",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "2FederateM0re",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "adh-cache-write",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-dir-host}}/scim/v2/adh-cache?filter=endpoint-name eq \"GetSoftwareProductsStatus\"",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"scim",
+										"v2",
+										"adh-cache"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "endpoint-name eq \"GetSoftwareProductsStatus\""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "S999.T003 Remove Test (Remove client and consent)",
+					"item": [
+						{
+							"name": "S999.T003.001 - Update Product Status to Remove",
 							"event": [
 								{
 									"listen": "prerequest",
