@@ -3,7 +3,7 @@ dsconfig create-external-server \
     --type http  \
     --set base-url:https://${PINGFEDERATE_HOSTNAME}  \
     --set hostname-verification-method:allow-all  \
-    --set "trust-manager-provider:Blind Trust" 
+    --set "trust-manager-provider:Blind Trust"
 
 dsconfig create-access-token-validator \
     --validator-name "pingfederate token validator"  \
@@ -11,7 +11,7 @@ dsconfig create-access-token-validator \
     --set enabled:true  \
     --set authorization-server:pingfederate-http  \
     --set client-id:pdgRsClient  \
-    --set client-secret:AABd19IuqowqLgY5AJdOKEMxOUJr078U1Dw= 
+    --set client-secret:AABd19IuqowqLgY5AJdOKEMxOUJr078U1Dw=
 
 dsconfig create-token-resource-lookup-method \
     --validator-name "pingfederate token validator"  \
@@ -19,14 +19,14 @@ dsconfig create-token-resource-lookup-method \
     --type scim  \
     --set evaluation-order-index:100  \
     --set scim-resource-type:Users  \
-    --set 'match-filter:uid eq "%sub%"'
+    --set 'match-filter:entryUUID eq "%sub%"'
 
 #dsconfig create-access-token-validator \
 #    --validator-name "Local JWT Access Token Validator"  \
 #    --type jwt  \
 #    --set enabled:true  \
 #    --set authorization-server:pingfederate-http  \
-#    --set jwks-endpoint-path:/ext/cdrJWKS 
+#    --set jwks-endpoint-path:/ext/cdrJWKS
 
 #dsconfig create-token-resource-lookup-method \
 #    --validator-name "Local JWT Access Token Validator"  \
@@ -34,26 +34,25 @@ dsconfig create-token-resource-lookup-method \
 #    --type scim  \
 #    --set evaluation-order-index:100  \
 #    --set scim-resource-type:Users  \
-#    --set 'match-filter:entryuuid eq "%sub%"' 
+#    --set 'match-filter:entryuuid eq "%sub%"'
 
 dsconfig create-external-server \
     --server-name "Mock Bank API"  \
     --type api  \
     --set base-url:http://mock-dh-api:6879  \
     --set hostname-verification-method:allow-all  \
-    --set "trust-manager-provider:Blind Trust" 
+    --set "trust-manager-provider:Blind Trust"
 
 dsconfig create-gateway-api-endpoint \
     --endpoint-name BankingAPI  \
     --set "access-token-validator:pingfederate token validator"  \
     --set inbound-base-path:/cds-au/v1/banking  \
     --set outbound-base-path:/cds-au/v1/banking  \
-    --set "api-server:Mock Bank API" 
+    --set "api-server:Mock Bank API"
 
 dsconfig create-gateway-api-endpoint \
     --endpoint-name ConsentAPI  \
     --set "access-token-validator:pingfederate token validator"  \
     --set inbound-base-path:/consent/v1/consents  \
     --set outbound-base-path:/consent/v1/consents  \
-    --set api-server:pingdirectory-http 
-
+    --set api-server:pingdirectory-http
