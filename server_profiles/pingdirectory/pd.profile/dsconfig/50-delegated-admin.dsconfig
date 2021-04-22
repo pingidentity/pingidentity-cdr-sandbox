@@ -98,7 +98,7 @@ dsconfig create-identity-mapper   \
     --set enabled:true \
     --set "match-attribute:entryUUID" \
     --set match-attribute:uid  \
-    --set "match-base-dn:${USER_BASE_DN}"
+    --set "match-base-dn:o=platformconfig"
 
 dsconfig create-access-token-validator   \
     --validator-name "pingfederate-validator" \

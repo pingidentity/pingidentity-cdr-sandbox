@@ -1,0 +1,15 @@
+FROM pingidentity/pingaccess:6.2.1-edge 
+
+ARG APKURL
+
+USER root
+
+RUN curl $APKURL --output apk.zip && tar -zxvf apk.zip 
+RUN ./sbin/apk.static update
+RUN ./sbin/apk.static add openssl
+
+RUN rm -R ./sbin
+
+#leaving as root because the sandbox requires 443
+#not recommended for production
+#USER ping 

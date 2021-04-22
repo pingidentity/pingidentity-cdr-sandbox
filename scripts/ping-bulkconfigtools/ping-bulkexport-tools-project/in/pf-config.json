@@ -1,4 +1,7 @@
 {
+  "sort-arrays":[
+	"roles","scopes"
+  ],
   "config-aliases":[
         {
           "config-names":[
@@ -13,17 +16,14 @@
 	  ],
   	  "replace-name": "CONSENT_APP_pf_agentless_password",
   	  "is-apply-envfile": false
-  	},
-	{
-	  "config-names":[
-	     "oauth_clientRegistrationPolicies_items_cdrAURegister_configuration_fields_JWKS_URL_value"
-	  ],
-	  "replace-name": "REGISTER_JWKS_ENDPOINT",
-          "is-apply-envfile": false
-	}
-
+  	}
   ],
   "search-replace":[
+    {
+      "search": "http://cdrregister:8084/.well-known/openid-configuration/JWKS",
+      "replace": "${REGISTER_JWKS_ENDPOINT}",
+      "apply-env-file": false
+    },
     {
       "search": "dc=data-holder,dc=com",
       "replace": "${USER_BASE_DN}",
@@ -62,6 +62,11 @@
     {
       "search": "6443/init",
       "replace": "/init",
+      "apply-env-file": false
+    },
+    {
+      "search": "data-recipient.local",
+      "replace": "${DR_BASE_HOSTNAME}",
       "apply-env-file": false
     },
     {

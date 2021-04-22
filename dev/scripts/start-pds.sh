@@ -12,7 +12,7 @@ while read line; do
 done < ../pds.env
 
 echo "Extracting new PingDataSync binary..."
-unzip ../binaries/PingDataSync-*.zip -d .
+unzip -q ../binaries/PingDataSync-*.zip -d .
 
 cd PingDataSync
 
@@ -31,6 +31,10 @@ echo ${PING_IDENTITY_PASSWORD} > password-file
 cp -R ../../../server_profiles/pingdatasync/pd.profile .
 cp ../../scripts/files/pds-setup-arguments.txt ./pd.profile/setup-arguments.txt
 cp ../../../server_profiles/pingdatasync/instance/lib/extensions/* ./lib/extensions
+
+export CERT_ALIAS=pingdatasync
+
+../../scripts/create-localhost-keypair.sh
 
 bin/manage-profile setup --profile pd.profile -E
 

@@ -14,11 +14,14 @@
     --skipHostnameCheck  \
     --rootUserDN "cn=Directory Manager"  \
     --rootUserPasswordFile password-file  \
-    --maxHeapSize 768m  \
+    --maxHeapSize 1024m  \
     --ldapsPort 3636  \
     --httpsPort 3443  \
     --instanceName Localhost  \
     --location Localhost  \
     --enableStartTLS  \
-    --generateSelfSignedCertificate  \
+    --keyStorePassword "P@ssword1" \
+    --usePkcs12Keystore "cert/network.p12" \
+    --interServerCertPEMFile "cert/servercerts.pem" \
+    --interServerCertPrivateKeyFile "cert/client.key" \
     --no-prompt

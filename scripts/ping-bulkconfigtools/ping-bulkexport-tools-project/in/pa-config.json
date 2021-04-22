@@ -1,4 +1,7 @@
 {
+  "sort-arrays":[
+        "pathPrefixes","supportedDestinations","pathPatterns","virtualHostIds"
+  ],
   "search-replace":[
     {
       "search": "\"sso.data-holder.local:443\"",
@@ -18,6 +21,11 @@
     {
       "search": "\"api.data-holder.local:6443\"",
       "replace": "\"${ADR_API_ENDPOINT}\"",
+      "apply-env-file": false
+    },
+    {
+      "search": "data-recipient.local",
+      "replace": "${DR_BASE_HOSTNAME}",
       "apply-env-file": false
     },
     {
@@ -42,10 +50,19 @@
       "matching-identifier":
           {
           	"id-name": "dataHolderIssuer",
-          	"id-value": ".*"
+          	"id-value": "(.*)sso\\.(.*)"
           },
-  	  "new-value": "${CONSENT_APP_pf_baseurl}"
+  	  "new-value": "${ADH_ID}"
   	},
+        {
+          "parameter-name": "dataHolderIssuer",
+      "matching-identifier":
+          {
+                "id-name": "dataHolderIssuer",
+                "id-value": "(.*)sso\\-2\\.(.*)"
+          },
+          "new-value": "${ADH2_ID}"
+        },
   	{
   	  "parameter-name": "keyPairId",
       "matching-identifier":
@@ -63,7 +80,25 @@
           	"id-value": "ADMIN"
           },
   	  "new-value": 5
-  	}
+  	},
+        {
+          "parameter-name": "agentCacheInvalidatedExpiration",
+      "matching-identifier":
+          {
+                "id-name": "agentCacheInvalidatedExpiration",
+                "id-value": ".*"
+          },
+          "new-value": 1616709250468
+        },
+        {
+          "parameter-name": "lastModified",
+      "matching-identifier":
+          {
+                "id-name": "lastModified",
+                "id-value": ".*"
+          },
+          "new-value": 1616709250468
+        }
   ],
   "remove-config":[
   	{

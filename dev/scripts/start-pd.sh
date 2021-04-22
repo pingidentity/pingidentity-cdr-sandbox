@@ -12,7 +12,7 @@ while read line; do
 done < ../pd.env
 
 echo "Extracting new PingDirectory binary..."
-unzip ../binaries/PingDirectory-*.zip -d .
+unzip -q ../binaries/PingDirectory-*.zip -d .
 
 cd PingDirectory
 
@@ -33,6 +33,10 @@ cp ../../scripts/files/pd-setup-arguments.txt ./pd.profile/setup-arguments.txt
 cp ../../../server_profiles/pingdirectory/instance/lib/extensions/* ./lib/extensions
 
 rm pd.profile/dsconfig/30-daily-encrypted-export.dsconfig
+
+export CERT_ALIAS=pingdirectory
+
+../../scripts/create-localhost-keypair.sh
 
 bin/manage-profile setup --profile pd.profile -E
 

@@ -1,5 +1,5 @@
-echo "Stopping auxiliary services via docker-compose"
-docker-compose down
+#echo "Stopping auxiliary services via docker-compose"
+#docker-compose down
 
 echo "Stopping PingDataSync"
 ./scripts/stop-pds.sh

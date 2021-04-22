@@ -7,7 +7,7 @@ dsconfig create-scim-resource-type \
  --set enabled:true \
  --set endpoint:adh-cache \
  --set structural-ldap-objectclass:cachedEndpoint \
- --set include-base-dn:ou=metadataCache,${USER_BASE_DN} \
+ --set include-base-dn:ou=metadataCache,o=appintegrations \
  --set core-schema:urn:pingidentity:adh:cache:endpoint
 
 dsconfig create-scim-attribute \
