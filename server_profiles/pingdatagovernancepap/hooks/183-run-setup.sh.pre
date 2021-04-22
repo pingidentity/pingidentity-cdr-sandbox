@@ -8,7 +8,7 @@ ${VERBOSE} && set -x
 if test "${PDG_MODE}" = "embedded"
 then
   echo "PDG_MODE is embedded. Shutting down PAP."
-  exit 0
+  exit 85 
 fi
 
 #FILES="configuration.yml keystore.p12 admin-keystore.p12"

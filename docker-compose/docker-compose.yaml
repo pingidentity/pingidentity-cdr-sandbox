@@ -250,33 +250,33 @@ services:
     networks:
       - pingnet-internal
 
-#  pingdatagovernancepap:
-#    image: pingidentity/pingdatagovernancepap:8.2.0.3-edge
-#    # command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
-#    environment:
-##      - LICENSE_DIR=/opt/licenses
-##      - LICENSE_FILE_NAME=PingDataGovernance.lic
-#      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
-#      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
-#      - HTTPS_PORT=8443
-#    env_file:
-#      - ${HOME}/.pingidentity/devops
-#      - cdr.env
-#    ulimits:
-#      nproc:
-#        soft: 16384
-#        hard: 16384
-#      nofile:
-#        soft: 65535
-#        hard: 65535
-#    ports:
-#      - "8443:8443"
-#    networks:
-#      - pingnet-internal
-##    volumes:
-##      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
-#    #  - ./pingdatagovernancepap-out:/opt/out
-#    #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
+  pingdatagovernancepap:
+    image: pingidentity/pingdatagovernancepap:8.2.0.3-edge
+    # command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
+    environment:
+#      - LICENSE_DIR=/opt/licenses
+#      - LICENSE_FILE_NAME=PingDataGovernance.lic
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
+      - HTTPS_PORT=8443
+    env_file:
+      - ${HOME}/.pingidentity/devops
+      - cdr.env
+    ulimits:
+      nproc:
+        soft: 16384
+        hard: 16384
+      nofile:
+        soft: 65535
+        hard: 65535
+    ports:
+      - "8443:8443"
+    networks:
+      - pingnet-internal
+#    volumes:
+#      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
+    #  - ./pingdatagovernancepap-out:/opt/out
+    #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
   data-in-spa:
     image: cdrsandbox/datain-app:20210421
