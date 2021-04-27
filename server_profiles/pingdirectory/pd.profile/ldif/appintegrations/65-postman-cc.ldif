@@ -4,13 +4,16 @@ dn: pf-oauth-client-id=postman-cc,ou=clients,o=appintegrations
 objectClass: pf-oauth-client
 objectClass: top
 pf-oauth-client-id: postman-cc
-pf-oauth-client-authn-type: SECRET
+pf-oauth-client-authn-type: CLIENT_CERT
 pf-oauth-client-bypass-approval-page: FALSE
+pf-oauth-client-client-cert-issuer-dn: Trust Any
+pf-oauth-client-client-cert-subject-dn: C=AU,O=PingIdentity,CN=dcr-test-post
+ man
 pf-oauth-client-enforce-replay-prevention: FALSE
 pf-oauth-client-grant-type: client_credentials
 pf-oauth-client-hashed-secret: -7jIvdnrmnHD1k4uymPL0nGG24qeoV3OoSXkum2RyC4.4
  28Sf5gq.2
-pf-oauth-client-last-modified: 1618966456081
+pf-oauth-client-last-modified: 1619564395566
 pf-oauth-client-name: postman-cc
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
 pf-oauth-client-require-signed-requests: FALSE
@@ -43,3 +46,4 @@ pf-oauth-client-supplemental-info: 37:TOKEN_ENDPOINT_AUTH_SIGNING_ALGORITHM:
 pf-oauth-client-supplemental-info: 44:BYPASS_ACTIVATION_CODE_CONFIRMATION_OV
  ERRIDE:null
 pf-oauth-client-supplemental-info: 7:ENABLED:true
+

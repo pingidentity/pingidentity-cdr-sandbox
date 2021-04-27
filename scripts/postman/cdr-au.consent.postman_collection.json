@@ -18976,7 +18976,8 @@
 										{
 											"key": "client_secret",
 											"value": "2FederateM0re",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "grant_type",
@@ -19358,7 +19359,8 @@
 										{
 											"key": "client_secret",
 											"value": "2FederateM0re",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "grant_type",

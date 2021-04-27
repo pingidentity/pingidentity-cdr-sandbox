@@ -1584,6 +1584,22 @@
                 "name": "ADR-IdentityMapping",
                 "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
                 "id": 2
+            },
+            {
+                "configuration": {
+                    "exclusionList": false,
+                    "exclusionListSubject": null,
+                    "headerClientCertificateMappings": [
+                        {"headerName": "X-ClientCertificate"},
+                        {"headerName": "X-ClientCertificateChain"}
+                    ],
+                    "exclusionListAttributes": [],
+                    "attributeHeaderMappings": [],
+                    "headerNamePrefix": null
+                },
+                "name": "MTLS Identity Mapping",
+                "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
+                "id": 3
             }
         ],
         "pingFederateOAuth": {
@@ -1703,7 +1719,7 @@
                 "requireHTTPS": true,
                 "contextRoot": "/",
                 "identityMappingIds": {
-                    "Web": 0,
+                    "Web": 3,
                     "API": 0
                 },
                 "name": "PingFederate-Application",
