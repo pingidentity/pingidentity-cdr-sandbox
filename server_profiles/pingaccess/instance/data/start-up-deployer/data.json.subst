@@ -578,11 +578,11 @@
                 "maxWebSocketConnections": -1,
                 "keepAliveTimeout": 0,
                 "useTargetHostHeader": false,
-                "siteAuthenticatorIds": [],
+                "siteAuthenticatorIds": ["1"],
                 "useProxy": false,
                 "secure": true,
                 "sendPaCookie": true,
-                "targets": ["pingfederate:9031"],
+                "targets": ["pingfederate:9032"],
                 "expectedHostname": null,
                 "skipHostnameVerification": true,
                 "name": "pingfederate",
@@ -737,7 +737,7 @@
         ],
         "siteAuthenticators": [{
             "configuration": {"keyPairId": "5"},
-            "name": "ADR-MTLS-To-DataHolder",
+            "name": "CDR-SiteAuthenticator",
             "className": "com.pingidentity.pa.siteauthenticators.MutualTlsSiteAuthenticator",
             "id": 1
         }],
@@ -1558,23 +1558,6 @@
                     "headerClientCertificateMappings": [],
                     "exclusionListAttributes": [],
                     "attributeHeaderMappings": [{
-                        "headerName": "X-USER",
-                        "subject": true,
-                        "attributeName": "sub"
-                    }],
-                    "headerNamePrefix": null
-                },
-                "name": "Default Identity Mapping",
-                "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
-                "id": 1
-            },
-            {
-                "configuration": {
-                    "exclusionList": false,
-                    "exclusionListSubject": null,
-                    "headerClientCertificateMappings": [],
-                    "exclusionListAttributes": [],
-                    "attributeHeaderMappings": [{
                         "headerName": "X-SUBJECT",
                         "subject": true,
                         "attributeName": "sub"
@@ -1772,7 +1755,7 @@
                 "contextRoot": "/cds-au/v1/banking",
                 "identityMappingIds": {
                     "Web": 0,
-                    "API": 1
+                    "API": 0
                 },
                 "name": "Mock Bank API",
                 "siteId": 10,
