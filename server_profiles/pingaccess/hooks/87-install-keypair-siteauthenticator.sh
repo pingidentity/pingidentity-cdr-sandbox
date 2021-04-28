@@ -15,7 +15,7 @@ generate_siteauthenticator_data()
   cat <<EOF
 {
    "configuration": {"keyPairId": "$keypairId"},
-   "name": "ADR-MTLS-To-DataHolder",
+   "name": "CDR-SiteAuthenticator",
    "className": "com.pingidentity.pa.siteauthenticators.MutualTlsSiteAuthenticator",
    "id": $siteAuthenticatorId
 }
