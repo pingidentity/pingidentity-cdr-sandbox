@@ -346,6 +346,11 @@
 										"key": "Content-Type",
 										"value": "application/jwt",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -515,6 +520,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -610,9 +620,8 @@
 										"value": "application/x-www-form-urlencoded"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									},
 									{
 										"key": "",
@@ -1062,6 +1071,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1160,9 +1174,8 @@
 										"value": "application/jwt"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"body": {
@@ -1240,9 +1253,8 @@
 										"value": "application/x-www-form-urlencoded"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"url": {
@@ -1431,6 +1443,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1510,9 +1527,8 @@
 										"value": "application/x-www-form-urlencoded"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"url": {
@@ -1622,6 +1638,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1702,9 +1723,8 @@
 										"value": "application/x-www-form-urlencoded"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"url": {
@@ -2111,6 +2131,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2237,6 +2262,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2599,6 +2629,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2841,6 +2876,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2961,6 +3001,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -3114,9 +3159,8 @@
 										"value": "application/jwt"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"body": {
@@ -3401,6 +3445,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -3744,6 +3793,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -3864,6 +3918,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -4017,9 +4076,8 @@
 										"value": "application/jwt"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"body": {
@@ -4342,6 +4400,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -4636,6 +4699,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -4927,6 +4995,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -5256,6 +5329,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -5401,6 +5479,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -5482,9 +5565,8 @@
 										"value": "application/x-www-form-urlencoded"
 									},
 									{
-										"key": "X-CorrelationId",
-										"value": "asdgds",
-										"disabled": true
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}"
 									}
 								],
 								"url": {
@@ -5813,6 +5895,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -6099,6 +6186,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/jwt"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -6282,6 +6374,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "X-Certificate",
+								"value": "{{mtlsHeader}}",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -6456,6 +6553,10 @@
 		{
 			"key": "data-recipient-id",
 			"value": "mycompanya"
+		},
+		{
+			"key": "mtlsHeader",
+			"value": ""
 		}
 	]
 }
