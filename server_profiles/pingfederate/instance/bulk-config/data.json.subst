@@ -368,7 +368,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -2700,7 +2706,8 @@
                         {"name": "CONSENTAPI_ID"},
                         {"name": "AVAILABLE_ACCOUNTS"},
                         {"name": "CONSENTAPI_DEFINITION"},
-                        {"name": "ISSUER"}
+                        {"name": "ISSUER"},
+                        {"name": "ADR_ORG_ID"}
                     ]
                 },
                 "scopeGroups": [],
@@ -2986,6 +2993,7 @@
                             "value": "subject"
                         },
                         "CUSTOMER_REF": {"source": {"type": "NO_MAPPING"}},
+                        "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
                         "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
@@ -3021,6 +3029,7 @@
                             "value": "subject"
                         },
                         "CUSTOMER_REF": {"source": {"type": "NO_MAPPING"}},
+                        "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
@@ -3070,6 +3079,10 @@
                         "CUSTOMER_REF": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "customerRef"
+                        },
+                        "ADR_ORG_ID": {
+                            "source": {"type": "EXTENDED_PROPERTIES"},
+                            "value": "org_id"
                         },
                         "CONSENTAPI_ID": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
