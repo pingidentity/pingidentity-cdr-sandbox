@@ -1,0 +1,27 @@
+dsconfig create-sync-source \
+  --source-name CDRCounterSource \
+  --type third-party \
+  --set extension-class:com.pingidentity.tt.cdr.data.out.pds.CDRCountActiveRecords \
+  --set extension-argument:ldap-server=PingDirectory \
+  --set extension-argument:software-product-cache-object-dn=cn=GetSoftwareProductsStatus,ou=metadataCache,o=appintegrations \
+  --set extension-argument:counter-object-dn=ou=metadataCache,o=appintegrations \
+  --set extension-argument:consent-storage-basedn=ou=accessgrants,o=appintegrations \
+  --set extension-argument:clientid-prefix=dcr-sso-,dcr-sso_2-
+
+dsconfig create-sync-pipe \
+  --pipe-name "Process CDR Counters" \
+  --set started:true \
+  --set sync-source:CDRCounterSource \
+  --set sync-destination:LDAPDestination \
+  --set include-changes-for-unchanged-attributes:true \
+  --set "change-detection-polling-interval:30 s" \
+  --set max-operation-attempts:1
+
+dsconfig create-sync-class \
+  --pipe-name "Process CDR Counters" \
+  --class-name cdrCounterAux \
+  --set auto-mapped-source-attribute:cdrCounterActiveRecipientCount \
+  --set auto-mapped-source-attribute:cdrCounterActiveUserCount \
+  --set creates-as-modifies:true \
+  --set modifies-as-creates:true \
+  --set attribute-synchronization-mode:all-attributes
