@@ -15,7 +15,7 @@ generate_siteauthenticator_data()
   cat <<EOF
 {
    "configuration": {"keyPairId": "$keypairId"},
-   "name": "ADR-MTLS-To-DataHolder",
+   "name": "CDR-SiteAuthenticator",
    "className": "com.pingidentity.pa.siteauthenticators.MutualTlsSiteAuthenticator",
    "id": $siteAuthenticatorId
 }
@@ -43,7 +43,7 @@ then
 else
   echo "Keypair imported - ID: $keypairId"
 
-  siteAuthenticatorId=$(curl --silent --basic -u Administrator:${PING_IDENTITY_PASSWORD} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' https://localhost:9000/pa-admin-api/v3/siteAuthenticators --insecure | jq '.items[] | select(.name=="ADR-MTLS-To-DataHolder") | .id')
+  siteAuthenticatorId=$(curl --silent --basic -u Administrator:${PING_IDENTITY_PASSWORD} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' https://localhost:9000/pa-admin-api/v3/siteAuthenticators --insecure | jq '.items[] | select(.name=="CDR-SiteAuthenticator") | .id')
 
   echo $("generate_siteauthenticator_data") > configure-siteauthenticator.txt
   configureHttpsResponse=$(curl -X PUT --silent --basic -u Administrator:${PING_IDENTITY_PASSWORD} --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'X-XSRF-Header: PingAccess' --data '@configure-siteauthenticator.txt' https://localhost:9000/pa-admin-api/v3/siteAuthenticators/${siteAuthenticatorId} --insecure)

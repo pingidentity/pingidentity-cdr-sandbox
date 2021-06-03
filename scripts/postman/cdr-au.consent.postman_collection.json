@@ -349,6 +349,11 @@
 										"key": "Content-Type",
 										"value": "application/jwt",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -1066,7 +1071,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -1343,7 +1354,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -1480,7 +1497,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -1632,7 +1655,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -1826,6 +1855,11 @@
 										"key": "Content-Type",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -1883,6 +1917,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -1942,6 +1981,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2006,6 +2050,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2065,6 +2114,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2125,6 +2179,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2183,6 +2242,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2245,6 +2309,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2304,6 +2373,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2362,6 +2436,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2424,6 +2503,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2484,6 +2568,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2542,6 +2631,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -2604,6 +2698,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -2679,7 +2778,13 @@
 									]
 								},
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": []
@@ -3277,7 +3382,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -3479,7 +3590,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -3617,7 +3734,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -4097,7 +4220,13 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-Certificate",
+								"value": "{{mtlsHeader}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
@@ -4584,7 +4713,13 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "X-Certificate",
+								"value": "{{mtlsHeader}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
@@ -5238,7 +5373,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -5425,7 +5566,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -6041,7 +6188,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -6228,7 +6381,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -6375,7 +6534,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -6668,7 +6833,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -7150,7 +7321,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -7337,7 +7514,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -7473,7 +7656,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -7647,7 +7836,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -7679,6 +7874,11 @@
 												{
 													"key": "client_assertion",
 													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "X-Certificate",
+													"value": "{{mtlsHeader}}",
 													"type": "text"
 												}
 											]
@@ -7821,7 +8021,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -8013,7 +8219,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -8149,7 +8361,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -8309,7 +8527,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -8445,7 +8669,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -8985,7 +9215,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -9742,7 +9978,13 @@
 									},
 									"request": {
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "urlencoded",
 											"urlencoded": [
@@ -10018,7 +10260,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -10228,7 +10476,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -10367,7 +10621,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -11036,7 +11296,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -11215,7 +11481,13 @@
 									]
 								},
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": []
@@ -12501,7 +12773,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -13273,7 +13551,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -13377,6 +13661,11 @@
 										"key": "Content-Type",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -13446,6 +13735,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -14074,7 +14368,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -14185,6 +14485,11 @@
 										"key": "Content-Type",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -14245,6 +14550,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -14873,7 +15183,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -14984,6 +15300,11 @@
 										"key": "Content-Type",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -15044,6 +15365,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -15673,7 +15999,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -15784,6 +16116,11 @@
 										"key": "Content-Type",
 										"value": "application/json",
 										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -15844,6 +16181,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -15906,6 +16248,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -15967,6 +16314,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -16032,6 +16384,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -16095,6 +16452,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -16156,6 +16518,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -16788,7 +17155,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -16883,6 +17256,11 @@
 										"key": "Content-Type",
 										"type": "text",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -17707,7 +18085,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -17888,7 +18272,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18063,7 +18453,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18245,7 +18641,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18390,7 +18792,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18553,7 +18961,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18735,7 +19149,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18868,7 +19288,13 @@
 							},
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18964,7 +19390,13 @@
 							],
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -18976,7 +19408,8 @@
 										{
 											"key": "client_secret",
 											"value": "2FederateM0re",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "grant_type",
@@ -19298,6 +19731,11 @@
 									{
 										"key": "Content-Type",
 										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
 									}
 								],
 								"body": {
@@ -19346,7 +19784,13 @@
 							],
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "urlencoded",
 									"urlencoded": [
@@ -19358,7 +19802,8 @@
 										{
 											"key": "client_secret",
 											"value": "2FederateM0re",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "grant_type",
@@ -19670,6 +20115,10 @@
 		{
 			"key": "data-recipient-id",
 			"value": "abcd"
+		},
+		{
+			"key": "mtlsHeader",
+			"value": ""
 		}
 	]
 }

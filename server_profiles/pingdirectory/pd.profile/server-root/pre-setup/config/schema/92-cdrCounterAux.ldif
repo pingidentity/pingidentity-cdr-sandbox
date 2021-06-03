@@ -1,0 +1,8 @@
+dn: cn=schema
+objectClass: top
+objectClass: ldapSubentry
+objectClass: subschema
+cn: schema
+attributeTypes: ( cdrCounterActiveRecipientCount-OID NAME 'cdrCounterActiveRecipientCount' SINGLE-VALUE USAGE userApplications )
+attributeTypes: ( cdrCounterActiveUserCount-OID NAME 'cdrCounterActiveUserCount' SINGLE-VALUE USAGE userApplications )
+objectClasses: ( cdrCounterAux-OID NAME 'cdrCounterAux' AUXILIARY MAY ( cdrCounterActiveUserCount $ cdrCounterActiveRecipientCount ) )
