@@ -24,4 +24,4 @@ dsconfig create-sync-class \
   --set auto-mapped-source-attribute:cdrCounterActiveUserCount \
   --set creates-as-modifies:true \
   --set modifies-as-creates:true \
-  --set attribute-synchronization-mode:all-attributes
+  --set attribute-synchronization-mode:modified-attributes-only
