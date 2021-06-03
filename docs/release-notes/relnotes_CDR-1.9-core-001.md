@@ -1,5 +1,6 @@
 # Release Notes
 
+<<<<<<< HEAD
 ## CDR Sandbox for OpenBanking, version CDR-1.9-core-001
 
 Release Date: June 04, 2021
