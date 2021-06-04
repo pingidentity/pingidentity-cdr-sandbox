@@ -299,12 +299,15 @@
                         "cdr_arrangement_id",
                         "scope"
                     ],
+                    "accessTokenEncryptionKeys": [
+                        "vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="
+                    ],
                     "introspectionEndpoint": "/as/introspect.oauth2",
                     "encryptionJWK": "{\"kty\":\"oct\",\"k\":\"Fdh9u8rINxfivbrianbbVT1u232VQBZYKx1HGAGPt2I\"}",
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
-                "className": "com.pingidentity.ps.cdr.pa.CDRRefreshTokenProcessor",
+                "className": "com.pingidentity.tt.cdr.pa.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
                     "Agent",
