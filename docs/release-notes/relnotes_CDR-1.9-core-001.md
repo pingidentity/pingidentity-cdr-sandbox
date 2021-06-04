@@ -10,6 +10,7 @@ Release Date: June 04, 2021
 - cdr-361: Expose cdr_arrangement_id when introspecting AT's. This can be useful for internal introspection of AT's.
 - cdr-369: Add http header injected client authentication into MTLS and HoK policies. This allows load balances to terminate SSL whereas before it had to be terminated at PingAccess.
 - cdr-371: Mock Register to add certificate extended key usage for client authentication and server authentication
+- cdr-372: Enabling Access Token Encryption
 
 #### Added Support for CDR 1.7
 NIL
