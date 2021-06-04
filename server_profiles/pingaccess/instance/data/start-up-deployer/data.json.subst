@@ -299,10 +299,8 @@
                         "cdr_arrangement_id",
                         "scope"
                     ],
-                    "accessTokenEncryptionKeys": [
-                        "vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="
-                    ],
                     "introspectionEndpoint": "/as/introspect.oauth2",
+                    "accessTokenEncryptionKeys": ["vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="],
                     "encryptionJWK": "{\"kty\":\"oct\",\"k\":\"Fdh9u8rINxfivbrianbbVT1u232VQBZYKx1HGAGPt2I\"}",
                     "issuer": "anybank"
                 },
@@ -572,6 +570,16 @@
                 "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
                 "id": 21,
                 "supportedDestinations": ["Site"]
+            },
+            {
+                "configuration": {"accessTokenEncryptionKeys": ["vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="]},
+                "name": "CDR Access Token Decrypter",
+                "className": "com.pingidentity.tt.cdr.pa.CDRAccessTokenDecryptionRule",
+                "id": 22,
+                "supportedDestinations": [
+                    "Agent",
+                    "Site"
+                ]
             }
         ],
         "sites": [
@@ -1011,6 +1019,10 @@
                 "policy": {
                     "Web": [
                         {
+                            "id": 22,
+                            "type": "Rule"
+                        },
+                        {
                             "id": 3,
                             "type": "Rule"
                         },
@@ -1141,6 +1153,10 @@
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 22,
+                            "type": "Rule"
+                        },
                         {
                             "id": 12,
                             "type": "Rule"
@@ -1738,6 +1754,10 @@
                 "policy": {
                     "Web": [],
                     "API": [
+                        {
+                            "id": 22,
+                            "type": "Rule"
+                        },
                         {
                             "id": 15,
                             "type": "Rule"
