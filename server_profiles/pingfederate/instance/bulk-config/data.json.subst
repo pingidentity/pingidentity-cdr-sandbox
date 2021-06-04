@@ -368,13 +368,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1207,7 +1201,23 @@
                         "tables": [
                             {
                                 "name": "Symmetric Keys",
-                                "rows": []
+                                "rows": [{
+                                    "defaultRow": false,
+                                    "fields": [
+                                        {
+                                            "name": "Key ID",
+                                            "value": "encryption"
+                                        },
+                                        {
+                                            "name": "Key",
+                                            "value": "${oauth_accessTokenManagers_items_obATM_configuration_tables_rows_fields_Key_value}"
+                                        },
+                                        {
+                                            "name": "Encoding",
+                                            "value": "b64u"
+                                        }
+                                    ]
+                                }]
                             },
                             {
                                 "name": "Certificates",
@@ -1249,15 +1259,15 @@
                             },
                             {
                                 "name": "JWE Algorithm",
-                                "value": ""
+                                "value": "A256KW"
                             },
                             {
                                 "name": "JWE Content Encryption Algorithm",
-                                "value": ""
+                                "value": "A128CBC-HS256"
                             },
                             {
                                 "name": "Active Symmetric Encryption Key ID",
-                                "value": ""
+                                "value": "encryption"
                             },
                             {
                                 "name": "Asymmetric Encryption Key",
