@@ -33,7 +33,8 @@ services:
       - 9001:9001
     expose:
       - 443
-#    volumes:
+    volumes:
+       - ../server_profiles/pingaccess/local-config:/opt/in
 #      - ./licenses/pingaccess.lic:/opt/in/instance/conf/pingaccess.lic
     networks:
       - pingnet-internal
@@ -106,9 +107,9 @@ services:
       - "pingaccess:api.data-holder.local"
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
-#    volumes:
+    volumes:
+       - ../server_profiles/pingfederate/local-config:/opt/in
 #      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
-    #  - ./pingfederate-out:/opt/out
 
   pingdirectory:
     image: pingidentity/pingdirectory:8.2.0.3-edge
@@ -147,9 +148,8 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
+       - ../server_profiles/pingdirectory/local-config:/opt/in
 #       - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
-       - ../server_profiles/pingdirectory/local-config/instance:/opt/staging/instance
-       - ../server_profiles/pingdirectory/local-config/pd.profile:/opt/staging/pd.profile
     networks:
       - pingnet-internal
 
@@ -181,7 +181,8 @@ services:
       - "pingaccess:api.data-holder.local"
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
-#    volumes:
+    volumes:
+       - ../server_profiles/pingdatasync/local-config:/opt/in
 #      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
@@ -247,7 +248,8 @@ services:
     ports:
       - "9080:80"
       - "7443:443"
-#    volumes:
+    volumes:
+       - ../server_profiles/pingdatagovernance/local-config:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     networks:
       - pingnet-internal
@@ -275,10 +277,9 @@ services:
       - "8443:8443"
     networks:
       - pingnet-internal
-#    volumes:
+    volumes:
+       - ../server_profiles/pingdatagovernancepap/local-config:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
-    #  - ./pingdatagovernancepap-out:/opt/out
-    #  - ${HOME}/projects/devops/pingidentity-server-profiles/pdg-pap-integration/pingdatagovernancepap:/opt/in
 
   data-in-spa:
     image: cdrsandbox/datain-app:20210421
