@@ -1,0 +1,12 @@
+ID=00156109
+Product=PingDirectory
+Version=8.2
+EnforcementType=3
+Tier=Free
+IssueDate=2021-03-28
+ExpirationDate=2022-03-28
+DeploymentMethod=Docker
+Organization=Ping Identity Corporation
+Name=PingDirectory-8.2-Production
+SignCode=FF03
+Signature=302C02145E8214201442FC7C41D8A7F31D27CDF46CAEC43D02147888EFC289F3ED025E0B99287005B05D90F40995
