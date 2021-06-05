@@ -28,9 +28,9 @@ cp /tmp/product.lic ./PingDirectory.lic
 
 echo ${PING_IDENTITY_PASSWORD} > password-file
 
-cp -R ../../../server_profiles/pingdatasync/pd.profile .
+cp -R ../../../local_profiles/pingdatasync/pd.profile .
 cp ../../scripts/files/pds-setup-arguments.txt ./pd.profile/setup-arguments.txt
-cp ../../../server_profiles/pingdatasync/instance/lib/extensions/* ./lib/extensions
+cp ../../../local_profiles/pingdatasync/instance/lib/extensions/* ./lib/extensions
 
 export CERT_ALIAS=pingdatasync
 

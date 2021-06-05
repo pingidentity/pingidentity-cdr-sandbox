@@ -24,6 +24,7 @@ cp /tmp/product.lic ./pingfederate/server/default/conf/pingfederate.lic
 echo "Copying server profile..."
 
 cp -R ../../server_profiles/pingfederate/instance/* ./pingfederate/
+cp -R ../../local_profiles/pingfederate/instance/* ./pingfederate/
 
 echo "Substituting PF configuration..."
 while read line; do
