@@ -146,8 +146,10 @@ services:
       - "pingaccess:api.data-holder.local"
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
-#    volumes:
-#      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
+    volumes:
+#       - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
+       - ../server_profiles/pingdirectory/local-config/instance:/opt/staging/instance
+       - ../server_profiles/pingdirectory/local-config/pd.profile:/opt/staging/pd.profile
     networks:
       - pingnet-internal
 
