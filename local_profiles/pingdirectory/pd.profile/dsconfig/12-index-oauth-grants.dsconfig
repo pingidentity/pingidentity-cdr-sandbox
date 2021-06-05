@@ -1,0 +1,27 @@
+#
+# This is the necessary indices for pingfederate's grants
+#
+dsconfig create-local-db-index \
+    --backend-name appintegrations  \
+    --index-name accessGrantGuid  \
+    --set index-type:equality
+
+dsconfig create-local-db-index \
+    --backend-name appintegrations  \
+    --index-name accessGrantUniqueUserIdentifier  \
+    --set index-type:equality
+
+dsconfig create-local-db-index \
+    --backend-name appintegrations  \
+    --index-name accessGrantHashedRefreshTokenValue  \
+    --set index-type:equality
+
+dsconfig create-local-db-index \
+    --backend-name appintegrations  \
+    --index-name accessGrantClientId  \
+    --set index-type:equality
+
+dsconfig create-local-db-index \
+    --backend-name appintegrations  \
+    --index-name accessGrantExpires  \
+    --set index-type:ordering

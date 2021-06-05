@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+## Tell the browser not to render this page if it's contained within a frame.
+## This is to prevent Clickjacking attack.
+$HttpServletResponse.setHeader("X-Frame-Options", "DENY")
+
+<!-- template name: oauth.access.grants.page.template.html -->
+
+#set( $messageKeyPrefix = "oauth.access.grants.page.template." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+    <head>
+        <title>$templateMessages.getMessage($messageKeyPrefix, "title")</title>
+                <base href="$CurrentPingFedBaseURL"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <link rel="stylesheet" media="all" type="text/css" href="assets/css/main.css" />
+        <script type="text/javascript">
+                        function revokeAccess(guid)
+                        {
+                                document.grants.guid.value=guid;
+                                document.grants.submit();
+                        }
+                </script>
+    </head>
+
+    <body>
+
+        <div class="ping-container ping-large">
+
+            <!--
+            if there is a logo present in the 'company-logo' container,
+            then 'has-logo' class should be added to 'ping-header' container.
+            -->
+            <div class="ping-header">
+                <span class="company-logo"><!-- client company logo here --></span>
+                $templateMessages.getMessage($messageKeyPrefix, "title")
+            </div><!-- .ping-header -->
+
+            <div class="ping-body-container">
+
+                <div class="user-name">
+                        $templateMessages.getMessage($messageKeyPrefix, "info.1") <strong>$userName</strong>
+                    </div>
+
+                                <form action="$action" method="POST" name="grants">
+                                        <input type="hidden" name="cSRFToken" value="$cSRFToken"/>
+                                        <input type="hidden" name="guid"/>
+
+                                        <table class="ping-tabular">
+
+                        <thead>
+                            <tr>
+                                                        <th width="38%">$templateMessages.getMessage($messageKeyPrefix, "client")</th>
+                                                        <th width="38%">$templateMessages.getMessage($messageKeyPrefix, "issued")</th>
+                                                        <th width="19%">
+                                    <a class="ping-input-link refresh-link" href="$action">
+                                                $templateMessages.getMessage($messageKeyPrefix, "refresh")
+                                        </a>
+                                </th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                                                #set($str = 'test')
+                                                #set($mgmtFactory = $str.class.forName('org.sourceid.saml20.domain.mgmt.MgmtFactory'))
+
+                                                #foreach($grant in $grants)
+
+                                                        #set($grantAttributes = $mgmtFactory.getAccessGrantManager().getGrantAttributes($grant.guid))
+                                                        <tr >
+                                                                <td width="38%">
+                                                                    #set( $size = $grantAttributes.extendedGrantAttrs.size())
+                                                                    #set( $localClient = "" )
+                                                                    #set( $localClient = $grant.client )
+
+
+
+                                                                    #if (( $localClient.logoUrl ) && ( "$localClient.logoUrl" != "" ))
+                                                                        <img src="$escape.escape($localClient.logoUrl)"/><br/>
+                                                                    #end
+
+                                                                    <dl>
+                                                                                <dt>
+
+                                                                                     Data Recipient:
+                                                                                </dt>
+                                                                                <dd>
+                                                                                     $grant.client.extendedParams.get("org_name").elements.get(0)
+                                                                                </dd>
+                                    </br>
+                                                                                <dt>
+                                                                                     $templateMessages.getMessage($messageKeyPrefix, "description"):
+                                                                                </dt>
+                                                                                <dd>
+                                                                                        #if($localClient == "")
+                                                                                        $templateMessages.getMessage($messageKeyPrefix, "unknown")
+                                                                                    #{else}
+                                                                                    #if (($localClient.description) && ($localClient.description != ""))
+                                                                                        $templateMessages.getMessage($escape.escape($localClient.description))
+                                                                                    #end
+                                                                                    #end
+                                                                                </dd>
+                                    </br>
+                                                                    </dl>
+                                                                </td>
+                                                                <td width="38%">
+                                                                        <dl>
+                                                                                <dt>Accounts:</dt>
+                                                                                <dd>$grantAttributes.getExtendedGrantAttrs().get("SELECTED_ACCOUNTS")</dd> </br>
+
+                                                                                <dt>$templateMessages.getMessage($messageKeyPrefix, "scope"):</dt>
+                                                                                <dd>$grantAttributes.getExtendedGrantAttrs().get("APPROVED_SCOPES")</dd> </br>
+
+                                                                                <dt>$templateMessages.getMessage($messageKeyPrefix, "issued"):</dt>
+                                                                                <dd>$dateformat.format($grant.issued)</dd> </br>
+
+                                                                                <dt>Expires:</dt>
+                                                                                <dd>$dateformat.format($grant.expires)</dd> </br>
+                                                                                
+                                                                                <dt>$templateMessages.getMessage($messageKeyPrefix, "updated"):</dt>
+                                                                                <dd>$dateformat.format($grant.updated)</dd> </br>
+                                                                        </dl>
+                                                                </td>
+                                                                <td width ="19%">
+                                                                        <a class = "button inline" onclick="revokeAccess('$grant.guid');" >$templateMessages.getMessage($messageKeyPrefix, "revokeAccess")</a>
+                                                                </td>
+                                                        </tr>
+                                                #end
+                        </tbody>
+                                        </table>
+                                </form>
+            </div><!-- .ping-body-container -->
+
+            <div class="ping-footer-container">
+                    <div class="ping-footer">
+                        <div class="ping-credits"></div>
+            <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+                    </div> <!-- .ping-footer -->
+                </div> <!-- .ping-footer-container -->
+
+        </div><!-- .ping-container -->
+
+    </body>
+</html>

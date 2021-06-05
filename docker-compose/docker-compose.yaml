@@ -34,7 +34,7 @@ services:
     expose:
       - 443
     volumes:
-       - ../server_profiles/pingaccess/local-config:/opt/in
+       - ../local_profiles/pingaccess:/opt/in
 #      - ./licenses/pingaccess.lic:/opt/in/instance/conf/pingaccess.lic
     networks:
       - pingnet-internal
@@ -108,7 +108,7 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
-       - ../server_profiles/pingfederate/local-config:/opt/in
+       - ../local_profiles/pingfederate:/opt/in
 #      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
 
   pingdirectory:
@@ -148,7 +148,7 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
-       - ../server_profiles/pingdirectory/local-config:/opt/in
+       - ../local_profiles/pingdirectory:/opt/in
 #       - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
@@ -182,7 +182,7 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
-       - ../server_profiles/pingdatasync/local-config:/opt/in
+       - ../local_profiles/pingdatasync:/opt/in
 #      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
@@ -249,7 +249,7 @@ services:
       - "9080:80"
       - "7443:443"
     volumes:
-       - ../server_profiles/pingdatagovernance/local-config:/opt/in
+       - ../local_profiles/pingdatagovernance:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     networks:
       - pingnet-internal
@@ -278,7 +278,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ../server_profiles/pingdatagovernancepap/local-config:/opt/in
+       - ../local_profiles/pingdatagovernancepap:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
 
   data-in-spa:

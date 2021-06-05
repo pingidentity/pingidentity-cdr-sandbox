@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data request</title>
+	<link rel="icon" href="https://foundation.zurb.com/building-blocks/assets/consent/img/favicon/foundation-favicon.ico" type="image/x-icon">
+	<link href="assets/consent/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/consent/foundation.css">
+    <link rel="stylesheet" href="assets/consent/app.css">
+    <link rel="stylesheet" href="assets/consent/layout.css">
+    <link rel="stylesheet" href="assets/consent/card-user-profile.css">
+    <link rel="stylesheet" media="all" type="text/css" href="assets/css/main-sms-otp.css" />
+    <meta class="foundation-mq"></head>
+  </head>
+  <body>
+	<div class="grid-container" style="max-width: 600px">
+		<div class="row align-center medium-unstack">
+			<div class="medium-5 large-4 column">
+				<div class="card-user-profile">
+					<img class="card-user-profile-img" src="./assets/consent/background.png" alt="picture of space">
+					<div class="card-user-profile-content card-section">
+						<div class="card-user-profile-avatar">
+							<img src="./assets/consent/logo.jpg" alt="picture of yeti">
+						</div>
+						<h1>One Time Password</h1>
+						<p class="card-user-profile-info">Your One Time Password has been successfully validated.</p>
+						<div class="row align-center medium-unstack" style="background-color: #28c81c; text-align: center; padding: 50px; max-width: 300px;"><div class="medium-5 large-4 column"><img src="assets/images/icon-check.png" width="100"></div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>
+
+	<script src="./assets/consent/card-user-profile.js"></script>
+	<script type="text/javascript">
+		setTimeout(function() { window.open('$action', '_top') }, 2000);
+	</script>
+  </body>
+</html>

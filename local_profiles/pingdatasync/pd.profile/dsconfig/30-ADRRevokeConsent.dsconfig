@@ -1,0 +1,8 @@
+
+dsconfig create-sync-source --source-name PingDirectoryConsentStatusSource --type ping-identity --set base-dn:ou=accessgrants,o=appintegrations --set server:PingDirectory
+
+dsconfig create-sync-destination --destination-name RevokeADRConsentDestination --type third-party --set extension-class:com.pingidentity.ps.cdr.pds.RevokeDataRecipientConsentSyncDest --set extension-argument:client-storage-pingdirectory-external-server-id=PingDirectory --set extension-argument:client-storage-base-dn=ou=clients,o=appintegrations --set extension-argument:ignore-ssl-errors=true --set extension-argument:pingfederate-token-endpoint=https://pingfederate:9031/as/token.oauth2 --set extension-argument:pingfederate-client-id=dataholderClient --set extension-argument:pingfederate-client-secret=2FederateM0re --set extension-argument:data-holder-id=${DATAHOLDER_BRAND_ID}
+
+dsconfig create-sync-pipe --pipe-name ADRRevokeConsentPipe --set started:true --set sync-source:PingDirectoryConsentStatusSource --set sync-destination:RevokeADRConsentDestination --set include-changes-for-unchanged-attributes:true
+
+dsconfig create-sync-class --pipe-name ADRRevokeConsentPipe --class-name ADRRevokeConsentPipeClass --set auto-mapped-source-attribute:entryUUID --set auto-mapped-source-attribute:ping-consent-actor --set auto-mapped-source-attribute:ping-consent-audience --set auto-mapped-source-attribute:ping-consent-definition --set auto-mapped-source-attribute:ping-consent-state --set auto-mapped-source-attribute:ping-consent-subject --set attribute-synchronization-mode:all-attributes --set modifies-as-creates:false --set creates-as-modifies:false

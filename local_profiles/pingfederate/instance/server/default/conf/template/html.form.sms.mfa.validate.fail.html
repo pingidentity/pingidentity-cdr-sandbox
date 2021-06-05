@@ -1,0 +1,54 @@
+#*
+The server renders this HTML page in an end-user's browser
+when the user authenticates. It displays a spinner
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!--
+template name: pingid.sdk.authenticating.template.html
+version: 1.1
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SMS OTP Authentication</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" media="all" type="text/css" href="/assets/css/main-sms-otp.css" />
+</head>
+<body>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="dialog">
+			<div class="window disabled">
+        		  <div class="content" style="height: 300px;">
+					
+        		  <div class="window disabled">
+						
+					<div>
+							
+							<div class="text"><img src="/assets/images/icon-disabled.png" width="100"></div>
+						</div></div></div>
+	        </div>
+        </div>
+        <footer>
+                <div class="powered-by-pingidentity"></div>
+                <div class="copyright">Copyright &copy; 2003 - 2019 Ping Identity Corporation. All rights reserved.</div>
+        </footer>
+    </div>
+</div>
+
+<script type="text/javascript">
+	setTimeout(function() { window.open('$action', '_top') }, 2000);
+</script>
+
+</body>
+</html>

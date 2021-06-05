@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data request</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/consent/foundation.css">
+    <title>AnyBank - One Time Password</title>
+  </head>
+  <body class="consent">
+  <div class="container mt-3">
+    <div class="col-md-6 m-auto card p-5">
+
+	<form method="POST" action="$action" autocomplete="off">
+		<input type="hidden" name="$ok" value=""/>
+		<input type="hidden" name="CANCEL_BUTTON" value=""/>
+		<input type="hidden" name="CODE_VERIFICATION_STATE" value="true"/>
+		<input type="hidden" name="CSRF_TOKEN" value="$csrfToken"/>
+            <div class="row">
+                <div class="col text-center">
+                    <img src="assets/media/images/anybank-logo2.png">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <h1>One Time Password</h1>
+            </div>
+            <div class="row">
+            	Please provide your One Time Password to connect to AnyBank.
+            </div>
+			<div class="row">Accredited Consumer Data Right recipients will never ask you for your bank's password.</div>
+			<div class="row">A One Time Password has been sent to your mobile $obfuscatedSMS to securely connect to Data Holder. <strong>Please enter this below</strong></div>
+			#if($errorMessage)
+			<div style="color: red">
+			 $errorMessage
+			</div>
+			#end
+			<label>One Time Password
+				<input type="text" class="passcode-input" id="OTP" name="CODE_VERIFICATION_VALUE" value="" autocomplete="off" maxlength="6" autofocus>
+			</label>
+  			<div class="row">Didn't get the code? Go to the Data Holder website to update your contact details.</div>
+            <div class="row mt-5">
+                <button type="button" class="btn btn-dark p-3" onclick="postCancel();">Cancel</button>
+                <button type="button" class="btn btn-dark p-3 ml-auto main" onclick="postOk();">Continue</button>
+            </div>
+		</div>
+  	</div>
+
+	<script type="text/javascript">
+
+		function postOk() {
+			document.forms[0]['$ok'].value = 'clicked';
+			document.forms[0].submit();
+		}
+		function postCancel() {
+			document.forms[0]['CANCEL_BUTTON'].value = 'clicked';
+			document.forms[0].submit();
+		}
+
+	function postOnReturn(e)
+			{
+				var keycode;
+				if (window.event) keycode = window.event.keyCode;
+				else if (e) keycode = e.which;
+				else return true;
+
+				if (keycode == 13)
+				{
+					document.forms[0].submit();
+					return false;
+				}
+				else
+					return true;
+			 }
+	</script>
+	<script src="./assets/consent/card-user-profile.js"></script>
+		<input type="hidden" name="cSRFToken" value="$cSRFToken"/>
+		<input type="hidden" name="submitform" value="true"/>
+		<input type="hidden" name="approved" value=""/>
+	</form>
+  </body>
+</html>
