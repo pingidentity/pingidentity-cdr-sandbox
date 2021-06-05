@@ -24,6 +24,7 @@ cp /tmp/product.lic ./pingaccess/conf/pingaccess.lic
 echo "Copying server profile..."
 
 cp -R ../../server_profiles/pingaccess/instance/* ./pingaccess/
+cp -R ../../local_profiles/pingaccess/instance/* ./pingaccess/
 
 echo "Substituting PA configuration..."
 while read line; do
