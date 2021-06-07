@@ -1,0 +1,57 @@
+import java.util.Base64;
+import java.util.HashMap;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+if(!exc?.response && exc?.request?.method?.methodName && exc?.request?.method?.methodName.equalsIgnoreCase("post"))
+{
+  def postParams = exc?.request?.getPostParams();
+  if(!postParams)
+    postParams = new HashMap<String, String[]>();
+  
+  def clientAssertion = null;
+
+  if(postParams?.containsKey("client_assertion"))
+    clientAssertion = (postParams?.get("client_assertion"))[0];
+  
+  if(clientAssertion)
+  {
+    def audience = getJwtClaim(clientAssertion, "aud");
+
+    if(audience && !audience.contains("/as"))
+    {
+      def host = exc?.request?.header?.host;
+      if(!host)
+        host = "";
+      exc?.request?.header?.setHost(host.replace("-mtls", ""));
+    }
+  }
+}
+
+anything();
+
+
+String getJwtClaim(String jwt, String claim)
+{
+    def jwtSplit = jwt.split("\\.");
+    def jwtBodyEncoded = jwtSplit[1];
+    def jwtBody = new String(Base64.getDecoder().decode(jwtBodyEncoded));
+
+    return getClaimValue(jwtBody, claim);
+}
+
+String getClaimValue(String responseStr, String jsonPath)
+{
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode resultObject = mapper.readTree(responseStr);
+
+    String [] splitJsonPath = jsonPath.split("\\.");
+
+    for(String path : splitJsonPath)
+    {
+        resultObject = resultObject.findPath(path);
+    }
+
+    return resultObject.textValue();
+
+}
