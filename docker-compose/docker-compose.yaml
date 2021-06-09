@@ -155,7 +155,7 @@ services:
 
   pingdatasync:
     image: pingidentity/pingdatasync:edge
-    command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
+    command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/licenses
 #      - LICENSE_FILE_NAME=PingDirectory.lic
