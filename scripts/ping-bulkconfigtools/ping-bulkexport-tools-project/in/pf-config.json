@@ -25,7 +25,7 @@
       "apply-env-file": false
     },
     {
-      "search": "dc=data-holder,dc=com",
+      "search": "dc=dev,dc=open-banking,dc=aws,dc=com",
       "replace": "${USER_BASE_DN}",
       "apply-env-file": false
     },
@@ -50,12 +50,12 @@
       "apply-env-file": false
     },
     {
-      "search": "https://consent.data-holder.local:6443",
+      "search": "https://consent.dev.open-banking.aws.cua:6443",
       "replace": "${CONSENT_BASEURL}",
       "apply-env-file": false
     },
     {
-      "search": "https://consent.data-holder.local",
+      "search": "https://consent.dev.open-banking.aws.cua",
       "replace": "${CONSENT_BASEURL}",
       "apply-env-file": false
     },
@@ -70,7 +70,7 @@
       "apply-env-file": false
     },
     {
-      "search": "data-holder.local",
+      "search": "dev.open-banking.aws.cua",
       "replace": "${BASE_HOSTNAME}",
       "apply-env-file": false
     },

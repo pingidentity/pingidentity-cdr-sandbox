@@ -368,7 +368,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -991,8 +997,8 @@
                         ]
                     },
                     "selectionSettings": {"resourceUris": [
-                        "https://spa.${DR_BASE_HOSTNAME}",
-                        "https://spa.${DR_BASE_HOSTNAME}:6443"
+                        "https://spa.${BASE_HOSTNAME}",
+                        "https://spa.${BASE_HOSTNAME}:6443"
                     ]}
                 },
                 {
@@ -2733,8 +2739,8 @@
                 "rollRefreshTokenValues": true,
                 "allowedOrigins": [
                     "https://test.${BASE_HOSTNAME}",
-                    "https://spa.${DR_BASE_HOSTNAME}",
-                    "https://spa.${DR_BASE_HOSTNAME}:6443"
+                    "https://spa.${BASE_HOSTNAME}",
+                    "https://spa.${BASE_HOSTNAME}:6443"
                 ],
                 "allowUnidentifiedClientExtensionGrants": false,
                 "devicePollingInterval": 5,
