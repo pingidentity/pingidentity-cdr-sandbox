@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b29c1024-200e-454c-bd23-96bf6ef03a39",
+		"_postman_id": "d5df8413-2fe6-45e2-8c87-24be5cd6ac1c",
 		"name": "_Consent Flow v1.2",
 		"description": "20201211 - updated to work with CDR Register Test Harness v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -13,7 +13,7 @@
 					"name": "S001.T001 Create Brand/Software",
 					"item": [
 						{
-							"name": "S001.T001.001 - Create Brand/Software",
+							"name": "S001.T001.000 - Create Brand/Software",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -53,7 +53,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get\",\n                    \"scope\": \"openid bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
+									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get,https://httpbin.org.au/get\",\n                    \"scope\": \"openid bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\",\n                    \"sectorIdentifierUri\": \"{{cdr-register-testharness-host}}/cdr-register/v1/banking/data-recipients/brands/software-products/software-{{flowUUID-datarecipient}}/sector-uri-values\",\n                    \"sectorUriValues\": [\n                        \"https://httpbin.org/get\",\n                        \"https://httpbin.org.au/get\"\n                    ]\n                }\n            ]\n        }\n    ]\n\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/admin/model/dataRecipient",
@@ -64,6 +64,67 @@
 										"admin",
 										"model",
 										"dataRecipient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.001 - Call sector uri url",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get\",\n                    \"scope\": \"openid bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/cdr-register/v1/banking/data-recipients/brands/software-products/software-{{flowUUID-datarecipient}}/sector-uri-values",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"cdr-register",
+										"v1",
+										"banking",
+										"data-recipients",
+										"brands",
+										"software-products",
+										"software-{{flowUUID-datarecipient}}",
+										"sector-uri-values"
 									]
 								}
 							},
@@ -285,7 +346,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\",\n    \"https://httpbin.org.au/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",

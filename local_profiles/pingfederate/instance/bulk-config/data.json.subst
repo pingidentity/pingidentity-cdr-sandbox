@@ -368,7 +368,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -2547,6 +2553,16 @@
                     "multiValued": false
                 },
                 {
+                    "name": "legal_entity_id",
+                    "description": "legal_entity_id",
+                    "multiValued": false
+                },
+                {
+                    "name": "legal_entity_name",
+                    "description": "legal_entity_name",
+                    "multiValued": false
+                },
+                {
                     "name": "org_id",
                     "description": "org_id",
                     "multiValued": false
@@ -3470,6 +3486,11 @@
                 },
                 "clientMetadata": [
                     {
+                        "parameter": "legal_entity_id",
+                        "description": "legal_entity_id",
+                        "multiValued": false
+                    },
+                    {
                         "parameter": "client_uri",
                         "description": "client_uri",
                         "multiValued": false
@@ -3527,6 +3548,11 @@
                     {
                         "parameter": "org_name",
                         "description": "org_name",
+                        "multiValued": false
+                    },
+                    {
+                        "parameter": "legal_entity_name",
+                        "description": "legal_entity_name",
                         "multiValued": false
                     },
                     {
