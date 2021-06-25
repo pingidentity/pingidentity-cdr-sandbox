@@ -335,7 +335,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Proto\", \"https\");\nheader?.add(\"X-Forwarded-Port\", \"443\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n\tdef header = exc?.request?.header;\n\theader?.add(\"X-Forwarded-Proto\", \"https\");\n\theader?.add(\"X-Forwarded-Port\", \"443\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -353,7 +353,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Host\", \"mockregister.${BASE_HOSTNAME}\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n  def header = exc?.request?.header;\n  header?.add(\"X-Forwarded-Host\", \"mockregister.${BASE_HOSTNAME}\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -371,7 +371,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Host\", \"sso.${BASE_HOSTNAME}\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n  def header = exc?.request?.header;\n  header?.add(\"X-Forwarded-Host\", \"sso.${BASE_HOSTNAME}\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -498,7 +498,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Proto\", \"https\");\nheader?.add(\"X-Forwarded-Port\", \"443\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n  def header = exc?.request?.header;\n  header?.add(\"X-Forwarded-Proto\", \"https\");\n  header?.add(\"X-Forwarded-Port\", \"443\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
