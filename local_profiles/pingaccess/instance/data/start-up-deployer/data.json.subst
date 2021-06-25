@@ -580,6 +580,24 @@
                     "Agent",
                     "Site"
                 ]
+            },
+            {
+                "configuration": {
+                    "rejectionHandler": "7",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "errorResponseContentType": "text/html; charset=UTF-8",
+                    "groovyScript": "import java.util.Base64\nimport com.fasterxml.jackson.databind.JsonNode\nimport com.fasterxml.jackson.databind.ObjectMapper\n\ndef clientAssertion = getRequestParameter(exc?.request, \"client_assertion\");\ndef hasAssertion = (clientAssertion != null && !clientAssertion.trim().equals(\"\"));\n\nif(hasAssertion)\n{\n  def sub = getJwtClaimClaim(clientAssertion, \"sub\");\n  def iss = getJwtClaimClaim(clientAssertion, \"iss\");\n\n  if(iss == null || sub == null || !iss.equals(sub))\n    fail();\n  else\n    pass();\n}\nelse\n  pass();\n\nString getRequestParameter(def request, def paramName)\n{\n  def postParams = request?.getPostParams();\n  if(postParams == null)\n    return null;\n\n  if(!postParams.containsKey(paramName))\n    return null;\n\n  return postParams.get(paramName)[0];\n}\n\nString getJwtClaimClaim(String accessToken, String claim)\n{\n    def accessTokenSplit = accessToken.split(\"\\\\.\");\n    if(accessTokenSplit.length != 3)\n      return null;\n\n    def accessTokenBodyEncoded = accessTokenSplit[1];\n    def accessTokenBody = new String(Base64.getDecoder().decode(accessTokenBodyEncoded));\n\n    return getClaimValue(accessTokenBody, claim);\n}\n\nString getClaimValue(String responseStr, String jsonPath)\n{\n    ObjectMapper mapper = new ObjectMapper();\n    JsonNode resultObject = mapper.readTree(responseStr);\n\n    String [] splitJsonPath = jsonPath.split(\"\\\\.\");\n\n    for(String path : splitJsonPath)\n    {\n        resultObject = resultObject.findPath(path);\n    }\n\n    return resultObject.textValue();\n\n}",
+                    "rejectionHandlingEnabled": true,
+                    "errorResponseCode": 403,
+                    "errorResponseStatusMsg": "Forbidden"
+                },
+                "name": "CDR-ClientAssertion-IssuerValidation",
+                "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
+                "id": 23,
+                "supportedDestinations": [
+                    "Agent",
+                    "Site"
+                ]
             }
         ],
         "sites": [
@@ -947,6 +965,10 @@
                 "policy": {
                     "Web": [
                         {
+                            "id": 23,
+                            "type": "Rule"
+                        },
+                        {
                             "id": 3,
                             "type": "Rule"
                         },
@@ -980,6 +1002,10 @@
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 23,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -1056,6 +1082,10 @@
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 23,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -1225,6 +1255,10 @@
                 "policy": {
                     "Web": [
                         {
+                            "id": 23,
+                            "type": "Rule"
+                        },
+                        {
                             "id": 3,
                             "type": "Rule"
                         },
@@ -1310,10 +1344,16 @@
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
-                    "Web": [{
-                        "id": 8,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 23,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 8,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
                 },
                 "resourceType": "Standard",
@@ -1552,6 +1592,16 @@
                 "name": "Introspect-EnforceFail",
                 "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
                 "id": 6
+            },
+            {
+                "configuration": {
+                    "templateFile": "oauth.error.clientassertion.invalidissuer.json",
+                    "contentType": "JSON",
+                    "responseCode": 400
+                },
+                "name": "AccessDenied-ClientAssertion-InvalidIssuer",
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "id": 7
             }
         ],
         "acmeServers": [
