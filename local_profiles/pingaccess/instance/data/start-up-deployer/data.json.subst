@@ -300,8 +300,8 @@
                         "scope"
                     ],
                     "introspectionEndpoint": "/as/introspect.oauth2",
-                    "accessTokenEncryptionKeys": ["vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="],
-                    "encryptionJWK": "{\"kty\":\"oct\",\"k\":\"Fdh9u8rINxfivbrianbbVT1u232VQBZYKx1HGAGPt2I\"}",
+                    "encryptionKey": {"value": "${_data_rules_6_configuration_encryptionKey_value}"},
+                    "accessTokenEncryptionKeys": {"value": "${_data_rules_6_configuration_accessTokenEncryptionKeys_value}"},
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
@@ -572,7 +572,7 @@
                 "supportedDestinations": ["Site"]
             },
             {
-                "configuration": {"accessTokenEncryptionKeys": ["vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="]},
+                "configuration": {"accessTokenEncryptionKeys": {"value": "${_data_rules_22_configuration_accessTokenEncryptionKeys_value}"}},
                 "name": "CDR Access Token Decrypter",
                 "className": "com.pingidentity.tt.cdr.pa.CDRAccessTokenDecryptionRule",
                 "id": 22,
