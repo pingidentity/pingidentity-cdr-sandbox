@@ -305,7 +305,7 @@
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
-                "className": "com.pingidentity.tt.cdr.pa.CDRRefreshTokenProcessor",
+                "className": "com.pingidentity.ps.cdr.pa.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
                     "Agent",
@@ -574,7 +574,7 @@
             {
                 "configuration": {"accessTokenEncryptionKeys": {"value": "${_data_rules_22_configuration_accessTokenEncryptionKeys_value}"}},
                 "name": "CDR Access Token Decrypter",
-                "className": "com.pingidentity.tt.cdr.pa.CDRAccessTokenDecryptionRule",
+                "className": "com.pingidentity.ps.cdr.pa.CDRAccessTokenDecryptionRule",
                 "id": 22,
                 "supportedDestinations": [
                     "Agent",

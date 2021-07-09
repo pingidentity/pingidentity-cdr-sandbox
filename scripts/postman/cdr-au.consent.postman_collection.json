@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d5df8413-2fe6-45e2-8c87-24be5cd6ac1c",
+		"_postman_id": "92bece8b-5484-4840-b412-786258454564",
 		"name": "_Consent Flow v1.2",
 		"description": "20201211 - updated to work with CDR Register Test Harness v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1356,6 +1356,12 @@
 													"key": "kid",
 													"value": "{{softwareId}}",
 													"type": "text"
+												},
+												{
+													"key": "issuer",
+													"value": "xxx",
+													"type": "text",
+													"disabled": true
 												}
 											]
 										},
@@ -20159,6 +20165,10 @@
 		{
 			"key": "mtlsHeader",
 			"value": ""
+		},
+		{
+			"key": "consent-request-access-token-sub",
+			"value": "4b4a457a-1a7e-380a-a2fc-1412ae425ba9"
 		}
 	]
 }
