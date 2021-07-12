@@ -6,6 +6,11 @@ dsconfig create-policy-configuration-key \
     --key-name PINGFEDERATE_HOSTNAME  \
     --set "policy-configuration-value:${PINGFEDERATE_HOSTNAME}"
 
+dsconfig create-policy-configuration-key \
+    --key-name AttributeProcessing.SpEL.AllowedClasses  \
+    --set "policy-configuration-value:java.util.Base64"
+
 dsconfig set-policy-decision-service-prop \
     --set pdp-mode:${PDG_MODE}  \
-    --set "deployment-package</opt/staging/deploymentfiles/DeploymentPackage"
+    --set "deployment-package</opt/staging/deploymentfiles/DeploymentPackage" \
+    --set deployment-package-source-type:static-file
