@@ -11,7 +11,8 @@ dsconfig create-access-token-validator \
     --set enabled:true  \
     --set authorization-server:pingfederate-http  \
     --set client-id:pdgRsClient  \
-    --set client-secret:AABd19IuqowqLgY5AJdOKEMxOUJr078U1Dw=
+    --set client-secret:AABd19IuqowqLgY5AJdOKEMxOUJr078U1Dw= \
+    --set include-aud-parameter:true
 
 dsconfig create-token-resource-lookup-method \
     --validator-name "pingfederate token validator"  \
