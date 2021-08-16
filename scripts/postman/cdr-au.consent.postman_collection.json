@@ -1864,6 +1864,69 @@
 					"name": "S002.T004 Call Bank API's",
 					"item": [
 						{
+							"name": "S002.T004.000 - Configure APIs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ignore-account-headers\": false\n}"
+								},
+								"url": {
+									"raw": "{{dh-api-host-misc}}/configure",
+									"host": [
+										"{{dh-api-host-misc}}"
+									],
+									"path": [
+										"configure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S002.T004.001 - Get account list",
 							"event": [
 								{
@@ -14498,6 +14561,15 @@
 											"    pm.environment.set(\"consent-request-account-id\", accountId);",
 											"});",
 											"",
+											"",
+											"",
+											"pm.test(\"Test data redaction\", function () {",
+											"    var response = pm.response.json();",
+											"    var accountId = response.data.accounts[0].accountNumber;",
+											"    ",
+											"    pm.expect(accountId).to.eql(undefined);",
+											"});",
+											"",
 											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
 											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
 											"});"
@@ -14568,8 +14640,15 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Validate response status=403\", function () {",
-											"    pm.response.to.have.status(403);",
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Test data redaction\", function () {",
+											"    var response = pm.response.json();",
+											"    var accountId = response.data.accountNumber;",
+											"    ",
+											"    pm.expect(accountId).to.eql(undefined);",
 											"});",
 											"",
 											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
@@ -20169,6 +20248,10 @@
 		{
 			"key": "consent-request-access-token-sub",
 			"value": "4b4a457a-1a7e-380a-a2fc-1412ae425ba9"
+		},
+		{
+			"key": "dh-api-host-misc",
+			"value": "https://api.data-holder.local/misc"
 		}
 	]
 }
