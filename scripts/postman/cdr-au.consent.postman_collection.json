@@ -1864,69 +1864,6 @@
 					"name": "S002.T004 Call Bank API's",
 					"item": [
 						{
-							"name": "S002.T004.000 - Configure APIs",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"strictSSL": false
-							},
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "x-v",
-										"value": "1",
-										"type": "text"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									},
-									{
-										"key": "X-Certificate",
-										"value": "{{mtlsHeader}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"ignore-account-headers\": false\n}"
-								},
-								"url": {
-									"raw": "{{dh-api-host-misc}}/configure",
-									"host": [
-										"{{dh-api-host-misc}}"
-									],
-									"path": [
-										"configure"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "S002.T004.001 - Get account list",
 							"event": [
 								{
