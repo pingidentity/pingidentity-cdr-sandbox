@@ -2,8 +2,8 @@ kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
 resources:
+- cluster-service.yaml
 - pingfederate-admin.yaml
 - pingfederate-engine.yaml
-- cluster-service.yaml
 - configmap-admin.yaml
 - configmap-engine.yaml

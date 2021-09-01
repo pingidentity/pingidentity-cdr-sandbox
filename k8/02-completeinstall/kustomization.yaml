@@ -37,14 +37,14 @@ configMapGenerator:
 - name: pingfederate-admin-environment-variables
   behavior: replace
   envs:
-    - devops
+    - pf-devops
     - pf.env
     - env_vars.common
     - env_vars.pingfederate-admin
 - name: pingfederate-engine-environment-variables
   behavior: replace
   envs:
-    - devops
+    - pf-devops
     - env_vars.common
     - env_vars.pingfederate-engine
 - name: pingaccess-admin-environment-variables
@@ -125,81 +125,81 @@ patches:
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: cdrsandbox/sample-dr-client:20201214
+      value: cdrsandbox/sample-dr-client:20210315
 - target:
     kind: Deployment
     name: ^cdrregister$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: cdrsandbox/cdr-register-testharness:20201214
+      value: cdrsandbox/cdr-register-testharness:20210625
 - target:
     kind: Deployment
     name: ^pingfederate$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingfederate:10.2.0-edge
+      value: pingidentity/pingfederate:10.3.0-edge
 - target:
     kind: Deployment
     name: ^pingfederate-admin$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingfederate:10.2.0-edge
+      value: pingidentity/pingfederate:10.3.0-edge
 - target:
     kind: Deployment
     name: ^pingaccess$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingaccess:6.2.0-edge
+      value: cdrsandbox/pingaccess:latest
 - target:
     kind: Deployment
     name: ^pingaccess-admin$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingaccess:6.2.0-edge
+      value: cdrsandbox/pingaccess:latest
 - target:
     kind: Deployment
     name: ^pingdirectory$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingdirectory:8.2.0.0-edge
+      value: pingidentity/pingdirectory:8.3.0.0-edge
 - target:
     kind: Deployment
     name: ^pingdatasync$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingdatasync:8.2.0.0-edge
+      value: pingidentity/pingdatasync:8.3.0.0-edge
 - target:
     kind: StatefulSet
     name: ^pingdirectory$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingdirectory:8.2.0.0-edge
+      value: pingidentity/pingdirectory:8.3.0.0-edge
 - target:
     kind: Deployment
     name: ^pingdatagovernance$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingdatagovernance:8.2.0.0-edge
+      value: pingidentity/pingauthorize:8.3.0.0-edge
 - target:
     kind: Deployment
     name: ^pingdatagovernancepap$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: pingidentity/pingdatagovernancepap:8.2.0.0-edge
+      value: pingidentity/pingauthorizepap:8.3.0.0-edge
 - target:
     kind: Deployment
     name: ^mock-dh-api$
   patch: |-
     - op: replace
       path: /spec/template/spec/containers/0/image
-      value: cdrsandbox/mock-dh-apis:20210202
+      value: cdrsandbox/mock-dh-apis:20210813
