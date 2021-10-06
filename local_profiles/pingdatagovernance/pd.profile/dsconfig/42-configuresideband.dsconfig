@@ -1,0 +1,15 @@
+dsconfig create-sideband-api-shared-secret \
+    --secret-name PingAccess  \
+    --set shared-secret:AAAvHEgcXIF6mMNjhRngPIT5NhcmS3FDSYg=
+
+dsconfig set-http-servlet-extension-prop \
+    --extension-name "Sideband API"  \
+    --set shared-secrets:PingAccess
+
+dsconfig set-sideband-api-endpoint-prop \
+    --endpoint-name Default \
+    --add "access-token-validator:pingfederate token validator"
+
+dsconfig set-sideband-api-endpoint-prop \
+    --endpoint-name Default \
+    --add access-token-validator:mock-atv

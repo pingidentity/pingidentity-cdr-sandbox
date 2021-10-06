@@ -2,7 +2,7 @@
 #
 # Ping Identity DevOps - Docker Build Hooks
 #
-#- This is called after the start or restart sequence has finished and before 
+#- This is called after the start or restart sequence has finished and before
 #- the server within the container starts
 #
 
@@ -15,3 +15,24 @@ echo "INFO: OPERATIONAL_MODE: ${OPERATIONAL_MODE}"
 #    echo "INFO: Shutting down the eth0 interface..."
 #    ip link set eth0 down
 #fi
+
+FILES="/opt/out/instance/server/default/deploy/pf-*.jar
+/opt/out/instance/server/default/lib/pf-authn-api-sdk-*.jar"
+
+PREVIOUS_FILE=start
+PREVIOUS_FILE_RAW=start
+
+for f in $FILES
+do
+        COMPARE_FILE=$(echo "$f" | sed 's/[0-9]*//g' | sed 's/\.//g')
+        if [ $COMPARE_FILE == $PREVIOUS_FILE ]
+        then
+
+          echo "Removing old jar: $PREVIOUS_FILE_RAW"
+          rm $PREVIOUS_FILE_RAW
+        fi
+
+        PREVIOUS_FILE=$COMPARE_FILE
+        PREVIOUS_FILE_RAW=$f
+
+done

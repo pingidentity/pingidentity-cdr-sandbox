@@ -2547,6 +2547,16 @@
                     "multiValued": false
                 },
                 {
+                    "name": "legal_entity_id",
+                    "description": "legal_entity_id",
+                    "multiValued": false
+                },
+                {
+                    "name": "legal_entity_name",
+                    "description": "legal_entity_name",
+                    "multiValued": false
+                },
+                {
                     "name": "org_id",
                     "description": "org_id",
                     "multiValued": false
@@ -2717,7 +2727,8 @@
                         {"name": "AVAILABLE_ACCOUNTS"},
                         {"name": "CONSENTAPI_DEFINITION"},
                         {"name": "ISSUER"},
-                        {"name": "ADR_ORG_ID"}
+                        {"name": "ADR_ORG_ID"},
+                        {"name": "PERSISTENT_GRANT_LIFETIME"}
                     ]
                 },
                 "scopeGroups": [],
@@ -2769,7 +2780,7 @@
                 "bypassActivationCodeConfirmation": false,
                 "persistentGrantReuseGrantTypes": [],
                 "registeredAuthorizationPath": "",
-                "persistentGrantLifetime": 28,
+                "persistentGrantLifetime": 365,
                 "refreshTokenLength": 42,
                 "allowUnidentifiedClientROCreds": false,
                 "authorizationCodeTimeout": 30,
@@ -3006,6 +3017,7 @@
                         "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
+                        "PERSISTENT_GRANT_LIFETIME": {"source": {"type": "NO_MAPPING"}},
                         "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
                         "SELECTED_ACCOUNTS": {
@@ -3042,6 +3054,7 @@
                         "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
+                        "PERSISTENT_GRANT_LIFETIME": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
                         "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
                         "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
@@ -3101,6 +3114,10 @@
                         "ISSUER": {
                             "source": {"type": "EXPRESSION"},
                             "value": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(), #url=new java.net.URL(#requestString), #port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(), #url.getProtocol() + \"://\" + #url.getHost() + #port"
+                        },
+                        "PERSISTENT_GRANT_LIFETIME": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "(#this.get(\"sharingDurationExpiresAt\") == null || #this.get(\"sharingDurationExpiresAt\") == 0)?0:1"
                         },
                         "CONSENTAPI_DEFINITION": {
                             "source": {"type": "TEXT"},
@@ -3470,6 +3487,11 @@
                 },
                 "clientMetadata": [
                     {
+                        "parameter": "legal_entity_id",
+                        "description": "legal_entity_id",
+                        "multiValued": false
+                    },
+                    {
                         "parameter": "client_uri",
                         "description": "client_uri",
                         "multiValued": false
@@ -3527,6 +3549,11 @@
                     {
                         "parameter": "org_name",
                         "description": "org_name",
+                        "multiValued": false
+                    },
+                    {
+                        "parameter": "legal_entity_name",
+                        "description": "legal_entity_name",
                         "multiValued": false
                     },
                     {

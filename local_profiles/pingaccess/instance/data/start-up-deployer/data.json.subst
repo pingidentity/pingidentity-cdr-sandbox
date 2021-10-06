@@ -300,12 +300,12 @@
                         "scope"
                     ],
                     "introspectionEndpoint": "/as/introspect.oauth2",
-                    "accessTokenEncryptionKeys": ["vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="],
-                    "encryptionJWK": "{\"kty\":\"oct\",\"k\":\"Fdh9u8rINxfivbrianbbVT1u232VQBZYKx1HGAGPt2I\"}",
+                    "encryptionKey": {"value": "${_data_rules_6_configuration_encryptionKey_value}"},
+                    "accessTokenEncryptionKeys": {"value": "${_data_rules_6_configuration_accessTokenEncryptionKeys_value}"},
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
-                "className": "com.pingidentity.tt.cdr.pa.CDRRefreshTokenProcessor",
+                "className": "com.pingidentity.ps.cdr.pa.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
                     "Agent",
@@ -335,7 +335,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Proto\", \"https\");\nheader?.add(\"X-Forwarded-Port\", \"443\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n\tdef header = exc?.request?.header;\n\theader?.add(\"X-Forwarded-Proto\", \"https\");\n\theader?.add(\"X-Forwarded-Port\", \"443\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -353,7 +353,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Host\", \"mockregister.${BASE_HOSTNAME}\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n  def header = exc?.request?.header;\n  header?.add(\"X-Forwarded-Host\", \"mockregister.${BASE_HOSTNAME}\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -371,7 +371,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Host\", \"sso.${BASE_HOSTNAME}\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n  def header = exc?.request?.header;\n  header?.add(\"X-Forwarded-Host\", \"sso.${BASE_HOSTNAME}\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -498,7 +498,7 @@
                     "rejectionHandler": "1",
                     "errorResponseTemplateFile": "policy.error.page.template.html",
                     "errorResponseContentType": "text/html; charset=UTF-8",
-                    "groovyScript": "def header = exc?.request?.header;\nheader?.add(\"X-Forwarded-Proto\", \"https\");\nheader?.add(\"X-Forwarded-Port\", \"443\");\nanything(\"Custom header set into request\");",
+                    "groovyScript": "if(!exc?.response)\n{\n  def header = exc?.request?.header;\n  header?.add(\"X-Forwarded-Proto\", \"https\");\n  header?.add(\"X-Forwarded-Port\", \"443\");\n}\nanything(\"Custom header set into request\");",
                     "rejectionHandlingEnabled": true,
                     "errorResponseCode": 403,
                     "errorResponseStatusMsg": "Forbidden"
@@ -572,10 +572,28 @@
                 "supportedDestinations": ["Site"]
             },
             {
-                "configuration": {"accessTokenEncryptionKeys": ["vSYD3aAc7qegvU9OzA9wRCjEVVlpbh4D0l5g97BJdZ0="]},
+                "configuration": {"accessTokenEncryptionKeys": {"value": "${_data_rules_22_configuration_accessTokenEncryptionKeys_value}"}},
                 "name": "CDR Access Token Decrypter",
-                "className": "com.pingidentity.tt.cdr.pa.CDRAccessTokenDecryptionRule",
+                "className": "com.pingidentity.ps.cdr.pa.CDRAccessTokenDecryptionRule",
                 "id": 22,
+                "supportedDestinations": [
+                    "Agent",
+                    "Site"
+                ]
+            },
+            {
+                "configuration": {
+                    "rejectionHandler": "7",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "errorResponseContentType": "text/html; charset=UTF-8",
+                    "groovyScript": "import java.util.Base64\nimport com.fasterxml.jackson.databind.JsonNode\nimport com.fasterxml.jackson.databind.ObjectMapper\n\ndef clientAssertion = getRequestParameter(exc?.request, \"client_assertion\");\ndef hasAssertion = (clientAssertion != null && !clientAssertion.trim().equals(\"\"));\n\nif(hasAssertion)\n{\n  def sub = getJwtClaimClaim(clientAssertion, \"sub\");\n  def iss = getJwtClaimClaim(clientAssertion, \"iss\");\n\n  if(iss == null || sub == null || !iss.equals(sub))\n    fail();\n  else\n    pass();\n}\nelse\n  pass();\n\nString getRequestParameter(def request, def paramName)\n{\n  def postParams = request?.getPostParams();\n  if(postParams == null)\n    return null;\n\n  if(!postParams.containsKey(paramName))\n    return null;\n\n  return postParams.get(paramName)[0];\n}\n\nString getJwtClaimClaim(String accessToken, String claim)\n{\n    def accessTokenSplit = accessToken.split(\"\\\\.\");\n    if(accessTokenSplit.length != 3)\n      return null;\n\n    def accessTokenBodyEncoded = accessTokenSplit[1];\n    def accessTokenBody = new String(Base64.getDecoder().decode(accessTokenBodyEncoded));\n\n    return getClaimValue(accessTokenBody, claim);\n}\n\nString getClaimValue(String responseStr, String jsonPath)\n{\n    ObjectMapper mapper = new ObjectMapper();\n    JsonNode resultObject = mapper.readTree(responseStr);\n\n    String [] splitJsonPath = jsonPath.split(\"\\\\.\");\n\n    for(String path : splitJsonPath)\n    {\n        resultObject = resultObject.findPath(path);\n    }\n\n    return resultObject.textValue();\n\n}",
+                    "rejectionHandlingEnabled": true,
+                    "errorResponseCode": 403,
+                    "errorResponseStatusMsg": "Forbidden"
+                },
+                "name": "CDR-ClientAssertion-IssuerValidation",
+                "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
+                "id": 23,
                 "supportedDestinations": [
                     "Agent",
                     "Site"
@@ -947,6 +965,10 @@
                 "policy": {
                     "Web": [
                         {
+                            "id": 23,
+                            "type": "Rule"
+                        },
+                        {
                             "id": 3,
                             "type": "Rule"
                         },
@@ -980,6 +1002,10 @@
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 23,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -1056,6 +1082,10 @@
                 "applicationId": 1,
                 "policy": {
                     "Web": [
+                        {
+                            "id": 23,
+                            "type": "Rule"
+                        },
                         {
                             "id": 3,
                             "type": "Rule"
@@ -1225,6 +1255,10 @@
                 "policy": {
                     "Web": [
                         {
+                            "id": 23,
+                            "type": "Rule"
+                        },
+                        {
                             "id": 3,
                             "type": "Rule"
                         },
@@ -1310,10 +1344,16 @@
                 "unprotected": false,
                 "applicationId": 1,
                 "policy": {
-                    "Web": [{
-                        "id": 8,
-                        "type": "Rule"
-                    }],
+                    "Web": [
+                        {
+                            "id": 23,
+                            "type": "Rule"
+                        },
+                        {
+                            "id": 8,
+                            "type": "Rule"
+                        }
+                    ],
                     "API": []
                 },
                 "resourceType": "Standard",
@@ -1552,6 +1592,16 @@
                 "name": "Introspect-EnforceFail",
                 "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
                 "id": 6
+            },
+            {
+                "configuration": {
+                    "templateFile": "oauth.error.clientassertion.invalidissuer.json",
+                    "contentType": "JSON",
+                    "responseCode": 400
+                },
+                "name": "AccessDenied-ClientAssertion-InvalidIssuer",
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "id": 7
             }
         ],
         "acmeServers": [

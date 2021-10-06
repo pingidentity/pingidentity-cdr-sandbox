@@ -9,11 +9,11 @@ spec:
   clusterIP: None
   ports:
   - name: ldaps
-    port: 636
+    port: 1636
   - name: ssl
-    port: 443
+    port: 1443
   - name: ldap
-    port: 389
+    port: 1389
   selector:
     role: pingdirectory
 ---

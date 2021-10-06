@@ -1,4 +1,4 @@
-SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+#SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
 SERVER_PROFILE_PATH=server_profiles/pingdatasync
 SERVER_PROFILE_BRANCH=${CDR_SERVER_PROFILE_BRANCH}
 MAX_HEAP_SIZE=768m
@@ -7,4 +7,3 @@ ORCHESTRATION_TYPE=KUBERNETES
 K8S_STATEFUL_SET_NAME=pingdatasync
 K8S_STATEFUL_SET_SERVICE_NAME=pingdatasync
 TAIL_LOG_FILES=""
-
