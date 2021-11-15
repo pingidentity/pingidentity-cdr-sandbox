@@ -40,7 +40,7 @@ services:
       - pingnet-internal
 
   agentless-consentapp:
-    image: cdrsandbox/agentless-consentapp:20210916
+    image: cdrsandbox/agentless-consentapp:20211116_3
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -82,7 +82,7 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: pingidentity/pingfederate:10.3.0-edge
+    image: pingidentity/pingfederate:10.3.2-edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/in/instance/server/default/conf
