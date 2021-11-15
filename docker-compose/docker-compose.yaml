@@ -40,7 +40,7 @@ services:
       - pingnet-internal
 
   agentless-consentapp:
-    image: cdrsandbox/agentless-consentapp:20210916
+    image: cdrsandbox/agentless-consentapp:20211116_3
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
