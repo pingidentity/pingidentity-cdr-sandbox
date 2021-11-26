@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "10.2.2.0"},
+    "metadata": {"pfVersion": "10.3.2.0"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://localhost:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://3c59745022f7:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -216,6 +216,7 @@
             "items": [{
                 "password": "${keyPairs_sslServer_items_wxom4n4v8ayu7yx47eqbj8bl0_wxom4n4v8ayu7yx47eqbj8bl0_password}",
                 "fileData": "${keyPairs_sslServer_items_wxom4n4v8ayu7yx47eqbj8bl0_wxom4n4v8ayu7yx47eqbj8bl0_fileData}",
+                "format": "PKCS12",
                 "id": "wxom4n4v8ayu7yx47eqbj8bl0"
             }],
             "resourceType": "/keyPairs/sslServer"
@@ -247,6 +248,7 @@
             "items": [{
                 "password": "${keyPairs_signing_items_85nv5o5p9pgodsne3w47n5hua_85nv5o5p9pgodsne3w47n5hua_password}",
                 "fileData": "${keyPairs_signing_items_85nv5o5p9pgodsne3w47n5hua_85nv5o5p9pgodsne3w47n5hua_fileData}",
+                "format": "PKCS12",
                 "id": "85nv5o5p9pgodsne3w47n5hua"
             }],
             "resourceType": "/keyPairs/signing"
@@ -267,6 +269,24 @@
                 }
             }],
             "resourceType": "/keyPairs/oauthOpenIdConnect"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "pingOneConnectionId": "${PINGONE_CONNECTION_ID}",
+                "environmentId": "${PINGONE_CONNECTION_ENVIRONMENTID}",
+                "organizationName": "${PINGONE_CONNECTION_ORGANIZATIONNAME}",
+                "credential": "${PINGONE_CONNECTION_CREDENTIAL}",
+                "name": "${PINGONE_CONNECTION_ORGANIZATIONNAME}",
+                "active": true,
+                "credentialId": "${PINGONE_CONNECTION_CREDENTIALID}",
+                "pingOneAuthenticationApiEndpoint": "${PINGONE_CONNECTION_AUTHENDPOINT}",
+                "id": "9yzZsdl5ZRPiexqJ1MQjAq",
+                "creationDate": "2021-11-26T00:09:44.503Z",
+                "region": "${PINGONE_CONNECTION_REGION}",
+                "pingOneManagementApiEndpoint": "${PINGONE_CONNECTION_APIENDPOINT}"
+            }],
+            "resourceType": "/pingOneConnections"
         },
         {
             "operationType": "SAVE",
@@ -368,7 +388,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1766,6 +1792,10 @@
                                 "value": "NONE"
                             },
                             {
+                                "name": "Logout Service Mode",
+                                "value": "NONE"
+                            },
+                            {
                                 "name": "Prefix Referenced Attributes",
                                 "value": "true"
                             },
@@ -2082,6 +2112,30 @@
                             {
                                 "name": "CAPTCHA for Username recovery",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Password Reset One-Time Link Email Template",
+                                "value": "message-template-forgot-password-link.html"
+                            },
+                            {
+                                "name": "Password Reset One-Time Password Email Template",
+                                "value": "message-template-forgot-password-code.html"
+                            },
+                            {
+                                "name": "Password Reset Complete Email Template",
+                                "value": "message-template-forgot-password-complete.html"
+                            },
+                            {
+                                "name": "Password Reset Failed Email Template",
+                                "value": "message-template-forgot-password-failed.html"
+                            },
+                            {
+                                "name": "Account Unlock Email Template",
+                                "value": "message-template-account-unlock-complete.html"
+                            },
+                            {
+                                "name": "Allowed OTP Character Set",
+                                "value": "23456789BCDFGHJKMNPQRSTVWXZbcdfghjkmnpqrstvwxz"
                             }
                         ]
                     },
@@ -2355,6 +2409,30 @@
                             {
                                 "name": "CAPTCHA for Username recovery",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Password Reset One-Time Link Email Template",
+                                "value": "message-template-forgot-password-link.html"
+                            },
+                            {
+                                "name": "Password Reset One-Time Password Email Template",
+                                "value": "message-template-forgot-password-code.html"
+                            },
+                            {
+                                "name": "Password Reset Complete Email Template",
+                                "value": "message-template-forgot-password-complete.html"
+                            },
+                            {
+                                "name": "Password Reset Failed Email Template",
+                                "value": "message-template-forgot-password-failed.html"
+                            },
+                            {
+                                "name": "Account Unlock Email Template",
+                                "value": "message-template-account-unlock-complete.html"
+                            },
+                            {
+                                "name": "Allowed OTP Character Set",
+                                "value": "23456789BCDFGHJKMNPQRSTVWXZbcdfghjkmnpqrstvwxz"
                             }
                         ]
                     },
@@ -2495,6 +2573,196 @@
                                 "pseudonym": false
                             }
                         ]
+                    }
+                },
+                {
+                    "attributeMapping": {
+                        "attributeContractFulfillment": {
+                            "access_token": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "access_token"
+                            },
+                            "pingone.mfa.status": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "pingone.mfa.status"
+                            },
+                            "id_token": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "id_token"
+                            },
+                            "pingone.mfa.status.reason": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "pingone.mfa.status.reason"
+                            },
+                            "username": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "username"
+                            }
+                        },
+                        "attributeSources": [],
+                        "issuanceCriteria": {"conditionalCriteria": []}
+                    },
+                    "configuration": {
+                        "tables": [],
+                        "fields": [
+                            {
+                                "name": "PingOne Environment",
+                                "value": "9yzZsdl5ZRPiexqJ1MQjAq|${PINGONE_CONNECTION_ENVIRONMENTID}"
+                            },
+                            {
+                                "name": "PingOne Population",
+                                "value": "${PINGONE_MFA_POPULATIONID}"
+                            },
+                            {
+                                "name": "Application",
+                                "value": "${PINGONE_MFA_CLIENTID}"
+                            },
+                            {
+                                "name": "PingOne Authentication Policy",
+                                "value": "${PINGONE_MFA_MFAPOLICY}"
+                            },
+                            {
+                                "name": "PingOne Management API",
+                                "value": "https://api.pingone.com"
+                            },
+                            {
+                                "name": "PingOne Authentication API",
+                                "value": "https://auth.pingone.com"
+                            },
+                            {
+                                "name": "Notification Template Variant Override",
+                                "value": ""
+                            },
+                            {
+                                "name": "Test Username",
+                                "value": ""
+                            },
+                            {
+                                "name": "HTML Template Prefix",
+                                "value": "pingone-mfa"
+                            },
+                            {
+                                "name": "Messages Files",
+                                "value": "pingone-mfa-messages"
+                            },
+                            {
+                                "name": "Prompt Users to Set Up MFA",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Allow Users to Skip MFA Setup",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Allow Users to Add Additional Authentication Methods",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Provision Users and Authentication Methods",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Update Authentication Methods",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Username Attribute",
+                                "value": ""
+                            },
+                            {
+                                "name": "SMS Attribute",
+                                "value": "sms"
+                            },
+                            {
+                                "name": "Voice Attribute",
+                                "value": "voice"
+                            },
+                            {
+                                "name": "Email Attribute",
+                                "value": "email"
+                            },
+                            {
+                                "name": "DEFAULT AUTHENTICATION METHOD FOR PROVISIONED USERS",
+                                "value": "SMS"
+                            },
+                            {
+                                "name": "User Not Found Failure Mode",
+                                "value": "Block user"
+                            },
+                            {
+                                "name": "Service Unavailable Failure Mode",
+                                "value": "Bypass authentication"
+                            },
+                            {
+                                "name": "Change Device",
+                                "value": "Allow"
+                            },
+                            {
+                                "name": "Show Success Screens",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Show Error Screens",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Show Timeout Screens",
+                                "value": "true"
+                            },
+                            {
+                                "name": "API Request Timeout",
+                                "value": "12000"
+                            },
+                            {
+                                "name": "Proxy Settings",
+                                "value": "System Defaults"
+                            },
+                            {
+                                "name": "Custom Proxy Host",
+                                "value": ""
+                            },
+                            {
+                                "name": "Custom Proxy Port",
+                                "value": ""
+                            }
+                        ]
+                    },
+                    "name": "PingOne MFA",
+                    "id": "pingOneMFAAdapter",
+                    "pluginDescriptorRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter",
+                        "id": "com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter"
+                    },
+                    "attributeContract": {
+                        "maskOgnlValues": false,
+                        "coreAttributes": [
+                            {
+                                "masked": false,
+                                "name": "access_token",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
+                                "name": "pingone.mfa.status",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
+                                "name": "id_token",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
+                                "name": "pingone.mfa.status.reason",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
+                                "name": "username",
+                                "pseudonym": true
+                            }
+                        ],
+                        "extendedAttributes": []
                     }
                 }
             ],
@@ -2694,6 +2962,20 @@
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/pingOneMFAAdapter",
+                            "id": "pingOneMFAAdapter"
+                        }
+                    },
+                    "id": "ompcoAh6hllNvgjJ5FKCnEXqI",
+                    "persistent": false,
+                    "enableSessions": false
+                },
+                {
+                    "authnContextSensitive": false,
+                    "timeoutDisplayUnit": "MINUTES",
+                    "authenticationSource": {
+                        "type": "IDP_ADAPTER",
+                        "sourceRef": {
                             "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/ADRDataInSelector",
                             "id": "ADRDataInSelector"
                         }
@@ -2752,6 +3034,7 @@
                 "persistentGrantIdleTimeoutTimeUnit": "DAYS",
                 "userAuthorizationUrl": "",
                 "pendingAuthorizationTimeout": 600,
+                "disallowPlainPKCE": false,
                 "exclusiveScopeGroups": [{
                     "name": "DEEPTHOUGHT:ADMIN",
                     "description": "Provide all Deepthought admin rights",
@@ -3478,6 +3761,7 @@
                     "requireProofKeyForCodeExchange": true,
                     "rotateRegistrationAccessToken": false,
                     "restrictedCommonScopes": [],
+                    "refreshTokenRollingIntervalType": "SERVER_DEFAULT",
                     "cibaPollingInterval": 3,
                     "persistentGrantExpirationType": "SERVER_DEFAULT",
                     "restrictToDefaultAccessTokenManager": true,
@@ -4230,6 +4514,196 @@
                                             "context": "Fail",
                                             "type": "DONE"
                                         }},
+                                        {
+                                            "children": [
+                                                {"action": {
+                                                    "context": "Fail",
+                                                    "type": "DONE"
+                                                }},
+                                                {
+                                                    "children": [
+                                                        {"action": {
+                                                            "context": "Fail",
+                                                            "type": "DONE"
+                                                        }},
+                                                        {
+                                                            "children": [
+                                                                {"action": {
+                                                                    "context": "Fail",
+                                                                    "type": "DONE"
+                                                                }},
+                                                                {"action": {
+                                                                    "attributeMapping": {
+                                                                        "attributeContractFulfillment": {
+                                                                            "cdr_consent_id": {
+                                                                                "source": {
+                                                                                    "id": "consentAgentlessAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "consent_id"
+                                                                            },
+                                                                            "subject": {
+                                                                                "source": {
+                                                                                    "id": "identityFirstAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "subject"
+                                                                            },
+                                                                            "result": {
+                                                                                "source": {"type": "TEXT"},
+                                                                                "value": "approve"
+                                                                            },
+                                                                            "acr": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_requestedACR"
+                                                                            },
+                                                                            "cdrArrangementId": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_cdrArrangementId"
+                                                                            },
+                                                                            "sharingDurationExpiresAt": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_sharingDurationExpiresAt"
+                                                                            },
+                                                                            "customerRef": {
+                                                                                "source": {
+                                                                                    "id": "identityFirstAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "entryUUID"
+                                                                            },
+                                                                            "SAML_AUTHN_CTX": {"source": {"type": "NO_MAPPING"}},
+                                                                            "accounts": {
+                                                                                "source": {
+                                                                                    "id": "consentAgentlessAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "accounts"
+                                                                            },
+                                                                            "accounts_available": {"source": {"type": "NO_MAPPING"}},
+                                                                            "idtokenClaims": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_idtoken"
+                                                                            },
+                                                                            "scopes": {
+                                                                                "source": {
+                                                                                    "id": "consentAgentlessAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "scopes"
+                                                                            },
+                                                                            "userinfoClaims": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_userinfo"
+                                                                            }
+                                                                        },
+                                                                        "attributeSources": [],
+                                                                        "issuanceCriteria": {"conditionalCriteria": []}
+                                                                    },
+                                                                    "authenticationPolicyContractRef": {
+                                                                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                                                                        "id": "iQwSYDdExcmJaYk6"
+                                                                    },
+                                                                    "context": "Success",
+                                                                    "type": "APC_MAPPING"
+                                                                }}
+                                                            ],
+                                                            "action": {
+                                                                "authenticationSource": {
+                                                                    "type": "IDP_ADAPTER",
+                                                                    "sourceRef": {
+                                                                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter",
+                                                                        "id": "consentAgentlessAdapter"
+                                                                    }
+                                                                },
+                                                                "context": "Success",
+                                                                "inputUserIdMapping": {
+                                                                    "source": {
+                                                                        "id": "identityFirstAdapter",
+                                                                        "type": "ADAPTER"
+                                                                    },
+                                                                    "value": "entryUUID"
+                                                                },
+                                                                "userIdAuthenticated": true,
+                                                                "type": "AUTHN_SOURCE"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "action": {
+                                                        "authenticationSource": {
+                                                            "type": "IDP_ADAPTER",
+                                                            "sourceRef": {
+                                                                "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/pingOneMFAAdapter",
+                                                                "id": "pingOneMFAAdapter"
+                                                            }
+                                                        },
+                                                        "context": "Success",
+                                                        "inputUserIdMapping": {
+                                                            "source": {
+                                                                "id": "identityFirstAdapter",
+                                                                "type": "ADAPTER"
+                                                            },
+                                                            "value": "subject"
+                                                        },
+                                                        "userIdAuthenticated": true,
+                                                        "type": "AUTHN_SOURCE"
+                                                    }
+                                                }
+                                            ],
+                                            "action": {
+                                                "authenticationSource": {
+                                                    "type": "IDP_ADAPTER",
+                                                    "sourceRef": {
+                                                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
+                                                        "id": "clickatellAdapter"
+                                                    }
+                                                },
+                                                "context": "Success",
+                                                "inputUserIdMapping": {
+                                                    "source": {
+                                                        "id": "identityFirstAdapter",
+                                                        "type": "ADAPTER"
+                                                    },
+                                                    "value": "mobile"
+                                                },
+                                                "userIdAuthenticated": true,
+                                                "type": "AUTHN_SOURCE"
+                                            }
+                                        }
+                                    ],
+                                    "action": {
+                                        "authenticationSource": {
+                                            "type": "IDP_ADAPTER",
+                                            "sourceRef": {
+                                                "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
+                                                "id": "identityFirstAdapter"
+                                            }
+                                        },
+                                        "context": "LOA3",
+                                        "type": "AUTHN_SOURCE"
+                                    }
+                                },
+                                {
+                                    "children": [
+                                        {"action": {
+                                            "context": "Fail",
+                                            "type": "DONE"
+                                        }},
                                         {"action": {
                                             "attributeMapping": {
                                                 "attributeContractFulfillment": {
@@ -4293,12 +4767,20 @@
                                 },
                                 "attributeRules": {
                                     "fallbackToSuccess": true,
-                                    "items": [{
-                                        "result": "LOA2",
-                                        "condition": "EQUALS_CASE_INSENSITIVE",
-                                        "expectedValue": "CA",
-                                        "attributeName": "caValue"
-                                    }]
+                                    "items": [
+                                        {
+                                            "result": "LOA2",
+                                            "condition": "EQUALS_CASE_INSENSITIVE",
+                                            "expectedValue": "CA",
+                                            "attributeName": "caValue"
+                                        },
+                                        {
+                                            "result": "LOA3",
+                                            "condition": "EQUALS_CASE_INSENSITIVE",
+                                            "expectedValue": "SCA",
+                                            "attributeName": "caValue"
+                                        }
+                                    ]
                                 },
                                 "type": "AUTHN_SOURCE"
                             }

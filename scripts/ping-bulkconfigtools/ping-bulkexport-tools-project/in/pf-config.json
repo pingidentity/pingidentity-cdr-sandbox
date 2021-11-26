@@ -10,13 +10,20 @@
           "replace-name": "PING_IDENTITY_PASSWORD",
           "is-apply-envfile": false
         },
-	{
-	  "config-names":[
-	    "idp_adapters_items_consentAgentlessAdapter_configuration_fields_Pass_Phrase_value"
-	  ],
-  	  "replace-name": "CONSENT_APP_pf_agentless_password",
-  	  "is-apply-envfile": false
-  	}
+      	{
+      	  "config-names":[
+      	    "idp_adapters_items_consentAgentlessAdapter_configuration_fields_Pass_Phrase_value"
+      	  ],
+        	"replace-name": "CONSENT_APP_pf_agentless_password",
+        	"is-apply-envfile": false
+        },
+        {
+  	    "config-names":[
+  	        "pingOneConnections_items_9yzZsdl5ZRPiexqJ1MQjAq_9yzZsdl5ZRPiexqJ1MQjAq_credential"
+  	      ],
+    	    "replace-name": "PINGONE_CONNECTION_CREDENTIAL",
+    	    "is-apply-envfile": false
+    	  }
   ],
   "search-replace":[
     {
@@ -83,6 +90,56 @@
       "search": "pingdirectory:3443",
       "replace": "pingdirectory:443",
       "apply-env-file": false
+    },
+    {
+      "search": "fcc657cf-8108-4937-879f-dadad327a573",
+      "replace": "${PINGONE_CONNECTION_ID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "7d634342-8625-4a01-8a40-562cc7a10a2f",
+      "replace": "${PINGONE_CONNECTION_ENVIRONMENTID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "internal_tamtran_571214217",
+      "replace": "${PINGONE_CONNECTION_ORGANIZATIONNAME}",
+      "apply-env-file": false
+    },
+    {
+      "search": "31094895-2f4f-47f6-8f1a-faf3f76915da",
+      "replace": "${PINGONE_CONNECTION_CREDENTIALID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "https://auth.pingone.asia",
+      "replace": "${PINGONE_CONNECTION_AUTHENDPOINT}",
+      "apply-env-file": false
+    },
+    {
+      "search": "https://api.pingone.asia",
+      "replace": "${PINGONE_CONNECTION_APIENDPOINT}",
+      "apply-env-file": false
+    },
+    {
+      "search": "Asia-Pacific",
+      "replace": "${PINGONE_CONNECTION_REGION}",
+      "apply-env-file": false
+    },
+    {
+      "search": "d7fb8671-e746-4b3e-8de5-b873625dcebd",
+      "replace": "${PINGONE_MFA_POPULATIONID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "c20cde76-0873-4e41-9f54-d3bdc1795b33",
+      "replace": "${PINGONE_MFA_CLIENTID}",
+      "apply-env-file": false
+    },
+    {
+      "search": "Multi_Factor",
+      "replace": "${PINGONE_MFA_MFAPOLICY}",
+      "apply-env-file": false
     }
   ],
   "remove-config":[
@@ -100,6 +157,13 @@
       "parameter-name": "value",
       "unique-identifiers": [
           "name=Issuer"
+      ]
+    },
+    {
+      "parameter-name": "encryptedCredential",
+      "replace-name": "credential",
+      "unique-identifiers": [
+          "id"
       ]
     },
     {
