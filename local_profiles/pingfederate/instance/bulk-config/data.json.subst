@@ -2594,6 +2594,10 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "pingone.mfa.status.reason"
                             },
+                            "isSuccess": {
+                                "source": {"type": "EXPRESSION"},
+                                "value": "@java.lang.String@valueOf(#this.get(\"access_token\") != null && !#this.get(\"access_token\").toString().trim().equals(\"\"))"
+                            },
                             "username": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "username"
@@ -2691,7 +2695,7 @@
                             },
                             {
                                 "name": "Service Unavailable Failure Mode",
-                                "value": "Bypass authentication"
+                                "value": "Block user"
                             },
                             {
                                 "name": "Change Device",
@@ -2762,7 +2766,11 @@
                                 "pseudonym": true
                             }
                         ],
-                        "extendedAttributes": []
+                        "extendedAttributes": [{
+                            "masked": false,
+                            "name": "isSuccess",
+                            "pseudonym": false
+                        }]
                     }
                 }
             ],
@@ -4526,6 +4534,39 @@
                                                             "context": "Fail",
                                                             "type": "DONE"
                                                         }},
+                                                        {"action": {
+                                                            "attributeMapping": {
+                                                                "attributeContractFulfillment": {
+                                                                    "cdr_consent_id": {"source": {"type": "NO_MAPPING"}},
+                                                                    "subject": {"source": {"type": "NO_MAPPING"}},
+                                                                    "result": {"source": {"type": "NO_MAPPING"}},
+                                                                    "acr": {"source": {"type": "NO_MAPPING"}},
+                                                                    "cdrArrangementId": {"source": {"type": "NO_MAPPING"}},
+                                                                    "sharingDurationExpiresAt": {"source": {"type": "NO_MAPPING"}},
+                                                                    "customerRef": {"source": {"type": "NO_MAPPING"}},
+                                                                    "SAML_AUTHN_CTX": {"source": {"type": "NO_MAPPING"}},
+                                                                    "accounts": {"source": {"type": "NO_MAPPING"}},
+                                                                    "accounts_available": {"source": {"type": "NO_MAPPING"}},
+                                                                    "idtokenClaims": {"source": {"type": "NO_MAPPING"}},
+                                                                    "scopes": {"source": {"type": "NO_MAPPING"}},
+                                                                    "userinfoClaims": {"source": {"type": "NO_MAPPING"}}
+                                                                },
+                                                                "attributeSources": [],
+                                                                "issuanceCriteria": {
+                                                                    "expressionCriteria": [{
+                                                                        "expression": "true",
+                                                                        "errorResult": "FAILED_AUTHENTICATION"
+                                                                    }],
+                                                                    "conditionalCriteria": []
+                                                                }
+                                                            },
+                                                            "authenticationPolicyContractRef": {
+                                                                "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                                                                "id": "iQwSYDdExcmJaYk6"
+                                                            },
+                                                            "context": "Failed",
+                                                            "type": "APC_MAPPING"
+                                                        }},
                                                         {
                                                             "children": [
                                                                 {"action": {
@@ -4661,6 +4702,15 @@
                                                             "value": "subject"
                                                         },
                                                         "userIdAuthenticated": true,
+                                                        "attributeRules": {
+                                                            "fallbackToSuccess": true,
+                                                            "items": [{
+                                                                "result": "Failed",
+                                                                "condition": "EQUALS_CASE_INSENSITIVE",
+                                                                "expectedValue": "false",
+                                                                "attributeName": "isSuccess"
+                                                            }]
+                                                        },
                                                         "type": "AUTHN_SOURCE"
                                                     }
                                                 }

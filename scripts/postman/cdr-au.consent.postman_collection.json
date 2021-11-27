@@ -422,9 +422,9 @@
 									"raw": "{{software-dcr-requestjwt}}"
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-register-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-register-endpoint}}"
 									]
 								}
 							},
@@ -1178,9 +1178,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -1451,9 +1451,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 											]
 										}
 									},
@@ -1599,9 +1599,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 											]
 										}
 									},
@@ -1762,9 +1762,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -2854,9 +2854,9 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}"
 									]
 								}
 							},
@@ -3479,9 +3479,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-revocation-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-revocation-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}"
 											]
 										}
 									},
@@ -3692,9 +3692,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-revocation-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-revocation-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}"
 											]
 										}
 									},
@@ -3841,9 +3841,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -4327,9 +4327,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{dh-idp-host}}/as/par.oauth2",
+							"raw": "{{dh-idp-host-mtls}}/as/par.oauth2",
 							"host": [
-								"{{dh-idp-host}}"
+								"{{dh-idp-host-mtls}}"
 							],
 							"path": [
 								"as",
@@ -4825,9 +4825,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+							"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 							"host": [
-								"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+								"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 							]
 						}
 					},
@@ -5485,9 +5485,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -5663,9 +5663,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -6300,9 +6300,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -6478,9 +6478,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -6631,9 +6631,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -6935,9 +6935,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}/as/par.oauth2",
+									"raw": "{{dh-idp-host-mtls}}/as/par.oauth2",
 									"host": [
-										"{{dh-idp-host}}"
+										"{{dh-idp-host-mtls}}"
 									],
 									"path": [
 										"as",
@@ -7433,9 +7433,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -7611,9 +7611,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -7763,9 +7763,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -7948,9 +7948,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -8128,9 +8128,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -8316,9 +8316,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"revoke"
@@ -8458,9 +8458,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"revoke"
@@ -8624,9 +8624,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"revoke"
@@ -8776,9 +8776,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -9312,9 +9312,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}/as/par.oauth2",
+											"raw": "{{dh-idp-host-mtls}}/as/par.oauth2",
 											"host": [
-												"{{dh-idp-host}}"
+												"{{dh-idp-host-mtls}}"
 											],
 											"path": [
 												"as",
@@ -10090,9 +10090,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -10367,9 +10367,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -10583,9 +10583,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -10730,9 +10730,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -11408,9 +11408,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -11557,9 +11557,9 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}"
 									]
 								}
 							},
@@ -11801,7 +11801,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -11941,7 +11942,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -12081,7 +12083,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -12882,9 +12885,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -13658,9 +13661,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -14472,9 +14475,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -15300,9 +15303,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -16113,9 +16116,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -17266,9 +17269,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18196,9 +18199,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18377,9 +18380,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18558,9 +18561,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18736,9 +18739,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -18897,9 +18900,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -19066,9 +19069,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -19244,9 +19247,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -19393,9 +19396,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -19486,9 +19489,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}/as/token.oauth2",
+									"raw": "{{dh-idp-host-mtls}}/as/token.oauth2",
 									"host": [
-										"{{dh-idp-host}}"
+										"{{dh-idp-host-mtls}}"
 									],
 									"path": [
 										"as",
@@ -19880,9 +19883,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}/as/token.oauth2",
+									"raw": "{{dh-idp-host-mtls}}/as/token.oauth2",
 									"host": [
-										"{{dh-idp-host}}"
+										"{{dh-idp-host-mtls}}"
 									],
 									"path": [
 										"as",
@@ -20189,6 +20192,10 @@
 		{
 			"key": "dh-api-host-misc",
 			"value": "https://api.data-holder.local/misc"
+		},
+		{
+			"key": "dh-idp-host-mtls",
+			"value": "https://sso.data-holder.local"
 		}
 	]
 }
