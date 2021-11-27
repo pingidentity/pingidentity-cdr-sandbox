@@ -4554,7 +4554,7 @@
                                                                 "attributeSources": [],
                                                                 "issuanceCriteria": {
                                                                     "expressionCriteria": [{
-                                                                        "expression": "true",
+                                                                        "expression": "false",
                                                                         "errorResult": "FAILED_AUTHENTICATION"
                                                                     }],
                                                                     "conditionalCriteria": []
