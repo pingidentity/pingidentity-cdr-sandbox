@@ -3448,7 +3448,176 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{}],
+            "items": [{
+                "configuration": {
+                    "tables": [{
+                        "name": "PingOne Template Variables",
+                        "rows": []
+                    }],
+                    "fields": [
+                        {
+                            "name": "PingOne Environment",
+                            "value": "9yzZsdl5ZRPiexqJ1MQjAq|${PINGONE_CONNECTION_ENVIRONMENTID}"
+                        },
+                        {
+                            "name": "Application",
+                            "value": "${PINGONE_MFA_CLIENTID}"
+                        },
+                        {
+                            "name": "PingOne Authentication Policy",
+                            "value": "CIBA"
+                        },
+                        {
+                            "name": "Test Username",
+                            "value": ""
+                        },
+                        {
+                            "name": "PingOne Template Name",
+                            "value": "transaction"
+                        },
+                        {
+                            "name": "PingOne Template Variant",
+                            "value": ""
+                        },
+                        {
+                            "name": "Client Context",
+                            "value": "#*\nDefine additional key/value pairs to be received at the mobile application.\nThe following variables are available by default:\n\n$oobAuthRequestContext - Context for the out-of-band authentication/authorization request\n$languagePackMessages - The language-pack file configured for this authenticator\n$subject - The user's PingOne username or user ID.\n$JSONValue - A JSON utility class that can be used to escape text and convert objects to JSON.\n   Methods:\n       escape(String s) - Escape quotes, \\, /, \\r, \\n, \\b, \\f, \\t and other control characters (U+0000 through U+001F).\n       toJSONString(Object value) - Convert an object to JSON text.\n\nAdditionally, any Extended Contract attributes are also available using the $name syntax.\n\nExample:\n\n{\n   \"requestingApplicationName\": \"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\",\n   \"requestedScope\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\n   \"amount\": \"$JSONValue.escape($amount)\",\n   \"alert.color\": \"red\"\n}\n*#"
+                        },
+                        {
+                            "name": "Messages Files",
+                            "value": "pingone-mfa-messages"
+                        },
+                        {
+                            "name": "API Request Timeout",
+                            "value": "12000"
+                        },
+                        {
+                            "name": "Proxy Settings",
+                            "value": "System Defaults"
+                        },
+                        {
+                            "name": "Custom Proxy Host",
+                            "value": ""
+                        },
+                        {
+                            "name": "Custom Proxy Port",
+                            "value": ""
+                        }
+                    ]
+                },
+                "name": "PingOne MFA CIBA",
+                "id": "pingoneMFACIBA",
+                "pluginDescriptorRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins/descriptors/com.pingidentity.oobauth.pingone.mfa.PingOneMfaCibaAuthenticator",
+                    "id": "com.pingidentity.oobauth.pingone.mfa.PingOneMfaCibaAuthenticator"
+                },
+                "attributeContract": {
+                    "coreAttributes": [{"name": "subject"}],
+                    "extendedAttributes": []
+                }
+            }],
+            "resourceType": "/oauth/outOfBandAuthPlugins"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "alternativeLoginHintTokenIssuers": [{
+                    "jwksURL": "https://sso.${BASE_HOSTNAME}/pf/JWKS",
+                    "issuer": "https://sso.${BASE_HOSTNAME}"
+                }],
+                "allowUnsignedLoginHintToken": false,
+                "requireTokenForIdentityHint": true,
+                "identityHintContract": {
+                    "coreAttributes": [{"name": "IDENTITY_HINT_SUBJECT"}],
+                    "extendedAttributes": []
+                },
+                "identityHintContractFulfillment": {
+                    "attributeContractFulfillment": {"IDENTITY_HINT_SUBJECT": {
+                        "source": {"type": "REQUEST"},
+                        "value": "IDENTITY_HINT_SUBJECT"
+                    }},
+                    "attributeSources": [],
+                    "issuanceCriteria": {"conditionalCriteria": []}
+                },
+                "transactionLifetime": 120,
+                "name": "CDR CIBA Policy",
+                "identityHintMapping": {
+                    "attributeContractFulfillment": {
+                        "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
+                        "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
+                        "subject": {
+                            "source": {
+                                "id": "ldap",
+                                "type": "LDAP_DATA_STORE"
+                            },
+                            "value": "uid"
+                        },
+                        "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
+                        "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
+                        "CUSTOMER_REF": {
+                            "source": {
+                                "id": "ldap",
+                                "type": "LDAP_DATA_STORE"
+                            },
+                            "value": "uid"
+                        },
+                        "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
+                        "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
+                        "ISSUER": {"source": {"type": "NO_MAPPING"}},
+                        "PERSISTENT_GRANT_LIFETIME": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "0"
+                        },
+                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
+                        "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
+                        "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
+                        "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
+                        "SUBJECT": {
+                            "source": {
+                                "id": "ldap",
+                                "type": "LDAP_DATA_STORE"
+                            },
+                            "value": "uid"
+                        },
+                        "USER_KEY": {
+                            "source": {
+                                "id": "ldap",
+                                "type": "LDAP_DATA_STORE"
+                            },
+                            "value": "uid"
+                        },
+                        "CLAIMS_USERINFO": {"source": {"type": "NO_MAPPING"}}
+                    },
+                    "attributeSources": [{
+                        "memberOfNestedGroup": false,
+                        "binaryAttributeSettings": {},
+                        "searchScope": "SUBTREE",
+                        "dataStoreRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                            "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
+                        },
+                        "description": "ldap",
+                        "id": "ldap",
+                        "type": "LDAP",
+                        "baseDn": "ou=people,${USER_BASE_DN}",
+                        "searchFilter": "entryUUID=${IDENTITY_HINT_SUBJECT}"
+                    }],
+                    "issuanceCriteria": {"conditionalCriteria": []}
+                },
+                "id": "cdrCIBAPolicy",
+                "authenticatorRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins/pingoneMFACIBA",
+                    "id": "pingoneMFACIBA"
+                }
+            }],
+            "resourceType": "/oauth/cibaServerPolicy/requestPolicies"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{"defaultRequestPolicyRef": {
+                "location": "https://localhost:9999/pf-admin-api/v1/oauth/cibaServerPolicy/requestPolicies/cdrCIBAPolicy",
+                "id": "cdrCIBAPolicy"
+            }}],
             "resourceType": "/oauth/cibaServerPolicy/settings"
         },
         {
@@ -3767,6 +3936,10 @@
                         "id": "cdrRevocableATM"
                     },
                     "requireProofKeyForCodeExchange": true,
+                    "requestPolicyRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/cibaServerPolicy/cdrCIBAPolicy",
+                        "id": "cdrCIBAPolicy"
+                    },
                     "rotateRegistrationAccessToken": false,
                     "restrictedCommonScopes": [],
                     "refreshTokenRollingIntervalType": "SERVER_DEFAULT",
@@ -4008,6 +4181,24 @@
                         }],
                         "conditionalCriteria": []
                     },
+                    "accessTokenManagerRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
+                        "id": "cdrRevocableATM"
+                    }
+                },
+                {
+                    "context": {"type": "DEFAULT"},
+                    "attributeContractFulfillment": {
+                        "sub": {
+                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
+                            "value": "USER_KEY"
+                        },
+                        "iss": {"source": {"type": "NO_MAPPING"}},
+                        "cnf": {"source": {"type": "NO_MAPPING"}}
+                    },
+                    "id": "default|cdrRevocableATM",
+                    "attributeSources": [],
+                    "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
                         "id": "cdrRevocableATM"
