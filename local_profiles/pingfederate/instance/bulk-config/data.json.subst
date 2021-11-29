@@ -1600,13 +1600,13 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_idtoken"
                             },
-                            "claims_authorizationDetails": {
-                                "source": {"type": "EXPRESSION"},
-                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
-                            },
                             "claims_userinfo": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_userinfo"
+                            },
+                            "pi.clientContext.authorization_details": {
+                                "source": {"type": "EXPRESSION"},
+                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
                             },
                             "caValue": {
                                 "source": {"type": "EXPRESSION"},
@@ -1691,7 +1691,7 @@
                         ],
                         "extendedAttributes": [{
                             "masked": false,
-                            "name": "claims_authorizationDetails",
+                            "name": "pi.clientContext.authorization_details",
                             "pseudonym": false
                         }]
                     }
@@ -3464,47 +3464,7 @@
                 "configuration": {
                     "tables": [{
                         "name": "PingOne Template Variables",
-                        "rows": [
-                            {
-                                "defaultRow": false,
-                                "fields": [
-                                    {
-                                        "name": "PingOne Template Variable Name",
-                                        "value": "subject"
-                                    },
-                                    {
-                                        "name": "PingOne Template Variable Value",
-                                        "value": "$subject"
-                                    }
-                                ]
-                            },
-                            {
-                                "defaultRow": false,
-                                "fields": [
-                                    {
-                                        "name": "PingOne Template Variable Name",
-                                        "value": "amount"
-                                    },
-                                    {
-                                        "name": "PingOne Template Variable Value",
-                                        "value": "$amount"
-                                    }
-                                ]
-                            },
-                            {
-                                "defaultRow": false,
-                                "fields": [
-                                    {
-                                        "name": "PingOne Template Variable Name",
-                                        "value": "authorization_details"
-                                    },
-                                    {
-                                        "name": "PingOne Template Variable Value",
-                                        "value": "$authorization_details"
-                                    }
-                                ]
-                            }
-                        ]
+                        "rows": []
                     }],
                     "fields": [
                         {
@@ -4877,7 +4837,7 @@
                                                                                     "id": "cdrSelectorAdapter",
                                                                                     "type": "ADAPTER"
                                                                                 },
-                                                                                "value": "claims_authorizationDetails"
+                                                                                "value": "pi.clientContext.authorization_details"
                                                                             },
                                                                             "result": {
                                                                                 "source": {"type": "TEXT"},
