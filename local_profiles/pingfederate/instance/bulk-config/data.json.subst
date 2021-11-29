@@ -3452,7 +3452,34 @@
                 "configuration": {
                     "tables": [{
                         "name": "PingOne Template Variables",
-                        "rows": []
+                        "rows": [
+                            {
+                                "defaultRow": false,
+                                "fields": [
+                                    {
+                                        "name": "PingOne Template Variable Name",
+                                        "value": "subject"
+                                    },
+                                    {
+                                        "name": "PingOne Template Variable Value",
+                                        "value": "$subject"
+                                    }
+                                ]
+                            },
+                            {
+                                "defaultRow": false,
+                                "fields": [
+                                    {
+                                        "name": "PingOne Template Variable Name",
+                                        "value": "amount"
+                                    },
+                                    {
+                                        "name": "PingOne Template Variable Value",
+                                        "value": "$amount"
+                                    }
+                                ]
+                            }
+                        ]
                     }],
                     "fields": [
                         {
@@ -3477,11 +3504,11 @@
                         },
                         {
                             "name": "PingOne Template Variant",
-                            "value": ""
+                            "value": "CIBA Tx"
                         },
                         {
                             "name": "Client Context",
-                            "value": "#*\nDefine additional key/value pairs to be received at the mobile application.\nThe following variables are available by default:\n\n$oobAuthRequestContext - Context for the out-of-band authentication/authorization request\n$languagePackMessages - The language-pack file configured for this authenticator\n$subject - The user's PingOne username or user ID.\n$JSONValue - A JSON utility class that can be used to escape text and convert objects to JSON.\n   Methods:\n       escape(String s) - Escape quotes, \\, /, \\r, \\n, \\b, \\f, \\t and other control characters (U+0000 through U+001F).\n       toJSONString(Object value) - Convert an object to JSON text.\n\nAdditionally, any Extended Contract attributes are also available using the $name syntax.\n\nExample:\n\n{\n   \"requestingApplicationName\": \"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\",\n   \"requestedScope\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\n   \"amount\": \"$JSONValue.escape($amount)\",\n   \"alert.color\": \"red\"\n}\n*#"
+                            "value": "{\n   \"requestingApplicationName\": \"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\",\n   \"requestedScope\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\n   \"authUserBindingMessage\": \"$JSONValue.escape($amount)\",\n   \"alert.color\": \"red\"\n}"
                         },
                         {
                             "name": "Messages Files",
@@ -3513,7 +3540,10 @@
                 },
                 "attributeContract": {
                     "coreAttributes": [{"name": "subject"}],
-                    "extendedAttributes": []
+                    "extendedAttributes": [
+                        {"name": "amount"},
+                        {"name": "authUserBindingMessage"}
+                    ]
                 }
             }],
             "resourceType": "/oauth/outOfBandAuthPlugins"
@@ -3544,6 +3574,10 @@
                 "identityHintMapping": {
                     "attributeContractFulfillment": {
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
+                        "amount": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "400"
+                        },
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "subject": {
                             "source": {
@@ -3554,6 +3588,10 @@
                         },
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
+                        "authUserBindingMessage": {
+                            "source": {"type": "TEXT"},
+                            "value": "test"
+                        },
                         "CUSTOMER_REF": {
                             "source": {
                                 "id": "ldap",
@@ -3566,9 +3604,12 @@
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
                         "PERSISTENT_GRANT_LIFETIME": {
                             "source": {"type": "EXPRESSION"},
-                            "value": "0"
+                            "value": "1"
                         },
-                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
+                        "SHARING_DURATION_EXPIRES_AT": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "1669681520"
+                        },
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
                         "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
