@@ -3540,10 +3540,7 @@
                 },
                 "attributeContract": {
                     "coreAttributes": [{"name": "subject"}],
-                    "extendedAttributes": [
-                        {"name": "amount"},
-                        {"name": "authUserBindingMessage"}
-                    ]
+                    "extendedAttributes": [{"name": "amount"}]
                 }
             }],
             "resourceType": "/oauth/outOfBandAuthPlugins"
@@ -3559,13 +3556,19 @@
                 "requireTokenForIdentityHint": true,
                 "identityHintContract": {
                     "coreAttributes": [{"name": "IDENTITY_HINT_SUBJECT"}],
-                    "extendedAttributes": []
+                    "extendedAttributes": [{"name": "AMOUNT"}]
                 },
                 "identityHintContractFulfillment": {
-                    "attributeContractFulfillment": {"IDENTITY_HINT_SUBJECT": {
-                        "source": {"type": "REQUEST"},
-                        "value": "IDENTITY_HINT_SUBJECT"
-                    }},
+                    "attributeContractFulfillment": {
+                        "AMOUNT": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"), #requestPayload = #requestObj.split(\"\\\\.\")[1], #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)), #payloadJSON = new org.json.JSONObject(#requestDecodedPayload), #payloadJSON.get(\"amount\")"
+                        },
+                        "IDENTITY_HINT_SUBJECT": {
+                            "source": {"type": "REQUEST"},
+                            "value": "IDENTITY_HINT_SUBJECT"
+                        }
+                    },
                     "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []}
                 },
@@ -3575,8 +3578,8 @@
                     "attributeContractFulfillment": {
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "amount": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "400"
+                            "source": {"type": "REQUEST"},
+                            "value": "AMOUNT"
                         },
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "subject": {
@@ -3588,10 +3591,6 @@
                         },
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
-                        "authUserBindingMessage": {
-                            "source": {"type": "TEXT"},
-                            "value": "test"
-                        },
                         "CUSTOMER_REF": {
                             "source": {
                                 "id": "ldap",
@@ -3604,12 +3603,9 @@
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
                         "PERSISTENT_GRANT_LIFETIME": {
                             "source": {"type": "EXPRESSION"},
-                            "value": "1"
+                            "value": "0"
                         },
-                        "SHARING_DURATION_EXPIRES_AT": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "1669681520"
-                        },
+                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
                         "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
