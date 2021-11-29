@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://3c59745022f7:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://752196874c52:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -279,10 +279,10 @@
                 "credential": "${PINGONE_CONNECTION_CREDENTIAL}",
                 "name": "${PINGONE_CONNECTION_ORGANIZATIONNAME}",
                 "active": true,
-                "credentialId": "${PINGONE_CONNECTION_CREDENTIALID}",
+                "credentialId": "de79e4ba-13fd-44da-aaee-21e34b53fc76",
                 "pingOneAuthenticationApiEndpoint": "${PINGONE_CONNECTION_AUTHENDPOINT}",
                 "id": "9yzZsdl5ZRPiexqJ1MQjAq",
-                "creationDate": "2021-11-26T00:09:44.503Z",
+                "creationDate": "2021-11-29T06:45:37.471Z",
                 "region": "${PINGONE_CONNECTION_REGION}",
                 "pingOneManagementApiEndpoint": "${PINGONE_CONNECTION_APIENDPOINT}"
             }],
@@ -388,13 +388,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -500,9 +494,10 @@
                     "id": "iQwSYDdExcmJaYk6",
                     "coreAttributes": [{"name": "subject"}],
                     "extendedAttributes": [
-                        {"name": "result"},
-                        {"name": "acr"},
                         {"name": "cdr_consent_id"},
+                        {"name": "result"},
+                        {"name": "authorizationDetails"},
+                        {"name": "acr"},
                         {"name": "cdrArrangementId"},
                         {"name": "sharingDurationExpiresAt"},
                         {"name": "customerRef"},
@@ -1206,6 +1201,7 @@
                         "coreAttributes": [],
                         "extendedAttributes": [
                             {"name": "sub"},
+                            {"name": "jsonencoded_authorization_details"},
                             {"name": "iss"},
                             {"name": "cnf"}
                         ]
@@ -1392,6 +1388,7 @@
                         "coreAttributes": [],
                         "extendedAttributes": [
                             {"name": "sub"},
+                            {"name": "jsonencoded_authorization_details"},
                             {"name": "iss"},
                             {"name": "cnf"}
                         ]
@@ -1603,13 +1600,17 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_idtoken"
                             },
+                            "claims_authorizationDetails": {
+                                "source": {"type": "EXPRESSION"},
+                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
+                            },
                             "claims_userinfo": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_userinfo"
                             },
                             "caValue": {
-                                "source": {"type": "ADAPTER"},
-                                "value": "caValue"
+                                "source": {"type": "EXPRESSION"},
+                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),    #requestPayload = #requestObj.split(\"\\\\.\")[1],    #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),    #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  #payloadJSON.has(\"authorization_details\")?\"SCA\":#this.get(\"caValue\").toString()"
                             },
                             "claims_sharingDurationExpiresAt": {
                                 "source": {"type": "ADAPTER"},
@@ -1688,7 +1689,11 @@
                                 "pseudonym": false
                             }
                         ],
-                        "extendedAttributes": []
+                        "extendedAttributes": [{
+                            "masked": false,
+                            "name": "claims_authorizationDetails",
+                            "pseudonym": false
+                        }]
                     }
                 },
                 {
@@ -3018,7 +3023,8 @@
                         {"name": "CONSENTAPI_DEFINITION"},
                         {"name": "ISSUER"},
                         {"name": "ADR_ORG_ID"},
-                        {"name": "PERSISTENT_GRANT_LIFETIME"}
+                        {"name": "PERSISTENT_GRANT_LIFETIME"},
+                        {"name": "RAR_AUTHZ_DETAILS"}
                     ]
                 },
                 "scopeGroups": [],
@@ -3299,6 +3305,7 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
+                        "RAR_AUTHZ_DETAILS": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
@@ -3309,19 +3316,19 @@
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
                         "PERSISTENT_GRANT_LIFETIME": {"source": {"type": "NO_MAPPING"}},
-                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
+                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
                         "SELECTED_ACCOUNTS": {
                             "source": {"type": "EXPRESSION"},
                             "value": "null"
                         },
                         "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
                         "SUBJECT": {"source": {"type": "NO_MAPPING"}},
+                        "CLAIMS_USERINFO": {"source": {"type": "NO_MAPPING"}},
                         "USER_KEY": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "subject"
-                        },
-                        "CLAIMS_USERINFO": {"source": {"type": "NO_MAPPING"}}
+                        }
                     },
                     "id": "TkNJ3HMIIvIeeZEM",
                     "attributeSources": [],
@@ -3336,6 +3343,7 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
+                        "RAR_AUTHZ_DETAILS": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
@@ -3381,6 +3389,10 @@
                         "ACR_VALUES": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "SAML_AUTHN_CTX"
+                        },
+                        "RAR_AUTHZ_DETAILS": {
+                            "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
+                            "value": "authorizationDetails"
                         },
                         "AUTH_TIME": {
                             "source": {"type": "EXPRESSION"},
@@ -3540,7 +3552,10 @@
                 },
                 "attributeContract": {
                     "coreAttributes": [{"name": "subject"}],
-                    "extendedAttributes": [{"name": "amount"}]
+                    "extendedAttributes": [
+                        {"name": "amount"},
+                        {"name": "authorization_details"}
+                    ]
                 }
             }],
             "resourceType": "/oauth/outOfBandAuthPlugins"
@@ -3556,10 +3571,17 @@
                 "requireTokenForIdentityHint": true,
                 "identityHintContract": {
                     "coreAttributes": [{"name": "IDENTITY_HINT_SUBJECT"}],
-                    "extendedAttributes": [{"name": "AMOUNT"}]
+                    "extendedAttributes": [
+                        {"name": "AUTHORIZATION_DETAILS"},
+                        {"name": "AMOUNT"}
+                    ]
                 },
                 "identityHintContractFulfillment": {
                     "attributeContractFulfillment": {
+                        "AUTHORIZATION_DETAILS": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
+                        },
                         "AMOUNT": {
                             "source": {"type": "EXPRESSION"},
                             "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"), #requestPayload = #requestObj.split(\"\\\\.\")[1], #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)), #payloadJSON = new org.json.JSONObject(#requestDecodedPayload), #payloadJSON.get(\"amount\")"
@@ -3590,6 +3612,10 @@
                             "value": "uid"
                         },
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
+                        "RAR_AUTHZ_DETAILS": {
+                            "source": {"type": "REQUEST"},
+                            "value": "AUTHORIZATION_DETAILS"
+                        },
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "CUSTOMER_REF": {
                             "source": {
@@ -3604,6 +3630,10 @@
                         "PERSISTENT_GRANT_LIFETIME": {
                             "source": {"type": "EXPRESSION"},
                             "value": "0"
+                        },
+                        "authorization_details": {
+                            "source": {"type": "REQUEST"},
+                            "value": "AUTHORIZATION_DETAILS"
                         },
                         "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
@@ -4134,6 +4164,10 @@
                         "type": "AUTHENTICATION_POLICY_CONTRACT"
                     },
                     "attributeContractFulfillment": {
+                        "jsonencoded_authorization_details": {
+                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
+                            "value": "RAR_AUTHZ_DETAILS"
+                        },
                         "sub": {
                             "source": {"type": "OAUTH_PERSISTENT_GRANT"},
                             "value": "CUSTOMER_REF"
@@ -4196,6 +4230,7 @@
                 {
                     "context": {"type": "CLIENT_CREDENTIALS"},
                     "attributeContractFulfillment": {
+                        "jsonencoded_authorization_details": {"source": {"type": "NO_MAPPING"}},
                         "sub": {
                             "source": {"type": "CONTEXT"},
                             "value": "ClientId"
@@ -4226,6 +4261,10 @@
                 {
                     "context": {"type": "DEFAULT"},
                     "attributeContractFulfillment": {
+                        "jsonencoded_authorization_details": {
+                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
+                            "value": "RAR_AUTHZ_DETAILS"
+                        },
                         "sub": {
                             "source": {"type": "OAUTH_PERSISTENT_GRANT"},
                             "value": "USER_KEY"
@@ -4601,6 +4640,7 @@
                                                                         },
                                                                         "value": "subject"
                                                                     },
+                                                                    "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
                                                                     "result": {
                                                                         "source": {"type": "TEXT"},
                                                                         "value": "approve"
@@ -4767,6 +4807,7 @@
                                                                 "attributeContractFulfillment": {
                                                                     "cdr_consent_id": {"source": {"type": "NO_MAPPING"}},
                                                                     "subject": {"source": {"type": "NO_MAPPING"}},
+                                                                    "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
                                                                     "result": {"source": {"type": "NO_MAPPING"}},
                                                                     "acr": {"source": {"type": "NO_MAPPING"}},
                                                                     "cdrArrangementId": {"source": {"type": "NO_MAPPING"}},
@@ -4817,6 +4858,13 @@
                                                                                     "type": "ADAPTER"
                                                                                 },
                                                                                 "value": "subject"
+                                                                            },
+                                                                            "authorizationDetails": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_authorizationDetails"
                                                                             },
                                                                             "result": {
                                                                                 "source": {"type": "TEXT"},
@@ -4993,6 +5041,7 @@
                                                         },
                                                         "value": "entryUUID"
                                                     },
+                                                    "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
                                                     "result": {"source": {"type": "NO_MAPPING"}},
                                                     "acr": {"source": {"type": "NO_MAPPING"}},
                                                     "cdrArrangementId": {"source": {"type": "NO_MAPPING"}},
