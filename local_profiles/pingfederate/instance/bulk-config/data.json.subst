@@ -3490,6 +3490,19 @@
                                         "value": "$amount"
                                     }
                                 ]
+                            },
+                            {
+                                "defaultRow": false,
+                                "fields": [
+                                    {
+                                        "name": "PingOne Template Variable Name",
+                                        "value": "authorization_details"
+                                    },
+                                    {
+                                        "name": "PingOne Template Variable Value",
+                                        "value": "$authorization_details"
+                                    }
+                                ]
                             }
                         ]
                     }],
@@ -3520,7 +3533,7 @@
                         },
                         {
                             "name": "Client Context",
-                            "value": "{\n   \"requestingApplicationName\": \"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\",\n   \"requestedScope\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\n   \"authUserBindingMessage\": \"$JSONValue.escape($amount)\",\n   \"alert.color\": \"red\"\n}"
+                            "value": "{\n   \"requestingApplicationName\": \"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\",\n   \"requestedScope\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\n   \"authorization_details\": \"$JSONValue.escape($authorization_details)\",\n   \"alert.color\": \"red\"\n}"
                         },
                         {
                             "name": "Messages Files",
