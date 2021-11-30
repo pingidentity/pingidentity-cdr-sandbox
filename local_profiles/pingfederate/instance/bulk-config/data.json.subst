@@ -1604,9 +1604,13 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_userinfo"
                             },
+                            "hasAuthorizationDetailsError": {
+                                "source": {"type": "EXPRESSION"},
+                                "value": "\"false\""
+                            },
                             "pi.clientContext.authorization_details": {
                                 "source": {"type": "EXPRESSION"},
-                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
+                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),   #requestPayload = #requestObj.split(\"\\\\.\")[1],   #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),   #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),   #payloadJSON.has(\"authorization_details\")?@java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes()):null"
                             },
                             "caValue": {
                                 "source": {"type": "EXPRESSION"},
@@ -1689,11 +1693,18 @@
                                 "pseudonym": false
                             }
                         ],
-                        "extendedAttributes": [{
-                            "masked": false,
-                            "name": "pi.clientContext.authorization_details",
-                            "pseudonym": false
-                        }]
+                        "extendedAttributes": [
+                            {
+                                "masked": false,
+                                "name": "hasAuthorizationDetailsError",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
+                                "name": "pi.clientContext.authorization_details",
+                                "pseudonym": false
+                            }
+                        ]
                     }
                 },
                 {
@@ -3525,10 +3536,7 @@
                 },
                 "attributeContract": {
                     "coreAttributes": [{"name": "subject"}],
-                    "extendedAttributes": [
-                        {"name": "amount"},
-                        {"name": "authorization_details"}
-                    ]
+                    "extendedAttributes": [{"name": "authorization_details"}]
                 }
             }],
             "resourceType": "/oauth/outOfBandAuthPlugins"
@@ -3544,20 +3552,13 @@
                 "requireTokenForIdentityHint": true,
                 "identityHintContract": {
                     "coreAttributes": [{"name": "IDENTITY_HINT_SUBJECT"}],
-                    "extendedAttributes": [
-                        {"name": "AUTHORIZATION_DETAILS"},
-                        {"name": "AMOUNT"}
-                    ]
+                    "extendedAttributes": [{"name": "AUTHORIZATION_DETAILS"}]
                 },
                 "identityHintContractFulfillment": {
                     "attributeContractFulfillment": {
                         "AUTHORIZATION_DETAILS": {
                             "source": {"type": "EXPRESSION"},
                             "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
-                        },
-                        "AMOUNT": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"), #requestPayload = #requestObj.split(\"\\\\.\")[1], #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)), #payloadJSON = new org.json.JSONObject(#requestDecodedPayload), #payloadJSON.get(\"amount\")"
                         },
                         "IDENTITY_HINT_SUBJECT": {
                             "source": {"type": "REQUEST"},
@@ -3572,10 +3573,6 @@
                 "identityHintMapping": {
                     "attributeContractFulfillment": {
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
-                        "amount": {
-                            "source": {"type": "REQUEST"},
-                            "value": "AMOUNT"
-                        },
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "subject": {
                             "source": {
@@ -4578,6 +4575,40 @@
                                     "context": "Fail",
                                     "type": "DONE"
                                 }},
+                                {"action": {
+                                    "attributeMapping": {
+                                        "attributeContractFulfillment": {
+                                            "cdr_consent_id": {"source": {"type": "NO_MAPPING"}},
+                                            "subject": {"source": {"type": "NO_MAPPING"}},
+                                            "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
+                                            "result": {"source": {"type": "NO_MAPPING"}},
+                                            "acr": {"source": {"type": "NO_MAPPING"}},
+                                            "cdrArrangementId": {"source": {"type": "NO_MAPPING"}},
+                                            "sharingDurationExpiresAt": {"source": {"type": "NO_MAPPING"}},
+                                            "customerRef": {"source": {"type": "NO_MAPPING"}},
+                                            "SAML_AUTHN_CTX": {"source": {"type": "NO_MAPPING"}},
+                                            "accounts": {"source": {"type": "NO_MAPPING"}},
+                                            "accounts_available": {"source": {"type": "NO_MAPPING"}},
+                                            "idtokenClaims": {"source": {"type": "NO_MAPPING"}},
+                                            "scopes": {"source": {"type": "NO_MAPPING"}},
+                                            "userinfoClaims": {"source": {"type": "NO_MAPPING"}}
+                                        },
+                                        "attributeSources": [],
+                                        "issuanceCriteria": {
+                                            "expressionCriteria": [{
+                                                "expression": "false",
+                                                "errorResult": "invalid_authorization_details"
+                                            }],
+                                            "conditionalCriteria": []
+                                        }
+                                    },
+                                    "authenticationPolicyContractRef": {
+                                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                                        "id": "iQwSYDdExcmJaYk6"
+                                    },
+                                    "context": "AUTHORIZATION_DETAILS_ERROR",
+                                    "type": "APC_MAPPING"
+                                }},
                                 {
                                     "children": [
                                         {"action": {
@@ -5068,6 +5099,12 @@
                                 "attributeRules": {
                                     "fallbackToSuccess": true,
                                     "items": [
+                                        {
+                                            "result": "AUTHORIZATION_DETAILS_ERROR",
+                                            "condition": "EQUALS_CASE_INSENSITIVE",
+                                            "expectedValue": "true",
+                                            "attributeName": "hasAuthorizationDetailsError"
+                                        },
                                         {
                                             "result": "LOA2",
                                             "condition": "EQUALS_CASE_INSENSITIVE",
