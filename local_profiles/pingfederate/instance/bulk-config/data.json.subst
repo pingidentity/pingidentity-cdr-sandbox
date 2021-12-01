@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://752196874c52:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://bf2cf394ec17:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -282,7 +282,7 @@
                 "credentialId": "de79e4ba-13fd-44da-aaee-21e34b53fc76",
                 "pingOneAuthenticationApiEndpoint": "${PINGONE_CONNECTION_AUTHENDPOINT}",
                 "id": "9yzZsdl5ZRPiexqJ1MQjAq",
-                "creationDate": "2021-11-29T06:45:37.471Z",
+                "creationDate": "2021-12-01T04:46:35.723Z",
                 "region": "${PINGONE_CONNECTION_REGION}",
                 "pingOneManagementApiEndpoint": "${PINGONE_CONNECTION_APIENDPOINT}"
             }],
@@ -388,7 +388,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -3575,11 +3581,8 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "subject": {
-                            "source": {
-                                "id": "ldap",
-                                "type": "LDAP_DATA_STORE"
-                            },
-                            "value": "uid"
+                            "source": {"type": "REQUEST"},
+                            "value": "IDENTITY_HINT_SUBJECT"
                         },
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
                         "RAR_AUTHZ_DETAILS": {
@@ -3588,11 +3591,8 @@
                         },
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "CUSTOMER_REF": {
-                            "source": {
-                                "id": "ldap",
-                                "type": "LDAP_DATA_STORE"
-                            },
-                            "value": "uid"
+                            "source": {"type": "REQUEST"},
+                            "value": "IDENTITY_HINT_SUBJECT"
                         },
                         "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
@@ -3610,35 +3610,16 @@
                         "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
                         "SUBJECT": {
-                            "source": {
-                                "id": "ldap",
-                                "type": "LDAP_DATA_STORE"
-                            },
-                            "value": "uid"
+                            "source": {"type": "REQUEST"},
+                            "value": "IDENTITY_HINT_SUBJECT"
                         },
                         "USER_KEY": {
-                            "source": {
-                                "id": "ldap",
-                                "type": "LDAP_DATA_STORE"
-                            },
-                            "value": "uid"
+                            "source": {"type": "REQUEST"},
+                            "value": "IDENTITY_HINT_SUBJECT"
                         },
                         "CLAIMS_USERINFO": {"source": {"type": "NO_MAPPING"}}
                     },
-                    "attributeSources": [{
-                        "memberOfNestedGroup": false,
-                        "binaryAttributeSettings": {},
-                        "searchScope": "SUBTREE",
-                        "dataStoreRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
-                            "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
-                        },
-                        "description": "ldap",
-                        "id": "ldap",
-                        "type": "LDAP",
-                        "baseDn": "ou=people,${USER_BASE_DN}",
-                        "searchFilter": "entryUUID=${IDENTITY_HINT_SUBJECT}"
-                    }],
+                    "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []}
                 },
                 "id": "cdrCIBAPolicy",
@@ -4858,7 +4839,7 @@
                                                                             },
                                                                             "subject": {
                                                                                 "source": {
-                                                                                    "id": "identityFirstAdapter",
+                                                                                    "id": "consentAgentlessAdapter",
                                                                                     "type": "ADAPTER"
                                                                                 },
                                                                                 "value": "subject"
@@ -4902,7 +4883,13 @@
                                                                                 },
                                                                                 "value": "entryUUID"
                                                                             },
-                                                                            "SAML_AUTHN_CTX": {"source": {"type": "NO_MAPPING"}},
+                                                                            "SAML_AUTHN_CTX": {
+                                                                                "source": {
+                                                                                    "id": "cdrSelectorAdapter",
+                                                                                    "type": "ADAPTER"
+                                                                                },
+                                                                                "value": "claims_requestedACR"
+                                                                            },
                                                                             "accounts": {
                                                                                 "source": {
                                                                                     "id": "consentAgentlessAdapter",
@@ -4960,7 +4947,7 @@
                                                                     },
                                                                     "value": "entryUUID"
                                                                 },
-                                                                "userIdAuthenticated": true,
+                                                                "userIdAuthenticated": false,
                                                                 "type": "AUTHN_SOURCE"
                                                             }
                                                         }
@@ -4979,7 +4966,7 @@
                                                                 "id": "identityFirstAdapter",
                                                                 "type": "ADAPTER"
                                                             },
-                                                            "value": "subject"
+                                                            "value": "entryUUID"
                                                         },
                                                         "userIdAuthenticated": true,
                                                         "attributeRules": {
