@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://bf2cf394ec17:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://993dc42fc3b6:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -282,7 +282,7 @@
                 "credentialId": "de79e4ba-13fd-44da-aaee-21e34b53fc76",
                 "pingOneAuthenticationApiEndpoint": "${PINGONE_CONNECTION_AUTHENDPOINT}",
                 "id": "9yzZsdl5ZRPiexqJ1MQjAq",
-                "creationDate": "2021-12-01T04:46:35.723Z",
+                "creationDate": "2021-12-03T00:16:28.812Z",
                 "region": "${PINGONE_CONNECTION_REGION}",
                 "pingOneManagementApiEndpoint": "${PINGONE_CONNECTION_APIENDPOINT}"
             }],
@@ -388,13 +388,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1616,11 +1610,11 @@
                             },
                             "pi.clientContext.authorization_details": {
                                 "source": {"type": "EXPRESSION"},
-                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),   #requestPayload = #requestObj.split(\"\\\\.\")[1],   #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),   #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),   #payloadJSON.has(\"authorization_details\")?@java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes()):null"
+                                "value": " #requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),    #requestPayload = (#requestObj != null && !#requestObj.toString().equals(\"\"))?#requestObj.split(\"\\\\.\")[1]:\"e30=\",    #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),    #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),    #payloadJSON.has(\"authorization_details\")?@java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes()):null"
                             },
                             "caValue": {
                                 "source": {"type": "EXPRESSION"},
-                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),    #requestPayload = #requestObj.split(\"\\\\.\")[1],    #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),    #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  #payloadJSON.has(\"authorization_details\")?\"SCA\":#this.get(\"caValue\").toString()"
+                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),     #requestPayload = (#requestObj != null && !#requestObj.toString().equals(\"\"))?#requestObj.split(\"\\\\.\")[1]:\"e30=\",     #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),     #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),   #payloadJSON.has(\"authorization_details\")?\"SCA\":#this.get(\"caValue\").toString()"
                             },
                             "claims_sharingDurationExpiresAt": {
                                 "source": {"type": "ADAPTER"},
