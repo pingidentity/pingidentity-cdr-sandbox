@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+mobile activation is required.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: pingone-mfa-mobile-activation.html -->
+
+#set( $messageKeyPrefix = "pingone.mfa.mobile.activation." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$applicationName</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/end-user/0.36.1/end-user.css">
+    <link rel="stylesheet" href="assets/css/pingone-mfa.css">
+    <script src="assets/scripts/jquery-3.5.1.min.js"></script>
+    <script src="assets/scripts/jquery.qrcode.min.js"></script>
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="setFocus()">
+<div class="app-container">
+    <div class="page brand-background" data-id="page">
+        <div class="page__content">
+            <div class="card card--no-padding">
+                <div class="card__content">
+                    <form id="form" class="form" data-id="form" method="post" action="$resumePath" autocomplete="off">
+                        <input type="hidden" name="$pollAuthenticationStatus" value="">
+                        <div class="org-logo"><img class="org-logo__image"
+                                                   src="assets/images/ping-logo.svg"
+                                                   alt="Company Logo"/></div>
+                        <div class="stack stack--small" data-id="stack">
+                            <h1 class="heading-text centered-text icon-heading" data-id="heading">
+                                <svg viewBox="0 0 24 24" role="presentation" style="width: 32px; height: 32px;">
+                                    <path
+                                            d="M16,18H7V4H16M11.5,22A1.5,1.5 0 0,1 10,20.5A1.5,1.5 0 0,1 11.5,19A1.5,1.5 0 0,1 13,20.5A1.5,1.5 0 0,1 11.5,22M15.5,1H7.5A2.5,2.5 0 0,0 5,3.5V20.5A2.5,2.5 0 0,0 7.5,23H15.5A2.5,2.5 0 0,0 18,20.5V3.5A2.5,2.5 0 0,0 15.5,1Z"
+                                            style="fill: rgb(61, 69, 77);"
+                                    />
+                                </svg><span style="margin-left: .5em">$applicationName</span>
+                            </h1>
+                            <div class="text-block" data-id="textblock">
+                                <div class="text-block--overflow-wrap">
+                                    $languagePackMessages.getMessage($messageKeyPrefix, "message", $applicationName)
+                                </div>
+                            </div>
+                            <div class="text-block" data-id="textblock">
+                                <div id="qrcode" class="qrcode"></div>
+                            </div>
+                            <div class="text-block" data-id="textblock" style="margin-top: 25px">
+                                <div class="text-block--overflow-wrap">
+                                    $languagePackMessages.getMessage($messageKeyPrefix, "pairing.key")
+                                </div>
+                            </div>
+                            <div class="text-block" data-id="textblock">
+                                <div class="text-block--overflow-wrap">$mobilePairingKey</div>
+                            </div>
+                        </div>
+                        <div class="text-block" data-id="textblock">
+                            <div class="text-block--overflow-wrap">
+                                <div class="stack" data-id="stack">
+                                    <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                                       onclick="cancelDevicePairing()">$languagePackMessages.getMessage($messageKeyPrefix,
+                                        "cancel.button.title")
+                                        <input type="hidden" name="$cancelDevicePairing" value=""/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer">
+            <div class="ping-footer">
+                <div class="ping-credits"></div>
+                <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var pollingFlag = true;
+    var POLLING_DELAY = 2000;
+
+    function cancelDevicePairing() {
+        pollingFlag = false;
+        document.forms[0]['$cancelDevicePairing'].value = 'true';
+        submit('$cancelDevicePairing');
+    }
+
+    function cancelPoll() {
+        pollingFlag = false;
+        document.forms[0]['$pollAuthenticationStatus'].value = 'false';
+        submit('$pollAuthenticationStatus');
+    }
+
+    function doPoll(resumePath) {
+        if (pollingFlag === true) {
+            timer = setTimeout(function () {
+                jQuery.ajax({
+                    type: 'POST',
+                    url: resumePath,
+                    data: {
+                        '$pollAuthenticationStatus': 'true',
+                    },
+                    success: function (result) {
+                        var response = JSON.parse(JSON.stringify(result));
+                        if (response.continue_polling === true) {
+                            doPoll(resumePath);
+                        } else {
+                            cancelPoll();
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        cancelPoll();
+                    }
+                });
+            }, POLLING_DELAY);
+        }
+    }
+
+    function submit(inputName) {
+        // Prevent unused inputs from being submitted
+        var inputs = document.forms[0].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name !== inputName) {
+                input.removeAttribute('name');
+            }
+        }
+        var form = jQuery('form');
+        form.submit(function () {
+            jQuery(this).unbind('submit');
+            jQuery(this).submit(function () {
+                return false;
+            });
+        });
+        form.submit();
+    }
+
+    onload = function () {
+        jQuery('#qrcode').qrcode({
+            text	: "$escape.escape($mobilePairingKey)"
+        });
+        setTimeout(doPoll, POLLING_DELAY, '$resumePath');
+    }
+</script>
+</body>
+</html>

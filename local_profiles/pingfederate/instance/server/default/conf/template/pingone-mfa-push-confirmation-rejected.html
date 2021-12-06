@@ -1,0 +1,96 @@
+<!doctype html>
+
+<!-- template name: pingone-mfa-push-confirmation-rejected.html -->
+
+#set( $messageKeyPrefix = "pingone.mfa.push.confirmation.rejected." )
+
+<html lang="en">
+<head>
+  <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+  <base href="$CurrentPingFedBaseURL"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+  <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+  <link rel="stylesheet" href="assets/css/end-user/0.36.1/end-user.css">
+  <link rel="stylesheet" href="assets/css/pingone-mfa.css">
+  <script src="assets/scripts/jquery-3.5.1.min.js"></script>
+  <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="app-container">
+  <div class="page brand-background" data-id="page">
+    <div class="page__content">
+      <div class="card card--no-padding">
+        <div class="card__content">
+          <div class="org-logo"><img class="org-logo__image" src="https://www.pingidentity.com/content/dam/ping-6-2-assets/topnav-json-configs/Ping-Logo.svg" alt="Company Logo" /></div>
+          <div class="icon-feedback icon-feedback--timeout  icon-feedback--error"><span class="icon-feedback__icon pingicon-ghost-error"></span>
+            <p class="icon-feedback__label">
+              <p class="icon-feedback__label">$languagePackMessages.getMessage($messageKeyPrefix, "header")</p>
+            </p>
+          </div>
+          <div class="text-block" data-id="textblock">
+            <div class="text-block--overflow-wrap">
+              <div class="stack" data-id="stack">
+                <a tabindex="0" data-id="content-link" target="_self" class="anchor" onclick="cancelAuthentication()">$languagePackMessages.getMessage($messageKeyPrefix, "cancel.button.title")</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page__footer">
+      <div class="ping-footer">
+        <div class="ping-credits"></div>
+        <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <form id='form' method="post" action="$resumePath" autocomplete="off">
+    <input type="hidden" name="$cancelAuthentication" value=""/>
+  </form>
+
+  <script type="text/javascript">
+    function cancelAuthentication() {
+        document.forms[0]['$cancelAuthentication'].value = 'true';
+        submit('$cancelAuthentication');
+    }
+
+    function submit(inputName) {
+        // Prevent unused inputs from being submitted
+        var inputs = document.forms[0].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name !== inputName) {
+                input.removeAttribute('name');
+            }
+        }
+        var form = jQuery('form');
+        form.submit(function () {
+          jQuery(this).unbind('submit');
+          jQuery(this).submit(function () {
+            return false;
+          });
+        });
+        form.submit();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+sms pairing is required.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: pingone-mfa-sms-pairing.html -->
+
+#set( $messageKeyPrefix = "pingone.mfa.sms.pairing." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/end-user/0.36.1/end-user.css">
+    <link rel="stylesheet" href="assets/css/pingone-mfa.css">
+    <script src="assets/scripts/jquery-3.5.1.min.js"></script>
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="setFocus()">
+<div class="app-container">
+    <div class="page brand-background" data-id="page">
+        <div class="page__content">
+            <div class="card card--no-padding">
+                <div class="card__content">
+                    <form id="form" class="form" data-id="form" method="post" action="$resumePath" autocomplete="off">
+                        <div class="org-logo"><img class="org-logo__image"
+                                                   src="assets/images/ping-logo.svg"
+                                                   alt="Company Logo"/></div>
+                        #if($errorMessageKey)
+                        <div class="feedback feedback--error" data-id="feedback"><span
+                                class="feedback__icon pingicon-error-triangle"></span>
+                            <div class="feedback__message">$languagePackMessages.getMessage($messageKeyPrefix,
+                                $errorMessageKey)
+                            </div>
+                        </div>
+                        #end
+                        <div class="stack stack--small" data-id="stack">
+                            <h1 class="heading-text centered-text icon-heading" data-id="heading">
+                                <svg viewBox="0 0 24 24" role="presentation" style="width: 32px; height: 32px;">
+                                    <path
+                                            d="M20,2A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H6L2,22V4C2,2.89 2.9,2 4,2H20M4,4V17.17L5.17,16H20V4H4M6,7H18V9H6V7M6,11H15V13H6V11Z"
+                                            style="fill: rgb(61, 69, 77);"/>
+                                </svg><span style="margin-left: .5em">$languagePackMessages.getMessage($messageKeyPrefix,"header")</span>
+                            </h1>
+                            <div class="text-block" data-id="textblock">
+                                <div class="text-block--overflow-wrap">
+                                    $languagePackMessages.getMessage($messageKeyPrefix, "message")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stack stack--small" data-id="stack">
+                            <div class="text-input__icon"></div>
+                            <input id="phone" type="tel" class="text-input" data-id="text-input"
+                                   name="$smsPhone" value="" oninput="checkInput()" onkeypress="return checkPhoneOnReturn(event)"/>
+                        </div>
+                        <div class="text-block" data-id="textblock">
+                            <div class="text-block--overflow-wrap">
+                                <div class="stack" data-id="stack">
+                                    <div>
+                                        <button id="next" class="button file-input--button button--primary brand-primary-bg button--disabled"
+                                                data-id="button" type="button" onclick="submitSmsTarget()" disabled>
+                                            $languagePackMessages.getMessage($messageKeyPrefix, "next.button.title")
+                                        </button>
+                                    </div>
+                                    <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                                       onclick="cancelDevicePairing()">$languagePackMessages.getMessage($messageKeyPrefix,
+                                        "cancel.button.title")
+                                        <input type="hidden" name="$cancelDevicePairing" value=""/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer">
+            <div class="ping-footer">
+                <div class="ping-credits"></div>
+                <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function setFocus() {
+        var platform = navigator.platform;
+        if (platform != null && platform.indexOf("iPhone") == -1) {
+            document.getElementById('phone').focus();
+        }
+    }
+
+    function submitSmsTarget() {
+        submit('$smsPhone');
+    }
+
+    function cancelDevicePairing() {
+        document.forms[0]['$cancelDevicePairing'].value = 'true';
+        submit('$cancelDevicePairing');
+    }
+
+    function submit(inputName) {
+        // Prevent unused inputs from being submitted
+        var inputs = document.forms[0].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name !== inputName) {
+                input.removeAttribute('name');
+            }
+        }
+        var form = jQuery('form');
+        form.submit(function () {
+            jQuery(this).unbind('submit');
+            jQuery(this).submit(function () {
+                return false;
+            });
+        });
+        form.submit();
+    }
+
+    function canSubmit() {
+        var input = document.getElementById("phone");
+        return input.value.length > 0 && input.checkValidity();
+    }
+
+    function checkInput() {
+        var button = document.getElementById("next");
+        if (canSubmit()) {
+            button.disabled = false;
+            button.className = "button file-input--button button--primary brand-primary-bg";
+        } else {
+            button.disabled = true;
+            button.className = "button file-input--button button--primary brand-primary-bg button--disabled";
+        }
+    }
+
+    function checkPhoneOnReturn(e) {
+        var keycode;
+        if (window.event) keycode = window.event.keyCode;
+        else if (e) keycode = e.which;
+        else return true;
+
+        if (keycode == 13) {
+            if (canSubmit()) {
+                submitSmsTarget();
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

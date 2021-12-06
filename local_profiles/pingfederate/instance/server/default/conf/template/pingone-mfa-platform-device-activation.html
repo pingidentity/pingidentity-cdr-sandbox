@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+a user has initiated pairing flow to pair a biometrics device.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: pingone-mfa-platform-device-activation.html -->
+
+#set( $messageKeyPrefix = "pingone.mfa.platform.device.activation." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <script src="assets/scripts/jquery-3.5.1.min.js"></script>
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="assets/css/end-user/0.36.1/end-user.css">
+    <link rel="stylesheet" href="assets/css/pingone-mfa.css">
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="app-container">
+    <div class="page brand-background" data-id="page">
+        <div class="page__content">
+			<div class="card card--no-padding">
+				<div class="card__content">
+					<div class="org-logo"><img class="org-logo__image" src="assets/images/ping-logo.svg" alt="Company Logo" /></div>
+                    #if($errorMessageKey != "")
+					<div class="feedback feedback--error" data-id="feedback"><span
+							class="feedback__icon pingicon-error-triangle"></span>
+						<div class="feedback__message">$languagePackMessages.getMessage($messageKeyPrefix, $errorMessageKey)
+						</div>
+					</div>
+
+                    <div class="text-block" data-id="textblock">
+                        <div class="text-block--overflow-wrap">
+                            <div class="stack" data-id="stack">
+                                <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                                   onclick="cancelDevicePairing()">$languagePackMessages.getMessage($messageKeyPrefix, "cancel.button.title")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+					#end
+
+                    #if($errorMessageKey == "")
+                    <div id="platform_icon_container_id" class="tile-button__icon-container">
+                        <h1 class="heading-text centered-text icon-heading" data-id="heading">
+                            <svg viewBox="0 0 24 24" role="presentation" style="width: 32px; height: 32px;">
+                                <path
+                                        d="M17.81,4.47C17.73,4.47 17.65,4.45 17.58,4.41C15.66,3.42 14,3 12,3C10.03,3 8.15,3.47 6.44,4.41C6.2,4.54 5.9,4.45 5.76,4.21C5.63,3.97 5.72,3.66 5.96,3.53C7.82,2.5 9.86,2 12,2C14.14,2 16,2.47 18.04,3.5C18.29,3.65 18.38,3.95 18.25,4.19C18.16,4.37 18,4.47 17.81,4.47M3.5,9.72C3.4,9.72 3.3,9.69 3.21,9.63C3,9.47 2.93,9.16 3.09,8.93C4.08,7.53 5.34,6.43 6.84,5.66C10,4.04 14,4.03 17.15,5.65C18.65,6.42 19.91,7.5 20.9,8.9C21.06,9.12 21,9.44 20.78,9.6C20.55,9.76 20.24,9.71 20.08,9.5C19.18,8.22 18.04,7.23 16.69,6.54C13.82,5.07 10.15,5.07 7.29,6.55C5.93,7.25 4.79,8.25 3.89,9.5C3.81,9.65 3.66,9.72 3.5,9.72M9.75,21.79C9.62,21.79 9.5,21.74 9.4,21.64C8.53,20.77 8.06,20.21 7.39,19C6.7,17.77 6.34,16.27 6.34,14.66C6.34,11.69 8.88,9.27 12,9.27C15.12,9.27 17.66,11.69 17.66,14.66A0.5,0.5 0 0,1 17.16,15.16A0.5,0.5 0 0,1 16.66,14.66C16.66,12.24 14.57,10.27 12,10.27C9.43,10.27 7.34,12.24 7.34,14.66C7.34,16.1 7.66,17.43 8.27,18.5C8.91,19.66 9.35,20.15 10.12,20.93C10.31,21.13 10.31,21.44 10.12,21.64C10,21.74 9.88,21.79 9.75,21.79M16.92,19.94C15.73,19.94 14.68,19.64 13.82,19.05C12.33,18.04 11.44,16.4 11.44,14.66A0.5,0.5 0 0,1 11.94,14.16A0.5,0.5 0 0,1 12.44,14.66C12.44,16.07 13.16,17.4 14.38,18.22C15.09,18.7 15.92,18.93 16.92,18.93C17.16,18.93 17.56,18.9 17.96,18.83C18.23,18.78 18.5,18.96 18.54,19.24C18.59,19.5 18.41,19.77 18.13,19.82C17.56,19.93 17.06,19.94 16.92,19.94M14.91,22C14.87,22 14.82,22 14.78,22C13.19,21.54 12.15,20.95 11.06,19.88C9.66,18.5 8.89,16.64 8.89,14.66C8.89,13.04 10.27,11.72 11.97,11.72C13.67,11.72 15.05,13.04 15.05,14.66C15.05,15.73 16,16.6 17.13,16.6C18.28,16.6 19.21,15.73 19.21,14.66C19.21,10.89 15.96,7.83 11.96,7.83C9.12,7.83 6.5,9.41 5.35,11.86C4.96,12.67 4.76,13.62 4.76,14.66C4.76,15.44 4.83,16.67 5.43,18.27C5.53,18.53 5.4,18.82 5.14,18.91C4.88,19 4.59,18.87 4.5,18.62C4,17.31 3.77,16 3.77,14.66C3.77,13.46 4,12.37 4.45,11.42C5.78,8.63 8.73,6.82 11.96,6.82C16.5,6.82 20.21,10.33 20.21,14.65C20.21,16.27 18.83,17.59 17.13,17.59C15.43,17.59 14.05,16.27 14.05,14.65C14.05,13.58 13.12,12.71 11.97,12.71C10.82,12.71 9.89,13.58 9.89,14.65C9.89,16.36 10.55,17.96 11.76,19.16C12.71,20.1 13.62,20.62 15.03,21C15.3,21.08 15.45,21.36 15.38,21.62C15.33,21.85 15.12,22 14.91,22Z"
+                                        style="fill: rgb(61, 69, 77);"></path>
+                            </svg><span style="margin-left: .5em">$languagePackMessages.getMessage($messageKeyPrefix,"header")</span>
+                        </h1>
+                    </div>
+					<div class="stack stack--small" data-id="stack">
+						<div class="text-block" data-id="textblock">
+							<div class="text-block--overflow-wrap">
+								$languagePackMessages.getMessage($messageKeyPrefix, "message")
+							</div>
+						</div>
+					</div>
+                    #end
+				</div>
+
+
+            </div>
+        </div>
+        <div class="page__footer">
+            <div class="ping-footer">
+                <div class="ping-credits"></div>
+                <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="form" class="form" data-id="form" method="post" action="$resumePath" autocomplete="off">
+    <input type="hidden" type="text" name="$platformDeviceAttestation" value=""/>
+	<input type="hidden" name="$cancelDevicePairing" value=""/>
+</form>
+
+
+<script type="text/javascript">
+
+	function cancelDevicePairing() {
+		document.forms[0]['$cancelDevicePairing'].value = 'true';
+		submit('$cancelDevicePairing');
+    }
+	
+	function submit(inputName)
+	{
+		// Prevent unused inputs from being submitted
+		var inputs = document.forms[1].getElementsByTagName("input");
+		for (var i = 0; i < inputs.length; i++)
+		{
+			var input = inputs[i];
+			if (input.name !== inputName)
+			{
+				input.removeAttribute('name');
+			}
+		}
+		var form = jQuery('form');
+		form.submit(function () {
+			jQuery(this).unbind('submit');
+			jQuery(this).submit(function () {
+				return false;
+			});
+		});
+		form.submit();
+	}
+
+	var authAbortController = window.PublicKeyCredential ? new AbortController() : null;
+	var authAbortSignal = window.PublicKeyCredential ? authAbortController.signal : null;
+
+	window.abortWebAuthnSignal = function abortWebAuthnSignal()
+	{
+		authAbortController.abort();
+		authAbortController = new AbortController();
+		authAbortSignal = authAbortController.signal;
+	}
+
+	window.IsWebAuthnSupported = function IsWebAuthnSupported()
+	{
+		if (!window.PublicKeyCredential)
+		{
+			console.log("Web Authentication API is not supported on this browser.");
+			return false;
+		}
+		return true;
+	}
+
+	window.isWebAuthnPlatformAuthenticatorAvailable = function isWebAuthnPlatformAuthenticatorAvailable() {
+		var timer;
+		var p1 = new Promise(function(resolve) {
+			timer = setTimeout(function() {
+				resolve(false);
+			}, 1000);
+		});
+		var p2 = new Promise(function(resolve) {
+			if (IsWebAuthnSupported() && window.PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable) {
+				resolve(
+					window.PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable().catch(function(err) {
+						console.log(err);
+						return false;
+					}));
+			}
+			else {
+				resolve(false);
+			}
+		});
+		return Promise.race([p1, p2]).then(function (res) {
+			clearTimeout(timer);
+			return res;
+		});
+	}
+	
+	window.WebAuthnPlatformRegistration = function WebAuthnPlatformRegistration(publicKeyCredentialCreationOptions) {
+		return new Promise(function (resolve, reject) {
+			isWebAuthnPlatformAuthenticatorAvailable().then(function (result) {
+				if (result) {
+					resolve(Register(publicKeyCredentialCreationOptions));
+				}
+				reject(Error("UnSupportedBrowserError"));
+			});
+		});
+	}
+
+	function Register(publicKeyCredentialCreationOptions) {
+		return new Promise(function (resolve, reject) {
+			var options = JSON.parse(publicKeyCredentialCreationOptions);
+			var publicKeyCredential = {};
+			publicKeyCredential.rp = options.rp;
+			publicKeyCredential.user = options.user;
+			publicKeyCredential.user.id = new Uint8Array(options.user.id);
+			publicKeyCredential.challenge = new Uint8Array(options.challenge);
+			publicKeyCredential.pubKeyCredParams = options.pubKeyCredParams;
+			// Optional parameters
+			if ('timeout' in options) {
+				publicKeyCredential.timeout = options.timeout;
+			}
+			if ('excludeCredentials' in options) {
+				publicKeyCredential.excludeCredentials = credentialListConversion(options.excludeCredentials);
+			}
+			if ('authenticatorSelection' in options) {
+				publicKeyCredential.authenticatorSelection = options.authenticatorSelection;
+			}
+			if ('attestation' in options) {
+				publicKeyCredential.attestation = options.attestation;
+			}
+			if ('extensions' in options) {
+				publicKeyCredential.extensions = options.extensions;
+			}
+			console.log(publicKeyCredential);
+			navigator.credentials.create({ "publicKey": publicKeyCredential, "signal": authAbortSignal })
+				.then(function (newCredentialInfo) {
+					// Send new credential info to server for verification and registration.
+					console.log(newCredentialInfo);
+					var publicKeyCredential = {};
+					if ('id' in newCredentialInfo) {
+						publicKeyCredential.id = newCredentialInfo.id;
+					}
+					if ('type' in newCredentialInfo) {
+						publicKeyCredential.type = newCredentialInfo.type;
+					}
+					if ('rawId' in newCredentialInfo) {
+						publicKeyCredential.rawId = toBase64Str(newCredentialInfo.rawId);
+					}
+					if (!newCredentialInfo.response) {
+						throw "Missing 'response' attribute in credential response";
+					}
+					var response = {};
+					response.clientDataJSON = toBase64Str(newCredentialInfo.response.clientDataJSON);
+					response.attestationObject = toBase64Str(newCredentialInfo.response.attestationObject);
+					publicKeyCredential.response = response;
+					resolve(JSON.stringify(publicKeyCredential));
+					registerDevice(JSON.stringify(publicKeyCredential));
+				}).catch(function (err) {
+					// No acceptable authenticator or user refused consent. Handle appropriately.
+					console.log(err);
+					removeInput('$platformDeviceAttestation');
+					document.forms[0]['$cancelDevicePairing'].value = true;
+					submit();
+				});
+		});
+	}
+
+	function registerDevice(publicKeyCredential) {
+		removeInput('$cancelDevicePairing');
+		document.forms[0]['$platformDeviceAttestation'].value = publicKeyCredential;
+		submit();
+	}
+
+	function credentialListConversion(list) {
+		var credList = [];
+		for (var i=0; i < list.length; i++) {
+			var cred = {
+				type: list[i].type,
+				id: new Uint8Array(list[i].id)
+			};
+			if (list[i].transports) {
+				cred.transports = list[i].transports;
+			}
+			credList.push(cred);
+		}
+		return credList;
+	}
+
+	function toBase64Str(bin){
+		return btoa(String.fromCharCode.apply(null, new Uint8Array(bin)));
+	}
+
+	function isWebAuthnSupported() {
+	  if (!window.PublicKeyCredential) {
+		return false;
+	  }
+	  return true;
+	};
+
+	function getCompatibility() {
+
+	  // We shouldn't be here since default device selection template
+	  // filters out FIDO devices for IE but added just in case the template was changed
+	  var ua = window.navigator.userAgent;
+	  var msie = ua.indexOf("MSIE ");
+	  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))
+	  {
+	    return 'NONE';
+	  }
+
+	  return isWebAuthnPlatformAuthenticatorAvailable()
+		  .then(function (result) {
+			if (result) {
+			  return 'FULL';
+			} else if (isWebAuthnSupported()) {
+			  return 'SECURITY_KEY_ONLY';
+			} else {
+			  return 'NONE';
+			}
+		  })
+		  .catch(function () {
+			if (isWebAuthnSupported()) {
+			  return 'SECURITY_KEY_ONLY';
+			} else {
+			  return 'NONE';
+			}
+		  });
+	}
+
+	function checkAssertion(publicKeyCredential) {
+		document.forms[0]['$platformDeviceAttestation'].value = publicKeyCredential;
+		getCompatibility().then(function(value) {
+			if(value === 'FULL')
+				document.forms[0]['$compatibility'].value = 'FULL';
+			else if (value === 'SECURITY_KEY_ONLY')
+				document.forms[0]['$compatibility'].value = 'SECURITY_KEY_ONLY';
+			else
+				document.forms[0]['$compatibility'].value = 'NONE';
+			removeInput('$cancelDevicePairing');
+			removeInput('$selectedDeviceId');
+			submit();
+		});
+	}
+
+	function cancelDevicePairing() {
+		document.forms[0]['$cancelDevicePairing'].value = 'true';
+		retainInput('$cancelDevicePairing');
+		submit();
+	}
+
+	function removeInput(inputName) {
+		// Prevent unused inputs from being submitted
+		var inputs = document.forms[0].getElementsByTagName("input");
+		for (var i = 0; i < inputs.length; i++) {
+			var input = inputs[i];
+			if (input.name === inputName) {
+				input.removeAttribute('name');
+			}
+		}
+	}
+
+	function retainInput(inputName) {
+		// Prevent unused inputs from being submitted
+		var inputs = document.forms[0].getElementsByTagName("input");
+		for (var i = 0; i < inputs.length; i++) {
+			var input = inputs[i];
+			if (input.name !== inputName) {
+				input.removeAttribute('name');
+			}
+		}
+	}
+
+	function submit() {
+		var form = jQuery('form');
+		form.submit(function () {
+			jQuery(this).unbind('submit');
+			jQuery(this).submit(function () {
+				return false;
+			});
+		});
+		form.submit();
+	}
+
+	onload = function () {
+		getCompatibility().then(function(value) {			
+			// FULL for Biometrics + Security key
+			if ( value !== 'FULL' )
+			{
+				// Cancel authentication if this is the only device so we don't loop
+				console.log("No acceptable authenticator");
+				removeInput('$platformDeviceAttestation');
+				document.forms[0]['$cancelDevicePairing'].value = true;
+				submit();
+			}
+			else
+			{
+				if('$errorMessageKey' === "")
+					Register('$publicKeyCredentialCreationOptions');
+			}
+		});
+ }
+
+</script>
+
+
+</body>
