@@ -1,0 +1,2926 @@
+{
+	"info": {
+		"_postman_id": "01a65a48-7c87-40e9-be6c-b1e5e0d4ba77",
+		"name": "_Consent Flow - Experimental MFA",
+		"description": "20201211 - updated to work with CDR Register Test Harness v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Configure MFA Flows",
+			"item": [
+				{
+					"name": "Create Base Configuration",
+					"item": [
+						{
+							"name": "Create PingOne Connection",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"9yzZsdl5ZRPiexqJ1MQjAq\",\n  \"name\": \"defaultPingoneConnection\",\n  \"active\": true,\n  \"credential\": \"{{pingoneCredential}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/pingOneConnections",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"pingOneConnections"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Configure Authentication Policy",
+					"item": [
+						{
+							"name": "Create PingOne MFA Adapter",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"pingOneMFAAdapter\",\n  \"name\": \"PingOne MFA\",\n  \"pluginDescriptorRef\": {\n    \"id\": \"com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter\",\n    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter\"\n  },\n  \"configuration\": {\n    \"tables\": [],\n    \"fields\": [\n      {\n        \"name\": \"PingOne Environment\",\n        \"value\": \"9yzZsdl5ZRPiexqJ1MQjAq|{{pingoneEnvironment}}\"\n      },\n      {\n        \"name\": \"PingOne Population\",\n        \"value\": \"{{pingoneMFAPopulation}}\"\n      },\n      {\n        \"name\": \"Application\",\n        \"value\": \"{{pingoneMFAApplication}}\"\n      },\n      {\n        \"name\": \"PingOne Authentication Policy\",\n        \"value\": \"{{pingoneMFAPolicy}}\"\n      },\n      {\n        \"name\": \"PingOne Management API\",\n        \"value\": \"https://api.pingone.com\"\n      },\n      {\n        \"name\": \"PingOne Authentication API\",\n        \"value\": \"https://auth.pingone.com\"\n      },\n      {\n        \"name\": \"Notification Template Variant Override\",\n        \"value\": \"\"\n      },\n      {\n        \"name\": \"Test Username\",\n        \"value\": \"\"\n      },\n      {\n        \"name\": \"HTML Template Prefix\",\n        \"value\": \"pingone-mfa\"\n      },\n      {\n        \"name\": \"Messages Files\",\n        \"value\": \"pingone-mfa-messages\"\n      },\n      {\n        \"name\": \"Prompt Users to Set Up MFA\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"Allow Users to Skip MFA Setup\",\n        \"value\": \"false\"\n      },\n      {\n        \"name\": \"Allow Users to Add Additional Authentication Methods\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"Provision Users and Authentication Methods\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"Update Authentication Methods\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"Username Attribute\",\n        \"value\": \"\"\n      },\n      {\n        \"name\": \"SMS Attribute\",\n        \"value\": \"sms\"\n      },\n      {\n        \"name\": \"Voice Attribute\",\n        \"value\": \"voice\"\n      },\n      {\n        \"name\": \"Email Attribute\",\n        \"value\": \"email\"\n      },\n      {\n        \"name\": \"DEFAULT AUTHENTICATION METHOD FOR PROVISIONED USERS\",\n        \"value\": \"SMS\"\n      },\n      {\n        \"name\": \"User Not Found Failure Mode\",\n        \"value\": \"Block user\"\n      },\n      {\n        \"name\": \"Service Unavailable Failure Mode\",\n        \"value\": \"Block user\"\n      },\n      {\n        \"name\": \"Change Device\",\n        \"value\": \"Allow\"\n      },\n      {\n        \"name\": \"Show Success Screens\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"Show Error Screens\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"Show Timeout Screens\",\n        \"value\": \"true\"\n      },\n      {\n        \"name\": \"API Request Timeout\",\n        \"value\": \"12000\"\n      },\n      {\n        \"name\": \"Proxy Settings\",\n        \"value\": \"System Defaults\"\n      },\n      {\n        \"name\": \"Custom Proxy Host\",\n        \"value\": \"\"\n      },\n      {\n        \"name\": \"Custom Proxy Port\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"attributeContract\": {\n    \"coreAttributes\": [\n      {\n        \"name\": \"access_token\",\n        \"masked\": false,\n        \"pseudonym\": false\n      },\n      {\n        \"name\": \"pingone.mfa.status\",\n        \"masked\": false,\n        \"pseudonym\": false\n      },\n      {\n        \"name\": \"id_token\",\n        \"masked\": false,\n        \"pseudonym\": false\n      },\n      {\n        \"name\": \"pingone.mfa.status.reason\",\n        \"masked\": false,\n        \"pseudonym\": false\n      },\n      {\n        \"name\": \"username\",\n        \"masked\": false,\n        \"pseudonym\": true\n      }\n    ],\n    \"extendedAttributes\": [\n      {\n        \"name\": \"isSuccess\",\n        \"masked\": false,\n        \"pseudonym\": false\n      }\n    ],\n    \"maskOgnlValues\": false\n  },\n  \"attributeMapping\": {\n    \"attributeSources\": [],\n    \"attributeContractFulfillment\": {\n      \"access_token\": {\n        \"source\": {\n          \"type\": \"ADAPTER\"\n        },\n        \"value\": \"access_token\"\n      },\n      \"pingone.mfa.status\": {\n        \"source\": {\n          \"type\": \"ADAPTER\"\n        },\n        \"value\": \"pingone.mfa.status\"\n      },\n      \"id_token\": {\n        \"source\": {\n          \"type\": \"ADAPTER\"\n        },\n        \"value\": \"id_token\"\n      },\n      \"pingone.mfa.status.reason\": {\n        \"source\": {\n          \"type\": \"ADAPTER\"\n        },\n        \"value\": \"pingone.mfa.status.reason\"\n      },\n      \"isSuccess\": {\n        \"source\": {\n          \"type\": \"EXPRESSION\"\n        },\n        \"value\": \"@java.lang.String@valueOf(#this.get(\\\"access_token\\\") != null && !#this.get(\\\"access_token\\\").toString().trim().equals(\\\"\\\"))\"\n      },\n      \"username\": {\n        \"source\": {\n          \"type\": \"ADAPTER\"\n        },\n        \"value\": \"username\"\n      }\n    },\n    \"issuanceCriteria\": {\n      \"conditionalCriteria\": []\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/idp/adapters",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"idp",
+										"adapters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create PingOne MFA Adapter Session Config",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"pingoneMFASessionConfig\",\n    \"authenticationSource\": {\n        \"type\": \"IDP_ADAPTER\",\n        \"sourceRef\": {\n            \"id\": \"pingOneMFAAdapter\",\n            \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/pingOneMFAAdapter\"\n        }\n    },\n    \"enableSessions\": false,\n    \"persistent\": false,\n    \"timeoutDisplayUnit\": \"MINUTES\",\n    \"authnContextSensitive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/session/authenticationSessionPolicies",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"session",
+										"authenticationSessionPolicies"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create MFA Policy Fragment",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"cdrPolicyFragmentMFA\",\n  \"name\": \"CDR Policy Fragment - With MFA\",\n  \"rootNode\": {\n    \"action\": {\n      \"type\": \"AUTHN_SOURCE\",\n      \"authenticationSource\": {\n        \"type\": \"IDP_ADAPTER\",\n        \"sourceRef\": {\n          \"id\": \"identityFirstAdapter\",\n          \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter\"\n        }\n      }\n    },\n    \"children\": [\n      {\n        \"action\": {\n          \"type\": \"DONE\",\n          \"context\": \"Fail\"\n        }\n      },\n      {\n        \"action\": {\n          \"type\": \"AUTHN_SOURCE\",\n          \"context\": \"Success\",\n          \"authenticationSource\": {\n            \"type\": \"IDP_ADAPTER\",\n            \"sourceRef\": {\n              \"id\": \"clickatellAdapter\",\n              \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter\"\n            }\n          },\n          \"inputUserIdMapping\": {\n            \"source\": {\n              \"type\": \"ADAPTER\",\n              \"id\": \"identityFirstAdapter\"\n            },\n            \"value\": \"mobile\"\n          },\n          \"userIdAuthenticated\": true\n        },\n        \"children\": [\n          {\n            \"action\": {\n              \"type\": \"DONE\",\n              \"context\": \"Fail\"\n            }\n          },\n          {\n            \"action\": {\n              \"type\": \"AUTHN_SOURCE\",\n              \"context\": \"Success\",\n              \"authenticationSource\": {\n                \"type\": \"IDP_ADAPTER\",\n                \"sourceRef\": {\n                  \"id\": \"pingOneMFAAdapter\",\n                  \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/pingOneMFAAdapter\"\n                }\n              },\n              \"inputUserIdMapping\": {\n                \"source\": {\n                  \"type\": \"ADAPTER\",\n                  \"id\": \"identityFirstAdapter\"\n                },\n                \"value\": \"entryUUID\"\n              },\n              \"userIdAuthenticated\": true,\n              \"attributeRules\": {\n                \"items\": [\n                  {\n                    \"attributeName\": \"isSuccess\",\n                    \"condition\": \"NOT_EQUAL\",\n                    \"expectedValue\": \"true\",\n                    \"result\": \"FAILED\"\n                  }\n                ],\n                \"fallbackToSuccess\": true\n              }\n            },\n            \"children\": [\n              {\n                \"action\": {\n                  \"type\": \"DONE\",\n                  \"context\": \"Fail\"\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"APC_MAPPING\",\n                  \"context\": \"FAILED\",\n                  \"authenticationPolicyContractRef\": {\n                    \"id\": \"iQwSYDdExcmJaYk6\",\n                    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6\"\n                  },\n                  \"attributeMapping\": {\n                    \"attributeSources\": [],\n                    \"attributeContractFulfillment\": {\n                      \"cdr_consent_id\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"subject\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"authorizationDetails\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"result\": {\n                        \"source\": {\n                          \"type\": \"TEXT\"\n                        },\n                        \"value\": \"failed\"\n                      },\n                      \"acr\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"cdrArrangementId\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"sharingDurationExpiresAt\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"customerRef\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"SAML_AUTHN_CTX\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"accounts\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"accounts_available\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"idtokenClaims\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"scopes\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      },\n                      \"userinfoClaims\": {\n                        \"source\": {\n                          \"type\": \"NO_MAPPING\"\n                        }\n                      }\n                    },\n                    \"issuanceCriteria\": {\n                      \"conditionalCriteria\": [],\n                      \"expressionCriteria\": [\n                        {\n                          \"errorResult\": \"FAILED_AUTHENTICATION\",\n                          \"expression\": \"false\"\n                        }\n                      ]\n                    }\n                  }\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"AUTHN_SOURCE\",\n                  \"context\": \"Success\",\n                  \"authenticationSource\": {\n                    \"type\": \"IDP_ADAPTER\",\n                    \"sourceRef\": {\n                      \"id\": \"consentAgentlessAdapter\",\n                      \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter\"\n                    }\n                  },\n                  \"inputUserIdMapping\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"identityFirstAdapter\"\n                    },\n                    \"value\": \"entryUUID\"\n                  },\n                  \"userIdAuthenticated\": true\n                },\n                \"children\": [\n                  {\n                    \"action\": {\n                      \"type\": \"DONE\",\n                      \"context\": \"Fail\"\n                    }\n                  },\n                  {\n                    \"action\": {\n                      \"type\": \"APC_MAPPING\",\n                      \"context\": \"Success\",\n                      \"authenticationPolicyContractRef\": {\n                        \"id\": \"iQwSYDdExcmJaYk6\",\n                        \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6\"\n                      },\n                      \"attributeMapping\": {\n                        \"attributeSources\": [],\n                        \"attributeContractFulfillment\": {\n                          \"cdr_consent_id\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"consentAgentlessAdapter\"\n                            },\n                            \"value\": \"consent_id\"\n                          },\n                          \"subject\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"consentAgentlessAdapter\"\n                            },\n                            \"value\": \"subject\"\n                          },\n                          \"authorizationDetails\": {\n                            \"source\": {\n                              \"type\": \"NO_MAPPING\"\n                            }\n                          },\n                          \"result\": {\n                            \"source\": {\n                              \"type\": \"TEXT\"\n                            },\n                            \"value\": \"approve\"\n                          },\n                          \"acr\": {\n                            \"source\": {\n                              \"type\": \"INPUTS\",\n                              \"id\": \"inputs\"\n                            },\n                            \"value\": \"claims_requestedACR\"\n                          },\n                          \"cdrArrangementId\": {\n                            \"source\": {\n                              \"type\": \"INPUTS\",\n                              \"id\": \"inputs\"\n                            },\n                            \"value\": \"claims_cdrArrangementId\"\n                          },\n                          \"sharingDurationExpiresAt\": {\n                            \"source\": {\n                              \"type\": \"INPUTS\",\n                              \"id\": \"inputs\"\n                            },\n                            \"value\": \"claims_sharingDurationExpiresAt\"\n                          },\n                          \"customerRef\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"identityFirstAdapter\"\n                            },\n                            \"value\": \"entryUUID\"\n                          },\n                          \"SAML_AUTHN_CTX\": {\n                            \"source\": {\n                              \"type\": \"INPUTS\",\n                              \"id\": \"inputs\"\n                            },\n                            \"value\": \"claims_requestedACR\"\n                          },\n                          \"accounts\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"consentAgentlessAdapter\"\n                            },\n                            \"value\": \"accounts\"\n                          },\n                          \"accounts_available\": {\n                            \"source\": {\n                              \"type\": \"NO_MAPPING\"\n                            }\n                          },\n                          \"idtokenClaims\": {\n                            \"source\": {\n                              \"type\": \"INPUTS\",\n                              \"id\": \"inputs\"\n                            },\n                            \"value\": \"claims_idtoken\"\n                          },\n                          \"scopes\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"consentAgentlessAdapter\"\n                            },\n                            \"value\": \"scopes\"\n                          },\n                          \"userinfoClaims\": {\n                            \"source\": {\n                              \"type\": \"INPUTS\",\n                              \"id\": \"inputs\"\n                            },\n                            \"value\": \"claims_userinfo\"\n                          }\n                        },\n                        \"issuanceCriteria\": {\n                          \"conditionalCriteria\": []\n                        }\n                      }\n                    }\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"inputs\": {\n    \"id\": \"AaBY1mnPx540brcB\",\n    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/AaBY1mnPx540brcB\"\n  },\n  \"outputs\": {\n    \"id\": \"iQwSYDdExcmJaYk6\",\n    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/authenticationPolicies/fragments",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"authenticationPolicies",
+										"fragments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Global Authentication Policy",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"failIfNoSelection\": false,\n  \"authnSelectionTrees\": [\n    {\n      \"rootNode\": {\n        \"action\": {\n          \"type\": \"AUTHN_SELECTOR\",\n          \"authenticationSelectorRef\": {\n            \"id\": \"adminSelector\",\n            \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationSelectors/adminSelector\"\n          }\n        },\n        \"children\": [\n          {\n            \"action\": {\n              \"type\": \"AUTHN_SOURCE\",\n              \"context\": \"true\",\n              \"authenticationSource\": {\n                \"type\": \"IDP_ADAPTER\",\n                \"sourceRef\": {\n                  \"id\": \"htmlFormAdapterAdministrators\",\n                  \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/htmlFormAdapterAdministrators\"\n                }\n              }\n            },\n            \"children\": [\n              {\n                \"action\": {\n                  \"type\": \"DONE\",\n                  \"context\": \"Fail\"\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"APC_MAPPING\",\n                  \"context\": \"Success\",\n                  \"authenticationPolicyContractRef\": {\n                    \"id\": \"TkNJ3HMIIvIeeZEM\",\n                    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/TkNJ3HMIIvIeeZEM\"\n                  },\n                  \"attributeMapping\": {\n                    \"attributeSources\": [],\n                    \"attributeContractFulfillment\": {\n                      \"subject\": {\n                        \"source\": {\n                          \"type\": \"ADAPTER\",\n                          \"id\": \"htmlFormAdapterAdministrators\"\n                        },\n                        \"value\": \"entryUUID\"\n                      }\n                    },\n                    \"issuanceCriteria\": {\n                      \"conditionalCriteria\": []\n                    }\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      },\n      \"name\": \"Administrative Functions\",\n      \"enabled\": true\n    },\n    {\n      \"rootNode\": {\n        \"action\": {\n          \"type\": \"AUTHN_SELECTOR\",\n          \"authenticationSelectorRef\": {\n            \"id\": \"DataInSelector\",\n            \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationSelectors/DataInSelector\"\n          }\n        },\n        \"children\": [\n          {\n            \"action\": {\n              \"type\": \"AUTHN_SOURCE\",\n              \"context\": \"Any\",\n              \"authenticationSource\": {\n                \"type\": \"IDP_ADAPTER\",\n                \"sourceRef\": {\n                  \"id\": \"htmlFormAdapter\",\n                  \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/htmlFormAdapter\"\n                }\n              }\n            },\n            \"children\": [\n              {\n                \"action\": {\n                  \"type\": \"DONE\",\n                  \"context\": \"Fail\"\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"AUTHN_SOURCE\",\n                  \"context\": \"Success\",\n                  \"authenticationSource\": {\n                    \"type\": \"IDP_ADAPTER\",\n                    \"sourceRef\": {\n                      \"id\": \"ADRDataInSelector\",\n                      \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/ADRDataInSelector\"\n                    }\n                  },\n                  \"inputUserIdMapping\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"htmlFormAdapter\"\n                    },\n                    \"value\": \"username\"\n                  },\n                  \"userIdAuthenticated\": true\n                },\n                \"children\": [\n                  {\n                    \"action\": {\n                      \"type\": \"DONE\",\n                      \"context\": \"Fail\"\n                    }\n                  },\n                  {\n                    \"action\": {\n                      \"type\": \"APC_MAPPING\",\n                      \"context\": \"Success\",\n                      \"authenticationPolicyContractRef\": {\n                        \"id\": \"VYC5qyntxwlroKqT\",\n                        \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/VYC5qyntxwlroKqT\"\n                      },\n                      \"attributeMapping\": {\n                        \"attributeSources\": [],\n                        \"attributeContractFulfillment\": {\n                          \"software_id\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"ADRDataInSelector\"\n                            },\n                            \"value\": \"software_id\"\n                          },\n                          \"subject\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"htmlFormAdapter\"\n                            },\n                            \"value\": \"username\"\n                          },\n                          \"context\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"ADRDataInSelector\"\n                            },\n                            \"value\": \"context\"\n                          }\n                        },\n                        \"issuanceCriteria\": {\n                          \"conditionalCriteria\": []\n                        }\n                      }\n                    }\n                  }\n                ]\n              }\n            ]\n          },\n          {\n            \"action\": {\n              \"type\": \"AUTHN_SELECTOR\",\n              \"context\": \"Not in Request\",\n              \"authenticationSelectorRef\": {\n                \"id\": \"dataInClientSelector\",\n                \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationSelectors/dataInClientSelector\"\n              }\n            },\n            \"children\": [\n              {\n                \"action\": {\n                  \"type\": \"CONTINUE\",\n                  \"context\": \"No\"\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"AUTHN_SOURCE\",\n                  \"context\": \"Yes\",\n                  \"authenticationSource\": {\n                    \"type\": \"IDP_ADAPTER\",\n                    \"sourceRef\": {\n                      \"id\": \"htmlFormAdapter\",\n                      \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/htmlFormAdapter\"\n                    }\n                  }\n                },\n                \"children\": [\n                  {\n                    \"action\": {\n                      \"type\": \"DONE\",\n                      \"context\": \"Fail\"\n                    }\n                  },\n                  {\n                    \"action\": {\n                      \"type\": \"APC_MAPPING\",\n                      \"context\": \"Success\",\n                      \"authenticationPolicyContractRef\": {\n                        \"id\": \"VYC5qyntxwlroKqT\",\n                        \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/VYC5qyntxwlroKqT\"\n                      },\n                      \"attributeMapping\": {\n                        \"attributeSources\": [],\n                        \"attributeContractFulfillment\": {\n                          \"software_id\": {\n                            \"source\": {\n                              \"type\": \"TEXT\"\n                            },\n                            \"value\": \"software-cdr-sandbox-data-in-sample-dr-0005\"\n                          },\n                          \"subject\": {\n                            \"source\": {\n                              \"type\": \"ADAPTER\",\n                              \"id\": \"htmlFormAdapter\"\n                            },\n                            \"value\": \"username\"\n                          },\n                          \"context\": {\n                            \"source\": {\n                              \"type\": \"TEXT\"\n                            },\n                            \"value\": \"sample-data-in-application\"\n                          }\n                        },\n                        \"issuanceCriteria\": {\n                          \"conditionalCriteria\": []\n                        }\n                      }\n                    }\n                  }\n                ]\n              }\n            ]\n          }\n        ]\n      },\n      \"name\": \"ADR - Data In - Policy\",\n      \"enabled\": true\n    },\n    {\n      \"rootNode\": {\n        \"action\": {\n          \"type\": \"AUTHN_SOURCE\",\n          \"authenticationSource\": {\n            \"type\": \"IDP_ADAPTER\",\n            \"sourceRef\": {\n              \"id\": \"cdrSelectorAdapter\",\n              \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter\"\n            }\n          },\n          \"attributeRules\": {\n            \"items\": [\n              {\n                \"attributeName\": \"caValue\",\n                \"condition\": \"EQUALS_CASE_INSENSITIVE\",\n                \"expectedValue\": \"CA\",\n                \"result\": \"LOA2\"\n              },\n              {\n                \"attributeName\": \"caValue\",\n                \"condition\": \"EQUALS_CASE_INSENSITIVE\",\n                \"expectedValue\": \"SCA\",\n                \"result\": \"LOA3\"\n              }\n            ],\n            \"fallbackToSuccess\": false\n          }\n        },\n        \"children\": [\n          {\n            \"action\": {\n              \"type\": \"DONE\",\n              \"context\": \"Fail\"\n            }\n          },\n          {\n            \"action\": {\n              \"type\": \"FRAGMENT\",\n              \"context\": \"LOA2\",\n              \"fragment\": {\n                \"id\": \"cdrPolicyFragmentNoMFA\",\n                \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicies/fragments/cdrPolicyFragmentNoMFA\"\n              },\n              \"fragmentMapping\": {\n                \"attributeSources\": [],\n                \"attributeContractFulfillment\": {\n                  \"claims_requestedACR\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_requestedACR\"\n                  },\n                  \"claims_idtoken\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_idtoken\"\n                  },\n                  \"subject\": {\n                    \"source\": {\n                      \"type\": \"NO_MAPPING\"\n                    }\n                  },\n                  \"claims_userinfo\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_userinfo\"\n                  },\n                  \"pi.clientContext.authorization_details\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"pi.clientContext.authorization_details\"\n                  },\n                  \"claims_sharingDurationExpiresAt\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_sharingDurationExpiresAt\"\n                  },\n                  \"claims_cdrArrangementId\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_cdrArrangementId\"\n                  }\n                },\n                \"issuanceCriteria\": {\n                  \"conditionalCriteria\": []\n                }\n              }\n            },\n            \"children\": [\n              {\n                \"action\": {\n                  \"type\": \"DONE\",\n                  \"context\": \"Fail\"\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"APC_MAPPING\",\n                  \"context\": \"Success\",\n                  \"authenticationPolicyContractRef\": {\n                    \"id\": \"iQwSYDdExcmJaYk6\",\n                    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6\"\n                  },\n                  \"attributeMapping\": {\n                    \"attributeSources\": [],\n                    \"attributeContractFulfillment\": {\n                      \"cdr_consent_id\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"cdr_consent_id\"\n                      },\n                      \"subject\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"subject\"\n                      },\n                      \"authorizationDetails\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"authorizationDetails\"\n                      },\n                      \"result\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"result\"\n                      },\n                      \"acr\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"acr\"\n                      },\n                      \"cdrArrangementId\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"cdrArrangementId\"\n                      },\n                      \"sharingDurationExpiresAt\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"sharingDurationExpiresAt\"\n                      },\n                      \"customerRef\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"customerRef\"\n                      },\n                      \"SAML_AUTHN_CTX\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"SAML_AUTHN_CTX\"\n                      },\n                      \"accounts\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"accounts\"\n                      },\n                      \"accounts_available\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"accounts_available\"\n                      },\n                      \"idtokenClaims\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"idtokenClaims\"\n                      },\n                      \"scopes\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"scopes\"\n                      },\n                      \"userinfoClaims\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentNoMFA\"\n                        },\n                        \"value\": \"userinfoClaims\"\n                      }\n                    },\n                    \"issuanceCriteria\": {\n                      \"conditionalCriteria\": []\n                    }\n                  }\n                }\n              }\n            ]\n          },\n          {\n            \"action\": {\n              \"type\": \"FRAGMENT\",\n              \"context\": \"LOA3\",\n              \"fragment\": {\n                \"id\": \"cdrPolicyFragmentMFA\",\n                \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicies/fragments/cdrPolicyFragmentMFA\"\n              },\n              \"fragmentMapping\": {\n                \"attributeSources\": [],\n                \"attributeContractFulfillment\": {\n                  \"claims_requestedACR\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_requestedACR\"\n                  },\n                  \"claims_idtoken\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_idtoken\"\n                  },\n                  \"subject\": {\n                    \"source\": {\n                      \"type\": \"NO_MAPPING\"\n                    }\n                  },\n                  \"claims_userinfo\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_userinfo\"\n                  },\n                  \"pi.clientContext.authorization_details\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"pi.clientContext.authorization_details\"\n                  },\n                  \"claims_sharingDurationExpiresAt\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_sharingDurationExpiresAt\"\n                  },\n                  \"claims_cdrArrangementId\": {\n                    \"source\": {\n                      \"type\": \"ADAPTER\",\n                      \"id\": \"cdrSelectorAdapter\"\n                    },\n                    \"value\": \"claims_cdrArrangementId\"\n                  }\n                },\n                \"issuanceCriteria\": {\n                  \"conditionalCriteria\": []\n                }\n              }\n            },\n            \"children\": [\n              {\n                \"action\": {\n                  \"type\": \"DONE\",\n                  \"context\": \"Fail\"\n                }\n              },\n              {\n                \"action\": {\n                  \"type\": \"APC_MAPPING\",\n                  \"context\": \"Success\",\n                  \"authenticationPolicyContractRef\": {\n                    \"id\": \"iQwSYDdExcmJaYk6\",\n                    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6\"\n                  },\n                  \"attributeMapping\": {\n                    \"attributeSources\": [],\n                    \"attributeContractFulfillment\": {\n                      \"cdr_consent_id\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"cdr_consent_id\"\n                      },\n                      \"subject\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"subject\"\n                      },\n                      \"authorizationDetails\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"authorizationDetails\"\n                      },\n                      \"result\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"result\"\n                      },\n                      \"acr\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"acr\"\n                      },\n                      \"cdrArrangementId\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"cdrArrangementId\"\n                      },\n                      \"sharingDurationExpiresAt\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"sharingDurationExpiresAt\"\n                      },\n                      \"customerRef\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"customerRef\"\n                      },\n                      \"SAML_AUTHN_CTX\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"SAML_AUTHN_CTX\"\n                      },\n                      \"accounts\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"accounts\"\n                      },\n                      \"accounts_available\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"accounts_available\"\n                      },\n                      \"idtokenClaims\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"idtokenClaims\"\n                      },\n                      \"scopes\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"scopes\"\n                      },\n                      \"userinfoClaims\": {\n                        \"source\": {\n                          \"type\": \"FRAGMENT\",\n                          \"id\": \"cdrPolicyFragmentMFA\"\n                        },\n                        \"value\": \"userinfoClaims\"\n                      }\n                    },\n                    \"issuanceCriteria\": {\n                      \"conditionalCriteria\": []\n                    }\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      },\n      \"name\": \"CDR Policy v1.3\",\n      \"enabled\": true\n    }\n  ],\n  \"defaultAuthenticationSources\": [],\n  \"trackedHttpParameters\": [\n    \"data-holder\",\n    \"context\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/authenticationPolicies/default",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"authenticationPolicies",
+										"default"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Configure CIBA",
+					"item": [
+						{
+							"name": "Create CIBA Authenticator",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"pingoneMFACIBA\",\n    \"name\": \"PingOne MFA CIBA\",\n    \"pluginDescriptorRef\": {\n    \"id\": \"com.pingidentity.oobauth.pingone.mfa.PingOneMfaCibaAuthenticator\",\n    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins/descriptors/com.pingidentity.oobauth.pingone.mfa.PingOneMfaCibaAuthenticator\"\n    },\n    \"configuration\": {\n    \"tables\": [\n        {\n        \"name\": \"PingOne Template Variables\",\n        \"rows\": []\n        }\n    ],\n    \"fields\": [\n        {\n        \"name\": \"PingOne Environment\",\n        \"value\": \"9yzZsdl5ZRPiexqJ1MQjAq|{{pingoneEnvironment}}\"\n        },\n        {\n        \"name\": \"Application\",\n        \"value\": \"{{pingoneMFAApplication}}\"\n        },\n        {\n        \"name\": \"PingOne Authentication Policy\",\n        \"value\": \"{{pingoneMFAPolicyCIBA}}\"\n        },\n        {\n        \"name\": \"Test Username\",\n        \"value\": \"\"\n        },\n        {\n        \"name\": \"PingOne Template Name\",\n        \"value\": \"transaction\"\n        },\n        {\n        \"name\": \"PingOne Template Variant\",\n        \"value\": \"\"\n        },\n        {\n        \"name\": \"Client Context\",\n        \"value\": \"{\\n   \\\"requestingApplicationName\\\": \\\"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\\\",\\n   \\\"requestedScope\\\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\\n   \\\"authorization_details\\\": \\\"$JSONValue.escape($authorization_details)\\\",\\n   \\\"alert.color\\\": \\\"red\\\"\\n}\"\n        },\n        {\n        \"name\": \"Messages Files\",\n        \"value\": \"pingone-mfa-messages\"\n        },\n        {\n        \"name\": \"API Request Timeout\",\n        \"value\": \"12000\"\n        },\n        {\n        \"name\": \"Proxy Settings\",\n        \"value\": \"System Defaults\"\n        },\n        {\n        \"name\": \"Custom Proxy Host\",\n        \"value\": \"\"\n        },\n        {\n        \"name\": \"Custom Proxy Port\",\n        \"value\": \"\"\n        }\n    ]\n    },\n    \"attributeContract\": {\n    \"coreAttributes\": [\n        {\n        \"name\": \"subject\"\n        }\n    ],\n    \"extendedAttributes\": [\n        {\n        \"name\": \"authorization_details\"\n        }\n    ]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"oauth",
+										"outOfBandAuthPlugins"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create CIBA Policy",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"cdrCIBAPolicy\",\n  \"name\": \"CDR CIBA Policy\",\n  \"authenticatorRef\": {\n    \"id\": \"pingoneMFACIBA\",\n    \"location\": \"https://4cecbb96be19:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins/pingoneMFACIBA\"\n  },\n  \"transactionLifetime\": 120,\n  \"allowUnsignedLoginHintToken\": false,\n  \"requireTokenForIdentityHint\": true,\n  \"alternativeLoginHintTokenIssuers\": [\n    {\n      \"issuer\": \"https://sso.data-holder.local\",\n      \"jwksURL\": \"https://sso.data-holder.local/pf/JWKS\"\n    }\n  ],\n  \"identityHintContract\": {\n    \"coreAttributes\": [\n      {\n        \"name\": \"IDENTITY_HINT_SUBJECT\"\n      }\n    ],\n    \"extendedAttributes\": [\n      {\n        \"name\": \"AUTHORIZATION_DETAILS\"\n      }\n    ]\n  },\n  \"identityHintContractFulfillment\": {\n    \"attributeSources\": [],\n    \"attributeContractFulfillment\": {\n      \"AUTHORIZATION_DETAILS\": {\n        \"source\": {\n          \"type\": \"EXPRESSION\"\n        },\n        \"value\": \"#requestObj = #this.get(\\\"context.HttpRequest\\\").getObjectValue().getParameter(\\\"request\\\"),  #requestPayload = #requestObj.split(\\\"\\\\\\\\.\\\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\\\"authorization_details\\\").toString().getBytes())\"\n      },\n      \"IDENTITY_HINT_SUBJECT\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"IDENTITY_HINT_SUBJECT\"\n      }\n    },\n    \"issuanceCriteria\": {\n      \"conditionalCriteria\": []\n    }\n  },\n  \"identityHintMapping\": {\n    \"attributeSources\": [],\n    \"attributeContractFulfillment\": {\n      \"APPROVED_SCOPES\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"AVAILABLE_ACCOUNTS\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"subject\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"IDENTITY_HINT_SUBJECT\"\n      },\n      \"ACR_VALUES\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"RAR_AUTHZ_DETAILS\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"AUTHORIZATION_DETAILS\"\n      },\n      \"AUTH_TIME\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"CUSTOMER_REF\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"IDENTITY_HINT_SUBJECT\"\n      },\n      \"ADR_ORG_ID\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"CONSENTAPI_ID\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"ISSUER\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"PERSISTENT_GRANT_LIFETIME\": {\n        \"source\": {\n          \"type\": \"EXPRESSION\"\n        },\n        \"value\": \"0\"\n      },\n      \"authorization_details\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"AUTHORIZATION_DETAILS\"\n      },\n      \"SHARING_DURATION_EXPIRES_AT\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"CONSENTAPI_DEFINITION\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"SELECTED_ACCOUNTS\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"CLAIMS_IDTOKEN\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      },\n      \"SUBJECT\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"IDENTITY_HINT_SUBJECT\"\n      },\n      \"USER_KEY\": {\n        \"source\": {\n          \"type\": \"REQUEST\"\n        },\n        \"value\": \"IDENTITY_HINT_SUBJECT\"\n      },\n      \"CLAIMS_USERINFO\": {\n        \"source\": {\n          \"type\": \"NO_MAPPING\"\n        }\n      }\n    },\n    \"issuanceCriteria\": {\n      \"conditionalCriteria\": []\n    }\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/oauth/cibaServerPolicy/requestPolicies",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"oauth",
+										"cibaServerPolicy",
+										"requestPolicies"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "S001 Create Client",
+			"item": [
+				{
+					"name": "S001.T001 Create Brand/Software",
+					"item": [
+						{
+							"name": "S001.T001.000 - Create Brand/Software",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var uuid = require('uuid');",
+											"var myUUID = uuid.v4();",
+											"",
+											"pm.environment.set(\"flowUUID-datarecipient\", myUUID);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"legalEntityId\", response[\"data\"].legalEntityId);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get,https://httpbin.org.au/get\",\n                    \"scope\": \"openid bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\",\n                    \"sectorIdentifierUri\": \"{{cdr-register-testharness-host}}/cdr-register/v1/banking/data-recipients/brands/software-products/software-{{flowUUID-datarecipient}}/sector-uri-values\",\n                    \"sectorUriValues\": [\n                        \"https://httpbin.org/get\",\n                        \"https://httpbin.org.au/get\"\n                    ]\n                }\n            ]\n        }\n    ]\n\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/admin/model/dataRecipient",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"admin",
+										"model",
+										"dataRecipient"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.001 - Call sector uri url",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"legalEntityId\": \"{{data-recipient-id}}-{{flowUUID-datarecipient}}\",\n    \"legalEntityName\": \"{{data-recipient-id}} Ltd Pty\",\n    \"accreditationNumber\": \"123456\",\n    \"industry\": \"banking\",\n    \"logoUri\": \"https://mycompany.com/logo.png\",\n    \"dataRecipientBrands\": [\n        {\n            \"status\": \"ACTIVE\",\n            \"dataRecipientBrandId\": \"brand-{{flowUUID-datarecipient}}\",\n            \"brandName\": \"Brand One\",\n            \"logoUri\": \"https://mycompany.com/brand1/logo.png\",\n            \"softwareProducts\":[\n                {\n                    \"softwareProductId\": \"software-{{flowUUID-datarecipient}}\",\n                    \"softwareProductName\": \"Brand One Software One\",\n                    \"softwareProductDescription\": \"Brand One Software One Description\",\n                    \"logoUri\": \"https://mycompany.com/brand1/software1/logo.png\",\n                    \"status\": \"ACTIVE\",\n                    \"version\": \"1.0\",\n                    \"policyUri\": \"https://mycompany.com/brand1/software1/policy\",\n                    \"termsUri\": \"https://mycompany.com/brand1/software1/terms\",\n                    \"redirectUri\": \"https://httpbin.org/get\",\n                    \"scope\": \"openid bank:accounts.basic:read bank:accounts.detail:read bank:transactions:read bank:payees:read bank:regular_payments:read common:customer.basic:read common:customer.detail:read cdr:registration\",\n                    \"recipientBaseUri\": \"https://mycompany.com/brand1\",\n                    \"jwksUri\": \"http://cdrregister:8084/helper/JWKS/{{flowUUID-datarecipient}}\",\n                    \"revocationJwksUri\": \"{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/revocation\"\n                }\n            ]\n        }\n    ]\n\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/cdr-register/v1/banking/data-recipients/brands/software-products/software-{{flowUUID-datarecipient}}/sector-uri-values",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"cdr-register",
+										"v1",
+										"banking",
+										"data-recipients",
+										"brands",
+										"software-products",
+										"software-{{flowUUID-datarecipient}}",
+										"sector-uri-values"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.002 - Get CDR Register Endpoints",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate token_endpoint property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('token_endpoint');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"registerTokenEndpoint\", response.token_endpoint);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/.well-known/openid-configuration",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										".well-known",
+										"openid-configuration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.003 - Get CDR Register Access Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate access_token property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"registerAccessToken\", response.access_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/as/token.oauth2",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"as",
+										"token.oauth2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.004 - Get SSA From Register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var responseBlob = pm.response.text();",
+											"    pm.environment.set(\"software-ssa\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{registerAccessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/jwt",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/banking/data-recipients/brands/brand-{{flowUUID-datarecipient}}/software-products/software-{{flowUUID-datarecipient}}/ssa",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"banking",
+										"data-recipients",
+										"brands",
+										"brand-{{flowUUID-datarecipient}}",
+										"software-products",
+										"software-{{flowUUID-datarecipient}}",
+										"ssa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.005 - Get Private JWK (non-standard)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate kty is RSA\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.keys[0].kty).to.equal('RSA');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"software-jwks-private\", btoa(JSON.stringify(response.keys[0])));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"{{flowUUID-datarecipient}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.006 - Generate Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"software-dcr-requestjwt\", response[\"request-jwt\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\",\n    \"https://httpbin.org.au/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"dcr"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S001.T001.007 - Call PingFederate DCR POST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"pm.test(\"Validate client_id property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client_id');",
+											"});",
+											"pm.test(\"Validate redirect_uris property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('redirect_uris');",
+											"});",
+											"pm.test(\"Validate redirect_uris contains 'https://httpbin.org/get'\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response.redirect_uris).to.include('https://httpbin.org/get');",
+											"    ",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"dcrClientId\", response.client_id);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/jwt",
+										"type": "text"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{software-dcr-requestjwt}}"
+								},
+								"url": {
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-register-endpoint}}",
+									"host": [
+										"{{dh-idp-host-mtls}}{{dh-idp-register-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "S001.T002 Enable CIBA on Client",
+					"item": [
+						{
+							"name": "Read Client",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Get payload\", function () {",
+											"    var responseJSON = pm.response.json();",
+											"    responseJSON[\"grantTypes\"].push(\"CIBA\");",
+											"    responseJSON[\"cibaDeliveryMode\"] = \"POLL\";",
+											"    responseJSON[\"cibaPollingInterval\"] = 3;",
+											"    responseJSON[\"cibaRequireSignedRequests\"] = true;",
+											"    responseJSON[\"cibaUserCodeSupported\"] = false;",
+											"    var responseBlob = JSON.stringify(responseJSON);",
+											"    pm.environment.set(\"client-update-payload\", responseBlob);",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/oauth/clients/{{dcrClientId}}",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"oauth",
+										"clients",
+										"{{dcrClientId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Client with CIBA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Get payload\", function () {",
+											"    var responseJSON = pm.response.json();",
+											"    responseJSON[\"grantTypes\"].push(\"CIBA\");",
+											"    responseJSON[\"cibaDeliveryMode\"] = \"POLL\";",
+											"    responseJSON[\"cibaPollingInterval\"] = 3;",
+											"    responseJSON[\"cibaRequireSignedRequests\"] = true;",
+											"    responseJSON[\"cibaUserCodeSupported\"] = false;",
+											"    var responseBlob = JSON.stringify(responseJSON);",
+											"    pm.environment.set(\"client-update-payload\", responseBlob);",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfAdminPassword}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfAdminUser}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{client-update-payload}}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:9999/pf-admin-api/v1/oauth/clients/{{dcrClientId}}",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"oauth",
+										"clients",
+										"{{dcrClientId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "S002 Consent Flow - Happy Scenario",
+			"item": [
+				{
+					"name": "S002.T001 Obtain Access Token",
+					"item": [
+						{
+							"name": "S002.T001.001 - Download Private Key",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    var responseBlob = btoa(JSON.stringify(response.keys[0]));",
+											"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/private",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"helper",
+										"JWKS",
+										"{{flowUUID-datarecipient}}",
+										"private"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.002 - Generate Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Validate request-url property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-url');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read bank:accounts.detail:read bank:regular_payments:read bank:payees:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\",\n    \"authorization_details\":[\n        {\n        \"type\":\"account_information\",\n        \"access\":{\n            \"accounts\":[\n                {\n                    \"iban\":\"DE2310010010123456789\"\n                },\n                {\n                    \"maskedPan\":\"123456xxxxxx1234\"\n                }\n            ],\n            \"balances\":[\n                {\n                    \"iban\":\"DE2310010010123456789\"\n                }\n            ],\n            \"transactions\":[\n                {\n                    \"iban\":\"DE2310010010123456789\"\n                },\n                {\n                    \"maskedPan\":\"123456xxxxxx1234\"\n                }\n            ]\n        },\n        \"recurringIndicator\":true\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"requestJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.003 - Initiate Consent Request",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-request-url}}",
+									"host": [
+										"{{consent-request-url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.004 - Provide username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-otp-csrf\", $( \"input[name='CSRF_TOKEN']\" ).val());",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "$ok",
+											"value": "clicked",
+											"type": "text"
+										},
+										{
+											"key": "subject",
+											"value": "crn0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - Verify OTP",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "$ok",
+											"value": "clicked",
+											"type": "text"
+										},
+										{
+											"key": "CODE_VERIFICATION_VALUE",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "CODE_VERIFICATION_STATE",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "CSRF_TOKEN",
+											"value": "{{consent-request-otp-csrf}}",
+											"type": "text"
+										},
+										{
+											"key": "submitform",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - Poll after push notf",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "poll.authentication.status",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - End poll after push notf",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "poll.authentication.status",
+											"value": "false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - Continue after push notf",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "continue.authentication",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.006 - Load Consent Agentless App",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+											"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+											"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "allowInteraction",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "connectionId",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "resumePath",
+											"value": "{{consent-request-nonceurl}}",
+											"type": "text"
+										},
+										{
+											"key": "reauth",
+											"value": "false",
+											"type": "text"
+										},
+										{
+											"key": "REF",
+											"value": "{{consent-ref}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{consent-action}}",
+									"host": [
+										"{{consent-action}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.006 - Perform consent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false,
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account}}",
+											"type": "text"
+										},
+										{
+											"key": "approved",
+											"value": "allow",
+											"type": "text"
+										},
+										{
+											"key": "accounts",
+											"value": "{{consent-request-consent-account-2}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{consent-request-consent-completeurl}}",
+									"host": [
+										"{{consent-request-consent-completeurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.006 - Follow REF Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var locationHeader = pm.response.headers.get(\"Location\");",
+											"    if(!locationHeader)",
+											"        locationHeader = pm.response.headers.get(\"Referer\");",
+											"",
+											"    var locationParams = locationHeader.split(\"#\")[1];",
+											"    const eachParamArray = locationParams.split('&');",
+											"    let params = {};",
+											"    eachParamArray.forEach((param) => {",
+											"        const key = param.split('=')[0];",
+											"        const value = param.split('=')[1];",
+											"        Object.assign(params, {[key]: value});",
+											"    });",
+											"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+											"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+											"    pm.environment.set(\"consent-request-authcode-callback-code\", params[\"code\"]);",
+											"    pm.environment.set(\"consent-request-authcode-callback-id_token\", params[\"id_token\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"followRedirects": false
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{consent-ref-redirect}}",
+									"host": [
+										"{{consent-ref-redirect}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.008 - Test ID Token from Authz Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iss');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('exp');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iat');",
+											"});",
+											"",
+											"//CDR ID Token FAPI-RW Requirements",
+											"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('nonce');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('s_hash');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('c_hash');",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-authcode-callback-id_token}}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/reflectIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"reflectIDToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.009 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.010 - Perform code exchange",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"pm.test(\"Validate access_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Validate id_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('id_token');",
+											"});",
+											"pm.test(\"Validate refresh_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('refresh_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
+											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"    pm.environment.set(\"consent-cdr-arrangement-id\", response[\"cdr_arrangement_id\"]);",
+											"});",
+											"",
+											"",
+											"function jwt_decode_payload(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[1]));",
+											"}",
+											"",
+											"function jwt_decode_header(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return JSON.parse(atob(parts[0]));",
+											"}",
+											"function jwt_parts(jwt) {",
+											"    var parts = jwt.split('.'); // header, payload, signature",
+											"    return parts.length;",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "code",
+											"value": "{{consent-request-authcode-callback-code}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{default-redirecturi}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "code_verifier",
+											"value": "{{pkce-challenge-s256}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.011 - Test ID Token from Token Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iss');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('exp');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iat');",
+											"});",
+											"",
+											"//CDR ID Token FAPI-RW Requirements",
+											"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('nonce');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('s_hash');",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('c_hash');",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-id-token}}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/reflectIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"reflectIDToken"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "S002.T003 Refresh Tokens",
+					"item": [
+						{
+							"name": "S002.T003.001 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T003.002 - Perform refresh token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"pm.test(\"Validate access_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "{{consent-request-refresh-token}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{default-redirecturi}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T003.003 - Test ID Token from Token Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iss');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('sub');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('exp');",
+											"",
+											"});",
+											"",
+											"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('iat');",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-id-token}}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/reflectIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"reflectIDToken"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "S002.T008 CIBA",
+					"item": [
+						{
+							"name": "S002.T008.001 - Get Signed ID Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Get Signed JWT version of ID Token\", function () {",
+											"    var responseBlob = pm.response.text();",
+											"    pm.environment.set(\"consent-request-id-token-signed\", responseBlob);",
+											"",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-id-token}}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/getSignedIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"getSignedIDToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.002 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "issuer",
+											"value": "xxx",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.003 - Generate Request JWT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-jwt\", response[\"request-jwt\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"consent-request-iat\", Math.floor(new Date().getTime() / 1000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"client_assertion_type\": \"urn:ietf:params:oauth:client-assertion-type:jwt-bearer\",\n  \"client_assertion\": \"{{consent-client-assertion}}\",\n  \"amount\": 401,\n  \"id_token_hint\": \"{{consent-request-id-token-signed}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"jti\": \"randomjti\",\n  \"iat\": {{consent-request-iat}},\n  \"nbf\": {{consent-request-iat}},\n    \"authorization_details\":[\n        {\n        \"type\":\"account_information\",\n        \"access\":{\n            \"accounts\":[\n                {\n                    \"iban\":\"DE2310010010123456789\"\n                },\n                {\n                    \"maskedPan\":\"123456xxxxxx1234\"\n                }\n            ],\n            \"balances\":[\n                {\n                    \"iban\":\"DE2310010010123456789\"\n                }\n            ],\n            \"transactions\":[\n                {\n                    \"iban\":\"DE2310010010123456789\"\n                },\n                {\n                    \"maskedPan\":\"123456xxxxxx1234\"\n                }\n            ]\n        },\n        \"recurringIndicator\":true\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"requestJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.004 Initiate AuthZ Request Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate auth_req_id is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('auth_req_id');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-ciba-reqid\", response.auth_req_id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "request",
+											"value": "{{consent-request-jwt}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}/as/bc-auth.ciba",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"as",
+										"bc-auth.ciba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.005 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "issuer",
+											"value": "xxx",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.006 - Exchange Tokens",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"pm.test(\"Validate access_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    //pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    //pm.environment.set(\"consent-request-id-token\", response.id_token);",
+											"    //pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "urn:openid:params:grant-type:ciba",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "auth_req_id",
+											"value": "{{consent-request-ciba-reqid}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"Object.prototype.jwt_decode_payload = function(jwt) {",
+					"    var parts = jwt.split('.'); // header, payload, signature",
+					"    return JSON.parse(atob(parts[1]));",
+					"}",
+					"",
+					"Object.prototype.jwt_decode_header = function(jwt) {",
+					"    var parts = jwt.split('.'); // header, payload, signature",
+					"    return JSON.parse(atob(parts[0]));",
+					"}",
+					"Object.prototype.jwt_parts = function(jwt) {",
+					"    var parts = jwt.split('.'); // header, payload, signature",
+					"    return parts.length;",
+					"}",
+					"Object.prototype.test_http_status = function(http_status,response) {",
+					"    pm.test(\"Validate response status=\"+http_status, function () {",
+					"        response.to.have.status(http_status);",
+					"    });",
+					"}",
+					"",
+					"Object.prototype.test_jwt_alg = function(alg,jwt_header) {",
+					"    pm.test(\"Validate JWT ALG =\"+alg, function () {",
+					"        pm.expect(jwt_header.alg).to.eql(alg);",
+					"    });",
+					"}",
+					"",
+					"Object.prototype.test_params_object = function(params,object,suffix){",
+					"    for (i=0; i<params.length; i++) {",
+					"        pm.test(\"Validate \"+ params[i] + \" \" + suffix, function () {",
+					"            pm.expect(object).to.have.property(params[i]);",
+					"        });",
+					"    }",
+					"};"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cdr-register-testharness-host",
+			"value": "https://mockregister.data-holder.local"
+		},
+		{
+			"key": "dh-idp-host",
+			"value": "https://sso.data-holder.local"
+		},
+		{
+			"key": "dh-idp-register-endpoint",
+			"value": "/as/clients.oauth2"
+		},
+		{
+			"key": "dh-idp-token-endpoint",
+			"value": "/as/token.oauth2"
+		},
+		{
+			"key": "default-nonce",
+			"value": "ea18887b-8629-43f2-93e1-4346959fb2ec"
+		},
+		{
+			"key": "default-state",
+			"value": "887bea18-93e1-8629-43f2-59fb2ec43469"
+		},
+		{
+			"key": "dh-idp-authorization-endpoint",
+			"value": "/as/authorization.oauth2"
+		},
+		{
+			"key": "default-redirecturi",
+			"value": "https://httpbin.org/get"
+		},
+		{
+			"key": "pkce-challenge",
+			"value": "PNU4mSDcKWgrG1Sl8C7UT9n0PyvOJEuc6JV7r9YcCyE"
+		},
+		{
+			"key": "pkce-challenge-s256",
+			"value": "iE6J6yykJ68pWqYooNvqp17xNF_54jOQttyTG9j-E0pggUO.lsDm23t9ZdTjsFT.SpzludwTRlun8wQX8VJunzE09tnWHqviupObE-5rF_fAHlcsqMl5ti4Kx53vVf3j"
+		},
+		{
+			"key": "data-recipient-id",
+			"value": "abcd"
+		},
+		{
+			"key": "mtlsHeader",
+			"value": ""
+		},
+		{
+			"key": "consent-request-access-token-sub",
+			"value": "4b4a457a-1a7e-380a-a2fc-1412ae425ba9"
+		},
+		{
+			"key": "dh-api-host-misc",
+			"value": "https://api.data-holder.local/misc"
+		},
+		{
+			"key": "dh-idp-host-mtls",
+			"value": "https://sso.data-holder.local"
+		},
+		{
+			"key": "pfAdminUser",
+			"value": "Administrator"
+		},
+		{
+			"key": "pfAdminPassword",
+			"value": "2FederateM0re"
+		},
+		{
+			"key": "pingoneEnvironment",
+			"value": "n/a"
+		},
+		{
+			"key": "pingoneMFAPopulation",
+			"value": "n/a"
+		},
+		{
+			"key": "pingoneMFAApplication",
+			"value": "n/a"
+		},
+		{
+			"key": "pingoneMFAPolicy",
+			"value": "Multi_Factor"
+		},
+		{
+			"key": "pingoneMFAPolicyCIBA",
+			"value": "CIBA"
+		},
+		{
+			"key": "pingoneCredential",
+			"value": "n/a"
+		}
+	]
+}
