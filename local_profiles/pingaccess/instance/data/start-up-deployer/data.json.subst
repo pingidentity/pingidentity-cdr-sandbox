@@ -194,6 +194,13 @@
                 "useServerCipherSuiteOrder": true,
                 "id": 3,
                 "keyPairId": 7
+            },
+            {
+                "restartRequired": false,
+                "name": "SIDEBAND",
+                "useServerCipherSuiteOrder": true,
+                "id": 5,
+                "keyPairId": 5
             }
         ],
         "rules": [
@@ -297,7 +304,8 @@
                     "revocationEndpoint": "/as/revoke_token.oauth2",
                     "retainAttributeList": [
                         "cdr_arrangement_id",
-                        "scope"
+                        "scope",
+                        "jsonencoded_authorization_details"
                     ],
                     "introspectionEndpoint": "/as/introspect.oauth2",
                     "encryptionKey": {"value": "${_data_rules_6_configuration_encryptionKey_value}"},
@@ -305,7 +313,7 @@
                     "issuer": "anybank"
                 },
                 "name": "CDR AU - Refresh Token Processor",
-                "className": "com.pingidentity.ps.cdr.pa.CDRRefreshTokenProcessor",
+                "className": "com.pingidentity.tt.cdr.pa.CDRRefreshTokenProcessor",
                 "id": 6,
                 "supportedDestinations": [
                     "Agent",
@@ -1698,6 +1706,13 @@
                 "alias": "Generated: ENGINE",
                 "hsmProviderId": 0,
                 "id": 8
+            },
+            {
+                "password": "${_data_keyPairs_10_config_query_password}",
+                "fileData": "${_data_keyPairs_10_config_query_fileData}",
+                "alias": "config-query",
+                "hsmProviderId": 0,
+                "id": 10
             }
         ],
         "trustedCertGroups": [{
@@ -1778,6 +1793,7 @@
                 "siteId": 1,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1834,6 +1850,7 @@
                 "siteId": 10,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -1881,6 +1898,7 @@
                 "siteId": 7,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1919,6 +1937,7 @@
                 "siteId": 8,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1960,6 +1979,7 @@
                 "siteId": 9,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -1995,6 +2015,7 @@
                 "siteId": 11,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -2043,6 +2064,7 @@
                 "siteId": 12,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             },
@@ -2081,6 +2103,7 @@
                 "siteId": 13,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -2116,6 +2139,7 @@
                 "siteId": 14,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 0,
                 "caseSensitivePath": false
             },
@@ -2160,6 +2184,7 @@
                 "siteId": 12,
                 "realm": null,
                 "lastModified": 1616709250468,
+                "sidebandClientId": null,
                 "accessValidatorId": 1,
                 "caseSensitivePath": false
             }
@@ -2170,5 +2195,5 @@
             "keyRollPeriodInHours": 24
         }
     },
-    "version": "6.2.1.0"
+    "version": "6.3.0.3"
 }

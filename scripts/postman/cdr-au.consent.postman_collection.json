@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d5df8413-2fe6-45e2-8c87-24be5cd6ac1c",
+		"_postman_id": "01a65a48-7c87-40e9-be6c-b1e5e0d4ba77",
 		"name": "_Consent Flow v1.2",
 		"description": "20201211 - updated to work with CDR Register Test Harness v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -422,9 +422,9 @@
 									"raw": "{{software-dcr-requestjwt}}"
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-register-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-register-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-register-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-register-endpoint}}"
 									]
 								}
 							},
@@ -592,7 +592,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read bank:accounts.detail:read bank:regular_payments:read bank:payees:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}"
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read bank:accounts.detail:read bank:regular_payments:read bank:payees:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:3\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
@@ -737,6 +737,136 @@
 										},
 										{
 											"key": "submitform",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - Poll after push notf",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "poll.authentication.status",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - End poll after push notf",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "poll.authentication.status",
+											"value": "false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+									"host": [
+										"{{dh-idp-host}}{{consent-request-nonceurl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.005 - Continue after push notf",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    const $ = cheerio.load(responseBody);",
+											"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+											"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false,
+								"followRedirects": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "continue.authentication",
 											"value": "true",
 											"type": "text"
 										}
@@ -1178,9 +1308,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -1451,9 +1581,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 											]
 										}
 									},
@@ -1599,9 +1729,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 											]
 										}
 									},
@@ -1762,9 +1892,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -2854,9 +2984,9 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}"
 									]
 								}
 							},
@@ -3479,9 +3609,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-revocation-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-revocation-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}"
 											]
 										}
 									},
@@ -3692,9 +3822,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-revocation-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-revocation-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}"
 											]
 										}
 									},
@@ -3841,9 +3971,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -4007,6 +4137,640 @@
 									""
 								]
 							}
+						}
+					]
+				},
+				{
+					"name": "S002.T008 CIBA",
+					"item": [
+						{
+							"name": "S002.T008.001 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "issuer",
+											"value": "xxx",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.002 - Perform refresh token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"pm.test(\"Validate access_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
+											"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "refresh_token",
+											"value": "{{consent-request-refresh-token}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "{{default-redirecturi}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.003 - Get Signed ID Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"//CDR ID Token OIDC Requirements",
+											"pm.test(\"Get Signed JWT version of ID Token\", function () {",
+											"    var responseBlob = pm.response.text();",
+											"    pm.environment.set(\"consent-request-id-token-signed\", responseBlob);",
+											"",
+											"});",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-private-jwk",
+										"value": "{{software-jwks-private}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{{consent-request-id-token}}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/getSignedIDToken",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"getSignedIDToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.004 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "issuer",
+											"value": "xxx",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T001.002 - Generate Request JWT Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate request-jwt property exists\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('request-jwt');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-jwt\", response[\"request-jwt\"]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"consent-request-iat\", Math.floor(new Date().getTime() / 1000));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-private-jwk",
+										"type": "text",
+										"value": "{{software-jwks-private}}"
+									},
+									{
+										"key": "x-nonce",
+										"value": "{{default-nonce}}",
+										"type": "text"
+									},
+									{
+										"key": "x-state",
+										"value": "{{default-state}}",
+										"type": "text"
+									},
+									{
+										"key": "x-issuer",
+										"value": "{{dcrClientId}}",
+										"type": "text"
+									},
+									{
+										"key": "x-duration-seconds",
+										"value": "60",
+										"type": "text"
+									},
+									{
+										"key": "x-dataholder-authorization-endpoint",
+										"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+										"type": "text"
+									},
+									{
+										"key": "x-response-type",
+										"value": "code id_token",
+										"type": "text"
+									},
+									{
+										"key": "x-scope",
+										"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+										"type": "text"
+									},
+									{
+										"key": "x-redirecturi",
+										"value": "{{default-redirecturi}}",
+										"type": "text"
+									},
+									{
+										"key": "x-maxage",
+										"value": "-1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"client_assertion_type\": \"urn:ietf:params:oauth:client-assertion-type:jwt-bearer\",\n  \"client_assertion\": \"{{consent-client-assertion}}\",\n  \"amount\": 401,\n  \"id_token_hint\": \"{{consent-request-id-token-signed}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"jti\": \"randomjti\",\n  \"iat\": {{consent-request-iat}},\n  \"nbf\": {{consent-request-iat}}\n}"
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"requestJWT"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.005 Initiate AuthZ Request Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate auth_req_id is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('auth_req_id');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-ciba-reqid\", response.auth_req_id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "request",
+											"value": "{{consent-request-jwt}}",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host}}/as/bc-auth.ciba",
+									"host": [
+										"{{dh-idp-host}}"
+									],
+									"path": [
+										"as",
+										"bc-auth.ciba"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.006 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{dh-idp-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "issuer",
+											"value": "xxx",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T008.007 - Exchange Tokens",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"pm.test(\"Validate access_token is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('access_token');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    //pm.environment.set(\"consent-request-access-token\", response.access_token);",
+											"    //pm.environment.set(\"consent-request-id-token\", response.id_token);",
+											"    //pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{dcrClientId}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "urn:openid:params:grant-type:ciba",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion_type",
+											"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+											"type": "text"
+										},
+										{
+											"key": "client_assertion",
+											"value": "{{consent-client-assertion}}",
+											"type": "text"
+										},
+										{
+											"key": "auth_req_id",
+											"value": "{{consent-request-ciba-reqid}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+									"host": [
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -4327,9 +5091,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{dh-idp-host}}/as/par.oauth2",
+							"raw": "{{dh-idp-host-mtls}}/as/par.oauth2",
 							"host": [
-								"{{dh-idp-host}}"
+								"{{dh-idp-host-mtls}}"
 							],
 							"path": [
 								"as",
@@ -4825,9 +5589,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+							"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 							"host": [
-								"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+								"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 							]
 						}
 					},
@@ -5485,9 +6249,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -5663,9 +6427,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -6300,9 +7064,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -6478,9 +7242,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -6631,9 +7395,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -6935,9 +7699,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}/as/par.oauth2",
+									"raw": "{{dh-idp-host-mtls}}/as/par.oauth2",
 									"host": [
-										"{{dh-idp-host}}"
+										"{{dh-idp-host-mtls}}"
 									],
 									"path": [
 										"as",
@@ -7433,9 +8197,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -7611,9 +8375,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -7763,9 +8527,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -7948,9 +8712,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -8128,9 +8892,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -8316,9 +9080,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"revoke"
@@ -8458,9 +9222,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"revoke"
@@ -8624,9 +9388,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}/revoke",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-cdrarrangement-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-cdrarrangement-endpoint}}"
 											],
 											"path": [
 												"revoke"
@@ -8776,9 +9540,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -9312,9 +10076,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}/as/par.oauth2",
+											"raw": "{{dh-idp-host-mtls}}/as/par.oauth2",
 											"host": [
-												"{{dh-idp-host}}"
+												"{{dh-idp-host-mtls}}"
 											],
 											"path": [
 												"as",
@@ -10090,9 +10854,9 @@
 											]
 										},
 										"url": {
-											"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 											"host": [
-												"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 											]
 										}
 									},
@@ -10367,9 +11131,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -10583,9 +11347,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -10730,9 +11494,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -11408,9 +12172,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -11557,9 +12321,9 @@
 									"urlencoded": []
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-userinfo-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}"
 									]
 								}
 							},
@@ -11801,7 +12565,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -11941,7 +12706,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -12081,7 +12847,8 @@
 								}
 							],
 							"protocolProfileBehavior": {
-								"strictSSL": false
+								"strictSSL": false,
+								"followRedirects": false
 							},
 							"request": {
 								"method": "GET",
@@ -12882,9 +13649,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -13658,9 +14425,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -14472,9 +15239,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -15300,9 +16067,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -16113,9 +16880,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -17266,9 +18033,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18196,9 +18963,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18377,9 +19144,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18558,9 +19325,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -18736,9 +19503,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -18897,9 +19664,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -19066,9 +19833,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -19244,9 +20011,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-introspect-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-introspect-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
 									]
 								}
 							},
@@ -19393,9 +20160,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}{{dh-idp-token-endpoint}}",
+									"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
 									"host": [
-										"{{dh-idp-host}}{{dh-idp-token-endpoint}}"
+										"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
 									]
 								}
 							},
@@ -19486,9 +20253,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}/as/token.oauth2",
+									"raw": "{{dh-idp-host-mtls}}/as/token.oauth2",
 									"host": [
-										"{{dh-idp-host}}"
+										"{{dh-idp-host-mtls}}"
 									],
 									"path": [
 										"as",
@@ -19880,9 +20647,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{dh-idp-host}}/as/token.oauth2",
+									"raw": "{{dh-idp-host-mtls}}/as/token.oauth2",
 									"host": [
-										"{{dh-idp-host}}"
+										"{{dh-idp-host-mtls}}"
 									],
 									"path": [
 										"as",
@@ -20189,6 +20956,10 @@
 		{
 			"key": "dh-api-host-misc",
 			"value": "https://api.data-holder.local/misc"
+		},
+		{
+			"key": "dh-idp-host-mtls",
+			"value": "https://sso.data-holder.local"
 		}
 	]
 }

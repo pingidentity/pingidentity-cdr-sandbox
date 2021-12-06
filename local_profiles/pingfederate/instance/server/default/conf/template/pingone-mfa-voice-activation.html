@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+#*
+The server renders this HTML page in an end-user's browser when
+voice activation is required.
+
+Velocity variables (identified by the $ character) are generated
+at runtime by the server.
+
+Change text or formatting as needed. Modifying Velocity statements
+is not recommended as it may interfere with expected server behavior.
+*#
+
+<!-- template name: pingone-mfa-voice-activation.html -->
+
+#set( $messageKeyPrefix = "pingone.mfa.voice.activation." )
+
+<html lang="$locale.getLanguage()" dir="ltr">
+<head>
+    <title>$languagePackMessages.getMessage($messageKeyPrefix, "title")</title>
+    <base href="$CurrentPingFedBaseURL"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/end-user/0.36.1/end-user.css">
+    <link rel="stylesheet" href="assets/css/pingone-mfa.css">
+    <script src="assets/scripts/jquery-3.5.1.min.js"></script>
+    <style>
+        .page__content:before {
+            content: none;
+        }
+
+        .page__content {
+            margin-top: 50px;
+        }
+
+        @media (max-width: 480px) {
+            .page__content {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="setFocus()">
+<div class="app-container">
+    <div class="page brand-background" data-id="page">
+        <div class="page__content">
+            <div class="card card--no-padding">
+                <div class="card__content">
+                    <form id="form" class="form" data-id="form" method="post" action="$resumePath" autocomplete="off">
+                        <div class="org-logo"><img class="org-logo__image"
+                                                   src="assets/images/ping-logo.svg"
+                                                   alt="Company Logo"/></div>
+                        #if($errorMessageKey)
+                        <div class="feedback feedback--error" data-id="feedback"><span
+                                class="feedback__icon pingicon-error-triangle"></span>
+                            <div class="feedback__message">$languagePackMessages.getMessage($messageKeyPrefix,
+                                $errorMessageKey)
+                            </div>
+                        </div>
+                        #end
+                        <div class="stack stack--small" data-id="stack">
+                            <h1 class="heading-text centered-text icon-heading" data-id="heading">
+                                <svg viewBox="0 0 24 24" role="presentation" style="width: 32px; height: 32px;">
+                                    <path d="M20,15.5C18.8,15.5 17.5,15.3 16.4,14.9C16.3,14.9 16.2,14.9 16.1,14.9C15.8,14.9 15.6,15 15.4,15.2L13.2,17.4C10.4,15.9 8,13.6 6.6,10.8L8.8,8.6C9.1,8.3 9.2,7.9 9,7.6C8.7,6.5 8.5,5.2 8.5,4C8.5,3.5 8,3 7.5,3H4C3.5,3 3,3.5 3,4C3,13.4 10.6,21 20,21C20.5,21 21,20.5 21,20V16.5C21,16 20.5,15.5 20,15.5M5,5H6.5C6.6,5.9 6.8,6.8 7,7.6L5.8,8.8C5.4,7.6 5.1,6.3 5,5M19,19C17.7,18.9 16.4,18.6 15.2,18.2L16.4,17C17.2,17.2 18.1,17.4 19,17.4V19Z"
+                                          style="fill: rgb(61, 69, 77);"></path>
+                                </svg><span style="margin-left: .5em">$languagePackMessages.getMessage($messageKeyPrefix,
+                                "header")</span>
+                            </h1>
+                            <div class="text-block" data-id="textblock">
+                                <div class="text-block--overflow-wrap">
+                                    $languagePackMessages.getMessage($messageKeyPrefix, "message")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-input__icon"></div>
+                        <input id="passcode" type="text" class="text-input text-input--primary input--otp" data-id="text-input"
+                               name="$voiceActivationOtp" maxlength="6"
+                               value="" oninput="checkInput()" onkeypress="return checkOtpOnReturn(event)"/>
+                        <div class="form-aside">
+                            <div class="stack" data-id="stack">
+                                <div class="stack stack--small" data-id="stack">
+                                    <div class="text-block" data-id="textblock">
+                                        <div class="text-block--overflow-wrap">
+                                            $languagePackMessages.getMessage($messageKeyPrefix,
+                                            "otp.sent.text")
+                                        </div>
+                                    </div>
+                                    <div class="text-block" data-id="textblock">
+                                        <div class="text-block--overflow-wrap">$escape.escape($voicePhone)</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="button file-input--button button--tertiary" data-id="button"
+                                            type="button" onclick="resendOtp()">
+                                        $languagePackMessages.getMessage($messageKeyPrefix,
+                                        "resend.button.title")
+                                    </button>
+                                    <input type="hidden" name="$resendOtp" value=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-block" data-id="textblock">
+                            <div class="text-block--overflow-wrap">
+                                <div class="stack" data-id="stack">
+                                    <div>
+                                        <button id="sign-on" class="button file-input--button button--primary brand-primary-bg button--disabled"
+                                                data-id="button" type="button" onclick="checkOtp()" disabled>
+                                            $languagePackMessages.getMessage($messageKeyPrefix, "finish.button.title")
+                                        </button>
+                                    </div>
+                                    <a tabindex="0" data-id="content-link" target="_self" class="anchor"
+                                       onclick="cancelDevicePairing()">$languagePackMessages.getMessage($messageKeyPrefix,
+                                        "cancel.button.title")
+                                        <input type="hidden" name="$cancelDevicePairing" value=""/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="page__footer">
+            <div class="ping-footer">
+                <div class="ping-credits"></div>
+                <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function setFocus() {
+        var platform = navigator.platform;
+        if (platform != null && platform.indexOf("iPhone") == -1) {
+            document.getElementById('passcode').focus();
+        }
+    }
+
+    function checkOtp() {
+        submit('$voiceActivationOtp');
+    }
+
+    function resendOtp() {
+        document.forms[0]['$resendOtp'].value = 'true';
+        submit('$resendOtp');
+    }
+
+    function cancelDevicePairing() {
+        document.forms[0]['$cancelDevicePairing'].value = 'true';
+        submit('$cancelDevicePairing');
+    }
+
+    function submit(inputName) {
+        // Prevent unused inputs from being submitted
+        var inputs = document.forms[0].getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.name !== inputName) {
+                input.removeAttribute('name');
+            }
+        }
+        var form = jQuery('form');
+        form.submit(function () {
+            jQuery(this).unbind('submit');
+            jQuery(this).submit(function () {
+                return false;
+            });
+        });
+        form.submit();
+    }
+
+    function isOnlyDigits(value) {
+        return /^\d+$/.test(value);
+    }
+
+    function canSubmit() {
+        var value = document.getElementById("passcode").value;
+        return value.length === 6 && isOnlyDigits(value);
+    }
+
+    function checkInput() {
+        var button = document.getElementById("sign-on");
+        if (canSubmit()) {
+            button.disabled = false;
+            button.className = "button file-input--button button--primary brand-primary-bg";
+        } else {
+            button.disabled = true;
+            button.className = "button file-input--button button--primary brand-primary-bg button--disabled";
+        }
+    }
+
+    function checkOtpOnReturn(e) {
+        var keycode;
+        if (window.event) keycode = window.event.keyCode;
+        else if (e) keycode = e.which;
+        else return true;
+
+        if (keycode == 13) {
+            if (canSubmit()) {
+                checkOtp();
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

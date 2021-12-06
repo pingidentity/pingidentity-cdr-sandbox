@@ -1,0 +1,112 @@
+.page {
+    background-color: #3d454d;
+    background-image: -webkit-radial-gradient(40% 40%, circle cover, rgba(61, 69, 77, .9) 30%, #3d454d 80%);
+    background-repeat: no-repeat;
+    background-attachment: fixed
+}
+
+@media (max-width: 480px) {
+    .page, .page.brand-background {
+        background: #3d454d !important
+    }
+}
+
+.pf-back-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    position: absolute;
+    min-height: 0;
+    top: 15px;
+    left: 15px
+}
+
+.ping-footer {
+    display: block;
+    font-size: 11px;
+    color: #929aa1;
+}
+
+.ping-credits {
+    display: inline-block;
+    vertical-align: middle;
+    height: 14px;
+    width: 140px;
+    font-size: 0;
+    background: transparent url("../images/powered-by-ping-identity.svg") no-repeat;
+    background-size: contain;
+    color: #fff;
+    margin: 10px 0;
+}
+
+.spinner--margin-bottom-small {
+    margin-bottom: 35px;
+}
+.input--otp {
+    width: 100%;
+    max-width: 190px;
+    margin: 0 auto;
+}
+
+.popper-container {
+    position: absolute;
+    display: none;
+    right: 0;
+}
+
+.popper-container:before,
+.popper-container:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 13px;
+    display: block;
+    margin-bottom: -1px;
+}
+
+.popper-container:before {
+    border-color: transparent transparent #e8ebed transparent;
+    border-style: solid;
+    border-width: 10px;
+    right: 11px;
+    z-index: 1;
+}
+
+.popper-container:after {
+    border-color: transparent transparent white transparent;
+    border-style: solid;
+    border-width: 8px;
+    z-index: 2;
+}
+
+.popover-menu__item {
+    white-space: nowrap;
+}
+
+
+.qrcode {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.qrcode canvas {
+    width: 128px;
+    height: 128px;
+}
+
+.device-activation-header {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.icon-heading {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
