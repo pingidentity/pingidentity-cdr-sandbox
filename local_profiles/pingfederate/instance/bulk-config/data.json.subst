@@ -273,24 +273,6 @@
         {
             "operationType": "SAVE",
             "items": [{
-                "pingOneConnectionId": "${PINGONE_CONNECTION_ID}",
-                "environmentId": "${PINGONE_CONNECTION_ENVIRONMENTID}",
-                "organizationName": "${PINGONE_CONNECTION_ORGANIZATIONNAME}",
-                "credential": "${PINGONE_CONNECTION_CREDENTIAL}",
-                "name": "${PINGONE_CONNECTION_ORGANIZATIONNAME}",
-                "active": true,
-                "credentialId": "de79e4ba-13fd-44da-aaee-21e34b53fc76",
-                "pingOneAuthenticationApiEndpoint": "${PINGONE_CONNECTION_AUTHENDPOINT}",
-                "id": "9yzZsdl5ZRPiexqJ1MQjAq",
-                "creationDate": "2021-12-06T03:27:01.529Z",
-                "region": "${PINGONE_CONNECTION_REGION}",
-                "pingOneManagementApiEndpoint": "${PINGONE_CONNECTION_APIENDPOINT}"
-            }],
-            "resourceType": "/pingOneConnections"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [{
                 "hostnamesTags": [{
                     "defaultSource": true,
                     "hostnames": ["pingdirectory:1389"]
@@ -2609,204 +2591,6 @@
                             }
                         ]
                     }
-                },
-                {
-                    "attributeMapping": {
-                        "attributeContractFulfillment": {
-                            "access_token": {
-                                "source": {"type": "ADAPTER"},
-                                "value": "access_token"
-                            },
-                            "pingone.mfa.status": {
-                                "source": {"type": "ADAPTER"},
-                                "value": "pingone.mfa.status"
-                            },
-                            "id_token": {
-                                "source": {"type": "ADAPTER"},
-                                "value": "id_token"
-                            },
-                            "pingone.mfa.status.reason": {
-                                "source": {"type": "ADAPTER"},
-                                "value": "pingone.mfa.status.reason"
-                            },
-                            "isSuccess": {
-                                "source": {"type": "EXPRESSION"},
-                                "value": "@java.lang.String@valueOf(#this.get(\"access_token\") != null && !#this.get(\"access_token\").toString().trim().equals(\"\"))"
-                            },
-                            "username": {
-                                "source": {"type": "ADAPTER"},
-                                "value": "username"
-                            }
-                        },
-                        "attributeSources": [],
-                        "issuanceCriteria": {"conditionalCriteria": []}
-                    },
-                    "configuration": {
-                        "tables": [],
-                        "fields": [
-                            {
-                                "name": "PingOne Environment",
-                                "value": "9yzZsdl5ZRPiexqJ1MQjAq|${PINGONE_CONNECTION_ENVIRONMENTID}"
-                            },
-                            {
-                                "name": "PingOne Population",
-                                "value": "${PINGONE_MFA_POPULATIONID}"
-                            },
-                            {
-                                "name": "Application",
-                                "value": "${PINGONE_MFA_CLIENTID}"
-                            },
-                            {
-                                "name": "PingOne Authentication Policy",
-                                "value": "${PINGONE_MFA_MFAPOLICY}"
-                            },
-                            {
-                                "name": "PingOne Management API",
-                                "value": "https://api.pingone.com"
-                            },
-                            {
-                                "name": "PingOne Authentication API",
-                                "value": "https://auth.pingone.com"
-                            },
-                            {
-                                "name": "Notification Template Variant Override",
-                                "value": ""
-                            },
-                            {
-                                "name": "Test Username",
-                                "value": ""
-                            },
-                            {
-                                "name": "HTML Template Prefix",
-                                "value": "pingone-mfa"
-                            },
-                            {
-                                "name": "Messages Files",
-                                "value": "pingone-mfa-messages"
-                            },
-                            {
-                                "name": "Prompt Users to Set Up MFA",
-                                "value": "true"
-                            },
-                            {
-                                "name": "Allow Users to Skip MFA Setup",
-                                "value": "false"
-                            },
-                            {
-                                "name": "Allow Users to Add Additional Authentication Methods",
-                                "value": "true"
-                            },
-                            {
-                                "name": "Provision Users and Authentication Methods",
-                                "value": "true"
-                            },
-                            {
-                                "name": "Update Authentication Methods",
-                                "value": "true"
-                            },
-                            {
-                                "name": "Username Attribute",
-                                "value": ""
-                            },
-                            {
-                                "name": "SMS Attribute",
-                                "value": "sms"
-                            },
-                            {
-                                "name": "Voice Attribute",
-                                "value": "voice"
-                            },
-                            {
-                                "name": "Email Attribute",
-                                "value": "email"
-                            },
-                            {
-                                "name": "DEFAULT AUTHENTICATION METHOD FOR PROVISIONED USERS",
-                                "value": "SMS"
-                            },
-                            {
-                                "name": "User Not Found Failure Mode",
-                                "value": "Block user"
-                            },
-                            {
-                                "name": "Service Unavailable Failure Mode",
-                                "value": "Block user"
-                            },
-                            {
-                                "name": "Change Device",
-                                "value": "Allow"
-                            },
-                            {
-                                "name": "Show Success Screens",
-                                "value": "true"
-                            },
-                            {
-                                "name": "Show Error Screens",
-                                "value": "true"
-                            },
-                            {
-                                "name": "Show Timeout Screens",
-                                "value": "true"
-                            },
-                            {
-                                "name": "API Request Timeout",
-                                "value": "12000"
-                            },
-                            {
-                                "name": "Proxy Settings",
-                                "value": "System Defaults"
-                            },
-                            {
-                                "name": "Custom Proxy Host",
-                                "value": ""
-                            },
-                            {
-                                "name": "Custom Proxy Port",
-                                "value": ""
-                            }
-                        ]
-                    },
-                    "name": "PingOne MFA",
-                    "id": "pingOneMFAAdapter",
-                    "pluginDescriptorRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter",
-                        "id": "com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter"
-                    },
-                    "attributeContract": {
-                        "maskOgnlValues": false,
-                        "coreAttributes": [
-                            {
-                                "masked": false,
-                                "name": "access_token",
-                                "pseudonym": false
-                            },
-                            {
-                                "masked": false,
-                                "name": "pingone.mfa.status",
-                                "pseudonym": false
-                            },
-                            {
-                                "masked": false,
-                                "name": "id_token",
-                                "pseudonym": false
-                            },
-                            {
-                                "masked": false,
-                                "name": "pingone.mfa.status.reason",
-                                "pseudonym": false
-                            },
-                            {
-                                "masked": false,
-                                "name": "username",
-                                "pseudonym": true
-                            }
-                        ],
-                        "extendedAttributes": [{
-                            "masked": false,
-                            "name": "isSuccess",
-                            "pseudonym": false
-                        }]
-                    }
                 }
             ],
             "resourceType": "/idp/adapters"
@@ -2996,20 +2780,6 @@
                         }
                     },
                     "id": "b5SNfINVCnFS2MPYXA1rWpoth",
-                    "persistent": false,
-                    "enableSessions": false
-                },
-                {
-                    "authnContextSensitive": false,
-                    "timeoutDisplayUnit": "MINUTES",
-                    "authenticationSource": {
-                        "type": "IDP_ADAPTER",
-                        "sourceRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/pingOneMFAAdapter",
-                            "id": "pingOneMFAAdapter"
-                        }
-                    },
-                    "id": "ompcoAh6hllNvgjJ5FKCnEXqI",
                     "persistent": false,
                     "enableSessions": false
                 },
@@ -3490,165 +3260,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "configuration": {
-                    "tables": [{
-                        "name": "PingOne Template Variables",
-                        "rows": []
-                    }],
-                    "fields": [
-                        {
-                            "name": "PingOne Environment",
-                            "value": "9yzZsdl5ZRPiexqJ1MQjAq|${PINGONE_CONNECTION_ENVIRONMENTID}"
-                        },
-                        {
-                            "name": "Application",
-                            "value": "${PINGONE_MFA_CLIENTID}"
-                        },
-                        {
-                            "name": "PingOne Authentication Policy",
-                            "value": "CIBA"
-                        },
-                        {
-                            "name": "Test Username",
-                            "value": ""
-                        },
-                        {
-                            "name": "PingOne Template Name",
-                            "value": "transaction"
-                        },
-                        {
-                            "name": "PingOne Template Variant",
-                            "value": "CIBA Tx"
-                        },
-                        {
-                            "name": "Client Context",
-                            "value": "{\n   \"requestingApplicationName\": \"$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)\",\n   \"requestedScope\": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),\n   \"authorization_details\": \"$JSONValue.escape($authorization_details)\",\n   \"alert.color\": \"red\"\n}"
-                        },
-                        {
-                            "name": "Messages Files",
-                            "value": "pingone-mfa-messages"
-                        },
-                        {
-                            "name": "API Request Timeout",
-                            "value": "12000"
-                        },
-                        {
-                            "name": "Proxy Settings",
-                            "value": "System Defaults"
-                        },
-                        {
-                            "name": "Custom Proxy Host",
-                            "value": ""
-                        },
-                        {
-                            "name": "Custom Proxy Port",
-                            "value": ""
-                        }
-                    ]
-                },
-                "name": "PingOne MFA CIBA",
-                "id": "pingoneMFACIBA",
-                "pluginDescriptorRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins/descriptors/com.pingidentity.oobauth.pingone.mfa.PingOneMfaCibaAuthenticator",
-                    "id": "com.pingidentity.oobauth.pingone.mfa.PingOneMfaCibaAuthenticator"
-                },
-                "attributeContract": {
-                    "coreAttributes": [{"name": "subject"}],
-                    "extendedAttributes": [{"name": "authorization_details"}]
-                }
-            }],
-            "resourceType": "/oauth/outOfBandAuthPlugins"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [{
-                "alternativeLoginHintTokenIssuers": [{
-                    "jwksURL": "https://sso.${BASE_HOSTNAME}/pf/JWKS",
-                    "issuer": "https://sso.${BASE_HOSTNAME}"
-                }],
-                "allowUnsignedLoginHintToken": false,
-                "requireTokenForIdentityHint": true,
-                "identityHintContract": {
-                    "coreAttributes": [{"name": "IDENTITY_HINT_SUBJECT"}],
-                    "extendedAttributes": [{"name": "AUTHORIZATION_DETAILS"}]
-                },
-                "identityHintContractFulfillment": {
-                    "attributeContractFulfillment": {
-                        "AUTHORIZATION_DETAILS": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),  #requestPayload = #requestObj.split(\"\\\\.\")[1],  #requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),  #payloadJSON = new org.json.JSONObject(#requestDecodedPayload),  @java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"authorization_details\").toString().getBytes())"
-                        },
-                        "IDENTITY_HINT_SUBJECT": {
-                            "source": {"type": "REQUEST"},
-                            "value": "IDENTITY_HINT_SUBJECT"
-                        }
-                    },
-                    "attributeSources": [],
-                    "issuanceCriteria": {"conditionalCriteria": []}
-                },
-                "transactionLifetime": 120,
-                "name": "CDR CIBA Policy",
-                "identityHintMapping": {
-                    "attributeContractFulfillment": {
-                        "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
-                        "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
-                        "subject": {
-                            "source": {"type": "REQUEST"},
-                            "value": "IDENTITY_HINT_SUBJECT"
-                        },
-                        "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
-                        "RAR_AUTHZ_DETAILS": {
-                            "source": {"type": "REQUEST"},
-                            "value": "AUTHORIZATION_DETAILS"
-                        },
-                        "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
-                        "CUSTOMER_REF": {
-                            "source": {"type": "REQUEST"},
-                            "value": "IDENTITY_HINT_SUBJECT"
-                        },
-                        "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
-                        "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
-                        "ISSUER": {"source": {"type": "NO_MAPPING"}},
-                        "PERSISTENT_GRANT_LIFETIME": {
-                            "source": {"type": "EXPRESSION"},
-                            "value": "0"
-                        },
-                        "authorization_details": {
-                            "source": {"type": "REQUEST"},
-                            "value": "AUTHORIZATION_DETAILS"
-                        },
-                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
-                        "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
-                        "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
-                        "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
-                        "SUBJECT": {
-                            "source": {"type": "REQUEST"},
-                            "value": "IDENTITY_HINT_SUBJECT"
-                        },
-                        "USER_KEY": {
-                            "source": {"type": "REQUEST"},
-                            "value": "IDENTITY_HINT_SUBJECT"
-                        },
-                        "CLAIMS_USERINFO": {"source": {"type": "NO_MAPPING"}}
-                    },
-                    "attributeSources": [],
-                    "issuanceCriteria": {"conditionalCriteria": []}
-                },
-                "id": "cdrCIBAPolicy",
-                "authenticatorRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/oauth/outOfBandAuthPlugins/pingoneMFACIBA",
-                    "id": "pingoneMFACIBA"
-                }
-            }],
-            "resourceType": "/oauth/cibaServerPolicy/requestPolicies"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [{"defaultRequestPolicyRef": {
-                "location": "https://localhost:9999/pf-admin-api/v1/oauth/cibaServerPolicy/requestPolicies/cdrCIBAPolicy",
-                "id": "cdrCIBAPolicy"
-            }}],
+            "items": [{}],
             "resourceType": "/oauth/cibaServerPolicy/settings"
         },
         {
@@ -3967,10 +3579,6 @@
                         "id": "cdrRevocableATM"
                     },
                     "requireProofKeyForCodeExchange": true,
-                    "requestPolicyRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/cibaServerPolicy/cdrCIBAPolicy",
-                        "id": "cdrCIBAPolicy"
-                    },
                     "rotateRegistrationAccessToken": false,
                     "restrictedCommonScopes": [],
                     "refreshTokenRollingIntervalType": "SERVER_DEFAULT",
@@ -4345,443 +3953,187 @@
         },
         {
             "operationType": "SAVE",
-            "items": [
-                {
-                    "outputs": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                        "id": "iQwSYDdExcmJaYk6"
-                    },
-                    "inputs": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/AaBY1mnPx540brcB",
-                        "id": "AaBY1mnPx540brcB"
-                    },
-                    "name": "CDR Policy Fragment - With MFA",
-                    "id": "cdrPolicyFragmentMFA",
-                    "rootNode": {
-                        "children": [
-                            {"action": {
-                                "context": "Fail",
-                                "type": "DONE"
-                            }},
-                            {
-                                "children": [
-                                    {"action": {
-                                        "context": "Fail",
-                                        "type": "DONE"
-                                    }},
-                                    {
-                                        "children": [
-                                            {"action": {
-                                                "context": "Fail",
-                                                "type": "DONE"
-                                            }},
-                                            {"action": {
-                                                "attributeMapping": {
-                                                    "attributeContractFulfillment": {
-                                                        "cdr_consent_id": {"source": {"type": "NO_MAPPING"}},
-                                                        "subject": {"source": {"type": "NO_MAPPING"}},
-                                                        "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
-                                                        "result": {
-                                                            "source": {"type": "TEXT"},
-                                                            "value": "failed"
+            "items": [{
+                "outputs": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                    "id": "iQwSYDdExcmJaYk6"
+                },
+                "inputs": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/AaBY1mnPx540brcB",
+                    "id": "AaBY1mnPx540brcB"
+                },
+                "name": "CDR Policy Fragment - No MFA",
+                "id": "cdrPolicyFragmentNoMFA",
+                "rootNode": {
+                    "children": [
+                        {"action": {
+                            "context": "Fail",
+                            "type": "DONE"
+                        }},
+                        {
+                            "children": [
+                                {"action": {
+                                    "context": "Fail",
+                                    "type": "DONE"
+                                }},
+                                {
+                                    "children": [
+                                        {"action": {
+                                            "context": "Fail",
+                                            "type": "DONE"
+                                        }},
+                                        {"action": {
+                                            "attributeMapping": {
+                                                "attributeContractFulfillment": {
+                                                    "cdr_consent_id": {
+                                                        "source": {
+                                                            "id": "consentAgentlessAdapter",
+                                                            "type": "ADAPTER"
                                                         },
-                                                        "acr": {"source": {"type": "NO_MAPPING"}},
-                                                        "cdrArrangementId": {"source": {"type": "NO_MAPPING"}},
-                                                        "sharingDurationExpiresAt": {"source": {"type": "NO_MAPPING"}},
-                                                        "customerRef": {"source": {"type": "NO_MAPPING"}},
-                                                        "SAML_AUTHN_CTX": {"source": {"type": "NO_MAPPING"}},
-                                                        "accounts": {"source": {"type": "NO_MAPPING"}},
-                                                        "accounts_available": {"source": {"type": "NO_MAPPING"}},
-                                                        "idtokenClaims": {"source": {"type": "NO_MAPPING"}},
-                                                        "scopes": {"source": {"type": "NO_MAPPING"}},
-                                                        "userinfoClaims": {"source": {"type": "NO_MAPPING"}}
+                                                        "value": "consent_id"
                                                     },
-                                                    "attributeSources": [],
-                                                    "issuanceCriteria": {
-                                                        "expressionCriteria": [{
-                                                            "expression": "false",
-                                                            "errorResult": "FAILED_AUTHENTICATION"
-                                                        }],
-                                                        "conditionalCriteria": []
-                                                    }
-                                                },
-                                                "authenticationPolicyContractRef": {
-                                                    "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                                                    "id": "iQwSYDdExcmJaYk6"
-                                                },
-                                                "context": "FAILED",
-                                                "type": "APC_MAPPING"
-                                            }},
-                                            {
-                                                "children": [
-                                                    {"action": {
-                                                        "context": "Fail",
-                                                        "type": "DONE"
-                                                    }},
-                                                    {"action": {
-                                                        "attributeMapping": {
-                                                            "attributeContractFulfillment": {
-                                                                "cdr_consent_id": {
-                                                                    "source": {
-                                                                        "id": "consentAgentlessAdapter",
-                                                                        "type": "ADAPTER"
-                                                                    },
-                                                                    "value": "consent_id"
-                                                                },
-                                                                "subject": {
-                                                                    "source": {
-                                                                        "id": "consentAgentlessAdapter",
-                                                                        "type": "ADAPTER"
-                                                                    },
-                                                                    "value": "subject"
-                                                                },
-                                                                "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
-                                                                "result": {
-                                                                    "source": {"type": "TEXT"},
-                                                                    "value": "approve"
-                                                                },
-                                                                "acr": {
-                                                                    "source": {
-                                                                        "id": "inputs",
-                                                                        "type": "INPUTS"
-                                                                    },
-                                                                    "value": "claims_requestedACR"
-                                                                },
-                                                                "cdrArrangementId": {
-                                                                    "source": {
-                                                                        "id": "inputs",
-                                                                        "type": "INPUTS"
-                                                                    },
-                                                                    "value": "claims_cdrArrangementId"
-                                                                },
-                                                                "sharingDurationExpiresAt": {
-                                                                    "source": {
-                                                                        "id": "inputs",
-                                                                        "type": "INPUTS"
-                                                                    },
-                                                                    "value": "claims_sharingDurationExpiresAt"
-                                                                },
-                                                                "customerRef": {
-                                                                    "source": {
-                                                                        "id": "identityFirstAdapter",
-                                                                        "type": "ADAPTER"
-                                                                    },
-                                                                    "value": "entryUUID"
-                                                                },
-                                                                "SAML_AUTHN_CTX": {
-                                                                    "source": {
-                                                                        "id": "inputs",
-                                                                        "type": "INPUTS"
-                                                                    },
-                                                                    "value": "claims_requestedACR"
-                                                                },
-                                                                "accounts": {
-                                                                    "source": {
-                                                                        "id": "consentAgentlessAdapter",
-                                                                        "type": "ADAPTER"
-                                                                    },
-                                                                    "value": "accounts"
-                                                                },
-                                                                "accounts_available": {"source": {"type": "NO_MAPPING"}},
-                                                                "idtokenClaims": {
-                                                                    "source": {
-                                                                        "id": "inputs",
-                                                                        "type": "INPUTS"
-                                                                    },
-                                                                    "value": "claims_idtoken"
-                                                                },
-                                                                "scopes": {
-                                                                    "source": {
-                                                                        "id": "consentAgentlessAdapter",
-                                                                        "type": "ADAPTER"
-                                                                    },
-                                                                    "value": "scopes"
-                                                                },
-                                                                "userinfoClaims": {
-                                                                    "source": {
-                                                                        "id": "inputs",
-                                                                        "type": "INPUTS"
-                                                                    },
-                                                                    "value": "claims_userinfo"
-                                                                }
-                                                            },
-                                                            "attributeSources": [],
-                                                            "issuanceCriteria": {"conditionalCriteria": []}
+                                                    "subject": {
+                                                        "source": {
+                                                            "id": "consentAgentlessAdapter",
+                                                            "type": "ADAPTER"
                                                         },
-                                                        "authenticationPolicyContractRef": {
-                                                            "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                                                            "id": "iQwSYDdExcmJaYk6"
-                                                        },
-                                                        "context": "Success",
-                                                        "type": "APC_MAPPING"
-                                                    }}
-                                                ],
-                                                "action": {
-                                                    "authenticationSource": {
-                                                        "type": "IDP_ADAPTER",
-                                                        "sourceRef": {
-                                                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter",
-                                                            "id": "consentAgentlessAdapter"
-                                                        }
+                                                        "value": "subject"
                                                     },
-                                                    "context": "Success",
-                                                    "inputUserIdMapping": {
+                                                    "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
+                                                    "result": {
+                                                        "source": {"type": "TEXT"},
+                                                        "value": "approve"
+                                                    },
+                                                    "acr": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
+                                                        },
+                                                        "value": "claims_requestedACR"
+                                                    },
+                                                    "cdrArrangementId": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
+                                                        },
+                                                        "value": "claims_cdrArrangementId"
+                                                    },
+                                                    "sharingDurationExpiresAt": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
+                                                        },
+                                                        "value": "claims_sharingDurationExpiresAt"
+                                                    },
+                                                    "customerRef": {
                                                         "source": {
                                                             "id": "identityFirstAdapter",
                                                             "type": "ADAPTER"
                                                         },
                                                         "value": "entryUUID"
                                                     },
-                                                    "userIdAuthenticated": true,
-                                                    "type": "AUTHN_SOURCE"
-                                                }
-                                            }
-                                        ],
-                                        "action": {
-                                            "authenticationSource": {
-                                                "type": "IDP_ADAPTER",
-                                                "sourceRef": {
-                                                    "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/pingOneMFAAdapter",
-                                                    "id": "pingOneMFAAdapter"
-                                                }
-                                            },
-                                            "context": "Success",
-                                            "inputUserIdMapping": {
-                                                "source": {
-                                                    "id": "identityFirstAdapter",
-                                                    "type": "ADAPTER"
-                                                },
-                                                "value": "entryUUID"
-                                            },
-                                            "userIdAuthenticated": true,
-                                            "attributeRules": {
-                                                "fallbackToSuccess": true,
-                                                "items": [{
-                                                    "result": "FAILED",
-                                                    "condition": "NOT_EQUAL",
-                                                    "expectedValue": "true",
-                                                    "attributeName": "isSuccess"
-                                                }]
-                                            },
-                                            "type": "AUTHN_SOURCE"
-                                        }
-                                    }
-                                ],
-                                "action": {
-                                    "authenticationSource": {
-                                        "type": "IDP_ADAPTER",
-                                        "sourceRef": {
-                                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
-                                            "id": "clickatellAdapter"
-                                        }
-                                    },
-                                    "context": "Success",
-                                    "inputUserIdMapping": {
-                                        "source": {
-                                            "id": "identityFirstAdapter",
-                                            "type": "ADAPTER"
-                                        },
-                                        "value": "mobile"
-                                    },
-                                    "userIdAuthenticated": true,
-                                    "type": "AUTHN_SOURCE"
-                                }
-                            }
-                        ],
-                        "action": {
-                            "authenticationSource": {
-                                "type": "IDP_ADAPTER",
-                                "sourceRef": {
-                                    "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
-                                    "id": "identityFirstAdapter"
-                                }
-                            },
-                            "type": "AUTHN_SOURCE"
-                        }
-                    }
-                },
-                {
-                    "outputs": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                        "id": "iQwSYDdExcmJaYk6"
-                    },
-                    "inputs": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/AaBY1mnPx540brcB",
-                        "id": "AaBY1mnPx540brcB"
-                    },
-                    "name": "CDR Policy Fragment - No MFA",
-                    "id": "cdrPolicyFragmentNoMFA",
-                    "rootNode": {
-                        "children": [
-                            {"action": {
-                                "context": "Fail",
-                                "type": "DONE"
-                            }},
-                            {
-                                "children": [
-                                    {"action": {
-                                        "context": "Fail",
-                                        "type": "DONE"
-                                    }},
-                                    {
-                                        "children": [
-                                            {"action": {
-                                                "context": "Fail",
-                                                "type": "DONE"
-                                            }},
-                                            {"action": {
-                                                "attributeMapping": {
-                                                    "attributeContractFulfillment": {
-                                                        "cdr_consent_id": {
-                                                            "source": {
-                                                                "id": "consentAgentlessAdapter",
-                                                                "type": "ADAPTER"
-                                                            },
-                                                            "value": "consent_id"
+                                                    "SAML_AUTHN_CTX": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
                                                         },
-                                                        "subject": {
-                                                            "source": {
-                                                                "id": "consentAgentlessAdapter",
-                                                                "type": "ADAPTER"
-                                                            },
-                                                            "value": "subject"
-                                                        },
-                                                        "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
-                                                        "result": {
-                                                            "source": {"type": "TEXT"},
-                                                            "value": "approve"
-                                                        },
-                                                        "acr": {
-                                                            "source": {
-                                                                "id": "inputs",
-                                                                "type": "INPUTS"
-                                                            },
-                                                            "value": "claims_requestedACR"
-                                                        },
-                                                        "cdrArrangementId": {
-                                                            "source": {
-                                                                "id": "inputs",
-                                                                "type": "INPUTS"
-                                                            },
-                                                            "value": "claims_cdrArrangementId"
-                                                        },
-                                                        "sharingDurationExpiresAt": {
-                                                            "source": {
-                                                                "id": "inputs",
-                                                                "type": "INPUTS"
-                                                            },
-                                                            "value": "claims_sharingDurationExpiresAt"
-                                                        },
-                                                        "customerRef": {
-                                                            "source": {
-                                                                "id": "identityFirstAdapter",
-                                                                "type": "ADAPTER"
-                                                            },
-                                                            "value": "entryUUID"
-                                                        },
-                                                        "SAML_AUTHN_CTX": {
-                                                            "source": {
-                                                                "id": "inputs",
-                                                                "type": "INPUTS"
-                                                            },
-                                                            "value": "claims_requestedACR"
-                                                        },
-                                                        "accounts": {
-                                                            "source": {
-                                                                "id": "consentAgentlessAdapter",
-                                                                "type": "ADAPTER"
-                                                            },
-                                                            "value": "accounts"
-                                                        },
-                                                        "accounts_available": {"source": {"type": "NO_MAPPING"}},
-                                                        "idtokenClaims": {
-                                                            "source": {
-                                                                "id": "inputs",
-                                                                "type": "INPUTS"
-                                                            },
-                                                            "value": "claims_idtoken"
-                                                        },
-                                                        "scopes": {
-                                                            "source": {
-                                                                "id": "consentAgentlessAdapter",
-                                                                "type": "ADAPTER"
-                                                            },
-                                                            "value": "scopes"
-                                                        },
-                                                        "userinfoClaims": {
-                                                            "source": {
-                                                                "id": "inputs",
-                                                                "type": "INPUTS"
-                                                            },
-                                                            "value": "claims_userinfo"
-                                                        }
+                                                        "value": "claims_requestedACR"
                                                     },
-                                                    "attributeSources": [],
-                                                    "issuanceCriteria": {"conditionalCriteria": []}
+                                                    "accounts": {
+                                                        "source": {
+                                                            "id": "consentAgentlessAdapter",
+                                                            "type": "ADAPTER"
+                                                        },
+                                                        "value": "accounts"
+                                                    },
+                                                    "accounts_available": {"source": {"type": "NO_MAPPING"}},
+                                                    "idtokenClaims": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
+                                                        },
+                                                        "value": "claims_idtoken"
+                                                    },
+                                                    "scopes": {
+                                                        "source": {
+                                                            "id": "consentAgentlessAdapter",
+                                                            "type": "ADAPTER"
+                                                        },
+                                                        "value": "scopes"
+                                                    },
+                                                    "userinfoClaims": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
+                                                        },
+                                                        "value": "claims_userinfo"
+                                                    }
                                                 },
-                                                "authenticationPolicyContractRef": {
-                                                    "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                                                    "id": "iQwSYDdExcmJaYk6"
-                                                },
-                                                "context": "Success",
-                                                "type": "APC_MAPPING"
-                                            }}
-                                        ],
-                                        "action": {
-                                            "authenticationSource": {
-                                                "type": "IDP_ADAPTER",
-                                                "sourceRef": {
-                                                    "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter",
-                                                    "id": "consentAgentlessAdapter"
-                                                }
+                                                "attributeSources": [],
+                                                "issuanceCriteria": {"conditionalCriteria": []}
+                                            },
+                                            "authenticationPolicyContractRef": {
+                                                "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
+                                                "id": "iQwSYDdExcmJaYk6"
                                             },
                                             "context": "Success",
-                                            "inputUserIdMapping": {
-                                                "source": {
-                                                    "id": "identityFirstAdapter",
-                                                    "type": "ADAPTER"
-                                                },
-                                                "value": "entryUUID"
-                                            },
-                                            "userIdAuthenticated": true,
-                                            "type": "AUTHN_SOURCE"
-                                        }
-                                    }
-                                ],
-                                "action": {
-                                    "authenticationSource": {
-                                        "type": "IDP_ADAPTER",
-                                        "sourceRef": {
-                                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
-                                            "id": "clickatellAdapter"
-                                        }
-                                    },
-                                    "context": "Success",
-                                    "inputUserIdMapping": {
-                                        "source": {
-                                            "id": "identityFirstAdapter",
-                                            "type": "ADAPTER"
+                                            "type": "APC_MAPPING"
+                                        }}
+                                    ],
+                                    "action": {
+                                        "authenticationSource": {
+                                            "type": "IDP_ADAPTER",
+                                            "sourceRef": {
+                                                "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter",
+                                                "id": "consentAgentlessAdapter"
+                                            }
                                         },
-                                        "value": "mobile"
+                                        "context": "Success",
+                                        "inputUserIdMapping": {
+                                            "source": {
+                                                "id": "identityFirstAdapter",
+                                                "type": "ADAPTER"
+                                            },
+                                            "value": "entryUUID"
+                                        },
+                                        "userIdAuthenticated": true,
+                                        "type": "AUTHN_SOURCE"
+                                    }
+                                }
+                            ],
+                            "action": {
+                                "authenticationSource": {
+                                    "type": "IDP_ADAPTER",
+                                    "sourceRef": {
+                                        "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
+                                        "id": "clickatellAdapter"
+                                    }
+                                },
+                                "context": "Success",
+                                "inputUserIdMapping": {
+                                    "source": {
+                                        "id": "identityFirstAdapter",
+                                        "type": "ADAPTER"
                                     },
-                                    "userIdAuthenticated": true,
-                                    "type": "AUTHN_SOURCE"
-                                }
+                                    "value": "mobile"
+                                },
+                                "userIdAuthenticated": true,
+                                "type": "AUTHN_SOURCE"
                             }
-                        ],
-                        "action": {
-                            "authenticationSource": {
-                                "type": "IDP_ADAPTER",
-                                "sourceRef": {
-                                    "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
-                                    "id": "identityFirstAdapter"
-                                }
-                            },
-                            "type": "AUTHN_SOURCE"
                         }
+                    ],
+                    "action": {
+                        "authenticationSource": {
+                            "type": "IDP_ADAPTER",
+                            "sourceRef": {
+                                "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
+                                "id": "identityFirstAdapter"
+                            }
+                        },
+                        "type": "AUTHN_SOURCE"
                     }
                 }
-            ],
+            }],
             "resourceType": "/authenticationPolicies/fragments"
         },
         {
@@ -5186,183 +4538,6 @@
                                         "context": "LOA2",
                                         "type": "FRAGMENT"
                                     }
-                                },
-                                {
-                                    "children": [
-                                        {"action": {
-                                            "context": "Fail",
-                                            "type": "DONE"
-                                        }},
-                                        {"action": {
-                                            "attributeMapping": {
-                                                "attributeContractFulfillment": {
-                                                    "cdr_consent_id": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "cdr_consent_id"
-                                                    },
-                                                    "subject": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "subject"
-                                                    },
-                                                    "authorizationDetails": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "authorizationDetails"
-                                                    },
-                                                    "result": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "result"
-                                                    },
-                                                    "acr": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "acr"
-                                                    },
-                                                    "cdrArrangementId": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "cdrArrangementId"
-                                                    },
-                                                    "sharingDurationExpiresAt": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "sharingDurationExpiresAt"
-                                                    },
-                                                    "customerRef": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "customerRef"
-                                                    },
-                                                    "SAML_AUTHN_CTX": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "SAML_AUTHN_CTX"
-                                                    },
-                                                    "accounts": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "accounts"
-                                                    },
-                                                    "accounts_available": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "accounts_available"
-                                                    },
-                                                    "idtokenClaims": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "idtokenClaims"
-                                                    },
-                                                    "scopes": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "scopes"
-                                                    },
-                                                    "userinfoClaims": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "userinfoClaims"
-                                                    }
-                                                },
-                                                "attributeSources": [],
-                                                "issuanceCriteria": {"conditionalCriteria": []}
-                                            },
-                                            "authenticationPolicyContractRef": {
-                                                "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/iQwSYDdExcmJaYk6",
-                                                "id": "iQwSYDdExcmJaYk6"
-                                            },
-                                            "context": "Success",
-                                            "type": "APC_MAPPING"
-                                        }}
-                                    ],
-                                    "action": {
-                                        "fragment": {
-                                            "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicies/fragments/cdrPolicyFragmentMFA",
-                                            "id": "cdrPolicyFragmentMFA"
-                                        },
-                                        "fragmentMapping": {
-                                            "attributeContractFulfillment": {
-                                                "claims_requestedACR": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "claims_requestedACR"
-                                                },
-                                                "claims_idtoken": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "claims_idtoken"
-                                                },
-                                                "subject": {"source": {"type": "NO_MAPPING"}},
-                                                "claims_userinfo": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "claims_userinfo"
-                                                },
-                                                "pi.clientContext.authorization_details": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "pi.clientContext.authorization_details"
-                                                },
-                                                "claims_sharingDurationExpiresAt": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "claims_sharingDurationExpiresAt"
-                                                },
-                                                "claims_cdrArrangementId": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "claims_cdrArrangementId"
-                                                }
-                                            },
-                                            "attributeSources": [],
-                                            "issuanceCriteria": {"conditionalCriteria": []}
-                                        },
-                                        "context": "LOA3",
-                                        "type": "FRAGMENT"
-                                    }
                                 }
                             ],
                             "action": {
@@ -5375,20 +4550,12 @@
                                 },
                                 "attributeRules": {
                                     "fallbackToSuccess": false,
-                                    "items": [
-                                        {
-                                            "result": "LOA2",
-                                            "condition": "EQUALS_CASE_INSENSITIVE",
-                                            "expectedValue": "CA",
-                                            "attributeName": "caValue"
-                                        },
-                                        {
-                                            "result": "LOA3",
-                                            "condition": "EQUALS_CASE_INSENSITIVE",
-                                            "expectedValue": "SCA",
-                                            "attributeName": "caValue"
-                                        }
-                                    ]
+                                    "items": [{
+                                        "result": "LOA2",
+                                        "condition": "EQUALS_CASE_INSENSITIVE",
+                                        "expectedValue": "CA",
+                                        "attributeName": "caValue"
+                                    }]
                                 },
                                 "type": "AUTHN_SOURCE"
                             }
