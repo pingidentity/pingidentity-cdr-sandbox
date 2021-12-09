@@ -52,6 +52,13 @@ dsconfig create-gateway-api-endpoint \
     --set "api-server:Mock Bank API"
 
 dsconfig create-gateway-api-endpoint \
+    --endpoint-name EnergyAPI  \
+    --set "access-token-validator:pingfederate token validator"  \
+    --set inbound-base-path:/cds-au/v1/energy  \
+    --set outbound-base-path:/cds-au/v1/energy  \
+    --set "api-server:Mock Bank API"
+
+dsconfig create-gateway-api-endpoint \
     --endpoint-name ConsentAPI  \
     --set "access-token-validator:pingfederate token validator"  \
     --set inbound-base-path:/consent/v1/consents  \
