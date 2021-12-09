@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://7c00d51e0aec:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://fa427d00fe2c:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -370,7 +370,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1502,7 +1508,7 @@
                             },
                             {
                                 "name": "Request Object Template",
-                                "value": "{\n \"response_type\": \"code id_token\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  }\n}"
+                                "value": "{\n \"response_type\": \"code id_token\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read energy:accounts.basic:read energy:accounts.detail:read\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  }\n}"
                             },
                             {
                                 "name": "Ignore SSL Errors",
