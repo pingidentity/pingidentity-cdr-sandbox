@@ -282,7 +282,7 @@ services:
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
 
   data-in-spa:
-    image: cdrsandbox/datain-app:20211209
+    image: cdrsandbox/datain-app:20211210
     environment:
       - PORT=2280
     env_file:
