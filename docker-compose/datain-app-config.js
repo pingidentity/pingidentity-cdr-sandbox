@@ -48,9 +48,9 @@ export default {
     dh_id: "https://sso.data-holder.local:6443",
     dh_api: "https://spa.data-recipient.local/sso-1",
     img: "anybank-logo.png",
-    name: "AnyBank",
-    linkname: "AnyBank",
-    description: "For AnyOne",
+    name: "AnyBiz",
+    linkname: "AnyBiz",
+    description: "For AnyBiz",
     color: "#ff9900"
 },
 {
@@ -58,9 +58,9 @@ export default {
     dh_id: "https://sso-2.data-holder.local:6443",
     dh_api: "https://spa.data-recipient.local/sso-2",
     img: "genericbank-logo.png",
-    name: "GenericBank",
-    linkname: "GenericBank",
-    description: "For GenericBank",
+    name: "GenericBiz",
+    linkname: "GenericBiz",
+    description: "For GenericBiz",
     color: "#ff9900"
 },
 {
