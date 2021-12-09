@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://4cecbb96be19:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://7c00d51e0aec:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -370,13 +370,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -2900,13 +2894,33 @@
                         "dynamic": false
                     },
                     {
+                        "name": "energy:electricity.usage:read",
+                        "description": "Electricity Usage Data",
+                        "dynamic": false
+                    },
+                    {
                         "name": "consent_admin",
                         "description": "Consent API - Admin",
                         "dynamic": false
                     },
                     {
+                        "name": "energy:electricity.servicepoints.detail:read",
+                        "description": "Detailed Service Point Data",
+                        "dynamic": false
+                    },
+                    {
                         "name": "urn:pingidentity:directory-delegated-admin",
                         "description": "urn:pingidentity:directory-delegated-admin",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.basic:read",
+                        "description": "Basic Energy Account Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.paymentschedule:read",
+                        "description": "Energy Regular Payments Data",
                         "dynamic": false
                     },
                     {
@@ -2917,6 +2931,11 @@
                     {
                         "name": "bank:payees:read",
                         "description": "Bank Payee Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.concessions:read",
+                        "description": "Energy Concession & Hardship Data",
                         "dynamic": false
                     },
                     {
@@ -2960,6 +2979,11 @@
                         "dynamic": false
                     },
                     {
+                        "name": "energy:billing:read",
+                        "description": "Energy Billing Data",
+                        "dynamic": false
+                    },
+                    {
                         "name": "cdr:registration",
                         "description": "CDR Dynamic Client Registration Management Scope",
                         "dynamic": false
@@ -2970,33 +2994,8 @@
                         "dynamic": false
                     },
                     {
-                        "name": "adh-cache-write",
-                        "description": "adh-cache-write",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "energy:electricity.servicepoints.basic:read",
-                        "description": "Basic Service Point Data",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "energy:electricity.servicepoints.detail:read",
-                        "description": "Detailed Service Point Data",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "energy:electricity.usage:read",
-                        "description": "Electricity Usage Data",
-                        "dynamic": false
-                    },
-                    {
                         "name": "energy:electricity.der:read",
                         "description": "Distributed Energy Resource Data",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "energy:accounts.basic:read",
-                        "description": "Basic Energy Account Data",
                         "dynamic": false
                     },
                     {
@@ -3005,18 +3004,13 @@
                         "dynamic": false
                     },
                     {
-                        "name": "energy:accounts.paymentschedule:read",
-                        "description": "Energy Regular Payments Data",
+                        "name": "energy:electricity.servicepoints.basic:read",
+                        "description": "Basic Service Point Data",
                         "dynamic": false
                     },
                     {
-                        "name": "energy:accounts.concessions:read",
-                        "description": "Energy Concession & Hardship Data",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "energy:billing:read",
-                        "description": "Energy Billing Data",
+                        "name": "adh-cache-write",
+                        "description": "adh-cache-write",
                         "dynamic": false
                     }
                 ],
@@ -3501,7 +3495,16 @@
                         "bank:transactions:read",
                         "cdr:registration",
                         "common:customer.basic:read",
-                        "common:customer.detail:read"
+                        "common:customer.detail:read",
+                        "energy:accounts.basic:read",
+                        "energy:accounts.concessions:read",
+                        "energy:accounts.detail:read",
+                        "energy:accounts.paymentschedule:read",
+                        "energy:billing:read",
+                        "energy:electricity.der:read",
+                        "energy:electricity.servicepoints.basic:read",
+                        "energy:electricity.servicepoints.detail:read",
+                        "energy:electricity.usage:read"
                     ],
                     "enforceReplayPrevention": true,
                     "deviceFlowSettingType": "SERVER_DEFAULT",
