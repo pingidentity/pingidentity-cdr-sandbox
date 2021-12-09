@@ -2849,30 +2849,7 @@
                 "userAuthorizationUrl": "",
                 "pendingAuthorizationTimeout": 600,
                 "disallowPlainPKCE": false,
-                "exclusiveScopeGroups": [{
-                    "name": "DEEPTHOUGHT:ADMIN",
-                    "description": "Provide all Deepthought admin rights",
-                    "scopes": [
-                        "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ",
-                        "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:BRANCH:READ",
-                        "DEEPTHOUGHT:ADMIN:BRANCH:WRITE",
-                        "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
-                        "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
-                        "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
-                        "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:GRANT:READ",
-                        "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:PAYEE:READ",
-                        "DEEPTHOUGHT:ADMIN:PAYEE:WRITE",
-                        "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
-                        "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:READ",
-                        "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
-                        "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE"
-                    ]
-                }],
+                "exclusiveScopeGroups": [],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
                 "bypassActivationCodeConfirmation": false,
                 "persistentGrantReuseGrantTypes": [],
@@ -2919,7 +2896,7 @@
                 "exclusiveScopes": [
                     {
                         "name": "bank:accounts.basic:read",
-                        "description": "bank:accounts.basic:read",
+                        "description": "Basic Bank Account Data",
                         "dynamic": false
                     },
                     {
@@ -2928,28 +2905,8 @@
                         "dynamic": false
                     },
                     {
-                        "name": "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:SCHEDULED_PAYMENT:WRITE",
-                        "dynamic": false
-                    },
-                    {
                         "name": "urn:pingidentity:directory-delegated-admin",
                         "description": "urn:pingidentity:directory-delegated-admin",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:CUSTOMER:WRITE",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:TRANSACTION:WRITE",
                         "dynamic": false
                     },
                     {
@@ -2959,42 +2916,12 @@
                     },
                     {
                         "name": "bank:payees:read",
-                        "description": "bank:payees:read",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:BRANCH:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:BRANCH:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:GRANT:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:GRANT:READ",
+                        "description": "Bank Payee Data",
                         "dynamic": false
                     },
                     {
                         "name": "bank:accounts.detail:read",
-                        "description": "bank:accounts.detail:read",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:BRANCH:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:BRANCH:WRITE",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:PAYEE:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:PAYEE:WRITE",
+                        "description": "Detailed Bank Account Data",
                         "dynamic": false
                     },
                     {
@@ -3004,17 +2931,17 @@
                     },
                     {
                         "name": "bank:transactions:read",
-                        "description": "bank:transactions:read",
+                        "description": "Bank Transaction Data",
                         "dynamic": false
                     },
                     {
                         "name": "common:customer.detail:read",
-                        "description": "common:customer.detail:read",
+                        "description": "Detailed Customer Data",
                         "dynamic": false
                     },
                     {
                         "name": "common:customer.basic:read",
-                        "description": "common:customer.basic:read",
+                        "description": "Basic Customer Data",
                         "dynamic": false
                     },
                     {
@@ -3028,43 +2955,13 @@
                         "dynamic": false
                     },
                     {
-                        "name": "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:CUSTOMER:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:GRANT:WRITE",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:PAYEE:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:PAYEE:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:PRODUCT:WRITE",
-                        "dynamic": false
-                    },
-                    {
                         "name": "bank:regular_payments:read",
-                        "description": "bank:regular_payments:read",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:PRODUCT:READ",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:DIRECT_DEBIT:WRITE",
+                        "description": "Bank Regular Payments",
                         "dynamic": false
                     },
                     {
                         "name": "cdr:registration",
-                        "description": "cdr:registration",
+                        "description": "CDR Dynamic Client Registration Management Scope",
                         "dynamic": false
                     },
                     {
@@ -3073,18 +2970,53 @@
                         "dynamic": false
                     },
                     {
-                        "name": "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
-                        "description": "DEEPTHOUGHT:ADMIN:BANK_ACCOUNT:WRITE",
-                        "dynamic": false
-                    },
-                    {
-                        "name": "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
-                        "description": "DEEPTHOUGHT:ADMIN:TRANSACTION:READ",
-                        "dynamic": false
-                    },
-                    {
                         "name": "adh-cache-write",
                         "description": "adh-cache-write",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:electricity.servicepoints.basic:read",
+                        "description": "Basic Service Point Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:electricity.servicepoints.detail:read",
+                        "description": "Detailed Service Point Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:electricity.usage:read",
+                        "description": "Electricity Usage Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:electricity.der:read",
+                        "description": "Distributed Energy Resource Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.basic:read",
+                        "description": "Basic Energy Account Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.detail:read",
+                        "description": "Detailed Energy Account Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.paymentschedule:read",
+                        "description": "Energy Regular Payments Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:accounts.concessions:read",
+                        "description": "Energy Concession & Hardship Data",
+                        "dynamic": false
+                    },
+                    {
+                        "name": "energy:billing:read",
+                        "description": "Energy Billing Data",
                         "dynamic": false
                     }
                 ],

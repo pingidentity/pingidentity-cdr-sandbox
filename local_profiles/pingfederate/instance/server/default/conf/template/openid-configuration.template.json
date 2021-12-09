@@ -93,7 +93,7 @@ Keys available for use with the $info variable:
   "ping_revoked_sris_endpoint": "$info.get('ping_revoked_sris_endpoint')",
   "ping_end_session_endpoint": "$info.get('ping_end_session_endpoint')",
   "device_authorization_endpoint": "$info.get('device_authorization_endpoint')",
-  "scopes_supported": ["openid", "profile", "offline_access", "bank:accounts.basic:read", "bank:accounts.detail:read", "bank:transactions:read", "bank:payees:read", "bank:regular_payments:read", "common:customer.basic:read", "common:customer.detail:read", "cdr:registration" ],
+  "scopes_supported": ["openid", "profile", "offline_access", "bank:accounts.basic:read", "bank:accounts.detail:read", "bank:transactions:read", "bank:payees:read", "bank:regular_payments:read", "common:customer.basic:read", "common:customer.detail:read", "cdr:registration", "energy:electricity.servicepoints.basic:read", "energy:electricity.servicepoints.detail:read", "energy:electricity.usage:read", "energy:electricity.der:read", "energy:accounts.basic:read", "energy:accounts.detail:read", "energy:accounts.paymentschedule:read", "energy:accounts.concessions:read", "energy:billing:read" ],
   #if($info.get('claims_supported'))
     #set($claimsSupported=$info.get('claims_supported'))
     #set($res=$claimsSupported.add("auth_time"))
