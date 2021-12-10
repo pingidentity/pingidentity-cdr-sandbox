@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://fa427d00fe2c:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://e65af1811c9a:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -370,13 +370,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -2830,7 +2824,7 @@
                 "scopeGroups": [],
                 "adminWebServicePcvRef": {"id": "adminPCV"},
                 "atmIdForOAuthGrantManagement": "adminATM",
-                "refreshRollingInterval": 0,
+                "refreshRollingInterval": 1,
                 "tokenEndpointBaseUrl": "",
                 "trackUserSessionsForLogout": false,
                 "parStatus": "ENABLED",
