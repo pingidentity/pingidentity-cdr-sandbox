@@ -40,7 +40,7 @@ services:
       - pingnet-internal
 
   agentless-consentapp:
-    image: cdrsandbox/agentless-consentapp:20211116_3
+    image: cdrsandbox/agentless-consentapp:20211209
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -61,7 +61,7 @@ services:
       - pingnet-internal
 
   mock-dh-api:
-    image: cdrsandbox/mock-dh-apis:20210816
+    image: cdrsandbox/mock-dh-apis:20211209
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -82,7 +82,7 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: pingidentity/pingfederate:10.3.2-edge
+    image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/in/instance/server/default/conf
@@ -112,7 +112,7 @@ services:
 #      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
 
   pingdirectory:
-    image: pingidentity/pingdirectory:8.3.0.0-edge
+    image: pingidentity/pingdirectory:edge
     environment:
 #      - LICENSE_DIR=/opt/licenses
 #      - LICENSE_FILE_NAME=PingDirectory.lic
@@ -154,7 +154,7 @@ services:
       - pingnet-internal
 
   pingdatasync:
-    image: pingidentity/pingdatasync:8.3.0.0-edge
+    image: pingidentity/pingdatasync:edge
     command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/licenses
@@ -188,7 +188,7 @@ services:
       - pingnet-internal
 
   cdr-dr-client:
-    image: cdrsandbox/sample-dr-client:20210315
+    image: cdrsandbox/sample-dr-client:20211209
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -228,7 +228,7 @@ services:
        - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
 
   pingdatagovernance:
-    image: pingidentity/pingauthorize:8.3.0.0-edge
+    image: pingidentity/pingauthorize:edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/licenses
@@ -255,7 +255,7 @@ services:
       - pingnet-internal
 
   pingdatagovernancepap:
-    image: pingidentity/pingauthorizepap:8.3.0.0-edge
+    image: pingidentity/pingauthorizepap:edge
     # command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/licenses
@@ -282,7 +282,7 @@ services:
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
 
   data-in-spa:
-    image: cdrsandbox/datain-app:20210421
+    image: cdrsandbox/datain-app:20211210
     environment:
       - PORT=2280
     env_file:
@@ -296,7 +296,7 @@ services:
       - ./datain-app-config.js:/app/src/config.js
 
   pingdataconsole:
-    image: pingidentity/pingdataconsole:8.3.0.0-edge
+    image: pingidentity/pingdataconsole:edge
     ports:
       - "9443:8443"
     networks:

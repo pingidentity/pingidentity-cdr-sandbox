@@ -1841,7 +1841,7 @@
                 "authenticationChallengePolicyId": null,
                 "resourceOrder": [],
                 "requireHTTPS": true,
-                "contextRoot": "/cds-au/v1/banking",
+                "contextRoot": "/cds-au/v1",
                 "identityMappingIds": {
                     "Web": 0,
                     "API": 0
