@@ -7,8 +7,8 @@ services:
     environment:
 #      - LICENSE_DIR=/opt/in/instance/conf
 #      - LICENSE_FILE_NAME=pingaccess.lic
-      - SERVER_PROFILE_PATH=server_profiles/pingaccess
-      - LICENSE_VERSION=6.0
+#      - MUTE_LICENSE_VERIFICATION=true
+#      - SERVER_PROFILE_PATH=server_profiles/pingaccess
       - PA_POST_CONFIGURATION_DELAY=0
       - OPERATIONAL_MODE=STANDALONE
       - PA_ADMIN_PORT=9000
@@ -34,7 +34,7 @@ services:
     expose:
       - 443
     volumes:
-       - ../local_profiles/pingaccess:/opt/in
+       - ../server_profiles/pingaccess:/opt/in
 #      - ./licenses/pingaccess.lic:/opt/in/instance/conf/pingaccess.lic
     networks:
       - pingnet-internal
@@ -84,10 +84,11 @@ services:
   pingfederate:
     image: pingidentity/pingfederate:edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
-    environment:
+#    environment:
 #      - LICENSE_DIR=/opt/in/instance/server/default/conf
 #      - LICENSE_FILE_NAME=pingfederate.lic
-      - SERVER_PROFILE_PATH=server_profiles/pingfederate
+#      - MUTE_LICENSE_VERIFICATION=true
+#      - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
       - ~/.pingidentity/devops
       - pf.env
@@ -108,7 +109,7 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
-       - ../local_profiles/pingfederate:/opt/in
+       - ../server_profiles/pingfederate:/opt/in
 #      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
 
   pingdirectory:
@@ -116,7 +117,8 @@ services:
     environment:
 #      - LICENSE_DIR=/opt/licenses
 #      - LICENSE_FILE_NAME=PingDirectory.lic
-      - SERVER_PROFILE_PATH=server_profiles/pingdirectory
+#      - MUTE_LICENSE_VERIFICATION=true
+#      - SERVER_PROFILE_PATH=server_profiles/pingdirectory
       #- SERVER_PROFILE_BRANCH=2001
       - MAKELDIF_USERS=10
       #- VERBOSE=true
@@ -148,7 +150,7 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
-       - ../local_profiles/pingdirectory:/opt/in
+       - ../server_profiles/pingdirectory:/opt/in
 #       - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
@@ -156,10 +158,11 @@ services:
   pingdatasync:
     image: pingidentity/pingdatasync:edge
     command: wait-for pingdirectory:1389 -t 300 -- entrypoint.sh start-server
-    environment:
+#    environment:
 #      - LICENSE_DIR=/opt/licenses
 #      - LICENSE_FILE_NAME=PingDirectory.lic
-      - SERVER_PROFILE_PATH=server_profiles/pingdatasync
+#      - MUTE_LICENSE_VERIFICATION=true
+#      - SERVER_PROFILE_PATH=server_profiles/pingdatasync
     env_file:
       - ${HOME}/.pingidentity/devops
       - cdr.env
@@ -182,17 +185,17 @@ services:
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
     volumes:
-       - ../local_profiles/pingdatasync:/opt/in
+       - ../server_profiles/pingdatasync:/opt/in
 #      - ./licenses/PingDirectory.lic:/opt/licenses/PingDirectory.lic
     networks:
       - pingnet-internal
 
   cdr-dr-client:
-    image: cdrsandbox/sample-dr-client:20211209
+    image: cdrsandbox/sample-dr-client:20211213
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
-      - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
+#      - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
@@ -206,6 +209,8 @@ services:
       - "pingaccess:api.data-holder.local"
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
+    volumes:
+      - ../server_profiles/datarecipient/internal/config:/tmp/conf
     networks:
       - pingnet-internal
 
@@ -214,7 +219,7 @@ services:
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
-      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
+#      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
     env_file:
       - ~/.pingidentity/devops
       - cdr.env
@@ -230,11 +235,12 @@ services:
   pingdatagovernance:
     image: pingidentity/pingauthorize:edge
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
-    environment:
+#    environment:
 #      - LICENSE_DIR=/opt/licenses
 #      - LICENSE_FILE_NAME=PingDataGovernance.lic
-      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
-      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
+#      - MUTE_LICENSE_VERIFICATION=true
+#      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+#      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
     env_file:
       - ${HOME}/.pingidentity/devops
       - cdr.env
@@ -249,7 +255,7 @@ services:
       - "9080:80"
       - "7443:1443"
     volumes:
-       - ../local_profiles/pingdatagovernance:/opt/in
+       - ../server_profiles/pingdatagovernance:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
     networks:
       - pingnet-internal
@@ -260,8 +266,9 @@ services:
     environment:
 #      - LICENSE_DIR=/opt/licenses
 #      - LICENSE_FILE_NAME=PingDataGovernance.lic
-      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
-      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
+#      - MUTE_LICENSE_VERIFICATION=true
+#      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
+#      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
       - HTTPS_PORT=8443
     env_file:
       - ${HOME}/.pingidentity/devops
@@ -278,7 +285,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ../local_profiles/pingdatagovernancepap:/opt/in
+       - ../server_profiles/pingdatagovernancepap:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
 
   data-in-spa:
