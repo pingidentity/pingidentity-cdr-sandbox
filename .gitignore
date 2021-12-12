@@ -26,3 +26,9 @@ scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/.settings/*
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/in/pa-export.json
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/in/out-pa-bulk-config.json
 scripts/ping-bulkconfigtools/ping-bulkexport-tools-project/in/out-pa-env.properties
+server_profiles/datarecipient/internal/config/client.csr
+server_profiles/datarecipient/internal/config/client.key
+server_profiles/datarecipient/internal/config/csrresponse.p7b
+server_profiles/datarecipient/internal/config/csrresponse.pem
+server_profiles/datarecipient/internal/config/network.p12
+server_profiles/datarecipient/internal/config/aspsp.pingbank.properties
