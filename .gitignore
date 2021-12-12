@@ -31,3 +31,4 @@ server_profiles/datarecipient/internal/config/client.key
 server_profiles/datarecipient/internal/config/csrresponse.p7b
 server_profiles/datarecipient/internal/config/csrresponse.pem
 server_profiles/datarecipient/internal/config/network.p12
+server_profiles/datarecipient/internal/config/aspsp.pingbank.properties
