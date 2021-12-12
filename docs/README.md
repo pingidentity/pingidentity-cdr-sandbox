@@ -51,13 +51,16 @@ git clone \
     127.0.0.1 spa.data-recipient.local
     ```
 
-1. Use docker-compose to bring the CDR Sandbox stack up:
+1. Navigate to the docker-compose folder:
 
     ```sh
-    docker-compose \
-        -f \
-        ~/projects/cdr/docker-compose/docker-compose.yaml \
-        up -d
+    cd ~/projects/cdr/docker-compose
+    ```
+
+1. Use docker-compose to bring the CDR Sandbox stack up. This will build a local instance of cdrsandbox/pingaccess:latest:
+
+    ```sh
+    ./start-sandbox.sh
     ```
 
 1. To display the server logs as the stack starts up, run the following command (ctrl-c to exit):
@@ -182,7 +185,7 @@ And verify that the value of STATUS is “healthy”
 
     !!! warning "SSL Certificates"
         The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the SPA Appliction.
-        
+
 1. Select "Any Bank" from the drop down list and click Submit
 1. You will be asked to authenticate as a customer of the 3rd Party Data Holder
 1.  * Username: bhope
