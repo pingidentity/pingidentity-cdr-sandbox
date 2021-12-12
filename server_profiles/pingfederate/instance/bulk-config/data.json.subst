@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "10.3.2.0"},
+    "metadata": {"pfVersion": "10.3.4.0"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -207,7 +207,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://e65af1811c9a:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://78d5fab5e503:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -370,7 +370,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -2824,14 +2830,14 @@
                 "scopeGroups": [],
                 "adminWebServicePcvRef": {"id": "adminPCV"},
                 "atmIdForOAuthGrantManagement": "adminATM",
-                "refreshRollingInterval": 1,
+                "refreshRollingInterval": 672,
                 "tokenEndpointBaseUrl": "",
                 "trackUserSessionsForLogout": false,
                 "parStatus": "ENABLED",
                 "defaultScopeDescription": "",
                 "authorizationCodeEntropy": 30,
                 "persistentGrantIdleTimeout": -1,
-                "rollRefreshTokenValues": true,
+                "rollRefreshTokenValues": false,
                 "allowedOrigins": [
                     "https://test.${BASE_HOSTNAME}",
                     "https://spa.${DR_BASE_HOSTNAME}",
