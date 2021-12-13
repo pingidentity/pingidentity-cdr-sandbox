@@ -35,7 +35,6 @@ services:
       - 443
     volumes:
       - ../server_profiles/pingaccess:/opt/in
-      - ./licenses/pingaccess.lic:/opt/in/instance/conf/pingaccess.lic
     networks:
       - pingnet-internal
 
@@ -110,7 +109,6 @@ services:
       - "pingaccess:sso-2.internal"
     volumes:
       - ../server_profiles/pingfederate:/opt/in
-      - ./licenses/pingfederate.lic:/opt/in/instance/server/default/conf/pingfederate.lic
 
   pingdirectory:
     image: pingidentity/pingdirectory:edge
