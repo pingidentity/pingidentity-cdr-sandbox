@@ -14,7 +14,6 @@ services:
       - PA_ADMIN_PORT=9000
       - PA_LIMIT_REQUEST_LINE=40960
     env_file:
-      - ~/.pingidentity/devops
       - pa.env
       - cdr.env
     # Example: Examples below for mounting local directories for inbound server profile and persisting
@@ -44,7 +43,6 @@ services:
     environment:
       - VERBOSE=true
     env_file:
-      - ~/.pingidentity/devops
       - cdr.env
     ports:
       - 8082:7879
@@ -65,7 +63,6 @@ services:
     environment:
       - VERBOSE=true
     env_file:
-      - ~/.pingidentity/devops
       - cdr.env
     ports:
       - 6879:6879
@@ -89,7 +86,6 @@ services:
       - MUTE_LICENSE_VERIFICATION=true
 #      - SERVER_PROFILE_PATH=server_profiles/pingfederate
     env_file:
-      - ~/.pingidentity/devops
       - pf.env
       - cdr.env
     ports:
@@ -122,7 +118,6 @@ services:
       #- VERBOSE=true
       - MAX_HEAP_SIZE=768m
     env_file:
-      - ~/.pingidentity/devops
       - cdr.env
     ports:
       - "3389:1389"
@@ -194,7 +189,6 @@ services:
       - VERBOSE=true
 #      - SERVER_PROFILE_PATH=server_profiles/datarecipient/internal/config
     env_file:
-      - ~/.pingidentity/devops
       - cdr.env
     ports:
       - 8080:7878
@@ -218,7 +212,6 @@ services:
       - VERBOSE=true
 #      - SERVER_PROFILE_PATH=server_profiles/mock-cdrregister-config/cache
     env_file:
-      - ~/.pingidentity/devops
       - cdr.env
     ports:
       - 8084:8084
