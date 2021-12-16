@@ -162,7 +162,6 @@ services:
       - MUTE_LICENSE_VERIFICATION=true
 #      - SERVER_PROFILE_PATH=server_profiles/pingdatasync
     env_file:
-      - ${HOME}/.pingidentity/devops
       - cdr.env
     ulimits:
       nproc:
@@ -226,7 +225,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
+       - ~/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
        - ./datarecipients/cdr-sandbox-data-in-local-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-local-dr-0005
        - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
 
@@ -240,7 +239,6 @@ services:
 #      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-cdr-sandbox.git
 #      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernance
     env_file:
-      - ${HOME}/.pingidentity/devops
       - cdr.env
     ulimits:
       nproc:
@@ -269,7 +267,6 @@ services:
 #      - SERVER_PROFILE_PATH=server_profiles/pingdatagovernancepap
       - HTTPS_PORT=8443
     env_file:
-      - ${HOME}/.pingidentity/devops
       - cdr.env
     ulimits:
       nproc:
