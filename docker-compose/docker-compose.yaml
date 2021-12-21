@@ -40,7 +40,7 @@ services:
       - pingnet-internal
 
   agentless-consentapp:
-    image: cdrsandbox/agentless-consentapp:20211209
+    image: cdrsandbox/agentless-consentapp:20211221
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -61,7 +61,7 @@ services:
       - pingnet-internal
 
   mock-dh-api:
-    image: cdrsandbox/mock-dh-apis:20211209
+    image: cdrsandbox/mock-dh-apis:20211221
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -191,7 +191,7 @@ services:
       - pingnet-internal
 
   cdr-dr-client:
-    image: cdrsandbox/sample-dr-client:20211213
+    image: cdrsandbox/sample-dr-client:20211221
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -215,7 +215,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20211129
+    image: cdrsandbox/cdr-register-testharness:20211221
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -302,12 +302,12 @@ services:
     volumes:
       - ./datain-app-config.js:/app/src/config.js
 
-  pingdataconsole:
-    image: pingidentity/pingdataconsole:edge
-    ports:
-      - "9443:8443"
-    networks:
-      - pingnet-internal
+#  pingdataconsole:
+#    image: pingidentity/pingdataconsole:edge
+#    ports:
+#      - "9443:8443"
+#    networks:
+#      - pingnet-internal
 
   datain-configurepf:
     image: cdrsandbox/datain-configure-pf:20210421
