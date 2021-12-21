@@ -23,6 +23,12 @@ services:
     #volumes:
     #   - ${HOME}/projects/devops/volumes/full-stack.pingaccess:/opt/out
     #   - ${HOME}/projects/devops/pingidentity-server-profiles/baseline/pingaccess:/opt/in
+    extra_hosts:
+      - "api.data-holder.local:127.0.0.1"
+      - "sso.data-holder.local:127.0.0.1"
+      - "sso-2.data-holder.local:127.0.0.1"
+      - "sso.internal:127.0.0.1"
+      - "sso-2.internal:127.0.0.1"
     ports:
       - 6443:6443
       - 3000:443
