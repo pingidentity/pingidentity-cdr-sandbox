@@ -1,5 +1,5 @@
 MOCKREGISTER_BASEURL=http://localhost:8084
-SERVERCERT_SUBJECT="/E=cua@cua.com.au/CN=sit.openbanking.cua.com.au/ST=QLD/L=BRISBANE/OU=CUA/O=CUA/C=AU"
+SERVERCERT_SUBJECT="/CN=localhost/ST=VIC/L=MELBOURNE/OU=PING/O=CDR/C=AU"
 
 
 rm -R ./cert/*
