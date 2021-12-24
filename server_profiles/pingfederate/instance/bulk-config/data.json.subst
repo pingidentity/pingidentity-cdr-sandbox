@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "10.3.4.0"},
+    "metadata": {"pfVersion": "11.0.0.11"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -68,6 +68,23 @@
                 {
                     "stringValue": "10",
                     "id": "HTTP_MAX_CONNECTIONS",
+                    "type": "STRING"
+                }
+            ],
+            "resourceType": "/configStore"
+        },
+        {
+            "operationType": "SAVE",
+            "subResource": "org.sourceid.oauth20.domain.AuthzServerManagerImpl",
+            "items": [
+                {
+                    "stringValue": "false",
+                    "id": "UnidentifiedClientExtGrants",
+                    "type": "STRING"
+                },
+                {
+                    "stringValue": "false",
+                    "id": "UnidentifiedClientROCreds",
                     "type": "STRING"
                 }
             ],
@@ -207,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://78d5fab5e503:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://65632d17c336:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -844,7 +861,10 @@
                     },
                     "attributeContract": {
                         "coreAttributes": [],
-                        "extendedAttributes": [{"name": "sub"}]
+                        "extendedAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }]
                     },
                     "selectionSettings": {"resourceUris": []}
                 },
@@ -1007,9 +1027,18 @@
                         "defaultSubjectAttribute": "sub",
                         "coreAttributes": [],
                         "extendedAttributes": [
-                            {"name": "sub"},
-                            {"name": "software_id"},
-                            {"name": "context"}
+                            {
+                                "name": "sub",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "software_id",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "context",
+                                "multiValued": false
+                            }
                         ]
                     },
                     "selectionSettings": {"resourceUris": [
@@ -1166,9 +1195,18 @@
                     "attributeContract": {
                         "coreAttributes": [],
                         "extendedAttributes": [
-                            {"name": "sub"},
-                            {"name": "aud"},
-                            {"name": "iss"}
+                            {
+                                "name": "sub",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "aud",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "iss",
+                                "multiValued": false
+                            }
                         ]
                     },
                     "selectionSettings": {"resourceUris": []}
@@ -1201,10 +1239,22 @@
                         "defaultSubjectAttribute": "sub",
                         "coreAttributes": [],
                         "extendedAttributes": [
-                            {"name": "sub"},
-                            {"name": "jsonencoded_authorization_details"},
-                            {"name": "iss"},
-                            {"name": "cnf"}
+                            {
+                                "name": "sub",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "jsonencoded_authorization_details",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "iss",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "cnf",
+                                "multiValued": false
+                            }
                         ]
                     },
                     "selectionSettings": {"resourceUris": [
@@ -1388,10 +1438,22 @@
                         "defaultSubjectAttribute": "sub",
                         "coreAttributes": [],
                         "extendedAttributes": [
-                            {"name": "sub"},
-                            {"name": "jsonencoded_authorization_details"},
-                            {"name": "iss"},
-                            {"name": "cnf"}
+                            {
+                                "name": "sub",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "jsonencoded_authorization_details",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "iss",
+                                "multiValued": false
+                            },
+                            {
+                                "name": "cnf",
+                                "multiValued": false
+                            }
                         ]
                     },
                     "selectionSettings": {"resourceUris": []}
@@ -1411,7 +1473,8 @@
             "operationType": "SAVE",
             "items": [{
                 "forceTcp": false,
-                "debugLogOutput": false
+                "debugLogOutput": false,
+                "keySetRetentionPeriodMins": 610
             }],
             "resourceType": "/kerberos/realms/settings"
         },
@@ -2153,6 +2216,14 @@
                             {
                                 "name": "Allowed OTP Character Set",
                                 "value": "23456789BCDFGHJKMNPQRSTVWXZbcdfghjkmnpqrstvwxz"
+                            },
+                            {
+                                "name": "Password Update Timeout",
+                                "value": "30"
+                            },
+                            {
+                                "name": "Require Re-Authentication For Expiring Password Flow",
+                                "value": "false"
                             }
                         ]
                     },
@@ -2450,6 +2521,14 @@
                             {
                                 "name": "Allowed OTP Character Set",
                                 "value": "23456789BCDFGHJKMNPQRSTVWXZbcdfghjkmnpqrstvwxz"
+                            },
+                            {
+                                "name": "Password Update Timeout",
+                                "value": "30"
+                            },
+                            {
+                                "name": "Require Re-Authentication For Expiring Password Flow",
+                                "value": "false"
                             }
                         ]
                     },
@@ -2852,6 +2931,7 @@
                 "exclusiveScopeGroups": [],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
                 "bypassActivationCodeConfirmation": false,
+                "includeIssuerInAuthorizationResponse": false,
                 "persistentGrantReuseGrantTypes": [],
                 "registeredAuthorizationPath": "",
                 "persistentGrantLifetime": 365,
@@ -3211,12 +3291,16 @@
                     "scopeAttributeMappings": {},
                     "returnIdTokenOnRefreshGrant": false,
                     "id": "adminOIDCPolicy",
+                    "reissueIdTokenInHybridFlow": false,
                     "includeSriInIdToken": true,
                     "includeSHashInIdToken": false,
                     "includeUserInfoInIdToken": false,
                     "idTokenLifetime": 5,
                     "attributeContract": {
-                        "coreAttributes": [{"name": "sub"}],
+                        "coreAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }],
                         "extendedAttributes": []
                     },
                     "accessTokenManagerRef": {
@@ -3237,12 +3321,16 @@
                     "scopeAttributeMappings": {},
                     "returnIdTokenOnRefreshGrant": true,
                     "id": "adrOIDCPolicy",
+                    "reissueIdTokenInHybridFlow": false,
                     "includeSriInIdToken": true,
                     "includeSHashInIdToken": true,
                     "includeUserInfoInIdToken": true,
                     "idTokenLifetime": 5,
                     "attributeContract": {
-                        "coreAttributes": [{"name": "sub"}],
+                        "coreAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }],
                         "extendedAttributes": []
                     },
                     "accessTokenManagerRef": {
@@ -3325,52 +3413,64 @@
                     ]}},
                     "returnIdTokenOnRefreshGrant": true,
                     "id": "obOIDCPolicy",
+                    "reissueIdTokenInHybridFlow": false,
                     "includeSriInIdToken": false,
                     "includeSHashInIdToken": true,
                     "includeUserInfoInIdToken": false,
                     "idTokenLifetime": 5,
                     "attributeContract": {
-                        "coreAttributes": [{"name": "sub"}],
+                        "coreAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }],
                         "extendedAttributes": [
                             {
                                 "includeInUserInfo": false,
                                 "name": "acr",
-                                "includeInIdToken": true
+                                "includeInIdToken": true,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": false,
                                 "name": "refresh_token_expires_at",
-                                "includeInIdToken": true
+                                "includeInIdToken": true,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": true,
                                 "name": "updated_at",
-                                "includeInIdToken": true
+                                "includeInIdToken": true,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": false,
                                 "name": "auth_time",
-                                "includeInIdToken": true
+                                "includeInIdToken": true,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": true,
                                 "name": "name",
-                                "includeInIdToken": false
+                                "includeInIdToken": false,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": true,
                                 "name": "given_name",
-                                "includeInIdToken": false
+                                "includeInIdToken": false,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": true,
                                 "name": "family_name",
-                                "includeInIdToken": false
+                                "includeInIdToken": false,
+                                "multiValued": false
                             },
                             {
                                 "includeInUserInfo": false,
                                 "name": "sharing_expires_at",
-                                "includeInIdToken": true
+                                "includeInIdToken": true,
+                                "multiValued": false
                             }
                         ]
                     },
@@ -3888,6 +3988,8 @@
             "operationType": "SAVE",
             "items": [{
                 "apiEnabled": false,
+                "restrictAccessToRedirectlessMode": false,
+                "includeRequestContext": false,
                 "enableApiDescriptions": true
             }],
             "resourceType": "/authenticationApi/settings"
@@ -4085,6 +4187,7 @@
                 "authnSelectionTrees": [
                     {
                         "name": "Administrative Functions",
+                        "id": "XWDbjZnggLXB13Aurph0h80uo",
                         "enabled": true,
                         "rootNode": {
                             "children": [{
@@ -4136,6 +4239,7 @@
                     },
                     {
                         "name": "ADR - Data In - Policy",
+                        "id": "N3l3yuiA2gV99qpv39BzJZTr0",
                         "enabled": true,
                         "rootNode": {
                             "children": [
@@ -4296,6 +4400,7 @@
                     },
                     {
                         "name": "CDR Policy v1.3",
+                        "id": "Ww2eH2kE7ZLG7LO2mV1F040lW",
                         "enabled": true,
                         "rootNode": {
                             "children": [
