@@ -776,7 +776,7 @@ dsconfig create-plugin \
     --type third-party  \
     --set enabled:true  \
     --set plugin-type:searchresultentry  \
-    --set extension-class:com.pingidentity.tt.cdr.data.in.pd.TokenMgtRetrieveRefreshTokenPlugin  \
+    --set extension-class:com.pingidentity.ps.cdr.data.in.pd.TokenMgtRetrieveRefreshTokenPlugin  \
     --set extension-argument:ignore-ssl-errors=true  \
     --set extension-argument:refresh-advance-seconds=120  \
     --set request-criteria:tokenMgtInstanceSearchCriteria
