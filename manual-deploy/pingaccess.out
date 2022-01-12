@@ -1,0 +1,11 @@
+JAVA_HOME is not set.  Unexpected results may occur.
+Set JAVA_HOME environment variable to the location of your Java installation to avoid this message.
+Starting PingAccess
+Java Version: 11.0.7+10 (OpenJDK 64-Bit Server VM)
+Operational Mode: STANDALONE
+PingAccess running...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedConstructor$1 (file:/Users/ttran/projects/devops/pingidentity-cdr-sandbox/manual-deploy/temp/pingaccess/lib/groovy-all-2.4.21.jar) to constructor java.util.Collections$UnmodifiableRandomAccessList(java.util.List)
+WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.reflection.CachedConstructor$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release

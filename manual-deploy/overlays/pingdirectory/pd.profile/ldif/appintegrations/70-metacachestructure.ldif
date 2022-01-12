@@ -1,0 +1,20 @@
+
+dn: ou=metadataCache,o=appintegrations
+objectClass: organizationalUnit
+objectClass: top
+ou: metadataCache
+aci: (targetattr="*")(version 3.0; acl "ACI for adh-cache-read scope"; allow (read,search,compare) oauthscope="adh-cache-read";)
+aci: (targetattr="*")(version 3.0; acl "ACI for adh-cache-write scope"; allow (read,search,write,compare) oauthscope="adh-cache-write";)
+
+dn: cn=GetDataRecipientsStatus,ou=metadataCache,o=appintegrations
+objectClass: cachedEndpoint
+objectClass: top
+cn: GetDataRecipientsStatus
+cachedJSON: {}
+
+
+dn: cn=GetSoftwareProductsStatus,ou=metadataCache,o=appintegrations
+objectClass: cachedEndpoint
+objectClass: top
+cn: GetSoftwareProductsStatus
+cachedJSON: {}

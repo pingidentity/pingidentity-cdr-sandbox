@@ -1,0 +1,25 @@
+
+dn: cn=PFAdminGroup,ou=Groups,o=platformconfig
+objectClass: top
+objectClass: groupOfNames
+cn: PFAdminGroup
+member: uid=administrator,ou=admins,o=platformconfig
+member: uid=access2federate,ou=admins,o=platformconfig
+
+dn: cn=PFCryptoGroup,ou=Groups,o=platformconfig
+objectClass: top
+objectClass: groupOfNames
+cn: PFCryptoGroup
+member: uid=administrator,ou=admins,o=platformconfig
+
+dn: cn=PFAuditorGroup,ou=Groups,o=platformconfig
+objectClass: top
+objectClass: groupOfNames
+cn: PFAuditorGroup
+member: uid=auditor,ou=admins,o=platformconfig
+
+dn: cn=PFUserAdminGroup,ou=Groups,o=platformconfig
+objectClass: top
+objectClass: groupOfNames
+cn: PFUserAdminGroup
+member: uid=administrator,ou=admins,o=platformconfig

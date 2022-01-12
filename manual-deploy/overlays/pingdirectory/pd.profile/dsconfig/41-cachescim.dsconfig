@@ -1,0 +1,51 @@
+dsconfig create-scim-schema \
+ --schema-name urn:pingidentity:adh:cache:endpoint
+
+dsconfig create-scim-resource-type \
+ --type-name ADHCache \
+ --type ldap-mapping \
+ --set enabled:true \
+ --set endpoint:adh-cache \
+ --set structural-ldap-objectclass:cachedEndpoint \
+ --set include-base-dn:ou=metadataCache,o=appintegrations \
+ --set core-schema:urn:pingidentity:adh:cache:endpoint
+
+dsconfig create-scim-attribute \
+ --schema-name urn:pingidentity:adh:cache:endpoint \
+ --attribute-name cached-json \
+ --set required:false \
+ --set case-exact:true \
+ --set mutability:read-only
+
+dsconfig create-scim-attribute-mapping \
+ --type-name ADHCache \
+ --mapping-name cached-json \
+ --set scim-resource-type-attribute:cached-json \
+ --set ldap-attribute:cachedJSON \
+ --set writable:false
+
+dsconfig create-scim-attribute \
+ --schema-name urn:pingidentity:adh:cache:endpoint \
+ --attribute-name endpoint-name \
+ --set required:false \
+ --set case-exact:true \
+ --set mutability:read-only
+
+dsconfig create-scim-attribute-mapping \
+ --type-name ADHCache \
+ --mapping-name endpoint-name \
+ --set scim-resource-type-attribute:endpoint-name \
+ --set ldap-attribute:cn \
+ --set writable:false \
+ --set searchable:true
+
+dsconfig create-scim-attribute \
+ --schema-name urn:pingidentity:adh:cache:endpoint \
+ --attribute-name next-update \
+ --set type:datetime
+
+dsconfig create-scim-attribute-mapping \
+ --type-name ADHCache \
+ --mapping-name next-update \
+ --set scim-resource-type-attribute:next-update \
+ --set ldap-attribute:nextUpdate
