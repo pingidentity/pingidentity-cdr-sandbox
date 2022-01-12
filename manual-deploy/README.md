@@ -25,10 +25,13 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
   - This will start up a mock register, mock API for accounts, and a sample consent application.
 3. Start PingDirectory
   - ./_start_pingdirectory.sh
+  - This will start PingDirectory in a pre-configured state.
 4. Start PingFederate
   - ./_start_pingfederate.sh
+  - This will start PingFederate in an unconfigured state.
 5. Start PingAccess
   - ./_start_pingaccess.sh
+  - This will start PingAccess in an unconfigured state.
 6. Configure and run Postman collection to configure PF and PA:
   - Default configuration should work.
   - Collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json)
