@@ -7,6 +7,10 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 ## Pre-requisites
 
 - Java 11 is deployed on your host.
+- Min Ping product versions:
+  - PingFederate 11.0
+  - PingAccess 7.0
+  - PingDirectory 9.0
 - Binaries are copied over to ./binaries [(Details)](binaries/README.md)
 - Licenses are copied over to ./licences [(Details)](licences/README.md)
 - Postman installed.
@@ -27,3 +31,8 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 6. Configure and run Postman collection to configure PF and PA:
   - Default configuration should work.
   - Collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json)
+
+## Shutdown steps
+
+1. Navigate to the manual-deploy folder in terminal.
+2. Run ./_stopall.sh
