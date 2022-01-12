@@ -15,7 +15,7 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 - Licenses are copied over to ./licences [(Details)](licenses/README.md)
 - Postman installed.
   - Cert up MTLS certificates as described [(here)](../docs/howtos/howto_generatecerts.md)
-  - Set up Postman certificates described [(here)](../docs/postman.md) for the following hosts/port:
+  - Set up Postman certificates described [(here#update-the-postman-configuration)](../docs/postman.md#update-the-postman-configuration) for the following hosts/port:
     - sso-mtls.data-holder.local:3000
 - Docker and docker-compose installed.
 - /etc/hosts configured as described here: [(Link)](../docs/README.md)
