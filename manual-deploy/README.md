@@ -51,3 +51,12 @@ When testing, you will have generated a CDR initiation URL. Copy and paste this 
 
 1. Navigate to the manual-deploy folder in terminal.
 2. Run ./_stopall.sh
+
+## Notes
+
+To avoid conflicts with other deployments, the following endpoints have been configured with unique ports:
+- PingFederate Admin: https://localhost:2222
+- PingFederate Engine: https://localhost:2031
+- PingAccess Admin: https://localhost:2000
+- PingAccess Engine: https://localhost:3000 (may conflict depending on configuration of other PingAccess servers)
+
