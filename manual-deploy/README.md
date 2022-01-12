@@ -14,6 +14,8 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 - Binaries are copied over to ./binaries [(Details)](binaries/README.md)
 - Licenses are copied over to ./licences [(Details)](licences/README.md)
 - Postman installed.
+  - Cert up MTLS certificates as described [(here)](../docs/howtos/howto_generatecerts.md) for the following hosts/port:
+    - sso-mtls.data-holder.local:3000
 - Docker and docker-compose installed.
 - /etc/hosts configured as described here: [(Link)](../docs/README.md)
 
@@ -41,6 +43,8 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 Configure and run Postman collection to perform a test:
   - Default configuration should work.
   - Collection found here [(link)](scripts/cdr-au.test_pa_pf.postman_collection.json)
+
+When testing, you will have generated a CDR initiation URL. Copy and paste this into Firefox, accept SSL errors, until the browser redirects to httpbin.org with a code parameter. Copy the code parameter back into the Postman request when exchanging the code for an access token.
 
 ## Shutdown steps
 
