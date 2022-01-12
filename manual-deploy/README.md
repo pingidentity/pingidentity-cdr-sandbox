@@ -35,7 +35,7 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
     - ./_start_pingaccess.sh
     - This will start PingAccess in an unconfigured state.
 6. Configure and run Postman collection to configure PF and PA:
-    - Default configuration should work.
+    - At minimum, you need to configure CIAM IDP collection variables (ciamIdpIssuer, ciamIdpClientId, ciamIdpClientSecret). The remaining default values should be fine for a POC environment.
     - Collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json)
 
 ## Test
