@@ -22,6 +22,7 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 1. Navigate to the manual-deploy folder in terminal.
 2. Start auxiliary servers using docker-compose:
   - docker-compose up -d
+  - This will start up a mock register, mock API for accounts, and a sample consent application.
 3. Start PingDirectory
   - ./_start_pingdirectory.sh
 4. Start PingFederate
