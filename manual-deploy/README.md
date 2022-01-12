@@ -32,6 +32,12 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
   - Default configuration should work.
   - Collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json)
 
+## Test
+
+Configure and run Postman collection to perform a test:
+  - Default configuration should work.
+  - Collection found here [(link)](scripts/cdr-au.test_pa_pf.postman_collection.json)
+
 ## Shutdown steps
 
 1. Navigate to the manual-deploy folder in terminal.
