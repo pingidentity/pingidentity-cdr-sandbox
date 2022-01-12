@@ -1,0 +1,40 @@
+version: "3.4"
+
+services:
+  agentless-consentapp:
+    image: cdrsandbox/agentless-consentapp:20211221
+    environment:
+      - VERBOSE=true
+    env_file:
+      - cdr.env
+    ports:
+      - 7879:7879
+    networks:
+      - pingnet-internal
+
+  mock-dh-api:
+    image: cdrsandbox/mock-dh-apis:20211221
+    environment:
+      - VERBOSE=true
+    env_file:
+      - cdr.env
+    ports:
+      - 6879:6879
+    networks:
+      - pingnet-internal
+
+  cdrregister:
+    image: cdrsandbox/cdr-register-testharness:20211221
+    environment:
+      - VERBOSE=true
+    env_file:
+      - cdr.env
+    ports:
+      - 8084:8084
+    networks:
+      - pingnet-internal
+    volumes:
+       - ~/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
+
+networks:
+    pingnet-internal:
