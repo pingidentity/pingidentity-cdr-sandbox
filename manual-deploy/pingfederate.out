@@ -1,3 +1,0 @@
-run.sh: JAVA_HOME is not set.  Unexpected results may occur.
-run.sh: Set JAVA_HOME to the directory of your local JDK or JRE to avoid this message.
-PingFederate running...

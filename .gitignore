@@ -39,3 +39,4 @@ manual-deploy/binaries/*.zip
 manual-deploy/licenses/*.lic
 manual-deploy/temp
 manual-deploy/temp/*
+manual-deploy/*.out
