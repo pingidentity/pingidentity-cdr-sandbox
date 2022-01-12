@@ -26,4 +26,4 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
   - ./_start_pingaccess.sh
 6. Configure and run Postman collection to configure PF and PA:
   - Default configuration should work.
-  - Collection found here [(link)](../scripts/cdr-au.configure_pa_pf.postman_collection.json)
+  - Collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json)
