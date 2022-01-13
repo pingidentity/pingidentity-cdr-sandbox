@@ -19,6 +19,7 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
     - sso-mtls.data-holder.local:3000
 - Docker and docker-compose installed.
 - /etc/hosts configured as described here: [(Link)](../docs/README.md)
+    - Also add: sso-mtls.data-holder.local
 
 ## Steps
 
@@ -36,7 +37,11 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
     - ./_start_pingaccess.sh
     - This will start PingAccess in an unconfigured state.
 6. Configure and run Postman collection to configure PF and PA:
-    - At minimum, you need to configure CIAM IDP collection variables (ciamIdpIssuer, ciamIdpClientId, ciamIdpClientSecret). The remaining default values should be fine for a POC environment.
+    - At minimum, you need to configure CIAM IDP collection variables (ciamIdpIssuer, ciamIdpClientId, ciamIdpClientSecret). 
+      - You'll need to create an OIDC client and secret in your IdP.
+      - You'll need to add the following redirect uri (note that the base encoded portion of the URL is provided by PingFederate once it is configured):
+        - https://sso.data-holder.local:3000/sp/eyJpc3MiOiJodHRwczpcL1wvYXV0aC5waW5nb25lLmFzaWFcLzAzOTRjYmNjLWE5MmUtNGUzMC1hMmI0LWNhNzFjYTJlOTZiZFwvYXMifQ/cb.openid
+    - The remaining default values should be fine for a POC environment.
     - Collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json)
 
 ## Test
