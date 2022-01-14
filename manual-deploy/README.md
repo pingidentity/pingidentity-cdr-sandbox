@@ -56,7 +56,7 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
            ```
       - Configure cdrACCCTrustedCA
         - Cert up MTLS certificates as described [(here)](../docs/howtos/howto_generatecerts.md)
-        - The value can be obtained by running the following:
+        - The cdrACCCTrustedCA value can then be obtained by running the following:
            ```
              openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.cer | tr -d '\n'
            ```
