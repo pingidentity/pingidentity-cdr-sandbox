@@ -49,7 +49,8 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
     - Configure Collection Variables:
       - Configure the CIAM IDP collection variables (ciamIdpIssuer, ciamIdpClientId, ciamIdpClientSecret).
         - You'll need to create an OIDC client and secret in your IdP.
-        - You'll need to add the following redirect uri (note that the variable component portion of the URL is provided by PingFederate once it is configured):
+        - The CIAM IdP Client will need to accept client credentials from post parameters. Alternatively PingFederate can be configured to send client credentials using HTTP Basic Auth.
+        - You'll need to add the following redirect uri to your CIAM IdP Client (note that the variable component portion of the URL is provided by PingFederate once it is configured):
            ```
              https://sso.data-holder.local:3000/sp/{variable-component}/cb.openid
            ```
