@@ -60,7 +60,13 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
            ```
              openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.cer | tr -d '\n'
            ```
-      - The remaining default values should be fine for a POC environment.
+      - Considerations:
+        - pa-proxy-terminated: true if HTTPS/MTLS is terminated prior to reaching PingAccess.
+        - pa-cert-header-encoded: true if the cert header received from the loadbalancer/proxy is base64 encoded. This is sometimes required if using nginx.
+      - The remaining default values require attention if:
+        - Hostnames and ports need changing.
+        - Passwords need changing.
+        - Signing certificates need changing.
     - Run the collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json) to configure PingFederate and PingAccess.
 
 ## Test
