@@ -50,16 +50,15 @@ docker-compose up -d
       - Configure the CIAM IDP collection variables (ciamIdpIssuer, ciamIdpClientId, ciamIdpClientSecret).
         - You'll need to create an OIDC client and secret in your IdP.
         - You'll need to add the following redirect uri (note that the variable component portion of the URL is provided by PingFederate once it is configured):
-```
-https://sso.data-holder.local:3000/sp/{variable-component}/cb.openid
-```
+           ```
+             https://sso.data-holder.local:3000/sp/{variable-component}/cb.openid
+           ```
       - Configure cdrACCCTrustedCA
         - Cert up MTLS certificates as described [(here)](../docs/howtos/howto_generatecerts.md)
         - The value can be obtained by running the following:
 ```
 openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.cer | tr -d '\n'
 ```
-
       - The remaining default values should be fine for a POC environment.
     - Run the collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json) to configure PingFederate and PingAccess.
 
