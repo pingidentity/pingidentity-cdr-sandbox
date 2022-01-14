@@ -3600,7 +3600,7 @@
 		},
 		{
 			"key": "cdrACCCJWKS",
-			"value": "http://cdrregister:8084/.well-known/openid-configuration/JWKS"
+			"value": "http://localhost:8084/.well-known/openid-configuration/JWKS"
 		},
 		{
 			"key": "cdrAccessTokenEncryptionKey",
@@ -3712,11 +3712,11 @@
 		},
 		{
 			"key": "pa-local-pingfederate-host",
-			"value": "pingfederate:2031"
+			"value": "localhost:2031"
 		},
 		{
 			"key": "pa-local-pingdirectory-host",
-			"value": "pingdirectory:1443"
+			"value": "localhost:1443"
 		},
 		{
 			"key": "pa-proxy-terminated",
