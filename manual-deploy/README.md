@@ -23,27 +23,27 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 1. Navigate to the manual-deploy folder in terminal.
 2. Start auxiliary servers using docker-compose:
     - This will start up a mock register, mock API for accounts, and a sample consent application.
-```
-docker-compose up -d
-```
+      ```
+        docker-compose up -d
+      ```
 
 3. Start PingDirectory
     - This will start PingDirectory in a pre-configured state.
-```
-./_start_pingdirectory.sh
-```
+      ```
+        ./_start_pingdirectory.sh
+      ```
 
 4. Start PingFederate
     - This will start PingFederate in an unconfigured state.
-```
-./_start_pingfederate.sh
-```
+      ```
+        ./_start_pingfederate.sh
+      ```
 
 5. Start PingAccess
     - This will start PingAccess in an unconfigured state.
-```
-./_start_pingaccess.sh
-```
+      ```
+        ./_start_pingaccess.sh
+      ```
 
 6. Configure and run Postman collection to configure PF and PA:
     - Configure Collection Variables:
@@ -56,9 +56,9 @@ docker-compose up -d
       - Configure cdrACCCTrustedCA
         - Cert up MTLS certificates as described [(here)](../docs/howtos/howto_generatecerts.md)
         - The value can be obtained by running the following:
-```
-openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.cer | tr -d '\n'
-```
+           ```
+             openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.cer | tr -d '\n'
+           ```
       - The remaining default values should be fine for a POC environment.
     - Run the collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json) to configure PingFederate and PingAccess.
 
@@ -67,9 +67,9 @@ openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.
 Configure and run Postman collection to perform a test:
   - Default configuration should work.
   - Set up Postman certificates described [(here#update-the-postman-configuration)](../docs/postman.md#update-the-postman-configuration) for the following hosts/port:
-```
-sso-mtls.data-holder.local:3000
-```
+    ```
+      sso-mtls.data-holder.local:3000
+    ```
 
   - Collection found here [(link)](scripts/cdr-au.test_pa_pf.postman_collection.json)
 
