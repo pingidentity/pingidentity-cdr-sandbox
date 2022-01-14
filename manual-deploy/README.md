@@ -26,21 +26,25 @@ This scenario simulates PingOne Advanced Services deployment of the CDR solution
 ```
 docker-compose up -d
 ```
+
 3. Start PingDirectory
     - This will start PingDirectory in a pre-configured state.
 ```
 ./_start_pingdirectory.sh
 ```
+
 4. Start PingFederate
     - This will start PingFederate in an unconfigured state.
 ```
 ./_start_pingfederate.sh
 ```
+
 5. Start PingAccess
     - This will start PingAccess in an unconfigured state.
 ```
 ./_start_pingaccess.sh
 ```
+
 6. Configure and run Postman collection to configure PF and PA:
     - Configure Collection Variables:
       - Configure the CIAM IDP collection variables (ciamIdpIssuer, ciamIdpClientId, ciamIdpClientSecret).
@@ -55,6 +59,7 @@ https://sso.data-holder.local:3000/sp/{variable-component}/cb.openid
 ```
 openssl base64 -in path/to/pingidentity-cdr-sandbox/scripts/postman/cert/public.cer | tr -d '\n'
 ```
+
       - The remaining default values should be fine for a POC environment.
     - Run the collection found here [(link)](scripts/cdr-au.configure_pa_pf.postman_collection.json) to configure PingFederate and PingAccess.
 
@@ -66,6 +71,7 @@ Configure and run Postman collection to perform a test:
 ```
 sso-mtls.data-holder.local:3000
 ```
+
   - Collection found here [(link)](scripts/cdr-au.test_pa_pf.postman_collection.json)
 
 When testing, you will have generated a CDR initiation URL. Copy and paste this into Firefox, accept SSL errors, until the browser redirects to httpbin.org with a code parameter. Copy the code parameter back into the Postman request when exchanging the code for an access token.
