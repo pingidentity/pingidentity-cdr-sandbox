@@ -62,6 +62,21 @@ dsconfig create-scim-schema \
     --schema-name urn:pingidentity:adr:dataholder:read  \
     --set 'display-name:ADR Data Holder Read'
 
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name software_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name status  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name data_holder_issuer  \
+    --set required:true
+
 dsconfig create-scim-resource-type \
     --type-name ADRDataHolderRead  \
     --type ldap-mapping  \
@@ -99,26 +114,60 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder:read  \
-    --attribute-name software_id  \
-    --set required:true
-
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --set 'display-name:ADR Data Holder'
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --schema-name urn:pingidentity:adr:dataholder  \
     --attribute-name status  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name status_msg
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name base_uri_override   \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name brand_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name client_assertion_jwk  \
+    --set type:complex   \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name client_id  \
+    --set required:true  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
     --attribute-name data_holder_issuer  \
     --set required:true
 
-
-dsconfig create-scim-schema \
+dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder  \
-    --set 'display-name:ADR Data Holder'
+    --attribute-name software_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name token_endpoint  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name jwks_endpoint  \
+    --set required:true
 
 dsconfig create-scim-resource-type \
     --type-name ADRDataHolder  \
@@ -207,60 +256,28 @@ dsconfig create-scim-attribute-mapping \
     --set ldap-attribute:tokenMgtDataHolderJWKSEndpoint  \
     --set authoritative:true
 
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:software  \
+    --set 'display-name:ADR Software'
+
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
+    --schema-name urn:pingidentity:adr:software  \
     --attribute-name status  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
+    --schema-name urn:pingidentity:adr:software  \
     --attribute-name status_msg
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
-    --attribute-name base_uri_override   \
-    --set returned:never
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
+    --schema-name urn:pingidentity:adr:software  \
     --attribute-name brand_id  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
-    --attribute-name client_assertion_jwk  \
-    --set type:complex   \
-    --set returned:never
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
-    --attribute-name client_id  \
-    --set required:true  \
-    --set case-exact:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
-    --attribute-name data_holder_issuer  \
-    --set required:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
+    --schema-name urn:pingidentity:adr:software  \
     --attribute-name software_id  \
     --set required:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
-    --attribute-name token_endpoint  \
-    --set required:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:dataholder  \
-    --attribute-name jwks_endpoint  \
-    --set required:true
-
-dsconfig create-scim-schema \
-    --schema-name urn:pingidentity:adr:software  \
-    --set 'display-name:ADR Software'
 
 dsconfig create-scim-resource-type \
     --type-name ADRSoftware  \
@@ -305,28 +322,107 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --set display-name:ADRTokenInstance
+
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:software  \
+    --schema-name urn:pingidentity:adr:token:instance  \
     --attribute-name status  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:software  \
+    --schema-name urn:pingidentity:adr:token:instance  \
     --attribute-name status_msg
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:software  \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name access_token  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name expires_at  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name auth_code  \
+    --set case-exact:true  \
+    --set mutability:immutable  \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
     --attribute-name brand_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name cdr_arrangement_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name client_id  \
+    --set required:true  \
+    --set case-exact:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name context  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name data_holder_issuer  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:software  \
-    --attribute-name software_id  \
-    --set required:true
-
-dsconfig create-scim-schema \
     --schema-name urn:pingidentity:adr:token:instance  \
-    --set display-name:ADRTokenInstance
+    --attribute-name expected_nonce  \
+    --set case-exact:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name id_token  \
+    --set case-exact:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name id_token_json  \
+    --set type:complex
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name redirect_uri  \
+    --set required:true  \
+    --set case-exact:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name refresh_token  \
+    --set case-exact:true  \
+    --set multi-valued:true  \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name software_id  \
+    --set required:true  \
+    --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name user_ref  \
+    --set required:true  \
+    --set mutability:immutable
 
 dsconfig create-scim-resource-type \
     --type-name ADRTokenInstance  \
@@ -466,107 +562,46 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --set display-name:ADRTokenInstanceRefresh
+
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
     --attribute-name status  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
     --attribute-name status_msg
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
     --attribute-name access_token  \
     --set case-exact:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name expires_at  \
-    --set case-exact:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name auth_code  \
-    --set case-exact:true  \
-    --set mutability:immutable  \
-    --set returned:never
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name brand_id  \
-    --set required:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name cdr_arrangement_id  \
-    --set required:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name client_id  \
-    --set required:true  \
-    --set case-exact:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
     --attribute-name context  \
     --set required:true  \
     --set mutability:immutable
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
     --attribute-name data_holder_issuer  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name expected_nonce  \
-    --set case-exact:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name id_token  \
-    --set case-exact:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name id_token_json  \
-    --set type:complex
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name redirect_uri  \
-    --set required:true  \
-    --set case-exact:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name refresh_token  \
-    --set case-exact:true  \
-    --set multi-valued:true  \
-    --set returned:never
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
-    --attribute-name software_id  \
-    --set required:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance  \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
     --attribute-name user_ref  \
     --set required:true  \
     --set mutability:immutable
 
-dsconfig create-scim-schema \
+dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:token:instance:refresh  \
-    --set display-name:ADRTokenInstanceRefresh
+    --attribute-name software_id  \
+    --set required:true  \
+    --set mutability:immutable
 
 dsconfig create-scim-resource-type \
     --type-name ADRTokenInstanceRefresh  \
@@ -634,46 +669,35 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
+dsconfig create-scim-schema \
+    --schema-name urn:pingidentity:adr:token:instance:revoke  \
+    --set display-name:ADRTokenInstanceRevoke
+
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
     --attribute-name status  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
     --attribute-name status_msg
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
-    --attribute-name access_token  \
-    --set case-exact:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
-    --attribute-name context  \
+    --schema-name urn:pingidentity:adr:token:instance:revoke  \
+    --attribute-name cdr_arrangement_id  \
     --set required:true  \
     --set mutability:immutable
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
     --attribute-name data_holder_issuer  \
     --set required:true
 
 dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --schema-name urn:pingidentity:adr:token:instance:revoke \
     --attribute-name user_ref  \
     --set required:true  \
     --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:refresh  \
-    --attribute-name software_id  \
-    --set required:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-schema \
-    --schema-name urn:pingidentity:adr:token:instance:revoke  \
-    --set display-name:ADRTokenInstanceRevoke
 
 dsconfig create-scim-resource-type \
     --type-name ADRTokenInstanceRevoke \
@@ -726,39 +750,6 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:revoke \
-    --attribute-name status  \
-    --set required:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:revoke \
-    --attribute-name status_msg
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:revoke  \
-    --attribute-name cdr_arrangement_id  \
-    --set required:true  \
-    --set mutability:immutable
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:revoke \
-    --attribute-name data_holder_issuer  \
-    --set required:true
-
-dsconfig create-scim-attribute \
-    --schema-name urn:pingidentity:adr:token:instance:revoke \
-    --attribute-name user_ref  \
-    --set required:true  \
-    --set mutability:immutable
-
-dsconfig create-external-server \
-    --server-name PingFederateServer  \
-    --type http  \
-    --set base-url:https://sso.data-holder.local:6443  \
-    --set hostname-verification-method:allow-all  \
-    --set 'trust-manager-provider:Blind Trust'
-
 dsconfig create-connection-criteria \
     --criteria-name 'Include only SCIM2 User Connection Criteria'  \
     --type simple  \
@@ -780,3 +771,4 @@ dsconfig create-plugin \
     --set extension-argument:ignore-ssl-errors=true  \
     --set extension-argument:refresh-advance-seconds=120  \
     --set request-criteria:tokenMgtInstanceSearchCriteria
+
