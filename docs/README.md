@@ -7,6 +7,7 @@ The CDR Sandbox is an all-encompassing “black-box” environment created using
 - Root access to a Linux or MacOS machine with:
     - Git
     - Docker
+    - Docker Compose v1 (v2 is NOT currently supported)
     - At least 12GB of RAM available to Docker
 - A GitHub Account
 - An active Ping Identity support account [(Link)](https://www.pingidentity.com/en/account/register.html)
