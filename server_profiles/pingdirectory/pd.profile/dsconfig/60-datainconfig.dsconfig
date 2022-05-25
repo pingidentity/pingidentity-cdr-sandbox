@@ -58,6 +58,18 @@ dsconfig create-local-db-index \
     --set index-type:equality  \
     --set prime-index:true
 
+dsconfig create-local-db-index \
+    --backend-name appintegrations  \
+    --index-name tokenMgtDataHolderLegalEntityId  \
+    --set index-type:equality  \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
+    --backend-name appintegrations \
+    --index-name tokenMgtInstanceSharingDurationExpiresAt \
+    --set index-type:ordering \
+    --set prime-index:true
+
 dsconfig create-scim-schema \
     --schema-name urn:pingidentity:adr:dataholder:read  \
     --set 'display-name:ADR Data Holder Read'
@@ -76,6 +88,31 @@ dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder:read  \
     --attribute-name data_holder_issuer  \
     --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name sector  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name legal_entity_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name logo_uri  \
+    --set required:false
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name legal_entity_name  \
+    --set required:false
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name public_base_uri  \
+    --set required:false
 
 dsconfig create-scim-resource-type \
     --type-name ADRDataHolderRead  \
@@ -112,6 +149,46 @@ dsconfig create-scim-attribute-mapping \
     --set scim-resource-type-attribute:data_holder_issuer  \
     --set ldap-attribute:ou  \
     --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name sector  \
+    --set scim-resource-type-attribute:sector  \
+    --set ldap-attribute:tokenMgtDataHolderSector  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name legal_entity_id  \
+    --set scim-resource-type-attribute:legal_entity_id  \
+    --set ldap-attribute:tokenMgtDataHolderLegalEntityId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name logo_uri  \
+    --set scim-resource-type-attribute:logo_uri  \
+    --set ldap-attribute:tokenMgtDataHolderLogoUri  \
+    --set searchable:false  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name public_base_uri  \
+    --set scim-resource-type-attribute:public_base_uri  \
+    --set ldap-attribute:tokenMgtDataHolderPublicBaseUri  \
+    --set searchable:false  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name legal_entity_name  \
+    --set scim-resource-type-attribute:legal_entity_name  \
+    --set ldap-attribute:tokenMgtDataHolderLegalEntityName  \
+    --set searchable:false  \
     --set authoritative:true
 
 dsconfig create-scim-schema \
@@ -166,8 +243,38 @@ dsconfig create-scim-attribute \
 
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name cdr_arrangement_revocation_endpoint  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
     --attribute-name jwks_endpoint  \
     --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name sector  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name legal_entity_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name logo_uri  \
+    --set required:false
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name legal_entity_name  \
+    --set required:false
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name public_base_uri  \
+    --set required:false
 
 dsconfig create-scim-resource-type \
     --type-name ADRDataHolder  \
@@ -251,9 +358,56 @@ dsconfig create-scim-attribute-mapping \
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRDataHolder  \
+    --mapping-name cdr_arrangement_revocation_endpoint  \
+    --set scim-resource-type-attribute:cdr_arrangement_revocation_endpoint  \
+    --set ldap-attribute:tokenMgtDataHolderCDRArrangementEndpoint \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
     --mapping-name jwks_endpoint  \
     --set scim-resource-type-attribute:jwks_endpoint  \
     --set ldap-attribute:tokenMgtDataHolderJWKSEndpoint  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name sector  \
+    --set scim-resource-type-attribute:sector  \
+    --set ldap-attribute:tokenMgtDataHolderSector  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name legal_entity_id  \
+    --set scim-resource-type-attribute:legal_entity_id  \
+    --set ldap-attribute:tokenMgtDataHolderLegalEntityId  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name logo_uri  \
+    --set scim-resource-type-attribute:logo_uri  \
+    --set ldap-attribute:tokenMgtDataHolderLogoUri  \
+    --set searchable:false  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name public_base_uri  \
+    --set scim-resource-type-attribute:public_base_uri  \
+    --set ldap-attribute:tokenMgtDataHolderPublicBaseUri  \
+    --set searchable:false  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name legal_entity_name  \
+    --set scim-resource-type-attribute:legal_entity_name  \
+    --set ldap-attribute:tokenMgtDataHolderLegalEntityName  \
+    --set searchable:false  \
     --set authoritative:true
 
 dsconfig create-scim-schema \
@@ -325,6 +479,11 @@ dsconfig create-scim-attribute-mapping \
 dsconfig create-scim-schema \
     --schema-name urn:pingidentity:adr:token:instance  \
     --set display-name:ADRTokenInstance
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name metadata  \
+    --set type:complex
 
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:token:instance  \
@@ -423,6 +582,15 @@ dsconfig create-scim-attribute \
     --attribute-name user_ref  \
     --set required:true  \
     --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name sharing_duration_expires_at \
+    --set type:integer
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance  \
+    --attribute-name approved_scopes
 
 dsconfig create-scim-resource-type \
     --type-name ADRTokenInstance  \
@@ -534,6 +702,13 @@ dsconfig create-scim-attribute-mapping \
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRTokenInstance  \
+    --mapping-name metadata  \
+    --set scim-resource-type-attribute:metadata  \
+    --set ldap-attribute:tokenMgtInstanceMetadataJSON  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
     --mapping-name redirect_uri  \
     --set scim-resource-type-attribute:redirect_uri  \
     --set ldap-attribute:tokenMgtInstanceRedirectURI  \
@@ -559,6 +734,22 @@ dsconfig create-scim-attribute-mapping \
     --mapping-name user_ref  \
     --set scim-resource-type-attribute:user_ref  \
     --set ldap-attribute:tokenMgtInstanceUserRef  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name sharing_duration_expires_at  \
+    --set scim-resource-type-attribute:sharing_duration_expires_at  \
+    --set ldap-attribute:tokenMgtInstanceSharingDurationExpiresAt  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstance  \
+    --mapping-name approved_scopes  \
+    --set scim-resource-type-attribute:approved_scopes  \
+    --set ldap-attribute:tokenMgtInstanceApprovedScopes  \
     --set searchable:true  \
     --set authoritative:true
 
@@ -602,6 +793,11 @@ dsconfig create-scim-attribute \
     --attribute-name software_id  \
     --set required:true  \
     --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:refresh  \
+    --attribute-name sharing_duration_expires_at \
+    --set type:integer
 
 dsconfig create-scim-resource-type \
     --type-name ADRTokenInstanceRefresh  \
@@ -669,6 +865,14 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRefresh  \
+    --mapping-name sharing_duration_expires_at  \
+    --set scim-resource-type-attribute:sharing_duration_expires_at  \
+    --set ldap-attribute:tokenMgtInstanceSharingDurationExpiresAt  \
+    --set searchable:true  \
+    --set authoritative:true
+
 dsconfig create-scim-schema \
     --schema-name urn:pingidentity:adr:token:instance:revoke  \
     --set display-name:ADRTokenInstanceRevoke
@@ -698,6 +902,11 @@ dsconfig create-scim-attribute \
     --attribute-name user_ref  \
     --set required:true  \
     --set mutability:immutable
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:token:instance:revoke  \
+    --attribute-name sharing_duration_expires_at \
+    --set type:integer
 
 dsconfig create-scim-resource-type \
     --type-name ADRTokenInstanceRevoke \
@@ -750,6 +959,14 @@ dsconfig create-scim-attribute-mapping \
     --set searchable:true  \
     --set authoritative:true
 
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRTokenInstanceRevoke  \
+    --mapping-name sharing_duration_expires_at  \
+    --set scim-resource-type-attribute:sharing_duration_expires_at  \
+    --set ldap-attribute:tokenMgtInstanceSharingDurationExpiresAt  \
+    --set searchable:true  \
+    --set authoritative:true
+
 dsconfig create-connection-criteria \
     --criteria-name 'Include only SCIM2 User Connection Criteria'  \
     --type simple  \
@@ -771,4 +988,3 @@ dsconfig create-plugin \
     --set extension-argument:ignore-ssl-errors=true  \
     --set extension-argument:refresh-advance-seconds=120  \
     --set request-criteria:tokenMgtInstanceSearchCriteria
-

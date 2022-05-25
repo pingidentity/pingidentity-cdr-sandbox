@@ -1484,6 +1484,10 @@
                 {
                     "attributeMapping": {
                         "attributeContractFulfillment": {
+                            "approved_scopes": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "approved_scopes"
+                            },
                             "software_id": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "software_id"
@@ -1496,9 +1500,17 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "dataholder_id"
                             },
+                            "user_key": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "user_key"
+                            },
                             "dataholder_arrangement_key": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "dataholder_arrangement_key"
+                            },
+                            "sharing_expires_at": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "sharing_expires_at"
                             }
                         },
                         "attributeSources": [],
@@ -1516,12 +1528,16 @@
                                             "value": "https://sso.${BASE_HOSTNAME}:6443"
                                         },
                                         {
-                                            "name": "Local Base URL",
-                                            "value": "https://sso.internal:3000"
+                                            "name": "Legal Entity ID",
+                                            "value": "legalentityid-sso"
                                         },
                                         {
-                                            "name": "Known Client ID",
-                                            "value": ""
+                                            "name": "Sector",
+                                            "value": "banking"
+                                        },
+                                        {
+                                            "name": "Local Base URL",
+                                            "value": "https://sso.internal:3000"
                                         }
                                     ]
                                 },
@@ -1533,12 +1549,16 @@
                                             "value": "https://sso-2.${BASE_HOSTNAME}:6443"
                                         },
                                         {
-                                            "name": "Local Base URL",
-                                            "value": "https://sso-2.internal:3000"
+                                            "name": "Legal Entity ID",
+                                            "value": "legalentityid-sso-2"
                                         },
                                         {
-                                            "name": "Known Client ID",
-                                            "value": ""
+                                            "name": "Sector",
+                                            "value": "banking"
+                                        },
+                                        {
+                                            "name": "Local Base URL",
+                                            "value": "https://sso-2.internal:3000"
                                         }
                                     ]
                                 }
@@ -1547,7 +1567,7 @@
                         "fields": [
                             {
                                 "name": "Data Recipient Issuer",
-                                "value": "https://sso.${BASE_HOSTNAME}:6443"
+                                "value": "https://app.${DR_BASE_HOSTNAME}"
                             },
                             {
                                 "name": "CDR Register Base URL",
@@ -1616,6 +1636,38 @@
                             {
                                 "name": "Data Holder List Refresh Seconds",
                                 "value": "60"
+                            },
+                            {
+                                "name": "CDR Register Scope",
+                                "value": "cdr-register:read cdr-register:bank:read"
+                            },
+                            {
+                                "name": "CDR Register SSA Retrieval Context Path",
+                                "value": ""
+                            },
+                            {
+                                "name": "CDR Register Status Update Context Path",
+                                "value": "/cdr-register/v1"
+                            },
+                            {
+                                "name": "Metadata Params",
+                                "value": ""
+                            },
+                            {
+                                "name": "JWT User ID Header",
+                                "value": "X-PingAccessSession"
+                            },
+                            {
+                                "name": "JWT User ID JWKS Endpoint",
+                                "value": "https://sso.${BASE_HOSTNAME}/pa/authtoken/JWKS"
+                            },
+                            {
+                                "name": "JWT User ID Audience",
+                                "value": "pingaccess"
+                            },
+                            {
+                                "name": "Override redirect uri",
+                                "value": "https://app.${DR_BASE_HOSTNAME}/api"
                             }
                         ]
                     },
@@ -1629,6 +1681,11 @@
                         "maskOgnlValues": false,
                         "uniqueUserKeyAttribute": "dataholder_arrangement_key",
                         "coreAttributes": [
+                            {
+                                "masked": false,
+                                "name": "approved_scopes",
+                                "pseudonym": false
+                            },
                             {
                                 "masked": false,
                                 "name": "software_id",
@@ -1646,8 +1703,18 @@
                             },
                             {
                                 "masked": false,
+                                "name": "user_key",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
                                 "name": "dataholder_arrangement_key",
                                 "pseudonym": true
+                            },
+                            {
+                                "masked": false,
+                                "name": "sharing_expires_at",
+                                "pseudonym": false
                             }
                         ],
                         "extendedAttributes": []
