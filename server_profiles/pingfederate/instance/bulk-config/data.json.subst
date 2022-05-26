@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.0.0.11"},
+    "metadata": {"pfVersion": "11.0.2.0"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -224,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://65632d17c336:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://fbbf805e68aa:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -431,7 +431,8 @@
                 "pingaccess",
                 "host.docker.internal",
                 "sso.${BASE_HOSTNAME}",
-                "sso-2.${BASE_HOSTNAME}"
+                "sso-2.${BASE_HOSTNAME}",
+                "app.${DR_BASE_HOSTNAME}"
             ]}],
             "resourceType": "/virtualHostNames"
         },
@@ -1484,6 +1485,10 @@
                 {
                     "attributeMapping": {
                         "attributeContractFulfillment": {
+                            "approved_scopes": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "approved_scopes"
+                            },
                             "software_id": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "software_id"
@@ -1496,9 +1501,17 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "dataholder_id"
                             },
+                            "user_key": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "user_key"
+                            },
                             "dataholder_arrangement_key": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "dataholder_arrangement_key"
+                            },
+                            "sharing_expires_at": {
+                                "source": {"type": "ADAPTER"},
+                                "value": "sharing_expires_at"
                             }
                         },
                         "attributeSources": [],
@@ -1516,12 +1529,16 @@
                                             "value": "https://sso.${BASE_HOSTNAME}:6443"
                                         },
                                         {
-                                            "name": "Local Base URL",
-                                            "value": "https://sso.internal:3000"
+                                            "name": "Legal Entity ID",
+                                            "value": "legalentityid-sso"
                                         },
                                         {
-                                            "name": "Known Client ID",
-                                            "value": ""
+                                            "name": "Sector",
+                                            "value": "banking"
+                                        },
+                                        {
+                                            "name": "Local Base URL",
+                                            "value": "https://sso.internal:3000"
                                         }
                                     ]
                                 },
@@ -1533,12 +1550,16 @@
                                             "value": "https://sso-2.${BASE_HOSTNAME}:6443"
                                         },
                                         {
-                                            "name": "Local Base URL",
-                                            "value": "https://sso-2.internal:3000"
+                                            "name": "Legal Entity ID",
+                                            "value": "legalentityid-sso-2"
                                         },
                                         {
-                                            "name": "Known Client ID",
-                                            "value": ""
+                                            "name": "Sector",
+                                            "value": "banking"
+                                        },
+                                        {
+                                            "name": "Local Base URL",
+                                            "value": "https://sso-2.internal:3000"
                                         }
                                     ]
                                 }
@@ -1547,7 +1568,7 @@
                         "fields": [
                             {
                                 "name": "Data Recipient Issuer",
-                                "value": "https://sso.${BASE_HOSTNAME}:6443"
+                                "value": "https://app.${DR_BASE_HOSTNAME}"
                             },
                             {
                                 "name": "CDR Register Base URL",
@@ -1616,6 +1637,42 @@
                             {
                                 "name": "Data Holder List Refresh Seconds",
                                 "value": "60"
+                            },
+                            {
+                                "name": "CDR Register Scope",
+                                "value": "cdr-register:read cdr-register:bank:read"
+                            },
+                            {
+                                "name": "CDR Register SSA Retrieval Context Path",
+                                "value": ""
+                            },
+                            {
+                                "name": "CDR Register Status Update Context Path",
+                                "value": "/cdr-register/v1"
+                            },
+                            {
+                                "name": "Metadata Params",
+                                "value": ""
+                            },
+                            {
+                                "name": "JWT User ID Header",
+                                "value": "X-PingAccessSession"
+                            },
+                            {
+                                "name": "JWT User ID JWKS Endpoint",
+                                "value": "https://app.${DR_BASE_HOSTNAME}/pa/authtoken/JWKS"
+                            },
+                            {
+                                "name": "JWT User ID Audience",
+                                "value": "pingaccess"
+                            },
+                            {
+                                "name": "Override redirect uri",
+                                "value": "https://sso.${BASE_HOSTNAME}:6443/ext/cdr/data-in/callback"
+                            },
+                            {
+                                "name": "Default Data Holder Status To Active",
+                                "value": "true"
                             }
                         ]
                     },
@@ -1629,6 +1686,11 @@
                         "maskOgnlValues": false,
                         "uniqueUserKeyAttribute": "dataholder_arrangement_key",
                         "coreAttributes": [
+                            {
+                                "masked": false,
+                                "name": "approved_scopes",
+                                "pseudonym": false
+                            },
                             {
                                 "masked": false,
                                 "name": "software_id",
@@ -1646,8 +1708,18 @@
                             },
                             {
                                 "masked": false,
+                                "name": "user_key",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
                                 "name": "dataholder_arrangement_key",
                                 "pseudonym": true
+                            },
+                            {
+                                "masked": false,
+                                "name": "sharing_expires_at",
+                                "pseudonym": false
                             }
                         ],
                         "extendedAttributes": []
@@ -2914,6 +2986,7 @@
                 "trackUserSessionsForLogout": false,
                 "parStatus": "ENABLED",
                 "defaultScopeDescription": "",
+                "refreshTokenRollingGracePeriod": 0,
                 "authorizationCodeEntropy": 30,
                 "persistentGrantIdleTimeout": -1,
                 "rollRefreshTokenValues": false,
@@ -3165,9 +3238,15 @@
                         "ADR_ORG_ID": {"source": {"type": "NO_MAPPING"}},
                         "CONSENTAPI_ID": {"source": {"type": "NO_MAPPING"}},
                         "ISSUER": {"source": {"type": "NO_MAPPING"}},
-                        "PERSISTENT_GRANT_LIFETIME": {"source": {"type": "NO_MAPPING"}},
+                        "PERSISTENT_GRANT_LIFETIME": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "10000"
+                        },
                         "CONSENTAPI_DEFINITION": {"source": {"type": "NO_MAPPING"}},
-                        "SHARING_DURATION_EXPIRES_AT": {"source": {"type": "NO_MAPPING"}},
+                        "SHARING_DURATION_EXPIRES_AT": {
+                            "source": {"type": "EXPRESSION"},
+                            "value": "1850253573"
+                        },
                         "SELECTED_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "CLAIMS_IDTOKEN": {"source": {"type": "NO_MAPPING"}},
                         "SUBJECT": {
@@ -3311,8 +3390,8 @@
                 {
                     "attributeMapping": {
                         "attributeContractFulfillment": {"sub": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "USER_KEY"
+                            "source": {"type": "TOKEN"},
+                            "value": "sub"
                         }},
                         "attributeSources": [],
                         "issuanceCriteria": {"conditionalCriteria": []}
@@ -3554,6 +3633,10 @@
                             "value": "false"
                         },
                         {
+                            "name": "Require PAR",
+                            "value": "false"
+                        },
+                        {
                             "name": "Correlation ID Request Header",
                             "value": "X-CorrelationId"
                         },
@@ -3568,6 +3651,14 @@
                         {
                             "name": "Host Header",
                             "value": "X-Forwarded-Host"
+                        },
+                        {
+                            "name": "Supported Response Types",
+                            "value": "code id_token"
+                        },
+                        {
+                            "name": "Require Encrypted ID Token",
+                            "value": "true"
                         }
                     ]
                 },
@@ -3592,6 +3683,7 @@
                         "id": "cdrAURegister"
                     }],
                     "cibaRequireSignedRequests": false,
+                    "refreshTokenRollingGracePeriodType": "SERVER_DEFAULT",
                     "restrictCommonScopes": false,
                     "allowedExclusiveScopes": [
                         "bank:accounts.basic:read",
@@ -3752,8 +3844,8 @@
                             "value": "software_id"
                         },
                         "sub": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "USER_KEY"
+                            "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
+                            "value": "subject"
                         },
                         "context": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
@@ -3961,6 +4053,32 @@
                 },
                 {
                     "configuration": {
+                        "tables": [],
+                        "fields": [
+                            {
+                                "name": "Extended Property",
+                                "value": "application_type"
+                            },
+                            {
+                                "name": "Case-Sensitive Matching",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Enable 'No Match' Result Value",
+                                "value": "false"
+                            }
+                        ]
+                    },
+                    "name": "Data In API Driven",
+                    "id": "dataInAPISelector",
+                    "pluginDescriptorRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
+                        "id": "com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector"
+                    },
+                    "attributeContract": {"extendedAttributes": [{"name": "adr-api"}]}
+                },
+                {
+                    "configuration": {
                         "tables": [{
                             "name": "Clients",
                             "rows": [{
@@ -3980,6 +4098,32 @@
                         "id": "com.pingidentity.pf.selectors.oauthclient.OAuthClientAdapterSelector"
                     },
                     "attributeContract": {}
+                },
+                {
+                    "configuration": {
+                        "tables": [],
+                        "fields": [
+                            {
+                                "name": "Extended Property",
+                                "value": "application_type"
+                            },
+                            {
+                                "name": "Case-Sensitive Matching",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Enable 'No Match' Result Value",
+                                "value": "true"
+                            }
+                        ]
+                    },
+                    "name": "Local Authentication Selector",
+                    "id": "localAuthNSelector",
+                    "pluginDescriptorRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
+                        "id": "com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector"
+                    },
+                    "attributeContract": {"extendedAttributes": [{"name": "local"}]}
                 }
             ],
             "resourceType": "/authenticationSelectors"
@@ -3987,7 +4131,7 @@
         {
             "operationType": "SAVE",
             "items": [{
-                "apiEnabled": false,
+                "apiEnabled": true,
                 "restrictAccessToRedirectlessMode": false,
                 "includeRequestContext": false,
                 "enableApiDescriptions": true
@@ -4232,6 +4376,136 @@
                                 "authenticationSelectorRef": {
                                     "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/adminSelector",
                                     "id": "adminSelector"
+                                },
+                                "type": "AUTHN_SELECTOR"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ADR Data In API Driven",
+                        "id": "adrDataInFlow",
+                        "enabled": true,
+                        "rootNode": {
+                            "children": [{
+                                "children": [
+                                    {"action": {
+                                        "context": "Fail",
+                                        "type": "DONE"
+                                    }},
+                                    {"action": {
+                                        "attributeMapping": {
+                                            "attributeContractFulfillment": {
+                                                "software_id": {
+                                                    "source": {
+                                                        "id": "ADRDataInSelector",
+                                                        "type": "ADAPTER"
+                                                    },
+                                                    "value": "software_id"
+                                                },
+                                                "subject": {
+                                                    "source": {
+                                                        "id": "ADRDataInSelector",
+                                                        "type": "ADAPTER"
+                                                    },
+                                                    "value": "user_key"
+                                                },
+                                                "context": {
+                                                    "source": {
+                                                        "id": "ADRDataInSelector",
+                                                        "type": "ADAPTER"
+                                                    },
+                                                    "value": "context"
+                                                }
+                                            },
+                                            "attributeSources": [],
+                                            "issuanceCriteria": {"conditionalCriteria": []}
+                                        },
+                                        "authenticationPolicyContractRef": {
+                                            "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/VYC5qyntxwlroKqT",
+                                            "id": "VYC5qyntxwlroKqT"
+                                        },
+                                        "context": "Success",
+                                        "type": "APC_MAPPING"
+                                    }}
+                                ],
+                                "action": {
+                                    "authenticationSource": {
+                                        "type": "IDP_ADAPTER",
+                                        "sourceRef": {
+                                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/ADRDataInSelector",
+                                            "id": "ADRDataInSelector"
+                                        }
+                                    },
+                                    "context": "adr-api",
+                                    "type": "AUTHN_SOURCE"
+                                }
+                            }],
+                            "action": {
+                                "authenticationSelectorRef": {
+                                    "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/dataInAPISelector",
+                                    "id": "dataInAPISelector"
+                                },
+                                "type": "AUTHN_SELECTOR"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Local Authentication Flows",
+                        "id": "localAuthNFlows",
+                        "enabled": true,
+                        "rootNode": {
+                            "children": [
+                                {
+                                    "children": [
+                                        {"action": {
+                                            "context": "Fail",
+                                            "type": "DONE"
+                                        }},
+                                        {"action": {
+                                            "attributeMapping": {
+                                                "attributeContractFulfillment": {
+                                                    "software_id": {"source": {"type": "NO_MAPPING"}},
+                                                    "subject": {
+                                                        "source": {
+                                                            "id": "htmlFormAdapter",
+                                                            "type": "ADAPTER"
+                                                        },
+                                                        "value": "username"
+                                                    },
+                                                    "context": {"source": {"type": "NO_MAPPING"}}
+                                                },
+                                                "attributeSources": [],
+                                                "issuanceCriteria": {"conditionalCriteria": []}
+                                            },
+                                            "authenticationPolicyContractRef": {
+                                                "location": "https://localhost:9999/pf-admin-api/v1/authenticationPolicyContracts/VYC5qyntxwlroKqT",
+                                                "id": "VYC5qyntxwlroKqT"
+                                            },
+                                            "context": "Success",
+                                            "type": "APC_MAPPING"
+                                        }}
+                                    ],
+                                    "action": {
+                                        "authenticationSource": {
+                                            "type": "IDP_ADAPTER",
+                                            "sourceRef": {
+                                                "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/htmlFormAdapter",
+                                                "id": "htmlFormAdapter"
+                                            }
+                                        },
+                                        "context": "local",
+                                        "type": "AUTHN_SOURCE"
+                                    }
+                                },
+                                {"action": {
+                                    "context": "No Match",
+                                    "type": "CONTINUE"
+                                }}
+                            ],
+                            "action": {
+                                "authenticationSelectorRef": {
+                                    "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/localAuthNSelector",
+                                    "id": "localAuthNSelector"
                                 },
                                 "type": "AUTHN_SELECTOR"
                             }

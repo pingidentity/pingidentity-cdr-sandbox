@@ -1,0 +1,10 @@
+dsconfig create-sync-source --source-name PingDirectoryTokenStatusSource --type ping-identity --set base-dn:ou=adr-software,o=appintegrations --set server:pingdirectory
+
+dsconfig create-sync-destination --destination-name RevokeADHConsentDestination --type third-party --set extension-class:com.pingidentity.ps.cdr.data.in.pds.RevokeDataHolderConsentSyncDest --set extension-argument:pingdirectory-external-server-id=PingDirectory --set extension-argument:ignore-ssl-errors=true --set extension-argument:adr-base-dn=ou=adr-software,o=appintegrations
+
+dsconfig create-sync-pipe --pipe-name ADHRevokeConsentPipe --set started:true --set sync-source:PingDirectoryTokenStatusSource --set sync-destination:RevokeADHConsentDestination --set include-changes-for-unchanged-attributes:true
+
+dsconfig create-sync-class --pipe-name ADHRevokeConsentPipe --class-name ADHRevokeConsentPipeClass --set auto-mapped-source-attribute:tokenMgtInstanceCDRArrangementId --set auto-mapped-source-attribute:tokenMgtInstanceDataHolder --set auto-mapped-source-attribute:tokenMgtInstanceSoftwareId --set attribute-synchronization-mode:all-attributes
+
+
+
