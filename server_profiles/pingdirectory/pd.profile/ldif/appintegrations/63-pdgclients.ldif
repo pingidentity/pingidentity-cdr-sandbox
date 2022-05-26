@@ -7,8 +7,7 @@ pf-oauth-client-bypass-approval-page: FALSE
 pf-oauth-client-enforce-replay-prevention: FALSE
 pf-oauth-client-grant-type: urn:pingidentity.com:oauth2:grant_type:validate_
  bearer
-pf-oauth-client-hashed-secret: GlIo2U_9NtY0yzZiPPmTCewXawl5uvh8ob6MH_oIlWM.P
- 7dLMZ4j.2
+pf-oauth-client-hashed-secret: gJVrtvaVsyymLDi2M-IzFmaHeXJ6p3Mu1watFE9JsKM.7N1SCLNv.2
 pf-oauth-client-last-modified: 1605514655657
 pf-oauth-client-name: PDG RS client
 pf-oauth-client-persistent-grant-exp-type: SERVER_DEFAULT
