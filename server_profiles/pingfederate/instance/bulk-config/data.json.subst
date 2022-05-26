@@ -224,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://fbbf805e68aa:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://fa10166ef431:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -387,13 +387,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1261,7 +1255,8 @@
                     "selectionSettings": {"resourceUris": [
                         "https://api.${BASE_HOSTNAME}",
                         "https://api.${BASE_HOSTNAME}:6443",
-                        "https://api.${BASE_HOSTNAME}:443"
+                        "https://api.${BASE_HOSTNAME}:443",
+                        "http://localhost:8000"
                     ]}
                 },
                 {

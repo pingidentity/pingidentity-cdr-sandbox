@@ -1,0 +1,27 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+- name: demo-service
+  url: http://mock-dh-api:6879/cds-au/v1/banking
+  plugins:
+#  - name: key-auth
+  - name: ping-auth
+    config:
+#      service_url: https://pingaccess:3020
+#      shared_secret: Kong:2c7lla3aQesIVeM90ZysFn
+#      secret_header_name: CLIENT-TOKEN
+      service_url: https://pingdatagovernance:1443
+      shared_secret: 2c7lla3aQesIVeM90ZysFn
+      secret_header_name: PDG-TOKEN
+      verify_service_certificate: false
+      enable_debug_logging: true
+  routes:
+  - name: demo-route
+    paths:
+    - /cds-au/v1/banking
+
+#consumers:
+#- username: demo-user
+#  keyauth_credentials:
+#  - key: demo-key

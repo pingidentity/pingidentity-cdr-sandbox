@@ -1,15 +1,26 @@
+dsconfig create-access-token-validator \
+  --validator-name "JWT Token Validator" \
+  --type jwt \
+  --set enabled:true \
+  --set authorization-server:pingfederate-http \
+  --set jwks-endpoint-path:/ext/cdrJWKS
+
 dsconfig create-sideband-api-shared-secret \
     --secret-name PingAccess  \
-    --set shared-secret:AAAvHEgcXIF6mMNjhRngPIT5NhcmS3FDSYg=
+    --set shared-secret:AAAz/oTHceK8a9vsmwzYuWmd8GtrSi/v9GNUuhDrqnvM8A==
 
 dsconfig set-http-servlet-extension-prop \
     --extension-name "Sideband API"  \
     --set shared-secrets:PingAccess
 
 dsconfig set-sideband-api-endpoint-prop \
-    --endpoint-name Default \
-    --add "access-token-validator:pingfederate token validator"
+  --endpoint-name Default \
+  --add "access-token-validator:JWT Token Validator"
 
 dsconfig set-sideband-api-endpoint-prop \
-    --endpoint-name Default \
-    --add access-token-validator:mock-atv
+  --endpoint-name Default \
+  --add "access-token-validator:pingfederate token validator"
+
+dsconfig set-http-servlet-extension-prop \
+  --extension-name "Sideband API" \
+  --set request-context-method:request
