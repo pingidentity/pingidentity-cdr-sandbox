@@ -482,16 +482,20 @@
             {
                 "configuration": {
                     "clientId": "pingaccess-cc",
+                    "httpHeaderSubject": null,
+                    "httpHeaderSoftwareId": null,
+                    "errorResponseCode": 403,
+                    "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
+                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0",
                     "errorResponseTemplateFile": "oauth.error.json",
                     "errorResponseContentType": "application/json; charset=UTF-8",
-                    "errorResponseCode": 403,
+                    "cacheDataHolderValidationSeconds": 30,
+                    "httpHeaderContext": null,
                     "scimTokenEndpoint": "adr-token-refresh",
-                    "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
                     "errorResponseStatusMsg": "Forbidden",
                     "clientSecret": {"value": "${_data_rules_16_configuration_clientSecret_value}"},
                     "dataHolderIssuer": "${ADH_ID}",
-                    "clientScope": "adr-clients-read",
-                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
+                    "clientScope": "adr-clients-read"
                 },
                 "name": "Rule-ADR-InjectToken-sso.${BASE_HOSTNAME}",
                 "className": "com.pingidentity.ps.cdr.data.in.pa.CDRInjectDataHolderTokenRule",
@@ -550,16 +554,20 @@
             {
                 "configuration": {
                     "clientId": "pingaccess-cc",
+                    "httpHeaderSubject": null,
+                    "httpHeaderSoftwareId": null,
+                    "errorResponseCode": 403,
+                    "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
+                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0",
                     "errorResponseTemplateFile": "oauth.error.json",
                     "errorResponseContentType": "application/json; charset=UTF-8",
-                    "errorResponseCode": 403,
+                    "cacheDataHolderValidationSeconds": 30,
+                    "httpHeaderContext": null,
                     "scimTokenEndpoint": "adr-token-refresh",
-                    "scimFilter": "user_ref eq \"%s\" and data_holder_issuer eq \"%s\" and context eq \"%s\" and software_id eq \"%s\"",
                     "errorResponseStatusMsg": "Forbidden",
                     "clientSecret": {"value": "${_data_rules_20_configuration_clientSecret_value}"},
                     "dataHolderIssuer": "${ADH2_ID}",
-                    "clientScope": "adr-clients-read",
-                    "thirdPartySCIMService": "acd68d0e-f601-4dc9-b4e2-293e67b388a0"
+                    "clientScope": "adr-clients-read"
                 },
                 "name": "Rule-ADR-InjectToken-sso-2.${BASE_HOSTNAME}",
                 "className": "com.pingidentity.ps.cdr.data.in.pa.CDRInjectDataHolderTokenRule",
@@ -2205,5 +2213,5 @@
             "keyRollPeriodInHours": 24
         }
     },
-    "version": "7.0.1.0"
+    "version": "7.0.3.0"
 }

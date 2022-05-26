@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.0.0.11"},
+    "metadata": {"pfVersion": "11.0.2.0"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -224,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://65632d17c336:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://fbfc1f94a0dc:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -387,13 +387,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1667,7 +1661,11 @@
                             },
                             {
                                 "name": "Override redirect uri",
-                                "value": "https://app.${DR_BASE_HOSTNAME}/api"
+                                "value": "https://sso.${BASE_HOSTNAME}:6443/ext/cdr/data-in/callback"
+                            },
+                            {
+                                "name": "Default Data Holder Status To Active",
+                                "value": "true"
                             }
                         ]
                     },
@@ -2981,6 +2979,7 @@
                 "trackUserSessionsForLogout": false,
                 "parStatus": "ENABLED",
                 "defaultScopeDescription": "",
+                "refreshTokenRollingGracePeriod": 0,
                 "authorizationCodeEntropy": 30,
                 "persistentGrantIdleTimeout": -1,
                 "rollRefreshTokenValues": false,
@@ -3621,6 +3620,10 @@
                             "value": "false"
                         },
                         {
+                            "name": "Require PAR",
+                            "value": "false"
+                        },
+                        {
                             "name": "Correlation ID Request Header",
                             "value": "X-CorrelationId"
                         },
@@ -3635,6 +3638,14 @@
                         {
                             "name": "Host Header",
                             "value": "X-Forwarded-Host"
+                        },
+                        {
+                            "name": "Supported Response Types",
+                            "value": "code id_token"
+                        },
+                        {
+                            "name": "Require Encrypted ID Token",
+                            "value": "true"
                         }
                     ]
                 },
@@ -3659,6 +3670,7 @@
                         "id": "cdrAURegister"
                     }],
                     "cibaRequireSignedRequests": false,
+                    "refreshTokenRollingGracePeriodType": "SERVER_DEFAULT",
                     "restrictCommonScopes": false,
                     "allowedExclusiveScopes": [
                         "bank:accounts.basic:read",

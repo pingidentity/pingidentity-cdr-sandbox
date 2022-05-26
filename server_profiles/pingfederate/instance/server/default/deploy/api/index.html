@@ -1,0 +1,178 @@
+<html>
+<head>
+<script type="text/javascript">
+
+var accessToken = null;
+
+function getAPI()
+{
+  let dataHolderIssuer = document.getElementById("dataholder-issuer").value;
+
+  localStorage.setItem("dataHolderIssuer", dataHolderIssuer);
+
+  var getUrl = window.location;
+  var baseUrl = getUrl.protocol + "//" + getUrl.host;
+
+  var endpoint = baseUrl + '/as/authorization.oauth2?response_mode=pi.flow&client_id=sample-application&response_type=id_token&data-holder=' + dataHolderIssuer;
+
+  let cdrContext = document.getElementById("cdr-context").value;
+
+  if(cdrContext)
+  {
+    endpoint = endpoint + "&cdr-ctx=" + cdrContext;
+    localStorage.setItem("cdrContext", cdrContext);
+  }
+
+  let state = document.getElementById("state").value;
+
+  if(state)
+  {
+    endpoint = endpoint + "&state=" + state;
+    localStorage.setItem("state", state);
+  }
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', endpoint);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.setRequestHeader('X-XSRF-Header', 'PingFederate');
+  xhr.withCredentials = true;
+  xhr.send();
+
+  xhr.onload = function() {
+    let responseObj = JSON.parse(xhr.response);
+    document.getElementById("statusMsg").value = JSON.stringify(responseObj);
+
+    document.getElementById("status").value = responseObj.status;
+
+    let parUrl = responseObj['redirectUrl'];
+
+    document.getElementById("parurl").value = parUrl;
+    localStorage.setItem("parurl", parUrl);
+
+
+    let selfHref = responseObj._links.self.href;
+    document.getElementById("flowEndpoint").value = selfHref;
+    localStorage.setItem("flowEndpoint", selfHref);
+  }
+}
+
+function redirectPAR()
+{
+    var parUrl = localStorage.getItem("parurl");
+    window.open(parUrl, '_top');
+}
+
+function replenish()
+{
+    var dataHolderIssuer = localStorage.getItem("dataHolderIssuer");
+    if(!dataHolderIssuer)
+      dataHolderIssuer = "https://sso.data-holder.local:6443";
+
+    document.getElementById("dataholder-issuer").value = dataHolderIssuer;
+
+    var cdrContext = localStorage.getItem("cdrContext");
+    document.getElementById("cdr-context").value = cdrContext;
+
+    var state = localStorage.getItem("state");
+    document.getElementById("state").value = state;
+
+    var parUrl = localStorage.getItem("parurl");
+    document.getElementById("parurl").value = parUrl;
+    var flowEndpoint = localStorage.getItem("flowEndpoint");
+    document.getElementById("flowEndpoint").value = flowEndpoint;
+    accessToken = localStorage.getItem("accessToken");
+
+    document.getElementById("authcode").value = getParameter("code");
+    document.getElementById("returnstate").value = getParameter("state");
+}
+
+function getParameter(param)
+{
+  const params = new Proxy(new URLSearchParams(window.location.hash.replace("#", "")), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+  let value = params[param];
+
+  return value;
+}
+
+function exchangeCode()
+{
+  let code = document.getElementById("authcode").value;
+
+  let requestPayloadJSON = {"code": code};
+
+  let endpoint = localStorage.getItem("flowEndpoint");
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', endpoint + "?action=submitDataHolderAuthCode");
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.setRequestHeader('X-XSRF-Header', 'PingFederate');
+  xhr.withCredentials = true;
+  xhr.send(JSON.stringify(requestPayloadJSON));
+
+  xhr.onload = function() {
+    let responseObj = JSON.parse(xhr.response);
+
+    document.getElementById("status").value = responseObj.status;
+    document.getElementById("statusMsg").value = JSON.stringify(responseObj);
+    accessToken = responseObj.authorizeResponse.access_token;
+
+    localStorage.setItem("accessToken", accessToken);
+  }
+}
+
+function getData()
+{
+  let endpoint = document.getElementById("dataEndpoint").value;
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', endpoint);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.withCredentials = true;
+  xhr.send();
+
+  xhr.onload = function() {
+    let responseObj = JSON.parse(xhr.response);
+    document.getElementById("statusMsg").value = JSON.stringify(responseObj);
+  }
+}
+
+</script>
+</head>
+<body onload="replenish()">
+
+<input type="text" style="min-width: 400px" id="cdr-context" value="version1"/> - Context
+<br/>
+<input type="text" style="min-width: 400px" id="state" value=""/> - UI State
+<br/>
+<input type="text" style="min-width: 400px" id="dataholder-issuer" value=""/>
+<input type="button" style="min-width: 200px" onclick="getAPI()" name="Get PAR" value="Get PAR"/> - Data Holder Issuer
+<br/>
+<input type="text" style="min-width: 400px" id="flowEndpoint" value=""/> - Flow endpoint
+</br>
+<input type="text" style="min-width: 400px" id="parurl"/>
+<input type="button" style="min-width: 200px" onclick="redirectPAR()" name="RedirectDataHolder" value="Redirect to Data Holder"/> - Data Holder Redirect URL
+<br/>
+<input type="text" style="min-width: 400px" id="returnstate"/> - Data Holder Return State
+<br/>
+<input type="text" style="min-width: 400px" id="authcode"/>
+<input type="button" style="min-width: 200px" onclick="exchangeCode()" name="ExchangeAuthCode" value="Exchange Auth Code"/> - Data Holder Return Auth Code
+<br/>
+<input type="text" style="min-width: 400px" id="status"/> - Status
+<br/>
+<input type="text" style="min-width: 400px" id="dataEndpoint" value="https://app.data-recipient.local/sso-1/cds-au/v1/banking/accounts"/>
+<input type="button" style="min-width: 200px" onclick="getData()" name="GetData" value="Get Data"/>
+<br/>
+<textarea id="statusMsg" rows=20 cols=100>
+
+</textarea>
+<br/>
+
+</body>
+</html>
