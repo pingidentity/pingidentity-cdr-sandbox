@@ -2,31 +2,31 @@ version: "3.4"
 
 services:
 
-#  kong-gateway:
-#    image: kong
-#    environment:
-#      - "KONG_DATABASE=off"
-#      - "KONG_ADMIN_LISTEN=0.0.0.0:8001"
-#      - "KONG_ADMIN_GUI_URL=http://localhost:8002"
-#      - "KONG_DECLARATIVE_CONFIG=/etc/kong/kong.yaml"
-#      - KONG_LICENSE_DATA
-#      - "KONG_LUA_PACKAGE_PATH=/usr/local/custom/?.lua;;"
-#      - KONG_PLUGINS=bundled,ping-auth
-#      - KONG_LOG_LEVEL=debug
-#    volumes:
-#      - ./kong/etc:/etc/kong
-#      - ./kong/plugins/ping-auth:/usr/local/custom/kong/plugins/ping-auth
-#    ports:
-#      - 8000:8000
-#      - 4443:8443
-#      - 8001:8001
-#      - 8444:8444
-#      - 8002:8002
-#      - 8445:8445
-#      - 8003:8003
-#      - 8004:8004
-#    networks:
-#      - pingnet-internal
+  kong-gateway:
+    image: kong
+    environment:
+      - "KONG_DATABASE=off"
+      - "KONG_ADMIN_LISTEN=0.0.0.0:8001"
+      - "KONG_ADMIN_GUI_URL=http://localhost:8002"
+      - "KONG_DECLARATIVE_CONFIG=/etc/kong/kong.yaml"
+      - KONG_LICENSE_DATA
+      - "KONG_LUA_PACKAGE_PATH=/usr/local/custom/?.lua;;"
+      - KONG_PLUGINS=bundled,ping-auth
+      - KONG_LOG_LEVEL=debug
+    volumes:
+      - ./kong/etc:/etc/kong
+      - ./kong/plugins/ping-auth:/usr/local/custom/kong/plugins/ping-auth
+    ports:
+      - 8000:8000
+      - 4443:8443
+      - 8001:8001
+      - 8444:8444
+      - 8002:8002
+      - 8445:8445
+      - 8003:8003
+      - 8004:8004
+    networks:
+      - pingnet-internal
 
   pingaccess:
     image: cdrsandbox/pingaccess:latest

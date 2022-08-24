@@ -15,7 +15,7 @@ services:
       shared_secret: 2c7lla3aQesIVeM90ZysFn
       secret_header_name: PDG-TOKEN
       verify_service_certificate: false
-      enable_debug_logging: true
+      enable_debug_logging: false
   routes:
   - name: demo-route
     paths:

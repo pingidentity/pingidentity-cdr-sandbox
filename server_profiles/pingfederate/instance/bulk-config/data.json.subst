@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.0.2.0"},
+    "metadata": {"pfVersion": "11.0.3.2"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -224,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://fa10166ef431:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://2b74b6dda69b:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -289,37 +289,167 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "hostnamesTags": [{
-                    "defaultSource": true,
-                    "hostnames": ["pingdirectory:1389"]
-                }],
-                "timeBetweenEvictions": 60000,
-                "binaryAttributes": [],
-                "ldapType": "PING_DIRECTORY",
-                "type": "LDAP",
-                "password": "${dataStores_items_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_password}",
-                "minConnections": 10,
-                "createIfNecessary": true,
-                "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
-                "ldapDnsSrvPrefix": "_ldap._tcp",
-                "connectionTimeout": 3000,
-                "maxConnections": 100,
-                "ldapsDnsSrvPrefix": "_ldaps._tcp",
-                "useDnsSrvRecords": false,
-                "bindAnonymously": false,
-                "maxWait": -1,
-                "verifyHost": true,
-                "hostnames": ["pingdirectory:1389"],
-                "dnsTtl": 60000,
-                "useSsl": false,
-                "maskAttributeValues": false,
-                "testOnBorrow": false,
-                "testOnReturn": false,
-                "readTimeout": 3000,
-                "name": "pingdirectory",
-                "userDN": "cn=administrator"
-            }],
+            "items": [
+                {
+                    "hostnamesTags": [{
+                        "defaultSource": true,
+                        "hostnames": ["pingdirectory:1389"]
+                    }],
+                    "timeBetweenEvictions": 60000,
+                    "binaryAttributes": [],
+                    "ldapType": "PING_DIRECTORY",
+                    "type": "LDAP",
+                    "password": "${dataStores_items_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_LDAP_C29DCC21274C10A483A76237675C3A22715D638C_password}",
+                    "minConnections": 10,
+                    "createIfNecessary": true,
+                    "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                    "ldapDnsSrvPrefix": "_ldap._tcp",
+                    "connectionTimeout": 3000,
+                    "maxConnections": 100,
+                    "ldapsDnsSrvPrefix": "_ldaps._tcp",
+                    "useDnsSrvRecords": false,
+                    "bindAnonymously": false,
+                    "maxWait": -1,
+                    "verifyHost": true,
+                    "hostnames": ["pingdirectory:1389"],
+                    "dnsTtl": 60000,
+                    "useSsl": false,
+                    "maskAttributeValues": false,
+                    "testOnBorrow": false,
+                    "testOnReturn": false,
+                    "readTimeout": 3000,
+                    "name": "pingdirectory",
+                    "userDN": "cn=administrator"
+                },
+                {
+                    "maskAttributeValues": false,
+                    "configuration": {
+                        "tables": [
+                            {
+                                "name": "Base URLs and Tags",
+                                "rows": [{
+                                    "defaultRow": true,
+                                    "fields": [
+                                        {
+                                            "name": "Base URL",
+                                            "value": "https://localhost:9031"
+                                        },
+                                        {
+                                            "name": "Tags",
+                                            "value": ""
+                                        }
+                                    ]
+                                }]
+                            },
+                            {
+                                "name": "HTTP Request Headers",
+                                "rows": []
+                            },
+                            {
+                                "name": "Attributes",
+                                "rows": [{
+                                    "defaultRow": false,
+                                    "fields": [
+                                        {
+                                            "name": "Local Attribute",
+                                            "value": "response"
+                                        },
+                                        {
+                                            "name": "JSON Response Attribute Path",
+                                            "value": "/response"
+                                        }
+                                    ]
+                                }]
+                            }
+                        ],
+                        "fields": [
+                            {
+                                "name": "Authentication Method",
+                                "value": "None"
+                            },
+                            {
+                                "name": "HTTP Method",
+                                "value": "GET"
+                            },
+                            {
+                                "name": "Username",
+                                "value": ""
+                            },
+                            {
+                                "name": "Password",
+                                "value": ""
+                            },
+                            {
+                                "name": "Password Reference",
+                                "value": ""
+                            },
+                            {
+                                "name": "OAuth Token Endpoint",
+                                "value": ""
+                            },
+                            {
+                                "name": "OAuth Scope",
+                                "value": ""
+                            },
+                            {
+                                "name": "Client ID",
+                                "value": ""
+                            },
+                            {
+                                "name": "Client Secret",
+                                "value": ""
+                            },
+                            {
+                                "name": "Client Secret Reference",
+                                "value": ""
+                            },
+                            {
+                                "name": "Enable HTTPS Hostname Verification",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Read Timeout (ms)",
+                                "value": "10000"
+                            },
+                            {
+                                "name": "Connection Timeout (ms)",
+                                "value": "10000"
+                            },
+                            {
+                                "name": "Max Payload Size (KB)",
+                                "value": "1024"
+                            },
+                            {
+                                "name": "Retry Request",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Maximum Retries Limit",
+                                "value": "5"
+                            },
+                            {
+                                "name": "Retry Error Codes",
+                                "value": "429"
+                            },
+                            {
+                                "name": "Test Connection URL",
+                                "value": ""
+                            },
+                            {
+                                "name": "Test Connection Body",
+                                "value": ""
+                            }
+                        ]
+                    },
+                    "name": "REST",
+                    "id": "Other-78E855B521DB6749F4D81045BBE2B674C6E38158",
+                    "type": "CUSTOM",
+                    "pluginDescriptorRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/dataStores/descriptors/com.pingidentity.pf.datastore.other.RestDataSourceDriver",
+                        "id": "com.pingidentity.pf.datastore.other.RestDataSourceDriver"
+                    }
+                }
+            ],
             "resourceType": "/dataStores"
         },
         {
@@ -484,6 +614,7 @@
                         {"name": "claims_userinfo"},
                         {"name": "pi.clientContext.authorization_details"},
                         {"name": "claims_sharingDurationExpiresAt"},
+                        {"name": "claimsParameter"},
                         {"name": "claims_cdrArrangementId"}
                     ]
                 },
@@ -508,6 +639,7 @@
                     "coreAttributes": [{"name": "subject"}],
                     "extendedAttributes": [
                         {"name": "cdr_consent_id"},
+                        {"name": "claimsParameter"},
                         {"name": "result"},
                         {"name": "authorizationDetails"},
                         {"name": "acr"},
@@ -1570,6 +1702,10 @@
                                 "value": "https://mockregister.${BASE_HOSTNAME}:6443"
                             },
                             {
+                                "name": "CDR Register Base URL (MTLS)",
+                                "value": "https://mockregister.${BASE_HOSTNAME}:6443"
+                            },
+                            {
                                 "name": "CDR Brand ID",
                                 "value": "${DATAHOLDER_BRAND_ID}"
                             },
@@ -1639,7 +1775,7 @@
                             },
                             {
                                 "name": "CDR Register SSA Retrieval Context Path",
-                                "value": ""
+                                "value": "/cdr-register/v1"
                             },
                             {
                                 "name": "CDR Register Status Update Context Path",
@@ -1668,6 +1804,10 @@
                             {
                                 "name": "Default Data Holder Status To Active",
                                 "value": "true"
+                            },
+                            {
+                                "name": "CDR Register Base URL (MTLS) Local Override",
+                                "value": ""
                             }
                         ]
                     },
@@ -1751,6 +1891,10 @@
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_sharingDurationExpiresAt"
                             },
+                            "claimsParameter": {
+                                "source": {"type": "EXPRESSION"},
+                                "value": "#requestObj = #this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"request\"),\n#requestPayload = (#requestObj != null && !#requestObj.toString().equals(\"\"))?#requestObj.split(\"\\\\.\")[1]:\"e30=\",\n#requestDecodedPayload = new String(@java.util.Base64@getDecoder().decode(#requestPayload)),\n#payloadJSON = new org.json.JSONObject(#requestDecodedPayload),\n#payloadJSON.has(\"claims\")?@java.util.Base64@getEncoder().encodeToString(#payloadJSON.get(\"claims\").toString().getBytes()):null"
+                            },
                             "claims_cdrArrangementId": {
                                 "source": {"type": "ADAPTER"},
                                 "value": "claims_cdrArrangementId"
@@ -1833,6 +1977,11 @@
                             {
                                 "masked": false,
                                 "name": "pi.clientContext.authorization_details",
+                                "pseudonym": false
+                            },
+                            {
+                                "masked": false,
+                                "name": "claimsParameter",
                                 "pseudonym": false
                             }
                         ]
@@ -2970,7 +3119,8 @@
                         {"name": "ISSUER"},
                         {"name": "ADR_ORG_ID"},
                         {"name": "PERSISTENT_GRANT_LIFETIME"},
-                        {"name": "RAR_AUTHZ_DETAILS"}
+                        {"name": "RAR_AUTHZ_DETAILS"},
+                        {"name": "CLAIMS_PARAMETER"}
                     ]
                 },
                 "scopeGroups": [],
@@ -3187,6 +3337,7 @@
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
                         "RAR_AUTHZ_DETAILS": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
+                        "CLAIMS_PARAMETER": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "subject"
@@ -3225,6 +3376,7 @@
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
                         "RAR_AUTHZ_DETAILS": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
+                        "CLAIMS_PARAMETER": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "subject"
@@ -3283,6 +3435,10 @@
                         "AUTH_TIME": {
                             "source": {"type": "EXPRESSION"},
                             "value": "(@java.time.Instant@now()).getEpochSecond()"
+                        },
+                        "CLAIMS_PARAMETER": {
+                            "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
+                            "value": "claimsParameter"
                         },
                         "USER_NAME": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
@@ -3427,6 +3583,10 @@
                                 "source": {"type": "OAUTH_PERSISTENT_GRANT"},
                                 "value": "EXPIRES_AT"
                             },
+                            "verified_claims": {
+                                "source": {"type": "EXPRESSION"},
+                                "value": "#parser = new org.json.simple.parser.JSONParser(),\n#decoder = @java.util.Base64@getDecoder(),\n\n#returnValue = null,\n\n#isUserInfo = (#this.get(\"context.HttpRequest\").getObjectValue().getRequestURI().endsWith(\"userinfo.openid\")),\n\n#claimsParameter = #this.get(\"ds.ekyc.response\"),\n\n#claimsParameterDecoded = (#claimsParameter != null)? \n  new java.lang.String(#decoder.decode(@java.net.URLDecoder@decode(#claimsParameter.toString()))):\"{}\",\n\n#claimsParameterJSON = #parser.parse(#claimsParameterDecoded),\n\n#requestedClaims = (#isUserInfo)?(#claimsParameter != null? #claimsParameterJSON.get(\"userinfo\"):null):(#claimsParameter != null? #claimsParameterJSON.get(\"id_token\"):null),\n\n#verifiedClaims = (#requestedClaims != null && #requestedClaims.containsKey(\"verified_claims\"))?#requestedClaims.get(\"verified_claims\"):null,\n\n#verifiedClaims"
+                            },
                             "updated_at": {
                                 "source": {"type": "EXPRESSION"},
                                 "value": "#returnValue = (#this.get(\"ds.ldap.modifyTimestamp\") != null)?#this.get(\"ds.ldap.modifyTimestamp\"):#this.get(\"ds.ldap.createTimestamp\"), #claimName = \"updated_at\",   #allowedScope = \"profile\",   #isUserInfo = (#this.get(\"context.HttpRequest\").getObjectValue().getRequestURI().endsWith(\"userinfo.openid\")),   #requestedClaims = (#isUserInfo)?(#this.get(\"persistentgrant.CLAIMS_USERINFO\") != null? #this.get(\"persistentgrant.CLAIMS_USERINFO\").getValuesAsCollection():null):(#this.get(\"persistentgrant.CLAIMS_IDTOKEN\") != null? #this.get(\"persistentgrant.CLAIMS_IDTOKEN\").getValuesAsCollection():null),    #approvedScopes = #this.get(\"persistentgrant.APPROVED_SCOPES\").getValuesAsCollection(), #hasRequiredScope = (#approvedScopes != null && #approvedScopes.contains(#allowedScope)),    (#hasRequiredScope || (#requestedClaims != null && (#requestedClaims.equals(#claimName) || #requestedClaims.contains(#claimName))))? #returnValue : null"
@@ -3452,20 +3612,53 @@
                                 "value": "#objVal = #this.get(\"persistentgrant.SHARING_DURATION_EXPIRES_AT\").getObjectValue(),  #longVal = (#objVal instanceof java.lang.Long)?#objVal:@java.lang.Long@parseLong(#objVal.toString()),   #longVal"
                             }
                         },
-                        "attributeSources": [{
-                            "memberOfNestedGroup": false,
-                            "binaryAttributeSettings": {},
-                            "searchScope": "SUBTREE",
-                            "dataStoreRef": {
-                                "location": "https://localhost:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
-                                "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
+                        "attributeSources": [
+                            {
+                                "memberOfNestedGroup": false,
+                                "binaryAttributeSettings": {},
+                                "searchScope": "SUBTREE",
+                                "dataStoreRef": {
+                                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                                    "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
+                                },
+                                "description": "ldap",
+                                "id": "ldap",
+                                "searchAttributes": [
+                                    "Subject DN",
+                                    "cn",
+                                    "createTimestamp",
+                                    "givenName",
+                                    "modifyTimestamp",
+                                    "sn"
+                                ],
+                                "type": "LDAP",
+                                "baseDn": "ou=people,${USER_BASE_DN}",
+                                "searchFilter": "entryUUID=${sub}"
                             },
-                            "description": "ldap",
-                            "id": "ldap",
-                            "type": "LDAP",
-                            "baseDn": "ou=people,${USER_BASE_DN}",
-                            "searchFilter": "entryUUID=${sub}"
-                        }],
+                            {
+                                "dataStoreRef": {
+                                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores/Other-78E855B521DB6749F4D81045BBE2B674C6E38158",
+                                    "id": "Other-78E855B521DB6749F4D81045BBE2B674C6E38158"
+                                },
+                                "description": "ekyc",
+                                "id": "ekyc",
+                                "filterFields": [
+                                    {
+                                        "name": "Resource Path",
+                                        "value": "/ekyc/index.jsp"
+                                    },
+                                    {
+                                        "name": "Authorization Header",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "Body",
+                                        "value": "{\"request\":\"${persistentgrant.CLAIMS_PARAMETER}\"}"
+                                    }
+                                ],
+                                "type": "CUSTOM"
+                            }
+                        ],
                         "issuanceCriteria": {
                             "expressionCriteria": [{
                                 "expression": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(), #url=new java.net.URL(#requestString), #port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(), #expectedAUD=#url.getProtocol() + \"://\" + #url.getHost() + #port, #this.get(\"persistentgrant.ISSUER\") == null || #this.get(\"persistentgrant.ISSUER\").toString().equals(#expectedAUD)",
@@ -3476,14 +3669,15 @@
                     },
                     "name": "obOIDCPolicy",
                     "scopeAttributeMappings": {"openid": {"values": [
-                        "auth_time",
                         "acr",
+                        "auth_time",
                         "family_name",
                         "given_name",
                         "name",
                         "refresh_token_expires_at",
                         "sharing_expires_at",
-                        "updated_at"
+                        "updated_at",
+                        "verified_claims"
                     ]}},
                     "returnIdTokenOnRefreshGrant": true,
                     "id": "obOIDCPolicy",
@@ -3507,6 +3701,12 @@
                             {
                                 "includeInUserInfo": false,
                                 "name": "refresh_token_expires_at",
+                                "includeInIdToken": true,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": true,
+                                "name": "verified_claims",
                                 "includeInIdToken": true,
                                 "multiValued": false
                             },
@@ -4181,6 +4381,13 @@
                                                         },
                                                         "value": "subject"
                                                     },
+                                                    "claimsParameter": {
+                                                        "source": {
+                                                            "id": "inputs",
+                                                            "type": "INPUTS"
+                                                        },
+                                                        "value": "claimsParameter"
+                                                    },
                                                     "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
                                                     "result": {
                                                         "source": {"type": "TEXT"},
@@ -4700,6 +4907,13 @@
                                                         },
                                                         "value": "subject"
                                                     },
+                                                    "claimsParameter": {
+                                                        "source": {
+                                                            "id": "cdrPolicyFragmentNoMFA",
+                                                            "type": "FRAGMENT"
+                                                        },
+                                                        "value": "claimsParameter"
+                                                    },
                                                     "authorizationDetails": {
                                                         "source": {
                                                             "id": "cdrPolicyFragmentNoMFA",
@@ -4838,6 +5052,13 @@
                                                         "type": "ADAPTER"
                                                     },
                                                     "value": "claims_sharingDurationExpiresAt"
+                                                },
+                                                "claimsParameter": {
+                                                    "source": {
+                                                        "id": "cdrSelectorAdapter",
+                                                        "type": "ADAPTER"
+                                                    },
+                                                    "value": "claimsParameter"
                                                 },
                                                 "claims_cdrArrangementId": {
                                                     "source": {
