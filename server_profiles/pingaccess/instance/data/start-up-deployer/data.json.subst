@@ -49,7 +49,7 @@
                 "agentResourceCacheTTL": 900
             },
             {
-                "trustedCertificateGroupId": 0,
+                "trustedCertificateGroupId": 3,
                 "port": 443,
                 "host": "mockregister.${BASE_HOSTNAME}",
                 "id": 13,
@@ -97,7 +97,7 @@
                 "agentResourceCacheTTL": 900
             },
             {
-                "trustedCertificateGroupId": 0,
+                "trustedCertificateGroupId": 3,
                 "port": 6443,
                 "host": "mockregister.${BASE_HOSTNAME}",
                 "id": 19,
@@ -189,16 +189,16 @@
             "idleTimeoutInMinutes": 60,
             "cookieType": "Encrypted",
             "oidcLoginType": "Code",
-            "secureCookie": true,
             "sendRequestedUrlToProvider": true,
-            "cookieDomain": "",
+            "secureCookie": true,
             "enableRefreshUser": true,
+            "cookieDomain": "",
             "refreshUserInfoClaimsInterval": 60,
-            "httpOnlyCookie": true,
             "sessionTimeoutInMinutes": 240,
+            "httpOnlyCookie": true,
             "requestProfile": true,
-            "sameSite": "Lax",
             "failOnUnsupportedPreservationContentType": false,
+            "sameSite": "Lax",
             "name": "newsession",
             "clientCredentials": {
                 "clientId": "pingaccess_websession",
@@ -820,6 +820,24 @@
                 "skipHostnameVerification": true,
                 "name": "DataHolder-Site-sso-2.${BASE_HOSTNAME}",
                 "id": 14,
+                "availabilityProfileId": 1,
+                "maxConnections": -1
+            },
+            {
+                "trustedCertificateGroupId": 2,
+                "loadBalancingStrategyId": 0,
+                "maxWebSocketConnections": -1,
+                "keepAliveTimeout": 0,
+                "useTargetHostHeader": true,
+                "siteAuthenticatorIds": ["1"],
+                "useProxy": false,
+                "secure": true,
+                "sendPaCookie": true,
+                "targets": ["mockregister.${BASE_HOSTNAME}:443"],
+                "expectedHostname": null,
+                "skipHostnameVerification": false,
+                "name": "CDR Register Site",
+                "id": 15,
                 "availabilityProfileId": 1,
                 "maxConnections": -1
             }
@@ -1618,6 +1636,93 @@
                 },
                 "resourceType": "Standard",
                 "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": [
+                    "/as/token.oauth2",
+                    "/cdr-register/v1/*"
+                ],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "rootResource": false,
+                "name": "Secure endpoints",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 29,
+                "pathPatterns": [
+                    {
+                        "pattern": "/as/token.oauth2",
+                        "type": "WILDCARD"
+                    },
+                    {
+                        "pattern": "/cdr-register/v1/*",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "unprotected": false,
+                "applicationId": 8,
+                "policy": {
+                    "Web": [{
+                        "id": 8,
+                        "type": "Rule"
+                    }],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": ["/*"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": null,
+                "enabled": true,
+                "rootResource": true,
+                "name": "Root Resource",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 30,
+                "pathPatterns": [{
+                    "pattern": "/*",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 18,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
+            },
+            {
+                "resourceTypeConfiguration": {"responseGenerator": null},
+                "pathPrefixes": ["/cdr-register/v1/*/data-holders/status"],
+                "methods": ["*"],
+                "auditLevel": "ON",
+                "defaultAuthTypeOverride": "Web",
+                "enabled": true,
+                "rootResource": false,
+                "name": "TLS Endpoints",
+                "anonymous": false,
+                "queryParamConfig": null,
+                "id": 31,
+                "pathPatterns": [{
+                    "pattern": "/cdr-register/v1/*/data-holders/status",
+                    "type": "WILDCARD"
+                }],
+                "unprotected": false,
+                "applicationId": 8,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "resourceType": "Standard",
+                "authenticationChallengePolicyId": null
             }
         ],
         "thirdPartyServices": [{
@@ -2352,6 +2457,43 @@
                 },
                 "name": "Application-DataHolder-sso.${BASE_HOSTNAME}",
                 "siteId": 11,
+                "realm": null,
+                "lastModified": 1616709250468,
+                "sidebandClientId": null,
+                "accessValidatorId": 0,
+                "caseSensitivePath": false
+            },
+            {
+                "applicationType": "Web",
+                "agentId": 0,
+                "virtualHostIds": ["11"],
+                "spaSupportEnabled": true,
+                "webSessionId": 0,
+                "destination": "Site",
+                "description": "",
+                "allowEmptyPathSegments": false,
+                "agentCacheInvalidatedExpiration": 1616709250468,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "issuer": null,
+                "defaultAuthType": "Web",
+                "id": 18,
+                "fallbackPostEncoding": "UTF-8",
+                "manualOrderingEnabled": false,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "authenticationChallengePolicyId": null,
+                "resourceOrder": [],
+                "requireHTTPS": true,
+                "contextRoot": "/",
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 0
+                },
+                "name": "Proxy CDR Register",
+                "siteId": 15,
                 "realm": null,
                 "lastModified": 1616709250468,
                 "sidebandClientId": null,
