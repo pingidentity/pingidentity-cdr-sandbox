@@ -224,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://77e4467f86f6:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://7e1aeb98b685:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -517,13 +517,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1658,6 +1652,10 @@
                                     "defaultRow": false,
                                     "fields": [
                                         {
+                                            "name": "Brand ID",
+                                            "value": "${DATAHOLDER_BRAND_ID}"
+                                        },
+                                        {
                                             "name": "Issuer",
                                             "value": "https://sso.${BASE_HOSTNAME}:6443"
                                         },
@@ -1678,6 +1676,10 @@
                                 {
                                     "defaultRow": false,
                                     "fields": [
+                                        {
+                                            "name": "Brand ID",
+                                            "value": "${DATAHOLDER_BRAND_ID}-2"
+                                        },
                                         {
                                             "name": "Issuer",
                                             "value": "https://sso-2.${BASE_HOSTNAME}:6443"
@@ -1713,11 +1715,11 @@
                             },
                             {
                                 "name": "CDR Brand ID",
-                                "value": "${DATAHOLDER_BRAND_ID}"
+                                "value": "${DATARECIPIENT_BRAND_ID}"
                             },
                             {
                                 "name": "CDR Software ID",
-                                "value": "${DATAHOLDER_SOFTWARE_ID}"
+                                "value": "${DATARECIPIENT_SOFTWARE_ID}"
                             },
                             {
                                 "name": "SCIMv2 Base URL",
@@ -4118,7 +4120,7 @@
                     "attributeContractFulfillment": {
                         "aud": {
                             "source": {"type": "EXPRESSION"},
-                            "value": "#this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"adr\")"
+                            "value": "#this.get(\"context.HttpRequest\").getObjectValue().getParameter(\"adr\") + \"/arrangements/revoke\""
                         },
                         "sub": {
                             "source": {"type": "EXPRESSION"},
@@ -4827,7 +4829,7 @@
                                                         "attributeContractFulfillment": {
                                                             "software_id": {
                                                                 "source": {"type": "TEXT"},
-                                                                "value": "${DATAHOLDER_SOFTWARE_ID}"
+                                                                "value": "${DATARECIPIENT_SOFTWARE_ID}"
                                                             },
                                                             "subject": {
                                                                 "source": {

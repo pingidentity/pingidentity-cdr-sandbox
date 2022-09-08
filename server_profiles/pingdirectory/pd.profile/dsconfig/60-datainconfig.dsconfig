@@ -76,6 +76,12 @@ dsconfig create-scim-schema \
 
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name metadata  \
+    --set type:complex   \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
     --attribute-name software_id  \
     --set required:true
 
@@ -87,6 +93,11 @@ dsconfig create-scim-attribute \
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder:read  \
     --attribute-name data_holder_issuer  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name dh_brand_id  \
     --set required:true
 
 dsconfig create-scim-attribute \
@@ -126,6 +137,21 @@ dsconfig create-scim-resource-type \
     --set include-filter:(&(objectClass=tokenMgtDataHolderAux)(tokenMgtStatus=active))  \
     --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:dataholder:read
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name metadata  \
+    --set scim-resource-type-attribute:metadata  \
+    --set ldap-attribute:tokenMgtDataHolderBrandMetadata  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name dh_brand_id  \
+    --set scim-resource-type-attribute:dh_brand_id  \
+    --set ldap-attribute:tokenMgtDataHolderDHBrandId  \
+    --set searchable:true  \
+    --set authoritative:true
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRDataHolderRead  \
@@ -197,6 +223,11 @@ dsconfig create-scim-schema \
 
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name dh_brand_id  \
+    --set required:true
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
     --attribute-name status  \
     --set required:true
 
@@ -217,6 +248,12 @@ dsconfig create-scim-attribute \
 dsconfig create-scim-attribute \
     --schema-name urn:pingidentity:adr:dataholder  \
     --attribute-name client_assertion_jwk  \
+    --set type:complex   \
+    --set returned:never
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name metadata  \
     --set type:complex   \
     --set returned:never
 
@@ -291,6 +328,13 @@ dsconfig create-scim-resource-type \
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRDataHolder  \
+    --mapping-name dh_brand_id  \
+    --set scim-resource-type-attribute:dh_brand_id  \
+    --set ldap-attribute:tokenMgtDataHolderDHBrandId  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
     --mapping-name status  \
     --set scim-resource-type-attribute:status  \
     --set ldap-attribute:tokenMgtStatus  \
@@ -316,6 +360,13 @@ dsconfig create-scim-attribute-mapping \
     --mapping-name brand_id  \
     --set scim-resource-type-attribute:brand_id  \
     --set ldap-attribute:tokenMgtDataHolderBrandId  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name metadata  \
+    --set scim-resource-type-attribute:metadata  \
+    --set ldap-attribute:tokenMgtDataHolderBrandMetadata  \
     --set authoritative:true
 
 dsconfig create-scim-attribute-mapping \
