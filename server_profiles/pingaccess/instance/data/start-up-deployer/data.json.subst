@@ -197,8 +197,8 @@
             "sessionTimeoutInMinutes": 240,
             "httpOnlyCookie": true,
             "requestProfile": true,
-            "failOnUnsupportedPreservationContentType": false,
             "sameSite": "Lax",
+            "failOnUnsupportedPreservationContentType": false,
             "name": "newsession",
             "clientCredentials": {
                 "clientId": "pingaccess_websession",
@@ -1639,10 +1639,7 @@
             },
             {
                 "resourceTypeConfiguration": {"responseGenerator": null},
-                "pathPrefixes": [
-                    "/as/token.oauth2",
-                    "/cdr-register/v1/*"
-                ],
+                "pathPrefixes": ["/as/token.oauth2"],
                 "methods": ["*"],
                 "auditLevel": "ON",
                 "defaultAuthTypeOverride": "Web",
@@ -1652,16 +1649,10 @@
                 "anonymous": false,
                 "queryParamConfig": null,
                 "id": 29,
-                "pathPatterns": [
-                    {
-                        "pattern": "/as/token.oauth2",
-                        "type": "WILDCARD"
-                    },
-                    {
-                        "pattern": "/cdr-register/v1/*",
-                        "type": "WILDCARD"
-                    }
-                ],
+                "pathPatterns": [{
+                    "pattern": "/as/token.oauth2",
+                    "type": "WILDCARD"
+                }],
                 "unprotected": false,
                 "applicationId": 8,
                 "policy": {
