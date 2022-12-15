@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.0.3.2"},
+    "metadata": {"pfVersion": "11.1.3.5"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -224,7 +224,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://7e1aeb98b685:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://3e396d930dcc:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -517,8 +517,38 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "subjectDns": [],
+                "clientCertAuthnEnabled": false,
+                "restrictByIssuerCert": false,
+                "issuerCerts": [],
+                "basicAuthnEnabled": false,
+                "restrictBySubjectDn": false,
+                "users": []
+            }],
+            "resourceType": "/serverSettings/wsTrustStsSettings"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "datastoreValidationIntervalSecs": 300,
+                "spConnectionTransactionLoggingOverride": "DONT_OVERRIDE",
+                "disableAutomaticConnectionValidation": false,
+                "idpConnectionTransactionLoggingOverride": "DONT_OVERRIDE",
+                "requestHeaderForCorrelationId": ""
+            }],
+            "resourceType": "/serverSettings/generalSettings"
         },
         {
             "operationType": "SAVE",
@@ -722,6 +752,10 @@
                             {
                                 "name": "Enable PingDirectory Detailed Password Policy Requirement Messaging",
                                 "value": "true"
+                            },
+                            {
+                                "name": "Expect Password Expired Control",
+                                "value": "false"
                             }
                         ]
                     },
@@ -806,6 +840,10 @@
                             {
                                 "name": "Enable PingDirectory Detailed Password Policy Requirement Messaging",
                                 "value": "true"
+                            },
+                            {
+                                "name": "Expect Password Expired Control",
+                                "value": "false"
                             }
                         ]
                     },
@@ -832,6 +870,7 @@
             "operationType": "SAVE",
             "items": [
                 {
+                    "sequenceNumber": 826974,
                     "sessionValidationSettings": {
                         "updateAuthnSessionActivity": false,
                         "checkValidAuthnSession": false,
@@ -900,6 +939,10 @@
                             },
                             {
                                 "name": "Use Centralized Signing Key",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Enable Token Revocation",
                                 "value": "false"
                             },
                             {
@@ -996,6 +1039,7 @@
                     "selectionSettings": {"resourceUris": []}
                 },
                 {
+                    "sequenceNumber": 1596665,
                     "sessionValidationSettings": {
                         "updateAuthnSessionActivity": false,
                         "checkValidAuthnSession": false,
@@ -1065,6 +1109,10 @@
                             {
                                 "name": "Asymmetric Encryption JWKS URL",
                                 "value": ""
+                            },
+                            {
+                                "name": "Enable Token Revocation",
+                                "value": "false"
                             },
                             {
                                 "name": "Include Key ID Header Parameter",
@@ -1174,6 +1222,7 @@
                     ]}
                 },
                 {
+                    "sequenceNumber": 946544,
                     "sessionValidationSettings": {
                         "updateAuthnSessionActivity": false,
                         "checkValidAuthnSession": false,
@@ -1231,6 +1280,10 @@
                             {
                                 "name": "Asymmetric Encryption JWKS URL",
                                 "value": ""
+                            },
+                            {
+                                "name": "Enable Token Revocation",
+                                "value": "false"
                             },
                             {
                                 "name": "Include Key ID Header Parameter",
@@ -1339,59 +1392,7 @@
                     "selectionSettings": {"resourceUris": []}
                 },
                 {
-                    "sessionValidationSettings": {
-                        "updateAuthnSessionActivity": false,
-                        "checkValidAuthnSession": false,
-                        "includeSessionId": false,
-                        "checkSessionRevocationStatus": false
-                    },
-                    "configuration": {
-                        "tables": [],
-                        "fields": [{
-                            "name": "JWT Access Token Manager",
-                            "value": "obATM"
-                        }]
-                    },
-                    "name": "cdrRevocableATM",
-                    "id": "cdrRevocableATM",
-                    "pluginDescriptorRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.ps.cdr.pf.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin",
-                        "id": "com.pingidentity.ps.cdr.pf.bearertoken.RevocableJwtBearerAccessTokenManagementPlugin"
-                    },
-                    "accessControlSettings": {
-                        "restrictClients": false,
-                        "allowedClients": []
-                    },
-                    "attributeContract": {
-                        "defaultSubjectAttribute": "sub",
-                        "coreAttributes": [],
-                        "extendedAttributes": [
-                            {
-                                "name": "sub",
-                                "multiValued": false
-                            },
-                            {
-                                "name": "jsonencoded_authorization_details",
-                                "multiValued": false
-                            },
-                            {
-                                "name": "iss",
-                                "multiValued": false
-                            },
-                            {
-                                "name": "cnf",
-                                "multiValued": false
-                            }
-                        ]
-                    },
-                    "selectionSettings": {"resourceUris": [
-                        "https://api.${BASE_HOSTNAME}",
-                        "https://api.${BASE_HOSTNAME}:6443",
-                        "https://api.${BASE_HOSTNAME}:443",
-                        "http://localhost:8000"
-                    ]}
-                },
-                {
+                    "sequenceNumber": 1561500,
                     "sessionValidationSettings": {
                         "updateAuthnSessionActivity": false,
                         "checkValidAuthnSession": false,
@@ -1479,6 +1480,10 @@
                                 "value": ""
                             },
                             {
+                                "name": "Enable Token Revocation",
+                                "value": "true"
+                            },
+                            {
                                 "name": "Include Key ID Header Parameter",
                                 "value": "true"
                             },
@@ -1520,7 +1525,7 @@
                             },
                             {
                                 "name": "JWT ID Claim Length",
-                                "value": "20"
+                                "value": "22"
                             },
                             {
                                 "name": "Access Grant GUID Claim Name",
@@ -1584,7 +1589,12 @@
                             }
                         ]
                     },
-                    "selectionSettings": {"resourceUris": []}
+                    "selectionSettings": {"resourceUris": [
+                        "https://api.${BASE_HOSTNAME}",
+                        "https://api.${BASE_HOSTNAME}:6443",
+                        "https://api.${BASE_HOSTNAME}:443",
+                        "http://localhost:8000"
+                    ]}
                 }
             ],
             "resourceType": "/oauth/accessTokenManagers"
@@ -1726,6 +1736,14 @@
                                 "value": "https://pingdirectory:1443/scim/v2/"
                             },
                             {
+                                "name": "ENABLE JARM",
+                                "value": "false"
+                            },
+                            {
+                                "name": "REQUIRE JARM",
+                                "value": "false"
+                            },
+                            {
                                 "name": "CDR MTLS Network Certificate",
                                 "value": ""
                             },
@@ -1820,6 +1838,18 @@
                             {
                                 "name": "CDR Register Base URL (MTLS) Local Override",
                                 "value": "https://pingaccess:3000"
+                            },
+                            {
+                                "name": "Status Endpoint X-V Header Value",
+                                "value": ""
+                            },
+                            {
+                                "name": "SSA Endpoint X-V Header Value",
+                                "value": ""
+                            },
+                            {
+                                "name": "Brands Endpoint X-V Header Value",
+                                "value": ""
                             }
                         ]
                     },
@@ -2452,6 +2482,10 @@
                             {
                                 "name": "Require Re-Authentication For Expiring Password Flow",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Fail Authentication on Account Lockout",
+                                "value": "true"
                             }
                         ]
                     },
@@ -2757,6 +2791,10 @@
                             {
                                 "name": "Require Re-Authentication For Expiring Password Flow",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Fail Authentication on Account Lockout",
+                                "value": "true"
                             }
                         ]
                     },
@@ -3004,112 +3042,6 @@
         {
             "operationType": "SAVE",
             "items": [{
-                "trackAdapterSessionsForLogout": false,
-                "sessionRevocationLifetime": 490,
-                "revokeUserSessionOnLogout": false
-            }],
-            "resourceType": "/session/settings"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [{
-                "maxTimeoutMins": 480,
-                "idleTimeoutMins": 60
-            }],
-            "resourceType": "/session/applicationSessionPolicy"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [{
-                "persistentSessions": true,
-                "hashUniqueUserKeyAttribute": false,
-                "maxTimeoutMins": 480,
-                "maxTimeoutDisplayUnit": "MINUTES",
-                "idleTimeoutMins": 60,
-                "idleTimeoutDisplayUnit": "MINUTES",
-                "enableSessions": true
-            }],
-            "resourceType": "/session/authenticationSessionPolicies/global"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [
-                {
-                    "authnContextSensitive": false,
-                    "timeoutDisplayUnit": "MINUTES",
-                    "authenticationSource": {
-                        "type": "IDP_ADAPTER",
-                        "sourceRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter",
-                            "id": "consentAgentlessAdapter"
-                        }
-                    },
-                    "id": "CLYI865yPZ7p00yrp6WcE5ifn",
-                    "persistent": false,
-                    "enableSessions": false
-                },
-                {
-                    "authnContextSensitive": false,
-                    "timeoutDisplayUnit": "MINUTES",
-                    "authenticationSource": {
-                        "type": "IDP_ADAPTER",
-                        "sourceRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter",
-                            "id": "cdrSelectorAdapter"
-                        }
-                    },
-                    "id": "DHPY4AdjRKP8m1uU8jEvNd0h7",
-                    "persistent": false,
-                    "enableSessions": false
-                },
-                {
-                    "authnContextSensitive": false,
-                    "timeoutDisplayUnit": "MINUTES",
-                    "authenticationSource": {
-                        "type": "IDP_ADAPTER",
-                        "sourceRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
-                            "id": "identityFirstAdapter"
-                        }
-                    },
-                    "id": "EScBDCH3FaSv12NTG58jdTKaE",
-                    "persistent": false,
-                    "enableSessions": false
-                },
-                {
-                    "authnContextSensitive": false,
-                    "timeoutDisplayUnit": "MINUTES",
-                    "authenticationSource": {
-                        "type": "IDP_ADAPTER",
-                        "sourceRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
-                            "id": "clickatellAdapter"
-                        }
-                    },
-                    "id": "b5SNfINVCnFS2MPYXA1rWpoth",
-                    "persistent": false,
-                    "enableSessions": false
-                },
-                {
-                    "authnContextSensitive": false,
-                    "timeoutDisplayUnit": "MINUTES",
-                    "authenticationSource": {
-                        "type": "IDP_ADAPTER",
-                        "sourceRef": {
-                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/ADRDataInSelector",
-                            "id": "ADRDataInSelector"
-                        }
-                    },
-                    "id": "r7RUHOQi7s1YI5vkdo3AMXdOV",
-                    "persistent": false,
-                    "enableSessions": false
-                }
-            ],
-            "resourceType": "/session/authenticationSessionPolicies"
-        },
-        {
-            "operationType": "SAVE",
-            "items": [{
                 "persistentGrantContract": {
                     "coreAttributes": [
                         {"name": "USER_KEY"},
@@ -3156,6 +3088,8 @@
                 "devicePollingInterval": 5,
                 "persistentGrantIdleTimeoutTimeUnit": "DAYS",
                 "userAuthorizationUrl": "",
+                "jwtSecuredAuthorizationResponseModeLifetime": 600,
+                "clientSecretRetentionPeriod": 0,
                 "pendingAuthorizationTimeout": 600,
                 "disallowPlainPKCE": false,
                 "exclusiveScopeGroups": [],
@@ -3169,6 +3103,7 @@
                 "allowUnidentifiedClientROCreds": false,
                 "authorizationCodeTimeout": 30,
                 "persistentGrantLifetimeUnit": "DAYS",
+                "activationCodeCheckMode": "AFTER_AUTHENTICATION",
                 "scopes": [
                     {
                         "name": "address",
@@ -3334,6 +3269,112 @@
                 "bypassAuthorizationForApprovedGrants": false
             }],
             "resourceType": "/oauth/authServerSettings"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "trackAdapterSessionsForLogout": false,
+                "sessionRevocationLifetime": 490,
+                "revokeUserSessionOnLogout": false
+            }],
+            "resourceType": "/session/settings"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "maxTimeoutMins": 480,
+                "idleTimeoutMins": 60
+            }],
+            "resourceType": "/session/applicationSessionPolicy"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "persistentSessions": true,
+                "hashUniqueUserKeyAttribute": false,
+                "maxTimeoutMins": 480,
+                "maxTimeoutDisplayUnit": "MINUTES",
+                "idleTimeoutMins": 60,
+                "idleTimeoutDisplayUnit": "MINUTES",
+                "enableSessions": true
+            }],
+            "resourceType": "/session/authenticationSessionPolicies/global"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [
+                {
+                    "authnContextSensitive": false,
+                    "timeoutDisplayUnit": "MINUTES",
+                    "authenticationSource": {
+                        "type": "IDP_ADAPTER",
+                        "sourceRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/consentAgentlessAdapter",
+                            "id": "consentAgentlessAdapter"
+                        }
+                    },
+                    "id": "CLYI865yPZ7p00yrp6WcE5ifn",
+                    "persistent": false,
+                    "enableSessions": false
+                },
+                {
+                    "authnContextSensitive": false,
+                    "timeoutDisplayUnit": "MINUTES",
+                    "authenticationSource": {
+                        "type": "IDP_ADAPTER",
+                        "sourceRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/cdrSelectorAdapter",
+                            "id": "cdrSelectorAdapter"
+                        }
+                    },
+                    "id": "DHPY4AdjRKP8m1uU8jEvNd0h7",
+                    "persistent": false,
+                    "enableSessions": false
+                },
+                {
+                    "authnContextSensitive": false,
+                    "timeoutDisplayUnit": "MINUTES",
+                    "authenticationSource": {
+                        "type": "IDP_ADAPTER",
+                        "sourceRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/identityFirstAdapter",
+                            "id": "identityFirstAdapter"
+                        }
+                    },
+                    "id": "EScBDCH3FaSv12NTG58jdTKaE",
+                    "persistent": false,
+                    "enableSessions": false
+                },
+                {
+                    "authnContextSensitive": false,
+                    "timeoutDisplayUnit": "MINUTES",
+                    "authenticationSource": {
+                        "type": "IDP_ADAPTER",
+                        "sourceRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/clickatellAdapter",
+                            "id": "clickatellAdapter"
+                        }
+                    },
+                    "id": "b5SNfINVCnFS2MPYXA1rWpoth",
+                    "persistent": false,
+                    "enableSessions": false
+                },
+                {
+                    "authnContextSensitive": false,
+                    "timeoutDisplayUnit": "MINUTES",
+                    "authenticationSource": {
+                        "type": "IDP_ADAPTER",
+                        "sourceRef": {
+                            "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/ADRDataInSelector",
+                            "id": "ADRDataInSelector"
+                        }
+                    },
+                    "id": "r7RUHOQi7s1YI5vkdo3AMXdOV",
+                    "persistent": false,
+                    "enableSessions": false
+                }
+            ],
+            "resourceType": "/session/authenticationSessionPolicies"
         },
         {
             "operationType": "SAVE",
@@ -3761,8 +3802,8 @@
                         ]
                     },
                     "accessTokenManagerRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
-                        "id": "cdrRevocableATM"
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "id": "obATM"
                     }
                 }
             ],
@@ -3817,7 +3858,7 @@
                         },
                         {
                             "name": "CDR Access Token Manager",
-                            "value": "cdrRevocableATM"
+                            "value": "obATM"
                         },
                         {
                             "name": "Common Scopes",
@@ -3848,6 +3889,10 @@
                             "value": "X-CorrelationId"
                         },
                         {
+                            "name": "Host Header",
+                            "value": "X-Forwarded-Host"
+                        },
+                        {
                             "name": "Revoked JWKS validation",
                             "value": "true"
                         },
@@ -3856,16 +3901,16 @@
                             "value": "X-DCR-PREFIX"
                         },
                         {
-                            "name": "Host Header",
-                            "value": "X-Forwarded-Host"
-                        },
-                        {
                             "name": "Supported Response Types",
                             "value": "code id_token"
                         },
                         {
                             "name": "Require Encrypted ID Token",
                             "value": "true"
+                        },
+                        {
+                            "name": "Require Encrypted JARM",
+                            "value": "false"
                         }
                     ]
                 },
@@ -3885,12 +3930,8 @@
                     "rotateClientSecret": false,
                     "requireSignedRequests": true,
                     "persistentGrantIdleTimeoutType": "SERVER_DEFAULT",
-                    "policyRefs": [{
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/cdrAURegister",
-                        "id": "cdrAURegister"
-                    }],
                     "cibaRequireSignedRequests": false,
-                    "refreshTokenRollingGracePeriodType": "SERVER_DEFAULT",
+                    "retainClientSecret": false,
                     "restrictCommonScopes": false,
                     "allowedExclusiveScopes": [
                         "bank:accounts.basic:read",
@@ -3912,19 +3953,26 @@
                         "energy:electricity.usage:read"
                     ],
                     "enforceReplayPrevention": true,
-                    "deviceFlowSettingType": "SERVER_DEFAULT",
                     "disableRegistrationAccessTokens": true,
-                    "defaultAccessTokenManagerRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
-                        "id": "cdrRevocableATM"
-                    },
                     "requireProofKeyForCodeExchange": true,
                     "rotateRegistrationAccessToken": false,
+                    "restrictToDefaultAccessTokenManager": true,
+                    "requireJwtSecuredAuthorizationResponseMode": false,
+                    "policyRefs": [{
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/cdrAURegister",
+                        "id": "cdrAURegister"
+                    }],
+                    "refreshTokenRollingGracePeriodType": "SERVER_DEFAULT",
+                    "deviceFlowSettingType": "SERVER_DEFAULT",
+                    "defaultAccessTokenManagerRef": {
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "id": "obATM"
+                    },
+                    "clientSecretRetentionPeriodType": "SERVER_DEFAULT",
                     "restrictedCommonScopes": [],
                     "refreshTokenRollingIntervalType": "SERVER_DEFAULT",
                     "cibaPollingInterval": 3,
                     "persistentGrantExpirationType": "SERVER_DEFAULT",
-                    "restrictToDefaultAccessTokenManager": true,
                     "allowClientDelete": true,
                     "clientCertIssuerType": "NONE",
                     "refreshRolling": "SERVER_DEFAULT"
@@ -4093,12 +4141,12 @@
                             "value": "#THUMBPRINT_HEADER=\"X-CertificateThumbprint\", #objReq = #this.get(\"context.HttpRequest\").getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(\"x5t#S256\", #headerValue):null, #mapValue"
                         }
                     },
-                    "id": "authz_req|apc.iQwSYDdExcmJaYk6|cdrRevocableATM",
+                    "id": "authz_req|apc.iQwSYDdExcmJaYk6|obATM",
                     "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
-                        "id": "cdrRevocableATM"
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "id": "obATM"
                     }
                 },
                 {
@@ -4156,18 +4204,12 @@
                             "value": "#THUMBPRINT_HEADER=\"X-CertificateThumbprint\", #objReq = #this.get(\"context.HttpRequest\").getObjectValue(), #headerValue = #objReq.getHeader(#THUMBPRINT_HEADER) != null ? #objReq.getHeader(#THUMBPRINT_HEADER) : null, #mapValue = new java.util.HashMap(), (#headerValue != null)?#mapValue.put(\"x5t#S256\", #headerValue):null, #mapValue"
                         }
                     },
-                    "id": "client_credentials|cdrRevocableATM",
+                    "id": "client_credentials|obATM",
                     "attributeSources": [],
-                    "issuanceCriteria": {
-                        "expressionCriteria": [{
-                            "expression": "#scopes = #this.get(\"context.OAuthScopes\") != null?#this.get(\"context.OAuthScopes\").toString():\"\", #scopes.equals(\"\") || #scopes.equals(\"cdr:registration\")",
-                            "errorResult": "Invalid_Scope"
-                        }],
-                        "conditionalCriteria": []
-                    },
+                    "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
-                        "id": "cdrRevocableATM"
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "id": "obATM"
                     }
                 },
                 {
@@ -4184,12 +4226,12 @@
                         "iss": {"source": {"type": "NO_MAPPING"}},
                         "cnf": {"source": {"type": "NO_MAPPING"}}
                     },
-                    "id": "default|cdrRevocableATM",
+                    "id": "default|obATM",
                     "attributeSources": [],
                     "issuanceCriteria": {"conditionalCriteria": []},
                     "accessTokenManagerRef": {
-                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/cdrRevocableATM",
-                        "id": "cdrRevocableATM"
+                        "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
+                        "id": "obATM"
                     }
                 }
             ],
@@ -4546,6 +4588,7 @@
                     {
                         "name": "Administrative Functions",
                         "id": "XWDbjZnggLXB13Aurph0h80uo",
+                        "handleFailuresLocally": false,
                         "enabled": true,
                         "rootNode": {
                             "children": [{
@@ -4598,6 +4641,7 @@
                     {
                         "name": "ADR Data In API Driven",
                         "id": "adrDataInFlow",
+                        "handleFailuresLocally": false,
                         "enabled": true,
                         "rootNode": {
                             "children": [{
@@ -4666,6 +4710,7 @@
                     {
                         "name": "Local Authentication Flows",
                         "id": "localAuthNFlows",
+                        "handleFailuresLocally": false,
                         "enabled": true,
                         "rootNode": {
                             "children": [
@@ -4728,6 +4773,7 @@
                     {
                         "name": "ADR - Data In - Policy",
                         "id": "N3l3yuiA2gV99qpv39BzJZTr0",
+                        "handleFailuresLocally": false,
                         "enabled": true,
                         "rootNode": {
                             "children": [
@@ -4889,6 +4935,7 @@
                     {
                         "name": "CDR Policy v1.3",
                         "id": "Ww2eH2kE7ZLG7LO2mV1F040lW",
+                        "handleFailuresLocally": false,
                         "enabled": true,
                         "rootNode": {
                             "children": [

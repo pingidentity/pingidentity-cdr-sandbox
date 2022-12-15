@@ -97,4 +97,5 @@ dsconfig set-policy-decision-service-prop \
    --set pdp-mode:embedded  \
    --set trust-framework-version:v1 \
    --set "deployment-package<${SERVER_ROOT_DIR}/resource/simple.SDP" \
-   --set deployment-package-source-type:static-file
+   --set deployment-package-source-type:static-file \
+   --set spel-allowed-class:java.util.Base64
