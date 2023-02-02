@@ -95,7 +95,7 @@ services:
       - pingnet-internal
 
   mock-dh-api:
-    image: cdrsandbox/mock-dh-apis:20211221
+    image: cdrsandbox/mock-dh-apis:20221221
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -112,6 +112,8 @@ services:
       - "pingaccess:api.data-holder.local"
       - "pingaccess:sso.internal"
       - "pingaccess:sso-2.internal"
+    volumes:
+       - ${HOME}/projects/devops/volumes/mockapi:/tmp/cache
     networks:
       - pingnet-internal
 

@@ -3,7 +3,8 @@
 		"_postman_id": "d5df8413-2fe6-45e2-8c87-24be5cd6ac1c",
 		"name": "_Consent Flow v1.2",
 		"description": "20201211 - updated to work with CDR Register Test Harness v2",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "589324"
 	},
 	"item": [
 		{
@@ -37,6 +38,7 @@
 											"pm.test(\"Set environment variables for next test\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"legalEntityId\", response[\"data\"].legalEntityId);",
+											"    pm.environment.set(\"softwareId\", response[\"data\"].dataRecipientBrands[0].softwareProducts[0].softwareProductId);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -346,7 +348,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\",\n    \"https://httpbin.org.au/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\",\n    \"https://httpbin.org.au/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"authorization_signed_response_alg\": \"PS256\",\n  \"authorization_encrypted_response_alg\": \"RSA-OAEP\",\n  \"authorization_encrypted_response_enc\":\"A256GCM\",\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -592,7 +594,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read bank:accounts.detail:read bank:regular_payments:read bank:payees:read energy:accounts.basic:read\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}"
+									"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"{{defaultRequestScopes}}\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code id_token\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
@@ -1227,11 +1229,6 @@
 											"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
 											"    var response = pm.response.json();",
 											"    pm.expect(response).to.have.property('s_hash');",
-											"});",
-											"",
-											"pm.test(\"Validate ID Token has c_hash - REQUIRED for FAPI-RW\", function () {",
-											"    var response = pm.response.json();",
-											"    pm.expect(response).to.have.property('c_hash');",
 											"});",
 											"",
 											"",
@@ -3501,6 +3498,87 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "S002.T006.009 - RESTAPI - Get Expiring Consents",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"",
+											"const now = Date.now();",
+											"const oneyear = now + 31556926000;",
+											"",
+											"pm.environment.set(\"epoch-now\", now);",
+											"pm.environment.set(\"epoch-oneyear\", oneyear);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "2FederateM0re",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "cn=administrator",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{dh-dir-host}}/directory/v1/ou=accessgrants,o=appintegrations/subtree?searchScope=wholeSubtree&filter=objectClass eq \"ping-consent-record\" and ping-consent-context.expires lt {{epoch-oneyear}}",
+									"host": [
+										"{{dh-dir-host}}"
+									],
+									"path": [
+										"directory",
+										"v1",
+										"ou=accessgrants,o=appintegrations",
+										"subtree"
+									],
+									"query": [
+										{
+											"key": "searchScope",
+											"value": "wholeSubtree"
+										},
+										{
+											"key": "filter",
+											"value": "objectClass eq \"ping-consent-record\" and ping-consent-context.expires lt {{epoch-oneyear}}"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3611,6 +3689,11 @@
 											{
 												"key": "X-Certificate",
 												"value": "{{mtlsHeader}}",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
 												"type": "text"
 											}
 										],
@@ -19598,6 +19681,3724 @@
 			]
 		},
 		{
+			"name": "S011 JARM",
+			"item": [
+				{
+					"name": "S002 Consent Flow - Happy Scenario Copy",
+					"item": [
+						{
+							"name": "S002.T001 Obtain Access Token",
+							"item": [
+								{
+									"name": "S002.T001.001 - Download Private Key",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    var responseBlob = btoa(JSON.stringify(response.keys[0]));",
+													"    pm.environment.set(\"software-jwks-private\", responseBlob);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/helper/JWKS/{{flowUUID-datarecipient}}/private",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"helper",
+												"JWKS",
+												"{{flowUUID-datarecipient}}",
+												"private"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.002 - Generate Request JWT",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate request-jwt property exists\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('request-jwt');",
+													"});",
+													"pm.test(\"Validate request-url property exists\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('request-url');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-request-url\", response[\"request-url\"]);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-private-jwk",
+												"type": "text",
+												"value": "{{software-jwks-private}}"
+											},
+											{
+												"key": "x-nonce",
+												"value": "{{default-nonce}}",
+												"type": "text"
+											},
+											{
+												"key": "x-state",
+												"value": "{{default-state}}",
+												"type": "text"
+											},
+											{
+												"key": "x-issuer",
+												"value": "{{dcrClientId}}",
+												"type": "text"
+											},
+											{
+												"key": "x-duration-seconds",
+												"value": "60",
+												"type": "text"
+											},
+											{
+												"key": "x-dataholder-authorization-endpoint",
+												"value": "{{dh-idp-host}}{{dh-idp-authorization-endpoint}}",
+												"type": "text"
+											},
+											{
+												"key": "x-response-type",
+												"value": "code id_token",
+												"type": "text"
+											},
+											{
+												"key": "x-scope",
+												"value": "openid profile bank:accounts.basic:read bank:transactions:read",
+												"type": "text"
+											},
+											{
+												"key": "x-redirecturi",
+												"value": "{{default-redirecturi}}",
+												"type": "text"
+											},
+											{
+												"key": "x-maxage",
+												"value": "-1",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"client_id\":\"{{dcrClientId}}\",\n  \"scope\": \"{{defaultRequestScopes}}\",\n  \"iss\": \"{{dcrClientId}}\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  },\n  \"response_type\": \"code\",\n  \"response_mode\": \"jwt\",\n  \"redirect_uri\": \"{{default-redirecturi}}\",\n  \"code_challenge\":\"{{pkce-challenge}}\",\n  \"code_challenge_method\": \"S256\",\n  \"state\": \"xyz\"\n}"
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/requestJWT",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"requestJWT"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.003 - Initiate Consent Request",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    const $ = cheerio.load(responseBody);",
+													"    pm.environment.set(\"consent-request-nonceurl\", $( \"form\" ).attr(\"action\"));",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false,
+										"followRedirects": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{consent-request-url}}",
+											"host": [
+												"{{consent-request-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.004 - Provide username",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    const $ = cheerio.load(responseBody);",
+													"    pm.environment.set(\"consent-request-otp-csrf\", $( \"input[name='CSRF_TOKEN']\" ).val());",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "$ok",
+													"value": "clicked",
+													"type": "text"
+												},
+												{
+													"key": "subject",
+													"value": "crn0",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+											"host": [
+												"{{dh-idp-host}}{{consent-request-nonceurl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.005 - Verify OTP",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    const $ = cheerio.load(responseBody);",
+													"    pm.environment.set(\"consent-ref\", $( \"input[name='REF']\" ).val());",
+													"    pm.environment.set(\"consent-action\", $( \"form\" ).attr(\"action\"));",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "$ok",
+													"value": "clicked",
+													"type": "text"
+												},
+												{
+													"key": "CODE_VERIFICATION_VALUE",
+													"value": "123456",
+													"type": "text"
+												},
+												{
+													"key": "CODE_VERIFICATION_STATE",
+													"value": "true",
+													"type": "text"
+												},
+												{
+													"key": "CSRF_TOKEN",
+													"value": "{{consent-request-otp-csrf}}",
+													"type": "text"
+												},
+												{
+													"key": "submitform",
+													"value": "true",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{dh-idp-host}}{{consent-request-nonceurl}}",
+											"host": [
+												"{{dh-idp-host}}{{consent-request-nonceurl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.006 - Load Consent Agentless App",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    const $ = cheerio.load(responseBody);",
+													"    pm.environment.set(\"consent-request-consent-completeurl\", $( \"form\" ).attr(\"action\"));",
+													"    pm.environment.set(\"consent-request-consent-account\", $( \"input[name='accounts']\" ).eq(0).val());",
+													"    pm.environment.set(\"consent-request-consent-account-2\", $( \"input[name='accounts']\" ).eq(1).val());",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "allowInteraction",
+													"value": "true",
+													"type": "text"
+												},
+												{
+													"key": "connectionId",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "resumePath",
+													"value": "{{consent-request-nonceurl}}",
+													"type": "text"
+												},
+												{
+													"key": "reauth",
+													"value": "false",
+													"type": "text"
+												},
+												{
+													"key": "REF",
+													"value": "{{consent-ref}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{consent-action}}",
+											"host": [
+												"{{consent-action}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.006 - Perform consent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var locationHeader = pm.response.headers.get(\"Location\");",
+													"    pm.environment.set(\"consent-ref-redirect\", locationHeader);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": false,
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "accounts",
+													"value": "{{consent-request-consent-account}}",
+													"type": "text"
+												},
+												{
+													"key": "approved",
+													"value": "allow",
+													"type": "text"
+												},
+												{
+													"key": "accounts",
+													"value": "{{consent-request-consent-account-2}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{consent-request-consent-completeurl}}",
+											"host": [
+												"{{consent-request-consent-completeurl}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.006 - Follow REF Redirect",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var locationHeader = pm.response.headers.get(\"Location\");",
+													"    if(!locationHeader)",
+													"        locationHeader = pm.response.headers.get(\"Referer\");",
+													"",
+													"    var locationParams = locationHeader.split(\"?\")[1];",
+													"    const eachParamArray = locationParams.split('&');",
+													"    let params = {};",
+													"    eachParamArray.forEach((param) => {",
+													"        const key = param.split('=')[0];",
+													"        const value = param.split('=')[1];",
+													"        Object.assign(params, {[key]: value});",
+													"    });",
+													"    pm.environment.set(\"consent-request-authcode-callback\", locationHeader);",
+													"    pm.environment.set(\"consent-request-authcode-callback-params\", locationParams);",
+													"    pm.environment.set(\"consent-request-authcode-callback-jarm-response\", params[\"response\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"followRedirects": false
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{consent-ref-redirect}}",
+											"host": [
+												"{{consent-ref-redirect}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.007 - Read JARM response",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//CDR JARM OIDC Requirements",
+													"pm.test(\"Validate JARM has ISS -  REQUIRED for JARM\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iss');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate JARM has code - REQUIRED for JARM\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('code');",
+													"    pm.environment.set(\"consent-request-authcode-callback-code\", response[\"code\"]);",
+													"",
+													"});",
+													"",
+													"",
+													"",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-private-jwk",
+												"value": "{{software-jwks-private}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{{consent-request-authcode-callback-jarm-response}}"
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/reflectIDToken",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"reflectIDToken"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.009 - Creates JWT-Bearer Client Assertion",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate client assertion is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('client-assertion');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "private-jwk",
+													"value": "{{software-jwks-private}}",
+													"type": "text"
+												},
+												{
+													"key": "client-id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "token-endpoint",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
+													"type": "text"
+												},
+												{
+													"key": "kid",
+													"value": "{{softwareId}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"createClientAssertion"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.010 - Perform code exchange",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});",
+													"pm.test(\"Validate access_token is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('access_token');",
+													"});",
+													"pm.test(\"Validate id_token is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('id_token');",
+													"});",
+													"pm.test(\"Validate refresh_token is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('refresh_token');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+													"    pm.environment.set(\"consent-request-id-token\", response.id_token);",
+													"    pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+													"    pm.environment.set(\"consent-cdr-arrangement-id\", response[\"cdr_arrangement_id\"]);",
+													"});",
+													"",
+													"",
+													"function jwt_decode_payload(jwt) {",
+													"    var parts = jwt.split('.'); // header, payload, signature",
+													"    return JSON.parse(atob(parts[1]));",
+													"}",
+													"",
+													"function jwt_decode_header(jwt) {",
+													"    var parts = jwt.split('.'); // header, payload, signature",
+													"    return JSON.parse(atob(parts[0]));",
+													"}",
+													"function jwt_parts(jwt) {",
+													"    var parts = jwt.split('.'); // header, payload, signature",
+													"    return parts.length;",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "code",
+													"value": "{{consent-request-authcode-callback-code}}",
+													"type": "text"
+												},
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "grant_type",
+													"value": "authorization_code",
+													"type": "text"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{default-redirecturi}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												},
+												{
+													"key": "code_verifier",
+													"value": "{{pkce-challenge-s256}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+											"host": [
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T001.011 - Test ID Token from Token Endpoint",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//CDR ID Token OIDC Requirements",
+													"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iss');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('sub');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('exp');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iat');",
+													"});",
+													"",
+													"//CDR ID Token FAPI-RW Requirements",
+													"pm.test(\"Validate ID Token has nonce - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('nonce');",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has s_hash - REQUIRED for FAPI-RW\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('s_hash');",
+													"});",
+													"",
+													"",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-private-jwk",
+												"value": "{{software-jwks-private}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{{consent-request-id-token}}"
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/reflectIDToken",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"reflectIDToken"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "S002.T002 Introspect Tokens",
+							"item": [
+								{
+									"name": "S002.T002.001 Introspect Refresh Token",
+									"item": [
+										{
+											"name": "S002.T002.001.001 - Creates JWT-Bearer Client Assertion",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate client assertion is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('client-assertion');",
+															"});",
+															"pm.test(\"Set environment variables for next test\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "private-jwk",
+															"value": "{{software-jwks-private}}",
+															"type": "text"
+														},
+														{
+															"key": "client-id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token-endpoint",
+															"value": "{{dh-idp-host}}/as/token.oauth2",
+															"type": "text"
+														},
+														{
+															"key": "kid",
+															"value": "{{softwareId}}",
+															"type": "text"
+														},
+														{
+															"key": "issuer",
+															"value": "xxx",
+															"type": "text",
+															"disabled": true
+														}
+													]
+												},
+												"url": {
+													"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+													"host": [
+														"{{cdr-register-testharness-host}}"
+													],
+													"path": [
+														"testtool",
+														"datarecipient",
+														"createClientAssertion"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S002.T002.001.002 - Introspect Refresh Token",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+															"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+															"});",
+															"pm.test(\"Validate exp is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('exp');",
+															"});",
+															"pm.test(\"Validate cdr_arrangement_id is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('cdr_arrangement_id');",
+															"});",
+															"pm.test(\"Validate active=true\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response.active).to.equal(true);",
+															"});",
+															"pm.test(\"Set environment variables for next test\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.environment.set(\"consent-cdr-arrangement-id\", response[\"cdr_arrangement_id\"]);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Certificate",
+														"value": "{{mtlsHeader}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "client_id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token",
+															"value": "{{consent-request-refresh-token}}",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion_type",
+															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion",
+															"value": "{{consent-client-assertion}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
+													"host": [
+														"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "S003.T002.001 Introspect Access Token - Should fail",
+									"item": [
+										{
+											"name": "S003.T002.002.001 - Creates JWT-Bearer Client Assertion",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate client assertion is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('client-assertion');",
+															"});",
+															"pm.test(\"Set environment variables for next test\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "private-jwk",
+															"value": "{{software-jwks-private}}",
+															"type": "text"
+														},
+														{
+															"key": "client-id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token-endpoint",
+															"value": "{{dh-idp-host}}/as/token.oauth2",
+															"type": "text"
+														},
+														{
+															"key": "kid",
+															"value": "{{softwareId}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+													"host": [
+														"{{cdr-register-testharness-host}}"
+													],
+													"path": [
+														"testtool",
+														"datarecipient",
+														"createClientAssertion"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S003.T002.002.002 - Introspect Access Token",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate response active=false\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response.active).to.equal(false);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Certificate",
+														"value": "{{mtlsHeader}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "client_id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token",
+															"value": "{{consent-request-access-token}}",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion_type",
+															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion",
+															"value": "{{consent-client-assertion}}",
+															"type": "text"
+														},
+														{
+															"key": "token_type_hint",
+															"value": "refresh_token",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}",
+													"host": [
+														"{{dh-idp-host-mtls}}{{dh-idp-introspect-endpoint}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "S002.T003 Refresh Tokens",
+							"item": [
+								{
+									"name": "S002.T003.001 - Creates JWT-Bearer Client Assertion",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate client assertion is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('client-assertion');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "private-jwk",
+													"value": "{{software-jwks-private}}",
+													"type": "text"
+												},
+												{
+													"key": "client-id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "token-endpoint",
+													"value": "{{dh-idp-host}}/as/token.oauth2",
+													"type": "text"
+												},
+												{
+													"key": "kid",
+													"value": "{{softwareId}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"createClientAssertion"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T003.002 - Perform refresh token",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});",
+													"pm.test(\"Validate access_token is available\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('access_token');",
+													"});",
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.environment.set(\"consent-request-access-token\", response.access_token);",
+													"",
+													"    if(response.refresh_token)",
+													"        pm.environment.set(\"consent-request-refresh-token\", response.refresh_token);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "refresh_token",
+													"value": "{{consent-request-refresh-token}}",
+													"type": "text"
+												},
+												{
+													"key": "client_id",
+													"value": "{{dcrClientId}}",
+													"type": "text"
+												},
+												{
+													"key": "grant_type",
+													"value": "refresh_token",
+													"type": "text"
+												},
+												{
+													"key": "redirect_uri",
+													"value": "{{default-redirecturi}}",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion_type",
+													"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+													"type": "text"
+												},
+												{
+													"key": "client_assertion",
+													"value": "{{consent-client-assertion}}",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+											"host": [
+												"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T003.003 - Test ID Token from Token Endpoint",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"//CDR ID Token OIDC Requirements",
+													"pm.test(\"Validate ID Token has ISS -  REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iss');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has sub - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('sub');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has exp - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('exp');",
+													"",
+													"});",
+													"",
+													"pm.test(\"Validate ID Token has iat - REQUIRED for OIDC\", function () {",
+													"    var response = pm.response.json();",
+													"    pm.expect(response).to.have.property('iat');",
+													"});",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-private-jwk",
+												"type": "text",
+												"value": "{{software-jwks-private}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{{consent-request-id-token}}"
+										},
+										"url": {
+											"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/reflectIDToken",
+											"host": [
+												"{{cdr-register-testharness-host}}"
+											],
+											"path": [
+												"testtool",
+												"datarecipient",
+												"reflectIDToken"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "S002.T004 Call Bank API's",
+							"item": [
+								{
+									"name": "S002.T004.001 - Get account list",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    var accountId = response.data.accounts[0].accountId;",
+													"",
+													"    pm.environment.set(\"consent-request-account-id\", accountId);",
+													"});",
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.002 - Get account balance",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}/balance",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"{{consent-request-account-id}}",
+												"balance"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.003 - Get account details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"{{consent-request-account-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.005 - Get account transaction details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}/transactions/{{consent-request-transactionId-id-1}}",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"{{consent-request-account-id}}",
+												"transactions",
+												"{{consent-request-transactionId-id-1}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.006 - Get account bulk balance",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/balances",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"balances"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.007 - Get account bulk balance specify account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"{{consent-request-account-id}}\"\n    ]\n  },\n  \"meta\": {}\n}"
+										},
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/balances",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"balances"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.008 - Get account direct debits",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}/direct-debits",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"{{consent-request-account-id}}",
+												"direct-debits"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.009 - Get bulk direct debits",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/direct-debits",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"direct-debits"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.010 - Get bulk direct debits specify account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"{{consent-request-account-id}}\"\n    ]\n  },\n  \"meta\": {}\n}"
+										},
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/direct-debits",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"direct-debits"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.011 - Get account scheduled payments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}/payments/scheduled",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"accounts",
+												"{{consent-request-account-id}}",
+												"payments",
+												"scheduled"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.012 - Get bulk scheduled payments",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/payments/scheduled",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"payments",
+												"scheduled"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.013 - Get bulk scheduled payments specify account",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"data\": {\n    \"accountIds\": [\n      \"{{consent-request-account-id}}\"\n    ]\n  },\n  \"meta\": {}\n}"
+										},
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/payments/scheduled",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"payments",
+												"scheduled"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.014 - Get payees",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/banking/payees",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"banking",
+												"payees"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "S002.T004.002 Call Energy API's",
+							"item": [
+								{
+									"name": "S002.T004.002.001 - Get account list",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Set environment variables for next test\", function () {",
+													"    var response = pm.response.json();",
+													"    var accountId = response.data.accounts[0].accountId;",
+													"",
+													"    pm.environment.set(\"consent-request-account-id\", accountId);",
+													"});",
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/energy/accounts",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"energy",
+												"accounts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.002.002 - Get account balance",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/energy/accounts/{{consent-request-account-id}}/balance",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"energy",
+												"accounts",
+												"{{consent-request-account-id}}",
+												"balance"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T004.002.003 - Get account details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"type": "text",
+												"value": "1"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-api-host}}/v1/energy/accounts/{{consent-request-account-id}}",
+											"host": [
+												"{{dh-api-host}}"
+											],
+											"path": [
+												"v1",
+												"energy",
+												"accounts",
+												"{{consent-request-account-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "S002.T005 Userinfo",
+							"item": [
+								{
+									"name": "S002.T005.001.002 - Call userinfo",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+													"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{consent-request-access-token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Certificate",
+												"value": "{{mtlsHeader}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}",
+											"host": [
+												"{{dh-idp-host-mtls}}{{dh-idp-userinfo-endpoint}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "S002.T006 Grant Management API",
+							"item": [
+								{
+									"name": "S002.T006.001 - PF - Get User Grants",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{grant-management-user}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{grant-management-password}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-XSRF-HEADER",
+												"value": "PingFederate",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants",
+											"host": [
+												"{{dh-idp-host}}"
+											],
+											"path": [
+												"pf-ws",
+												"rest",
+												"oauth",
+												"users",
+												"{{consent-request-access-token-sub}}",
+												"grants"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.002 - PF - Get Active User Grant",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{grant-management-user}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{grant-management-password}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-XSRF-HEADER",
+												"type": "text",
+												"value": "PingFederate"
+											}
+										],
+										"url": {
+											"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-idp-host}}"
+											],
+											"path": [
+												"pf-ws",
+												"rest",
+												"oauth",
+												"users",
+												"{{consent-request-access-token-sub}}",
+												"grants",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.003 - ConsentAPI - Get Consent Details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-dir-host}}"
+											],
+											"path": [
+												"consent",
+												"v1",
+												"consents",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.004 - ConsentAPI - Get All User Consent Details",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{dh-dir-host}}/consent/v1/consents",
+											"host": [
+												"{{dh-dir-host}}"
+											],
+											"path": [
+												"consent",
+												"v1",
+												"consents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.005 - ConsentAPI - User revoke consent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"status\": \"revoked\"\n}"
+										},
+										"url": {
+											"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-dir-host}}"
+											],
+											"path": [
+												"consent",
+												"v1",
+												"consents",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.006 - PF - Get Revoked User Grant (404)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=404\", function () {",
+													"    pm.response.to.have.status(404);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{grant-management-user}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{grant-management-password}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-XSRF-HEADER",
+												"type": "text",
+												"value": "PingFederate"
+											}
+										],
+										"url": {
+											"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-idp-host}}"
+											],
+											"path": [
+												"pf-ws",
+												"rest",
+												"oauth",
+												"users",
+												"{{consent-request-access-token-sub}}",
+												"grants",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.007 - ConsentAPI - User reactivate consent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"status\": \"accepted\"\n}"
+										},
+										"url": {
+											"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-dir-host}}"
+											],
+											"path": [
+												"consent",
+												"v1",
+												"consents",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "S002.T006.008 - PF - Get Reactived User Grant",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Validate response status=200\", function () {",
+													"    pm.response.to.have.status(200);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"strictSSL": false
+									},
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{grant-management-user}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{grant-management-password}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "X-XSRF-HEADER",
+												"type": "text",
+												"value": "PingFederate"
+											}
+										],
+										"url": {
+											"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+											"host": [
+												"{{dh-idp-host}}"
+											],
+											"path": [
+												"pf-ws",
+												"rest",
+												"oauth",
+												"users",
+												"{{consent-request-access-token-sub}}",
+												"grants",
+												"{{consent-cdr-arrangement-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "S002.T007 Revoke Tokens",
+							"item": [
+								{
+									"name": "S002.T007.000 Revocation - Access Token",
+									"item": [
+										{
+											"name": "S002.T007.000.001 - Creates JWT-Bearer Client Assertion",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate client assertion is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('client-assertion');",
+															"});",
+															"pm.test(\"Set environment variables for next test\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "private-jwk",
+															"value": "{{software-jwks-private}}",
+															"type": "text"
+														},
+														{
+															"key": "client-id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token-endpoint",
+															"value": "{{dh-idp-host}}/as/token.oauth2",
+															"type": "text"
+														},
+														{
+															"key": "kid",
+															"value": "{{softwareId}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+													"host": [
+														"{{cdr-register-testharness-host}}"
+													],
+													"path": [
+														"testtool",
+														"datarecipient",
+														"createClientAssertion"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S002.T007.000.002 - Perform revoke token",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"",
+															"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+															"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Certificate",
+														"value": "{{mtlsHeader}}",
+														"type": "text"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "client_id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token",
+															"value": "{{consent-request-access-token}}",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion_type",
+															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion",
+															"value": "{{consent-client-assertion}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}",
+													"host": [
+														"{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S002.T007.000.003 - Get account list - should fail",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=401\", function () {",
+															"    pm.response.to.have.status(401);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{{consent-request-access-token}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "x-v",
+														"type": "text",
+														"value": "1"
+													},
+													{
+														"key": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{dh-api-host}}/v1/banking/accounts",
+													"host": [
+														"{{dh-api-host}}"
+													],
+													"path": [
+														"v1",
+														"banking",
+														"accounts"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "S002.T007.001 Revocation - Refresh Token",
+									"item": [
+										{
+											"name": "S002.T007.001.001 - Creates JWT-Bearer Client Assertion",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate client assertion is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('client-assertion');",
+															"});",
+															"pm.test(\"Set environment variables for next test\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "private-jwk",
+															"value": "{{software-jwks-private}}",
+															"type": "text"
+														},
+														{
+															"key": "client-id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token-endpoint",
+															"value": "{{dh-idp-host}}/as/token.oauth2",
+															"type": "text"
+														},
+														{
+															"key": "kid",
+															"value": "{{softwareId}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+													"host": [
+														"{{cdr-register-testharness-host}}"
+													],
+													"path": [
+														"testtool",
+														"datarecipient",
+														"createClientAssertion"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S002.T007.001.002 - Perform revoke token",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"",
+															"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+															"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Certificate",
+														"value": "{{mtlsHeader}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "client_id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token",
+															"value": "{{consent-request-refresh-token}}",
+															"type": "text"
+														},
+														{
+															"key": "token_type_hint",
+															"value": "refresh_token",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion_type",
+															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion",
+															"value": "{{consent-client-assertion}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}",
+													"host": [
+														"{{dh-idp-host-mtls}}{{dh-idp-revocation-endpoint}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "S002.T007.002 Refresh Tokens - should fail",
+									"item": [
+										{
+											"name": "S002.T007.001 - Creates JWT-Bearer Client Assertion",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=200\", function () {",
+															"    pm.response.to.have.status(200);",
+															"});",
+															"pm.test(\"Validate client assertion is available\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.expect(response).to.have.property('client-assertion');",
+															"});",
+															"pm.test(\"Set environment variables for next test\", function () {",
+															"    var response = pm.response.json();",
+															"    pm.environment.set(\"consent-client-assertion\", response[\"client-assertion\"]);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/x-www-form-urlencoded"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "private-jwk",
+															"value": "{{software-jwks-private}}",
+															"type": "text"
+														},
+														{
+															"key": "client-id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "token-endpoint",
+															"value": "{{dh-idp-host}}/as/token.oauth2",
+															"type": "text"
+														},
+														{
+															"key": "kid",
+															"value": "{{softwareId}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+													"host": [
+														"{{cdr-register-testharness-host}}"
+													],
+													"path": [
+														"testtool",
+														"datarecipient",
+														"createClientAssertion"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S002.T007.002 - Perform refresh token",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=400\", function () {",
+															"    pm.response.to.have.status(400);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "X-Certificate",
+														"value": "{{mtlsHeader}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "refresh_token",
+															"value": "{{consent-request-refresh-token}}",
+															"type": "text"
+														},
+														{
+															"key": "client_id",
+															"value": "{{dcrClientId}}",
+															"type": "text"
+														},
+														{
+															"key": "grant_type",
+															"value": "refresh_token",
+															"type": "text"
+														},
+														{
+															"key": "redirect_uri",
+															"value": "{{default-redirecturi}}",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion_type",
+															"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+															"type": "text"
+														},
+														{
+															"key": "client_assertion",
+															"value": "{{consent-client-assertion}}",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}",
+													"host": [
+														"{{dh-idp-host-mtls}}{{dh-idp-token-endpoint}}"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										}
+									]
+								},
+								{
+									"name": "S002.T007.003 - Query Consent API",
+									"item": [
+										{
+											"name": "S002.T007.003.001 - PF - Get Revoked User Grant (404)",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=404\", function () {",
+															"    pm.response.to.have.status(404);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"auth": {
+													"type": "basic",
+													"basic": [
+														{
+															"key": "username",
+															"value": "{{grant-management-user}}",
+															"type": "string"
+														},
+														{
+															"key": "password",
+															"value": "{{grant-management-password}}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "X-XSRF-HEADER",
+														"type": "text",
+														"value": "PingFederate"
+													}
+												],
+												"url": {
+													"raw": "{{dh-idp-host}}/pf-ws/rest/oauth/users/{{consent-request-access-token-sub}}/grants/{{consent-cdr-arrangement-id}}",
+													"host": [
+														"{{dh-idp-host}}"
+													],
+													"path": [
+														"pf-ws",
+														"rest",
+														"oauth",
+														"users",
+														"{{consent-request-access-token-sub}}",
+														"grants",
+														"{{consent-cdr-arrangement-id}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "S002.T007.003.001 - ConsentAPI - Get Consent Details (404)",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"pm.test(\"Validate response status=404\", function () {",
+															"    pm.response.to.have.status(404);",
+															"});"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"strictSSL": false
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "{\"sub\":\"{{consent-request-access-token-sub}}\",\"active\":true,\"scope\":\"consent\"}",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"type": "text",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{dh-dir-host}}/consent/v1/consents/{{consent-cdr-arrangement-id}}",
+													"host": [
+														"{{dh-dir-host}}"
+													],
+													"path": [
+														"consent",
+														"v1",
+														"consents",
+														"{{consent-cdr-arrangement-id}}"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "S999 Inactivate Software",
 			"item": [
 				{
@@ -20275,6 +24076,10 @@
 			"value": "https://sso.data-holder.local"
 		},
 		{
+			"key": "dh-idp-host-mtls",
+			"value": "https://sso.data-holder.local"
+		},
+		{
 			"key": "dh-idp-register-endpoint",
 			"value": "/as/clients.oauth2"
 		},
@@ -20363,12 +24168,13 @@
 			"value": "https://api.data-holder.local/misc"
 		},
 		{
-			"key": "dh-idp-host-mtls",
-			"value": "https://sso.data-holder.local"
-		},
-		{
 			"key": "test-confirmation-handover",
 			"value": "false"
+		},
+		{
+			"key": "defaultRequestScopes",
+			"value": "openid bank:accounts.basic:read bank:transactions:read bank:accounts.detail:read bank:regular_payments:read bank:payees:read energy:accounts.basic:read",
+			"type": "string"
 		}
 	]
 }
