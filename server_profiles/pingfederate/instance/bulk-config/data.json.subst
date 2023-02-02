@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.1.3.5"},
+    "metadata": {"pfVersion": "11.2.0.8"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -139,6 +139,23 @@
         },
         {
             "operationType": "SAVE",
+            "subResource": "org.sourceid.saml20.domain.LoggingMode",
+            "items": [
+                {
+                    "stringValue": "false",
+                    "id": "IdPOverrideOn",
+                    "type": "STRING"
+                },
+                {
+                    "stringValue": "false",
+                    "id": "SPOverrideOn",
+                    "type": "STRING"
+                }
+            ],
+            "resourceType": "/configStore"
+        },
+        {
+            "operationType": "SAVE",
             "subResource": "org.sourceid.saml20.domain.mgmt.AdminUserManager",
             "items": [{
                 "stringValue": "true",
@@ -224,7 +241,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://3e396d930dcc:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://c9b1a752e902:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -459,6 +476,11 @@
         },
         {
             "operationType": "SAVE",
+            "items": [{}],
+            "resourceType": "/captchaProviders/settings"
+        },
+        {
+            "operationType": "SAVE",
             "items": [{
                 "federationInfo": {
                     "saml2EntityId": "https://sso.${BASE_HOSTNAME}",
@@ -517,13 +539,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -549,6 +565,54 @@
                 "requestHeaderForCorrelationId": ""
             }],
             "resourceType": "/serverSettings/generalSettings"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{"logCategories": [
+                {
+                    "name": "Core",
+                    "description": "Debug logging for core components.",
+                    "id": "core",
+                    "enabled": false
+                },
+                {
+                    "name": "Policy Tree",
+                    "description": "Policy tree debug logging.",
+                    "id": "policytree",
+                    "enabled": false
+                },
+                {
+                    "name": "Trusted CAs",
+                    "description": "Log PingFederate and JRE trusted CAs when they are loaded.",
+                    "id": "trustedcas",
+                    "enabled": false
+                },
+                {
+                    "name": "XML Signatures",
+                    "description": "Debug logging for XML signature operations.",
+                    "id": "xmlsig",
+                    "enabled": false
+                },
+                {
+                    "name": "HTTP Request Headers",
+                    "description": "Log HTTP request headers. Sensitive information, such as passwords, may be logged when this category is enabled.",
+                    "id": "requestheaders",
+                    "enabled": false
+                },
+                {
+                    "name": "HTTP Request Parameters",
+                    "description": "Log HTTP GET request parameters. Sensitive information, such as passwords, may be logged when this category is enabled.",
+                    "id": "requestparams",
+                    "enabled": false
+                },
+                {
+                    "name": "REST Data Store Requests and Responses",
+                    "description": "Log REST datastore requests and responses. Sensitive information, such as passwords, may be logged when this category is enabled.",
+                    "id": "restdatastore",
+                    "enabled": false
+                }
+            ]}],
+            "resourceType": "/serverSettings/logSettings"
         },
         {
             "operationType": "SAVE",
@@ -1016,6 +1080,10 @@
                             {
                                 "name": "Type Header Value",
                                 "value": ""
+                            },
+                            {
+                                "name": "Authorization Details Claim Name",
+                                "value": "authorization_details"
                             }
                         ]
                     },
@@ -1185,6 +1253,10 @@
                             {
                                 "name": "Type Header Value",
                                 "value": ""
+                            },
+                            {
+                                "name": "Authorization Details Claim Name",
+                                "value": "authorization_details"
                             }
                         ]
                     },
@@ -1356,6 +1428,10 @@
                             {
                                 "name": "Type Header Value",
                                 "value": ""
+                            },
+                            {
+                                "name": "Authorization Details Claim Name",
+                                "value": "authorization_details"
                             }
                         ]
                     },
@@ -1554,6 +1630,10 @@
                             {
                                 "name": "Type Header Value",
                                 "value": ""
+                            },
+                            {
+                                "name": "Authorization Details Claim Name",
+                                "value": "authorization_details"
                             }
                         ]
                     },
@@ -1737,7 +1817,7 @@
                             },
                             {
                                 "name": "ENABLE JARM",
-                                "value": "false"
+                                "value": "true"
                             },
                             {
                                 "name": "REQUIRE JARM",
@@ -2486,6 +2566,18 @@
                             {
                                 "name": "Fail Authentication on Account Lockout",
                                 "value": "true"
+                            },
+                            {
+                                "name": "Require Re-Authentication for Change Password Flow",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Require Re-Authentication for Password Reset Flow",
+                                "value": "true"
+                            },
+                            {
+                                "name": "CAPTCHA Provider",
+                                "value": ""
                             }
                         ]
                     },
@@ -2795,6 +2887,18 @@
                             {
                                 "name": "Fail Authentication on Account Lockout",
                                 "value": "true"
+                            },
+                            {
+                                "name": "Require Re-Authentication for Change Password Flow",
+                                "value": "true"
+                            },
+                            {
+                                "name": "Require Re-Authentication for Password Reset Flow",
+                                "value": "true"
+                            },
+                            {
+                                "name": "CAPTCHA Provider",
+                                "value": ""
                             }
                         ]
                     },
@@ -3902,7 +4006,7 @@
                         },
                         {
                             "name": "Supported Response Types",
-                            "value": "code id_token"
+                            "value": "code,code id_token"
                         },
                         {
                             "name": "Require Encrypted ID Token",
@@ -3952,6 +4056,7 @@
                         "energy:electricity.servicepoints.detail:read",
                         "energy:electricity.usage:read"
                     ],
+                    "allowedAuthorizationDetailTypes": [],
                     "enforceReplayPrevention": true,
                     "disableRegistrationAccessTokens": true,
                     "requireProofKeyForCodeExchange": true,
@@ -5148,6 +5253,10 @@
                                     "items": [{
                                         "result": "LOA2",
                                         "condition": "EQUALS_CASE_INSENSITIVE",
+                                        "attributeSource": {
+                                            "id": "cdrSelectorAdapter",
+                                            "type": "ADAPTER"
+                                        },
                                         "expectedValue": "CA",
                                         "attributeName": "caValue"
                                     }]

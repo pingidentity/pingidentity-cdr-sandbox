@@ -348,7 +348,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\",\n    \"https://httpbin.org.au/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code id_token\"\n  ],\n  \"authorization_signed_response_alg\": \"PS256\",\n  \"authorization_encrypted_response_alg\": \"RSA-OAEP\",\n  \"authorization_encrypted_response_enc\":\"A256GCM\",\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
+									"raw": "{\n  \"iss\": \"software-{{flowUUID-datarecipient}}\",\n  \"aud\": \"{{dh-idp-host}}\",\n  \"software_statement\": \"{{software-ssa}}\",\n  \"token_endpoint_auth_signing_alg\": \"PS256\",\n  \"grant_types\": [\n    \"authorization_code\",\n    \"client_credentials\",\n    \"refresh_token\"\n  ],\n  \"request_object_signing_alg\": \"PS256\",\n  \"redirect_uris\": [\n    \"https://httpbin.org/get\",\n    \"https://httpbin.org.au/get\"\n  ],\n  \"token_endpoint_auth_method\": \"private_key_jwt\",\n  \"response_types\": [\n    \"code\",\n    \"code id_token\"\n  ],\n  \"authorization_signed_response_alg\": \"PS256\",\n  \"authorization_encrypted_response_alg\": \"RSA-OAEP\",\n  \"authorization_encrypted_response_enc\":\"A256GCM\",\n  \"id_token_signed_response_alg\": \"PS256\",\n  \"id_token_encrypted_response_alg\": \"RSA-OAEP\",\n  \"id_token_encrypted_response_enc\":\"A256GCM\"\n}"
 								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/dcr",
@@ -2061,6 +2061,77 @@
 										"banking",
 										"accounts",
 										"{{consent-request-account-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "S002.T004.004 - Get account transactions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"",
+											"pm.test(\"Validate response header X-VALIDATED-CLIENTAUTH=TRUE\", function () {",
+											"    pm.response.to.be.header(\"X-VALIDATED-CLIENTAUTH\", \"TRUE\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"consent-request-transactionId-id-1\", response.data.transactions[0].transactionId);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{consent-request-access-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"type": "text",
+										"value": "1"
+									},
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Certificate",
+										"value": "{{mtlsHeader}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{dh-api-host}}/v1/banking/accounts/{{consent-request-account-id}}/transactions",
+									"host": [
+										"{{dh-api-host}}"
+									],
+									"path": [
+										"v1",
+										"banking",
+										"accounts",
+										"{{consent-request-account-id}}",
+										"transactions"
 									]
 								}
 							},
