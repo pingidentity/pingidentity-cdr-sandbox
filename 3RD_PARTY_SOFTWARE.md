@@ -10,4 +10,3 @@ Ping Identity Docker Images bundle various 3rd party tools to enable product fun
 * **ca-certificates**: GPL2 Licensing [Link](https://www.archlinux.org/packages/core/any/ca-certificates/)
 * **Jq**: MIT [Link](https://stedolan.github.io/jq/download/)
 * **Gnupg**: GNU general Public License [Link](https://gnupg.org/)
-* **Deepthought**: GNU general Public License 3.0 [Link](https://github.com/bizaio/deepthought/blob/master/LICENSE.md)
