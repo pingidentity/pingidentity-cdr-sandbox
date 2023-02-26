@@ -31,14 +31,6 @@ git clone \
 ### Configure and Start the Stack
 
 
-1. Navigate to ~/projects/cdr/docker-compose and copy the cdr.env.template file to cdr.env
-
-    ```sh
-    cp \
-        ~/projects/cdr/docker-compose/cdr.env.template \
-        ~/projects/cdr/docker-compose/cdr.env
-    ```
-
 1. Add the following entries to the /etc/hosts file
 
     ```sh
