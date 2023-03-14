@@ -194,11 +194,11 @@
             "enableRefreshUser": true,
             "cookieDomain": "",
             "refreshUserInfoClaimsInterval": 60,
-            "sessionTimeoutInMinutes": 240,
             "httpOnlyCookie": true,
+            "sessionTimeoutInMinutes": 240,
             "requestProfile": true,
-            "sameSite": "Lax",
             "failOnUnsupportedPreservationContentType": false,
+            "sameSite": "Lax",
             "name": "newsession",
             "clientCredentials": {
                 "clientId": "pingaccess_websession",
@@ -1338,10 +1338,6 @@
                         },
                         {
                             "id": 3,
-                            "type": "Rule"
-                        },
-                        {
-                            "id": 13,
                             "type": "Rule"
                         }
                     ],
