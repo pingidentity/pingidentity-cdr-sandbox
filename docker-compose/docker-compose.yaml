@@ -251,7 +251,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20220525
+    image: cdrsandbox/cdr-register-testharness:20230315
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -267,6 +267,7 @@ services:
        - ${HOME}/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
        - ./datarecipients/cdr-sandbox-data-in-local-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-local-dr-0005
        - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
+       - ./dataholders:/tmp/cache/dataholder
 
   pingdatagovernance:
     image: pingidentity/pingauthorize:edge
