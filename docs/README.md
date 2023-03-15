@@ -42,6 +42,7 @@ git clone \
     127.0.0.1 pd.data-holder.local
     127.0.0.1 consent.data-holder.local
     127.0.0.1 spa.data-recipient.local
+    127.0.0.1 app.data-recipient.local
     ```
 
 1. Navigate to the docker-compose folder:
