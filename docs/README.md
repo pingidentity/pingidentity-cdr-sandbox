@@ -51,10 +51,10 @@ git clone \
     cd ~/projects/cdr/docker-compose
     ```
 
-1. Use start-sandbox.sh shell script to bring the CDR Sandbox stack up. This will build a local instance of cdrsandbox/pingaccess:latest before running docker-compose up:
+1. Start docker containers with docker-compose:
 
     ```sh
-    ./start-sandbox.sh
+    docker-compose up -d
     ```
 
 1. To display the server logs as the stack starts up, run the following command (ctrl-c to exit):
