@@ -29,7 +29,7 @@ services:
 #      - pingnet-internal
 
   pingaccess:
-    image: cdrsandbox/pingaccess:latest
+    image: pingidentity/pingaccess:edge
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/in/instance/conf
@@ -325,19 +325,19 @@ services:
        - ../server_profiles/pingdatagovernancepap:/opt/in
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
 
-  data-in-spa:
-    image: cdrsandbox/datain-app:20211210
-    environment:
-      - PORT=2280
-    env_file:
-      - cdr.env
-    ports:
-      - "2280:2280"
-    networks:
-      - pingnet-internal
-    stdin_open: true
-    volumes:
-      - ./datain-app-config.js:/app/src/config.js
+#  data-in-spa:
+#    image: cdrsandbox/datain-app:20211210
+#    environment:
+#      - PORT=2280
+#    env_file:
+#      - cdr.env
+#    ports:
+#      - "2280:2280"
+#    networks:
+#      - pingnet-internal
+#    stdin_open: true
+#    volumes:
+#      - ./datain-app-config.js:/app/src/config.js
 
 #  pingdataconsole:
 #    image: pingidentity/pingdataconsole:edge
@@ -347,7 +347,7 @@ services:
 #      - pingnet-internal
 
   datain-configurepf:
-    image: cdrsandbox/datain-configure-pf:20210421
+    image: cdrsandbox/datain-configure-pf:20230317
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env
