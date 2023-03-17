@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.2.0.8"},
+    "metadata": {"pfVersion": "11.2.2.0"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -241,7 +241,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://c9b1a752e902:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://e10173f700fe:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -539,7 +539,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1829,7 +1835,7 @@
                             },
                             {
                                 "name": "Request Object Template",
-                                "value": "{\n \"response_type\": \"code id_token\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read energy:accounts.basic:read energy:accounts.detail:read\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  }\n}"
+                                "value": "{\n \"response_type\": \"code id_token\",\n  \"scope\": \"openid bank:accounts.basic:read bank:transactions:read\",\n  \"claims\": {\n    \"sharing_duration\": 5184000,\n    \"id_token\": {\n      \"acr\": {\n        \"values\": [\n          \"urn:cds.au:cdr:2\"\n        ],\n        \"essential\": true\n      },\n      \"auth_time\": {\n        \"essential\": true\n      }\n    },\n    \"userinfo\": {\n      \"family_name\": {\n        \"essential\": true\n      },\n      \"given_name\": {\n        \"essential\": true\n      }\n    }\n  }\n}"
                             },
                             {
                                 "name": "Ignore SSL Errors",
@@ -1909,7 +1915,7 @@
                             },
                             {
                                 "name": "Override redirect uri",
-                                "value": "https://sso.${BASE_HOSTNAME}:6443/ext/cdr/data-in/callback"
+                                "value": "https://sso.${BASE_HOSTNAME}/ext/cdr/data-in/callback"
                             },
                             {
                                 "name": "Default Data Holder Status To Active",
