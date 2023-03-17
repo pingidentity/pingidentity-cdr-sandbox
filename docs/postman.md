@@ -23,6 +23,10 @@ The CDR Sandbox includes a Postman collection that includes all the REST calls, 
          - Host: api.data-holder.local
          - PFX File: ~/projects/cdr/scripts/postman/cert/network.p12
          - Passphrase: P@ssword1
+    - Add a 3rd Certificate with the following details
+         - Host: mockregister.data-holder.local
+         - PFX File: ~/projects/cdr/scripts/postman/cert/network.p12
+         - Passphrase: P@ssword1
 
 ## Import the Consent Flow Postman Collection
 
