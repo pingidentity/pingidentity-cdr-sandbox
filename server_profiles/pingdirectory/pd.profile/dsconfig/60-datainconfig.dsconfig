@@ -125,6 +125,16 @@ dsconfig create-scim-attribute \
     --attribute-name public_base_uri  \
     --set required:false
 
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name brand_name  \
+    --set required:false
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder:read  \
+    --attribute-name legal_entity_logo_uri  \
+    --set required:false
+
 dsconfig create-scim-resource-type \
     --type-name ADRDataHolderRead  \
     --type ldap-mapping  \
@@ -206,6 +216,22 @@ dsconfig create-scim-attribute-mapping \
     --mapping-name public_base_uri  \
     --set scim-resource-type-attribute:public_base_uri  \
     --set ldap-attribute:tokenMgtDataHolderPublicBaseUri  \
+    --set searchable:false  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name brand_name  \
+    --set scim-resource-type-attribute:brand_name  \
+    --set ldap-attribute:tokenMgtDataHolderBrandName  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolderRead  \
+    --mapping-name legal_entity_logo_uri  \
+    --set scim-resource-type-attribute:legal_entity_logo_uri  \
+    --set ldap-attribute:tokenMgtDataHolderLegalEntityLogoUri  \
     --set searchable:false  \
     --set authoritative:true
 
@@ -313,6 +339,16 @@ dsconfig create-scim-attribute \
     --attribute-name public_base_uri  \
     --set required:false
 
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name brand_name  \
+    --set required:false
+
+dsconfig create-scim-attribute \
+    --schema-name urn:pingidentity:adr:dataholder  \
+    --attribute-name legal_entity_logo_uri  \
+    --set required:false
+
 dsconfig create-scim-resource-type \
     --type-name ADRDataHolder  \
     --type ldap-mapping  \
@@ -325,6 +361,22 @@ dsconfig create-scim-resource-type \
     --set include-filter:(&(objectClass=tokenMgtDataHolderAux)(tokenMgtStatus=active))  \
     --set create-dn-pattern:ou={ou},ou={tokenMgtDataHolderSoftwareId},ou=adr-software,o=appintegrations  \
     --set core-schema:urn:pingidentity:adr:dataholder
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name brand_name  \
+    --set scim-resource-type-attribute:brand_name  \
+    --set ldap-attribute:tokenMgtDataHolderBrandName  \
+    --set searchable:true  \
+    --set authoritative:true
+
+dsconfig create-scim-attribute-mapping \
+    --type-name ADRDataHolder  \
+    --mapping-name legal_entity_logo_uri  \
+    --set scim-resource-type-attribute:legal_entity_logo_uri  \
+    --set ldap-attribute:tokenMgtDataHolderLegalEntityLogoUri  \
+    --set searchable:false  \
+    --set authoritative:true
 
 dsconfig create-scim-attribute-mapping \
     --type-name ADRDataHolder  \

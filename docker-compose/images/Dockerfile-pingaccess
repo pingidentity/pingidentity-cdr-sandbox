@@ -1,4 +1,4 @@
-FROM pingidentity/pingaccess:edge 
+FROM pingidentity/pingaccess:7.2.0-alpine_3.17.2-al11-edge 
 
 ARG APKURL
 
