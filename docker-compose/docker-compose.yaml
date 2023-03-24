@@ -323,7 +323,7 @@ services:
 #      - pingnet-internal
 
   datain-configurepf:
-    image: tamatping/datain-configure-pf:20230322
+    image: tamatping/datain-configure-pf:20230324
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env
