@@ -29,7 +29,7 @@ services:
 #      - pingnet-internal
 
   pingaccess:
-    image: pingidentity/pingaccess:edge
+    image: tamatping/pingaccess:20230330
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/in/instance/conf
