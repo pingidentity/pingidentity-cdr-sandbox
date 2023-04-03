@@ -1,4 +1,4 @@
-MOCKREGISTER_BASEURL=http://localhost:8084
+MOCKREGISTER_BASEURL=https://mockregister.data-holder.local
 SERVERCERT_SUBJECT="/CN=johnsmith@companya.com/ST=VIC/L=MELBOURNE/OU=DATAHOLDER/O=DATAHOLDER/C=AU"
 
 
