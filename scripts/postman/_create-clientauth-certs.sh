@@ -1,5 +1,5 @@
 MOCKREGISTER_BASEURL=https://mockregister.data-holder.local
-SERVERCERT_SUBJECT="/CN=johnsmith@companya.com/ST=VIC/L=MELBOURNE/OU=DATAHOLDER/O=DATAHOLDER/C=AU"
+SERVERCERT_SUBJECT="/CN=dcr-test-postman/O=PingIdentity/C=AU"
 
 
 rm -R ./cert/*

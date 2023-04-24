@@ -72,82 +72,6 @@ git clone \
     docker ps
     ```
 
-### Run the Data Recipient Demonstration Application - DATA OUT for Data Holders
-
-The Data Recipient Demonstration Application (DR Client) has been provided for the purposes of demonstrating the basic Consumer Journey as detailed in the [Consumer Standards Consumer Experience Guidelines](https://consumerdatastandards.gov.au/guidelines-and-conventions/consumer-experience-guidelines).
-
-The DR Client is designed to demonstrate the Data Recipient and Data Holder interaction throughout a consent lifecycle; specifically it implements the Consent, Authenticate and Authorise stages of the Consumer Journey - The Consent Flow.
-
-![CDR Consent Flow](images/consent_flow.png)
-
-The DR Client implements the three main roles as defined in the Consumer Data Rights standard:
-
-1. The Data Holder - AnyBank
-1. The Data Recipient - Account Link (ALink)
-1. The Customer - Alice Stone
-
-The following steps will demonstrate how:
-
-- To establish a consent with Alice’s bank: AnyBank
-- To use the ALink application to access transaction data
-- Alice can adjust and/or revoke her consent
-
-Throughout the content lifecycle Alice will be able to verify the consent is being enforced by refreshing the Alink application and confirming whether the balances for each shared transaction account are visible or not.
-
-The DR Client is already running as a service if you followed the steps detailed above. To confirm that the service is running enter:
-
-```sh
-docker ps -f "name=pingdirectory"
-```
-
-And verify that the value of STATUS is “healthy”
-
-### Running the DR Client
-
-1. Open your web browser and goto [http://dr.data-recipient.local:8080/](http://dr.data-recipient.local:8080/)
-
-    !!! warning "SSL Certificates"
-        The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the DR Client.
-
-1. At the ALink Data Recipient login page provide the following:
-    * Username: astone
-    * Password: password
-
-1. You should now be logged into ALink as the CDR Consumer “astone”
-
-1. Select the My Banks button (top right corner)
-
-1. From the drop down of Data Holders select “AnyBank” and click the Connect button
-
-1. Validate the Consent request and click Start. You will now be redirected to AnyBank to Authenticate and Authorise the consent.
-
-1. At the AnyBank Customer ID prompt enter in Alice’s bank identifier:
-    * Customer ID: crn1
-
-1. At the SMS OTP field provide the value:
-    * SMS OTP: 123456
-
-    !!! Note
-        The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.
-
-1. AnyBank will present the Authorisation prompt. Review the authorisation and confirm that it matches the Consent requested by ALink.<br>
-
-    !!! Note
-        The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.
-
-1. Select the 1st the Transaction Account to share transaction data with ALink
-1. Click the Confirm button. Alison should be redirected back to ALink.
-1. On the Alink page the consent should be shown. The consent can be revoked from here.
-1. Click on the ALink logo to view the shared account balances.
-1. Repeat steps 5 to 13 specifying additional transaction accounts in step 10 to update the consent
-1. Note the extra Transaction Accounts and associated balances.
-1. Select the My Banks button and click the Revoke Consent button. You will receive an alert stating that the Consent has been revoked.
-1. To validate the revoked consent click on the ALink logo to view no more shared accounts.
-
-    The DR Client uses the following DR users and DH Customer Numbers. Any combination of Username and Customer Number can be used however only one at a time.
-
-    ![Accounts Table](images/account_table.png)
-
 ### Run the Data Recipient SPA Application - DATA IN for Data Holders
 The Data Recipient SPA Application (SPA Appliction) is designed to demonstrate the interaction between a DH acting as a DR to "consume" shared data from 3rd party Data Holders. It implements the CDR consent lifecycle allowing customer to consnet a DH to obtain data from anothet DH.
 
@@ -168,10 +92,10 @@ The following steps will demonstrate how:
 The SPA Appliction is already running as a service if you followed the steps detailed above. To confirm that the service is running enter:
 
 ```sh
-docker ps -f "name=pingdirectory"
+docker logs docker-compose_datain-configurepf_1
 ```
 
-And verify that the value of STATUS is “healthy”
+And verify that there has been activity. Please note the container name is dependent on OS and may need to be adjusted.
 
 ### Running the SPA Appliction
 
