@@ -241,7 +241,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://6524598882c4:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://9cea8ace5133:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -706,7 +706,6 @@
                         {"name": "claims_requestedACR"},
                         {"name": "claims_idtoken"},
                         {"name": "claims_userinfo"},
-                        {"name": "pi.clientContext.authorization_details"},
                         {"name": "claims_sharingDurationExpiresAt"},
                         {"name": "claimsParameter"},
                         {"name": "claims_cdrArrangementId"}
@@ -735,7 +734,6 @@
                         {"name": "cdr_consent_id"},
                         {"name": "claimsParameter"},
                         {"name": "result"},
-                        {"name": "authorizationDetails"},
                         {"name": "acr"},
                         {"name": "cdrArrangementId"},
                         {"name": "sharingDurationExpiresAt"},
@@ -1656,10 +1654,6 @@
                                 "multiValued": false
                             },
                             {
-                                "name": "jsonencoded_authorization_details",
-                                "multiValued": false
-                            },
-                            {
                                 "name": "iss",
                                 "multiValued": false
                             },
@@ -1930,6 +1924,22 @@
                             {
                                 "name": "Brands Endpoint X-V Header Value",
                                 "value": ""
+                            },
+                            {
+                                "name": "Preferred Id Token Encrypted Response Alg",
+                                "value": "RSA-OAEP"
+                            },
+                            {
+                                "name": "Preferred Id Token Encrypted Response Enc",
+                                "value": "A256GCM"
+                            },
+                            {
+                                "name": "Preferred Authorization Encrypted Alg",
+                                "value": "RSA-OAEP"
+                            },
+                            {
+                                "name": "Preferred Authorization Encrypted Response Enc",
+                                "value": "A256GCM"
                             }
                         ]
                     },
@@ -3167,7 +3177,6 @@
                         {"name": "ISSUER"},
                         {"name": "ADR_ORG_ID"},
                         {"name": "PERSISTENT_GRANT_LIFETIME"},
-                        {"name": "RAR_AUTHZ_DETAILS"},
                         {"name": "CLAIMS_PARAMETER"}
                     ]
                 },
@@ -3492,7 +3501,6 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
-                        "RAR_AUTHZ_DETAILS": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "CLAIMS_PARAMETER": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
@@ -3531,7 +3539,6 @@
                         "APPROVED_SCOPES": {"source": {"type": "NO_MAPPING"}},
                         "AVAILABLE_ACCOUNTS": {"source": {"type": "NO_MAPPING"}},
                         "ACR_VALUES": {"source": {"type": "NO_MAPPING"}},
-                        "RAR_AUTHZ_DETAILS": {"source": {"type": "NO_MAPPING"}},
                         "AUTH_TIME": {"source": {"type": "NO_MAPPING"}},
                         "CLAIMS_PARAMETER": {"source": {"type": "NO_MAPPING"}},
                         "USER_NAME": {
@@ -3584,10 +3591,6 @@
                         "ACR_VALUES": {
                             "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
                             "value": "SAML_AUTHN_CTX"
-                        },
-                        "RAR_AUTHZ_DETAILS": {
-                            "source": {"type": "AUTHENTICATION_POLICY_CONTRACT"},
-                            "value": "authorizationDetails"
                         },
                         "AUTH_TIME": {
                             "source": {"type": "EXPRESSION"},
@@ -3740,10 +3743,6 @@
                                 "source": {"type": "OAUTH_PERSISTENT_GRANT"},
                                 "value": "EXPIRES_AT"
                             },
-                            "verified_claims": {
-                                "source": {"type": "EXPRESSION"},
-                                "value": "#parser = new org.json.simple.parser.JSONParser(),\n#decoder = @java.util.Base64@getDecoder(),\n\n#returnValue = null,\n\n#isUserInfo = (#this.get(\"context.HttpRequest\").getObjectValue().getRequestURI().endsWith(\"userinfo.openid\")),\n\n#claimsParameter = #this.get(\"ds.ekyc.response\"),\n\n#claimsParameterDecoded = (#claimsParameter != null)? \n  new java.lang.String(#decoder.decode(@java.net.URLDecoder@decode(#claimsParameter.toString()))):\"{}\",\n\n#claimsParameterJSON = #parser.parse(#claimsParameterDecoded),\n\n#requestedClaims = (#isUserInfo)?(#claimsParameter != null? #claimsParameterJSON.get(\"userinfo\"):null):(#claimsParameter != null? #claimsParameterJSON.get(\"id_token\"):null),\n\n#verifiedClaims = (#requestedClaims != null && #requestedClaims.containsKey(\"verified_claims\"))?#requestedClaims.get(\"verified_claims\"):null,\n\n#verifiedClaims"
-                            },
                             "updated_at": {
                                 "source": {"type": "EXPRESSION"},
                                 "value": "#returnValue = (#this.get(\"ds.ldap.modifyTimestamp\") != null)?#this.get(\"ds.ldap.modifyTimestamp\"):#this.get(\"ds.ldap.createTimestamp\"), #claimName = \"updated_at\",   #allowedScope = \"profile\",   #isUserInfo = (#this.get(\"context.HttpRequest\").getObjectValue().getRequestURI().endsWith(\"userinfo.openid\")),   #requestedClaims = (#isUserInfo)?(#this.get(\"persistentgrant.CLAIMS_USERINFO\") != null? #this.get(\"persistentgrant.CLAIMS_USERINFO\").getValuesAsCollection():null):(#this.get(\"persistentgrant.CLAIMS_IDTOKEN\") != null? #this.get(\"persistentgrant.CLAIMS_IDTOKEN\").getValuesAsCollection():null),    #approvedScopes = #this.get(\"persistentgrant.APPROVED_SCOPES\").getValuesAsCollection(), #hasRequiredScope = (#approvedScopes != null && #approvedScopes.contains(#allowedScope)),    (#hasRequiredScope || (#requestedClaims != null && (#requestedClaims.equals(#claimName) || #requestedClaims.contains(#claimName))))? #returnValue : null"
@@ -3769,53 +3768,28 @@
                                 "value": "#objVal = #this.get(\"persistentgrant.SHARING_DURATION_EXPIRES_AT\").getObjectValue(),  #longVal = (#objVal instanceof java.lang.Long)?#objVal:@java.lang.Long@parseLong(#objVal.toString()),   #longVal"
                             }
                         },
-                        "attributeSources": [
-                            {
-                                "memberOfNestedGroup": false,
-                                "binaryAttributeSettings": {},
-                                "searchScope": "SUBTREE",
-                                "dataStoreRef": {
-                                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
-                                    "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
-                                },
-                                "description": "ldap",
-                                "id": "ldap",
-                                "searchAttributes": [
-                                    "Subject DN",
-                                    "cn",
-                                    "createTimestamp",
-                                    "givenName",
-                                    "modifyTimestamp",
-                                    "sn"
-                                ],
-                                "type": "LDAP",
-                                "baseDn": "ou=people,${USER_BASE_DN}",
-                                "searchFilter": "entryUUID=${sub}"
+                        "attributeSources": [{
+                            "memberOfNestedGroup": false,
+                            "binaryAttributeSettings": {},
+                            "searchScope": "SUBTREE",
+                            "dataStoreRef": {
+                                "location": "https://localhost:9999/pf-admin-api/v1/dataStores/LDAP-C29DCC21274C10A483A76237675C3A22715D638C",
+                                "id": "LDAP-C29DCC21274C10A483A76237675C3A22715D638C"
                             },
-                            {
-                                "dataStoreRef": {
-                                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores/Other-78E855B521DB6749F4D81045BBE2B674C6E38158",
-                                    "id": "Other-78E855B521DB6749F4D81045BBE2B674C6E38158"
-                                },
-                                "description": "ekyc",
-                                "id": "ekyc",
-                                "filterFields": [
-                                    {
-                                        "name": "Resource Path",
-                                        "value": "/ekyc/index.jsp"
-                                    },
-                                    {
-                                        "name": "Authorization Header",
-                                        "value": ""
-                                    },
-                                    {
-                                        "name": "Body",
-                                        "value": "{\"request\":\"${persistentgrant.CLAIMS_PARAMETER}\"}"
-                                    }
-                                ],
-                                "type": "CUSTOM"
-                            }
-                        ],
+                            "description": "ldap",
+                            "id": "ldap",
+                            "searchAttributes": [
+                                "Subject DN",
+                                "cn",
+                                "createTimestamp",
+                                "givenName",
+                                "modifyTimestamp",
+                                "sn"
+                            ],
+                            "type": "LDAP",
+                            "baseDn": "ou=people,${USER_BASE_DN}",
+                            "searchFilter": "entryUUID=${sub}"
+                        }],
                         "issuanceCriteria": {
                             "expressionCriteria": [{
                                 "expression": "#requestString=#this.get(\"context.HttpRequest\").getObjectValue().getRequestURL().toString(), #url=new java.net.URL(#requestString), #port=(#url.getPort()==-1)?\"\":\":\"+#url.getPort(), #expectedAUD=#url.getProtocol() + \"://\" + #url.getHost() + #port, #this.get(\"persistentgrant.ISSUER\") == null || #this.get(\"persistentgrant.ISSUER\").toString().equals(#expectedAUD)",
@@ -3833,8 +3807,7 @@
                         "name",
                         "refresh_token_expires_at",
                         "sharing_expires_at",
-                        "updated_at",
-                        "verified_claims"
+                        "updated_at"
                     ]}},
                     "returnIdTokenOnRefreshGrant": true,
                     "id": "obOIDCPolicy",
@@ -3858,12 +3831,6 @@
                             {
                                 "includeInUserInfo": false,
                                 "name": "refresh_token_expires_at",
-                                "includeInIdToken": true,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": true,
-                                "name": "verified_claims",
                                 "includeInIdToken": true,
                                 "multiValued": false
                             },
@@ -4229,10 +4196,6 @@
                         "type": "AUTHENTICATION_POLICY_CONTRACT"
                     },
                     "attributeContractFulfillment": {
-                        "jsonencoded_authorization_details": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "RAR_AUTHZ_DETAILS"
-                        },
                         "sub": {
                             "source": {"type": "OAUTH_PERSISTENT_GRANT"},
                             "value": "CUSTOMER_REF"
@@ -4295,7 +4258,6 @@
                 {
                     "context": {"type": "CLIENT_CREDENTIALS"},
                     "attributeContractFulfillment": {
-                        "jsonencoded_authorization_details": {"source": {"type": "NO_MAPPING"}},
                         "sub": {
                             "source": {"type": "CONTEXT"},
                             "value": "ClientId"
@@ -4320,10 +4282,6 @@
                 {
                     "context": {"type": "DEFAULT"},
                     "attributeContractFulfillment": {
-                        "jsonencoded_authorization_details": {
-                            "source": {"type": "OAUTH_PERSISTENT_GRANT"},
-                            "value": "RAR_AUTHZ_DETAILS"
-                        },
                         "sub": {
                             "source": {"type": "OAUTH_PERSISTENT_GRANT"},
                             "value": "USER_KEY"
@@ -4547,7 +4505,6 @@
                                                         },
                                                         "value": "claimsParameter"
                                                     },
-                                                    "authorizationDetails": {"source": {"type": "NO_MAPPING"}},
                                                     "result": {
                                                         "source": {"type": "TEXT"},
                                                         "value": "approve"
@@ -5078,13 +5035,6 @@
                                                         },
                                                         "value": "claimsParameter"
                                                     },
-                                                    "authorizationDetails": {
-                                                        "source": {
-                                                            "id": "cdrPolicyFragmentNoMFA",
-                                                            "type": "FRAGMENT"
-                                                        },
-                                                        "value": "authorizationDetails"
-                                                    },
                                                     "result": {
                                                         "source": {
                                                             "id": "cdrPolicyFragmentNoMFA",
@@ -5202,13 +5152,6 @@
                                                         "type": "ADAPTER"
                                                     },
                                                     "value": "claims_userinfo"
-                                                },
-                                                "pi.clientContext.authorization_details": {
-                                                    "source": {
-                                                        "id": "cdrSelectorAdapter",
-                                                        "type": "ADAPTER"
-                                                    },
-                                                    "value": "pi.clientContext.authorization_details"
                                                 },
                                                 "claims_sharingDurationExpiresAt": {
                                                     "source": {
