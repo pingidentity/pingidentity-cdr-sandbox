@@ -241,7 +241,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://9cea8ace5133:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://a4aafad76de6:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -539,7 +539,13 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{"synchronizationFrequency": 60}],
+            "items": [{
+                "dataStoreRef": {
+                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
+                    "id": ""
+                },
+                "synchronizationFrequency": 60
+            }],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -3977,7 +3983,7 @@
                         },
                         {
                             "name": "Require Encrypted ID Token",
-                            "value": "true"
+                            "value": "false"
                         },
                         {
                             "name": "Require Encrypted JARM",

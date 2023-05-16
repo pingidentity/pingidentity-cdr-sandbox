@@ -372,7 +372,7 @@
     </init-param>
     <init-param>
       <param-name>SCIMIgnoreSSL</param-name>
-      <param-value>true</param-value>
+      <param-value>false</param-value>
     </init-param>
     <init-param>
       <param-name>ExpectedAudience</param-name>
