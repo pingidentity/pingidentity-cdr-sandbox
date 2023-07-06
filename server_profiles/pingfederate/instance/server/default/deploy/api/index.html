@@ -83,11 +83,12 @@ function replenish()
     document.getElementById("flowEndpoint").value = flowEndpoint;
     accessToken = localStorage.getItem("accessToken");
 
-    document.getElementById("authcode").value = getParameter("code");
-    document.getElementById("returnstate").value = getParameter("state");
+    document.getElementById("authcode").value = getFragmentParameter("code");
+    document.getElementById("jarmresponse").value = getQueryParameter("response");
+    document.getElementById("returnstate").value = getFragmentParameter("state")?getFragmentParameter("state"):getQueryParameter("state");
 }
 
-function getParameter(param)
+function getFragmentParameter(param)
 {
   const params = new Proxy(new URLSearchParams(window.location.hash.replace("#", "")), {
     get: (searchParams, prop) => searchParams.get(prop),
@@ -96,6 +97,44 @@ function getParameter(param)
   let value = params[param];
 
   return value;
+}
+
+function getQueryParameter(param)
+{
+  const params = new Proxy(new URLSearchParams(window.location.search.replace("?", "")), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+  let value = params[param];
+
+  return value;
+}
+
+function exchangeJARM()
+{
+  let jarmResponse = document.getElementById("jarmresponse").value;
+
+  let requestPayloadJSON = {"response": jarmResponse};
+
+  let endpoint = localStorage.getItem("flowEndpoint");
+
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', endpoint + "?action=submitDataHolderAuthJWT");
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.setRequestHeader('X-XSRF-Header', 'PingFederate');
+  xhr.withCredentials = true;
+  xhr.send(JSON.stringify(requestPayloadJSON));
+
+  xhr.onload = function() {
+    let responseObj = JSON.parse(xhr.response);
+
+    document.getElementById("status").value = responseObj.status;
+    document.getElementById("statusMsg").value = JSON.stringify(responseObj);
+    accessToken = responseObj.authorizeResponse.access_token;
+
+    localStorage.setItem("accessToken", accessToken);
+  }
 }
 
 function exchangeCode()
@@ -163,6 +202,9 @@ function getData()
 <br/>
 <input type="text" style="min-width: 400px" id="authcode"/>
 <input type="button" style="min-width: 200px" onclick="exchangeCode()" name="ExchangeAuthCode" value="Exchange Auth Code"/> - Data Holder Return Auth Code
+<br/>
+<input type="text" style="min-width: 400px" id="jarmresponse"/>
+<input type="button" style="min-width: 200px" onclick="exchangeJARM()" name="ExchangeJARMResponse" value="Exchange JARM Response"/> - Data Holder Return JARM Response
 <br/>
 <input type="text" style="min-width: 400px" id="status"/> - Status
 <br/>

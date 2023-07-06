@@ -1257,6 +1257,7 @@
         <Logger name="org.sourceid.common.dsig" level="INFO" />
         <Logger name="org.sourceid.saml20.domain.mgmt.impl.PluginSupport" level="INFO" />
         <Logger name="com.pingidentity" level="INFO" />
+	<Logger name="com.pingidentity.ps.cdr" level="DEBUG" />
         <Logger name="com.pingidentity.common.util.ErrorHandler" level="INFO" additivity="false">
             <AppenderRef ref="CONSOLE" />
             <AppenderRef ref="FILE" />
