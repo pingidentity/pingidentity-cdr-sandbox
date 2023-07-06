@@ -30,6 +30,7 @@ services:
 
   pingaccess:
     image: pingidentity/pingaccess:edge
+#    image: 574076504146.dkr.ecr.us-east-1.amazonaws.com/snapshot-builds/pingaccess:latest-aarch64-06092023
     command: wait-for pingfederate:9031 -t 900 -- entrypoint.sh start-server
     environment:
 #      - LICENSE_DIR=/opt/in/instance/conf
@@ -119,6 +120,7 @@ services:
 
   pingfederate:
     image: pingidentity/pingfederate:edge
+#    image: 574076504146.dkr.ecr.us-east-1.amazonaws.com/snapshot-builds/pingfederate:latest-aarch64-06092023
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
 #    environment:
 #      - LICENSE_DIR=/opt/in/instance/server/default/conf
@@ -240,7 +242,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210421_2:/tmp/cache
        - ./datarecipients/cdr-sandbox-data-in-local-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-local-dr-0005
        - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
        - ./dataholders:/tmp/cache/dataholder

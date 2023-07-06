@@ -241,7 +241,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://a4aafad76de6:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://cf2589aa2309:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -539,13 +539,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1750,16 +1744,16 @@
                                             "value": "https://sso.${BASE_HOSTNAME}:6443"
                                         },
                                         {
-                                            "name": "Legal Entity ID",
-                                            "value": "legalentityid-sso"
-                                        },
-                                        {
                                             "name": "Sector",
                                             "value": "banking"
                                         },
                                         {
                                             "name": "Local Base URL",
                                             "value": "https://sso.internal:3000"
+                                        },
+                                        {
+                                            "name": "Enable For DCR",
+                                            "value": "true"
                                         }
                                     ]
                                 },
@@ -1775,16 +1769,16 @@
                                             "value": "https://sso-2.${BASE_HOSTNAME}:6443"
                                         },
                                         {
-                                            "name": "Legal Entity ID",
-                                            "value": "legalentityid-sso-2"
-                                        },
-                                        {
                                             "name": "Sector",
                                             "value": "banking"
                                         },
                                         {
                                             "name": "Local Base URL",
                                             "value": "https://sso-2.internal:3000"
+                                        },
+                                        {
+                                            "name": "Enable For DCR",
+                                            "value": "true"
                                         }
                                     ]
                                 }
@@ -1813,7 +1807,7 @@
                             },
                             {
                                 "name": "SCIMv2 Base URL",
-                                "value": "https://pingdirectory:1443/scim/v2/"
+                                "value": "https://pd.${BASE_HOSTNAME}/scim/v2/"
                             },
                             {
                                 "name": "ENABLE JARM",
@@ -1873,7 +1867,7 @@
                             },
                             {
                                 "name": "Data Holder List Refresh Seconds",
-                                "value": "60"
+                                "value": "20"
                             },
                             {
                                 "name": "CDR Register Scope",
@@ -1913,7 +1907,7 @@
                             },
                             {
                                 "name": "Default Data Holder Status To Active",
-                                "value": "true"
+                                "value": "false"
                             },
                             {
                                 "name": "CDR Register Base URL (MTLS) Local Override",

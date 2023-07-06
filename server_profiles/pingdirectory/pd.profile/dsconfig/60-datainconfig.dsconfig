@@ -1,4 +1,10 @@
 dsconfig create-local-db-index \
+    --backend-name appintegrations \
+    --index-name tokenMgtDataHolderDHBrandId  \
+    --set index-type:equality \
+    --set prime-index:true
+
+dsconfig create-local-db-index \
     --backend-name appintegrations  \
     --index-name tokenMgtInstanceRefreshToken  \
     --set index-type:equality  \
@@ -383,6 +389,7 @@ dsconfig create-scim-attribute-mapping \
     --mapping-name dh_brand_id  \
     --set scim-resource-type-attribute:dh_brand_id  \
     --set ldap-attribute:tokenMgtDataHolderDHBrandId  \
+    --set searchable:true  \
     --set authoritative:true
 
 dsconfig create-scim-attribute-mapping \
