@@ -24,7 +24,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: cdrsandbox/cdr-register-testharness:20211221
+    image: cdrsandbox/cdr-register-testharness:20230711_3
     environment:
       - VERBOSE=true
     env_file:

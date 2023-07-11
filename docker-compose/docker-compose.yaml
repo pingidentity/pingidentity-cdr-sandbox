@@ -227,7 +227,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: tamatping/cdr-register-testharness:20230330
+    image: tamatping/cdr-register-testharness:20230711_3
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
