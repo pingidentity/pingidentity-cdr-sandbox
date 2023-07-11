@@ -229,7 +229,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: tamatping/cdr-register-testharness:20230330
+    image: tamatping/cdr-register-testharness:20230711_3
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -242,9 +242,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210421_2:/tmp/cache
-       - ./datarecipients/cdr-sandbox-data-in-local-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-local-dr-0005
-       - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210706:/tmp/cache
        - ./dataholders:/tmp/cache/dataholder
 
   pingdatagovernance:
