@@ -5,7 +5,7 @@
 		"description": "20201211 - updated to work with CDR Register Test Harness v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "589324",
-		"_collection_link": "https://ping-identity.postman.co/workspace/CDR-Sandbox~7171be4a-9c94-440a-9354-982ccdaa987e/collection/589324-d5df8413-2fe6-45e2-8c87-24be5cd6ac1c?action=share&creator=589324&source=collection_link"
+		"_collection_link": "https://ping-identity.postman.co/workspace/CDR-Sandbox~7171be4a-9c94-440a-9354-982ccdaa987e/collection/589324-d5df8413-2fe6-45e2-8c87-24be5cd6ac1c?action=share&source=collection_link&creator=589324"
 	},
 	"item": [
 		{
@@ -176,6 +176,79 @@
 							"response": []
 						},
 						{
+							"name": "S002.T001.009 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"register-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{cdr-register-testharness-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S001.T001.003 - Get CDR Register Access Token",
 							"event": [
 								{
@@ -201,6 +274,16 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_assertion",
+											"value": "{{register-client-assertion}}",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/as/token.oauth2",
 									"host": [
@@ -19283,6 +19366,79 @@
 							"response": []
 						},
 						{
+							"name": "S002.T001.009 - Creates JWT-Bearer Client Assertion",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status=200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"pm.test(\"Validate client assertion is available\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.expect(response).to.have.property('client-assertion');",
+											"});",
+											"pm.test(\"Set environment variables for next test\", function () {",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"register-client-assertion\", response[\"client-assertion\"]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"strictSSL": false
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "private-jwk",
+											"value": "{{software-jwks-private}}",
+											"type": "text"
+										},
+										{
+											"key": "client-id",
+											"value": "{{softwareId}}",
+											"type": "text"
+										},
+										{
+											"key": "token-endpoint",
+											"value": "{{cdr-register-testharness-host}}/as/token.oauth2",
+											"type": "text"
+										},
+										{
+											"key": "kid",
+											"value": "{{softwareId}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cdr-register-testharness-host}}/testtool/datarecipient/createClientAssertion",
+									"host": [
+										"{{cdr-register-testharness-host}}"
+									],
+									"path": [
+										"testtool",
+										"datarecipient",
+										"createClientAssertion"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "S001.T003.003 - Get CDR Register Access Token",
 							"event": [
 								{
@@ -19308,6 +19464,16 @@
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_assertion",
+											"value": "{{register-client-assertion}}",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{cdr-register-testharness-host}}/as/token.oauth2",
 									"host": [

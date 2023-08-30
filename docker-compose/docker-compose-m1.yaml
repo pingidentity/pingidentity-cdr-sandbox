@@ -119,7 +119,7 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: pingidentity/pingfederate:edge
+    image: pingidentity/pingfederate:11.2.7-edge
 #    image: 574076504146.dkr.ecr.us-east-1.amazonaws.com/snapshot-builds/pingfederate:latest-aarch64-06092023
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
 #    environment:
@@ -172,7 +172,6 @@ services:
       - 1443:1443
       - 389:1389
     expose:
-      - 443
       - 1443
       - 3443
       - 389
@@ -242,7 +241,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210706:/tmp/cache
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210824:/tmp/cache
        - ./dataholders:/tmp/cache/dataholder
 
   pingdatagovernance:
@@ -323,8 +322,8 @@ services:
 #      - pingnet-internal
 
   datain-configurepf:
-    image: tamatping/datain-configure-pf:20230324
-    command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
+    image: tamatping/datain-configure-pf:20230825-2-arm
+    command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:9000 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env
     networks:
