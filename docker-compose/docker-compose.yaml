@@ -74,7 +74,7 @@ services:
       - pingnet-internal
 
   agentless-consentapp:
-    image: cdrsandbox/agentless-consentapp:20230317
+    image: tamatping/agentless-consentapp:20231123
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -95,7 +95,7 @@ services:
       - pingnet-internal
 
   mock-dh-api:
-    image: cdrsandbox/mock-dh-apis:20230317
+    image: tamatping/mock-dh-apis:20231123
 #    command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -227,7 +227,7 @@ services:
       - pingnet-internal
 
   cdrregister:
-    image: tamatping/cdr-register-testharness:20230711_3
+    image: tamatping/cdr-register-testharness:20231123_1
     #command: /tmp/hooks/start-service.sh
     environment:
       - VERBOSE=true
@@ -302,7 +302,7 @@ services:
 #      - ./licenses/PingDataGovernance.lic:/opt/licenses/PingDataGovernance.lic
 
   data-in-spa:
-    image: cdrsandbox/datain-app:20230317
+    image: tamatping/datain-app:20231123
     environment:
       - PORT=2280
     env_file:
@@ -323,7 +323,7 @@ services:
 #      - pingnet-internal
 
   datain-configurepf:
-    image: tamatping/datain-configure-pf:20230324
+    image: tamatping/datain-configure-pf:20231123
     command: /tmp/wait-for pingdirectory:1389 -t 900 -- /tmp/wait-for pingaccess:443 -t 900 -- /tmp/hooks/start-service.sh
     env_file:
       - cdr.env
