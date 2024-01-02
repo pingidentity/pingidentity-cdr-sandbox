@@ -53,8 +53,17 @@ git clone \
 
 1. Start docker containers with docker-compose:
 
+    For Intel based machines:
+
     ```sh
     docker-compose up -d
+    ```
+
+
+    For silicon based Mac machines:
+
+    ```sh
+    docker-compose --file docker-compose-m1.yaml up -d
     ```
 
 1. To display the server logs as the stack starts up, run the following command (ctrl-c to exit):
