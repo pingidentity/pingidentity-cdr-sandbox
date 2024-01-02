@@ -1,0 +1,1422 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cdr.pingidentity.com/">
+      
+      
+      
+        <link rel="next" href="postman/">
+      
+      
+      <link rel="icon" href="images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>CDR Quick Start - Ping Identity CDR Sandbox</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="mkdocs/overrides/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quick-start-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Ping Identity CDR Sandbox" class="md-header__button md-logo" aria-label="Ping Identity CDR Sandbox" data-md-component="logo">
+      <!-- Logo -->
+
+  
+
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ping Identity CDR Sandbox
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CDR Quick Start
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pingidentity/pingidentity-cdr-sandbox" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pingidentity/pingidentity-cdr-sandbox
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="." class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="howtos/howto_adminconsoles/" class="md-tabs__link">
+          
+  
+  How Tos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="release-notes/relnotes_CDR-1.6-core-001/" class="md-tabs__link">
+          
+  
+  Release Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="legal/license/" class="md-tabs__link">
+          
+  
+  Legal
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Ping Identity CDR Sandbox" class="md-nav__button md-logo" aria-label="Ping Identity CDR Sandbox" data-md-component="logo">
+      <!-- Logo -->
+
+  
+
+
+    </a>
+    Ping Identity CDR Sandbox
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pingidentity/pingidentity-cdr-sandbox" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pingidentity/pingidentity-cdr-sandbox
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    CDR Quick Start
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    CDR Quick Start
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step by Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step by Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clone-the-cdr-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the CDR Repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-and-start-the-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure and Start the Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-data-recipient-spa-application-data-in-for-data-holders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the Data Recipient SPA Application - DATA IN for Data Holders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-spa-appliction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the SPA Appliction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the SPA Appliction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-account-data-with-existing-arrangement-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Account Data with Existing Arrangement ID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shut-down-the-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shut Down the Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-configuration-cdrenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Configuration (cdr.env)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-server-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving Server Configurations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postman/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Postman Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    How Tos
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            How Tos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="howtos/howto_adminconsoles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Access Administration Consoles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="howtos/howto_generatecerts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Generate MTLS Authentication Keys
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Release Notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Release Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.6-core-001/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Current (CDR 1.6)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.5-core-001/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.5 (core 001))
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.4-core-003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.4 (core 003)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.4-core-002/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.4 (core 002)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.4-core-001/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.4 (core 001)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.3.1-core-001/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.3.1 (core 001)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.2-core-003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.2 (core 003)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/relnotes_CDR-1.2-core-002/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CDR 1.2 (core 002)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Legal
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Legal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="legal/license/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="legal/disclaimer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disclaimer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="legal/3rdPartySoftware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third-Party Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="legal/contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step by Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step by Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clone-the-cdr-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the CDR Repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-and-start-the-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure and Start the Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-data-recipient-spa-application-data-in-for-data-holders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the Data Recipient SPA Application - DATA IN for Data Holders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-spa-appliction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the SPA Appliction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the SPA Appliction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accessing-account-data-with-existing-arrangement-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Account Data with Existing Arrangement ID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shut-down-the-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shut Down the Stack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Considerations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-configuration-cdrenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Configuration (cdr.env)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-server-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving Server Configurations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link"> ¶</a></h1>
+<p>The CDR Sandbox is an all-encompassing “black-box” environment created using Docker to deploy images in stable, network-enabled containers. The sandbox includes preconfigured Docker Compose YAML files for quick and easy deployment in a testing/lab scenario. For production deployments, a more comprehensive orchestration solution (eg. Kubernetes) is recommended.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link"> ¶</a></h2>
+<ul>
+<li>Root access to a Linux or MacOS machine with:<ul>
+<li>Git</li>
+<li>Docker</li>
+<li>Docker Compose v1 (v2 is NOT currently supported)</li>
+<li>At least 12GB of RAM available to Docker</li>
+</ul>
+</li>
+<li>A GitHub Account</li>
+<li>An active Ping Identity support account <a href="https://www.pingidentity.com/en/account/register.html">(Link)</a></li>
+<li>A working Ping Identity DevOps installation <a href="https://devops.pingidentity.com">(Link)</a></li>
+</ul>
+<h2 id="step-by-step-guide">Step by Step Guide<a class="headerlink" href="#step-by-step-guide" title="Permanent link"> ¶</a></h2>
+<h3 id="clone-the-cdr-repository">Clone the CDR Repository<a class="headerlink" href="#clone-the-cdr-repository" title="Permanent link"> ¶</a></h3>
+<p>While installing Ping Identity devops, you should have created a project folder in your home directory. We’re going to host the CDR sandbox here too:<br></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://github.com/pingidentity/pingidentity-cdr-sandbox.git<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>~/projects/cdr
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using ~/projects/cdr will make it easier to follow this guide. It will also make it easier for us to help you if you encounter issues.</p>
+</div>
+<h3 id="configure-and-start-the-stack">Configure and Start the Stack<a class="headerlink" href="#configure-and-start-the-stack" title="Permanent link"> ¶</a></h3>
+<ol>
+<li>
+<p>Add the following entries to the /etc/hosts file</p>
+<div class="highlight"><pre><span></span><code><span class="m">127</span>.0.0.1<span class="w"> </span>sso-admin.data-holder.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>sso.data-holder.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>api.data-holder.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>dr.data-recipient.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>mockregister.data-holder.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>pd.data-holder.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>consent.data-holder.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>spa.data-recipient.local
+<span class="m">127</span>.0.0.1<span class="w"> </span>app.data-recipient.local
+</code></pre></div>
+</li>
+<li>
+<p>Navigate to the docker-compose folder:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/projects/cdr/docker-compose
+</code></pre></div>
+</li>
+<li>
+<p>Start docker containers with docker-compose:</p>
+<p>For Intel based machines:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>For silicon based Mac machines:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>--file<span class="w"> </span>docker-compose-m1.yaml<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+<li>
+<p>To display the server logs as the stack starts up, run the following command (ctrl-c to exit):</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-f<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>~/projects/cdr/docker-compose/docker-compose.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>logs<span class="w"> </span>-f
+</code></pre></div>
+</li>
+<li>
+<p>To display the status of each container, run one of the following commands:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
+</code></pre></div>
+</li>
+</ol>
+<h3 id="run-the-data-recipient-spa-application-data-in-for-data-holders">Run the Data Recipient SPA Application - DATA IN for Data Holders<a class="headerlink" href="#run-the-data-recipient-spa-application-data-in-for-data-holders" title="Permanent link"> ¶</a></h3>
+<p>The Data Recipient SPA Application (SPA Appliction) is designed to demonstrate the interaction between a DH acting as a DR to "consume" shared data from 3rd party Data Holders. It implements the CDR consent lifecycle allowing customer to consnet a DH to obtain data from anothet DH.</p>
+<p>The SPA Appliction used 4 actors that implement the three main roles as defined in the Consumer Data Rights standard:</p>
+<ol>
+<li>The Data Holders - 3rd Party Data Holder and Any Bank</li>
+<li>The Data Recipient - SPA Application (spa.data-recipient.local)</li>
+<li>The Customer - 3rd Party Data Holder (CRN0), ANY Bank (CRN1)</li>
+</ol>
+<p>The following steps will demonstrate how:</p>
+<ul>
+<li>Access the 3rd Party Data Holder's DR application</li>
+<li>Authenticate to the 3rd Party Data Holder</li>
+<li>Initiate a sharing flow with Any Bank (Consent)</li>
+<li>Authenticate and Authorise the Consent with Any Bank</li>
+<li>Use the SPA Appliction to access transaction data</li>
+</ul>
+<p>The SPA Appliction is already running as a service if you followed the steps detailed above. To confirm that the service is running enter:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>logs<span class="w"> </span>docker-compose_datain-configurepf_1
+</code></pre></div>
+<p>And verify that there has been activity. Please note the container name is dependent on OS and may need to be adjusted.</p>
+<h3 id="running-the-spa-appliction">Running the SPA Appliction<a class="headerlink" href="#running-the-spa-appliction" title="Permanent link"> ¶</a></h3>
+<ol>
+<li>
+<p>Open your web browser and goto <a href="https://spa.data-recipient.local/">https://spa.data-recipient.local/</a></p>
+<div class="admonition warning">
+<p class="admonition-title">SSL Certificates</p>
+<p>The sandbox includes a self-signed SSL certificate. You will need to accept the security warning to access the SPA Appliction.</p>
+</div>
+</li>
+<li>
+<p>Select "Any Bank" from the drop down list and click Submit</p>
+</li>
+<li>You will be asked to authenticate as a customer of the 3rd Party Data Holder</li>
+<li>
+<ul>
+<li>Username: bhope</li>
+<li>Password: password</li>
+</ul>
+</li>
+<li>You will now be redirected to AnyBank to Authenticate and Authorise the consent.</li>
+<li>
+<p>At the AnyBank Customer ID prompt enter in Alice’s bank identifier:</p>
+<ul>
+<li>Customer ID: crn0</li>
+</ul>
+</li>
+<li>
+<p>At the SMS OTP field provide the value:</p>
+<ul>
+<li>SMS OTP: 123456</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The sandbox includes a mock SMS provider that will accept the OTP value of “123456” for testing purposes.</p>
+</div>
+</li>
+<li>
+<p>AnyBank will present the Authorisation prompt. Review the authorisation.<br></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The right hand column is dynamic, being populated based upon scopes that are sent from the Data Recipient. For the brevity of the UI and demo the scopes are set to Basic Account Details and Transaction Details.</p>
+</div>
+</li>
+<li>
+<p>Select the 1st the Transaction Account to share transaction data with 3rd Party Data Holder</p>
+</li>
+<li>Click the Confirm button. You should be redirected back to SPA Appliction.</li>
+<li>Click "Exchange Code for Token Response" to continue</li>
+<li>Click "Get Accounts" to retrieve the consented accounts from Any Bank for Customer CRN1.</li>
+</ol>
+<h4 id="accessing-account-data-with-existing-arrangement-id">Accessing Account Data with Existing Arrangement ID<a class="headerlink" href="#accessing-account-data-with-existing-arrangement-id" title="Permanent link"> ¶</a></h4>
+<ol>
+<li>Click "Start Again"</li>
+<li>Select "..." from the drop down list and click Submit</li>
+<li>Click "Exchange Code for Token Response" to continue</li>
+<li>Click "Get Accounts" to retrieve the consented accounts from Any Bank for Customer CRN1.</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="codehilite"><pre><span></span><code>You should not be prompted to reconsent.
+</code></pre></div>
+
+</div>
+<h3 id="shut-down-the-stack">Shut Down the Stack<a class="headerlink" href="#shut-down-the-stack" title="Permanent link"> ¶</a></h3>
+<p>When you no longer want to run the CDR Reference Sandbox, you can either stop the running stack, or bring the stack down.</p>
+<ul>
+<li>
+<p>To stop the running stack without removing any of the containers or associated Docker networks:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-f<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>~/projects/cdr/docker-compose/docker-compose.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>stop
+</code></pre></div>
+</li>
+<li>
+<p>To remove all of the containers and associated Docker networks:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-f<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>~/projects/cdr/docker-compose/docker-compose.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>down
+</code></pre></div>
+</li>
+<li>
+<p>To completely remove the CDR Reference images and configuration:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>system<span class="w"> </span>prune<span class="w"> </span>--force
+docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w"> </span>--all<span class="w"> </span>--force
+rm<span class="w"> </span>-rf<span class="w"> </span>~/projects/cdr
+</code></pre></div>
+</li>
+</ul>
+<h3 id="other-considerations">Other Considerations<a class="headerlink" href="#other-considerations" title="Permanent link"> ¶</a></h3>
+<h3 id="environment-configuration-cdrenv">Environment Configuration (cdr.env)<a class="headerlink" href="#environment-configuration-cdrenv" title="Permanent link"> ¶</a></h3>
+<p>The CDR Sandbox configuration is driven by the parameters defined within the <strong>cdr.env</strong> file that is located in the ~/projects/cdr/docker-compose directory. Some of these parameters can be adjusted to support your environment.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You will need to restart the sandbox for these changes to apply.</p>
+</div>
+<ul>
+<li>SERVER_PROFILE_BRANCH<ul>
+<li>Default Value: [version of the CDR Sandbox to run. e.g. cdr-1.2-core-001]</li>
+<li>The SERVER_PROFILE_BRANCH value represents the version of the CDR Sandbox to download and execute.</li>
+</ul>
+</li>
+<li>BASE_HOSTNAME<ul>
+<li>Default Value: data-holder.local</li>
+<li>The BASE_HOSTNAME value represents the base DNS name used to access the Data Holder's web services and applications. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.</li>
+</ul>
+</li>
+<li>BRAND1_BGCOLOR<ul>
+<li>Default Value: rgb(50, 115, 220)</li>
+</ul>
+</li>
+<li>BRAND2_BGCOLOR<ul>
+<li>Default Value: #373C41</li>
+</ul>
+</li>
+<li>PF_BASE_PORT<ul>
+<li>Default Value: 443</li>
+<li>The PF_BASE_PORT value defines the listening port of PingFederate.</li>
+</ul>
+</li>
+<li>BASE_URL<ul>
+<li>Default Value: http://dr.data-recipient.local:8080</li>
+<li>The BASE_URL value is the URL used to access the sample Data Recipient application. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.</li>
+</ul>
+</li>
+<li>DR_CLIENT-authorization_endpoint<ul>
+<li>Default Value: https://sso.data-holder.local/as/authorization.oauth2</li>
+<li>The DR_CLIENT-authorization_endpoint value represents the OAUTH2 compliant end point that is required by the CDR Security profile to obtain a valid data sharing token. The end point is hosted by PingAccess to enforce MTLS as well as provide for the ability to capture the value of the minted refresh token. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.</li>
+<li>You will need to update this value if you update BASE_HOSTNAME.</li>
+</ul>
+</li>
+<li>DR_CLIENT-ss_redirect_uri<ul>
+<li>Default Value: http://dr.data-recipient.local:8080/*<br></li>
+<li>The DR_CLIENT-ss_redirect_uri value is the authorised value that the sample Data Recipient sets up during its Dynamic Client Registration process. This value is stored against the OAUTH Client within PingFederate. You will need to ensure hosts files or DNS are updated to reflect the appropriate IP addresses for the containers once the sandbox is running if you change this value.</li>
+<li>You will need to update this value if you update BASE_URL.</li>
+</ul>
+</li>
+</ul>
+<h3 id="saving-server-configurations">Saving Server Configurations<a class="headerlink" href="#saving-server-configurations" title="Permanent link"> ¶</a></h3>
+<p>For your initial deployment of the sandbox, we recommend you make no changes to the docker-compose.yaml file to ensure you have a successful first-time deployment. Any configuration changes you make will not be saved when you bring down the stack. For subsequent deployments, see <a href="https://devops.pingidentity.com/how-to/saveConfigs/">Saving your configuration changes</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2021 Ping Identity
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "instant"], "search": "assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>
