@@ -1,5 +1,5 @@
 {
-    "metadata": {"pfVersion": "11.2.3.0"},
+    "metadata": {"pfVersion": "11.2.7.0"},
     "operations": [
         {
             "operationType": "SAVE",
@@ -241,7 +241,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://96c72b406bb0:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://edbdab8670d7:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -539,13 +539,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -1541,7 +1535,7 @@
                             },
                             {
                                 "name": "Include X.509 Thumbprint Header Parameter",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Default JWKS URL Cache Duration",
@@ -1553,7 +1547,7 @@
                             },
                             {
                                 "name": "Include JWE X.509 Thumbprint Header Parameter",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Client ID Claim Name",
@@ -1597,11 +1591,11 @@
                             },
                             {
                                 "name": "Publish Key ID X.509 URL",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Publish Thumbprint X.509 URL",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Expand Scope Groups",

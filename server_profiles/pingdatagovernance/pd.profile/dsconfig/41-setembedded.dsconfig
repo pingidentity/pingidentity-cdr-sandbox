@@ -7,6 +7,30 @@ dsconfig create-policy-configuration-key \
     --set "policy-configuration-value:${PINGFEDERATE_HOSTNAME}"
 
 dsconfig create-policy-configuration-key \
+    --key-name PINGONE_PROTECT_TOKEN_CLIENTID  \
+    --set "policy-configuration-value:${PINGONE_PROTECT_TOKEN_CLIENTID}"
+
+dsconfig create-policy-configuration-key \
+    --key-name PINGONE_PROTECT_TOKEN_CLIENTSECRET  \
+    --set "policy-configuration-value:${PINGONE_PROTECT_TOKEN_CLIENTSECRET}"
+
+dsconfig create-policy-configuration-key \
+    --key-name PINGONE_PROTECT_TOKEN_ENDPOINT  \
+    --set "policy-configuration-value:${PINGONE_PROTECT_TOKEN_ENDPOINT}"
+
+dsconfig create-policy-configuration-key \
+    --key-name PINGONE_PROTECT_RISKEVAL_ENDPOINT  \
+    --set "policy-configuration-value:${PINGONE_PROTECT_RISKEVAL_ENDPOINT}"
+
+dsconfig create-policy-configuration-key \
+    --key-name PINGONE_PROTECT_RISKEVAL_POLICY_ID  \
+    --set "policy-configuration-value:${PINGONE_PROTECT_RISKEVAL_POLICY_ID}"
+
+dsconfig create-policy-configuration-key \
+    --key-name PINGONE_PROTECT_RISKEVAL_POLICY_NAME  \
+    --set "policy-configuration-value:${PINGONE_PROTECT_RISKEVAL_POLICY_NAME}"
+
+dsconfig create-policy-configuration-key \
     --key-name AttributeProcessing.SpEL.AllowedClasses  \
     --set "policy-configuration-value:java.util.Base64"
 

@@ -241,7 +241,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ${HOME}/projects/devops/volumes/cdr.mockregister.20210824:/tmp/cache
+       - ${HOME}/projects/devops/volumes/cdr.mockregister.20240305_1:/tmp/cache
        - ./dataholders:/tmp/cache/dataholder
 
   pingdatagovernance:
