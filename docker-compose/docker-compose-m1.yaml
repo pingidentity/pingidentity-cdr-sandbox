@@ -119,7 +119,7 @@ services:
       - pingnet-internal
 
   pingfederate:
-    image: pingidentity/pingfederate:11.2.7-edge
+    image: pingidentity/pingfederate:edge
 #    image: 574076504146.dkr.ecr.us-east-1.amazonaws.com/snapshot-builds/pingfederate:latest-aarch64-06092023
     command: wait-for pingdirectory:1389 -t 900 -- entrypoint.sh start-server
 #    environment:
