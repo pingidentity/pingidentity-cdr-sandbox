@@ -8,7 +8,7 @@
 .clearfix:after { clear: both; }
 
 /* BASIC HTML ELEMENTS CSS -------------------------------------------------------------------------------------------*/
-body { background: #f7f7f7; font-size: 16px; line-height: 1.2em; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 300; font-style: normal; }
+body { background: #f7f7f7; font-size: 16px; line-height: 1.2em; font-family: 'helvetica', 'arial', sans-serif; font-weight: 300; font-style: normal; }
 
 a { cursor: pointer; text-decoration: none; }
 
@@ -16,9 +16,9 @@ a:hover { text-decoration: underline; }
 
 p { margin: 0 0 10px 0; line-height: 1.2; }
 
-strong { font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 700; font-style: normal; }
+strong { font-family: 'helvetica', 'arial', sans-serif; font-weight: 700; font-style: normal; }
 
-input[type=button], input[type=submit], .button { padding: 9px 10px; font-size: 15px; line-height: 16px; cursor: pointer; display: inline-block; vertical-align: bottom; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 300; font-style: normal; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; border-radius: 2px; appearance: none; -moz-appearance: none; -webkit-appearance: none; -o-appearance: none; }
+input[type=button], input[type=submit], .button { padding: 9px 10px; font-size: 15px; line-height: 16px; cursor: pointer; display: inline-block; vertical-align: bottom; font-family: 'helvetica', 'arial', sans-serif; font-weight: 300; font-style: normal; -webkit-border-radius: 2px; -moz-border-radius: 2px; -ms-border-radius: 2px; border-radius: 2px; appearance: none; -moz-appearance: none; -webkit-appearance: none; -o-appearance: none; }
 
 input[type=button][disabled], input[type=submit][disabled], .button[disabled] { cursor: default; filter: alpha(opacity=40); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)"; opacity: 0.4; }
 
@@ -27,7 +27,7 @@ input[type=button]:hover, input[type=submit]:hover, .button:hover { text-decorat
 textarea, input { outline: none; }
 
 /* MODAL CSS ---------------------------------------------------------------------------------------------------------*/
-.modal { top: 10%; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 400; font-style: normal; }
+.modal { top: 10%; font-family: 'helvetica', 'arial', sans-serif; font-weight: 400; font-style: normal; }
 
 .modal:before { content: ""; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: gray; z-index: 0; background: #8b8f96; background: -moz-radial-gradient(center, ellipse cover, #8b8f96 0%, #595c62 100%); background: -webkit-radial-gradient(center, ellipse cover, #8b8f96 0%, #595c62 100%); background: -webkit-radial-gradient(center, ellipse, #8b8f96 0%, #595c62 100%); background: -o-radial-gradient(center, ellipse, #8b8f96 0%, #595c62 100%); background: radial-gradient(ellipse at center, #8b8f96 0%, #595c62 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$gradient-inner', endColorstr='$gradient-outer',GradientType=1 ); }
 
@@ -230,7 +230,7 @@ textarea, input { outline: none; }
 
 .dialog > .window .error-message.show { top: 0; }
 
-.dialog > .window .success-message { font-size: 13px; line-height: 1em; color: #ffffff; margin-bottom: 5px; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 600; font-style: normal; }
+.dialog > .window .success-message { font-size: 13px; line-height: 1em; color: #ffffff; margin-bottom: 5px; font-family: 'helvetica', 'arial', sans-serif; font-weight: 600; font-style: normal; }
 
 .dialog > .window .content { font-size: 14px; }
 
@@ -254,7 +254,7 @@ textarea, input { outline: none; }
 
 .link--primary { display: inline-block; margin-top: 10px; font-size: 14px; color: #ffffff; text-decoration: underline; }
 
-.loading-page { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #ffffff; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; font-size: 20px; color: #999999; text-align: center; font-family: 'proxima-nova', 'helvetica', 'arial', sans-serif; font-weight: 400; font-style: normal; }
+.loading-page { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #ffffff; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; font-size: 20px; color: #999999; text-align: center; font-family: 'helvetica', 'arial', sans-serif; font-weight: 400; font-style: normal; }
 
 .loading-page__spinner { width: 28px; height: auto; margin-bottom: 15px; }
 
