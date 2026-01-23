@@ -52,32 +52,6 @@ input[type='submit'] {
   -moz-appearance: none;
   appearance: none;
 }
-
-@font-face {
-  font-family: 'ProximaNovaRegular';
-  font-weight: normal;
-  src: url("../fonts/proxima-nova/ProximaNova-Regular.otf");
-}
-@font-face {
-  font-family: 'ProximaNovaBold';
-  font-weight: bold;
-  src: url("../fonts/proxima-nova/ProximaNova-Bold.otf");
-}
-@font-face {
-  font-family: 'ProximaNovaLight';
-  font-weight: normal;
-  src: url("../fonts/proxima-nova/ProximaNova-Light.otf");
-}
-@font-face {
-  font-family: 'ProximaNovaSemibold';
-  font-weight: normal;
-  src: url("../fonts/proxima-nova/ProximaNova-Semibold.otf");
-}
-@font-face {
-  font-family: 'ProximaNovaCondRegular';
-  font-weight: normal;
-  src: url("../fonts/proxima-nova/ProximaNovaCond-Regular.otf");
-}
 input[type=button], input[type=submit], .ping-button, .button, button {
   padding: 0 20px;
   margin-right: 10px;
@@ -91,7 +65,7 @@ input[type=button], input[type=submit], .ping-button, .button, button {
   border-radius: 3px;
   position: relative;
   display: inline-block;
-  font-family: proxima-nova, sans-serif;
+  font-family: sans-serif;
   background-color: #fff;
   text-align: center;
   vertical-align: bottom;
@@ -234,7 +208,7 @@ input[type=button].inline.delete:before, input[type=submit].inline.delete:before
   border-radius: 3px;
   position: relative;
   display: inline-block;
-  font-family: proxima-nova, sans-serif;
+  font-family: sans-serif;
   background-color: #fff;
   text-align: center;
   vertical-align: bottom;
@@ -464,7 +438,7 @@ input[type=button].inline.delete:before, input[type=submit].inline.delete:before
 }
 
 body {
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   font-size: 16px;
   line-height: 1.3em;
   color: #3d454d;
@@ -508,7 +482,7 @@ p {
 }
 
 strong {
-  font-family: "ProximaNovaBold", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
 }
 
 @font-face {
@@ -991,7 +965,7 @@ label,
   color: #929aa1;
   vertical-align: top;
   line-height: 1em;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   cursor: default;
 }
 label .label-text, label .input-container,
@@ -2193,7 +2167,7 @@ label.radio-group,
   cursor: pointer;
   padding: 0 40px 0 10px;
   width: 110%;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   text-transform: none;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
@@ -2835,7 +2809,7 @@ label.radio-group,
 .required.legend input[type=tel],
 .required.legend input[type=email],
 .required.legend input[type=date] {
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   padding-left: 20px;
 }
 .required.input-text.value-entered input[type=text],
@@ -3476,7 +3450,7 @@ input[type=file] {
 
 .input-calendar {
   display: inline-block;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   margin-bottom: 7px;
 }
 .input-calendar:before {
@@ -3529,7 +3503,7 @@ input[type=file] {
 }
 .input-calendar .input-calendar-wrapper {
   display: none;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
 }
 .input-calendar .input-calendar-wrapper.active {
   position: absolute;
@@ -4030,7 +4004,7 @@ body .ping-signin .ping-header, body .ping-password .ping-header {
   max-width: 480px;
 }
 body .ping-signin .ping-subtitle, body .ping-password .ping-subtitle {
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   font-size: 18px;
   line-height: 1.3em;
   padding: 10px 0;
@@ -4379,7 +4353,7 @@ table.ping-tabular th {
   border-bottom: 1px solid #e4e5e5;
 }
 table.ping-tabular th:not(:last-child) {
-  font-family: "ProximaNovaBold", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   color: #929aa1;
   text-transform: uppercase;
   font-weight: normal;
@@ -4555,7 +4529,7 @@ ul.no-bullets li:before {
   background-color: #575f67;
   color: #fff;
   text-align: center;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   font-size: 17px;
   line-height: 18px;
   letter-spacing: 0;
@@ -5108,7 +5082,7 @@ ul.no-bullets li:before {
   font-size: 40px;
   line-height: 1.2em;
   min-height: 16px;
-  font-family: "ProximaNovaLight", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   color: #000;
   text-align: center;
   max-width: 400px;
@@ -5185,7 +5159,7 @@ ul.no-bullets li:before {
   font-weight: 300;
   font-size: 16px;
   text-transform: none;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
 }
 .password-requirements a:hover {
   text-decoration: none;
@@ -5578,7 +5552,7 @@ ul.no-bullets li:before {
   border: 1px solid #d1d3d4;
   color: #929aa1;
   font-size: 14px;
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -5640,7 +5614,7 @@ ul.no-bullets li:before {
   margin: 0;
 }
 .identifier-first__account-item {
-  font-family: "ProximaNovaBold", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -5658,7 +5632,7 @@ ul.no-bullets li:before {
   margin-right: 10px;
 }
 .identifier-first__add-account {
-  font-family: "ProximaNovaRegular", helvetica, arial, sans-serif;
+  font-family: helvetica, arial, sans-serif;
   font-size: 16px;
   cursor: default;
   border: none;
