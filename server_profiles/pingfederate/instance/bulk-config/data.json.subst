@@ -1,6 +1,28 @@
 {
-    "metadata": {"pfVersion": "11.2.3.0"},
+    "metadata": {"pfVersion": "12.3.1.0"},
     "operations": [
+        {
+            "operationType": "SAVE",
+            "subResource": "cert-time-tracking",
+            "items": [
+                {
+                    "stringValue": "1764903329",
+                    "id": "85nv5o5p9pgodsne3w47n5hua",
+                    "type": "STRING"
+                },
+                {
+                    "stringValue": "1764903331",
+                    "id": "m1v0h7yh0adz41x5y8b6yhv9i",
+                    "type": "STRING"
+                },
+                {
+                    "stringValue": "1764903329",
+                    "id": "wxom4n4v8ayu7yx47eqbj8bl0",
+                    "type": "STRING"
+                }
+            ],
+            "resourceType": "/configStore"
+        },
         {
             "operationType": "SAVE",
             "subResource": "com.pingidentity.ps.cdr.pf.grantstorage.consentapi.ConsentAPIAccessGrantManager",
@@ -157,11 +179,18 @@
         {
             "operationType": "SAVE",
             "subResource": "org.sourceid.saml20.domain.mgmt.AdminUserManager",
-            "items": [{
-                "stringValue": "true",
-                "id": "isEaRoleUpdated",
-                "type": "STRING"
-            }],
+            "items": [
+                {
+                    "stringValue": "true",
+                    "id": "isDcRoleUpdated",
+                    "type": "STRING"
+                },
+                {
+                    "stringValue": "true",
+                    "id": "isEaRoleUpdated",
+                    "type": "STRING"
+                }
+            ],
             "resourceType": "/configStore"
         },
         {
@@ -241,7 +270,7 @@
             "operationType": "SAVE",
             "items": [{
                 "accepted": true,
-                "licenseAgreementUrl": "https://96c72b406bb0:9999/pf-admin-api/license-agreement"
+                "licenseAgreementUrl": "https://cba482e00393:9999/pf-admin-api/license-agreement"
             }],
             "resourceType": "/license/agreement"
         },
@@ -291,6 +320,14 @@
             "operationType": "SAVE",
             "items": [{
                 "rsaDecryptionPublishX5cParameter": true,
+                "dynamicKeyCertificateInformation": {
+                    "country": null,
+                    "city": null,
+                    "organization": null,
+                    "organizationUnit": null,
+                    "state": null
+                },
+                "publishDynamicKeyX5cs": false,
                 "rsaActiveCertRef": {
                     "location": "https://localhost:9999/pf-admin-api/v1/keyPairs/signing/85nv5o5p9pgodsne3w47n5hua",
                     "id": "85nv5o5p9pgodsne3w47n5hua"
@@ -336,6 +373,9 @@
                     "testOnReturn": false,
                     "readTimeout": 3000,
                     "name": "pingdirectory",
+                    "useStartTLS": false,
+                    "lastModified": "2025-12-05T02:55:29.127Z",
+                    "retryFailedOperations": false,
                     "userDN": "cn=administrator"
                 },
                 {
@@ -421,6 +461,10 @@
                                 "value": ""
                             },
                             {
+                                "name": "Client TLS Certificate",
+                                "value": ""
+                            },
+                            {
                                 "name": "Enable HTTPS Hostname Verification",
                                 "value": "true"
                             },
@@ -455,11 +499,20 @@
                             {
                                 "name": "Test Connection Body",
                                 "value": ""
+                            },
+                            {
+                                "name": "Maximum Connections",
+                                "value": "32"
+                            },
+                            {
+                                "name": "Exclude default Content-Type from GET Request",
+                                "value": "false"
                             }
                         ]
                     },
                     "name": "REST",
                     "id": "Other-78E855B521DB6749F4D81045BBE2B674C6E38158",
+                    "lastModified": "2025-12-05T02:55:29.233Z",
                     "type": "CUSTOM",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/dataStores/descriptors/com.pingidentity.pf.datastore.other.RestDataSourceDriver",
@@ -519,7 +572,11 @@
                         "enableSaml10": true
                     }
                 },
-                "notifications": {"notifyAdminUserPasswordChanges": false}
+                "notifications": {
+                    "notifyAdminUserPasswordChanges": false,
+                    "expiringCertificateAdministrativeConsoleWarningDays": 14,
+                    "expiredCertificateAdministrativeConsoleWarningDays": 14
+                }
             }],
             "resourceType": "/serverSettings"
         },
@@ -539,13 +596,7 @@
         },
         {
             "operationType": "SAVE",
-            "items": [{
-                "dataStoreRef": {
-                    "location": "https://localhost:9999/pf-admin-api/v1/dataStores",
-                    "id": ""
-                },
-                "synchronizationFrequency": 60
-            }],
+            "items": [{"synchronizationFrequency": 60}],
             "resourceType": "/serverSettings/outboundProvisioning"
         },
         {
@@ -582,9 +633,21 @@
                     "enabled": false
                 },
                 {
+                    "name": "Protocol Requests and Responses",
+                    "description": "Log protocol request and response messages.",
+                    "id": "protocolrequestresponse",
+                    "enabled": false
+                },
+                {
                     "name": "Policy Tree",
                     "description": "Policy tree debug logging.",
                     "id": "policytree",
+                    "enabled": false
+                },
+                {
+                    "name": "Data Store Response Times",
+                    "description": "Log response times for data store requests.",
+                    "id": "dsresponsetime",
                     "enabled": false
                 },
                 {
@@ -627,6 +690,7 @@
                 "roles": [
                     "ADMINISTRATOR",
                     "CRYPTO_ADMINISTRATOR",
+                    "DATA_COLLECTION_ADMINISTRATOR",
                     "EXPRESSION_ADMINISTRATOR",
                     "USER_ADMINISTRATOR"
                 ],
@@ -666,6 +730,7 @@
                 "redirectValidationLocalSettings": {
                     "enableTargetResourceValidationForSLO": true,
                     "enableInErrorResourceValidation": true,
+                    "uriAllowList": [],
                     "whiteList": [],
                     "enableTargetResourceValidationForSSO": true,
                     "enableTargetResourceValidationForIdpDiscovery": true
@@ -677,9 +742,11 @@
         {
             "operationType": "SAVE",
             "items": [{
+                "clientCertHeaderEncodingFormat": "APACHE_MOD_SSL",
                 "clientCertChainSSLHeaderName": "X-PFCertificateChain",
                 "clientCertSSLHeaderName": "X-PFCertificate",
-                "proxyTerminatesHttpsConns": true
+                "proxyTerminatesHttpsConns": true,
+                "enableClientCertHeaderAuth": true
             }],
             "resourceType": "/incomingProxySettings"
         },
@@ -705,8 +772,103 @@
             "operationType": "SAVE",
             "items": [
                 {
+                    "name": "application_type",
+                    "description": "application_type",
+                    "multiValued": false
+                },
+                {
+                    "name": "client_description",
+                    "description": "client_description",
+                    "multiValued": false
+                },
+                {
+                    "name": "client_uri",
+                    "description": "client_uri",
+                    "multiValued": false
+                },
+                {
+                    "name": "dh_host",
+                    "description": "dh_host",
+                    "multiValued": false
+                },
+                {
+                    "name": "is_admin",
+                    "description": "is_admin",
+                    "multiValued": false
+                },
+                {
+                    "name": "last_software_statement",
+                    "description": "last software statement used for DCR",
+                    "multiValued": false
+                },
+                {
+                    "name": "legal_entity_id",
+                    "description": "legal_entity_id",
+                    "multiValued": false
+                },
+                {
+                    "name": "legal_entity_name",
+                    "description": "legal_entity_name",
+                    "multiValued": false
+                },
+                {
+                    "name": "org_id",
+                    "description": "org_id",
+                    "multiValued": false
+                },
+                {
+                    "name": "org_name",
+                    "description": "org_name",
+                    "multiValued": false
+                },
+                {
+                    "name": "policy_uri",
+                    "description": "policy_uri",
+                    "multiValued": false
+                },
+                {
+                    "name": "recipient_base_uri",
+                    "description": "recipient_base_uri",
+                    "multiValued": false
+                },
+                {
+                    "name": "revocation_uri",
+                    "description": "revocation_uri",
+                    "multiValued": false
+                },
+                {
+                    "name": "software_id",
+                    "description": "software_id",
+                    "multiValued": false
+                },
+                {
+                    "name": "software_roles",
+                    "description": "software_roles",
+                    "multiValued": false
+                },
+                {
+                    "name": "tos_uri",
+                    "description": "tos_uri",
+                    "multiValued": false
+                }
+            ],
+            "resourceType": "/extendedProperties"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
+                "allowedOriginsList": [],
+                "enabled": false
+            }],
+            "resourceType": "/administrativeApi/corsSettings"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [
+                {
                     "name": "cdrFragmentInput",
                     "id": "AaBY1mnPx540brcB",
+                    "lastModified": "2025-12-05T02:55:29.441Z",
                     "coreAttributes": [{"name": "subject"}],
                     "extendedAttributes": [
                         {"name": "claims_requestedACR"},
@@ -720,12 +882,14 @@
                 {
                     "name": "adminContract",
                     "id": "TkNJ3HMIIvIeeZEM",
+                    "lastModified": "2025-12-05T02:55:29.445Z",
                     "coreAttributes": [{"name": "subject"}],
                     "extendedAttributes": []
                 },
                 {
                     "name": "adrContract",
                     "id": "VYC5qyntxwlroKqT",
+                    "lastModified": "2025-12-05T02:55:29.446Z",
                     "coreAttributes": [{"name": "subject"}],
                     "extendedAttributes": [
                         {"name": "software_id"},
@@ -735,6 +899,7 @@
                 {
                     "name": "cdrContract",
                     "id": "iQwSYDdExcmJaYk6",
+                    "lastModified": "2025-12-05T02:55:29.447Z",
                     "coreAttributes": [{"name": "subject"}],
                     "extendedAttributes": [
                         {"name": "cdr_consent_id"},
@@ -824,11 +989,16 @@
                             {
                                 "name": "Expect Password Expired Control",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Account Disabled Attribute",
+                                "value": ""
                             }
                         ]
                     },
                     "name": "adminPCV",
                     "id": "adminPCV",
+                    "lastModified": "2025-12-05T02:55:29.559Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
                         "id": "org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator"
@@ -912,11 +1082,16 @@
                             {
                                 "name": "Expect Password Expired Control",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Account Disabled Attribute",
+                                "value": ""
                             }
                         ]
                     },
                     "name": "adrUserPCV",
                     "id": "adrUserPCV",
+                    "lastModified": "2025-12-05T02:55:29.565Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/passwordCredentialValidators/descriptors/org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator",
                         "id": "org.sourceid.saml20.domain.LDAPUsernamePasswordCredentialValidator"
@@ -1088,11 +1263,28 @@
                             {
                                 "name": "Authorization Details Claim Name",
                                 "value": "authorization_details"
+                            },
+                            {
+                                "name": "Not Before Claim Offset",
+                                "value": ""
+                            },
+                            {
+                                "name": "Include Issued At Claim",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Publish Keys to the PingFederate JWKS Endpoint",
+                                "value": "false"
                             }
                         ]
                     },
+                    "tokenEndpointAttributeContract": {
+                        "inherited": false,
+                        "attributes": []
+                    },
                     "name": "adminATM",
                     "id": "adminATM",
+                    "lastModified": "2025-12-05T02:55:29.590Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
@@ -1261,11 +1453,28 @@
                             {
                                 "name": "Authorization Details Claim Name",
                                 "value": "authorization_details"
+                            },
+                            {
+                                "name": "Not Before Claim Offset",
+                                "value": ""
+                            },
+                            {
+                                "name": "Include Issued At Claim",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Publish Keys to the PingFederate JWKS Endpoint",
+                                "value": "false"
                             }
                         ]
                     },
+                    "tokenEndpointAttributeContract": {
+                        "inherited": false,
+                        "attributes": []
+                    },
                     "name": "adrATM",
                     "id": "adrATM",
+                    "lastModified": "2025-12-05T02:55:29.602Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
@@ -1436,11 +1645,28 @@
                             {
                                 "name": "Authorization Details Claim Name",
                                 "value": "authorization_details"
+                            },
+                            {
+                                "name": "Not Before Claim Offset",
+                                "value": ""
+                            },
+                            {
+                                "name": "Include Issued At Claim",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Publish Keys to the PingFederate JWKS Endpoint",
+                                "value": "false"
                             }
                         ]
                     },
+                    "tokenEndpointAttributeContract": {
+                        "inherited": false,
+                        "attributes": []
+                    },
                     "name": "cdrADRNotfATM",
                     "id": "cdrADRNotfATM",
+                    "lastModified": "2025-12-05T02:55:29.612Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
@@ -1541,7 +1767,7 @@
                             },
                             {
                                 "name": "Include X.509 Thumbprint Header Parameter",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Default JWKS URL Cache Duration",
@@ -1553,7 +1779,7 @@
                             },
                             {
                                 "name": "Include JWE X.509 Thumbprint Header Parameter",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Client ID Claim Name",
@@ -1597,11 +1823,11 @@
                             },
                             {
                                 "name": "Publish Key ID X.509 URL",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Publish Thumbprint X.509 URL",
-                                "value": ""
+                                "value": "false"
                             },
                             {
                                 "name": "Expand Scope Groups",
@@ -1610,11 +1836,28 @@
                             {
                                 "name": "Type Header Value",
                                 "value": ""
+                            },
+                            {
+                                "name": "Not Before Claim Offset",
+                                "value": ""
+                            },
+                            {
+                                "name": "Include Issued At Claim",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Publish Keys to the PingFederate JWKS Endpoint",
+                                "value": "false"
                             }
                         ]
                     },
+                    "tokenEndpointAttributeContract": {
+                        "inherited": false,
+                        "attributes": []
+                    },
                     "name": "manualDCRATM",
                     "id": "manualDCRATM",
+                    "lastModified": "2025-12-05T02:55:29.618Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
@@ -1805,11 +2048,28 @@
                             {
                                 "name": "Authorization Details Claim Name",
                                 "value": "authorization_details"
+                            },
+                            {
+                                "name": "Not Before Claim Offset",
+                                "value": ""
+                            },
+                            {
+                                "name": "Include Issued At Claim",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Publish Keys to the PingFederate JWKS Endpoint",
+                                "value": "false"
                             }
                         ]
                     },
+                    "tokenEndpointAttributeContract": {
+                        "inherited": false,
+                        "attributes": []
+                    },
                     "name": "obATM",
                     "id": "obATM",
+                    "lastModified": "2025-12-05T02:55:29.640Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/descriptors/com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin",
                         "id": "com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin"
@@ -1991,6 +2251,10 @@
                                 "value": "false"
                             },
                             {
+                                "name": "Brands page-size parameter",
+                                "value": "25"
+                            },
+                            {
                                 "name": "CDR MTLS Network Certificate",
                                 "value": ""
                             },
@@ -2118,6 +2382,7 @@
                     },
                     "name": "ADR - Data In Selector",
                     "id": "ADRDataInSelector",
+                    "lastModified": "2025-12-05T02:55:29.672Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.ps.cdr.data.in.pf.DataHolderSelector",
                         "id": "com.pingidentity.ps.cdr.data.in.pf.DataHolderSelector"
@@ -2235,6 +2500,7 @@
                     },
                     "name": "CDR - Initiate Request",
                     "id": "cdrSelectorAdapter",
+                    "lastModified": "2025-12-05T02:55:30.032Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.ps.cdr.pf.adapter.idp.CDRAdapterSelector",
                         "id": "com.pingidentity.ps.cdr.pf.adapter.idp.CDRAdapterSelector"
@@ -2320,6 +2586,7 @@
                     },
                     "name": "General - SMS Verification",
                     "id": "clickatellAdapter",
+                    "lastModified": "2025-12-05T02:55:30.078Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapter.idp.ClickatelSMSMFAAdapter",
                         "id": "com.pingidentity.adapter.idp.ClickatelSMSMFAAdapter"
@@ -2397,6 +2664,18 @@
                                 "value": "NONE"
                             },
                             {
+                                "name": "Access Token Manager",
+                                "value": ""
+                            },
+                            {
+                                "name": "Allowed Bearer Access Token Client IDs",
+                                "value": ""
+                            },
+                            {
+                                "name": "Required Bearer Access Token Scopes",
+                                "value": ""
+                            },
+                            {
                                 "name": "Prefix Referenced Attributes",
                                 "value": "true"
                             },
@@ -2439,11 +2718,20 @@
                             {
                                 "name": "Relax Password Requirements",
                                 "value": "false"
+                            },
+                            {
+                                "name": "Preserve JSON",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Include Null Attributes",
+                                "value": "false"
                             }
                         ]
                     },
                     "name": "CDR - External Consent",
                     "id": "consentAgentlessAdapter",
+                    "lastModified": "2025-12-05T02:55:30.099Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.pf.adapters.referenceid.IdpBackchannelReferenceAuthnAdapter",
                         "id": "com.pingidentity.pf.adapters.referenceid.IdpBackchannelReferenceAuthnAdapter"
@@ -2761,11 +3049,16 @@
                             {
                                 "name": "CAPTCHA Provider",
                                 "value": ""
+                            },
+                            {
+                                "name": "Account Disabled Email Template",
+                                "value": "message-template-account-disabled.html"
                             }
                         ]
                     },
                     "name": "Username Password Form",
                     "id": "htmlFormAdapter",
+                    "lastModified": "2025-12-05T02:55:30.125Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter",
                         "id": "com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter"
@@ -3082,11 +3375,16 @@
                             {
                                 "name": "CAPTCHA Provider",
                                 "value": ""
+                            },
+                            {
+                                "name": "Account Disabled Email Template",
+                                "value": "message-template-account-disabled.html"
                             }
                         ]
                     },
                     "name": "Administrators - Verify Credentials",
                     "id": "htmlFormAdapterAdministrators",
+                    "lastModified": "2025-12-05T02:55:30.154Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter",
                         "id": "com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter"
@@ -3182,11 +3480,20 @@
                             {
                                 "name": "Identifier Selection Template",
                                 "value": "identifier.first.template.html"
+                            },
+                            {
+                                "name": "Enable Risk Provider",
+                                "value": "false"
+                            },
+                            {
+                                "name": "Risk Provider",
+                                "value": ""
                             }
                         ]
                     },
                     "name": "CDR - Get Account Number",
                     "id": "identityFirstAdapter",
+                    "lastModified": "2025-12-05T02:55:30.179Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/descriptors/com.pingidentity.adapters.identifierfirst.idp.IdentifierFirstAdapter",
                         "id": "com.pingidentity.adapters.identifierfirst.idp.IdentifierFirstAdapter"
@@ -3242,93 +3549,26 @@
         },
         {
             "operationType": "SAVE",
-            "items": [
-                {
-                    "name": "application_type",
-                    "description": "application_type",
-                    "multiValued": false
-                },
-                {
-                    "name": "client_description",
-                    "description": "client_description",
-                    "multiValued": false
-                },
-                {
-                    "name": "client_uri",
-                    "description": "client_uri",
-                    "multiValued": false
-                },
-                {
-                    "name": "dh_host",
-                    "description": "dh_host",
-                    "multiValued": false
-                },
-                {
-                    "name": "is_admin",
-                    "description": "is_admin",
-                    "multiValued": false
-                },
-                {
-                    "name": "last_software_statement",
-                    "description": "last software statement used for DCR",
-                    "multiValued": false
-                },
-                {
-                    "name": "legal_entity_id",
-                    "description": "legal_entity_id",
-                    "multiValued": false
-                },
-                {
-                    "name": "legal_entity_name",
-                    "description": "legal_entity_name",
-                    "multiValued": false
-                },
-                {
-                    "name": "org_id",
-                    "description": "org_id",
-                    "multiValued": false
-                },
-                {
-                    "name": "org_name",
-                    "description": "org_name",
-                    "multiValued": false
-                },
-                {
-                    "name": "policy_uri",
-                    "description": "policy_uri",
-                    "multiValued": false
-                },
-                {
-                    "name": "recipient_base_uri",
-                    "description": "recipient_base_uri",
-                    "multiValued": false
-                },
-                {
-                    "name": "revocation_uri",
-                    "description": "revocation_uri",
-                    "multiValued": false
-                },
-                {
-                    "name": "software_id",
-                    "description": "software_id",
-                    "multiValued": false
-                },
-                {
-                    "name": "software_roles",
-                    "description": "software_roles",
-                    "multiValued": false
-                },
-                {
-                    "name": "tos_uri",
-                    "description": "tos_uri",
-                    "multiValued": false
-                }
-            ],
-            "resourceType": "/extendedProperties"
-        },
-        {
-            "operationType": "SAVE",
             "items": [{
+                "scopeGroups": [],
+                "offlineAccessRequireConsentPrompt": false,
+                "refreshRollingInterval": 672,
+                "tokenEndpointBaseUrl": "",
+                "trackUserSessionsForLogout": false,
+                "parStatus": "ENABLED",
+                "refreshTokenRollingGracePeriod": 0,
+                "persistentGrantIdleTimeout": -1,
+                "devicePollingInterval": 5,
+                "persistentGrantIdleTimeoutTimeUnit": "DAYS",
+                "jwtSecuredAuthorizationResponseModeLifetime": 600,
+                "pendingAuthorizationTimeout": 600,
+                "consentLifetimeDays": -1,
+                "bypassActivationCodeConfirmation": false,
+                "returnIdTokenOnOpenIdWithDeviceAuthzGrant": false,
+                "refreshRollingIntervalTimeUnit": "HOURS",
+                "registeredAuthorizationPath": "",
+                "authorizationCodeTimeout": 30,
+                "parReferenceTimeout": 60,
                 "persistentGrantContract": {
                     "coreAttributes": [
                         {"name": "USER_KEY"},
@@ -3353,41 +3593,32 @@
                         {"name": "CLAIMS_PARAMETER"}
                     ]
                 },
-                "scopeGroups": [],
                 "adminWebServicePcvRef": {"id": "adminPCV"},
                 "atmIdForOAuthGrantManagement": "adminATM",
-                "refreshRollingInterval": 672,
-                "tokenEndpointBaseUrl": "",
-                "trackUserSessionsForLogout": false,
-                "parStatus": "ENABLED",
                 "defaultScopeDescription": "",
-                "refreshTokenRollingGracePeriod": 0,
                 "authorizationCodeEntropy": 30,
-                "persistentGrantIdleTimeout": -1,
                 "rollRefreshTokenValues": false,
+                "requireOfflineAccessScopeToIssueRefreshTokens": false,
                 "allowedOrigins": [
                     "https://test.${BASE_HOSTNAME}",
                     "https://spa.${DR_BASE_HOSTNAME}",
                     "https://spa.${DR_BASE_HOSTNAME}:6443"
                 ],
                 "allowUnidentifiedClientExtensionGrants": false,
-                "devicePollingInterval": 5,
-                "persistentGrantIdleTimeoutTimeUnit": "DAYS",
+                "bypassAuthorizationForApprovedConsents": false,
                 "userAuthorizationUrl": "",
-                "jwtSecuredAuthorizationResponseModeLifetime": 600,
+                "dpopProofRequireNonce": false,
                 "clientSecretRetentionPeriod": 0,
-                "pendingAuthorizationTimeout": 600,
+                "dpopProofEnforceReplayPrevention": false,
                 "disallowPlainPKCE": false,
                 "exclusiveScopeGroups": [],
                 "userAuthorizationConsentPageSetting": "INTERNAL",
-                "bypassActivationCodeConfirmation": false,
                 "includeIssuerInAuthorizationResponse": false,
                 "persistentGrantReuseGrantTypes": [],
-                "registeredAuthorizationPath": "",
+                "dpopProofLifetimeSeconds": 120,
                 "persistentGrantLifetime": 365,
                 "refreshTokenLength": 42,
                 "allowUnidentifiedClientROCreds": false,
-                "authorizationCodeTimeout": 30,
                 "persistentGrantLifetimeUnit": "DAYS",
                 "activationCodeCheckMode": "AFTER_AUTHENTICATION",
                 "scopes": [
@@ -3422,8 +3653,8 @@
                         "dynamic": false
                     }
                 ],
+                "enableCookielessUserAuthorizationAuthenticationApi": false,
                 "scopeForOAuthGrantManagement": "urn:pingidentity:grant:admin",
-                "parReferenceTimeout": 60,
                 "exclusiveScopes": [
                     {
                         "name": "bank:accounts.basic:read",
@@ -3559,6 +3790,14 @@
         {
             "operationType": "SAVE",
             "items": [{
+                "subjectDNMapList": [],
+                "issuerDNMapList": []
+            }],
+            "resourceType": "/protocolMetadata/attributeRequesterMappings"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{
                 "trackAdapterSessionsForLogout": false,
                 "sessionRevocationLifetime": 490,
                 "revokeUserSessionOnLogout": false
@@ -3592,6 +3831,7 @@
                 {
                     "authnContextSensitive": false,
                     "timeoutDisplayUnit": "MINUTES",
+                    "userDeviceType": "PRIVATE",
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
@@ -3606,6 +3846,7 @@
                 {
                     "authnContextSensitive": false,
                     "timeoutDisplayUnit": "MINUTES",
+                    "userDeviceType": "PRIVATE",
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
@@ -3620,6 +3861,7 @@
                 {
                     "authnContextSensitive": false,
                     "timeoutDisplayUnit": "MINUTES",
+                    "userDeviceType": "PRIVATE",
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
@@ -3634,6 +3876,7 @@
                 {
                     "authnContextSensitive": false,
                     "timeoutDisplayUnit": "MINUTES",
+                    "userDeviceType": "PRIVATE",
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
@@ -3648,6 +3891,7 @@
                 {
                     "authnContextSensitive": false,
                     "timeoutDisplayUnit": "MINUTES",
+                    "userDeviceType": "PRIVATE",
                     "authenticationSource": {
                         "type": "IDP_ADAPTER",
                         "sourceRef": {
@@ -3661,6 +3905,11 @@
                 }
             ],
             "resourceType": "/session/authenticationSessionPolicies"
+        },
+        {
+            "operationType": "SAVE",
+            "items": [{"enableSessionQuotas": false}],
+            "resourceType": "/session/quotas"
         },
         {
             "operationType": "SAVE",
@@ -3842,6 +4091,20 @@
             "operationType": "SAVE",
             "items": [
                 {
+                    "returnIdTokenOnTokenExchangeGrant": false,
+                    "idTokenTypHeaderValue": "",
+                    "scopeAttributeMappings": {},
+                    "returnIdTokenOnRefreshGrant": false,
+                    "includeSriInIdToken": true,
+                    "includeSHashInIdToken": false,
+                    "includeUserInfoInIdToken": false,
+                    "attributeContract": {
+                        "coreAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }],
+                        "extendedAttributes": []
+                    },
                     "attributeMapping": {
                         "attributeContractFulfillment": {"sub": {
                             "source": {"type": "TOKEN"},
@@ -3850,28 +4113,33 @@
                         "attributeSources": [],
                         "issuanceCriteria": {"conditionalCriteria": []}
                     },
+                    "includeX5tInIdToken": false,
                     "name": "adminOIDCPolicy",
-                    "scopeAttributeMappings": {},
-                    "returnIdTokenOnRefreshGrant": false,
+                    "allowIdTokenIntrospection": false,
                     "id": "adminOIDCPolicy",
                     "reissueIdTokenInHybridFlow": false,
-                    "includeSriInIdToken": true,
-                    "includeSHashInIdToken": false,
-                    "includeUserInfoInIdToken": false,
+                    "lastModified": "2025-12-05T02:55:30.344Z",
                     "idTokenLifetime": 5,
-                    "attributeContract": {
-                        "coreAttributes": [{
-                            "name": "sub",
-                            "multiValued": false
-                        }],
-                        "extendedAttributes": []
-                    },
                     "accessTokenManagerRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/adminATM",
                         "id": "adminATM"
                     }
                 },
                 {
+                    "returnIdTokenOnTokenExchangeGrant": false,
+                    "idTokenTypHeaderValue": "",
+                    "scopeAttributeMappings": {},
+                    "returnIdTokenOnRefreshGrant": true,
+                    "includeSriInIdToken": true,
+                    "includeSHashInIdToken": true,
+                    "includeUserInfoInIdToken": true,
+                    "attributeContract": {
+                        "coreAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }],
+                        "extendedAttributes": []
+                    },
                     "attributeMapping": {
                         "attributeContractFulfillment": {"sub": {
                             "source": {"type": "TOKEN"},
@@ -3880,28 +4148,91 @@
                         "attributeSources": [],
                         "issuanceCriteria": {"conditionalCriteria": []}
                     },
+                    "includeX5tInIdToken": false,
                     "name": "adrOIDCPolicy",
-                    "scopeAttributeMappings": {},
-                    "returnIdTokenOnRefreshGrant": true,
+                    "allowIdTokenIntrospection": false,
                     "id": "adrOIDCPolicy",
                     "reissueIdTokenInHybridFlow": false,
-                    "includeSriInIdToken": true,
-                    "includeSHashInIdToken": true,
-                    "includeUserInfoInIdToken": true,
+                    "lastModified": "2025-12-05T02:55:30.352Z",
                     "idTokenLifetime": 5,
-                    "attributeContract": {
-                        "coreAttributes": [{
-                            "name": "sub",
-                            "multiValued": false
-                        }],
-                        "extendedAttributes": []
-                    },
                     "accessTokenManagerRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/adrATM",
                         "id": "adrATM"
                     }
                 },
                 {
+                    "returnIdTokenOnTokenExchangeGrant": false,
+                    "idTokenTypHeaderValue": "",
+                    "scopeAttributeMappings": {"openid": {"values": [
+                        "acr",
+                        "auth_time",
+                        "family_name",
+                        "given_name",
+                        "name",
+                        "refresh_token_expires_at",
+                        "sharing_expires_at",
+                        "updated_at"
+                    ]}},
+                    "returnIdTokenOnRefreshGrant": true,
+                    "includeSriInIdToken": false,
+                    "includeSHashInIdToken": true,
+                    "includeUserInfoInIdToken": false,
+                    "attributeContract": {
+                        "coreAttributes": [{
+                            "name": "sub",
+                            "multiValued": false
+                        }],
+                        "extendedAttributes": [
+                            {
+                                "includeInUserInfo": false,
+                                "name": "acr",
+                                "includeInIdToken": true,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": false,
+                                "name": "refresh_token_expires_at",
+                                "includeInIdToken": true,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": true,
+                                "name": "updated_at",
+                                "includeInIdToken": true,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": false,
+                                "name": "auth_time",
+                                "includeInIdToken": true,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": true,
+                                "name": "name",
+                                "includeInIdToken": false,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": true,
+                                "name": "given_name",
+                                "includeInIdToken": false,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": true,
+                                "name": "family_name",
+                                "includeInIdToken": false,
+                                "multiValued": false
+                            },
+                            {
+                                "includeInUserInfo": false,
+                                "name": "sharing_expires_at",
+                                "includeInIdToken": true,
+                                "multiValued": false
+                            }
+                        ]
+                    },
                     "attributeMapping": {
                         "attributeContractFulfillment": {
                             "acr": {
@@ -3971,80 +4302,13 @@
                             "conditionalCriteria": []
                         }
                     },
+                    "includeX5tInIdToken": false,
                     "name": "obOIDCPolicy",
-                    "scopeAttributeMappings": {"openid": {"values": [
-                        "acr",
-                        "auth_time",
-                        "family_name",
-                        "given_name",
-                        "name",
-                        "refresh_token_expires_at",
-                        "sharing_expires_at",
-                        "updated_at"
-                    ]}},
-                    "returnIdTokenOnRefreshGrant": true,
+                    "allowIdTokenIntrospection": false,
                     "id": "obOIDCPolicy",
                     "reissueIdTokenInHybridFlow": false,
-                    "includeSriInIdToken": false,
-                    "includeSHashInIdToken": true,
-                    "includeUserInfoInIdToken": false,
+                    "lastModified": "2025-12-05T02:55:30.367Z",
                     "idTokenLifetime": 5,
-                    "attributeContract": {
-                        "coreAttributes": [{
-                            "name": "sub",
-                            "multiValued": false
-                        }],
-                        "extendedAttributes": [
-                            {
-                                "includeInUserInfo": false,
-                                "name": "acr",
-                                "includeInIdToken": true,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": false,
-                                "name": "refresh_token_expires_at",
-                                "includeInIdToken": true,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": true,
-                                "name": "updated_at",
-                                "includeInIdToken": true,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": false,
-                                "name": "auth_time",
-                                "includeInIdToken": true,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": true,
-                                "name": "name",
-                                "includeInIdToken": false,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": true,
-                                "name": "given_name",
-                                "includeInIdToken": false,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": true,
-                                "name": "family_name",
-                                "includeInIdToken": false,
-                                "multiValued": false
-                            },
-                            {
-                                "includeInUserInfo": false,
-                                "name": "sharing_expires_at",
-                                "includeInIdToken": true,
-                                "multiValued": false
-                            }
-                        ]
-                    },
                     "accessTokenManagerRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/oauth/accessTokenManagers/obATM",
                         "id": "obATM"
@@ -4160,6 +4424,7 @@
                 },
                 "name": "cdrAURegister",
                 "id": "cdrAURegister",
+                "lastModified": "2025-12-05T02:55:30.411Z",
                 "pluginDescriptorRef": {
                     "location": "https://localhost:9999/pf-admin-api/v1/oauth/clientRegistrationPolicies/descriptors/com.pingidentity.ps.cdr.pf.clientregistration.CDRAUPlugin",
                     "id": "com.pingidentity.ps.cdr.pf.clientregistration.CDRAUPlugin"
@@ -4172,6 +4437,7 @@
             "items": [{
                 "dynamicClientRegistration": {
                     "rotateClientSecret": false,
+                    "offlineAccessRequireConsentPrompt": "SERVER_DEFAULT",
                     "requireSignedRequests": true,
                     "persistentGrantIdleTimeoutType": "SERVER_DEFAULT",
                     "cibaRequireSignedRequests": false,
@@ -4199,6 +4465,8 @@
                     "allowedAuthorizationDetailTypes": [],
                     "enforceReplayPrevention": true,
                     "disableRegistrationAccessTokens": true,
+                    "requireOfflineAccessScopeToIssueRefreshTokens": "SERVER_DEFAULT",
+                    "lockoutMaxMaliciousActionsType": "SERVER_DEFAULT",
                     "requireProofKeyForCodeExchange": true,
                     "rotateRegistrationAccessToken": false,
                     "restrictToDefaultAccessTokenManager": true,
@@ -4521,6 +4789,7 @@
                     },
                     "name": "Data In Selector",
                     "id": "DataInSelector",
+                    "lastModified": "2025-12-05T02:55:30.523Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.http.HttpRequestParamAuthnSelector",
                         "id": "com.pingidentity.pf.selectors.http.HttpRequestParamAuthnSelector"
@@ -4547,6 +4816,7 @@
                     },
                     "name": "adminSelector",
                     "id": "adminSelector",
+                    "lastModified": "2025-12-05T02:55:30.530Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
                         "id": "com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector"
@@ -4573,6 +4843,7 @@
                     },
                     "name": "Data In API Driven",
                     "id": "dataInAPISelector",
+                    "lastModified": "2025-12-05T02:55:30.534Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
                         "id": "com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector"
@@ -4595,6 +4866,7 @@
                     },
                     "name": "Data In Client Selector",
                     "id": "dataInClientSelector",
+                    "lastModified": "2025-12-05T02:55:30.559Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.oauthclient.OAuthClientAdapterSelector",
                         "id": "com.pingidentity.pf.selectors.oauthclient.OAuthClientAdapterSelector"
@@ -4621,6 +4893,7 @@
                     },
                     "name": "Local Authentication Selector",
                     "id": "localAuthNSelector",
+                    "lastModified": "2025-12-05T02:55:30.564Z",
                     "pluginDescriptorRef": {
                         "location": "https://localhost:9999/pf-admin-api/v1/authenticationSelectors/descriptors/com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector",
                         "id": "com.pingidentity.pf.selectors.ExtendedPropertyAuthnSelector"
