@@ -224,7 +224,7 @@ services:
     networks:
       - pingnet-internal
     volumes:
-       - ~/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
+#       - ~/projects/devops/volumes/cdr.mockregister.20210421_1:/tmp/cache
        - ./datarecipients/cdr-sandbox-data-in-local-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-local-dr-0005
        - ./datarecipients/cdr-sandbox-data-in-sample-dr-0005:/tmp/cache/datarecipients/cdr-sandbox-data-in-sample-dr-0005
 
